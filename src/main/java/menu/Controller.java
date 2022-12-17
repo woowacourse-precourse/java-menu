@@ -31,6 +31,8 @@ public class Controller {
         List<Menu> menu = new ArrayList<>();
         menu = addCategory.add(menu);
         List<String> category = new ArrayList<>();
+        List<String> menuList = new ArrayList<>();
+        List<Result> result = new ArrayList<>();
         for(int i=0; i<5; i++) {
             String categoryName = randomCategory(menu);
             if(validateCategory(category, categoryName)){
@@ -39,8 +41,21 @@ public class Controller {
             };
             category.add(categoryName);
         }
+        for (int j = 0; j < coachInfo.size(); j++) {
+            for(int i=0; i<5; i++) {
+                String categoryName = category.get(i);
+                String Menu = randomMenu(menu, categoryName,coachInfo.get(j).nonfood);
+                menuList.add(Menu);
+            }
+            result.add(new Result(coachInfo.get(j).name,menuList));
+        }
 
-
+        for(int i=0; i<result.size(); i++){
+            System.out.println(result.get(i).name);
+            for(int j=0; j<5; j++){
+                System.out.println(result.get(i).food.get(j));
+            }
+        }
 
     }
     public boolean validateCategory(List<String> category, String categoryName){
@@ -59,8 +74,8 @@ public class Controller {
         Random random = new Random();
         return random.RandomCategory(menu);
     }
-    public String randomMenu(List<Menu> menu,String Category){
+    public String randomMenu(List<Menu> menu,String Category,List<String> nonfood){
         Random random = new Random();
-        return random.RandomMenu(menu,Category);
+        return random.RandomMenu(menu,Category,nonfood);
     }
 }
