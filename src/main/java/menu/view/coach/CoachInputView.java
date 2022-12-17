@@ -41,6 +41,7 @@ public class CoachInputView extends DefaultInputView {
     }
 
     private String processInput(String message) {
+        System.out.println();
         System.out.println(message);
         return Console.readLine();
     }

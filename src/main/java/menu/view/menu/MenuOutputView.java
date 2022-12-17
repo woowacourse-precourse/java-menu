@@ -26,6 +26,7 @@ public class MenuOutputView extends DefaultOutputView {
     }
 
     public void recommendLunchMenu(RecommendMenusDto dto) {
+        System.out.println();
         System.out.println(GUIDE_RECOMMEND_MENU_MESSAGE);
         System.out.println(GUIDE_STANDARD_DAYS);
 

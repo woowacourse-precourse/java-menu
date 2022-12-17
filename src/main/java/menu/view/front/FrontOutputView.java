@@ -23,6 +23,7 @@ public class FrontOutputView extends DefaultOutputView {
     }
 
     public void printEndGuideMessage() {
+        System.out.println();
         System.out.println(END_APPLICATION_GUIDE_MESSAGE);
     }
 }
