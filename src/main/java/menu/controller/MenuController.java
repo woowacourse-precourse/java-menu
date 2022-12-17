@@ -14,6 +14,7 @@ public class MenuController {
             try {
                 String coachNames = inputView.readCoachNames();
                 menu.addCoachNames(coachNames);
+                return;
             } catch (IllegalArgumentException e) {
                 outputView.printException(e);
             }
@@ -25,6 +26,7 @@ public class MenuController {
             try {
                 String inedibleMenu = inputView.readInedibleMenu();
                 menu.addCoach(coachName, inedibleMenu);
+                return;
             } catch (IllegalArgumentException e) {
                 outputView.printException(e);
             }
