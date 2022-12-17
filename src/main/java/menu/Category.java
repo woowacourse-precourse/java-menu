@@ -15,11 +15,12 @@ public enum Category {
         this.menu = menu;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public Menu getMenu(){
         return menu;
+    }
+
+    @Override
+    public String toString(){
+        return name;
     }
 }
