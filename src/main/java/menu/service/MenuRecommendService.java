@@ -36,21 +36,22 @@ public class MenuRecommendService {
         return DayOfTheWeek.getDaysOfTheWeek();
     }
 
-    public void recommendMenu(List<String> coachNames) {
+    public void recommendCategory() {
         Category recommendedCategory = RandomCategoryGenerator.generate();
+        while (thisWeekRecommendedCategory.isRecommendCategoryCountOverTwo(recommendedCategory)) {
+            recommendedCategory = RandomCategoryGenerator.generate();
+        }
         thisWeekRecommendedCategory.updateRecommendCategory(recommendedCategory);
+    }
 
+    public void recommendMenu(List<String> coachNames, Category recommendedCategory) {
         for (String coachName : coachNames) {
             Coach findCoach = coachRepository.findByCoachName(coachName);
             String recommendMenu = menuRecommendMachine.recommend(recommendedCategory);
             while (!findCoach.validateRecommendMenu(recommendMenu)) {
-                retry(recommendedCategory);
+                recommendMenu = menuRecommendMachine.recommend(recommendedCategory);
             }
             findCoach.updateAlreadyEatFood(recommendMenu);
         }
-    }
-
-    private void retry(Category recommendedCategory) {
-        menuRecommendMachine.recommend(recommendedCategory);
     }
 }
