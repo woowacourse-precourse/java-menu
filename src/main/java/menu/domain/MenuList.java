@@ -51,8 +51,4 @@ public enum MenuList {
         }
         return false;
     }
-
-//    public static boolean find1(String menu){
-//        List<List<String>> collect = Arrays.stream(values()).map(MenuList::getMenus).collect(Collectors.toList());
-//    }
 }
