@@ -13,4 +13,7 @@ public enum Week {
         this.value = value;
     }
 
+    public String getValue() {
+        return value;
+    }
 }
