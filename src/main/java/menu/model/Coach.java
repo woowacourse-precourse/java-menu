@@ -1,5 +1,6 @@
 package menu.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Coach {
@@ -10,43 +11,61 @@ public class Coach {
 	private String name;
 	private List<String> notEatFoodList;
 	private List<String> recommendFoodList;
+	private List<Category> categoryList;
 
 	public Coach(String name) {
 		this.name = name;
+		this.categoryList = new ArrayList<>();
+		this.recommendFoodList = new ArrayList<>();
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public List<String> getNotEatFoodList() {
-		return notEatFoodList;
+	public List<Category> getCategoryList() {
+		return this.categoryList;
 	}
 
 	public void setNotEatFoodList(List<String> notEatFoodList) {
 		this.notEatFoodList = notEatFoodList;
 	}
 
-	public List<String> getRecommendFoodList() {
-		return recommendFoodList;
+	public boolean isCategorySizeFull() {
+		return this.categoryList.size() < 5;
 	}
 
-	public void setRecommendFoodList(List<String> recommendFoodList) {
-		this.recommendFoodList = recommendFoodList;
+	public void setCategory(Category category) {
+		for (Category getCategory : this.categoryList) {
+			if (getCategory.equals(category)) {
+				return;
+			}
+		}
+		this.categoryList.add(category);
+	}
+
+	public boolean isRecommendFoodListSizeFull() {
+		return this.recommendFoodList.size() < 5;
+	}
+
+	public void setRecommendFood(String menu) {
+		if (this.notEatFoodList.contains(menu)) {
+			return;
+		}
+		if (this.recommendFoodList.contains(menu)) {
+			return;
+		}
+		this.recommendFoodList.add(menu);
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("[ ").append(name).append(" | ");
+		sb.append("[ ").append(this.name).append(" | ");
 		for (int day = MONDAY; day < FRIDAY; day++) {
-			sb.append(recommendFoodList.get(day)).append(" | ");
+			sb.append(this.recommendFoodList.get(day)).append(" | ");
 		}
-		sb.append(recommendFoodList.get(FRIDAY)).append(" ]");
+		sb.append(this.recommendFoodList.get(FRIDAY)).append(" ]");
 		return sb.toString();
 	}
 
