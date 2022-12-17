@@ -1,6 +1,7 @@
 package menu.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 public class InedibleFoods {
     private List<String> bannedFoods;
@@ -9,11 +10,11 @@ public class InedibleFoods {
         bannedFoods = new ArrayList<>();
     }
 
-    public void addBannedFood(String food) {
+    public void addEdibleFood(String food) {
         this.bannedFoods.add(food);
     }
 
-    public List<String> getBannedFoods() {
+    public List<String> getEdibleFoods() {
         return bannedFoods;
     }
 }

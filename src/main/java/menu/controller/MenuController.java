@@ -26,18 +26,18 @@ public class MenuController {
 
     public void run() {
         outputView.printStart();
-        coaches = makeCrews();
-        processFillingBannedFoods();
-        processFillingFoods();
+        coaches = makeCoaches();
+        fillInedibleFoods();
+        fillMenus();
         outputView.printResult(categories, coaches);
     }
 
-    private Coaches makeCrews() {
+    private Coaches makeCoaches() {
         Coaches coachesTemp = new Coaches(getCoaches());
         return coachesTemp;
     }
 
-    private void processFillingFoods() {
+    private void fillMenus() {
         for (int i = START_NUM; i < END_NUM; i++) {
             fillCategory();
             fillFoods(categories.getCategories().get(i));
@@ -50,11 +50,11 @@ public class MenuController {
 
     private void fillFoods(String category) {
         for (Coach coach : coaches.getCoaches()) {
-            foodsFiller.fillFoods(coach, category, inedible.getBannedFoods());
+            foodsFiller.fillFoods(coach, category, inedible.getEdibleFoods());
         }
     }
 
-    private void processFillingBannedFoods() {
+    private void fillInedibleFoods() {
         int coachSize = coaches.getCoaches().size();
         fillInedible(coachSize);
     }
@@ -62,17 +62,17 @@ public class MenuController {
     private void fillInedible(int coachSize) {
         for (int i = 0; i < coachSize; i++) {
             Coach coach = coaches.getCoaches().get(i);
-            outputView.printRequestOfBannedFoods(coach.getName());
+            outputView.requestInedibleFoods(coach.getName());
             String foods = inputView.readBannedFoods();
             Arrays.stream(foods.split(","))
-                    .forEach(name -> inedible.addBannedFood(name));
+                    .forEach(name -> inedible.addEdibleFood(name));
         }
     }
 
     private List<Coach> getCoaches() {
-        outputView.printRequestCrewsName();
-        String coachsName = inputView.readCrewsName();
-        return Arrays.stream(coachsName.split(","))
+        outputView.requestCoachesName();
+        String coachesName = inputView.readCoachName();
+        return Arrays.stream(coachesName.split(","))
                 .map(name -> new Coach(name))
                 .collect(Collectors.toList());
     }

@@ -12,20 +12,20 @@ public class OutputView {
         System.out.println(GuidanceMessage.SERVICE_INTRO);
     }
 
-    public void printRequestCrewsName() {
+    public void requestCoachesName() {
         System.out.println();
         System.out.println(GuidanceMessage.INPUT_COACH_NAME);
     }
 
-    public void printRequestOfBannedFoods(String crewName) {
-        System.out.println("\n" + crewName + GuidanceMessage.INPUT_INEDIBLE);
+    public void requestInedibleFoods(String coachName) {
+        System.out.println("\n" + coachName + GuidanceMessage.INPUT_INEDIBLE);
     }
 
     public void printResult(Categories categories, Coaches coaches) {
         System.out.println("\n" + GuidanceMessage.SERVICE_RESULT);
         System.out.println(GuidanceMessage.DAYS_OF_WEEK);
         printCategories(categories);
-        printFoodOfCrews(coaches);
+        printCoachFood(coaches);
         System.out.println("\n" + GuidanceMessage.SERVICE_OUTRO);
     }
 
@@ -34,7 +34,7 @@ public class OutputView {
         System.out.println(printCategoryMap);
     }
 
-    public void printFoodOfCrews(Coaches coaches) {
+    public void printCoachFood(Coaches coaches) {
         for (Coach coach : coaches.getCoaches()) {
             System.out.println("[ " + coach.getName() + " " + coach.toString() + "]");
         }

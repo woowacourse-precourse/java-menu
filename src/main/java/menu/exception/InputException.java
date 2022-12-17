@@ -8,21 +8,21 @@ public class InputException {
     private final static int MAX_CREW_NAME_SIZE = 4;
     private final static int MIN_CREW_NAME_SIZE = 2;
 
-    public void validateCrews(String input) {
-        checkIsValidCrewSize(input);
-        checkIsValidCrewName(input);
+    public void validateCoaches(String input) {
+        validateCoachSize(input);
+        validateCoachName(input);
     }
 
-    private void checkIsValidCrewSize(String input) {
-        String[] crews = input.split(",");
-        if (!(crews.length >= MIN_CREW_SIZE && crews.length <= MAX_CREW_SIZE)) {
+    private void validateCoachSize(String input) {
+        String[] coaches = input.split(",");
+        if (!(coaches.length >= MIN_CREW_SIZE && coaches.length <= MAX_CREW_SIZE)) {
             throw new IllegalArgumentException(CREW_LENGTH_ERROR_MESSAGE);
         }
     }
 
-    private void checkIsValidCrewName(String input) {
-        String[] crews = input.split(",");
-        for (String crew : crews) {
+    private void validateCoachName(String input) {
+        String[] coaches = input.split(",");
+        for (String crew : coaches) {
             if (!(crew.length() >= MIN_CREW_NAME_SIZE && crew.length() <= MAX_CREW_NAME_SIZE)) {
                 throw new IllegalArgumentException(CREW_NAME_SIZE_ERROR_MESSAGE);
             }

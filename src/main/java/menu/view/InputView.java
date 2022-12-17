@@ -9,14 +9,14 @@ public class InputView {
 
     private final InputException inputException = new InputException();
 
-    public String readCrewsName() {
+    public String readCoachName() {
         try {
             String input = Console.readLine();
-            inputException.validateCrews(input);
+            inputException.validateCoaches(input);
             return input;
         } catch (IllegalArgumentException exception) {
             printError(exception.getMessage());
-            return readCrewsName();
+            return readCoachName();
         }
     }
 
