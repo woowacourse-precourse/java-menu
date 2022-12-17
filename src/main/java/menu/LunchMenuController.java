@@ -36,6 +36,9 @@ public class LunchMenuController {
         while(recommendMenus.size()<5){
             int index = recommendMenus.size();
             String randomRecommendMenu = lunchMenuService.randomRecommendMenu(index);
+            if(lunchMenuService.checkDuplicate(recommendMenus,randomRecommendMenu)){
+                recommendMenus.add(randomRecommendMenu);
+            }
         }
         results.add(recommendMenus);
     }

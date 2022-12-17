@@ -23,4 +23,12 @@ public class LunchMenuService {
         return Randoms.shuffle(menus.get(food-1)).get(0);
     }
 
+    public boolean checkDuplicate(List<String> recommendedMenus,String recommendMenu){
+        for(String recommendedMenu : recommendedMenus){
+            if(recommendedMenu.equals(recommendMenu)){
+                return false;
+            }
+        }
+        return true;
+    }
 }
