@@ -2,6 +2,7 @@ package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,6 +13,7 @@ public class InputView {
     private static final String UNEATABLE_FOOD_INPUT_INFO_MESSAGE_FORMAT = "%s(이)가 못 먹는 메뉴를 입력해 주세요.";
 
     private static final String INPUT_DIVIDER = ",";
+    private static final String EMPTY_INPUT = "";
 
     private final InputValidator inputValidator;
 
@@ -44,6 +46,10 @@ public class InputView {
     }
 
     private List<String> divideStringToList(String input) {
+        if (input.trim().equals(EMPTY_INPUT)) {
+            return List.of();
+        }
+
         return Arrays.stream(input.split(INPUT_DIVIDER))
                 .map(str -> str.trim())
                 .collect(Collectors.toList());
