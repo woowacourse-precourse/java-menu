@@ -57,6 +57,10 @@ public class MenuController {
             }
         }
 
+        return createDataRows(categories, couchMenus);
+    }
+
+    public DataRows createDataRows(List<String> categories, Map<Couch, List<Menu>> couchMenus) {
         List<DataRow> resultRows = new ArrayList<>(List.of(DIV_ROW, new DataRow("카테고리", categories)));
 
         resultRows.addAll(couchMenus.keySet().stream().map((couch) -> new DataRow(couch.getName(),
@@ -69,10 +73,9 @@ public class MenuController {
     public List<Menu> recommendMenuForDay(List<Couch> couches) {
         Category category = getAbleCategory(couches);
 
-        List<Menu> recommendedMenu = couches.stream()
-                .map((couch) -> recommendMenuForCouch(couch, MenuRepository.getMenusByCategory(category).stream().map((menu) -> menu.getName()).collect(
-                        Collectors.toList())))
-                .collect(Collectors.toUnmodifiableList());
+        List<Menu> recommendedMenu = couches.stream().map((couch) -> recommendMenuForCouch(couch,
+                MenuRepository.getMenusByCategory(category).stream().map((menu) -> menu.getName())
+                        .collect(Collectors.toList()))).collect(Collectors.toUnmodifiableList());
 
         for (int i = 0; i < couches.size(); i++) {
             couches.get(i).addDisableMenu(recommendedMenu.get(i));
