@@ -29,7 +29,7 @@ public class InputView {
         return Arrays.stream(menus).collect(Collectors.toList());
     }
 
-    public static void validate(ValidationType validationType, String input) {
+    private static void validate(ValidationType validationType, String input) {
         if (!ValidationType.validate(validationType, input)) {
             String errorMessage = validationType.getErrorMessage();
             throw new IllegalArgumentException(errorMessage);

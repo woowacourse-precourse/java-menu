@@ -12,15 +12,15 @@ public enum ValidationType {
     CHECK_MENUS(Category.getAllMenus(), ErrorMessage.NONEXISTENT_MENU_ERROR),
     CHECK_MENUS_COUNT(Arrays.asList("0", "1", "2"), ErrorMessage.OVER_MENU_COUNT_ERROR);
 
-    List<String> validationRange;
-    ErrorMessage errorMessage;
+    private List<String> validationRange;
+    private ErrorMessage errorMessage;
 
     ValidationType(List<String> validationRange, ErrorMessage errorMessage) {
         this.validationRange = validationRange;
         this.errorMessage = errorMessage;
     }
 
-    public List<String> getValidationRange() {
+    private List<String> getValidationRange() {
         return validationRange;
     }
 
