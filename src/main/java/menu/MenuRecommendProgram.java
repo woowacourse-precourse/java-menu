@@ -39,6 +39,11 @@ public class MenuRecommendProgram {
         // 결과 출력
     }
 
+    public void selectMenus(String category) {
+        for (Coach coach: coaches) {
+            selectMenu(coach, category);
+        }
+    }
 
 
     public String selectCategory() {
