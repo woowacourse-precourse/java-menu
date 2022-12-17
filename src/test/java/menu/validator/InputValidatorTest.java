@@ -39,4 +39,29 @@ class InputValidatorTest {
                      () -> InputValidator.isCorrectLength(longInput));
     }
 
+    @Test
+    @DisplayName("코치는 2명 이상 5명이하만 가능합니다.")
+    void testIsLimit_success() throws Exception {
+        //given
+        int input = 4;
+
+        //when & then
+        InputValidator.isLimit(input);
+    }
+
+    @Test
+    @DisplayName("코치가 2명 미만일 경우 IllegalArgumentException을 반환합니다.")
+    void testIsLimit_fail() throws Exception {
+        //given
+        int smallInput = 1;
+        int bigInput = 6;
+
+        //when & then
+        assertThrows(IllegalArgumentException.class,
+                     () -> InputValidator.isLimit(smallInput));
+
+        assertThrows(IllegalArgumentException.class,
+                     () -> InputValidator.isLimit(bigInput));
+    }
+
 }
