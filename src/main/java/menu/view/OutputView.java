@@ -8,8 +8,13 @@ package menu.view;
 public class OutputView {
 
     private static final String START_RECOMMEND_LAUNCH_MENU = "점심 메뉴 추천을 시작합니다.";
+    private static final String INPUT_COACH_NAME = "코치의 이름을 입력해 주세요. (, 로 구분)";
 
     public static void printStart() {
         System.out.println(START_RECOMMEND_LAUNCH_MENU);
+    }
+
+    public static void printInputCoach() {
+        System.out.println(INPUT_COACH_NAME);
     }
 }
