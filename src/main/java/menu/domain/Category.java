@@ -2,7 +2,7 @@ package menu.domain;
 
 import java.util.Arrays;
 import java.util.List;
-import menu.util.FoodData;
+import menu.util.data.FoodData;
 import menu.util.constants.ExceptionMessage;
 
 public enum Category {

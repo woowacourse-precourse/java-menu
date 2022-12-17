@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.Category;
-import menu.domain.Food;
+import menu.domain.food.Food;
 import menu.util.constants.ExceptionMessage;
 
 public class FoodRepository {

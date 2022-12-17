@@ -1,6 +1,7 @@
-package menu.domain;
+package menu.domain.food;
 
 import java.util.List;
+import menu.domain.Coach;
 
 public class NotEatFoods {
 

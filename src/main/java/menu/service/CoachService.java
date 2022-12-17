@@ -2,7 +2,7 @@ package menu.service;
 
 import java.util.List;
 import menu.domain.Coach;
-import menu.domain.NotEatFoods;
+import menu.domain.food.NotEatFoods;
 import menu.repository.CoachRepository;
 import menu.repository.NotEatFoodRepository;
 

@@ -2,7 +2,7 @@ package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import menu.util.Converter;
+import menu.util.converter.ArrayConverter;
 import menu.util.validator.CoachValidator;
 import menu.util.validator.NotEatFoodValidator;
 import menu.view.dto.NotEatFoodsDTO;
@@ -16,14 +16,14 @@ public class InputView {
         System.out.println(INPUT_COACH);
         String coaches = Console.readLine();
         CoachValidator.validateCoach(coaches);
-        return Converter.restArrayToList(coaches);
+        return ArrayConverter.restArrayToList(coaches);
     }
 
     public static NotEatFoodsDTO readNotEatFoodByCoach(String name) {
         System.out.printf(INPUT_NOT_EAT_FOODS, name);
         String notEatFoods = Console.readLine();
         NotEatFoodValidator.validateNotEatFoods(notEatFoods);
-        return new NotEatFoodsDTO(name, Converter.restArrayToList(notEatFoods));
+        return new NotEatFoodsDTO(name, ArrayConverter.restArrayToList(notEatFoods));
     }
 
 

@@ -1,6 +1,8 @@
 package menu.domain;
 
 import java.util.List;
+import menu.domain.food.Food;
+import menu.domain.food.RecommendFoods;
 
 public class Coach {
 

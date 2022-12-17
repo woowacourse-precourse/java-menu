@@ -1,6 +1,7 @@
 package menu.util;
 
 import java.util.List;
+import menu.util.converter.ArrayConverter;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,7 @@ class ConverterTest {
     void 컨버터_테스트() {
         String restArray = "A,B,C,D,E,F,G";
 
-        List<String> convertedArray =  Converter.restArrayToList(restArray);
+        List<String> convertedArray =  ArrayConverter.restArrayToList(restArray);
 
         Assertions.assertThat(convertedArray.size()).isEqualTo(7);
     }

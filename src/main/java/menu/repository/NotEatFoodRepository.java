@@ -3,8 +3,8 @@ package menu.repository;
 import java.util.ArrayList;
 import java.util.List;
 import menu.domain.Coach;
-import menu.domain.Food;
-import menu.domain.NotEatFoods;
+import menu.domain.food.Food;
+import menu.domain.food.NotEatFoods;
 import menu.util.constants.ExceptionMessage;
 
 public class NotEatFoodRepository {
