@@ -19,4 +19,11 @@ public class MenuRecommendService {
             coachRepository.saveCoach(coach);
         }
     }
+
+    public void saveCannotEatFoods(List<String> coachNames, List<String> cannotEatFoods) {
+        for (String coachName : coachNames) {
+            Coach findCoach = coachRepository.findByCoachName(coachName);
+            findCoach.updateCannotEatFoods(cannotEatFoods);
+        }
+    }
 }

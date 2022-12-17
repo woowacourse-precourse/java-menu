@@ -17,4 +17,8 @@ public class Coach {
     public boolean isEqualCoach(String coachName) {
         return this.name.equals(coachName);
     }
+
+    public void updateCannotEatFoods(List<String> cannotEatFoods) {
+        this.cannotEatFoods = cannotEatFoods;
+    }
 }
