@@ -23,7 +23,7 @@ public class MenuSuggester {
             suggestedCategory.add(category);
             return true;
         }
-        if(checkThatCategoryCount(suggestedCategory,category) <= 2){
+        if(checkThatCategoryCount(suggestedCategory,category) < 2){
             suggestedCategory.add(category);
             return true;
         }
