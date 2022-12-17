@@ -19,6 +19,7 @@ public class MenuService {
         this.coaches = coaches;
         categoryGenerator = new CategoryGenerator();
         menuGenerator = new MenuGenerator();
+        categoryCounter = new HashMap<>();
         for(Category category : Category.values()){
             categoryCounter.put(category, 0);
         }
@@ -31,11 +32,17 @@ public class MenuService {
             List<String> menus = MenuList.getFiled(category);
             List<String> eatenMenu = coach.getEatenMenu();
             List<String> hateMenu = coach.getHateMenu();
+
             for(String menu : eatenMenu){
-                menus.remove(menu);
+                if(menus.contains(menu)){
+                    menus.remove(menu);
+                }
+
             }
             for(String menu : hateMenu){
-                menus.remove(menu);
+                if(menus.contains(menu)){
+                    menus.remove(menu);
+                }
             }
             coach.addEatenMenu(getRecommendMenu(menus));
         }
