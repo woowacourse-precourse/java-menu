@@ -10,7 +10,7 @@
     
 ### 2. 메뉴 추천
 **`camp.nextstep.edu.missionutils`의 `Randoms.pickNumberInRange()` 사용**
-- [ ] 카테고리 선택
+- [X] 카테고리 선택
   * 한 주에 동일한 카테고리는 2회까지만 가능
 - [ ] 메뉴 선택
   * 중복되지 않는 메뉴를 선택
