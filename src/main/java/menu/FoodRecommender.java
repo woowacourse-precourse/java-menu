@@ -15,14 +15,17 @@ public class FoodRecommender {
         }
     }
 
-    public void recommend(Coach[] coaches) {
-        while (dayCount < 7) {
+    public String[] recommend(Coach[] coaches) {
+        String[] categories = new String[5];
+        while (dayCount < 5) {
             String category = pickCategory();
+            categories[dayCount] = category;
             for (Coach coach: coaches) {
                 pickMenu(coach, category);
             }
             dayCount++;
         }
+        return categories;
     }
 
 

@@ -13,16 +13,16 @@ public class Application {
         }
         return coaches;
     }
-    static void startRecommend(Coach[] coaches) {
+    static String[] startRecommend(Coach[] coaches) {
         FoodRecommender foodRecommender = new FoodRecommender();
-        foodRecommender.recommend(coaches);
+        return foodRecommender.recommend(coaches);
     }
-    static void terminate(Coach[] coaches) {
-        UserInterface.notifyTotalResult(coaches);
+    static void terminate(String[] categories, Coach[] coaches) {
+        UserInterface.notifyTotalResult(categories, coaches);
     }
     public static void main(String[] args) {
         Coach[] coaches = initiate();
-        startRecommend(coaches);
-        terminate(coaches);
+        String[] categories = startRecommend(coaches);
+        terminate(categories, coaches);
     }
 }
