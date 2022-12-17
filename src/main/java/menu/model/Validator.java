@@ -18,10 +18,7 @@ public class Validator {
     public static List<String> isValidCoachesName(String userInput) {
         List<String> coachesName = new ArrayList<>(Arrays.asList(userInput.split(",")));
         isValidCoachesSize(coachesName);
-        for (int index = 0; index < coachesName.size(); index++) {
-            String realCoachName = coachesName.get(index).strip();
-            coachesName.set(index, realCoachName);
-        }
+        coachesName.replaceAll(String::strip);
         isValidCoachName(coachesName);
         return coachesName;
     }
@@ -50,10 +47,7 @@ public class Validator {
     public static List<String> isValidDislikeMenus(String userInput) {
         List<String> dislikeMenus = new ArrayList<>(Arrays.asList(userInput.split(",")));
         isValidMenuSize(dislikeMenus);
-        for (int index = 0; index < dislikeMenus.size(); index++) {
-            String realDislikeMenu = dislikeMenus.get(index).strip();
-            dislikeMenus.set(index, realDislikeMenu);
-        }
+        dislikeMenus.replaceAll(String::strip);
         return dislikeMenus;
     }
 
