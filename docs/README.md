@@ -15,3 +15,7 @@
   - [X] 한주에 같은 카테고리 최대 2회 Recommend#validateCategory
 - [x] 메뉴 추천 Recommend#recommendFood
   - [x] 한주에 중복되지 않는 메뉴를 추천해야한다. Recommend#randomMenu
+
+Coach - 코치와 안먹는 음식 저장 class
+CoachFood - 코치와 추천받은 음식 저장 class
+Menu - 메뉴의 카테고리와 음식리스트 저장 class
