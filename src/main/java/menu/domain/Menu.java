@@ -1,6 +1,8 @@
 package menu.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public enum Menu {
@@ -54,6 +56,6 @@ public enum Menu {
     }
 
     public List<String> getMenus() {
-        return menus;
+        return Collections.unmodifiableList(menus);
     }
 }
