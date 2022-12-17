@@ -17,6 +17,13 @@ public class MenuRecommendApp {
         this.categoryByDayOfTheWeek = new ArrayList<>();
     }
 
+    public void initializeCoach(String coachNameWithComma) {
+        String[] coachNames = coachNameWithComma.split(",");
+        for (String coachName : coachNames) {
+            coaches.add(new Coach(coachName));
+        }
+    }
+
     public List<Coach> getCoaches() {
         return coaches;
     }
