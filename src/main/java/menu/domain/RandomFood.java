@@ -50,17 +50,5 @@ public class RandomFood {
         }
         return randomFoods;
     }
-
-//    public List<String> makeRandomFood(String notFood, String menu) {
-//        List<String> pickMenus = new ArrayList<>();
-//        int count = 0;
-//        while(count<5){
-//            if (Collections.frequency(pickMenus, menu) < 2 && !menu.equals(notFood)) {
-//                count++;
-//                pickMenus.add(menu);
-//                System.out.println("PICK"+pickMenus.toString());
-//            }
-//        }
-//        return pickMenus;
-//    }
+    
 }
