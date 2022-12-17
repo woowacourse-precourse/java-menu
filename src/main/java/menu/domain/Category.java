@@ -3,8 +3,8 @@ package menu.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+
 /*
 일식: 규동, 우동, 미소시루, 스시, 가츠동, 오니기리, 하이라이스, 라멘, 오코노미야끼
 한식: 김밥, 김치찌개, 쌈밥, 된장찌개, 비빔밥, 칼국수, 불고기, 떡볶이, 제육볶음
@@ -30,7 +30,7 @@ public enum Category {
         this.name = name;
     }
 
-    public void addMenu(Menu menu){
+    public void addMenu(Menu menu) {
         this.menus.add(menu);
     }
 
@@ -38,7 +38,7 @@ public enum Category {
         return number;
     }
 
-    public Menu getRandomMenu(){
+    public Menu getRandomMenu() {
         return getRandomMenus().get(PICK_MENU_INDEX);
     }
 
@@ -50,13 +50,13 @@ public enum Category {
         return name;
     }
 
-    public static Category findByName(String name){
+    public static Category findByName(String name) {
         return Arrays.stream(Category.values())
                 .filter(category -> category.getName().equals(name)).findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 입력한 이름으로 카테고리를 찾을 수 없습니다."));
     }
 
-    public static Category findByNumber(int number){
+    public static Category findByNumber(int number) {
         return Arrays.stream(Category.values())
                 .filter(category -> category.getNumber() == number).findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 생성한 번호로 카테고리를 찾을 수 없습니다."));

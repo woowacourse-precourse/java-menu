@@ -16,7 +16,7 @@ public class MenuRecommendController {
 
     private final List<Category> existCategories = new ArrayList<>();
 
-    public void recommendWeekMenu(){
+    public void recommendWeekMenu() {
         addWeekMenuOfCoaches(CoachRepository.coaches());
         printRecommendDescription(CoachRepository.coaches());
     }
@@ -95,9 +95,9 @@ public class MenuRecommendController {
         OutputView.printWeekRecommendMenu(categoriesName, menus);
     }
 
-    private Map<String, List<String>> getRecommendMenusOfCoaches(List<Coach> coaches){
+    private Map<String, List<String>> getRecommendMenusOfCoaches(List<Coach> coaches) {
         Map<String, List<String>> coachMenus = new HashMap<>();
-        for(Coach coach : coaches){
+        for (Coach coach : coaches) {
             coachMenus.put(coach.getName(), coach.getRecommendMenuNames());
         }
         return coachMenus;

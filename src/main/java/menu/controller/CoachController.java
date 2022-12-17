@@ -46,7 +46,7 @@ public class CoachController {
     }
 
     private void addNoEatableMenuOfCoaches(List<Coach> coaches) {
-        for(Coach coach : coaches){
+        for (Coach coach : coaches) {
             addNoEatableMenuOfCoach(coach);
         }
     }
@@ -54,7 +54,7 @@ public class CoachController {
     private void addNoEatableMenuOfCoach(Coach coach) {
         String inputNoEatableMenus = InputView.inputNoEatableMenus(coach.getName());
         List<Menu> parsedMenus = getParsedNoEatableMenu(inputNoEatableMenus);
-        if(parsedMenus == null){
+        if (parsedMenus == null) {
             return;
         }
         coach.addNoEatableMenuAll(parsedMenus);
@@ -65,7 +65,7 @@ public class CoachController {
     private List<Menu> getParsedNoEatableMenu(String inputNoEatableMenus) { //TODO Parsing util클래스 생성
         List<String> parsedNames = Arrays.stream(inputNoEatableMenus.split(",")).collect(Collectors.toList());
         validateNoEatableMenuSize(parsedNames.size());
-        if(parsedNames.get(0).equals("")){
+        if (parsedNames.get(0).equals("")) {
             return null;
         }
         return Arrays.stream(inputNoEatableMenus.split(",")).map(parsedName -> {
@@ -74,7 +74,7 @@ public class CoachController {
     }
 
     private void validateNoEatableMenuSize(int size) {
-        if(size > 2){
+        if (size > 2) {
             throw new IllegalArgumentException("[ERROR] 코치당 먹을 수 없는 메뉴는 최대 2개까지 입력할 수 있습니다.");
         }
     }

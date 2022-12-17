@@ -1,6 +1,5 @@
 package menu.controller;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +13,7 @@ public class MenuController {
     private static final Map<Category, String> INIT_MENUS_INFO = new HashMap<>();
     private static final String MENU_DELIMITER = ", ";
 
-    static{
+    static {
         INIT_MENUS_INFO.put(Category.JAPAN, "규동, 우동, 미소시루, 스시, 가츠동, 오니기리, 하이라이스, 라멘, 오코노미야끼");
         INIT_MENUS_INFO.put(Category.KOREA, "김밥, 김치찌개, 쌈밥, 된장찌개, 비빔밥, 칼국수, 불고기, 떡볶이, 제육볶음");
         INIT_MENUS_INFO.put(Category.CHINA, "깐풍기, 볶음면, 동파육, 짜장면, 짬뽕, 마파두부, 탕수육, 토마토 달걀볶음, 고추잡채");
@@ -23,16 +22,15 @@ public class MenuController {
     }
 
 
-    public void initMenu(){
+    public void initMenu() {
         INIT_MENUS_INFO.entrySet().stream()
                 .forEach(entry -> parseMenus(entry.getKey(), entry.getValue()));
     }
 
 
-
-    private void parseMenus(Category category, String menus){
+    private void parseMenus(Category category, String menus) {
         List<String> parsedMenu = Arrays.stream(menus.split(MENU_DELIMITER)).collect(Collectors.toList());
-        for(String menuName : parsedMenu){
+        for (String menuName : parsedMenu) {
             Menu menu = new Menu(menuName, category);
             MenuRepository.add(menu);
             category.addMenu(menu);
