@@ -55,7 +55,6 @@ public class MenuRecommendApplication {
         }
     }
 
-
     private WeeklyRecommendCategory makeWeeklyCategory(int allDaySize) {
         List<Integer> weeklyCategory = new ArrayList<>();
         HashMap<Integer, Integer> categoryDuplicates = new HashMap<>();

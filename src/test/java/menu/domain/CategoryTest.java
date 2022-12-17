@@ -18,8 +18,7 @@ public class CategoryTest {
     @DisplayName("카테고리에 따른 이름을 확인한다.")
     @Test
     void checkCategoryName() {
-        assertThat(Category.getWantCategoryName(5))
-                .isEqualTo("양식");
+        assertThat(Category.getWantCategoryName(5)).isEqualTo("양식");
     }
 
 }

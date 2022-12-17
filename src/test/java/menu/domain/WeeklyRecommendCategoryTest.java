@@ -1,7 +1,6 @@
 package menu.domain;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -11,7 +10,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class WeeklyRecommendCategoryTest {
 
@@ -27,8 +25,8 @@ class WeeklyRecommendCategoryTest {
     static Stream<Arguments> generatedIdx() {
         return Stream.of(
                 Arguments.of(Arrays.asList(1)),
-                Arguments.of(Arrays.asList(1,2)),
-                Arguments.of(Arrays.asList(1,2,3,4,5,1))
+                Arguments.of(Arrays.asList(1, 2)),
+                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 1))
         );
     }
 }
