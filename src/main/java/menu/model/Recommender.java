@@ -14,9 +14,7 @@ public class Recommender {
 
     public String recommendMenuOfCategory(Category category){
         List<String> menus = category.getMenus();
-        int max = menus.size() - 1;
-        int randomNumber = Randoms.pickNumberInRange(0, max);
-        String menu = menus.get(randomNumber);
+        String menu = Randoms.shuffle(menus).get(0);
         return menu;
     }
 
