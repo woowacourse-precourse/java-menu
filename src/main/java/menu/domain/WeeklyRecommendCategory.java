@@ -2,6 +2,8 @@ package menu.domain;
 
 import java.util.List;
 
+import static menu.constatnts.Constants.*;
+
 public class WeeklyRecommendCategory {
     private List<Integer> categoryIdxs;
 
@@ -12,12 +14,11 @@ public class WeeklyRecommendCategory {
 
     private void validate(List<Integer> categoryIdxs) {
         if (categoryIdxs.size() != Weekly.getAllDaySize()) {
-            throw new IllegalArgumentException("[ERROR] 주간 음식 카테고리 오류");
+            throw new IllegalArgumentException(ERROR_WEEKLY_CATEGORY_SIZE);
         }
         for (int categoryIdx : categoryIdxs) {
-            //TODO 하드코딩 변환 해야함
-            if (categoryIdx < 1 || 6 < categoryIdx) {
-                throw new IllegalArgumentException("없는 음식 카테고리입니다.");
+            if (categoryIdx < CATEGORY_START_NUM || CATEGORY_END_NUM < categoryIdx) {
+                throw new IllegalArgumentException(ERROR_NONE_CATEGORY);
             }
         }
     }

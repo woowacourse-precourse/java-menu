@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+import static menu.constatnts.Constants.*;
+
 public class MenuRecommendApplication {
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
@@ -24,17 +26,14 @@ public class MenuRecommendApplication {
         for (List<String> menus : allMenuPerCategory) {
             allMenu.addAll(menus);
         }
-        //System.out.println(allMenu);
     }
 
     public void start() {
-        System.out.println("점심 메뉴 추천을 시작합니다.");
+        System.out.println(PRINT_START_MSG);
         List<String> coachNames = inputView.scanCoachNames();
-        //System.out.println(coachNames);
         List<List<String>> hatesFood = scanHatesFood(coachNames);
         makeAllCoach(coachNames, hatesFood);
         WeeklyRecommendCategory weeklyCategory = makeWeeklyCategory(Weekly.getAllDaySize());
-        //System.out.println(weeklyCategory.getCategoryIdxs());
         makeAllCoachesDiet(weeklyCategory);
         outputView.printRecommendedMenu(allCoach, weeklyCategory);
     }
@@ -62,9 +61,9 @@ public class MenuRecommendApplication {
         HashMap<Integer, Integer> categoryDuplicates = new HashMap<>();
 
         while (allDaySize-- > 0) {
-            int categoryIdx = Randoms.pickNumberInRange(1, 5);
+            int categoryIdx = Randoms.pickNumberInRange(CATEGORY_START_NUM, CATEGORY_END_NUM);
             while (categoryDuplicates.getOrDefault(categoryIdx, 0) >= 2) {
-                categoryIdx = Randoms.pickNumberInRange(1, 5);
+                categoryIdx = Randoms.pickNumberInRange(CATEGORY_START_NUM, CATEGORY_END_NUM);
             }
             weeklyCategory.add(categoryIdx);
             categoryDuplicates.put(categoryIdx, categoryDuplicates.getOrDefault(categoryIdx, 0) + 1);
@@ -78,11 +77,12 @@ public class MenuRecommendApplication {
         }
     }
 
+
     private List<List<String>> scanHatesFood(List<String> coachNames) {
         List<List<String>> hatesFood = new ArrayList<>();
         for (String name : coachNames) {
             List<String> eachHatesFood = inputView.scanHatesFood(name);
-            //있는 음식인지 확인 해야한다.
+            //있는 음식 인지 확인한다. 없는 음식인 경우 예외 처리
             checkValidFood(eachHatesFood);
             hatesFood.add(eachHatesFood);
         }
@@ -92,7 +92,7 @@ public class MenuRecommendApplication {
     private void checkValidFood(List<String> hatesFood) {
         for (String s : hatesFood) {
             if (!allMenu.contains(s)) {
-                throw new IllegalArgumentException("[ERROR] 없는 메뉴 입니다.");
+                throw new IllegalArgumentException(ERROR_NONE_MENU);
             }
         }
     }

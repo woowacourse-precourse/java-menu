@@ -28,18 +28,6 @@ public class Coach {
         return meals;
     }
 
-    public void makeMeals(WeeklyRecommendCategory weeklyCategory) {
-        List<Integer> categoryIdx = weeklyCategory.getCategoryIdxs();
-        for (int idx : categoryIdx) {
-            List<String> eachMenus = Category.getWantCategoryMenu(idx);
-            String menu = Randoms.shuffle(Category.getWantCategoryMenu(idx)).get(0);
-            while (meals.contains(menu) || hates.contains(menu)) {
-                menu = Randoms.shuffle(eachMenus).get(0);
-            }
-            meals.add(menu);
-        }
-    }
-
     public void addMeals(String menu) {
         this.meals.add(menu);
     }

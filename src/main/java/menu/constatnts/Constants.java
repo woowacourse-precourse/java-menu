@@ -6,8 +6,11 @@ public class Constants {
     public static final int COACH_NAMES_LENGTH_MIN = 2;
     public static final int COACH_NAMES_LENGTH_MAX = 4;
     public static final int COACH_HATE_FOOD_MAX = 2;
+    public static final int CATEGORY_START_NUM = 1;
+    public static final int CATEGORY_END_NUM = 5;
     public static final String SPLITTER_INPUT = ",";
 
+    public static final String PRINT_START_MSG = "점심 메뉴 추천을 시작합니다.";
     public static final String PRINT_RECOMMEND_FOOD_MSG = "메뉴 추천 결과입니다.";
     public static final String PRINT_RECOMMEND_FOOD_END_MSG = "추천을 완료했습니다.";
     public static final String PRINT_SUBJECT_DAY_MSG = "구분";
@@ -20,5 +23,7 @@ public class Constants {
     public static final String ERROR_COACH_NAME_LENGTH = "[ERROR] 코치의 이름 길이는 2이상 4이하 입니다.";
     public static final String ERROR_COACH_FOODS_SPLITTER = "[ERROR]싫어하는 음식을 잘못 입력 하셨습니다.";
     public static final String ERROR_COACH_HEATED_FOOD_MANY = "[ERROR] 싫어 하는 음식을 너무 많이 입력 하셨습니다.";
-
+    public static final String ERROR_NONE_MENU = "[ERROR] 없는 메뉴 입니다.";
+    public static final String ERROR_WEEKLY_CATEGORY_SIZE = "[ERROR] 주간 음식 카테고리가 정해진 날짜 수를 넘었습니다.";
+    public static final String ERROR_NONE_CATEGORY = "[ERROR] 없는 음식 카테고리입니다.";
 }

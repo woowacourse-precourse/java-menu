@@ -40,13 +40,11 @@ public enum Category {
     public static List<String> getWantCategoryMenu(int idx) {
         return Arrays.stream(values()).filter(category -> category.id == idx)
                 .findAny().map(Category::getMenu).orElse(null);
-        //TODO null 처리 (에러 날 수 있음)
     }
 
     public static String getWantCategoryName(int idx) {
         return Arrays.stream(values()).filter(category -> category.id == idx)
                 .findAny().map(Category::getCategoryName).orElse(null);
-        //TODO null 처리 (에러 날 수 있음)
     }
 
 }
