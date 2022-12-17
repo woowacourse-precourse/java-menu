@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public enum Day {
+    STANDARD("구분", 0),
     MON("월요일", 1),
     TUE("화요일", 2),
     WED("수요일", 3),
@@ -22,7 +23,6 @@ public enum Day {
 
     public static List<String> getDays() {
         List<String> daysForm = new ArrayList<>();
-        daysForm.add("구분");
         daysForm.addAll(Arrays.stream(Day.values())
                 .map(day -> day.name)
                 .collect(Collectors.toList()));

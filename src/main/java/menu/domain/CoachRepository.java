@@ -26,4 +26,8 @@ public class CoachRepository {
         }
     }
 
+    public static void init() {
+        coaches.clear();
+    }
+
 }

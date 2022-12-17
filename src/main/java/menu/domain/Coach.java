@@ -16,7 +16,7 @@ public class Coach {
     public Coach(String name) {
         validate(name);
         this.name = name;
-        this.menus.add(name);
+        this.menus.add(name); // 인덱스 0번은 리스트의 주체
     }
 
     private void validate(String name) {

@@ -4,9 +4,6 @@ import menu.domain.*;
 import menu.view.InputView;
 import menu.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MenuController {
 
     private final OutputView outputView;
@@ -38,7 +35,8 @@ public class MenuController {
     }
 
     private void readCoaches() {
-
+        CoachRepository.init();
+        
         for (String coach : inputView.readCoachNames()) {
             CoachRepository.addCoaches(new Coach(coach.trim()));
         }
@@ -62,6 +60,10 @@ public class MenuController {
     private void recommend() {
 
         for (Day day : Day.values()) {
+
+            if (day == Day.STANDARD) {
+                continue;
+            }
             RecommendService.selectCategory();
             RecommendService.selectMenu(RecommendRepository.recommendedCategories().get(day.getIndex()));
         }

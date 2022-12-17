@@ -32,7 +32,7 @@ public enum Food {
         return Stream.of(Food.values())
                 .filter(food -> food.category.equals(category))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException()) // 시간 되면 확인
+                .orElseThrow(IllegalArgumentException::new) // 시간 되면 확인
                 .menus;
     }
 
