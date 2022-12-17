@@ -2,6 +2,7 @@ package menu.controller;
 
 import menu.model.Coach;
 import menu.model.Coaches;
+import menu.model.HateMenu;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -12,11 +13,12 @@ public class MenuRecommendController {
     OutputView outputView = new OutputView();
 
     public void performingProgram() {
-
+        initInformation();
     }
 
     private void initInformation() {
-
+        Coaches coaches = initCoaches();
+        coaches = initHateMenuPerCoaches(coaches);
     }
 
     private Coaches initCoaches() {
@@ -43,6 +45,32 @@ public class MenuRecommendController {
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return enterCoachesName();
+        }
+    }
+
+    private Coaches initHateMenuPerCoaches(Coaches coaches) {
+        for (Coach coach : coaches.getCoaches()) {
+            coach.addHateMenus(initHateMenu(coach));
+        }
+
+        return coaches;
+    }
+
+    private HateMenu initHateMenu(Coach coach) {
+        try {
+            return new HateMenu(enterCoachHateMenu(coach.getName()));
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return initHateMenu(coach);
+        }
+    }
+
+    private List<String> enterCoachHateMenu(String coachName) {
+        try {
+            return inputView.readCoachHateMenu(coachName);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return enterCoachHateMenu(coachName);
         }
     }
 }
