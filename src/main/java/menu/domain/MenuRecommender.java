@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class MenuRecommender {
-
     private final Coaches coaches;
     private final MenuCategoriesOfDay foodMenuCategoriesOfDay;
 
@@ -37,18 +36,13 @@ public class MenuRecommender {
         return menu;
     }
 
-
     private MenuCategory generateCategory(Day day) {
         MenuCategory category = MenuCategory.of(
                 Randoms.pickNumberInRange(MenuCategory.getFirstNumber(), MenuCategory.getLastNumber()));
-        if (getCategorySelectCount(category) == 2) {
+        if (!foodMenuCategoriesOfDay.canAdd(category)) {
             return generateCategory(day);
         }
         foodMenuCategoriesOfDay.put(day, category);
         return category;
-    }
-
-    private long getCategorySelectCount(MenuCategory category) {
-        return foodMenuCategoriesOfDay.getCategoryCount(category);
     }
 }
