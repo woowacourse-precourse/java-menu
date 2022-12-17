@@ -10,10 +10,21 @@ public class InputView {
         List<String> names = new ArrayList<>();
         String[] name = Console.readLine().split(",");
         for(int i=0; i<name.length;i++){
-            names.add(name[i]);
+            if(validateName(name[i])) {
+                names.add(name[i]);
+            }
         }
         return names;
     }
+    public boolean validateName(String name){
+        if(name.length()<2 || name.length()>5){
+            return false;
+        }
+        return true;
+    }
+
+
+
     public List<String> coachCantEatInput(){
         List<String> notEatFood = new ArrayList<>();
         String[] name = Console.readLine().split(",");
