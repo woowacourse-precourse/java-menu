@@ -25,6 +25,12 @@ public class CategoryRepository {
         return categories.stream().anyMatch(category -> categoryName.equals(category.getName()));
     }
 
+    public Category findCategoryByName(String categoryName) {
+        return categories.stream().filter(category -> categoryName.equals(category.getName()))
+                .findAny()
+                .orElseThrow();
+    }
+
     public List<String> findAllCategories() {
         return categories.stream().map(Category::getName)
                 .collect(Collectors.toUnmodifiableList());
