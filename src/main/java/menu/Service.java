@@ -93,6 +93,7 @@ public class Service {
 			String menu = Randoms.shuffle(categoryMenu).get(0);
 			if (coachRepository.discriminationEat(menu, coachName)) {
 				perCoachRecommendMenu.put(coachName, new ArrayList<>());
+				perCoachRecommendMenu.get(coachName).add(menu);
 			}
 		}
 	}
