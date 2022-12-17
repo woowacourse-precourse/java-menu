@@ -19,4 +19,15 @@ public class MenuController {
             }
         }
     }
+
+    private void initCoach(String coachName) {
+        while (true) {
+            try {
+                String inedibleMenu = inputView.readInedibleMenu();
+                menu.addCoach(coachName, inedibleMenu);
+            } catch (IllegalArgumentException e) {
+                outputView.printException(e);
+            }
+        }
+    }
 }
