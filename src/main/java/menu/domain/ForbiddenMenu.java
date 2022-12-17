@@ -19,7 +19,12 @@ public class ForbiddenMenu {
     }
 
     public void saveForbiddenMenu(List<String> menus) {
-        forbiddenMenus.addAll(menus); // 동일한 음식 제거?
+        for (String menu : menus) {
+            if (!forbiddenMenus.contains(menu)) {
+                forbiddenMenus.add(menu);
+            }
+        }
+        System.out.println(forbiddenMenus);
     }
 
     public List<String> removeForbiddenMenusInMenu(List<String> menus) {
