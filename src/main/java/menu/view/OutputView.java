@@ -19,11 +19,7 @@ public class OutputView {
     public static final String SPACE = " ";
     public static final String CATEGORY_MESSAGE = "카테고리";
     public static final String DELIMITER = "|";
-    public static final String JAPANESE = "일식";
-    public static final String KOREAN = "한식";
-    public static final String CHINESE = "중식";
-    public static final String ASIAN = "아시안";
-    public static final String WESTERN = "양식";
+    ;
 
     private void printlnMessage(String message) {
         System.out.println(message);
@@ -43,7 +39,7 @@ public class OutputView {
 
     public void printStart() {
         printlnMessage(START_MESSAGE);
-        printlnMessage("");
+        printBlackLine();
     }
 
     public void printReadCoachNames() {
@@ -80,10 +76,6 @@ public class OutputView {
             printMessage(SPACE + menuList.get(i).getMenuName() + SPACE);
         }
         printlnMessage(CLOSE_EMBRACE);
-    }
-
-    public void printResultBody() {
-
     }
 
     public void printEnd() {
