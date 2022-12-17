@@ -13,20 +13,24 @@ public class View {
 	}
 
 	public static void showHateFoodGuideMessage(String coachName) {
-		System.out.println("\n"+coachName + "(이)가 못 먹는 메뉴를 입력해 주세요.");
+		System.out.println("\n" + coachName + "(이)가 못 먹는 메뉴를 입력해 주세요.");
 	}
 
-	public static void showRecommendResult(List<List<String>> menuList) {
+	public static void showRecommendResult(List<String> weeklyCategory, List<List<String>> menuList) {
 		System.out.println("\n메뉴 추천 결과입니다.");
 		System.out.println("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
 
-		for(List<String> menus: menuList){
-			System.out.print("[ ");
-			for(String menu : menus){
-				System.out.print(menu+" | ");
-			}
-			System.out.println(" ]");
+		String result = weeklyCategory.toString()+"\n";
+
+		for (List<String> menus : menuList) {
+			result += menus.toString()+"\n";
 		}
+
+		result = result.replace("[", "[ ");
+		result = result.replace("]", " ]");
+		result = result.replace(", ", " | ");
+
+		System.out.println(result);
 	}
 
 	public static void showRecommendClearGuideMessage() {
