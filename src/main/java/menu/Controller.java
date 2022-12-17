@@ -17,7 +17,7 @@ public class Controller {
     public void runController(){
         List<Coach> coaches = getCoachData();
         recommender = new Recommender(coaches);
-
+        endRecommend();
     }
 
     private List<Coach> getCoachData(){
@@ -44,6 +44,9 @@ public class Controller {
     }
 
     private void endRecommend(){
+        System.out.println(MSG_PRINT_RESULT);
+        System.out.println(MSG_RESULT_DAYS);
+        outputView.printCategory(recommender.getCategories());
 
     }
 
