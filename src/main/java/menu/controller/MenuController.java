@@ -28,5 +28,6 @@ public class MenuController {
 
     public void select() {
         result = resultService.initializeResult();
+        resultService.pickCategory(result);
     }
 }

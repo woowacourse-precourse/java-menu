@@ -16,8 +16,11 @@ public class ResultService {
         return new Result(new ArrayList<>(), categoryCounts);
     }
 
-    public void pickCategory() {
-        int randomNumber = Randoms.pickNumberInRange(1, 5);
-        String categoryName = Category.convertNumberToName(randomNumber);
+    public void pickCategory(Result result) {
+        String categoryName;
+        do {
+            int randomNumber = Randoms.pickNumberInRange(1, 5);
+            categoryName = Category.convertNumberToName(randomNumber);
+        } while (result.checkCategoryCount(categoryName) >= 2);
     }
 }
