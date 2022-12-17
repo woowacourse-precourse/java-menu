@@ -5,8 +5,7 @@ import menu.domain.DomainCondition;
 import java.util.ArrayList;
 import java.util.List;
 
-import static menu.constant.ExceptionMessage.WRONG_COACH_COUNT;
-import static menu.constant.ExceptionMessage.WRONG_COACH_NAME_LENGTH;
+import static menu.constant.ExceptionMessage.*;
 import static menu.domain.DomainCondition.*;
 
 public class InputValidation {
@@ -23,7 +22,7 @@ public class InputValidation {
         String[] notEatFoods = userInput.split(",");
         List<String> foodNames = removeBlankInput(notEatFoods);
         if (!DomainCondition.validFoodCount(foodNames)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(String.format(WRONG_COACH_FOOD_COUNT.getValue(), MIN_FOOD_COUNT.getValue(), MAX_FOOD_COUNT.getValue()));
         }
         return foodNames;
     }
