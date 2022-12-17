@@ -59,4 +59,14 @@ public class MenuService {
         }
         return coachMenu.contains(menu);
     }
+
+    public List<String> getCategoryNames() {
+        List<String> categoryName = new ArrayList<>();
+
+        for (Category category : pickedCategories) {
+            categoryName.add(category.getName());
+        }
+
+        return categoryName;
+    }
 }
