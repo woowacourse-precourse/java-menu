@@ -35,7 +35,7 @@ public class InputView {
 		if (names.split(",").length < MIN_COACH) {
 			throw new IllegalArgumentException("[ERROR] 코치는 최소 2명 이상 입력해야 합니다.");
 		}
-		if (names.split(",").length > MIN_COACH) {
+		if (names.split(",").length > MAX_COACH) {
 			throw new IllegalArgumentException("[ERROR] 코치는 최대 5명 까지 입력해야 합니다.");
 		}
 	}
