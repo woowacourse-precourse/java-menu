@@ -16,17 +16,11 @@ public class MenuChoicer {
 
         List<String> menus = new ArrayList<>(totalDay);
 
-//TODO : BUG FIX
 
-//        for(FoodCategory foodCategory : weekFoodCategories){
-//            String pickedMenu = "";
-//            do{
-//                pickedMenu = Randoms.shuffle(FoodCategory.getAllMenus()).get(0);
-//            }while (foodCategory.getMenus().contains(pickedMenu));
-//
-//            menus.add(pickedMenu);
-//        }
-
+         for(FoodCategory foodCategory : weekFoodCategories){
+             String pickedMenu = Randoms.shuffle(new ArrayList<>(foodCategory.getMenus())).get(0);
+             menus.add(pickedMenu);
+        }
 
         return menus;
     }
