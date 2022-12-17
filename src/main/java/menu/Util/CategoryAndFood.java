@@ -18,10 +18,11 @@ public class CategoryAndFood {
         List<String> foodList = FileInput.fileRead();
         for (String line:
              foodList) {
-            List<String> detachedLine = Arrays.asList(line.split(",|:"));
+            List<String> detachedLine = Arrays.asList(line.replace(" ","").split(",|:"));
             addingList(detachedLine);
         }
     }
+
 
     private void addingList(List<String> line){
         String category = line.get(0);

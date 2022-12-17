@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        CategoryGenerator generator = new CategoryGenerator();
-        System.out.println(generator.generate());
+        Recommander recommander = new Recommander();
+        recommander.run();
     }
 }
