@@ -6,7 +6,7 @@ import menu.model.enums.Category;
 import menu.model.Coach;
 import menu.model.enums.Days;
 
-public class Outputview {
+public class OutputView {
     private static final String START_MESSAGE = "점심 메뉴 추천을 시작합니다.";
     private static final String BAR = " | ";
     private static final String RESULT_MESSAGE = "\n메뉴 추천 결과입니다.";

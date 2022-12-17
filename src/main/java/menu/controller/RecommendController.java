@@ -10,22 +10,22 @@ import menu.model.Coach;
 import menu.model.enums.Days;
 import menu.model.Menu;
 import menu.model.MenuRepository;
-import menu.view.Inputview;
-import menu.view.Outputview;
+import menu.view.InputView;
+import menu.view.OutputView;
 
 public class RecommendController {
     private static final int NUMBER_OF_MAX_CATEGORY_DUPLICATE = 2;
     private final MenuRepository menuRepository;
     private final List<Coach> coaches;
-    private final Inputview inputview;
-    private final Outputview outputview;
+    private final InputView inputview;
+    private final OutputView outputview;
 
     public RecommendController() {
         this.menuRepository = new MenuRepository();
         this.coaches = new ArrayList<>();
         this.menuRepository.readMenu();
-        this.inputview = new Inputview();
-        this.outputview = new Outputview();
+        this.inputview = new InputView();
+        this.outputview = new OutputView();
     }
 
     public void doRecommend() {

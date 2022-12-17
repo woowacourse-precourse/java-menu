@@ -1,6 +1,6 @@
 package menu.model;
 
-import static menu.view.Inputview.PARSE_COMMAND;
+import static menu.view.InputView.PARSE_COMMAND;
 
 import java.util.ArrayList;
 import java.util.List;

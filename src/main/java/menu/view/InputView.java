@@ -7,7 +7,7 @@ import menu.model.MenuRepository;
 import menu.util.StringParser;
 import menu.util.Validator;
 
-public class Inputview {
+public class InputView {
     private static final String MANUAL_MESSAGE = "\n코치의 이름을 입력해 주세요. (, 로 구분)";
     private static final String CANT_EAT_MESSAGE = "(이)가 못 먹는 메뉴를 입력해 주세요.";
     public static final String PARSE_COMMAND = ",";
