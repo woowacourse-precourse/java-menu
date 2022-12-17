@@ -31,7 +31,7 @@ public class MenuController {
     private void parseMenus(Category category, String menus) {
         List<String> parsedMenu = Arrays.stream(menus.split(MENU_DELIMITER)).collect(Collectors.toList());
         for (String menuName : parsedMenu) {
-            Menu menu = new Menu(menuName, category);
+            Menu menu = new Menu(menuName);
             MenuRepository.add(menu);
             category.addMenu(menu);
         }
