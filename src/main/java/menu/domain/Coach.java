@@ -64,11 +64,18 @@ public class Coach {
 
     private void makeCoach(String input) {
         String[] names = input.split(COMMA);
+        validateNumberOfCoach(names);
 
         for (String name : names) {
             validateName(name);
             coaches.put(name, new ArrayList<>());
             recommendFoods.put(name, new ArrayList<>());
+        }
+    }
+
+    private void validateNumberOfCoach(String[] names) {
+        if (names.length < 2 || names.length > 5) {
+            throw new IllegalArgumentException("[ERROR] 코치는 최소 2명, 최대 5명까지 입력이 가능합니다.");
         }
     }
 
