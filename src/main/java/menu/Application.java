@@ -33,7 +33,6 @@ public class Application {
     public static void GameProcess() {
         System.out.println("점심 메뉴 추천을 시작합니다.\n");
         GetName();
-        System.out.println(coaches);
         RecommendCategory();
         GetResult();
         PrintResult();
@@ -44,6 +43,7 @@ public class Application {
         String name = Console.readLine();
         String[] cNames = name.split(",");
         coachNumber = cNames.length;
+        CheckCoachNameError(name);
         for (int i = 0; i < coachNumber; i++) {
             coachNames.add(cNames[i].trim());
         }
@@ -51,16 +51,37 @@ public class Application {
             coaches.add(NoFood(coachNames.get(i)));
         }
     }
+    public static void CheckCoachNameError(String coachName){
+        String[] nameOfCoach = coachName.split(",");
+        for (int i = 0; i < nameOfCoach.length; i++) {
+            if(nameOfCoach[i].length()<2 || nameOfCoach[i].length()>4){
+                throw new IllegalArgumentException("[ERROR] 코치의 이름은 최소 2글자, 최대 4글자로 입력해야 합니다.\n");
+            }
+        }
+        if(coachNumber<2){
+            throw new IllegalArgumentException("[ERROR] 코치는 최소 2명 이상 입력해야 합니다.\n");
+        }
+        if(coachNumber>5){
+            throw new IllegalArgumentException("[ERROR] 코치는 최대 5명 이하 입력해야 합니다.\n");
+        }
+
+    }
 
     public static List<String> NoFood(String name){
         List<String> food = new ArrayList<>();
         System.out.println("\n"+name+"(이)가 못 먹는 메뉴를 입력해 주세요.");
         String foodName = Console.readLine();
         String[] foods = foodName.split(",");
+        CheckNoFoodError(foods.length);
         for (int i = 0; i < foods.length; i++) {
             food.add(foods[i].trim());
         }
         return food;
+    }
+    public static void CheckNoFoodError(int foods){
+        if(foods>2){
+            throw new IllegalArgumentException("[ERROR] 먹지 못 하는 메뉴는 최대 2개까지 입력 할 수 있습니다.\n");
+        }
     }
 
 
@@ -133,7 +154,8 @@ public class Application {
         }
     }
     public static void PrintCoach(int index){
-        for (int i = 0; i < ResultPrinting.get(index).size(); i++) {
+        System.out.print("[ "+ResultPrinting.get(index).get(0)+" ");
+        for (int i = 1; i < ResultPrinting.get(index).size(); i++) {
             System.out.print("| "+ResultPrinting.get(index).get(i)+" ");
         }
         System.out.println("]");
