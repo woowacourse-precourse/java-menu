@@ -26,12 +26,12 @@ public class GameController {
     private static void candidate(Map<String, Set<String>> coachCannotEat, Map<String, Set<String>> candidateMenu, Category category, String coach) {
         while (true) {
             String menu = Randoms.shuffle(category.getMenus()).get(0);
-            Set<String> strings = candidateMenu.get(coach);
-            if (strings.contains(menu)) continue;
-            Set<String> strings1 = coachCannotEat.get(coach);
-            if (strings1.contains(menu)) continue;
-            strings.add(menu);
-            candidateMenu.put(coach, strings);
+            Set<String> menuSet = candidateMenu.get(coach);
+            if (menuSet.contains(menu)) continue;
+            Set<String> inedible = coachCannotEat.get(coach);
+            if (inedible.contains(menu)) continue;
+            menuSet.add(menu);
+            candidateMenu.put(coach, menuSet);
             break;
         }
     }
