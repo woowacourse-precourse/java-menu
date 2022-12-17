@@ -7,6 +7,8 @@ public class ErrorMessage {
     public static final String INVALID_EXCLUDE_MENU_COUNT = "[ERROR] 제외 메뉴는 0 ~ 2개까지 입력 가능합니다.";
     public static final String DUPLICATED_EXCLUDE_MENU = "[ERROR] 메뉴의 이름은 중복되면 안됩니다.";
     public static final String NOT_EXIST_MENU = "[ERROR] 존재하는 메뉴를 입력해야 합니다.";
+    public static final String INVALID_MENU = "[ERROR] 존재하지 않는 메뉴입니다.";
+    public static final String NOT_EXISTS_COACH_NAME = "[ERROR] 존재하지 않는 코치입니다.";
 
     private ErrorMessage() {
     }

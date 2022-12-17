@@ -17,6 +17,14 @@ public class ExcludeMenuDto {
                 .collect(Collectors.toList());
     }
 
+    public String getCoachName() {
+        return coachName;
+    }
+
+    public List<Menu> getMenus() {
+        return Menu.convert(menus);
+    }
+
     private void validateMenu(final String allMenu) {
         if (!isValidMenuLength(allMenu)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_EXCLUDE_MENU_COUNT);
