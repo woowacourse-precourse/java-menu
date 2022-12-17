@@ -26,6 +26,7 @@
   - [x] 등록된 메뉴에 없는 음식을 입력 받으면 IllegalArgumentException 발생
   - [x] 입력 받은 먹지 못하는 음식들을 List 형태로 변환시켜준다.
   - [x] 먹지 못하는 메뉴가 2개를 초과할 경우 IllegalArgumentException 발생
+- [ ] 코치가 먹지 못하는 음식을 등록해준다.
 
 ### 메뉴 추천
 - [ ] 각 코치들에게 월요일부터 금요일까지의 음식 카테고리를 Randoms.pickNumberInRange()을 사용하여 추천해준다.
