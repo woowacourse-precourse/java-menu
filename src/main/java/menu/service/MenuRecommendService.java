@@ -50,4 +50,11 @@ public class MenuRecommendService {
         }
         return bannedMenuByCoach.get(coach).contains(menu);
     }
+
+    /**
+     * 현재 존재하는 메뉴명인지 여부를 반환한다.
+     */
+    public static boolean isValidMenu(String menu) {
+        return MenuRepository.containsMenu(menu);
+    }
 }
