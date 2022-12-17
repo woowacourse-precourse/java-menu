@@ -23,15 +23,26 @@ public class MenuRepository {
     }
 
     public static Menu findRandomOneByCategoryAndCoach(Category category, Coach coach) {
-        List<String> menuNames = findAllNamesByCategoryAndCoach(category, coach);
-        String menu = Randoms.shuffle(menuNames).get(0);
-        return new Menu(menu);
+        while (true) {
+            List<String> menuNames = findAllNamesByCategory(category);
+            Menu menu = new Menu(getRandomMenuName(menuNames));
+            if (!isBanned(coach, menu)) {
+                return menu;
+            }
+        }
     }
 
-    private static List<String> findAllNamesByCategoryAndCoach(Category category, Coach coach) {
+    private static boolean isBanned(Coach coach, Menu menu) {
+        return bannedMenus.get(coach).contains(menu);
+    }
+
+    private static String getRandomMenuName(List<String> menuNames) {
+        return Randoms.shuffle(menuNames).get(0);
+    }
+
+    private static List<String> findAllNamesByCategory(Category category) {
         return menus.get(category)
-                .stream().filter(menu -> !bannedMenus.get(coach).contains(menu))
-                .map(Menu::getName)
+                .stream().map(Menu::getName)
                 .collect(Collectors.toList());
     }
 
