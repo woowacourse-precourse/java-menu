@@ -35,6 +35,13 @@ public enum InitialMenu {
         return checkCategory(number).getCategory();
     }
 
+    public static void validateFoodInMenu(String food) {
+        Arrays.stream(values())
+                .filter(menu -> menu.getFoods().contains(food))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 메뉴에 포함된 음식이 아닙니다."));
+    }
+
     private static InitialMenu checkCategory(int number) {
         return Arrays.stream(values())
                 .filter(menu -> menu.getNumber() == number)

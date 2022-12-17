@@ -1,12 +1,19 @@
 package menu.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DislikeFood {
-    private List<String> foods;
+    private final List<String> foods;
 
-    public DislikeFood() {
-        this.foods = new ArrayList<>();
+    public DislikeFood(List<String> dislikeFoods) {
+        validate(dislikeFoods);
+        this.foods = dislikeFoods;
+    }
+
+    private void validate(List<String> foods) {
+        if (DislikeFoodCondition.isWrongDislikeFoodCount(foods.size())) {
+            throw new IllegalArgumentException("[ERROR] 못 먹는 음식은 0개 ~ 2개 사이여야 합니다.");
+        }
+        foods.forEach(InitialMenu::validateFoodInMenu);
     }
 }

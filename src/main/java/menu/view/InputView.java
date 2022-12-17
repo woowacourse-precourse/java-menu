@@ -7,11 +7,17 @@ public class InputView {
     private final String ASK_COACH_NAME = "코치의 이름을 입력해 주세요. (,로 구분)";
     private final String DELIMITER = ",";
     private final String MULTIPLE_INPUT_REGEX = "^[ㄱ-ㅎ가-힣,]*$";
+    private final String EMPTY_STRING = "";
     private final String ASK_DISLIKE_FOOD = "%s(이)가 못 먹는 메뉴를 입력해 주세요.";
 
     public String readCoachName() {
         System.out.println(ASK_COACH_NAME);
         return readMultipleData(Console.readLine());
+    }
+
+    public String readDislikeFoods(String coachName) {
+        System.out.printf(ASK_DISLIKE_FOOD + "\n", coachName);
+        return readIncludingNone(Console.readLine());
     }
 
     private String readMultipleData(String input) {
@@ -23,5 +29,13 @@ public class InputView {
         }
         return input;
     }
-    //못먹는 메뉴가 없어서 빈칸 입력받는 경우도 체크 한다
+
+    private String readIncludingNone(String input) {
+        if (input.equals(EMPTY_STRING)) {
+            return input;
+        }
+        return readMultipleData(input);
+    }
+
+    //못먹는 음식이 한 개 일때는 컷마가 없다! -> 수정해야함
 }
