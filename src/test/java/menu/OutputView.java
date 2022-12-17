@@ -2,14 +2,24 @@ package menu;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 
 public class OutputView {
 	ArrayList<String> categoryForWeek = new ArrayList<>();
 	LinkedHashMap<String, ArrayList<String>> result = new LinkedHashMap<>();
+	ArrayList<String> coachName = new ArrayList<>();
 	
-	public OutputView(ArrayList<String> categoryForWeek, LinkedHashMap<String, ArrayList<String>> result){
+	public OutputView(ArrayList<String> coachName, ArrayList<String> categoryForWeek, LinkedHashMap<String, ArrayList<String>> result){
 		this.categoryForWeek = categoryForWeek;
 		this.result = result;
+		this.coachName = coachName;
+	}
+	
+	public void prinktResult() {
+		printRecommendInstruction();
+		printPickedCategory();
+		printEachPersonResult();
+		printRecommendFinish();
 	}
 	
 	public void printRecommendInstruction() {
@@ -23,5 +33,24 @@ public class OutputView {
 			System.out.printf("| %s ", categoryForWeek.get(i));
 		}
 		System.out.println("]");
+	}
+	
+	public void printEachPersonResult() {
+		for(int person = 0; person < result.size(); person++) {
+			System.out.printf("[ %s ", coachName.get(person));
+			ArrayList<String> eachMenu = result.get(person);
+			printEachPersonMenu(eachMenu);
+		}
+	}
+	
+	public void printEachPersonMenu(ArrayList<String> eachMenu) {
+		for(int menuIndex = 0; menuIndex < eachMenu.size(); menuIndex++) {
+			System.out.printf("| %s ", eachMenu.get(menuIndex));
+		}
+		System.out.println("]");
+	}
+	
+	public void printRecommendFinish() {
+		System.out.println("추천을 완료했습니다.");
 	}
 }

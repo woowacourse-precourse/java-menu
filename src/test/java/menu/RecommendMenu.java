@@ -145,4 +145,8 @@ public class RecommendMenu {
 	public LinkedHashMap<String, ArrayList<String>> getResult(){
 		return result;
 	}
+	
+	public ArrayList<String> getCoachName(){
+		return coachName;
+	}
 }
