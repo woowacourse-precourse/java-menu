@@ -6,15 +6,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import menu.domain.Category;
+import menu.domain.Coach;
 import menu.domain.Menu;
 import menu.domain.MenuRecommender;
 import menu.domain.Menus;
+import menu.view.InputView;
 
 public class MenuRecommenderController {
 
     public void run() {
-         MenuRecommender menuRecommender = initMenus();
+        MenuRecommender menuRecommender = initMenus();
+        List<Coach> coaches = initCoaches();
+    }
 
+    private List<Coach> initCoaches() {
+        return InputView.inputCoaches();
     }
 
     private MenuRecommender initMenus() {
