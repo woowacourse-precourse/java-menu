@@ -5,16 +5,15 @@ import java.util.List;
 
 public class Recommend {
 
-    public List<Result> recommend(List<Coach> coachInfo){
+    public void recommend(List<Coach> coachInfo){
         MessageView messageView = new MessageView();
         AddCategory addCategory = new AddCategory();
         List<Menu> menu = new ArrayList<>();
         menu = addCategory.add(menu);
         List<String> category = recommendCategory(menu);
         messageView.recommendCategoryMessage(category);
-        List<Result> result =  recommendFood(category,coachInfo,menu);
+        List<CoachFood> result =  recommendFood(category,coachInfo,menu);
         messageView.recommendResultMessage(result);
-        return result;
     }
 
     public List<String> recommendCategory(List<Menu> menu){
@@ -24,21 +23,20 @@ public class Recommend {
             if(validateCategory(category, categoryName)){
                 i--;
                 continue;
-            };
+            }
             category.add(categoryName);
         }
         return category;
     }
 
-    public List<Result> recommendFood(List<String> category, List<Coach> coachInfo, List<Menu> menu){
-        List<Result> result = new ArrayList<>();
-        for(int i=0; i<coachInfo.size();i++){
+    public List<CoachFood> recommendFood(List<String> category, List<Coach> coachInfo, List<Menu> menu){
+        List<CoachFood> result = new ArrayList<>();
+        for (Coach coach : coachInfo) {
             List<String> menuList = new ArrayList<>();
-            result.add(new Result(coachInfo.get(i).name,menuList));
+            result.add(new CoachFood(coach.name, menuList));
         }
         for(int i=0; i<5; i++) {
             for (int j = 0; j < coachInfo.size(); j++) {
-                List<String> menuList = new ArrayList<>();
                 String categoryName = category.get(i);
                 String Menu = randomMenu(menu, categoryName,coachInfo.get(j).nonfood);
                 result.get(j).food.add(Menu);
@@ -49,15 +47,12 @@ public class Recommend {
 
     public boolean validateCategory(List<String> category, String categoryName){
         int dup=0;
-        for(int i=0; i<category.size(); i++){
-            if(categoryName.equals(category.get(i))){
+        for (String name : category) {
+            if (categoryName.equals(name)) {
                 dup++;
             }
         }
-        if(dup>=2){
-            return true;
-        }
-        return false;
+        return dup >= 2;
     }
 
     public String randomCategory(List<Menu> menu){

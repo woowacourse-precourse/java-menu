@@ -2,15 +2,13 @@ package menu;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Random {
     int start=0;
     int end=9;
     public String RandomCategory(List<Menu> menu){
-        String menuCategory = menu.get(Randoms.pickNumberInRange(1,5)-1).category;
-        return menuCategory;
+        return menu.get(Randoms.pickNumberInRange(1,5)-1).category;
     }
 
     public String RandomMenu(List<Menu> menu,String Category,List<String> nonfood){
@@ -19,8 +17,6 @@ public class Random {
 
         while(true) {
             menuFood = Randoms.shuffle(menu.get(index-1).food).get(0);
-//            Collections.shuffle(menu.get(index-1).food); 이렇게는 정상작동 . .
-//            menuFood =menu.get(index-1).food.get(0);
             if (nonfood.contains(menuFood)) {
                 continue;
             }
