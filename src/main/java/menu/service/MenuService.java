@@ -69,27 +69,29 @@ public class MenuService implements Menu {
 
     @Override
     public RecommendResultDto recommend(final List<String> names, final List<List<String>> notEatMenus) {
-        final List<Coach> coaches = initCoaches(names, notEatMenus);
+        final List<Coach> coaches = new CoachMapper(names, notEatMenus).mapToCoach();
         final List<Category> categories = new ArrayList<>();
-        getRecommand(coaches, categories);
+        for (int i = 0; i < PICK_DATE_SIZE; i++) {
+            recommendDay(coaches, categories);
+        }
         final List<String> categoriesDto = getCategoriesDto(categories);
         final List<List<String>> coachesDto = getCoachesDto(coaches);
         return RecommendResultDto.of(categoriesDto, coachesDto);
     }
 
-    private List<List<String>> getCoachesDto(List<Coach> coaches) {
+    private List<List<String>> getCoachesDto(final List<Coach> coaches) {
         final List<List<String>> coachesDto = new ArrayList<>();
-        for (Coach coach : coaches) {
-            List<String> coachToDto = coach.coachToDto();
+        for (final Coach coach : coaches) {
+            final List<String> coachToDto = coach.coachToDto();
             coachesDto.add(coachToDto);
         }
         return coachesDto;
     }
 
-    private List<String> getCategoriesDto(List<Category> categories) {
+    private List<String> getCategoriesDto(final List<Category> categories) {
         final List<String> categoriesDto = new ArrayList<>();
-        for (Category category : categories) {
-            String categoryKeyToDto = category.categoryKeyToDto();
+        for (final Category category : categories) {
+            final String categoryKeyToDto = category.categoryKeyToDto();
             categoriesDto.add(categoryKeyToDto);
         }
         return categoriesDto;
