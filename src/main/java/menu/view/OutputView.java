@@ -22,6 +22,8 @@ public class OutputView {
         stringBuilder.append(NoticeMessage.OUTPUT_RECOMMENDATION_MENU_DAY + NEW_LINE);
         addCategory(recommendationDTO, stringBuilder);
         addCoachMenus(recommendationDTO, stringBuilder);
+        stringBuilder.append(NEW_LINE + NoticeMessage.OUTPUT_RECOMMENDATION_MENU_COMPLETE);
+        System.out.println(stringBuilder.toString());
     }
 
     private void addCoachMenus(RecommendationDTO recommendationDTO, StringBuilder stringBuilder) {
