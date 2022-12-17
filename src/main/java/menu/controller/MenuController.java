@@ -25,15 +25,10 @@ public class MenuController {
       outputView.printInputFoodCantEat(coaches[i]);
       String hateFood = inputView.readFoodCantEat();
       String[] hateFoods = hateFood.split(",");
-      for (int j = 0; j < hateFoods.length; j++) {
-        coachService.insertHateFood(coaches[i], hateFoods[j]);
-      }
+      for (int j = 0; j < hateFoods.length; j++) coachService.insertHateFood(coaches[i], hateFoods[j]);
     }
     outputView.printRecommendationResult();
-
     System.out.println(recommendationService.getRecommendationResult(generatedCoach));
-
     outputView.printEnd();
-
   }
 }

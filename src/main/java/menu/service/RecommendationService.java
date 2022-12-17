@@ -6,7 +6,6 @@ import menu.model.Coach;
 import menu.model.Menu;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,38 +41,27 @@ public class RecommendationService {
     makeRandomCategory();
     result = new String[dayOfWeekNum][coaches.size()];
     for (int i = 0; i < dayOfWeekNum; i++) {
-      for (int j = 0; j < coaches.size(); j++) {
-        List<String> hateFood = coaches.get(j).getHateFood();
-        String menu = Randoms.shuffle(Menu.getMenus(Category.getCategory(categoryResult.get(i)))).get(0);
-        boolean isExist = false;
-        for (int k = 0; k < result[i].length; k++) {
-          if(result[i][j] == null) break;
-          if (result[i][j].equals(menu) || hateFood.contains(result[i][j])) {
-            isExist = true;
-          }
-        }
-        if (isExist) {
-          --j;
-          continue;
-        }
-        result[i][j] = menu;
-      }
+      isItNotIncludedFood(i, coaches);
     }
 
   }
 
-//  private List<String> generateRandomMenu(List<String> coachHateFood) {
-//    List<String> menus = new ArrayList<>();
-//    for (int j = 0; j < categoryResult.size(); j++) {
-//      String randomMenu = Randoms.shuffle(Menu.getMenus(Category.getCategory(categoryResult.get(j)))).get(0);
-//      if (menus.contains(randomMenu) || coachHateFood.contains(randomMenu)) {
-//        --j;
-//        continue;
-//      }
-//      menus.add(randomMenu);
-//    }
-//    return menus;
-//  }
+  private void isItNotIncludedFood(int i, List<Coach> coaches) {
+    for (int j = 0; j < coaches.size(); j++) {
+      List<String> hateFood = coaches.get(j).getHateFood();
+      String menu = Randoms.shuffle(Menu.getMenus(Category.getCategory(categoryResult.get(i)))).get(0);
+      boolean isExist = false;
+      for (int k = 0; k < result[i].length; k++) {
+        if(result[i][j] == null) break;
+        if (result[i][j].equals(menu) || hateFood.contains(result[i][j])) isExist = true;
+      }
+      if (isExist) {
+        --j;
+        continue;
+      }
+      result[i][j] = menu;
+    }
+  }
 
   private List<Integer> makeRandomCategory() {
     List<Integer> categoryCount = new ArrayList<>();
