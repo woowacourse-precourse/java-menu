@@ -29,7 +29,7 @@ public class OutputView {
     }
 
     public void printHateMenuInputGuide(String name){
-        System.out.printf("%d(이)가 못 먹는 메뉴 입력해 주세요.");
+        System.out.printf("%s(이)가 못 먹는 메뉴 입력해 주세요.", name);
     }
 
     public void printResult(List<String> dayOfWeek, List<String> thisWeekCategories, Map<String, List<String>> ateMenuNamesByCoachName){
