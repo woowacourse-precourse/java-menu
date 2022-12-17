@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
@@ -43,7 +44,28 @@ class InputViewTest {
         final String input = "토미,제임스제임스,포코";
         inputStreamInit(input);
 
-        assertThatThrownBy(()->inputView.readCoachNames())
+        assertThatThrownBy(() -> inputView.readCoachNames())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageStartingWith("[ERROR]");
+    }
+
+    @DisplayName("메뉴 이름 정상입력")
+    @Test
+    void 메뉴_이름_정상입력() {
+        final String input = "뇨끼,월남쌈력";
+        final int expectCoachNum = 2;
+        inputStreamInit(input);
+
+        assertThat(inputView.readCoachDontEatMenus().size()).isEqualTo(expectCoachNum);
+    }
+
+    @DisplayName("메뉴 이름 3개입력으로 오류입력")
+    @Test
+    void 메뉴_3개입력으로_오류() {
+        final String input = "뇨끼,월남쌈,마파두부";
+        inputStreamInit(input);
+
+        assertThatThrownBy(() -> inputView.readCoachDontEatMenus())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith("[ERROR]");
     }
