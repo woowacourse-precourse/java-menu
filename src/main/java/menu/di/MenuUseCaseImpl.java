@@ -49,11 +49,11 @@ public class MenuUseCaseImpl implements MenuUseCase {
 
     @Override
     public void validateMenus(ValidateMenuCommand validateMenuCommand) {
-        List<String> menus = validateMenuCommand.getMenus();
-        if (COACH_CANNOT_EAT_COUNT_START > menus.size() || menus.size() > COACH_CANNOT_EAT_COUNT_END) {
+        List<String> cannotEatMenu = validateMenuCommand.getMenus();
+        if (COACH_CANNOT_EAT_COUNT_START > cannotEatMenu.size() || cannotEatMenu.size() > COACH_CANNOT_EAT_COUNT_END) {
             throw new IllegalArgumentException(COACH_CANNOT_EAT_ERROR_MESSAGE);
         }
-        menus.forEach(this::validateMenu);
+        cannotEatMenu.forEach(this::validateMenu);
     }
 
     private void validateMenu(String menu) {
@@ -87,12 +87,12 @@ public class MenuUseCaseImpl implements MenuUseCase {
         }
     }
 
-    private Category pickCategory(List<Category> picked) {
+    private Category pickCategory(List<Category> alreadyPicked) {
         while (true) {
-            Category other = new CategoryPicker(picker).pickCategory();
-            if (canPickCategory(picked, other)) {
-                picked.add(other);
-                return other;
+            Category newCategory = new CategoryPicker(picker).pickCategory();
+            if (canPickCategory(alreadyPicked, newCategory)) {
+                alreadyPicked.add(newCategory);
+                return newCategory;
             }
         }
     }
