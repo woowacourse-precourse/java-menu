@@ -12,6 +12,7 @@ public class RecommendMenu {
     private List<Coach> coaches = Coaches.getCoaches();
 
     public RecommendMenu() {
+        makeCategoryList();
     }
 
     public void makeCategoryList() {
@@ -35,7 +36,33 @@ public class RecommendMenu {
                 count += 1;
             }
         }
-        System.out.println(count);
         return count;
+    }
+
+    public String[][] getResult() {
+        String arr[][] = new String[Coaches.getCoaches().size()][6];
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < coaches.size(); j++) {
+                if (i == 0) {
+                    arr[j][i] = coaches.get(j).getName();
+                }
+                arr[j][i + 1] = (recommendForOneDay(categoryOrder.get(i), coaches.get(j)));
+            }
+        }
+        return arr;
+    }
+
+    private String recommendForOneDay(String category, Coach coach) {
+        List<String> hateFood = coach.getHateFood();
+        Menu menu = Menus.getMenuByCategory(category);
+        List<String> recommendFoods = new ArrayList<>();
+        return (validAddFood(menu.getFood(), recommendFoods, hateFood));
+    }
+
+    private String validAddFood(String food, List<String> recommendFoods, List<String> hateFood) {
+        if (recommendFoods.contains(food) || hateFood.contains(food)) {
+            return validAddFood(food, recommendFoods, hateFood);
+        }
+        return food;
     }
 }

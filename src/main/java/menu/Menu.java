@@ -1,7 +1,6 @@
 package menu;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Menu {
@@ -19,7 +18,7 @@ public class Menu {
         return category;
     }
 
-    public List<String> getFoods() {
-        return Randoms.shuffle(foods);
+    public String getFood() {
+        return Randoms.shuffle(foods).get(0);
     }
 }
