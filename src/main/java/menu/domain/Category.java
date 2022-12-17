@@ -29,6 +29,10 @@ public enum Category {
         return index;
     }
 
+    public List<String> getMenus() {
+        return menus;
+    }
+
     public static Category getCategory(int index) {
         return Arrays.stream(values())
                 .filter(category -> category.getIndex() == index)
