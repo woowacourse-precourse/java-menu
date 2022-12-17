@@ -72,7 +72,7 @@ String menu = Randoms.shuffle(menus).get(0);
 
 ### 출력
 
-- 서비스 시작 문구
+- [x] 서비스 시작 문구
 
 ```
 점심 메뉴 추천을 시작합니다.
