@@ -60,7 +60,7 @@ public class Controller {
 
     private Status printResult(StandardRandomGenerator generator) {
         People result = menuRecommendation.getRecommendations(generator);
-        List<String> shuffledCategory = menuRecommendation.getShuffledCategory();
+        List<String> shuffledCategory = menuRecommendation.getShuffledCategories();
 
         ioViewResolver.outputViewResolve(new PrintRecommendationsDto(result, shuffledCategory));
         return Status.EXIT;

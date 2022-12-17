@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class MenuRecommendation {
 
     private static People people;
-    private List<String> shuffledCategory;
+    private List<String> shuffledCategories;
 
     public MenuRecommendation(String input) {
         String[] split = validate(input);
@@ -39,33 +39,31 @@ public class MenuRecommendation {
     }
 
     public People getRecommendations(StandardRandomGenerator generator) {
-        List<String> menus = Arrays.stream(Category.values()).map(Category::getTitle)
+        List<String> categories = Arrays.stream(Category.values())
+                .map(Category::getTitle)
                 .collect(Collectors.toList());
 
-        shuffledCategory = calculateShuffledCategory(generator, menus);
-        people.setShuffledCategory(shuffledCategory, generator);
+        shuffledCategories = calculateShuffledCategories(generator, categories);
+        people.setShuffledCategories(shuffledCategories, generator);
 
         return people;
     }
 
-    public List<String> getShuffledCategory() {
-        return shuffledCategory;
+    public List<String> getShuffledCategories() {
+        return shuffledCategories;
     }
 
-    private List<String> calculateShuffledCategory(StandardRandomGenerator generator, List<String> menus) {
-        List<String> shuffledCategory = Arrays.stream(Day.values())
-                .map(m -> generator.generate(menus))
-                .collect(Collectors.toList());
+    private List<String> calculateShuffledCategories(StandardRandomGenerator generator, List<String> categories) {
 
         List<String> result = new ArrayList<>();
         for (Day value : Day.values()) {
-            String generated = generator.generate(menus);
+            String generated = generator.generate(categories);
             while (!result.isEmpty() && !validateCount(result, generated)) {
-                generated = generator.generate(menus);
+                generated = generator.generate(categories);
             }
             result.add(generated);
         }
-        return shuffledCategory;
+        return result;
     }
 
     private boolean validateCount(List<String> result, String generated) {

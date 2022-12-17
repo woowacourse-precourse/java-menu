@@ -13,7 +13,7 @@ public class Person {
 
     private final String name;
     private Menus unavailable;
-    private Menus recommended;
+    private Menus recommended = new Menus();
 
     public Person(String name) {
         this.name = validateName(name);

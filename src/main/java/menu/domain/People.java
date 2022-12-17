@@ -25,9 +25,11 @@ public class People implements Iterable<Person> {
         }
     }
 
-    public void setShuffledCategory(List<String> shuffledCategory, StandardRandomGenerator generator) {
-        for (int index = 0; index < shuffledCategory.size(); index++) {
-            people.get(index).recommendMenu(shuffledCategory.get(index), generator);
+    public void setShuffledCategories(List<String> shuffledCategory, StandardRandomGenerator generator) {
+        for (String category : shuffledCategory) {
+            for (Person person : people) {
+                person.recommendMenu(category, generator);
+            }
         }
     }
 
