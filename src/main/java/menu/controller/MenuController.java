@@ -10,11 +10,13 @@ public class MenuController {
 
     public void run() {
         OutputView.printServiceStartMessage();
+
         Coaches coaches = initCoaches();
         addCanNotEatMenus(coaches);
         RecommendService recommendService = new RecommendService(coaches);
-        recommendService.recommend(categoryGenerator);
+        MenuResult menuResult = recommendService.recommend(categoryGenerator);
 
+        OutputView.printServiceResult(menuResult);
     }
 
     private static Coaches initCoaches() {

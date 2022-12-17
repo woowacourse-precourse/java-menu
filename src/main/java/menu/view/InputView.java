@@ -13,7 +13,8 @@ public class InputView {
     }
 
     public static String inputCanNotEatMenus(String coachName) {
-        System.out.printf("%s가 못 먹는 메뉴를 입력해 주세요.", coachName);
+        System.out.println();
+        System.out.printf("%s(이)가 못 먹는 메뉴를 입력해 주세요.", coachName);
         System.out.println();
         return Console.readLine();
     }

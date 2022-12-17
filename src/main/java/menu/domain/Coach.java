@@ -1,12 +1,13 @@
 package menu.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Coach {
 
     private final String name;
     private Menus canNotEatMenus ;
-    private List<String> ateMenus;
+    private List<String> ateMenus = new ArrayList<>();
 
     public Coach(String name) {
         if(!isValidName(name)){
