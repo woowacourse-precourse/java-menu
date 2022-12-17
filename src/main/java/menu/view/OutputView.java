@@ -2,6 +2,8 @@ package menu.view;
 
 import static menu.domain.CategoryRepository.weekCategories;
 import static menu.domain.CoachRepository.coaches;
+import static menu.util.NumberProperty.FRIDAY;
+import static menu.util.NumberProperty.MONDAY;
 import static menu.util.message.OutputMessage.FINISH_RECOMMEND;
 import static menu.util.message.OutputMessage.RECOMMEND_RESULT;
 import static menu.util.message.OutputMessage.START_PROGRAM;
@@ -27,6 +29,10 @@ public class OutputView {
         System.out.print(START_SYMBOL + RESULT_CATEGORY + DELIMITER);
         printCategory();
         System.out.println();
+        printRecommendMenuForCoaches();
+    }
+
+    private static void printRecommendMenuForCoaches() {
         for (int i = 0; i < coaches().size(); i++) {
             System.out.print(START_SYMBOL + coaches().get(i).getName() + DELIMITER);
             printRecommendMenuForEachCoach(i);
@@ -35,9 +41,9 @@ public class OutputView {
     }
 
     private void printCategory() {
-        for (int day = 1; day <= 5; day++) {
+        for (int day = MONDAY; day <= FRIDAY; day++) {
             System.out.print(weekCategories().get(day - 1).getName());
-            if (day != 5) {
+            if (day != FRIDAY) {
                 System.out.print(DELIMITER);
                 continue;
             }
@@ -46,9 +52,9 @@ public class OutputView {
     }
 
     private static void printRecommendMenuForEachCoach(int index) {
-        for (int day = 1; day <= 5; day++) {
+        for (int day = MONDAY; day <= FRIDAY; day++) {
             System.out.print(coaches().get(index).getAlreadyEatMenu().get(day - 1));
-            if (day != 5) {
+            if (day != FRIDAY) {
                 System.out.print(DELIMITER);
                 continue;
             }

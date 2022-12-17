@@ -21,6 +21,8 @@ import static menu.util.MenuCategory.CHINESE;
 import static menu.util.MenuCategory.ITALIAN;
 import static menu.util.MenuCategory.JAPANESE;
 import static menu.util.MenuCategory.KOREAN;
+import static menu.util.NumberProperty.FRIDAY;
+import static menu.util.NumberProperty.MONDAY;
 
 public class MenuController {
 
@@ -69,12 +71,12 @@ public class MenuController {
     }
 
     private void decideRecommendMenu() {
-        int day = 1;
+        int day = MONDAY;
         do {
             decideCategory();
             decideMenuForEachCoach(day);
             day++;
-        } while (day != 6);
+        } while (day <= FRIDAY);
     }
 
     private void decideCategory() {

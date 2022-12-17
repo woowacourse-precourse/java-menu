@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static menu.util.NumberProperty.MAX_SAME_CATEGORY;
+
 
 public class CategoryRepository {
 
@@ -16,7 +18,7 @@ public class CategoryRepository {
     }
 
     public static void addToWeekCategory(MenuCategory category) {
-        if (Collections.frequency(weekCategories, category) == 2) {
+        if (Collections.frequency(weekCategories, category) == MAX_SAME_CATEGORY) {
             throw new IllegalArgumentException();
         }
         weekCategories.add(category);
