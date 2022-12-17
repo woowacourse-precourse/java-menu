@@ -1,5 +1,7 @@
 package menu;
 
+import static menu.ReadUntilValidTemplate.read;
+
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -148,15 +150,5 @@ public class MenuRecommendSystem {
      */
     private void end() {
         OutputView.printEndMessage();
-    }
-
-    private <T, R> R read(Function<T, R> object, Supplier<T> input) {
-        while (true) {
-            try {
-                return object.apply(input.get());
-            } catch (IllegalArgumentException e) {
-                OutputView.printErrorMessage(e.getMessage());
-            }
-        }
     }
 }
