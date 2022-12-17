@@ -10,6 +10,11 @@ public class Group {
 
     private final int COACH_SIZE_LOWERBOUND = 2;
     private final int COACH_SIZE_UPPERBOUND = 5;
+    private final int CATEGORY_COUNT_LIMIT = 2;
+
+    private final String COACH_SIZE_INVALID = String.format(
+            "[ERROR] 코치 수는 %d명에서 %d명 사이여야 합니다.", COACH_SIZE_LOWERBOUND, COACH_SIZE_UPPERBOUND);
+    private final String COACH_NOT_EXISTS = "[ERROR] 해당되는 코치가 존재하지 않습니다.";
 
     public Group(List<Coach> coaches) {
         validateCoachSize(coaches);
@@ -18,7 +23,7 @@ public class Group {
 
     private void validateCoachSize(List<Coach> coaches) {
         if (coaches.size() < COACH_SIZE_LOWERBOUND || coaches.size() > COACH_SIZE_UPPERBOUND) {
-            throw new IllegalArgumentException("[ERROR] 코치 수는 2명에서 5명 사이여야 합니다.");
+            throw new IllegalArgumentException(COACH_SIZE_INVALID);
         }
     }
 
@@ -26,7 +31,7 @@ public class Group {
         coaches.stream()
                 .filter(coach -> coach.getName().equals(coachName))
                 .findFirst()
-                .orElseThrow(() -> new IllegalStateException("[ERROR] 해당되는 코치가 존재하지 않습니다."))
+                .orElseThrow(() -> new IllegalStateException(COACH_NOT_EXISTS))
                 .addInedibleMenus(menus);
     }
 
@@ -42,7 +47,7 @@ public class Group {
         String categoryName;
         do {
             categoryName = category.getRandomCategory();
-        } while (Collections.frequency(categoryHistory, categoryName) >= 2);
+        } while (Collections.frequency(categoryHistory, categoryName) >= CATEGORY_COUNT_LIMIT);
         categoryHistory.add(categoryName);
     }
 
