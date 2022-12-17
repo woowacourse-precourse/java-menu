@@ -1,12 +1,13 @@
 package menu.domain;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class DayRecommend {
     public static final String COUCH_FLAVOR_ERROR_MESSAGE = "[Error] 코치가 먹을 수 없는 음식을 메뉴로 선정할 수는 없습니다.";
 
     private final String dayName;
-    private Map<Coach, Menu> recommendData;
+    private Map<Coach, Menu> recommendData = new HashMap<>();
 
     public Map<Coach, Menu> getRecommendData() {
         return recommendData;
