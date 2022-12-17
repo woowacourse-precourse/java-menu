@@ -34,7 +34,7 @@ public class MenuRepository {
         }
     }
 
-    public List<String> findByCategory(Category category) {
+    public static List<String> findByCategory(Category category) {
         if (menus.containsKey(category)) {
             return menus.get(category);
         }
