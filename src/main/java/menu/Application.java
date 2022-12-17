@@ -2,6 +2,11 @@ package menu;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        ServiceController serviceController = new ServiceController();
+        try {
+            serviceController.runService();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
