@@ -14,4 +14,13 @@ public class Coach {
         this.notEatMenus = new HashSet<>();
         this.menuRecommendResult = new ArrayList<>();
     }
+
+    public void addRecommendedMenu(String recommendedMenu){
+        this.menuRecommendResult.add(recommendedMenu);
+    }
+
+    public void addNotEatMenu(String notEatMenu){
+        notEatMenus.add(notEatMenu);
+    }
+    
 }
