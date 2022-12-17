@@ -1,6 +1,7 @@
 package menu.domain;
 
 import menu.view.InputView;
+import menu.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,6 +22,8 @@ public class MenuRecommand {
         Menu menu = new Menu(category);
         for (int i = 0; i < coaches.size(); i++)
             coachesMenu.add(menu.recommandMenu(coachSet.get(coaches.get(i))));
+
+        OutputView.printResult(coaches,coachesMenu,category);
     }
 
     public void recommandMenu() {
