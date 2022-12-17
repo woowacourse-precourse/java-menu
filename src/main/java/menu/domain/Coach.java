@@ -34,14 +34,14 @@ public class Coach {
     }
 
     public void setHateMenus(List<String> hateMenus) {
-        if (isEmpty(hateMenus)) {
-            return;
-        }
         if (isOverSize(hateMenus)) {
             throw new IllegalArgumentException("못 먹는 메뉴는 최대 2개까지 가능합니다.");
         }
 
         for (String hateMenu : hateMenus) {
+            if (isEmpty(hateMenu)) {
+                return;
+            }
             if (!Menu.isExist(hateMenu)) {
                 throw new IllegalArgumentException("존재하지 않는 메뉴를 입력했습니다. 다시 입력해 주세요.");
             }
@@ -49,8 +49,8 @@ public class Coach {
         }
     }
 
-    private boolean isEmpty(List<String> hateMenus) {
-        return hateMenus.size() == 0;
+    private boolean isEmpty(String hateMenu) {
+        return hateMenus.isEmpty();
     }
 
     private boolean isOverSize(List<String> hateMenus) {
