@@ -5,7 +5,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class RandomMenuSelector {
-    public static String getRandomMenu(List<String> category) {
-        return Randoms.shuffle(category).get(0);
+    public String getRandomMenu(List<String> menus) {
+        String menuName = Randoms.shuffle(menus).get(0);
+        System.out.println(menuName);
+        return menuName;
     }
 }

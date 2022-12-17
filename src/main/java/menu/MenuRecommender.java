@@ -13,7 +13,7 @@ public class MenuRecommender {
     private static List<String> categories;
     private static Map<String, Integer> categoriesCounter = initCounter();
 
-    static Category category = new Category();
+    static Category categoryForString = new Category();
 
     public static List<String> splitter(String coachNames) {
         return Arrays.stream(coachNames.split(DELIMITER))
@@ -35,23 +35,35 @@ public class MenuRecommender {
 
         for (Coach coach : coaches) {
             coach.setCategories(categories);
-            getEachCoachRecommend(coach);
+        }
+
+        for (String category : categories) {
+            getEachCategoryRecommend(category);
         }
     }
 
-    private static void getEachCoachRecommend(Coach coach) {
-        for (String category : categories) {
+    public static void getEachCategoryRecommend(String category) {
+        for (Coach coach : coaches) {
             String menu = getOneFood(category, coach);
             coach.addMenu(menu);
         }
     }
 
+//    private static void getEachCoachRecommend(Coach coach) {
+//        for (String category : categories) {
+//            String menu = getOneFood(category, coach);
+//            coach.addMenu(menu);
+//        }
+//    }
+
     private static String getOneFood(String category, Coach coach) {
         String menu;
 
+        List<String> menuList = Menus.getMenusList(category);
+        RandomMenuSelector randomMenuSelector = new RandomMenuSelector();
+
         do {
-            List<String> menuList = Menus.getMenusList(category);
-            menu = RandomMenuSelector.getRandomMenu(menuList);
+            menu = randomMenuSelector.getRandomMenu(menuList);
         } while (!isValidMenu(menu, coach));
 
         return menu;
@@ -102,7 +114,7 @@ public class MenuRecommender {
     public static String getResult() {
         StringBuilder result = new StringBuilder();
         result.append(combine(ConstValue.days)).append("\n");
-        result.append(category.toString()).append("\n");
+        result.append("[ 카테고리 | ").append(String.join(" | ", categories)).append(" ]").append("\n");
 
         for (Coach coach : coaches) {
             result.append(coach.toString()).append("\n");
