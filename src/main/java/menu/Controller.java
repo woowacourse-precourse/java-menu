@@ -22,6 +22,7 @@ public class Controller {
         this.outputView = new OutputView();
     }
 
+    // 메뉴 추천 기능
     public void recommendMenu() throws IllegalArgumentException{
         List<Coach> coaches = inputView.getCoachNotEat(inputView.getCoachName());
         List<CoachWeekMenu> coachWeekMenus = makeCoachWeekMenu(coaches);
@@ -35,6 +36,7 @@ public class Controller {
         outputView.printMenuResult(recommend.getWeekCategory(),coachWeekMenus);
     }
 
+    // 코치 리스트로 CoachWeekMenu 생성
     private List<CoachWeekMenu> makeCoachWeekMenu(List<Coach> coaches) {
         List<CoachWeekMenu> coachWeekMenus = new ArrayList<>();
         for (Coach coach : coaches) {
