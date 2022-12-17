@@ -9,5 +9,6 @@ public class Constant {
 	public static final String WRONG_NAME_MSG = "[ERROR] 이름의 길이가 잘못되었습니다.";
 	public static final String WRONG_MEMBER_MSG = "[ERROR] 식사하기 적합한 인원이 아닙니다.";
 	public static final String WRONG_MENUS_MSG = "[ERROR] 편식은 좋지 않습니다. 다시 입력해주세요.";
+	public static final String END_MSG = "\n추천을 완료했습니다.";
 
 }
