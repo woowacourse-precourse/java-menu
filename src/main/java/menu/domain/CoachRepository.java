@@ -46,6 +46,7 @@ public class CoachRepository {
             String menu = Randoms.shuffle(copyMenus).get(0);
             if (coach.isOkayToCompleteMenu(menu)) {
                 coach.addCompleteMenu(menu);
+                break;
             }
         }
     }

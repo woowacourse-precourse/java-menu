@@ -18,12 +18,14 @@ public class Input {
     public List<String> readHatingMenus() {
         String menus = Console.readLine();
         if (menus.equals("")) {
+            System.out.println();
             return new ArrayList<>();
         }
         if (!menus.contains(",")) {
             Validator.checkExistMenu(menus);
             List<String> hatings = new ArrayList<>();
             hatings.add(menus);
+            System.out.println();
             return hatings;
         }
         Validator.checkHatingMenus(menus);

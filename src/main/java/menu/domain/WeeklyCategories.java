@@ -15,13 +15,12 @@ public class WeeklyCategories {
         for (int i=0; i<5; i++) {
             categories.add(pickCategory());
         }
-        System.out.println(categories);
     }
 
     private String pickCategory() {
         while (true) {
             String category = pickRandom();
-            if (Collections.frequency(categories, category) < 3) {
+            if (Collections.frequency(categories, category) < 2) {
                 return category;
             }
         }
@@ -30,7 +29,6 @@ public class WeeklyCategories {
     private String pickRandom() {
         int randomCategoryCode = Randoms.pickNumberInRange(1, 5);
         for (CategoryList category : CategoryList.values()) {
-            System.out.println(category.getCode());
             if (category.getCode() == randomCategoryCode) {
                 return category.name();
             }

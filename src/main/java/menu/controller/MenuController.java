@@ -25,6 +25,9 @@ public class MenuController {
 
     private void printResult() {
         ResultDto resultDto = menuManager.activateRecommendation();
+        output.printResultGuideMessage();
+        output.printResult(resultDto);
+        output.printResultCompleteMessage();
     }
 
     private void saveHatingMenus() {
