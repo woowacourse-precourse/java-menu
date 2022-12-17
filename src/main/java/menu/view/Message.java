@@ -12,7 +12,11 @@ public enum Message {
 	PRINT_RECOMMEND_RESULT("메뉴 추천 결과입니다."),
 	PRINT_DAYS("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]"),
 	SERVICE_FINISH("추천을 완료했습니다."),
-	;
+	ERROR("[ERROR] "),
+	ERROR_COACH_NAME_LENGTH("코치의 이름은 최소 2글자, 최대 4글자 입니다."),
+	ERROR_COACH_LENGTH("코치는 최소 2명, 최대 5명 까지 입력해야 합니다."),
+	ERROR_FOOD_LENGTH("못먹는 음식은 최소 0개, 최대 2개까지 입력해야 합니다."),
+	ERROR_INPUT("잘못된 입력입니다.");
 
 	private final String message;
 
@@ -50,4 +54,9 @@ public enum Message {
 		sb.append('\n').append(SERVICE_FINISH.message);
 		System.out.println(sb);
 	}
+
+	public static String getErrorMessage(Message message) {
+		return ERROR.message + message.message;
+	}
+
 }
