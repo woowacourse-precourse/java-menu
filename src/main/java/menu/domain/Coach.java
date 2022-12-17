@@ -14,4 +14,8 @@ public class Coach {
     public boolean checkMenu(String menu) {
         return bannedMenu.contains(menu);
     }
+
+    public String getName() {
+        return name;
+    }
 }
