@@ -19,6 +19,9 @@ public class MenuController {
     public void run() {
         outputView.printApplicationStartGuide();
         List<Coach> coaches = inputView.repeatInput(() -> CoachCreator.from(inputView.inputCoachNames(outputView)), outputView);
-        System.out.println(coaches);
+        
+        for (Coach coach : coaches) {
+            inputView.inputUneatableMenu(outputView, coach.name());
+        }
     }
 }

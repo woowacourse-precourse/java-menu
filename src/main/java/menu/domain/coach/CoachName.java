@@ -12,6 +12,10 @@ public class CoachName {
         this.coachName = coachName;
     }
     
+    public String name() {
+        return coachName;
+    }
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

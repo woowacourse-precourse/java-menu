@@ -1,6 +1,7 @@
 package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import menu.domain.coach.Coach;
 
 import java.util.function.Supplier;
 
@@ -9,6 +10,10 @@ public class InputView {
     public String inputCoachNames(OutputView outputView) {
         outputView.printInputCoachNamesGuide();
         return Console.readLine();
+    }
+    
+    public void inputUneatableMenu(OutputView outputView, String coachName) {
+        outputView.printInputUneatableMenuGuide(coachName);
     }
     
     public <T> T repeatInput(Supplier<T> inputProcess, OutputView outputView) {

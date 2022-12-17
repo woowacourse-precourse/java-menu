@@ -32,4 +32,8 @@ public class Coach {
     public boolean isExistSameMenu(Menu menu) {
         return recommendations.isExistSameMenu(menu);
     }
+    
+    public String name() {
+        return coachName.name();
+    }
 }
