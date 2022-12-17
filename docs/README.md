@@ -2,7 +2,7 @@
 
 ### 기능 요구 사항
 
-- [ ] 코치 이름 입력 InputView#coachNameInput
+- [X] 코치 이름 입력 InputView#coachNameInput
   - [ ] 최소 2글자, 최대 4글자
   - [ ] 최소 2명 최대 5명
 - [ ] 코치 먹지 못하는 메뉴 입력 InputView#coachCantEatInput
