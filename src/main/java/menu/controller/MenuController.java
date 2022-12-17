@@ -21,9 +21,10 @@ public class MenuController {
     public void run() {
         outputView.startMessage();
         Coaches coaches = getCoachesName();
+        getNotEatableName(coaches);
         PickCategory pickCategory = new PickCategory();
         coaches.pickMenus(pickCategory);
-        getNotEatableName(coaches);
+        outputView.printMenu(coaches, pickCategory);
     }
 
     public Coaches getCoachesName() {

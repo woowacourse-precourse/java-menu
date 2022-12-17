@@ -33,4 +33,8 @@ public class Coach {
     public void makePickMenu(PickCategory pickCategory) {
         pickMenu = new PickMenu(pickCategory, notEatableMenu);
     }
+
+    public List<Menu> getPickMenu() {
+        return pickMenu.getMenus();
+    }
 }

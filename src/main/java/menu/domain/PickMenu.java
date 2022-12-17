@@ -49,4 +49,8 @@ public class PickMenu {
         }
         return false;
     }
+
+    public List<Menu> getMenus() {
+        return Collections.unmodifiableList(menus);
+    }
 }

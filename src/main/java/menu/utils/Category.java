@@ -6,7 +6,7 @@ public enum Category {
     KOREA("한식", 1),
     JAPAN("일식",2),
     CHINA("중식",3),
-    ASIA("아시아",4),
+    ASIA("아시안",4),
     WESTERN("양식",5);
 
     private final String category;
