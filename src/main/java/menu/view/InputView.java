@@ -6,6 +6,7 @@ import menu.domain.NotEatableFood;
 import java.util.List;
 
 import static menu.domain.NotEatableFood.createNotEatableFood;
+import static menu.view.OutputView.printCoachNames;
 import static menu.view.OutputView.printGetCoachNameMessage;
 
 public class InputView {
@@ -15,6 +16,7 @@ public class InputView {
         printGetCoachNameMessage();
         String names = Console.readLine();
         List<String> coachNames = List.of(names.split(","));
+        printCoachNames(coachNames);
         return coachNames;
     }
 

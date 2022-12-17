@@ -28,21 +28,15 @@ public class MenuController {
 
     private List<Coach> createCoaches() {
         List<Coach> coaches = new ArrayList<>();
-        List<String> coachNames = getCoachNames();
+        List<String> coachNames = getCoachName();
         for (String name : coachNames) {
-            coaches.add(createCoach(name));
+            coaches.add(createEachCoach(name));
         }
         return coaches;
     }
 
-    private Coach createCoach(String name) {
+    private Coach createEachCoach(String name) {
         NotEatableFood notEatableFood = getNotEatableFood(name);
         return makeCoach(name, notEatableFood);
-    }
-
-    private List<String> getCoachNames() {
-        List<String> coachNames = getCoachName();
-        printCoachNames(coachNames);
-        return coachNames;
     }
 }
