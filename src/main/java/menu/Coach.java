@@ -17,7 +17,7 @@ public class Coach {
     public void recommendAndEatFood(FoodInformation category){
         while(true){
             String cand = FoodInformation.getRandomFood(category);
-            if(thisWeekAteFoods.contains(cand) || InedibleFoods.contains(cand))
+            if(thisWeekAteFoods.contains(cand) || (InedibleFoods != null && InedibleFoods.contains(cand)))
                 continue;
 
             thisWeekAteFoods.add(cand);
