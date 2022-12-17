@@ -1,4 +1,4 @@
-package menu;
+package menu.controller;
 
 import java.util.List;
 
@@ -15,9 +15,14 @@ public class Controller {
 	private MenuList menusCantEat;
 	private InputView inputView;
 
+	public Controller() {
+		this.inputView = new InputView();
+		this.menusCantEat = new MenuList();
+	}
 
 	public void logic() {
 		OutputView.printStartMessage();
+		// List<String> coachNames = inputView.inputCoaches();
 		coaches = setCoachesName();
 		menusCantEat = setMenusCantEat();
 		// OutputView.printResult();
