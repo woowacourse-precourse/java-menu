@@ -3,6 +3,7 @@ package menu.repository;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import menu.domain.Category;
 
 public class CategoryRepository {
@@ -13,6 +14,11 @@ public class CategoryRepository {
     return Collections.unmodifiableList(categories);
   }
 
+  public static List<String> findAllCategoryNames() {
+    return categories.stream()
+        .map(Category::getName)
+        .collect(Collectors.toUnmodifiableList());
+  }
   public static void addAllCategory(List<Category> categories) {
     categories.forEach(CategoryRepository::addCategory);
   }
