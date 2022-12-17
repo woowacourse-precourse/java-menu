@@ -1,10 +1,10 @@
 package menu.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class CategoryRepository { // 인터페이스 만들어도 될듯
-    private List<Category> categories = new ArrayList<>();
+    private Map<Integer, Category> categories = new HashMap<>();
+    private Integer sequence = 1;
 
     private static final CategoryRepository instance = new CategoryRepository();
 
@@ -13,11 +13,17 @@ public class CategoryRepository { // 인터페이스 만들어도 될듯
     }
 
     public Category save(Category category){
-        categories.add(category);
+        category.setId(sequence++);
+        categories.put(category.getId(),category);
         return category;
     }
 
-    public List<Category> findALl(){
-        return new ArrayList<>(categories);
+    public List<Category> findAll(){
+        return new ArrayList<>(categories.values());
+    }
+
+    public Category findById(int id){
+        return Optional.ofNullable(categories.get(id))
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 미션이 존재하지 않습니다."));
     }
 }

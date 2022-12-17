@@ -18,7 +18,7 @@ public class MenuRepository {
         return menu;
     }
 
-    public List<Menu> findALl(){
+    public List<Menu> findAll(){
         return new ArrayList<>(menus);
     }
 

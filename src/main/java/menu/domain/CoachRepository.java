@@ -18,7 +18,7 @@ public class CoachRepository {
         return coach;
     }
 
-    public List<Coach> findALl(){
+    public List<Coach> findAll(){
         return new ArrayList<>(coaches);
     }
 
