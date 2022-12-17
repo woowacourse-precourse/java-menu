@@ -50,12 +50,18 @@ public class Recommend {
         while (true) {
             int rank = Randoms.pickNumberInRange(START_CATEGORY_RANK, END_CATEGORY_RANK);
             Category cg = Category.getCategoryFromNumber(rank);
-            int count = categoryCounts.get(cg);
-            if (!(count > 1)) {
-                categoryCounts.put(cg, count + 1);
+            if (checkCategoryIfValid(cg))
                 return cg;
-            }
         }
+    }
+
+    private boolean checkCategoryIfValid(Category cg) {
+        int count = categoryCounts.get(cg);
+        if (!(count > 1)) {
+            categoryCounts.put(cg, count + 1);
+            return true;
+        }
+        return false;
     }
 
     public List<String> getPickCategories() {
