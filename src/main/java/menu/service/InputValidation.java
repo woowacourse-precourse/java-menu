@@ -12,5 +12,13 @@ public class InputValidation {
         return true;
     }
 
-    
+    public boolean isValidCoachNumber(int coachNumber){
+        try {
+            if (coachNumber < 2 || coachNumber > 5)
+                throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+        return true;
+    }
 }
