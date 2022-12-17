@@ -1,5 +1,7 @@
 package menu.domain;
 
+import java.util.Objects;
+
 public class Menu {
 
     private final Category category;
@@ -16,5 +18,24 @@ public class Menu {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        Menu target = (Menu) obj;
+        if(this.category == target.category && this.name == target.name) {
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(category, name);
     }
 }
