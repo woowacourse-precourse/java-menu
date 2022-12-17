@@ -55,17 +55,25 @@ public class MenuRecommendProgram {
         }
     }
 
+
+
     private void printStartMessage() {
         outputView.printStart();
     }
 
     private void inputCoach() {
+        printCoachMessage();
         List<String> coachNames = inputView.readCoaches();
         for (String coachName: coachNames) {
             Coach coach = new Coach(coachName);
             coaches.add(coach);
         }
     }
+
+    private void printCoachMessage() {
+        outputView.printCoachMessage();
+    }
+
 
     private void inputMenus(Coach coach) {
         List<String> menusNotEaten = inputView.readMenuNotEat();
