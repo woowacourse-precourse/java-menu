@@ -32,7 +32,7 @@ public class OutputView {
     }
 
     public static void printCategory(List<Integer> category) {
-        System.out.print("[ 카테고리 ");
+        System.out.print("[ 카테고리");
         for (int i = 0; i < category.size(); i++)
             System.out.print(" | "+CategoryEnum.getMessageByValue(category.get(i)));
         System.out.println(" ]");
