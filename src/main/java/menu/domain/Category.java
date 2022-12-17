@@ -45,4 +45,8 @@ public enum Category {
     public List<Menu> getMenuList() {
         return menuList;
     }
+
+    public boolean equals(Category category) {
+        return categoryNumber == category.categoryNumber;
+    }
 }
