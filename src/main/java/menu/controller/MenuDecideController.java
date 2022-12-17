@@ -1,5 +1,6 @@
 package menu.controller;
 
+import menu.domain.Coach;
 import menu.domain.MenuDecideService;
 import menu.view.Input;
 import menu.view.Output;
@@ -12,6 +13,15 @@ public class MenuDecideController {
     public void run() {
         output.printStart();
         output.askCoachName();
-        String coachName = input.readCoachName();
+        makeCoach();
+    }
+
+    private Coach makeCoach() {
+        try {
+            return service.makeCoach(input.readCoachName());
+        } catch (IllegalArgumentException e) {
+            output.printError(e.getMessage());
+            return makeCoach();
+        }
     }
 }
