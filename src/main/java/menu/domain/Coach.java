@@ -26,13 +26,12 @@ public class Coach {
         return coachName;
     }
 
-//    public boolean addRecommendMenu(Menu menu) {
-//        if (checkOverlappedMenu(menu)) {
-//            return false;
-//        }
-//        recommendMenus.add(menu);
-//        return true;
-//    }
+    public void addRecommendMenu(Category category, Menu menu) {
+        if (!recommendMenus.containsKey(category)) {
+            recommendMenus.put(category, new ArrayList<>());
+        }
+        recommendMenus.get(category).add(menu);
+    }
 
 //    public List<Menu> getRecommendMenus() {
 //        return recommendMenus;
@@ -49,9 +48,14 @@ public class Coach {
         return true;
     }
 
-    public boolean checkOverlappedMenu(Menu menu) {
-        return getRecommendMenus().stream()
-                .anyMatch(recommendMenu -> recommendMenu.equals(menu));
+    public boolean checkValidMenu(Menu menu) {
+        if (checkOverlappedMenu(menu)) {
+            return false;
+        }
+        if (isDislikeMenu(menu)) {
+            return false;
+        }
+        return true;
     }
 
     public List<Menu> getRecommendMenus() {
@@ -59,6 +63,15 @@ public class Coach {
         recommendMenus.keySet()
                 .forEach(category -> recommends.addAll(recommendMenus.get(category)));
         return recommends;
+    }
+
+    private boolean checkOverlappedMenu(Menu menu) {
+        return getRecommendMenus().stream()
+                .anyMatch(recommendMenu -> recommendMenu.equals(menu));
+    }
+
+    private boolean isDislikeMenu(Menu menu) {
+        return dislikeMenus.contains(menu);
     }
 
     private void validateNameLength(String coachName) {

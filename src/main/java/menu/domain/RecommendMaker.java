@@ -43,6 +43,7 @@ public class RecommendMaker {
         do {
             String menuName = Randoms.shuffle(menuNames).get(0);
             menu = MenuRepository.findByName(menuName);
-        } while (!coach.checkOverlappedMenu(menu));
+        } while (!coach.checkValidMenu(menu));
+        coach.addRecommendMenu(category, menu);
     }
 }
