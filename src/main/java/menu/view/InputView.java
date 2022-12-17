@@ -11,8 +11,8 @@ public class InputView {
     public final static int COACH_NAME_MAX = 4;
     public final static int COACH_LIST_MIN = 2;
     public final static int COACH_LIST_MAX = 5;
-    public final static String ILLEGAL_COACH_NAME_ERROR_MESSAGE = "잘못된 코치 이름입니다.";
-    public final static String ILLEGAL_COACH_LIST_SIZE_ERROR_MESSAGE = "코치 수는 최소 2명, 최대 5명 이어야 합니다.";
+    public final static String ILLEGAL_COACH_NAME_ERROR_MESSAGE = "[ERROR] 잘못된 코치 이름입니다.";
+    public final static String ILLEGAL_COACH_LIST_SIZE_ERROR_MESSAGE = "[ERROR] 코치 수는 최소 2명, 최대 5명 이어야 합니다.";
 
     public List<String> readCoachNames() {
         String coachNames = Console.readLine();
@@ -20,6 +20,7 @@ public class InputView {
         for (String coachName : coachNameList) {
             validateCoachName(coachName);
         }
+        validateCoachNameList(coachNameList);
         return coachNameList;
     }
 

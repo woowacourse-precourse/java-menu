@@ -17,6 +17,10 @@ public class OutputView {
         System.out.print(message);
     }
 
+    public void printError(String message) {
+        System.out.println(message);
+    }
+
     public void printStart() {
         printlnMessage(START_MESSAGE);
         printlnMessage("");

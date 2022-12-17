@@ -31,8 +31,16 @@ public class MenuController {
     }
 
     public void readCoachInfo() {
-        outputView.printReadCoachNames();
-        List<String> coachNames = inputView.readCoachNames();
+        List<String> coachNames = null;
+        do {
+            outputView.printReadCoachNames();
+            try {
+                coachNames = inputView.readCoachNames();
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
+        } while (true);
         for (String coachName : coachNames) {
             outputView.printReadImpossibleMenus(coachName);
             List<String> impossibleMenuList = inputView.readImpossibleMenus();
