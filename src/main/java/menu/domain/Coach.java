@@ -9,6 +9,7 @@ public class Coach {
 
     public Coach(String name, List<String> menus, List<String> cannotEatMenus) {
         validateName(name);
+        validateCannotEatMenus(cannotEatMenus);
         this.name = name;
         this.menus = menus;
         this.cannotEatMenus = cannotEatMenus;
