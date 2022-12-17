@@ -14,4 +14,10 @@ public class InputVIew {
         Validation.isCoachNames(input);
         return input.split(",");
     }
+
+    public String[] getCantEatMenus() {
+        String input = readLine();
+        Validation.isCantEatMenus(input);
+        return input.split(",");
+    }
 }
