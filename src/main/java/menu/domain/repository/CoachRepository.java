@@ -1,6 +1,7 @@
 package menu.domain.repository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import menu.domain.Coach;
 import menu.utils.ExceptionType;
@@ -13,6 +14,10 @@ public class CoachRepository {
         if (!coachRepository.contains(coach)) {
             coachRepository.add(coach);
         }
+    }
+
+    public static List<Coach> getCoachs() {
+        return Collections.unmodifiableList(coachRepository);
     }
 
     public static Coach findCoachByCoachName(String name) {
