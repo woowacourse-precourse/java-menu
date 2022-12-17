@@ -4,14 +4,13 @@ import menu.enums.Category;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import static menu.utils.ErrorMessage.*;
 
 public class Coach {
     private final String name;
     private List<String> doNotEatFoods = new ArrayList<>();
-    private List<Food> recommendationFoods = new ArrayList<>();
+    private List<Food> thisWeekFoods = new ArrayList<>();
 
     public Coach(String name) {
         validateNameRange(name);
@@ -55,7 +54,7 @@ public class Coach {
 
     public int categoryCount(Category category) {
         int count = 0;
-        for (Food food : recommendationFoods) {
+        for (Food food : thisWeekFoods) {
             if (food.getCategory().equals(category)) {
                 count++;
             }
@@ -65,6 +64,35 @@ public class Coach {
 
     public boolean isOverTwoCountOfDuplicateCategory(Category category) {
         return categoryCount(category) > 2;
+    }
+
+    public boolean addTodayFood(Food todayFood) {
+        if (isValidEatFood(todayFood)) {
+            return false;
+        }
+        if (isValidateDuplicateTodayFood(todayFood)) {
+            return false;
+        }
+        thisWeekFoods.add(todayFood);
+        return true;
+    }
+
+    public boolean isValidEatFood(Food todayFood) {
+        for (String doNotEatFood : doNotEatFoods) {
+            if (doNotEatFood.equals(todayFood.getName())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isValidateDuplicateTodayFood(Food todayFood) {
+        for (Food food : thisWeekFoods) {
+            if (food.getName().equals(todayFood.getName())) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public String getName() {

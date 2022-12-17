@@ -35,4 +35,8 @@ public enum Category {
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_FOOD_IN_MENU));
     }
+
+    public List<String> getFoods() {
+        return foods;
+    }
 }
