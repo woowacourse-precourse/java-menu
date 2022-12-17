@@ -18,18 +18,32 @@ public class Coach {
     public String pickMenu(List<String> menus) {
         List<String> menusToShuffle = new ArrayList<>(menus);
         String pickedMenu = Randoms.shuffle(menusToShuffle).get(0);
-        for (String hate : hateFood) {
-            if (hate.equals(pickedMenu)) {
-                return pickMenu(menus);
-            }
+        if (isHate(pickedMenu)) {
+            return pickMenu(menus);
         }
-        for (String eaten : eatenFood) {
-            if (eaten.equals(pickedMenu)) {
-                return pickMenu(menus);
-            }
+        if (isEaten(pickedMenu)) {
+            return pickMenu(menus);
         }
         eatenFood.add(pickedMenu);
         return pickedMenu;
+    }
+
+    private boolean isHate(String pickedMenu) {
+        for (String hate : hateFood) {
+            if (hate.equals(pickedMenu)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isEaten(String pickedMenu) {
+        for (String eaten : eatenFood) {
+            if (eaten.equals(pickedMenu)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public List<String> getEatenFood() {
