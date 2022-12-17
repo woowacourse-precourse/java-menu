@@ -7,7 +7,6 @@ import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.Coaches;
 import menu.domain.Day;
-import menu.domain.Days;
 import menu.domain.Menu;
 import menu.view.InputView;
 import menu.view.OutputView;
@@ -21,7 +20,8 @@ public class MainController {
     private final List<Menu> western = makeWestern();
 
     private final List<Category> categories = makeCategories();
-    private final Days days = new Days(makeDays());
+    private final List<Day>days = makeDays();
+    private final Coaches coaches = new Coaches(days);
 
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
@@ -29,10 +29,19 @@ public class MainController {
     public void run() {
         outputView.printStartMessage();
         outputView.printAskNames();
-        Coaches coaches = makeCoaches();
+        makeCoaches();
         List<Menu> cantEatMenus = new ArrayList<>();
         for (Coach coach : coaches.getCoaches()) {
             getEachCoachesCantEatMenus(cantEatMenus, coach);
+        }
+    }
+
+    private void makeCoaches() {
+        try{
+            coaches.setCoaches(inputView.readNames());
+        }catch (IllegalArgumentException e){
+            outputView.printError(e.getMessage());
+            makeCoaches();
         }
     }
 
@@ -52,21 +61,10 @@ public class MainController {
 
     private void fineMenus(List<Menu> cantEatMenus, List<String> menus) {
         for (String menu : menus) {
-            Menu cantEatMenu = days.findMenu(menu);
+            Menu cantEatMenu = coaches.findMenu(menu);
             cantEatMenus.add(cantEatMenu);
         }
     }
-
-    private Coaches makeCoaches() {
-        try {
-            String coachesNames = inputView.readNames();
-            return new Coaches(coachesNames);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            return makeCoaches();
-        }
-    }
-
 
     private List<Menu> makeJapanese() {
         List<Menu> menus = new ArrayList<>();

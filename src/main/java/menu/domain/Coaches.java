@@ -9,9 +9,14 @@ public class Coaches {
     private static final String ERROR_LENGTH = "[ERROR] 코치는 최소 2명 이상 최대 5명 이하여야 합니다.";
     private static final String ERROR_NAME_LENGTH = "[ERROR] 코치의 이름은 2글자 이상, 4글자 이하여야 합니다.";
 
+    List<Day>days;
     List<Coach> coachList;
 
-    public Coaches(String coachesName){
+    public Coaches(List<Day>days){
+        this.days = days;
+    }
+
+    public void setCoaches(String coachesName){
         validate(coachesName);
         makeCoachList(coachesName);
     }
@@ -69,5 +74,14 @@ public class Coaches {
 
     public List<Coach> getCoaches() {
         return coachList;
+    }
+
+    public Menu findMenu(String menu) {
+        for(Day day : days){
+            if(day.haveMenu(menu)){
+                return day.findMenu(menu);
+            }
+        }
+        throw new IllegalArgumentException("[ERROR] 없는 메뉴입니다.");
     }
 }
