@@ -20,6 +20,10 @@ public class RecommendedCategory {
                 .collect(Collectors.toList());
     }
 
+    public List<String> getCategories() {
+        return categories;
+    }
+
     private void pickRandomCategories() {
         while (categories.size() < 5) {
             addDailyCategory(CategoryPicker.pickCategory());

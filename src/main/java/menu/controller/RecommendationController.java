@@ -3,6 +3,7 @@ package menu.controller;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import menu.domain.Day;
 import menu.domain.MenuRecommendation;
 import menu.view.InputView;
 import menu.view.OutputView;
@@ -20,9 +21,10 @@ public class RecommendationController {
 
     public void start() {
         outputView.printStart();
-        inputView.readCoachName();
         List<String> coaches = initializeCoachName();
         initializeDislikeFood(coaches);
+        recommendFood();
+        printResult();
     }
 
     private List<String> initializeCoachName() {
@@ -52,10 +54,19 @@ public class RecommendationController {
         }
     }
 
+    private void recommendFood() {
+        menuRecommendation.recommendFood();
+    }
+
     private List<String> transferToList(String input) {
         if (input.equals("")) {
             return Collections.emptyList();
         }
         return Arrays.asList(input.split(","));
+    }
+
+    private void printResult() {
+        outputView.printResult(Day.getDays(), menuRecommendation.getRecommendedCategories());
+        outputView.printRecommendation(menuRecommendation.getRecommendationResult());
     }
 }

@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import menu.dto.RecommendationResultDto;
 
 public class MenuRecommendation {
     private final RecommendedCategory recommendedCategory;
@@ -31,10 +32,21 @@ public class MenuRecommendation {
                 .forEach(set -> recommendFood(set.getKey(), set.getValue(), recommendedCategory.getAllFoodsInCategoryForWeek()));
     }
 
-    public List<List<String>> getRecommendedFood() {
+    public List<RecommendationResultDto> getRecommendationResult() {
+        return coachFoods.entrySet()
+                .stream()
+                .map(RecommendationResultDto::of)
+                .collect(Collectors.toList());
+    }
+
+    public List<String> getRecommendedCategories() {
+        return recommendedCategory.getCategories();
+    }
+
+    private List<List<String>> getRecommendedFood() {
         return coachFoods.values()
                 .stream()
-                .map(food -> food.getRecommendedFoods())
+                .map(CoachFood::getRecommendedFoods)
                 .collect(Collectors.toList());
     }
 
