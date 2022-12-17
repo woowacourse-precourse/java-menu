@@ -9,6 +9,8 @@ public enum Category {
     Asian(4, "아시안"),
     Western(5, "양식");
 
+
+    private static final String NO_CATEGORY_MESSAGE = "[ERROR]해당 번호의 카테고리가 없습니다.";
     private final int number;
     private final String name;
 
@@ -29,7 +31,7 @@ public enum Category {
         return Arrays.stream(values())
                 .filter(v -> v.getNumber() == number)
                 .findFirst()
-                .orElseThrow(IllegalStateException::new);
+                .orElseThrow(() -> new IllegalStateException(NO_CATEGORY_MESSAGE));
     }
 
 }
