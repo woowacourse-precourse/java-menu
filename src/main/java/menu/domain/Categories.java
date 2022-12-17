@@ -1,6 +1,7 @@
 package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import menu.util.NumberGenerator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,9 +11,11 @@ public class Categories {
     private final List<Category> categories = Category.getCategories();
     HashMap<Category, Integer> categoryNum = new HashMap<>();
     private final List<Week> weeks = Week.getWeeks();
+    private final NumberGenerator numberGenerator;
 
 
-    Categories() {
+    Categories(NumberGenerator numberGenerator) {
+        this.numberGenerator = numberGenerator;
         for (Category category :
                 categories) {
             categoryNum.put(category, 0);
@@ -22,7 +25,7 @@ public class Categories {
     public List<Category> getRecommendCategory() {
         List<Category> recommendedCategories = new ArrayList<>();
         for (int i = 0; i < weeks.size(); i++) {
-            Category category = categories.get(Randoms.pickNumberInRange(1, 5) - 1);
+            Category category = categories.get(numberGenerator.generateCategoryIdx());
             if (categoryNum.get(category) == 2) {
                 i--;
                 continue;

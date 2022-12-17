@@ -1,11 +1,12 @@
 package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import menu.util.RandomNumberGenerator;
 
 import java.util.List;
 
 public class MenuRecommendService {
-    private final Categories categories = new Categories();
+    private final Categories categories = new Categories(new RandomNumberGenerator());
     List<Category> recommendCategories;
 
     public MenuRecommendService() {
