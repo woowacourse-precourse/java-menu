@@ -23,7 +23,11 @@ public class InputView {
 
     public List<String> readPickyEatings() {
         List<String> pickyEatingsInput = Arrays.asList(Console.readLine().split(","));
+
         validatePickyEatingsNumber(pickyEatingsInput);
+        for (String pickyEating : pickyEatingsInput) {
+            validatePickyEatingsName(pickyEating);
+        }
 
         return pickyEatingsInput;
     }
@@ -46,9 +50,14 @@ public class InputView {
         }
     }
 
-//    private void validatePickyEatingsName(String pickEating) {
-//
-//    }
+    private void validatePickyEatingsName(String pickEating) {
+        for (Category category : Category.values()) {
+            if (category.getMenus().contains(pickEating)) {
+                return;
+            }
+        }
+        throw new IllegalArgumentException(MENU_NAME_ERROR_MESSAGE);
+    }
 
 
 }
