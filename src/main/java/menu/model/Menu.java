@@ -1,5 +1,9 @@
 package menu.model;
 
+import menu.util.ErrorMessage;
+
+import java.util.Arrays;
+
 public enum Menu {
 
     JAPAN_ONE("규동"),
@@ -57,6 +61,13 @@ public enum Menu {
 
     Menu(String name) {
         this.name = name;
+    }
+
+    public static Menu from(String name){
+        return Arrays.stream(Menu.values())
+                .filter(m -> m.name.equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NON_FIND_MENU_ERROR_MESSAGE.getMessage()));
     }
 
 
