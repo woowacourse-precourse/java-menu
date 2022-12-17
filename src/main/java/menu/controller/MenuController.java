@@ -1,6 +1,7 @@
 package menu.controller;
 
 import menu.dto.CoachInputDTO;
+import menu.dto.RecommendResultDTO;
 import menu.dto.UnavailableMenuDTO;
 import menu.service.MenuService;
 import menu.view.InputView;
@@ -24,6 +25,7 @@ public class MenuController {
         startService();
         inputCoachName();
         inputUnavailableMenus();
+        recommendMenus();
         recommendMenus();
     }
 
@@ -60,6 +62,6 @@ public class MenuController {
     }
 
     private void recommendMenus() {
-
+        RecommendResultDTO recommendResultDTO = menuService.recommend();
     }
 }

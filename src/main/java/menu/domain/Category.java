@@ -17,6 +17,14 @@ public class Category {
         return new Category(categoryName, menus);
     }
 
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public List<String> getMenus() {
+        return new ArrayList<>(menus);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

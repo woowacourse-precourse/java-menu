@@ -14,4 +14,8 @@ public class UnavailableMenu {
     public void addMenu(String menu) {
         unavailableMenu.add(menu);
     }
+
+    public boolean hasMenu(String menu) {
+        return unavailableMenu.contains(menu);
+    }
 }

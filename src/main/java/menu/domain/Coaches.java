@@ -22,6 +22,14 @@ public class Coaches {
         return names;
     }
 
+    public List<String> getCoachNames() {
+        List<String> coachNames = new ArrayList<>();
+        for (Coach coach : coaches) {
+            coachNames.add(coach.getName());
+        }
+        return coachNames;
+    }
+
     public Coach findByName(String coachName) {
         for (Coach coach : coaches) {
             if (coach.getName().equals(coachName)) {
