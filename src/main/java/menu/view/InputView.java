@@ -1,6 +1,7 @@
 package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import menu.util.Validate;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,8 +19,11 @@ public class InputView {
     public static List<String> readCoachName() {
         System.out.println(Message.COACH_NAME_INPUT_MESSAGE.message);
         String name = Console.readLine();
-        String[] names = name.split(",");
-        return Arrays.asList(names);
+        String[] splitNames = name.split(",");
+        List<String> names = Arrays.asList(splitNames);
+        Validate.nameLength(names,2,4);
+        Validate.coachLength(names,2,5);
+        return names;
     }
 
     public static List<String> readCantEats(String name) {
