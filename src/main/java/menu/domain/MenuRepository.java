@@ -33,7 +33,7 @@ public class MenuRepository {
                 .anyMatch((category) -> menuByCategories.get(category).contains(menu));
     }
 
-    public List<String> categoryList() {
+    public static List<String> categoryList() {
         return List.copyOf(menuByCategories.keySet());
     }
 }
