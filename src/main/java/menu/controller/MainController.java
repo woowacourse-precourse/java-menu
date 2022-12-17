@@ -41,7 +41,7 @@ public class MainController {
         coachService.registerCoach(coaches);
     }
 
-    public void registerInEdibleFood() {
+    public void registerInedibleFood() {
         List<String> coaches = coachService.findAllCoaches();
         for (String coach : coaches) {
             List<String> inEdibleFoods = Requester.requestStringListInput(() -> {
