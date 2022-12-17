@@ -1,6 +1,5 @@
 package menu.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Menu {
@@ -12,9 +11,5 @@ public class Menu {
 
 	public List<String> getMenus() {
 		return menus;
-	}
-
-	public void setMenus(List<String> menus) {
-		this.menus = menus;
 	}
 }
