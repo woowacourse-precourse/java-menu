@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static menu.domain.Foods.getFoodsList;
+
 import static menu.option.Option.CATEGORIES;
-import static menu.option.Option.WEEK;
+
 
 public class Coach {
     private String name;

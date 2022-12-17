@@ -1,10 +1,6 @@
 package menu.controller;
 
-import menu.domain.Coach;
 
-import java.util.List;
-
-import static menu.option.Option.CATEGORIES;
 import static menu.option.Option.WEEK;
 import static menu.view.InputView.inputCantView;
 import static menu.view.InputView.inputCoachesView;
