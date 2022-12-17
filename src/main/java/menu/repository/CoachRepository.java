@@ -16,8 +16,12 @@ public class CoachRepository {
                 .forEach(coach -> coachRepository.put(coach, new CoachMenus()));
     }
 
-    public void put(Coach coach, Menu menu) {
-        coachRepository.put(coach,coachRepository.get(coach)).addMenu(menu);
+    public void put(Coach coach, String menu) {
+        coachRepository.put(coach, coachRepository.get(coach)).addMenu(new Menu(menu));
+    }
+
+    public CoachMenus get(Coach coach) {
+        return coachRepository.get(coach);
     }
 
 }

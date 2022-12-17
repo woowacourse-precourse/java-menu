@@ -10,9 +10,6 @@ public class Coach {
         this.unpleasantMenus = unpleasantMenus;
     }
 
-    public void validateName(String name) {
-
-    }
     @Override
     public String toString() {
         return name;
