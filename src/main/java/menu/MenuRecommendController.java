@@ -33,9 +33,18 @@ public class MenuRecommendController {
 
     private void updateCoachesAvoidMenu(Coaches coaches) {
         for (Coach coach : coaches.getCoaches()) {
+            requestAvoidMenu(coach);
+        }
+    }
+
+    private void requestAvoidMenu(Coach coach) {
+        try {
             MenuRequest coachAvoidMenu = inputView.getCoachAvoidMenu(coach.getName());
             List<String> menuNames = coachAvoidMenu.getMenus();
             menuService.addCoachAvoidMenu(coach, menuNames);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            requestAvoidMenu(coach);
         }
     }
 

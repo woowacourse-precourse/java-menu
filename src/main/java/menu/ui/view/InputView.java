@@ -17,7 +17,12 @@ public class InputView {
     public CoachesRequest requestCoachNames() {
         System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
         String userInput = Console.readLine();
-        return CoachesRequest.from(userInput);
+        try {
+            return CoachesRequest.from(userInput);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return this.requestCoachNames();
+        }
     }
 
     public MenuRequest getCoachAvoidMenu(String coachName) {
