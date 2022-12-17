@@ -10,6 +10,6 @@ public class MenuDecideController {
     private final MenueDecideService service = new MenueDecideService();
 
     public void run() {
-
+        output.printStart();
     }
 }
