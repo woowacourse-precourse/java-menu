@@ -5,6 +5,7 @@ import menu.Domain.Coach;
 import menu.Util.CategoryAndFood;
 import menu.Util.InputView;
 import menu.Util.OutputView;
+import menu.Util.SystemMessage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,6 +17,7 @@ public class Recommander {
     private CategoryAndFood categoryAndFood;
     private List<Coach> coachList;
     private List<String> recommandatedCategory;
+    private static final int dayCount = 5;
 
     public Recommander() {
         this.categoryGenerator = new CategoryGenerator();
@@ -29,14 +31,14 @@ public class Recommander {
         OutputView.getInvitation();
         getCoaches();
         getAllergy();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < dayCount; i++) {
             String generatedCategory = categoryGenerator.generateCategory();
             recommandatedCategory.add(generatedCategory);
             setCategory(generatedCategory);
             recommand(generatedCategory);
         }
         OutputView.printResult();
-        OutputView.printCategory("카테고리", recommandatedCategory);
+        OutputView.printCategory(SystemMessage.Category.getMessage(), recommandatedCategory);
         printCoaches();
         OutputView.printEnd();
     }
@@ -63,7 +65,7 @@ public class Recommander {
         }
     }
 
-    private void setAllegyByCoach(Coach coach){
+    private void setAllegyByCoach(Coach coach) {
         try {
             OutputView.getAllergic(coach.name);
             coach.setAllergic(InputView.getAllergy());

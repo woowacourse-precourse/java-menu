@@ -12,7 +12,7 @@ public enum SystemMessage {
 
     private String message;
 
-    SystemMessage(String message){
+    SystemMessage(String message) {
         this.message = message;
     }
 

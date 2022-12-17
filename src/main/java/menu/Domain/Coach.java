@@ -52,16 +52,16 @@ public class Coach {
     private void validate(List<String> allergic) {
         for (String tmp :
                 allergic) {
-            if(!valid(tmp)){
+            if (!valid(tmp)) {
                 throw new IllegalArgumentException(ErrorMessage.NoSuchFood.getMessage());
             }
         }
     }
 
-    private boolean valid(String allergy){
-        for (List<String> foods:
+    private boolean valid(String allergy) {
+        for (List<String> foods :
                 database.values()) {
-            if(foods.contains(allergy)){
+            if (foods.contains(allergy)) {
                 return true;
             }
         }
