@@ -32,7 +32,7 @@ public class MenuService {
     private void recommendMenu(List<Coach> coaches, Category category) {
         for (Coach coach : coaches) {
             Menu menu = findMenu(category, coach);
-            coach.addEatMenu(menu);
+            coach.addRecommendMenu(menu);
         }
     }
 
@@ -47,7 +47,7 @@ public class MenuService {
 
     private static MenusDto getRecommendMenus(List<Coach> coaches, List<Category> categories) {
         List<MenuDto> menuDtos = coaches.stream()
-                .map(coach -> new MenuDto(coach.getName(), coach.getEatMenu()))
+                .map(coach -> new MenuDto(coach.getName(), coach.getRecommendMenuNames()))
                 .collect(Collectors.toList());
         return new MenusDto(categories, menuDtos);
     }

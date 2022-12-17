@@ -10,7 +10,7 @@ public class Coach {
 
     private final String name;
     private final Menus invalidMenus = new Menus();
-    private final Menus validMenus = new Menus();
+    private final Menus recommendMenus = new Menus();
 
     public Coach(String name) {
         validate(name);
@@ -27,16 +27,16 @@ public class Coach {
         invalidMenus.addAll(menus);
     }
 
-    public void addEatMenu(Menu menus) {
-        validMenus.add(menus);
+    public void addRecommendMenu(Menu menu) {
+        recommendMenus.add(menu);
     }
 
-    public List<String> getEatMenu() {
-        return validMenus.getNames();
+    public List<String> getRecommendMenuNames() {
+        return recommendMenus.getNames();
     }
 
     public boolean isInvalidMenu(Menu menu) {
-        return invalidMenus.isInvalidMenu(menu) || validMenus.isInvalidMenu(menu);
+        return invalidMenus.isInvalidMenu(menu) || recommendMenus.isInvalidMenu(menu);
     }
 
     public String getName() {
