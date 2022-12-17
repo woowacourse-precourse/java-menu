@@ -18,7 +18,9 @@ public class ValidateMenuCommand {
 
     public ValidateMenuCommand(String input) {
         validate(input);
-        menus = Arrays.stream(input.split(DELIMITER)).collect(Collectors.toList());
+        menus = Arrays.stream(input.split(DELIMITER))
+                .filter(it -> !it.equals(""))
+                .collect(Collectors.toList());
     }
 
     private void validate(String input) {
