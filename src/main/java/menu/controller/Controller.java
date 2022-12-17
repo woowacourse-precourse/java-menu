@@ -33,7 +33,7 @@ public class Controller {
         try {
             return new Coaches(inputview.readCoachNames());
         } catch (IllegalArgumentException error) {
-            OutputView.printError(error.getMessage());
+            outputView.printError(error.getMessage());
             return initCoachesInformation();
         }
     }
@@ -50,7 +50,7 @@ public class Controller {
             Menu.validateExistedMenus(inputInedibleMenus);
             return inputInedibleMenus;
         } catch (IllegalArgumentException error) {
-            OutputView.printError(error.getMessage());
+            outputView.printError(error.getMessage());
             return getInedibleMenu(coach);
         }
     }

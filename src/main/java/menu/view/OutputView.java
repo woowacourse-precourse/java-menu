@@ -16,7 +16,7 @@ public class OutputView {
     private static final String PROGRAM_START_MESSAGE = "점심 메뉴 추천을 시작합니다.";
     private static final String PROGRAM_END_MESSAGE = "\n추천을 완료했습니다.";
 
-    public static void printError(String message) {
+    public void printError(String message) {
         System.out.println(ERROR_PREFIX + message);
     }
 
