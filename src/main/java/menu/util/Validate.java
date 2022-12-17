@@ -16,9 +16,9 @@ public class Validate {
     }
 
     private static void validateLengthOfCoachName(List<String> coachNames) {
-        if (coachNames.stream().anyMatch(coachName -> coachNames.size() < Command.COACH_NAME_LENGTH_MIN.getData())) {
+        if (coachNames.stream().anyMatch(coachName -> coachName.length() < Command.COACH_NAME_LENGTH_MIN.getData())) {
             throw new IllegalArgumentException(IllegalArgumentExceptionMessage.INPUT_COACH_NAME_LENGTH_MIN.getMessage());
-        } else if (coachNames.stream().anyMatch(coachName -> coachNames.size() > Command.COACH_NAME_LENGTH_MAX.getData())) {
+        } else if (coachNames.stream().anyMatch(coachName -> coachName.length() > Command.COACH_NAME_LENGTH_MAX.getData())) {
             throw new IllegalArgumentException(IllegalArgumentExceptionMessage.INPUT_COACH_NAME_LENGTH_MAX.getMessage());
         }
     }
