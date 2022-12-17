@@ -9,9 +9,9 @@ public class InputValidator {
         }
     }
 
-    public static void isLimit(final String input) {
+    public static void isLimit(final int input) {
 
-        if (input.length() < 2 || input.length() > 5) {
+        if (input < 2 || input > 5) {
             throw new IllegalArgumentException("[ERROR] 코치는 최소 2명 이상, 5명 이하 입력해야 합니다.");
         }
     }
