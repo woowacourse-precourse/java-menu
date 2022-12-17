@@ -34,11 +34,15 @@ public class Coach {
         hateMenus.addAll(menus);
     }
 
-    public boolean isHateMenu(Menu menu) {
+    public boolean isHateOrDuplicateMenu(Menu menu) {
+        return isHateMenu(menu) || duplicateLunchMenu(menu);
+    }
+
+    private boolean isHateMenu(Menu menu) {
         return hateMenus.contains(menu);
     }
 
-    public boolean duplicateLunchMenu(Menu menu) {
+    private boolean duplicateLunchMenu(Menu menu) {
         return lunchMenus.contains(menu);
     }
 

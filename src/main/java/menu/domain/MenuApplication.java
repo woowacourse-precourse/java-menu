@@ -21,30 +21,20 @@ public class MenuApplication {
 
     public void run() {
         outputView.printAppRunMessage();
+
         Coaches coaches = inputView.sendCoachNames();
+        addEachCoachesHateMenu(coaches);
+        List<Category> categories = recommendCategoryMaker.make();
+        coaches.addLunchMenuToEachCoach(categories);
+        outputView.printWeeklyRecommendMenu(CoachesWeeklyMenu.from(categories, coaches));
+    }
+
+    private void addEachCoachesHateMenu(Coaches coaches) {
         coaches.getCoaches()
                 .forEach(coach -> {
                     List<Menu> menus = inputView.sendHateMenuBySpecificCoach(coach);
                     coach.addHateMenus(menus);
                 });
-
-        List<Category> categories = recommendCategoryMaker.make();
-        addWeeklyMenuToEachCoach(coaches, categories);
-        outputView.printWeeklyRecommendMenu(CoachesWeeklyMenu.from(categories, coaches));
     }
 
-    private void addWeeklyMenuToEachCoach(Coaches coaches, List<Category> categories) {
-        coaches.getCoaches()
-                .forEach(coach -> {
-                    for (Category category : categories) {
-                        while (true) {
-                            Menu randomMenuByCategory = Menu.createRandomMenuByCategory(category);
-                            if (!coach.isHateMenu(randomMenuByCategory) || !coach.duplicateLunchMenu(randomMenuByCategory)) {
-                                coach.addLunchMenu(randomMenuByCategory);
-                                break;
-                            }
-                        }
-                    }
-                } );
-    }
 }

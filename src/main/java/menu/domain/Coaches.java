@@ -19,7 +19,7 @@ public class Coaches {
             for (Category category : categories) {
                 while (true) {
                     Menu randomMenuByCategory = Menu.createRandomMenuByCategory(category);
-                    if (!coach.isHateMenu(randomMenuByCategory) || !coach.duplicateLunchMenu(randomMenuByCategory)) {
+                    if (!coach.isHateOrDuplicateMenu(randomMenuByCategory)) {
                         coach.addLunchMenu(randomMenuByCategory);
                         break;
                     }
