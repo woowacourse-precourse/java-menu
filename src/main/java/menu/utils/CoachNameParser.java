@@ -34,13 +34,17 @@ public class CoachNameParser {
         return count < MIN_COACH_COUNT || count > MAX_COACH_COUNT;
     }
 
+    private static boolean hasOverlappedNames(List<String> names) {
+        int count = names.size();
+
+        return new HashSet<>(names).size() != count;
+    }
 
     private static void validateNames(List<String> names) {
-        int coachCount = names.size();
-        if (new HashSet<>(names).size() != coachCount) {
+        if (hasOverlappedNames(names)) {
             throw new CoachOverlappedException();
         }
-        if (isInvalidCoachCount(coachCount)) {
+        if (isInvalidCoachCount(names.size())) {
             throw new CoachCountException();
         }
     }
