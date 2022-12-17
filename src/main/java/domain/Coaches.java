@@ -3,11 +3,11 @@ package domain;
 import java.util.List;
 
 public class Coaches {
-    private final List<Coach> coachNames;
+    private final List<Coach> coachesName;
 
     public Coaches(List<Coach> coachNames) {
         validateCoachesCount(coachNames);
-        this.coachNames = coachNames;
+        this.coachesName = coachNames;
     }
 
     private void validateCoachesCount(List<Coach> coachNames) {
@@ -15,5 +15,9 @@ public class Coaches {
             return;
         }
         throw new IllegalArgumentException("[ERROR] 코치는 최소 2명 이상, 최대 5명 이하로 입력해주세요.");
+    }
+
+    public List<Coach> getCoachesName() {
+        return coachesName;
     }
 }
