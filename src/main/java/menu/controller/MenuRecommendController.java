@@ -15,14 +15,18 @@ public class MenuRecommendController {
     MenuRecommendService menuRecommendService = new MenuRecommendService();
 
     public void performingProgram() {
-        initInformation();
-        menuRecommendService.selectWeekCategory();
+        Coaches coaches = settingInformation();
+        coaches = setRandomMenuPerCoach(coaches);
     }
 
-    private void initInformation() {
+    private Coaches settingInformation() {
+        outputView.printStartProgram();
+        return initInformation();
+    }
+
+    private Coaches initInformation() {
         Coaches coaches = initCoaches();
-        coaches = initHateMenuPerCoaches(coaches);
-        coaches = setRandomMenuPerCoach(coaches);
+        return initHateMenuPerCoaches(coaches);
     }
 
     private Coaches initCoaches() {
