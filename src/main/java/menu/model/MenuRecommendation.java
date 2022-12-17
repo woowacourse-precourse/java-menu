@@ -9,7 +9,6 @@ public class MenuRecommendation {
     private static final int RECOMMEND_SIZE = 5;
 
     List<Category> randomCategories = new ArrayList<>();
-    List<String> randomMenus = new ArrayList<>();
 
     public List<Category> getRandomCategories() {
         Category[] categories = Category.values();
@@ -35,7 +34,6 @@ public class MenuRecommendation {
 
         return randomMenu;
     }
-
 
     private boolean isValidCategory(Category category) {
         long numberOfCategory = randomCategories.stream()
