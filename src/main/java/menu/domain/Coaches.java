@@ -15,10 +15,6 @@ public class Coaches {
         return Collections.unmodifiableList(coaches);
     }
 
-    public int getCachesSize() {
-        return coaches.size();
-    }
-
     public void pickMenus(PickCategory pickCategory) {
         for (int i = 0 ; i < 5 ; i++) {
             for (Coach coach : coaches) {
