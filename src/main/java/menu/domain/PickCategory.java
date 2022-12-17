@@ -16,6 +16,10 @@ public class PickCategory {
         this.categories = getRandomCategory();
     }
 
+    public List<Category> getCategories() {
+        return Collections.unmodifiableList(categories);
+    }
+
     private List<Category> getRandomCategory() {
         boolean isDuplicate = true;
         List<Category> makeCategory = new ArrayList<>();

@@ -2,6 +2,7 @@ package menu.controller;
 
 import menu.domain.Coaches;
 import menu.domain.PickCategory;
+import menu.domain.PickMenu;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -21,6 +22,7 @@ public class MenuController {
         outputView.startMessage();
         Coaches coaches = getCoachesName();
         PickCategory pickCategory = new PickCategory();
+        coaches.pickMenus(pickCategory);
         getNotEatableName(coaches);
     }
 

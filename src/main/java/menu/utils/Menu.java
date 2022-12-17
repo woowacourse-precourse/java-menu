@@ -1,6 +1,11 @@
 package menu.utils;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public enum Menu {
     GYUDONG("규동", "일식", 1 , 1),
@@ -54,6 +59,11 @@ public enum Menu {
     private final String category;
     private final int pickNumber;
     private final int categoryNumber;
+    private static final List<String> koreanFood = Menu.valueOfMenuList(Category.KOREA.getCategory());
+    private static final List<String> japanFood = Menu.valueOfMenuList(Category.JAPAN.getCategory());
+    private static final List<String> chinaFood = Menu.valueOfMenuList(Category.CHINA.getCategory());
+    private static final List<String> asiaFood = Menu.valueOfMenuList(Category.ASIA.getCategory());
+    private static final List<String> westernFood = Menu.valueOfMenuList(Category.WESTERN.getCategory());
 
     Menu(String menu, String category, int pickNumber, int categoryNumber) {
         this.menu = menu;
@@ -78,10 +88,43 @@ public enum Menu {
         return categoryNumber;
     }
 
+    public static Menu getRandomFood(Category pickCategory) {
+        if (pickCategory == Category.KOREA) {
+            return Menu.valueOfMenu(Randoms.shuffle(Menu.koreanFood).get(0));
+        }
+        if (pickCategory == Category.JAPAN) {
+            return Menu.valueOfMenu(Randoms.shuffle(Menu.japanFood).get(0));
+        }
+        if (pickCategory == Category.CHINA) {
+            return Menu.valueOfMenu(Randoms.shuffle(Menu.chinaFood).get(0));
+        }
+        if (pickCategory == Category.ASIA) {
+            return Menu.valueOfMenu(Randoms.shuffle(Menu.asiaFood).get(0));
+        }
+        if (pickCategory == Category.WESTERN) {
+            return Menu.valueOfMenu(Randoms.shuffle(Menu.westernFood).get(0));
+        }
+        return null;
+    }
+
     public static Menu valueOfMenu(String menu) {
         return Arrays.stream(values())
                 .filter(value -> value.menu.equals(menu))
                 .findAny()
                 .orElse(null);
+    }
+
+    public static Menu valueOfCategoryAndPickNumber(String category, int pickNumber) {
+        return Arrays.stream(values())
+                .filter(value -> value.category.equals(category) && value.categoryNumber == pickNumber)
+                .findAny()
+                .orElse(null);
+    }
+
+    public static List<String> valueOfMenuList(String category) {
+        return Arrays.stream(values())
+                .filter(value -> value.category.equals(category))
+                .map(Menu::getMenu)
+                .collect(Collectors.toList());
     }
 }

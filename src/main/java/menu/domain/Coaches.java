@@ -18,4 +18,10 @@ public class Coaches {
     public int getCachesSize() {
         return coaches.size();
     }
+
+    public void pickMenus(PickCategory pickCategory) {
+        for (Coach coach : coaches) {
+            coach.makePickMenu(pickCategory);
+        }
+    }
 }
