@@ -13,21 +13,20 @@ public class Menu {
             List.of("깐풍기", "볶음면", "동파육", "짜장면", "짬뽕", "마파두부", "탕수육", "토마토 달걀볶음", "고추잡채"),
             List.of("팟타이", "카오 팟", "나시고렝", "파인애플 볶음밥", "쌀국수", "똠얌꿍", "반미", "월남쌈", "분짜"),
             List.of("라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니"));
-    private List<Integer> category;
-    public Menu(List<Integer> category){
+    private Integer category;
+    public Menu(Integer category){
         this.category = category;
     };
 
-    public String[] recommandMenu(List<String> inEdibleMenu) {
+    public String recommandMenu(List<String> inEdibleMenu) {
         List<String> rmdMenu = new ArrayList<>();
-        while(rmdMenu.size() < 5) {
-            List<String> menus = menuList.get(category.get(rmdMenu.size())-1);
+        while(true) {
+            List<String> menus = menuList.get(category-1);
             String menu = Randoms.shuffle(menus).get(0);
             if (isInEdibleMenu(inEdibleMenu, menu, rmdMenu))
                 continue;
-            rmdMenu.add(menu);
+            return menu;
         }
-        return rmdMenu.toArray(new String[rmdMenu.size()]);
     }
 
     public static boolean isInEdibleMenu(List<String> inEdibleMenu, String menu, List<String> rmdMenu) {
