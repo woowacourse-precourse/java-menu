@@ -1,5 +1,6 @@
 package menu.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import menu.dto.CoachDto;
@@ -38,4 +39,13 @@ public class Group {
         coach.addCantEatMenus(coachDto.getCantEatMenus());
     }
 
+    public List<RecommendResult> selectMenu(Shuffler shuffler, List<String> menuNames) {
+        List<RecommendResult> results = new ArrayList<>();
+        for (Coach coach : group) {
+            List<Menu> menus = coach.exceptCantEatMenus(menuNames);
+            Menu recommendedMenu = menus.get(0);
+            results.add(new RecommendResult(coach, recommendedMenu));
+        }
+        return results;
+    }
 }

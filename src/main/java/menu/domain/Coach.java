@@ -2,6 +2,7 @@ package menu.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Coach {
     private static final int MIN_NAME_LENGTH = 2;
@@ -38,4 +39,11 @@ public class Coach {
         return this.name.equals(name);
     }
 
+    public List<Menu> exceptCantEatMenus(List<String> menuNames) {
+        List<Menu> menus = menuNames.stream()
+                .map(Menu::from)
+                .collect(Collectors.toList());
+        menus.removeAll(cantEatMenus);
+        return menus;
+    }
 }
