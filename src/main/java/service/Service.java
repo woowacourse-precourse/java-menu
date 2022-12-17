@@ -13,24 +13,24 @@ import domain.Menus;
 
 public class Service {
     private CoachNames coachNames;
-    private List<Coach> coachs = new ArrayList<>();
+    private List<Coach> coaches = new ArrayList<>();
     private boolean onInitializing = true;
     private List<String> categories;
 
     public void saveCoachNames(String readCoachNames) {
         coachNames = new CoachNames(readCoachNames);
-        coachNames.getCoachNames().forEach(name -> coachs.add(new Coach(name)));
+        coachNames.getCoachNames().forEach(name -> coaches.add(new Coach(name)));
     }
 
     public boolean isOnInitializing() {
-        if (coachs.stream().allMatch(Coach::hasInedibleMenus)) {
+        if (coaches.stream().allMatch(Coach::hasInedibleMenus)) {
             onInitializing = false;
         }
         return onInitializing;
     }
 
     public String getCoachName() {
-        for (Coach coach : coachs) {
+        for (Coach coach : coaches) {
             if (!coach.hasInedibleMenus()) {
                 return coach.getName();
             }
@@ -39,7 +39,7 @@ public class Service {
     }
 
     public void saveInedibleMenu(String coachName, String readInedibleMenu) {
-        coachs.forEach(coach -> {
+        coaches.forEach(coach -> {
             if (coach.getName().equals(coachName)) {
                 coach.addInedibleMenu(readInedibleMenu);
             }
@@ -57,10 +57,10 @@ public class Service {
                 .collect(Collectors.toList())
                 .get(0)
                 .getMenus();
-            coachs.forEach(coach -> {
+            coaches.forEach(coach -> {
                 while (true) {
                     String recommendedMenu = Randoms.shuffle(menu).get(0);
-                    if (coach.getInedibleMenus().contains(recommendedMenu)) {
+                    if (coach.getInedibleMenus().contains(recommendedMenu) && coach.getMenus().contains(recommendedMenu)) {
                         continue;
                     }
                     coach.addMenu(recommendedMenu);
@@ -68,6 +68,18 @@ public class Service {
                 }
             });
         }
-        coachs.forEach(coach -> coach.getMenus().forEach(System.out::println));
+    }
+
+    public List<List<String>> getRecommendation() {
+        List<List<String>> recommendation = new ArrayList<>();
+        categories.add(0, "카테고리");
+        recommendation.add(categories);
+        coaches.forEach(coach -> {
+            List<String> coachAndMenu = new ArrayList<>();
+            coachAndMenu.add(coach.getName());
+            coachAndMenu.addAll(coach.getMenus());
+            recommendation.add(coachAndMenu);
+        });
+        return recommendation;
     }
 }
