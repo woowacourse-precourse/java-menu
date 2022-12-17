@@ -9,9 +9,8 @@ public class Coach {
     private final String name;
     private List<Food> cannotEatFoods = new ArrayList<>();
 
-    public Coach(String name, List<String> foods) {
+    public Coach(String name) {
         this.name = name;
-        updateFoods(foods);
     }
 
     public void updateFoods(List<String> foods) {
@@ -22,6 +21,10 @@ public class Coach {
 
     public String getName() {
         return name;
+    }
+
+    public boolean hasSameName(String name) {
+        return this.name.equals(name);
     }
 
     public List<Food> getCannotEatFoods() {

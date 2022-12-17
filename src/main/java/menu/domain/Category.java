@@ -9,11 +9,12 @@ public enum Category {
     ASIAN(4, "아시안"),
     WESTERN(5, "양식");
 
+    private static final String CLASS_NAME = "카테고리";
     private static final String INVALID_CATEGORY_NAME_MESSAGE = "올바른 카테고리 이름을 입력해주세요.";
     private static final String INVALID_CATEGORY_NUMBER_MESSAGE = "올바른 카테고리 번호을 입력해주세요.";
 
-    public int categoryNumber;
-    public String name;
+    private int categoryNumber;
+    private String name;
 
     Category(int categoryNumber, String name) {
         this.categoryNumber = categoryNumber;
@@ -36,5 +37,9 @@ public enum Category {
 
     public String getName() {
         return name;
+    }
+
+    public static String getClassName() {
+        return CLASS_NAME;
     }
 }
