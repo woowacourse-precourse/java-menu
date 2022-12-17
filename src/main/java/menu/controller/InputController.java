@@ -18,7 +18,7 @@ public class InputController {
                     CouchRepository.addCouch(couch);
                     registerUneatableMenus(couch);
                 }
-
+                return;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -36,6 +36,5 @@ public class InputController {
                 System.out.println(e2.getMessage());
             }
         }
-
     }
 }

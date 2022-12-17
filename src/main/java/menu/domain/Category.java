@@ -17,6 +17,15 @@ public class Category {
         return new Category(name, menus);
     }
 
+
+    public String getName() {
+        return name;
+    }
+
+    public List<String> getMenus() {
+        return menus;
+    }
+
     @Override
     public String toString() {
         return "Category{" +

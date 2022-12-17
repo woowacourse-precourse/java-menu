@@ -1,9 +1,10 @@
 package menu.domain;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class CategoryRepository {
 
@@ -19,5 +20,18 @@ public class CategoryRepository {
 
     public static List<Category> getCategories() {
         return categories;
+    }
+
+    public static Category pickRandomCategory() {
+        int randomNumber = Randoms.pickNumberInRange(1, 5);
+        Category pickedCategory = categories.get(randomNumber-1);
+        return pickedCategory;
+    }
+
+
+    public static String pickMenu(Category selectedCategory) {
+        List<String> copiedMenuList = List.copyOf(selectedCategory.getMenus());
+        String menu = Randoms.shuffle(copiedMenuList).get(0);
+        return menu;
     }
 }

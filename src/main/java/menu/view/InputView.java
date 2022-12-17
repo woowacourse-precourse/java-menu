@@ -31,7 +31,7 @@ public class InputView {
     }
 
     private static void validateMenus(String menus) {
-        String format = "[가-힣0-9-a-zA-Z]+?(,[가-힣0-9-a-zA-Z]+)?";
+        String format = "[.]?([가-힣0-9-a-zA-Z]+)?(,[가-힣0-9-a-zA-Z]+)?";
         if (!Pattern.matches(format, menus)) {
             throw new IllegalArgumentException("[ERROR] 못먹는 메뉴는 최대 2개까지 가능합니다.");
         }
