@@ -28,18 +28,20 @@ public class RecommendController {
     public void run() {
         outputView.printInitRecommend();
         CoachGroup coachGroup = repeat(inputView::readCouchName);
-
         List<Category> categories = new ArrayList<>();
 
         couchDenyFood(coachGroup);
+        runRecommendFood(coachGroup, categories);
 
+        outputView.printResult(coachGroup, categories);
+    }
+
+    private void runRecommendFood(CoachGroup coachGroup, List<Category> categories) {
         IntStream.range(0, Weekend.size())
                 .mapToObj(index -> recommendService.getCategory()).forEach(category -> {
                     categories.add(category);
                     couchRecommendedFood(coachGroup, category);
                 });
-
-        outputView.printResult(coachGroup, categories);
     }
 
     private void couchRecommendedFood(CoachGroup coachGroup, Category category) {

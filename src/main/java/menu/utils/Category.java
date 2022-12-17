@@ -36,7 +36,7 @@ public enum Category {
     }
 
     public static String toMessage(List<Category> categories) {
-        StringJoiner joiner = new StringJoiner(" | ");
+        StringJoiner joiner = new StringJoiner(DELIMITER);
         joiner.add(INIT);
         categories.forEach(category -> joiner.add(category.getMessage()));
         return PREFIX + joiner + SUFFIX;
