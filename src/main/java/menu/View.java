@@ -37,7 +37,7 @@ public class View {
         System.out.println();
         List<String> hateList = List.of(input.split(","));
         if (hateList.size() > 2)
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("먹지 못하는 메뉴는 최대 2개 까지 가능합니다.");
         return hateList;
     }
 
