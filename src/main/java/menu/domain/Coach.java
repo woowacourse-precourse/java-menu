@@ -14,9 +14,16 @@ public class Coach {
     private final List<Food> recommendedFoods;
 
     public Coach(String name, List<Food> inedibles) {
+        validateInediblesLength(inedibles);
         this.name = name;
         this.inedibles = inedibles;
         this.recommendedFoods = new ArrayList<>();
+    }
+
+    private void validateInediblesLength(List<Food> inedibles) {
+        if (inedibles.size() > 2) {
+            throw new IllegalArgumentException("못 먹는 음식이 너무 많습니다");
+        }
     }
 
     public void pickFrom(Category category) {
