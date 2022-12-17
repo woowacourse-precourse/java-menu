@@ -5,6 +5,7 @@ import java.util.List;
 import menu.domain.menu.FoodStyle;
 
 public class Categories {
+    private final static int MAX_CATEGORIES_SIZE = 2;
     private List<String> categories;
 
     public Categories() {
@@ -23,7 +24,7 @@ public class Categories {
         long count = categories.stream()
                 .filter(category -> category.equals(foodStyle.getStyle()))
                 .count();
-        if (count >= 2) {
+        if (count >= MAX_CATEGORIES_SIZE) {
             return true;
         }
         return false;
