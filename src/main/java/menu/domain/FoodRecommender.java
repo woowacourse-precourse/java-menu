@@ -15,6 +15,12 @@ public class FoodRecommender {
         foodCategories = new HashMap<>();
     }
 
+    public void recommendByDay() {
+        for (Day day : Day.values()) {
+            FoodCategory category = generateCategory(day);
+        }
+    }
+
     private void validateSize(List<Coach> coaches) {
         if (coaches.size() < 2 || coaches.size() > 5) {
             throw new IllegalArgumentException("코치는 2~5명 사이만 입력 가능합니다.");
