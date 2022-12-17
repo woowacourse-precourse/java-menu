@@ -1,5 +1,6 @@
 package menu.validator;
 
+import menu.constant.Category;
 import menu.constant.Message;
 
 public class InputValidator {
@@ -19,6 +20,12 @@ public class InputValidator {
     public static void validateBanFoodsNumber(String[] banFoods){
         if(banFoods.length > 2){
             throw new IllegalArgumentException(Message.FOOD_NUMBER_ERROR);
+        }
+    }
+
+    public static void validateExistFood(String banFood){
+        if(!Category.isExistFood(banFood)){
+            throw new IllegalArgumentException(Message.INVALID_FOOD_ERROR);
         }
     }
 

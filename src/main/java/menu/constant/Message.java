@@ -11,5 +11,6 @@ public class Message {
     public static final String NAME_LENGTH_ERROR = "[ERROR] 이름은 2글자 이상 4글자 이하여야 합니다.";
     public static final String NAMES_NUMBER_ERROR = "[ERROR] 코치는 2명 이상 5명 이하여야 합니다.";
     public static final String FOOD_NUMBER_ERROR = "[ERROR] 못 먹는 음식은 최대 2개까지 입력 가능합니다.";
+    public static final String INVALID_FOOD_ERROR = "[ERROR] 추천 대상 목록에 없는 음식입니다";
 
 }

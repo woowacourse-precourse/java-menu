@@ -35,6 +35,23 @@ public enum Category {
         return categories.length;
     }
 
+    public boolean contains(String inputFood){
+        for(String food : this.menus){
+            if(food.equals(inputFood)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isExistFood(String inputFood){
+        for(int i = 0; i < categories.length; i++){
+            if(categories[i].contains(inputFood)){
+                return true;
+            }
+        }
+        return false;
+    }
 
 
 }
