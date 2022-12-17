@@ -1,5 +1,7 @@
 package menu.view;
 
+import static menu.constant.InputViewConstants.*;
+
 import camp.nextstep.edu.missionutils.Console;
 import menu.domain.Categories;
 import menu.util.InputValidator;
@@ -8,7 +10,7 @@ public class InputView {
 
     public static String getCoachNames() {
         try {
-            System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
+            System.out.println(GET_COACH_NAMES);
             return InputValidator.validateCoachNames(Console.readLine());
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
@@ -18,7 +20,7 @@ public class InputView {
 
     public static String getCantEatMenu(Categories categories, String coachName) {
         try {
-            System.out.printf("%s(이)가 못 먹는 메뉴를 입력해 주세요.\n", coachName);
+            System.out.printf(GET_CANT_EAT_MENU, coachName);
             return InputValidator.validateCantEatMenu(categories, Console.readLine());
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());

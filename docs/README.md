@@ -68,7 +68,7 @@ List<String> menu에다가 다 넣어놓기.
 
 ## InputViewConstants (constant)
 
-- [ ] InputView 에서 사용되는 상수를 관리한다.
+- [x] InputView 에서 사용되는 상수를 관리한다.
 
 ## OutputViewConstants (constant)
 
