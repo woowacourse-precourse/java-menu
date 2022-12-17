@@ -8,6 +8,7 @@ public class Controller {
     OutputView outputView = new OutputView();
 
     public void run() {
+        outputView.printMenuRecommendStart();
         String coachNames = inputView.getCoachNames();
     }
 }

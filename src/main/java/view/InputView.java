@@ -10,9 +10,9 @@ public class InputView {
         String coachNames;
 
         do {
-            System.out.print(INPUT_COACH_NAME_COMMENT);
+            System.out.println(INPUT_COACH_NAME_COMMENT);
             coachNames = Console.readLine();
-        } while (Validator.isValidCoachNames(coachNames));
+        } while (!Validator.isValidCoachNames(coachNames));
 
         return coachNames;
     }
