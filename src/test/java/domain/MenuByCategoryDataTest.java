@@ -15,11 +15,6 @@ class MenuByCategoryDataTest {
         //given
         //when
         boolean result = MenuByCategoryData.hasMenu("규동");
-
-        for (int i = 0; i < 10; i++) {
-            System.out.println(Randoms.pickNumberInRange(0, 3));
-        }
-
         //then
         Assertions.assertThat(result)
                   .isTrue();
