@@ -1,6 +1,5 @@
 package menu.controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.Food;
@@ -8,7 +7,6 @@ import menu.domain.RandomFood;
 import menu.view.InputView;
 import menu.view.OutputView;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class MenuController {
@@ -20,6 +18,7 @@ public class MenuController {
     public static Coach coach = new Coach();
     public static Map<Category,List<String>> foods = new HashMap<>();
     public static Map<String, List<String>> coachNotFoods = new HashMap<>();
+    public static Map<String, List<String>> recommendFoods = new HashMap<>();
 
     public void start(){
         outputView.printStart();
@@ -28,11 +27,18 @@ public class MenuController {
         run();
 
 
+
     }
     public void run(){
         List<String> coaches = createCoach();
         coachNotFoods = createNotFoods(coaches);
-        createRandomFoods(coaches,coachNotFoods);
+        List<String> allCategory = randomFood.allCategory();
+        System.out.println(allCategory.toString());
+        recommendFoods = createRandomFoods(allCategory,coaches,coachNotFoods);
+        outputView.printEnd();
+        outputView.printDays();
+        outputView.printCategory(allCategory);
+        outputView.printRecommendFoods(recommendFoods);
 
     }
 
@@ -50,15 +56,12 @@ public class MenuController {
         }
         return coachNotFoods;
     }
-    public void createRandomFoods(List<String> coaches, Map<String,List<String>> notFoods){
-        List<String> allCategory = randomFood.allCategory();
-        System.out.println(allCategory.toString());
+    public Map<String,List<String>> createRandomFoods(List<String> allCategory, List<String> coaches, Map<String,List<String>> notFoods){
         for(String coach: coaches){
-            randomFood.pickFoods(coach,foods,allCategory,notFoods);
+            recommendFoods = randomFood.pickFoods(coach,foods,allCategory,notFoods);
+            System.out.println(coach+"추천:" + recommendFoods.get(coach));
         }
-        System.out.println(randomFood.toString());
+        return recommendFoods;
     }
-
-
 
 }
