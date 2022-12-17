@@ -23,6 +23,8 @@ public class RecommenderController {
 
     public void run() {
         outputView.showStartRecommender();
+        registerCoaches();
+        registerDislikeMenu();
     }
 
     private void registerCoaches() {
@@ -44,5 +46,26 @@ public class RecommenderController {
         }
 
         return coachesName;
+    }
+
+    private void registerDislikeMenu() {
+        for (Coach coach : coaches) {
+            List<String> dislikeMenu = getValidDislikeMenus(coach.getName());
+            coach.registerDislikeMenu(dislikeMenu);
+        }
+    }
+
+    private List<String> getValidDislikeMenus(String coachName) {
+        List<String> dislikeMenus = null;
+        while(dislikeMenus == null) {
+            try {
+                String userInput = inputView.getDislikeMenus(coachName);
+                dislikeMenus = Validator.isValidDislikeMenus(userInput);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return dislikeMenus;
     }
 }

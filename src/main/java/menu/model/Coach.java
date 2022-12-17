@@ -12,6 +12,10 @@ public class Coach {
         this.name = name;
     }
 
+    public void registerDislikeMenu(List<String> dislikeMenu) {
+        this.dislikeMenu = dislikeMenu;
+    }
+
     public boolean isDuplicateMenu(String recommendedMenu) {
         if (recommendedMenus.contains(recommendedMenu)) {
             return true;
@@ -24,5 +28,9 @@ public class Coach {
             return false;
         }
         return true;
+    }
+
+    public String getName() {
+        return name;
     }
 }
