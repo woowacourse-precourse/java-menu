@@ -7,6 +7,7 @@ import static menu.view.InputView.inputCoachesView;
 import static menu.view.OutputView.*;
 
 public class MainController {
+
     CoachController coachController = new CoachController();
     public void startRecommend(){
         startRecommendView();
