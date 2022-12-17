@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.coach.Coach;
 import menu.domain.menu.Menu;
-import menu.domain.menu.MenuCategory;
 
 public class RecommendCoachMenu {
     private final Coach coach;
@@ -42,7 +41,9 @@ public class RecommendCoachMenu {
         formatComponents.addAll(menus.stream().map(Menu::getName)
                 .collect(Collectors.toList()));
 
-        return formatComponents.stream()
-                .collect(Collectors.joining(" | ", "[ ", " ]"));
+        return formatComponents.stream().collect(Collectors.joining(
+                ResultFormatConstant.RESULT_JOIN_DIAMETER,
+                ResultFormatConstant.RESULT_JOIN_PREFIX,
+                ResultFormatConstant.RESULT_JOIN_SUFFIX));
     }
 }

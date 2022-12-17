@@ -8,6 +8,7 @@ import menu.domain.coach.Coach;
 import menu.domain.coach.Coaches;
 
 public class CoachesRequest {
+    private static final String LIST_DIAMETER = ",";
     private final List<String> coaches;
 
     private CoachesRequest(List<String> coaches) {
@@ -16,14 +17,14 @@ public class CoachesRequest {
 
     public static CoachesRequest from(String userInput) {
         validate(userInput);
-        List<String> coaches = Arrays.stream(userInput.split(","))
+        List<String> coaches = Arrays.stream(userInput.split(LIST_DIAMETER))
                 .map(String::trim)
                 .collect(Collectors.toList());
         return new CoachesRequest(coaches);
     }
 
     private static void validate(String userInput) {
-        String[] coaches = userInput.split(",");
+        String[] coaches = userInput.split(LIST_DIAMETER);
         validateSize(coaches);
         validateDuplication(coaches);
     }

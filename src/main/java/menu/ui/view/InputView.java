@@ -15,7 +15,7 @@ public class InputView {
     }
 
     public CoachesRequest requestCoachNames() {
-        System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
+        System.out.println(ViewMessage.COACH_NAME_INPUT_MESSAGE);
         String userInput = Console.readLine();
         try {
             return CoachesRequest.from(userInput);
@@ -26,7 +26,7 @@ public class InputView {
     }
 
     public MenuRequest getCoachAvoidMenu(String coachName) {
-        String format = "%s(이)가 못 먹는 메뉴를 입력해 주세요.";
+        String format = ViewMessage.AVOID_MENU_COACH_FORMAT;
 
         System.out.println(String.format(format, coachName));
         String userInput = Console.readLine();

@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import menu.domain.menu.MenuCategory;
 
 public class RecommendCategories {
+    private static final String RESULT_FORMAT_PREFIX = "카테고리";
     private static final int MAX_DUPLICATION_AMOUNT = 1;
     private static final int CATEGORY_MAX_SIZE = 5;
 
@@ -35,11 +36,13 @@ public class RecommendCategories {
 
     public String resultFormat() {
         List<String> formatComponents = new ArrayList<>();
-        formatComponents.add("카테고리");
+        formatComponents.add(RESULT_FORMAT_PREFIX);
         formatComponents.addAll(categories.stream().map(MenuCategory::getKoreanWord)
                 .collect(Collectors.toList()));
 
-        return formatComponents.stream()
-                .collect(Collectors.joining(" | ", "[ ", " ]"));
+        return formatComponents.stream().collect(Collectors.joining(
+                ResultFormatConstant.RESULT_JOIN_DIAMETER,
+                ResultFormatConstant.RESULT_JOIN_PREFIX,
+                ResultFormatConstant.RESULT_JOIN_SUFFIX));
     }
 }
