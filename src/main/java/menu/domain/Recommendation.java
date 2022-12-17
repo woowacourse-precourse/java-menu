@@ -6,15 +6,18 @@ public class Recommendation {
     private final List<Coach> coaches;
     private final CategoryCount categoryCount;
     private final CategoryMaker categoryMaker;
+    private final MenuMaker menuMaker;
 
     public Recommendation(List<Coach> coaches) {
         this.coaches = coaches;
         categoryCount = new CategoryCount();
         categoryMaker = new CategoryMaker();
+        menuMaker = new MenuMaker();
     }
 
     public void run() {
         Category category = selectCategory();
+        selectMenu(category);
     }
 
     private Category selectCategory() {
@@ -27,6 +30,18 @@ public class Recommendation {
         }
 
         return category;
+    }
+
+    private void selectMenu(Category category) {
+        List<String> menus = category.getMenu();
+
+        for (Coach coach : coaches) {
+            boolean finish = false;
+            while (!finish) {
+                String menu = menuMaker.generate(menus);
+                finish = coach.canEat(menu);
+            }
+        }
     }
 
 }

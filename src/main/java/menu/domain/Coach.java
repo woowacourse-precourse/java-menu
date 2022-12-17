@@ -15,4 +15,17 @@ public class Coach {
         recommendedMenu = new ArrayList<>();
     }
 
+    public boolean canEat(String menu) {
+        if (recommendedMenu.contains(menu)) {
+            return false;
+        }
+
+        if (canNotEatMenus.contains(menu)) {
+            return false;
+        }
+
+        recommendedMenu.add(menu);
+        return true;
+    }
+
 }
