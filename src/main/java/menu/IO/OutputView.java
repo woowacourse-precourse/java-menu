@@ -11,6 +11,7 @@ public class OutputView {
 
     public void startMsg() {
         System.out.println("점심 메뉴 추천을 시작합니다.");
+        this.newLine();
     }
 
     public void newLine() {
@@ -22,11 +23,11 @@ public class OutputView {
     }
 
     public void promptDontEatMenuCoach(String name) {
-        System.out.println(name + "(이)가 못 먹는 메뉴를 입력해 주세요.");
+        System.out.println("\n" + name + "(이)가 못 먹는 메뉴를 입력해 주세요.");
     }
 
     public void printResult(List<String> coachNames, List<Category> categories, List<List<String>> recomededMenus) {
-        System.out.println("메뉴 추천 결과입니다.");
+        System.out.println("\n메뉴 추천 결과입니다.");
         System.out.print("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]\n[ 카테고리 ");
         for (Category category : categories) {
             System.out.print("| " + categoryConvertor(category) + " ");
@@ -42,7 +43,7 @@ public class OutputView {
     }
 
     public void endingMsg() {
-        System.out.println("추천을 완료했습니다.");
+        System.out.print("\n추천을 완료했습니다.");
     }
 
     public String categoryConvertor(Category category) {

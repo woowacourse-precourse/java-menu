@@ -33,7 +33,7 @@ class OutputViewTest {
     @DisplayName("시작메시지")
     @Test
     void 시작메시지() {
-        final String output = "점심 메뉴 추천을 시작합니다.\n";
+        final String output = "점심 메뉴 추천을 시작합니다.\n\n";
         outputView.startMsg();
         assertThat(outputStream.toString()).isEqualTo(output);
     }
@@ -57,7 +57,7 @@ class OutputViewTest {
     @DisplayName("못먹는 음식 입력")
     @Test
     void 못먹는_음식_입력() {
-        final String output = "토미(이)가 못 먹는 메뉴를 입력해 주세요.\n";
+        final String output = "\n토미(이)가 못 먹는 메뉴를 입력해 주세요.\n";
         outputView.promptDontEatMenuCoach("토미");
         assertThat(outputStream.toString()).isEqualTo(output);
     }
@@ -65,7 +65,7 @@ class OutputViewTest {
     @DisplayName("결과 출력")
     @Test
     void 결과_출력() {
-        final String output = "메뉴 추천 결과입니다.\n" +
+        final String output = "\n메뉴 추천 결과입니다.\n" +
                 "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]\n" +
                 "[ 카테고리 | 한식 | 한식 | 일식 | 중식 | 아시안 ]\n" +
                 "[ 토미 | 쌈밥 | 김치찌개 | 미소시루 | 짜장면 | 팟타이 ]\n";
@@ -76,7 +76,7 @@ class OutputViewTest {
     @DisplayName("종료메시지")
     @Test
     void 종료메시지() {
-        final String output = "추천을 완료했습니다.\n";
+        final String output = "\n추천을 완료했습니다.";
         outputView.endingMsg();
         assertThat(outputStream.toString()).isEqualTo(output);
     }
