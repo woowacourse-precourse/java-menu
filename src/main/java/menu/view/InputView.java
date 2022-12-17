@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 import menu.domain.Coach;
 import menu.domain.Menu;
 import menu.domain.repository.MenuRepository;
-import menu.util.validator.CoachNameValidator;
 import menu.util.ExceptionMessage;
 import menu.util.Util;
+import menu.util.validator.CoachNameValidator;
 
 public class InputView {
 
@@ -41,15 +41,19 @@ public class InputView {
             if (input.isBlank()) {
                 return List.of();
             }
-            List<Menu> menus = Util.splitByComma(input)
-                    .stream().map(MenuRepository::findMenuByName)
-                    .collect(Collectors.toList());
+            List<Menu> menus = formatMenus(input);
             validateMenuNotToEatSize(menus);
             return menus;
         } catch (IllegalArgumentException exception) {
             printExceptionMessage(exception);
             return readMenuNotToEat(name);
         }
+    }
+
+    private List<Menu> formatMenus(String input) {
+        return Util.splitByComma(input)
+                .stream().map(MenuRepository::findMenuByName)
+                .collect(Collectors.toList());
     }
 
     private static void validateCoachNumber(List<String> coaches) {
