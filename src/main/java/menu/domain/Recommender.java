@@ -2,16 +2,21 @@ package menu.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import menu.constant.Category;
+import menu.constant.Food;
 import menu.constant.Weekday;
+import menu.domain.vo.Name;
 
 public class Recommender {
 
     private static final int COACH_SIZE_MINIMUM = 2;
     private static final int COACH_SIZE_MAXIMUM = 5;
+    private static final int TWICE = 2;
 
     private final List<Coach> coaches;
     private final List<Category> recommendedCategories;
@@ -33,27 +38,31 @@ public class Recommender {
 
     public void recommend() {
         for (int i = 0; i < Weekday.length(); i++) {
-            Category category = pickCategory();
+            Category category = pickAvailableCategory();
             for (Coach coach : coaches) {
                 coach.pickFrom(category);
             }
         }
     }
 
-    private Category pickCategory() {
-        Category category = Category.from(Randoms.pickNumberInRange(1, 5));
+    private Category pickAvailableCategory() {
+        Category category = pickCategory();
         while (isRecommendedTwice(category)) {
-            category = Category.from(Randoms.pickNumberInRange(1, 5));
+            category = pickCategory();
         }
         recommendedCategories.add(category);
         return category;
+    }
+
+    private Category pickCategory() {
+        return Category.from(Randoms.pickNumberInRange(1, 5));
     }
 
     private boolean isRecommendedTwice(Category category) {
         long count = recommendedCategories.stream()
                 .filter(element -> element.equals(category))
                 .count();
-        return count == 2;
+        return count == TWICE;
     }
 
     public List<Category> getRecommendedCategories() {
