@@ -1,7 +1,10 @@
 package menu;
 
 import menu.input.InputView;
+import menu.model.Category;
+import menu.model.CategoryMachine;
 import menu.model.Coach;
+import menu.model.MenuMachine;
 import menu.output.OutputView;
 
 import java.util.ArrayList;
@@ -25,7 +28,9 @@ public class MenuController {
     private void progress() {
         readCoaches();
         readNotEatMenus();
-        
+        selectCategories();
+        selectMenus();
+        printResult();
     }
     private void readCoaches() {
         OutputView.printCoachNameMessage();
@@ -59,4 +64,24 @@ public class MenuController {
             eachCoach.setNotEatMenus(new ArrayList<>(notEatMenus));
         }
     }
+
+    private void selectCategories() {
+        CategoryMachine categoryMachine = new CategoryMachine();
+        categoryMachine.selectCategory(coach.get(0));
+    }
+
+    private void selectMenus() {
+        MenuMachine menuMachine = new MenuMachine();
+        for(int cnt = 0; cnt < 5; cnt++) {
+            for(Coach eachCoach : coach) {
+                menuMachine.setCoach(eachCoach);
+                menuMachine.selectMenus();
+            }
+        }
+    }
+
+    private void printResult() {
+        OutputView.printResult(coach);
+    }
+
 }
