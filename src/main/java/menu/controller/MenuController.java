@@ -24,12 +24,16 @@ public class MenuController {
     }
 
     private void inputCoachName() {
-        CoachInputDTO coachInputDTO = inputView.inputCoachName();
-        menuService.createCoaches(coachInputDTO);
+        try {
+            CoachInputDTO coachInputDTO = inputView.inputCoachName();
+            menuService.createCoaches(coachInputDTO);
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception);
+        }
     }
 
     private void inputUnavailableMenu() {
-
+        
     }
 
     private void recommendMenus() {
