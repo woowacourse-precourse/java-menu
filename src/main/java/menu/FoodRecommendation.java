@@ -2,10 +2,7 @@ package menu;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class FoodRecommendation {
     Map<Week, Category> map = new HashMap<>();
@@ -26,5 +23,9 @@ public class FoodRecommendation {
             foods.add(food);
         }
         recommend.put(coach, foods);
+    }
+
+    public Map<Coach, List<String>> getRecommend() {
+        return Collections.unmodifiableMap(recommend);
     }
 }
