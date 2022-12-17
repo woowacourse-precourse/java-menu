@@ -19,4 +19,9 @@ public class InputView {
         }
         return parsedNames;
     }
+
+    public static List<String> readBanMenu() {
+        String banMenu = Console.readLine();
+        return null;
+    }
 }
