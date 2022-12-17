@@ -22,7 +22,7 @@ public class InputValidator {
     public void validateNoEatFoodsCommand(String command) {
         List<String> foods = Arrays.asList(command.split(","));
         // 각 코치는 0~2개의 못 먹는 메뉴가 있다.
-        if (foods.size() > 2)  {
+        if (foods.size() > 2) {
             throw new IllegalArgumentException("[ERROR] 각 코치는 0~2개의 못 먹는 메뉴가 있다.");
         }
     }

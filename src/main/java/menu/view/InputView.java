@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Supplier;
 
 public class InputView {
     private final String READ_COACH_NAMES_MESSAGE = "코치의 이름을 입력해 주세요. (, 로 구분)";
@@ -34,9 +33,5 @@ public class InputView {
             return readNoEatFoods(coachName);
         }
         return Arrays.asList(command.split(","));
-    }
-
-    public void printError(Exception e) {
-        System.out.println(e.getMessage());
     }
 }

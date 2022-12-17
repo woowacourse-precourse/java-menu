@@ -20,9 +20,9 @@ public class MainController {
         outputView.printStartMessage();
 
         /* 사전 준비
-        * - 코치 이름 입력 받기
-        * - 코치별로 못 먹는 메뉴 입력 받기
-        * - 코치 객체 생성 (이름, 못먹는 메뉴 세팅) */
+         * - 코치 이름 입력 받기
+         * - 코치별로 못 먹는 메뉴 입력 받기
+         * - 코치 객체 생성 (이름, 못먹는 메뉴 세팅) */
         List<String> coachNames = inputView.readCoachNames();
         for (String coachName : coachNames) {
             List<String> noEatFoods = inputView.readNoEatFoods(coachName);
