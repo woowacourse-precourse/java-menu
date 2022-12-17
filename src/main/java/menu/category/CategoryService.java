@@ -31,16 +31,16 @@ public class CategoryService {
 
     // 카테고리 랜덤 추천 (한 주에 같은 카테고리는 최대 2회)
     private static void recommendCategories() {
-        List<Integer> recommendCategories = new ArrayList<>();
+        List<Integer> recommendCategoryNumbers = new ArrayList<>();
         while (true) {
             for (int i = 0; i < 5; i++) {
-                recommendCategories.add(Randoms.pickNumberInRange(1, 5));
+                recommendCategoryNumbers.add(Randoms.pickNumberInRange(1, 5));
             }
-            Set<Integer> recommendCategoryNumbers = Sets.newHashSet(recommendCategories);
-            if (recommendCategoryNumbers.size() > 3) break; // 추천 카테고리 숫자들에 대한 set 개수가 3 이하 -> 3회 이상 중복된 것
-            recommendCategories = new ArrayList<>(); // break 하지 않을 경우 초기화
+            Set<Integer> recommendNumbers = Sets.newHashSet(recommendCategoryNumbers);
+            if (recommendNumbers.size() > 3) break; // 추천 카테고리 숫자들에 대한 set 개수가 3 이하 -> 3회 이상 중복된 것
+            recommendCategoryNumbers = new ArrayList<>(); // break 하지 않을 경우 초기화
         }
-        recommendCategoryNumbers = recommendCategories;
+        CategoryService.recommendCategoryNumbers = recommendCategoryNumbers;
     }
 
     // 코치별 메뉴 랜덤 추천 (중복되지 않도록)
@@ -52,8 +52,9 @@ public class CategoryService {
             List<String> menusOfCategory = Category.getCategoryMenusByNumber(recommendCategoryNumber);
             String randomMenu;
             while (true) {
-                int randomNumber = Randoms.pickNumberInRange(1, menusOfCategory.size() - 1);
-                randomMenu = menusOfCategory.get(randomNumber);
+                randomMenu = Randoms.shuffle(menusOfCategory).get(0); // menusOfCategory에 없는 메뉴를 반환합니다..
+//                System.out.println(String.valueOf(recommendCategoryNumber) + menusOfCategory);
+//                System.out.println(randomMenu);
                 if (!isCannotEats(cannotEats, randomMenu) && !isDuplicateRecommendMenu(recommendMenus, randomMenu)) {
                     break;
                 }
