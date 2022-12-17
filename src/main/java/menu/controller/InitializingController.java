@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import menu.domain.Category;
 import menu.domain.CategoryRepository;
 import menu.domain.Menu;
+import menu.domain.MenuRepository;
 
 public class InitializingController implements Controllable {
 
@@ -37,11 +38,21 @@ public class InitializingController implements Controllable {
         List<Menu> asianMenus = getMenus(ASIAN_MENUS);
         List<Menu> westernMenus = getMenus(WESTERN_MENUS);
 
+        addMenus(japaneseMenus);
+        addMenus(koreanMenus);
+        addMenus(chineseMenus);
+        addMenus(asianMenus);
+        addMenus(westernMenus);
+
         CategoryRepository.findByName("일식").addMenusToCategory(japaneseMenus);
         CategoryRepository.findByName("한식").addMenusToCategory(koreanMenus);
         CategoryRepository.findByName("중식").addMenusToCategory(chineseMenus);
         CategoryRepository.findByName("아시안").addMenusToCategory(asianMenus);
         CategoryRepository.findByName("양식").addMenusToCategory(westernMenus);
+    }
+
+    private static void addMenus(List<Menu> japaneseMenus) {
+        japaneseMenus.forEach(MenuRepository::add);
     }
 
     private static List<Menu> getMenus(List<String> japaneseMenus) {
