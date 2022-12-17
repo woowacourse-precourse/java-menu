@@ -1,6 +1,7 @@
 package menu;
 
 import utils.RandomCategoryGenerator;
+import utils.RandomMenuSelector;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -32,13 +33,37 @@ public class MenuRecommender {
 
         for (Coach coach : coaches) {
             coach.setCategories(categories);
+            getEachCoachRecommend(coach);
+            System.out.println(coach);
         }
+    }
+
+    private static void getEachCoachRecommend(Coach coach) {
+        for (String category : categories) {
+            String menu = getOneFood(category, coach);
+            coach.addMenu(menu);
+        }
+    }
+
+    private static String getOneFood(String category, Coach coach) {
+        String menu;
+
+        do {
+            List<String> menuList = Menus.getMenusList(category);
+            menu = RandomMenuSelector.getRandomMenu(menuList);
+        } while (!isValidMenu(menu, coach));
+
+        return menu;
+    }
+
+    private static boolean isValidMenu(String menu, Coach coach) {
+        return !coach.isHate(menu);
     }
 
     private static List<String> getRandomCategories() {
         List<String> categories = new ArrayList<>();
 
-        for (int i = 0 ; i < 5 ; i++) {
+        while (isCompleteCount(categories)) {
             String category = RandomCategoryGenerator.getRandomCategory();
             if (isValidCategory(category)) {
                 categories.add(category);
@@ -46,6 +71,10 @@ public class MenuRecommender {
         }
 
         return categories;
+    }
+
+    private static boolean isCompleteCount(List<String> categories) {
+        return categories.size() != 5;
     }
 
     public static boolean isValidCategory(String category) {

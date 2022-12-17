@@ -64,4 +64,23 @@ public class Menus {
         return true;
     }
 
+    public static List<String> getMenusList(String category) {
+        if (category.equals("일식")) {
+            return illsik;
+        }
+
+        if (category.equals("한식")) {
+            return hansik;
+        }
+
+        if (category.equals("중식")) {
+            return joongsik;
+        }
+
+        if (category.equals("아시안")) {
+            return asian;
+        }
+
+        return yangsik;
+    }
 }
