@@ -15,11 +15,12 @@ public class FoodRecommender {
         foodCategories = new HashMap<>();
     }
 
-    public void recommendByDay() {
+    public MenuResult recommendByDay() {
         for (Day day : Day.values()) {
             FoodCategory category = generateCategory(day);
             setMenuByDayAndCategory(day, category);
         }
+        return new MenuResult(coaches, foodCategories);
     }
 
     private void setMenuByDayAndCategory(Day day, FoodCategory category) {

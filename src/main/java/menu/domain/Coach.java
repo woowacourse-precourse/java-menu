@@ -22,6 +22,10 @@ public class Coach {
         }
     }
 
+    public Map<Day, String> getMenus() {
+        return menus;
+    }
+
     public void setBlacklist(List<String> blacklist) {
         validateBlacklist(blacklist);
         this.blacklist = blacklist;
