@@ -63,6 +63,7 @@ public class Coach {
 
     private void validateInediblesExist(List<String> input_inedibles){
         for(String inedible : input_inedibles){
+            if(inedible.equals("")) continue;
             if(!FoodCategory.isExistMenu(inedible))
                 throw new IllegalArgumentException(INEDIBLES_NOT_EXIST_MENU_ERROR_MSG);
         }
