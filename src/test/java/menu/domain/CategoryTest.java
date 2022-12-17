@@ -11,7 +11,6 @@ import static org.assertj.core.api.Assertions.*;
 
 class CategoryTest {
 
-
     @DisplayName("1~5에 해당하는 인덱스는 일식, 한식, 중식, 아시안, 양식이다")
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5})
@@ -37,10 +36,7 @@ class CategoryTest {
     @DisplayName("2번 이하로 추천된 카테고리는 추천할 수 있다.")
     @Test
     void createUnderCategoryCount() {
-        // given
-        Category.JAPAN.addCount();
-
         // when, then
-        assertThat(Category.JAPAN.canChoose()).isEqualTo(true);
+        assertThat(Category.WEST.canChoose()).isEqualTo(true);
     }
 }
