@@ -2,6 +2,7 @@ package menu.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import menu.domain.Category;
+import menu.repository.CategoryRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,6 +11,7 @@ import java.util.List;
 import static menu.domain.Category.*;
 
 public class CategoryService {
+    private final CategoryRepository categoryRepository = new CategoryRepository();
     private final static Integer CATEGORY_SIZE = 5;
 
     public List<Category> getFiveCategories() {
@@ -23,6 +25,7 @@ public class CategoryService {
             categories.add(category);
         }
 
+        categoryRepository.addRecommendedCategories(categories);
         return categories;
     }
 
