@@ -45,4 +45,12 @@ public class ValidateTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(IllegalArgumentExceptionMessage.INPUT_COACH_LENGTH_MAX.getMessage());
     }
+
+    @DisplayName("싫어하는 메뉴의 수가 기준 이상인 경우, 예외가 발생한다.")
+    @Test
+    void outOfRangeHateMenu() {
+        assertThatThrownBy(() -> Validate.validateHateMenu(List.of("규동", "우동", "미소시루")))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(IllegalArgumentExceptionMessage.HATE_MENU_SIZE.getMessage());
+    }
 }
