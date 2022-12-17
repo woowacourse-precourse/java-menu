@@ -17,4 +17,8 @@ public class Coach {
      public void addfoodEaten(String food) {
          foodEaten.add(food);
      }
+
+     private boolean validate(String food, List<String> notEatFood) {
+         return !notEatFood.contains(food);
+     }
 }
