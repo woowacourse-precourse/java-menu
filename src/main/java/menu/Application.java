@@ -18,7 +18,7 @@ public class Application {
         List<List<String>> bannedMenus = input.receiveUnavailableMenu(coachNames);
         List<Coach> coachList = createCoachList(coachNames, bannedMenus);
         MenuRecommender menuRecommender = new MenuRecommender(coachList);
-        List<List<String>> RecommendationResult = menuRecommender.getRecommendationResult();
+        List<List<String>> recommendationResult = menuRecommender.getRecommendationResult();
         output.notifyEnding();
     }
 
