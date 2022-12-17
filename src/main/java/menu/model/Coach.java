@@ -7,10 +7,19 @@ public class Coach {
     private static final int MAXIMUM_NAME_LENGTH = 4;
 
     private final String name;
+    private HateMenu hateMenu;
 
     public Coach(String name) {
         validateName(name);
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void addHateMenus(HateMenu hateMenu) {
+        this.hateMenu = hateMenu;
     }
 
     private void validateName(String name) {
