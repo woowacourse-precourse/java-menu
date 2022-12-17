@@ -10,8 +10,14 @@ public class CoachRepository {
 	public void setCoachs(String inputCoach,List<String> inputNotEatFoods) {
 		coachsInformation.put(inputCoach, inputNotEatFoods);
 	}
-
 	public int getCoachsSize() {
 		return coachsInformation.size();
 	}
+
+
+	public boolean discriminationEat(String menu,String coachName) {
+		return !coachsInformation.get(coachName).contains(menu);
+
+	}
+
 }
