@@ -32,6 +32,6 @@ public class CSVUtils {
     }
 
     private static String getOneLine(BufferedReader br) throws IOException{
-        return br.readLine();
+        return br.readLine().replace(" ", "");
     }
 }
