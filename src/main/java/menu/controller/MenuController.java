@@ -30,6 +30,7 @@ public class MenuController {
         for (Coach coach : coachService.getAllCoaches()) {
             repeat(this::addDoNotRecommendMenus, coach);
         }
+        menuService.selectCategories();
     }
 
     private <T> T repeat(Supplier<T> function) {
