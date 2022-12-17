@@ -1,6 +1,8 @@
 package menu.domain;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public enum Category {
     JAPAN("일식", 0),
@@ -34,6 +36,12 @@ public enum Category {
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_NAME));
 
+    }
+
+    public static List<Integer> getIndexNumbers() {
+        return Arrays.stream(Category.values())
+                .map(category -> category.index)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public String getName() {
