@@ -24,4 +24,8 @@ public class CoachService {
     public List<Coach> findAll() {
         return coachRepository.findAll();
     }
+
+    public Coach findByName(String name) {
+        return coachRepository.findByName(name);
+    }
 }

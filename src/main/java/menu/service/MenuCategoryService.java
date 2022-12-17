@@ -13,6 +13,6 @@ import java.util.stream.Collectors;
 public class MenuCategoryService {
     public MenuCategory getRandomMenuCategory() {
        return Arrays.stream(MenuCategory.values()).collect(Collectors.toList())
-               .get(Randoms.pickNumberInRange(1, MenuCategory.values().length));
+               .get(Randoms.pickNumberInRange(1, MenuCategory.values().length - 1));
     }
 }

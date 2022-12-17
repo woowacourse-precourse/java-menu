@@ -11,12 +11,11 @@ import java.util.Map;
 public class RecommendResult {
     private DayOfTheWeek dayOfTheWeek;
     private MenuCategory menuCategory;
+    private Map<Coach, Menu> coachAndMenu;
 
     public Map<Coach, Menu> getCoachAndMenu() {
         return coachAndMenu;
     }
-
-    private Map<Coach, Menu> coachAndMenu;
 
     public RecommendResult(DayOfTheWeek dayOfTheWeek, MenuCategory menuCategory) {
         this.dayOfTheWeek = dayOfTheWeek;

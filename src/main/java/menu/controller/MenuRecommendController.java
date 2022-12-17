@@ -11,6 +11,7 @@ import menu.view.OutputView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -62,9 +63,9 @@ public class MenuRecommendController {
         Menu randomMenu = menuService.getRandomMenuByMenuCategory(menuCategory);
         List<Menu> menus = recommendResults.stream().map(recommendResult
                 -> recommendResult.getCoachAndMenu().get(coach)).collect(Collectors.toList());
-//        if(menus.size() != 0 && menus.stream().anyMatch(menu -> menu.equals(randomMenu))) {
-//            return getMenuByCoach(menuCategory, coach);
-//        }
+        if (menus.stream().filter(Objects::nonNull).anyMatch(menu -> menu.equals(randomMenu)) || coach.getHateMenus().stream().anyMatch(menu -> menu.equals(randomMenu))) {
+            return getMenuByCoach(menuCategory, coach);
+        }
         return randomMenu;
     }
 

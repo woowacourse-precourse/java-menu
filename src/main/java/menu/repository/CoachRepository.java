@@ -2,6 +2,7 @@ package menu.repository;
 
 import menu.model.Coach;
 import menu.model.Menu;
+import menu.util.IllegalArgumentExceptionMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,5 +40,10 @@ public class CoachRepository {
 
     public List<Coach> findAll() {
         return coaches;
+    }
+
+    public Coach findByName(String name) {
+        return coaches.stream().filter(coach -> coach.getName().equals(name)).findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(IllegalArgumentExceptionMessage.NO_MATCHING_COACH.getMessage()));
     }
 }
