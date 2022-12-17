@@ -10,7 +10,7 @@ public class MenuForWeekRepository {
     private static LinkedHashMap<Week, Category> categoriesPerWeek = new LinkedHashMap<>();
     private static LinkedHashMap<Coach, List<String>> menusPerCoach = new LinkedHashMap<>();
 
-    public static HashMap<Coach, List<String>> getMenuResult() {
+    public static LinkedHashMap<Coach, List<String>> getMenuResult() {
         return menusPerCoach;
     }
 

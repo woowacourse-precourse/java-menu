@@ -7,6 +7,10 @@ public class ViewMessage {
     public static final String WEEKDAYS = "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]";
     public static final String FINISH_MESSAGE = "추천을 완료했습니다.";
     public static final String MENU_RECOMMENDATION_RESULT_TITLE = "메뉴 추천 결과입니다.";
+    public static final String CATEGORY_START_BRACKET = "[ 카테고리 | ";
+    public static final String END_BRACKET = " ]";
+    public static final String RESULT_DELIMITER = " | ";
+    public static final String START_BRACKET = "[ ";
 }
 
 

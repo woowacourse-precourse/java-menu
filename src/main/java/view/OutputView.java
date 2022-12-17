@@ -5,8 +5,6 @@ import constant.Week;
 import menu.Coach;
 import repository.MenuForWeekRepository;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,24 +20,12 @@ public class OutputView {
         System.out.println();
     }
 
-    private String integerToString(int numericValue) {
-        return Integer.toString(numericValue);
-    }
-
-    private void print(String value) {
-        System.out.print(value);
-    }
-
     private void printFormat(String value, String formatValue) {
         System.out.printf(value, formatValue);
     }
 
     public void printExceptionMessage(Exception exception) {
         println("[ERROR] " + exception.getMessage());
-    }
-
-    public void printInfo(String value) {
-        println("[INFO] " + value);
     }
 
     public void printStartMessage() {
@@ -57,20 +43,29 @@ public class OutputView {
         printNewLine();
     }
 
-    public void printMenuResult(HashMap<Coach, List<String>> menuResult) {
-        // TODO : 출력 메소드 바꿔보기 (지저분함)
+    public void printMenuResult(LinkedHashMap<Coach, List<String>> menuResult) {
         printNewLine();
         println(MENU_RECOMMENDATION_RESULT_TITLE);
         println(WEEKDAYS);
-        LinkedHashMap<Week, Category> categoriesPerWeek = MenuForWeekRepository.getCategoriesPerWeek();
-        String categories = categoriesPerWeek.values().stream()
-                .map(category -> category.getName()).collect(Collectors.joining(" | "));
-        println("[ 카테고리 | " + categories + " ]");
-        for (Coach coach : menuResult.keySet()) {
-            String menus = menuResult.get(coach).stream().collect(Collectors.joining(" | "));
-            println("[ " + coach.getName() + " | " + menus + " ]");
-        }
+        println(CATEGORY_START_BRACKET
+                        + makeCategoryIntoString(MenuForWeekRepository.getCategoriesPerWeek())
+                        + END_BRACKET
+        );
+        printMenusPerCoaches(menuResult);
         printNewLine();
         println(FINISH_MESSAGE);
     }
+
+    private void printMenusPerCoaches(LinkedHashMap<Coach, List<String>> menuResult) {
+        for (Coach coach : menuResult.keySet()) {
+            String menus = menuResult.get(coach).stream().collect(Collectors.joining(RESULT_DELIMITER));
+            println(START_BRACKET + coach.getName() + RESULT_DELIMITER + menus + END_BRACKET);
+        }
+    }
+
+    private String makeCategoryIntoString(LinkedHashMap<Week, Category> categoriesPerWeek) {
+        return categoriesPerWeek.values().stream()
+                .map(category -> category.getName()).collect(Collectors.joining(RESULT_DELIMITER));
+    }
+
 }
