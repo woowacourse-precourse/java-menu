@@ -17,4 +17,8 @@ public class Coach {
         this.name = name;
         this.banFoods = banFoods;
     }
+
+    public boolean canNotEat(Menu menu) {
+        return banFoods.contains(menu);
+    }
 }
