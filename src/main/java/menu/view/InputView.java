@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputView {
+    private static final int MIN_COACH_SIZE = 2;
+    private static final int MAX_COACH_SIZE = 5;
+    private static final int MIN_COACH_NAME_SIZE = 2;
+    private static final int MAX_COACH_NAME_SIZE = 4;
 
     public List<String> readNames() {
         System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
@@ -26,14 +30,14 @@ public class InputView {
     }
 
     private void validateCoachSize(String[] names) {
-        if (!(2 <= names.length && names.length <= 5)) {
+        if (!(MIN_COACH_SIZE <= names.length && names.length <= MAX_COACH_SIZE)) {
             throw new IllegalArgumentException("코치는 최소 2명에서 5명 사이입니다.");
         }
     }
 
     private void validateNameSize(String name) {
         int length = name.length();
-        if (!(2 <= length && length <= 4)) {
+        if (!(MIN_COACH_NAME_SIZE <= length && length <= MAX_COACH_NAME_SIZE)) {
             throw new IllegalArgumentException("코치의 이름은 최소 2글자에서 4글자입니다.");
         }
     }
