@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static menu.enums.Foods.*;
+import static menu.enums.Categories.*;
 
 public class RecommendMenuService {
     private final Map<String, List<String>> menus;

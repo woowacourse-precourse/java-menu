@@ -1,6 +1,6 @@
 package menu.enums;
 
-public enum Foods {
+public enum Categories {
     JAPAN("일식"),
     KOREA("한식"),
     CHINA("중식"),
@@ -9,7 +9,7 @@ public enum Foods {
 
     private final String name;
 
-    Foods(String name) {
+    Categories(String name) {
         this.name = name;
     }
 
