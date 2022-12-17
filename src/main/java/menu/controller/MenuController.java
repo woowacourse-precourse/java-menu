@@ -1,6 +1,6 @@
-package menu.Controller;
+package menu.controller;
 
-import menu.Service.InitializationService;
+import menu.service.InitializationService;
 import menu.view.InputView;
 import menu.view.OutputView;
 

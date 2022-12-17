@@ -1,4 +1,4 @@
-package menu.Service;
+package menu.service;
 
 import menu.domain.Category;
 import menu.domain.CategoryRepository;
