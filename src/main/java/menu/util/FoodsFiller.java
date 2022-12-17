@@ -3,10 +3,7 @@ package menu.util;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
-import menu.domain.Categories;
 import menu.domain.Crew;
-import menu.domain.Crews;
 import menu.domain.menu.AsianFood;
 import menu.domain.menu.ChineseFood;
 import menu.domain.menu.FoodStyle;
@@ -25,17 +22,15 @@ public class FoodsFiller {
         foods.put("아시안", AsianFood.any.getAllFoods());
     }
 
-    public void fillFoods(Crew crew, Categories categories, List<String> bannedFoods) {
+    public void fillFoods(Crew crew, String category, List<String> bannedFoods) {
         setupFoods();
-        for (String category : categories.getCategories()) {
-            makeFood(crew, category, bannedFoods);
-        }
+        makeFood(crew, category, bannedFoods);
     }
 
     public void makeFood(Crew crew, String category, List<String> bannedFoods) {
-        while(true) {
+        while (true) {
             String pickFood = getPickFood(category);
-            if(!crew.isAlreadyBeenFood(pickFood) && !bannedFoods.contains(pickFood)) {
+            if (!crew.isAlreadyBeenFood(pickFood) && !bannedFoods.contains(pickFood)) {
                 crew.addFood(pickFood);
                 break;
             }
