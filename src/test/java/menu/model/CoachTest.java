@@ -12,15 +12,17 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class CoachTest {
-    @Test
-    @DisplayName("코치 이름 검증")
-    public void validateName() {
+    @ParameterizedTest
+    @ValueSource(strings = {"안녕하세요", "오이이이이잉", "", "11111111"})
+    @DisplayName("코치 이름이 올바르지 않은 경우 예외처리한다.")
+    public void validateName(String nameInput) {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Coach("안녕하세요");
+            new Coach(nameInput);
         }).withMessageStartingWith("코치의 이름이 올바르지 않습니다.");
-
     }
 
     @Test
@@ -52,7 +54,7 @@ class CoachTest {
         }
         String result = Stream.of(List.of(coach.getName()), coach.getRecommendationForWeek()).flatMap(
                 Collection::stream).collect(
-                Collectors.joining(" |"));
+                Collectors.joining(" | "));
         System.out.println(result);
     }
 }
