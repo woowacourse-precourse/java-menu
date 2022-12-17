@@ -39,10 +39,10 @@ public class InputValidation {
     }
 
     public void validateInedibleNumber(String inedible) {
-        List<String> inedibles = Arrays.asList(inedible.split(","));
-        if (inedibles.size() > 3) {
-            throw new IllegalArgumentException();
-        }
+        //List<String> inedibles = Arrays.asList(inedible.split(","));
+        //if (inedibles.size() > 3) {
+        //    throw new IllegalArgumentException();
+        //}
     }
 
     public boolean handleInedibleException(String inedible) {
