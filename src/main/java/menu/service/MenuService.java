@@ -74,3 +74,12 @@ public class MenuService implements Menu {
         }
     }
 
+    private void recommendDayAndCoach(final Coach coach, final List<String> oneCategoryMenus) {
+        while (true) {
+            final String menu = getOneMenu(oneCategoryMenus);
+            if (coach.canEat(menu)) {
+                coach.eat(menu);
+                break;
+            }
+        }
+    }
