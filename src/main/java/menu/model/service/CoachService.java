@@ -17,11 +17,11 @@ import java.util.List;
 
 public class CoachService {
 
-    // 에러 발생시 그 시점부터 재시작해야하는데 재귀성 문제 해결해야함.
     public List<String> getCoaches() {
         String coaches = InputView.getCoaches();
         List<String> coachesName = Separator.separateCoachInfo(coaches);
         for (String coachName : coachesName) {
+            InputVerifier.coachNameIsOnlyKorean(coachName);
             InputVerifier.coachNameIsMin2Max4(coachName);
             InputVerifier.coachesCountMin2Max5(coachesName.size());
         }

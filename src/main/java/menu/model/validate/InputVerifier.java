@@ -46,4 +46,10 @@ public class InputVerifier {
             throw new IllegalArgumentException(HATE_MENU_SIZE_0_TO_2.getMessage());
         }
     }
+
+    public static void coachNameIsOnlyKorean(String coachName) {
+        if (!Pattern.matches("^[가-힣]*$", coachName)) {
+            throw new IllegalArgumentException(COAch_NAME_IS_ONLY_KOREAN.getMessage());
+        }
+    }
 }
