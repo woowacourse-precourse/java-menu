@@ -42,8 +42,15 @@ public class MenuController {
     }
 
     private void registerInedibleFoodsEachCoach(String coachName) {
-        List<String> inedibleFoods = inputView.readInedibleFoodsOfCoach(coachName);
-        menuService.registerInedibleFoodsToCoach(coachName, inedibleFoods);
+        while (true) {
+            try {
+                List<String> inedibleFoods = inputView.readInedibleFoodsOfCoach(coachName);
+                menuService.registerInedibleFoodsToCoach(coachName, inedibleFoods);
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
     private void announceMenuRecommendResult() {
