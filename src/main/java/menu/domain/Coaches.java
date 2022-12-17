@@ -18,7 +18,6 @@ public class Coaches {
         coaches.add(coach);
     }
 
-    // TODO: refactoring indent, line
     public void takeRecommendByCategories(List<Category> categories) {
         for (Category category : categories) {
             recommendMenuByCategory(category);
