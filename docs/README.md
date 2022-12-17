@@ -38,6 +38,7 @@ List<String> menu에다가 다 넣어놓기.
 
 - [x] 카테고리 이름을 String 형의 필드로 가진다.
 - [x] 메뉴들을 List<String> 형의 필드로 가진다.
+- [ ] 정해진 카테고리에 대해서 코치에게 일주일치 메뉴를 추천한다.
 
 ## Categories (domain)
 
