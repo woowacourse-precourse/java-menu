@@ -10,14 +10,8 @@ import static menu.ConstantBox.MIN_COACH_LENGTH;
 import static menu.ConstantBox.MIN_COACH_NUM;
 import static menu.ConstantBox.SEPARATOR_FOR_INPUT;
 import static menu.ConstantBox.START_MESSAGE;
-import static menu.domain.MenuGiver.ASIAN_MENU;
-import static menu.domain.MenuGiver.CHINA_MENU;
-import static menu.domain.MenuGiver.EUROPE_MENU;
-import static menu.domain.MenuGiver.JAPAN_MENU;
-import static menu.domain.MenuGiver.KOREAN_MENU;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -121,11 +115,7 @@ public class InputView {
     }
 
     private void validateMenu(String menu) {
-        List<String> allMenu = new ArrayList<>(JAPAN_MENU);
-        allMenu.addAll(KOREAN_MENU);
-        allMenu.addAll(CHINA_MENU);
-        allMenu.addAll(ASIAN_MENU);
-        allMenu.addAll(EUROPE_MENU);
+        List<String> allMenu = AllMenu.getAllMenu();
         if (!allMenu.contains(menu)) {
             throw new IllegalArgumentException("[ERROR] 메뉴 리스트에 없는 메뉴입니다.");
         }
