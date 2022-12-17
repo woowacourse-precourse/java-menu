@@ -17,8 +17,9 @@ public enum DayOfTheWeek {
         this.name = name;
     }
 
-    public static List<DayOfTheWeek> getDaysOfTheWeek() {
+    public static List<String> getDaysOfTheWeekName() {
         return Arrays.stream(values())
+                .map(value -> value.name)
                 .collect(Collectors.toList());
     }
 }
