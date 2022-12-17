@@ -10,4 +10,8 @@ public class Coach {
         this.name = name;
         this. bannedMenu = bannedMenu;
     }
+
+    public boolean checkMenu(String menu) {
+        return bannedMenu.contains(menu);
+    }
 }
