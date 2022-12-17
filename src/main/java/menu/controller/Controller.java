@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 
 import menu.constant.Food;
 import menu.domain.Coach;
-import menu.domain.vo.Name;
 import menu.domain.Recommender;
+import menu.domain.vo.Name;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -19,9 +19,16 @@ public class Controller {
 
     public void run() {
         OUTPUT_VIEW.printServiceStart();
-        Recommender recommender = new Recommender(readCoaches());
-        recommender.recommend();
+        Recommender recommender = recommend();
         OUTPUT_VIEW.printMenus(recommender.getRecommendedCategories(), recommender.getRecommendations());
+    }
+
+    private Recommender recommend() {
+        return repeat(() -> {
+            Recommender recommender = new Recommender(readCoaches());
+            recommender.recommend();
+            return recommender;
+        });
     }
 
     private List<Coach> readCoaches() {
@@ -44,7 +51,7 @@ public class Controller {
 
     private List<Food> readInediblesOf(String coachName) {
         return repeat(() -> INPUT_VIEW.readInediblesOf(coachName).stream()
-                .filter(String::isBlank)
+                .filter(inedible -> !inedible.isBlank())
                 .map(Food::from)
                 .collect(Collectors.toList()));
     }
