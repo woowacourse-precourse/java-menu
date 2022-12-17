@@ -7,3 +7,25 @@
 <br> - 한 주에 같은 카테고리의 음식은 2개까지만 가능하다.
 <br> - 한 주에 중복되는 음식을 추천하면 안된다.
 4. 메뉴 추천 결과를 출력해준다.
+
+## 기능 목록
+
+### 기본 정보 등록
+- [ ] 주어진 음식들을 카테고리별로 등록한다.
+  - [ ] 음식 카테고리 등록
+  - [ ] 카테고리별 음식 등록
+- [ ] 코치의 이름을 ,로 구분지어서 입력 받는다.
+  - [ ] 코치의 수가 2명 미만, 5명 초과할 경우 IllegalArgumentException 발생
+  - [ ] 각 코치의 이름이 2글자 미만, 4글자 초과할 경우 IllegalArgumentException 발생
+  - [ ] 중복되는 코치의 이름이 있다면 IllegalArgumentException 발생
+- [ ] 코치가 먹지 못하는 음식을 ,로 구분지어서 입력 받는다.
+  - [ ] 먹지 못하는 메뉴가 2개를 초과할 경우 IllegalArgumentException 발생
+
+### 메뉴 추천
+- [ ] 각 코치들에게 월요일부터 금요일까지의 음식 카테고리를 Randoms.pickNumberInRange()을 사용하여 추천해준다.
+  - [ ] 한 주에 같은 음식 카테고리가 3개 이상 있는지 확인하고, 있다면 CannotRecommendCategoryException 발생
+  - [ ] CannotRecommendCategoryException 에러 발생 시 해당 코치에게 다시 음식 카테고리를 추천해준다.
+- [ ] 음식 카테고리 안에서 음식을 Randoms.shuffle()을 사용하여 섞고, 가장 앞에 있는 음식을 추천해준다.
+  - [ ] 한 주에 같은 음식이 2개 이상 있는지 확인하고, 있다면 CannotRecommendMenuException 발생
+  - [ ] CannotRecommendMenuException 에러 발생 시 해당 코치에게 다시 음식을 추천해준다. 
+- [ ] 메뉴 추천 결과를 출력해준다.
