@@ -22,8 +22,7 @@ public class MenuController {
         this.inputView = new InputView();
         this.outputView = new OutputView();
         this.categoryService = new CategoryService();
-        outputView.printServiceStart();
-        outputView.printRequestCoachName();
+        printStart();
         this.coachService = new CoachService(initCoachList());
         this.recommendMenuService = new RecommendMenuService();
     }
@@ -33,12 +32,14 @@ public class MenuController {
         coaches.forEach(this::initRefuseMenu);
         List<String> categories = categoryService.getCategories();
         recommendMenuService.recommend(coaches, categories);
+        printResult(categories, coaches);
+    }
+    private void printResult(List<String> categories, List<Coach> coaches) {
         outputView.printResult();
         outputView.printCategoryResult(categories);
         outputView.printRecommendMenus(coaches);
         outputView.printServiceExit();
     }
-
 
     private void initRefuseMenu(Coach coach) {
         outputView.printRequestRefuseMenu(coach);
@@ -50,5 +51,10 @@ public class MenuController {
         return inputView.readCoach()
                 .stream().map(Coach::new)
                 .collect(toList());
+    }
+
+    private void printStart() {
+        outputView.printServiceStart();
+        outputView.printRequestCoachName();
     }
 }
