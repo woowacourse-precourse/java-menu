@@ -42,7 +42,7 @@ public class InputView {
                 return List.of();
             }
             List<Menu> menus = Util.splitByComma(input)
-                    .stream().map(MenuRepository::findByName)
+                    .stream().map(MenuRepository::findMenuByName)
                     .collect(Collectors.toList());
             validateMenuNotToEatSize(menus);
             return menus;

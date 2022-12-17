@@ -8,7 +8,7 @@ import menu.domain.repository.MenuRepository;
 
 public class Category {
 
-    public static final int FIRST_INDEX = 0;
+    private static final int FIRST_INDEX = 0;
     private final String name;
     private final List<Menu> menus = new ArrayList<>();
 
@@ -20,9 +20,9 @@ public class Category {
         this.menus.addAll(menus);
     }
 
-    public Menu pickRandomMenu() {
+    public Menu pickRandomMenuInCategory() {
         String menu = Randoms.shuffle(convertMenuToName()).get(FIRST_INDEX);
-        return MenuRepository.findByName(menu);
+        return MenuRepository.findMenuByName(menu);
     }
 
     private List<String> convertMenuToName() {
@@ -32,11 +32,6 @@ public class Category {
     public String getName() {
         return name;
     }
-
-    public List<Menu> getMenus() {
-        return menus;
-    }
-
     @Override
     public String toString() {
         return name;

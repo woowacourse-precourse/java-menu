@@ -44,7 +44,7 @@ public class MenuRecommendationController implements Controllable {
     }
 
     private Menu pickAvailableMenu(Coach coach, Category category) {
-        Menu menu = category.pickRandomMenu();
+        Menu menu = category.pickRandomMenuInCategory();
         if (!coach.isAvailableMenu(menu)) {
             return pickAvailableMenu(coach, category);
         }

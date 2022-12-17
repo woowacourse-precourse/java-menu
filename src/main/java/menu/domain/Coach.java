@@ -40,12 +40,13 @@ public class Coach {
         return name;
     }
 
+    public Map<Day, Menu> getMenuAlreadyEaten() {
+        return menuAlreadyEaten;
+    }
+
     @Override
     public String toString() {
         return name;
     }
 
-    public Map<Day, Menu> getMenuAlreadyEaten() {
-        return menuAlreadyEaten;
-    }
 }

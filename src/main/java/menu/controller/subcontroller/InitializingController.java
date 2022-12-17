@@ -34,7 +34,6 @@ public class InitializingController implements Controllable {
         ALL_MENUS_IN_CATEGORIES.put("양식", WESTERN_MENUS);
     }
 
-
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -55,7 +54,7 @@ public class InitializingController implements Controllable {
             CategoryRepository.add(new Category(element.getKey()));
             List<Menu> menusInCategory = getMenus(element.getValue());
             addMenus(menusInCategory);
-            CategoryRepository.findByName(element.getKey()).addMenusToCategory(menusInCategory);
+            CategoryRepository.finCategoryByName(element.getKey()).addMenusToCategory(menusInCategory);
         }
     }
 
