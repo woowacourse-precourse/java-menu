@@ -1,24 +1,21 @@
 package menu.domain;
 
 
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Coach {
     private static final int NAME_MIN_LENGTH = 2;
     private static final int NAME_MAX_LENGTH = 4;
-    private static final int BLACKLIST_MAX_SIZE = 2;
 
     private final String name;
     private Blacklist blacklist;
-    private final Map<Day, Menu> menus;
+    private final LunchTable lunchTable;
 
     public Coach(String name) {
         validateName(name);
         this.name = name;
-        menus = new HashMap<>();
+        lunchTable = new LunchTable();
     }
 
     private void validateName(String name) {
@@ -28,18 +25,11 @@ public class Coach {
     }
 
     public Map<Day, Menu> getMenus() {
-        return Collections.unmodifiableMap(menus);
+        return lunchTable.getMenus();
     }
 
     public void setBlacklist(List<Menu> menus) {
-        validateBlacklist(menus);
         this.blacklist = new Blacklist(menus);
-    }
-
-    private void validateBlacklist(List<Menu> blacklist) {
-        if (blacklist.size() > BLACKLIST_MAX_SIZE) {
-            throw new IllegalArgumentException("못 먹는 메뉴는 2가지까지만 가능합니다");
-        }
     }
 
     public String getName() {
@@ -47,7 +37,7 @@ public class Coach {
     }
 
     public void putDayByMenu(Day day, Menu menu) {
-        menus.put(day, menu);
+        lunchTable.put(day, menu);
     }
 
     public boolean isBlacklist(Menu menu) {
@@ -55,8 +45,6 @@ public class Coach {
     }
 
     public boolean isDuplicate(Menu menu) {
-        return menus.values()
-                .stream()
-                .anyMatch(coachMenu -> coachMenu.equals(menu));
+        return lunchTable.isExist(menu);
     }
 }
