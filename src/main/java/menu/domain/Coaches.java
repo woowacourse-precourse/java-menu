@@ -18,6 +18,10 @@ public class Coaches {
         coaches.forEach(coach -> coach.addLunchMenu(category));
     }
 
+    public List<Coach> getCoaches() {
+        return coaches;
+    }
+
 
     private void validate(List<Coach> coaches) {
         if (coaches.size() < MIN_SIZE) {
@@ -27,9 +31,5 @@ public class Coaches {
         if (coaches.size() > MAX_SIZE) {
             throw new IllegalArgumentException("코치는 최대 5명 입니다.");
         }
-    }
-
-    public List<Coach> getCoaches() {
-        return coaches;
     }
 }

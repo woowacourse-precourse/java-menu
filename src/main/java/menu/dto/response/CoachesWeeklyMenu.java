@@ -22,6 +22,14 @@ public class CoachesWeeklyMenu {
         return new CoachesWeeklyMenu(categoriesNames, eachCoachesMenu);
     }
 
+    public List<String> getCategoriesNames() {
+        return categoriesNames;
+    }
+
+    public Map<String, List<String>> getEachCoachesMenu() {
+        return eachCoachesMenu;
+    }
+
     private static Map<String, List<String>> getEachCoachesMenu(Coaches coaches) {
         Map<String, List<String>> eachCoachesMenu = new HashMap<>();
         for (Coach coach : coaches.getCoaches()) {
@@ -36,14 +44,6 @@ public class CoachesWeeklyMenu {
                              Map<String, List<String>> eachCoachesMenu) {
         this.categoriesNames = categoriesNames;
         this.eachCoachesMenu = eachCoachesMenu;
-    }
-
-    public List<String> getCategoriesNames() {
-        return categoriesNames;
-    }
-
-    public Map<String, List<String>> getEachCoachesMenu() {
-        return eachCoachesMenu;
     }
 
 }

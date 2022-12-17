@@ -32,6 +32,14 @@ public class Coach {
         }
     }
 
+    public List<String> getLunchMenus() {
+        return Collections.unmodifiableList(lunchMenus);
+    }
+
+    public String getName() {
+        return name;
+    }
+
     private void validateHateMenus(List<String> hateMenus) {
         if (hateMenus.size() > HATE_MENU_MAX_SIZE) {
             throw new IllegalArgumentException("코치가 못먹는 메뉴는 최대 2개입니다. 추가할려는 메뉴 갯수  : " +
@@ -59,13 +67,5 @@ public class Coach {
 
     private boolean duplicateLunchMenu(String menu) {
         return lunchMenus.contains(menu);
-    }
-
-    public List<String> getLunchMenus() {
-        return Collections.unmodifiableList(lunchMenus);
-    }
-
-    public String getName() {
-        return name;
     }
 }

@@ -14,6 +14,10 @@ public class CoachesNameDto {
         this.names = names;
     }
 
+    public List<CoachNameDto> getNames() {
+        return names;
+    }
+
     private void validate(List<CoachNameDto> names) {
         if (names.size() < MIN_SIZE) {
             throw new IllegalArgumentException("코치는 최소 2명 이상 입력해야 합니다.");
@@ -22,9 +26,5 @@ public class CoachesNameDto {
         if (names.size() > MAX_SIZE) {
             throw new IllegalArgumentException("코치는 최대 5명 입니다.");
         }
-    }
-
-    public List<CoachNameDto> getNames() {
-        return names;
     }
 }
