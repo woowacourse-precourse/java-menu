@@ -31,6 +31,12 @@ public class CoachRepository {
         return coaches.stream().anyMatch(coach -> coachName.equals(coach.getName()));
     }
 
+    public Coach findCoachByName(String coachName) {
+        return coaches.stream().filter(coach -> coachName.equals(coach.getName()))
+                .findAny()
+                .orElseThrow();
+    }
+
     public List<String> findAllCoach() {
         return coaches.stream().map(Coach::getName)
                 .collect(Collectors.toUnmodifiableList());
