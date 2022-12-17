@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.Category;
 import menu.domain.Coach;
-import menu.domain.Menu;
 import menu.domain.MenuRecommender;
 import menu.exception.CannotRecommendCategoryException;
 import menu.exception.CannotRecommendMenuException;
@@ -56,14 +55,16 @@ public class Validator {
         }
     }
 
-    public static void validateBannedMenus(List<String> bannedMenus, MenuRecommender menuRecommender) {
+    public static void validateBannedMenus(List<String> bannedMenus,
+        MenuRecommender menuRecommender) {
         if (bannedMenus.size() != 0) {
             validateExistedMenus(bannedMenus, menuRecommender);
         }
         validateMenuOverTwo(bannedMenus.size());
     }
 
-    private static void validateExistedMenus(List<String> bannedMenus, MenuRecommender menuRecommender) {
+    private static void validateExistedMenus(List<String> bannedMenus,
+        MenuRecommender menuRecommender) {
         for (String bannedMenu : bannedMenus) {
             if (!menuRecommender.isExistedMenu(bannedMenu)) {
                 throw new IllegalArgumentException("[ERROR] 존재하지 않는 메뉴입니다.");
