@@ -11,11 +11,20 @@ public class CouchRepository {
     private static List<Category> selectedCategories = new ArrayList<>();
 
     public static void addCouch(Couch couch) {
+        validateDuplication(couch);
         couches.add(couch);
     }
 
     public static void addCategory(Category selectedCategory) {
         selectedCategories.add(selectedCategory);
+    }
+
+    private static void validateDuplication(Couch couch) {
+        for (Couch eachCouch : couches) {
+            if (eachCouch.getName().equals(couch.getName())) {
+                throw new IllegalArgumentException("[ERROR] 동일한 이름은 입력할 수 없습니다.");
+            }
+        }
     }
 
     public static boolean validateMenu(Category selectedCategory) {
