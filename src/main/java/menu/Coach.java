@@ -1,7 +1,6 @@
 package menu;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Coach {
@@ -13,8 +12,8 @@ public class Coach {
         this.name = name;
     }
 
-    public void setUnwantedMenus(String menus) {
-        unwantedMenus = Arrays.asList(menus.split(","));
+    public void setUnwantedMenus(List<String> menus) {
+        unwantedMenus.addAll(menus);
     }
 
     public void setRecommendedMenus(List<String> menus) {
@@ -27,6 +26,19 @@ public class Coach {
 
     public String getName() {
         return this.name;
+    }
+
+    @Override
+    public String toString() {
+        String str = "[ " + name + " | ";
+        for (int i = 0; i < menus.size(); i++) {
+            str += menus.get(i);
+            if (i != menus.size() - 1)
+                str += " | ";
+        }
+        str += " ]";
+
+        return str;
     }
 
 }
