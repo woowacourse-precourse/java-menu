@@ -48,7 +48,7 @@ public class MenuController {
     public void readCoachsCannotEat() {
         List<Coach> coaches = menuDomain.getCoachs();
         for (Coach coach : coaches) {
-            getFoods(coach.getName());
+            List<String> foods = getFoods(coach.getName());
         }
     }
     public List<String> getFoods(String coachName) {
@@ -56,7 +56,7 @@ public class MenuController {
             try {
                 outputView.printEmptyMsg();
                 outputView.printMsg(coachName+PrintMsg.INPUT_FOODS.getMsg());
-                return inputView.readNotEatFoods();
+                return menuDomain.checkAndFoods(inputView.readNotEatFoods());
             } catch (IllegalArgumentException exception) {
                 outputView.printMsg(exception.getMessage());
             }

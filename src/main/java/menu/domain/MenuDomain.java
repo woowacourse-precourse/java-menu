@@ -23,4 +23,9 @@ public class MenuDomain {
     public List<Coach> getCoachs() {
         return coachs.getCoachs();
     }
+
+    public List<String> checkAndFoods(List<String> foods) {
+        MenuException.checkMenuList(menu, foods);
+        return foods;
+    }
 }
