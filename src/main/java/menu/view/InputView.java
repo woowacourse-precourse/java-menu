@@ -27,6 +27,7 @@ public class InputView {
         for (String coachName : coachNames) {
             System.out.println(coachName + INPUT_COACH_CAN_NOT_EAT_MENUS);
             String menuNameInput = Console.readLine();
+            validateCannotEatMenus(menuNameInput);
             List<String> coachCannotEatMenus = convertStringToList(menuNameInput);
             Coach coach = new Coach(coachName, coachCannotEatMenus);
             coaches.add(coach);
@@ -69,5 +70,17 @@ public class InputView {
     private List<String> convertStringToList(String checkedCoachNames) {
         List<String> coachNames = List.of(checkedCoachNames.split(","));
         return coachNames;
+    }
+
+    public void validateCannotEatMenus(String uncheckedMenus) {
+        validateDuplicateMenus(uncheckedMenus);
+    }
+
+    private void validateDuplicateMenus(String uncheckedMenus) {
+        List<String> cannotEatMenus = convertStringToList(uncheckedMenus);
+        Set<String> uniqueCoachNames = new HashSet<>(cannotEatMenus);
+        if(cannotEatMenus.size() != uniqueCoachNames.size()) {
+            throw new IllegalArgumentException(InputException.DUPLICATE_COACH_MENUS.getExceptionMessage());
+        }
     }
 }
