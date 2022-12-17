@@ -15,34 +15,39 @@ public class MenuService {
     private final MemberService memberService = new MemberService();
     private List<Category> weekCategory = new ArrayList<>();
 
-    public void pickCategory() {
+    public void recommendMenu() {
+        Category category;
+        category = pickCategory();
+        pickMenu(category);
+    }
+
+    private Category pickCategory() {
         Category category;
         do {
             category = getCategory(Randoms.pickNumberInRange(1, 5));
         } while (!isValidCategory(category));
         weekCategory.add(category);
-        pickMenu(category);
+        return category;
     }
 
     public void pickMenu(Category category) {
         List<String> menus = menuRepository.findMenusAllByCategory(category);
         List<Member> members = memberService.findAll();
 
-        Map<String, Integer> todayEat;
-        List<String> weekEat;
-
-        todayEat = new HashMap<>();
-        weekEat = new ArrayList<>();
+        List<String> todayEat = new ArrayList<>();
         for (Member member : members) {
             String menu;
             do {
                 menu = Randoms.shuffle(menus).get(0);
             } while (!isValidMenu(member, menu));
-            todayEat.put(menu, todayEat.getOrDefault(menu, 0) + 1);
-            weekEat.add(menu);
+            todayEat.add(menu);
         }
+        saveEatInfo(members, todayEat);
+    }
+
+    private void saveEatInfo(List<Member> members, List<String> todayEat) {
         for (int i = 0; i < members.size(); i++) {
-            members.get(i).addWeekEat(weekEat.get(i));
+            members.get(i).addWeekEat(todayEat.get(i));
         }
     }
 
