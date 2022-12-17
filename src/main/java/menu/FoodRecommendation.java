@@ -68,7 +68,7 @@ public class FoodRecommendation {
     }
 
     public List<Coach> getCoaches() {
-        return coaches;
+        return Collections.unmodifiableList(coaches);
     }
 
     public Map<Week, Category> getCategoryByWeek() {
