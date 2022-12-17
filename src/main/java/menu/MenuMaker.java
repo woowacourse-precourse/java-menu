@@ -49,11 +49,19 @@ public class MenuMaker {
 
     public void validateMenu(Menu uncheckedMenu) {
         validateDuplicateRandomMenu(uncheckedMenu);
+        validateCannotEatRandomMenu(uncheckedMenu);
     }
 
     public void validateDuplicateRandomMenu(Menu uncheckedMenu) {
         if(result.contains(uncheckedMenu)) {
             throw new IllegalStateException(MenuException.DUPLICATE_MENU.getExceptionMessage());
+        }
+    }
+
+    public void validateCannotEatRandomMenu(Menu uncheckedMenu) {
+        boolean cannotEat = coach.existsCannotEatMenus(uncheckedMenu);
+        if(cannotEat) {
+            throw new IllegalStateException(MenuException.CAN_NOT_MENU.getExceptionMessage());
         }
     }
 }
