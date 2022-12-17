@@ -1,9 +1,7 @@
 package menu.Domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import menu.Util.CategoryAndFood;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryGenerator {

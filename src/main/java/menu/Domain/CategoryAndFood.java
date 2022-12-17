@@ -1,4 +1,6 @@
-package menu.Util;
+package menu.Domain;
+
+import menu.Util.FileInput;
 
 import java.util.ArrayList;
 import java.util.Arrays;
