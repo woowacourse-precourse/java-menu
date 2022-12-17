@@ -26,10 +26,17 @@ public class Coach {
        if (isCannotEatFood(recommendMenu)) {
            canRecommendMenuEat = false;
        }
+       if (isAlreadyEat(recommendMenu)) {
+            canRecommendMenuEat = false;
+       }
        return canRecommendMenuEat;
     }
 
     private boolean isCannotEatFood(String recommendMenu) {
         return cannotEatFoods.contains(recommendMenu);
+    }
+
+    private boolean isAlreadyEat(String recommendFood) {
+        return alreadyEatenFoods.contains(recommendFood);
     }
 }
