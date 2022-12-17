@@ -5,6 +5,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Objects;
 
 public class RecommendationMachine {
+
+    private static final int INDEX_FOR_RANDOM = 0;
+
     public Category category() {
         while (true) {
             Category category = randomCategory();
@@ -28,7 +31,7 @@ public class RecommendationMachine {
     }
 
     private Menu randomMenu(Menus allMenus) {
-        String menuName = Randoms.shuffle(allMenus.getNames()).get(0);
+        String menuName = Randoms.shuffle(allMenus.getNames()).get(INDEX_FOR_RANDOM);
         return allMenus.findMenu(menuName);
     }
 }
