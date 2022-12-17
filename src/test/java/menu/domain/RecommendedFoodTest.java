@@ -30,8 +30,6 @@ class RecommendedFoodTest {
     @DisplayName("못 먹는 음식의 포함 여부를 체크한다")
     void checkDislikeNotIncluded() {
         assertThat(recommendedFood.getFoods()).doesNotContainAnyElementsOf(dislike);
-        //중복된 음식 체크
-        //카테고리에 맞는 음식 체킄
     }
 
     @Test
