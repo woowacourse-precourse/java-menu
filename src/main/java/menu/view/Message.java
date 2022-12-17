@@ -35,7 +35,7 @@ public enum Message {
 		for (int i = 0; i < categoryList.size() - 1; i++) {
 			sb.append(categoryList.get(i).getCategoryName()).append(" | ");
 		}
-		sb.append(categoryList.get(categoryList.size() - 1)).append(" ]");
+		sb.append(categoryList.get(categoryList.size() - 1).getCategoryName()).append(" ]").append('\n');
 		return sb.toString();
 	}
 

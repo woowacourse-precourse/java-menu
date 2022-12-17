@@ -22,8 +22,7 @@ public class MenuController {
 		menuService.startService();
 		List<Coach> coachList = menuService.makeCoachList();
 		menuService.setNotEatFood(coachList);
-		menuService.recommendCategory(coachList);
-		menuService.recommendFood(coachList);
+		menuService.recommendFoodByCategory(coachList);
 		menuService.finishService(coachList);
 	}
 

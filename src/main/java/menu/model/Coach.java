@@ -5,22 +5,41 @@ import java.util.List;
 
 public class Coach {
 
-	private static final int MONDAY = 0;
-	private static final int FRIDAY = 4;
-
 	private String name;
 	private List<String> notEatFoodList;
 	private List<String> recommendFoodList;
 	private List<Category> categoryList;
 
-	public void setCategoryList(List<Category> categoryList) {
-		this.categoryList = categoryList;
-	}
-
 	public Coach(String name) {
 		this.name = name;
 		this.categoryList = new ArrayList<>();
 		this.recommendFoodList = new ArrayList<>();
+	}
+
+	public boolean addCategoryList(Category category) {
+		int duplicateCount = 0;
+		for (Category getCategory : categoryList) {
+			if (category.equals(getCategory)) {
+				duplicateCount++;
+			}
+		}
+		if (duplicateCount > 2) {
+			return false;
+		}
+
+		this.categoryList.add(category);
+		return true;
+	}
+
+	public boolean addRecommendList(String food) {
+		if (this.recommendFoodList.contains(food)) {
+			return false;
+		}
+		if (this.notEatFoodList.contains(food)) {
+			return false;
+		}
+		this.recommendFoodList.add(food);
+		return true;
 	}
 
 	public String getName() {
@@ -35,32 +54,13 @@ public class Coach {
 		this.notEatFoodList = notEatFoodList;
 	}
 
-	public boolean isCategorySizeFull() {
-		return this.categoryList.size() < 5;
-	}
-
-	public boolean isRecommendFoodListSizeFull() {
-		return this.recommendFoodList.size() < 5;
-	}
-
-	public boolean setRecommendFood(String menu) {
-		if (this.notEatFoodList.contains(menu)) {
-			return false;
-		}
-		if (this.recommendFoodList.contains(menu)) {
-			return false;
-		}
-		this.recommendFoodList.add(menu);
-		return true;
-	}
-
 	public String getRecommendFoodList() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("[ ").append(this.name).append(" | ");
-		for (int day = MONDAY; day < FRIDAY; day++) {
+		for (int day = 0; day < recommendFoodList.size() - 1; day++) {
 			sb.append(this.recommendFoodList.get(day)).append(" | ");
 		}
-		sb.append(this.recommendFoodList.get(FRIDAY)).append(" ]");
+		sb.append(this.recommendFoodList.get(recommendFoodList.size() - 1)).append(" ]");
 		return sb.toString();
 	}
 
