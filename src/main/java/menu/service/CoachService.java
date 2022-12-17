@@ -2,6 +2,7 @@ package menu.service;
 
 import java.util.List;
 import menu.domain.Coach;
+import menu.view.InputView;
 import menu.view.OutputView;
 
 public class CoachService {
@@ -12,6 +13,6 @@ public class CoachService {
 
     private List<String> getCoachNames() {
         OutputView.messageNamesInput();
-        return null;
+        return InputView.readCoachNames();
     }
 }
