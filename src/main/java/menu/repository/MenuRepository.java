@@ -47,4 +47,8 @@ public class MenuRepository {
                 .replaceAll(SPACE, NONE)
                 .split(COMMA);
     }
+
+    public List<String> getMenus(final MenuCategory category) {
+        return menus.get(category);
+    }
 }
