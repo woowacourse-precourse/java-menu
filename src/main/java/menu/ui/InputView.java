@@ -10,6 +10,7 @@ public class InputView {
         List<String> coachNames = Arrays.asList(
                 Console.readLine().split(",")
         );
+        addEmptyLine();
         return coachNames;
     }
 
@@ -19,6 +20,7 @@ public class InputView {
         List<String> inedibleFoods = Arrays.asList(
                 Console.readLine().split(",")
         );
+        addEmptyLine();
         return inedibleFoods;
     }
 
