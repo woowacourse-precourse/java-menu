@@ -39,6 +39,25 @@ public class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("싫어하는 메뉴의 입력이 정상인 경우")
+    @Test
+    void goodHateMenus() {
+        List<String> names = inputView.parseHateMenus("우동,스시");
+        assertThat(names).containsOnly("우동","스시");
+
+        names = inputView.parseHateMenus("우동");
+        assertThat(names).containsOnly("우동");
+
+        names = inputView.parseHateMenus("");
+        assertThat(names).containsOnly("");
+    }
+
+    @DisplayName("싫어하는 메뉴의 수가 잘못된 경우")
+    @Test
+    void wrongNumHateMenus() {
+        assertThatThrownBy(() -> inputView.parseHateMenus("우동,스시,뇨끼,월남쌈"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
 
 
