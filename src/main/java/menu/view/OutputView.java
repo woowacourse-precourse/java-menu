@@ -1,5 +1,8 @@
 package menu.view;
 
+import java.util.List;
+import menu.domain.Coach;
+
 public class OutputView {
 
     private static final OutputView instance = new OutputView();
@@ -21,8 +24,15 @@ public class OutputView {
         System.out.println(exception.getMessage());
     }
 
+    public void printRecommendedMenus(List<Coach> coaches) {
+        System.out.println(Message.OUTPUT_MENU_RESULT.message);
+
+    }
+
     private enum Message {
-        OUTPUT_START("점심 메뉴 추천을 시작합니다.");
+        OUTPUT_START("점심 메뉴 추천을 시작합니다."),
+        OUTPUT_MENU_RESULT("\n메뉴 추천 결과입니다."),
+        OUTPUT_DIVISION("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
 
         private final String message;
 

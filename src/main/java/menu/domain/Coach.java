@@ -7,7 +7,6 @@ import java.util.Map;
 
 public class Coach {
 
-    public static final int MAX_SAME_CATEGORY = 2;
     private final String name;
     private final List<Menu> menuNotToEat = new ArrayList<>();
     private final List<Category> categoriesAlreadyEaten = new ArrayList<>();
@@ -29,9 +28,6 @@ public class Coach {
         menuAlreadyEaten.put(day, menu);
     }
 
-    public boolean isAvailableCategory(Category category) {
-        return countCategoryOf(category) < MAX_SAME_CATEGORY;
-    }
 
     public boolean isAvailableMenu(Menu menu) {
         return isNotAlreadyEatenMenu(menu) && isNotMenuNotToEat(menu);

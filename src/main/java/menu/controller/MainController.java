@@ -65,22 +65,24 @@ public class MainController {
 
     private ApplicationStatus startRecommendation() {
         for (Day day : Day.values()) {
+            Category category = pickAvailableCategory();
             for (Coach coach : CoachRepository.coaches()) {
-                Category category = pickAvailableCategory(coach);
                 Menu menu = pickAvailableMenu(coach, category);
                 coach.addCategoriesAlreadyEaten(category);
                 coach.addMenuAlreadyEaten(day, menu);
             }
+            CategoryRepository.addCategoryCount(category);
         }
-        CoachRepository.coaches()
-                .forEach(coach -> System.out.println(coach.getMenuAlreadyEaten()));
+        CoachRepository.coaches().forEach(coach -> System.out.println(coach.getMenuAlreadyEaten()));
+
+        outputView.printRecommendedMenus(CoachRepository.coaches());
         return ApplicationStatus.APPLICATION_EXIT;
     }
 
-    private Category pickAvailableCategory(Coach coach) {
+    private Category pickAvailableCategory() {
         Category category = CategoryRepository.pickRandomCategory();
-        if (!coach.isAvailableCategory(category)) {
-            return pickAvailableCategory(coach);
+        if (!CategoryRepository.isAvailableCategory(category)) {
+            return pickAvailableCategory();
         }
         return category;
     }
