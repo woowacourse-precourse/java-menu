@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class RecommendCategoryMakerTest {
-    
+
     private final RecommendCategoryMaker recommendCategoryMaker =
             new RecommendCategoryMaker(new RandomNumberGenerator());
 

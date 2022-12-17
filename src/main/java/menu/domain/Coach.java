@@ -1,6 +1,7 @@
 package menu.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Coach {
@@ -48,7 +49,6 @@ public class Coach {
         }
     }
 
-
     private boolean isHateOrDuplicateMenu(String menu) {
         return isHateMenu(menu) || duplicateLunchMenu(menu);
     }
@@ -62,7 +62,7 @@ public class Coach {
     }
 
     public List<String> getLunchMenus() {
-        return lunchMenus;
+        return Collections.unmodifiableList(lunchMenus);
     }
 
     public String getName() {

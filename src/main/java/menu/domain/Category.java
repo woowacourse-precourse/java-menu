@@ -23,10 +23,6 @@ public enum Category {
         this.menus = menus;
     }
 
-    public List<String> getMenus() {
-        return menus;
-    }
-
     public String getName() {
         return name;
     }
