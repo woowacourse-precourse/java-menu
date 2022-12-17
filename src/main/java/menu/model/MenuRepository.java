@@ -14,7 +14,7 @@ public class MenuRepository {
     private static final String WESTERN = "라자냐, 그라탱, 뇨끼, 끼슈, 프렌치 토스트, 바게트, 스파게티, 피자, 파니니";
     private final List<Menu> menus;
 
-    public MenuRepository(List<Menu> menus) {
+    public MenuRepository() {
         this.menus = new ArrayList<>();
     }
 
