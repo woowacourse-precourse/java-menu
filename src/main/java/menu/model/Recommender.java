@@ -8,8 +8,8 @@ import java.util.List;
 public class Recommender {
     
     public Category recommendCategory(){
-        int randomNumber = Randoms.pickNumberInRange(0, 4);
-        return Category.get(randomNumber);
+        int randomNumber = Randoms.pickNumberInRange(1, 5);
+        return Category.get(randomNumber-1);
     }
 
     public String recommendMenuOfCategory(Category category){

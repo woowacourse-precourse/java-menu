@@ -11,6 +11,7 @@ public class InputView {
         String[] coachNames = parse(input);
         InputValidator.validateCoachNamesNumber(coachNames);
         for(String coachName : coachNames){
+            InputValidator.validateNameFormat(coachName);
             InputValidator.validateCoachNameLength(coachName);
         }
         return coachNames;
