@@ -1,21 +1,22 @@
 package menu.controller;
 
 import java.util.List;
-import menu.utils.validator.CoachValidator;
+import menu.domain.Coaches;
+import menu.utils.validator.CoachesValidator;
 import menu.utils.validator.ProhibitedMenuValidator;
 import menu.view.InputView;
 import menu.view.OutputView;
 
 public class InputController {
 
-    public static List<String> getCoachNames(){
+    public static Coaches getCoaches(){
         try {
             List<String> coachNames = InputView.inputCoachNames();
-            new CoachValidator(coachNames);
-            return coachNames;
+            new CoachesValidator(coachNames);
+            return new Coaches(coachNames);
         }catch (IllegalArgumentException e){
             OutputView.printError(e.getMessage());
-            return getCoachNames();
+            return getCoaches();
         }
     }
 
