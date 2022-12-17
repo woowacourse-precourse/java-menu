@@ -1,6 +1,9 @@
 package menu.controller;
 
-import menu.domain.*;
+import menu.domain.category.Category;
+import menu.domain.category.CategoryRepository;
+import menu.domain.category.CategoryType;
+import menu.domain.menu.MenuRepository;
 
 import java.util.List;
 import java.util.Map;
@@ -30,10 +33,12 @@ public class InitController {
     private void initCategoryAndMenuRepository() {
         for (String categoryName : map.keySet()) {
             Category category = new Category(categoryName);
-            categoryRepository.save(category);
+            int categoryId = CategoryType.getIndexByKorean(categoryName);
+            categoryRepository.save(categoryId, category);
             initMenuRepository(category);
         }
     }
+
 
     private void initMenuRepository(Category category) {
         for (String menuNames : map.get(category.getName())) {
