@@ -3,6 +3,8 @@ package menu.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Coach {
     private final CoachName name;
@@ -25,19 +27,13 @@ public class Coach {
 
     public void addMenu(String categoryName) {
         Category category = new Category();
-        String menu;
-        do {
-            menu = category.getRandomMenu(categoryName);
-        } while (!isEatable(menu) && !isNotDuplicated(menu));
+        String menu = category.getRandomMenu(categoryName, getCannotEatableMenus());
         eatMenus.add(menu);
     }
 
-    private boolean isEatable(String menu) {
-        return !cannotEatMenus.contains(menu);
-    }
-
-    private boolean isNotDuplicated(String menu) {
-        return !eatMenus.contains(menu);
+    private List<String> getCannotEatableMenus() {
+        return Stream.concat(cannotEatMenus.stream(), eatMenus.stream())
+                .collect(Collectors.toList());
     }
 
     public List<String> getMenus() {

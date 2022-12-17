@@ -37,7 +37,11 @@ public class Category {
         return categoires.get(Randoms.pickNumberInRange(1, 5));
     }
 
-    public String getRandomMenu(String category) {
-        return Randoms.shuffle(categoryAll.get(category)).get(0);
+    public String getRandomMenu(String category, List<String> cannotEatMenus) {
+        String menu;
+        do {
+            menu = Randoms.shuffle(categoryAll.get(category)).get(0);
+        } while (cannotEatMenus.contains(menu));
+        return menu;
     }
 }
