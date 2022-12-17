@@ -19,8 +19,8 @@ public class MenuController {
 
     public void start(){
         outputView.printInit();
-        inputView.inputCoachName();
         input(CoachGroup::new, inputView::inputCoachName);
+
     }
 
     public <T, R> R input(Function<T, R> function, Supplier<T> supplier) {

@@ -17,6 +17,10 @@ public class CoachGroup {
         coaches = makeCoachGroup(parseNames);
     }
 
+    public List<Coach> getCoaches() {
+        return coaches;
+    }
+
     public List<String> parseName(String names){
         String[] split = names.split(SEPARATOR);
         return Arrays.stream(split).map(s->s.trim()).collect(Collectors.toList());
