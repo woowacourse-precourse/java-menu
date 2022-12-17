@@ -36,6 +36,10 @@ public class OutputView {
         System.out.println(message);
     }
 
+    public void printBlackLine() {
+        printlnMessage("");
+    }
+
     public void printStart() {
         printlnMessage(START_MESSAGE);
         printlnMessage("");
@@ -59,16 +63,22 @@ public class OutputView {
         printMessage(OPEN_EMBRACE);
         printMessage(SPACE + CATEGORY_MESSAGE + SPACE);
         for (int i = 0; i < categoryResultList.size(); i++) {
+            printMessage(DELIMITER);
             printMessage(SPACE + categoryResultList.get(i) + SPACE);
-            if (i != categoryResultList.size() - 1) {
-                printMessage(DELIMITER);
-            }
         }
         printlnMessage(CLOSE_EMBRACE);
     }
 
     public void printMenuResult(MenuResult menuResult) {
-
+        String coachName = menuResult.getCoachName();
+        List<String> menuList = menuResult.getMenuList();
+        printMessage(OPEN_EMBRACE);
+        printMessage(SPACE + coachName + SPACE);
+        for (int i = 0; i < menuList.size(); i++) {
+            printMessage(DELIMITER);
+            printMessage(SPACE + menuList.get(i) + SPACE);
+        }
+        printlnMessage(CLOSE_EMBRACE);
     }
 
     public void printResultBody() {
