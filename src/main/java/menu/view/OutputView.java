@@ -4,6 +4,7 @@ import java.util.List;
 import menu.domain.Category;
 import menu.domain.Coach;
 import menu.message.NoticeMessage;
+import menu.util.Constant;
 
 public class OutputView {
     private static final String END_NOTICE_PREFIX = "[ ";
@@ -41,7 +42,7 @@ public class OutputView {
         result.append(END_NOTICE_PREFIX);
         result.append("카테고리");
 
-        for (int day = 0; day < 5; day++) {
+        for (int day = 0; day < Constant.NUMBER_OF_DAY; day++) {
             result.append(END_NOTICE_MIDFIX);
             result.append(categoryHistory.get(day).getName());
         }
@@ -58,7 +59,7 @@ public class OutputView {
         result.append(coach.getName());
 
         List<String> recommendedMenus = coach.getRecommendedMenus();
-        for (int day = 0; day < 5; day++) {
+        for (int day = 0; day < Constant.NUMBER_OF_DAY; day++) {
             result.append(END_NOTICE_MIDFIX);
             result.append(recommendedMenus.get(day));
         }

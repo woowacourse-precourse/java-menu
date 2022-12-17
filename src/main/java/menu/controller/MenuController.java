@@ -7,12 +7,11 @@ import menu.domain.CategoryHistory;
 import menu.domain.Coach;
 import menu.service.CategoryService;
 import menu.service.MenuService;
+import menu.util.Constant;
 import menu.view.InputView;
 import menu.view.OutputView;
 
 public class MenuController {
-    private static final int NUMBER_OF_DAY = 5;
-
     private InputView inputView;
     private OutputView outputView;
     private CategoryHistory categoryHistory;
@@ -34,7 +33,7 @@ public class MenuController {
         readCoachNames();
         readDislikeFoods();
 
-        for (int day = 1; day <= NUMBER_OF_DAY; day++) {
+        for (int day = 1; day <= Constant.NUMBER_OF_DAY; day++) {
             recommendMenu();
         }
 
