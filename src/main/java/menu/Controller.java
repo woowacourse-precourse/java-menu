@@ -9,29 +9,44 @@ public class Controller {
     private static MenuRecommender menuRecommender = new MenuRecommender();
 
     public static void run() {
+        showStart();
 
-        //게임 시작
-        outputView.printStartMessage();
+        List<String> coaches = getCoachName();
+        List<Member> members = getMemberInformation(coaches);
+        reflectResult(members);
 
-        //코치 이름 입력받기
-        outputView.printCoachNameInformMessage();
-        List<String> coaches = inputView.readCoachNames();
+        showResult();
+    }
+
+    private static void showResult() {
+        outputView.printResult(menuRecommender);
+    }
+
+    private static void reflectResult(List<Member> members) {
+        menuRecommender.setMembers(members);
+        menuRecommender.makeRecommends();
+    }
+
+    private static List<Member> getMemberInformation(List<String> coaches) {
         List<Member> members = new ArrayList<>();
 
-        //편식 음식 입력받기
         for (String coachName : coaches) {
             outputView.printPickEatingsInformMessage(coachName);
             List<String> pickyEatings = inputView.readPickyEatings();
 
             members.add(new Member(coachName, pickyEatings));
         }
-        menuRecommender.setMembers(members);
+        return members;
+    }
 
-        menuRecommender.makeRecommends();
+    private static List<String> getCoachName() {
+        outputView.printCoachNameInformMessage();
+        List<String> coaches = inputView.readCoachNames();
+        return coaches;
+    }
 
-        outputView.printResult(menuRecommender);
-
-        return;
+    private static void showStart() {
+        outputView.printStartMessage();
     }
 
     public static void main(String[] args) {
