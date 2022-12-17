@@ -26,6 +26,10 @@ public class OutputView {
         System.out.println(phrase);
     }
 
+    public void printPhrase(String phrase, String parameter) {
+        System.out.println(String.format(phrase, parameter));
+    }
+
     public void printErrorMessage(String message) {
         System.out.println(Prefix.ERROR.getPrefix() + message);
     }
