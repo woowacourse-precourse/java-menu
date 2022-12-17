@@ -1,7 +1,7 @@
 package menu.di;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -22,12 +22,10 @@ public class MenuUseCaseImpl implements MenuUseCase {
     }
 
     private Map<Category, List<String>> toMenus(Map<String, List<String>> input) {
-        Map<Category, List<String>> menus = new HashMap<>();
+        EnumMap<Category, List<String>> categorizedMenus = new EnumMap<>(Category.class);
 
-        input.entrySet()
-                .stream()
-                .forEach(it -> menus.put(Category.from(it.getKey()), it.getValue()));
-        return menus;
+        input.forEach((key, value) -> categorizedMenus.put(Category.from(key), value));
+        return categorizedMenus;
     }
 
     @Override
