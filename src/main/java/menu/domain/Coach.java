@@ -1,6 +1,7 @@
 package menu.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Coach {
@@ -19,5 +20,11 @@ public class Coach {
 
     public List<String> getDislikeFood() {
         return dislikeFood;
+    }
+
+    public void addDislikeFood(String foodInput) {
+        String[] foods = foodInput.split(",");
+
+        dislikeFood.addAll(Arrays.asList(foods));
     }
 }
