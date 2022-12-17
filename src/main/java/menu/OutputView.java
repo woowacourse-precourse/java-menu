@@ -38,7 +38,7 @@ public class OutputView {
 	public void printEachPersonResult() {
 		for(int person = 0; person < result.size(); person++) {
 			System.out.printf("[ %s ", coachName.get(person));
-			ArrayList<String> eachMenu = result.get(person);
+			ArrayList<String> eachMenu = result.get(coachName.get(person));
 			printEachPersonMenu(eachMenu);
 		}
 	}
