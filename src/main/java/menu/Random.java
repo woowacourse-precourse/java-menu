@@ -2,6 +2,7 @@ package menu;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Random {
@@ -10,15 +11,31 @@ public class Random {
         return menuCategory;
     }
     public String RandomMenu(List<Menu> menu,String Category,List<String> nonfood){
+
         int index=0;
-        for(int i=0; i<menu.size(); i++){
-            if(menu.get(i).category.equals(Category)){
-                index=i;
-            }
-        }
+        if(Category.equals("일식"))
+            index=1;
+        else if(Category.equals("한식"))
+            index=2;
+        else if(Category.equals("중식"))
+            index=3;
+        else if(Category.equals("아시안"))
+            index=4;
+        else if(Category.equals("양식"))
+            index=5;
+//        System.out.println(Category);
+//        for(int i=0; i<menu.get(index-1).food.size(); i++){
+//            System.out.print(Randoms.shuffle(menu.get(index-1).food).get(i));
+//        }
+//        System.out.println("");
+
         String menuFood;
+
         while(true) {
-            menuFood = Randoms.shuffle(menu.get(index).food).get(0);
+            menuFood = Randoms.shuffle(menu.get(index-1).food).get(0);
+            if(!menu.contains(menuFood)){
+                continue;
+            }
             if (nonfood.contains(menuFood)) {
                 continue;
             }

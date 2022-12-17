@@ -25,10 +25,10 @@ public class Controller {
         }
         return coachInfo;
     }
-    public void recommendMenu(List<Coach> coachInfo){
+    public List<Result> recommendMenu(List<Coach> coachInfo){
         Recommend recommend = new Recommend();
         messageView.recommendMessage();
-        recommend.recommend(coachInfo);
+        return recommend.recommend(coachInfo);
     }
 
 }

@@ -6,6 +6,7 @@ public class Menu {
     int categoryNum;
     String category;
     List<String> food;
+
     Menu(int categoryNum,String category, List<String> food){
         this.categoryNum = categoryNum;
         this.category = category;

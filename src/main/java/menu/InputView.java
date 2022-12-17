@@ -16,20 +16,19 @@ public class InputView {
         return names;
     }
     public String[] validateNumber(){
-        String[] name;
         while(true) {
-            name = Console.readLine().split(",");
+            String[] name = Console.readLine().split(",");
             try {
                 if (name.length < 2 || name.length > 5)
                     throw new IllegalArgumentException("[ERROR] 최소2명 최대 5명 입력");
                 if(validateName(name))
                     throw new IllegalArgumentException("[ERROR] 최소 2글자, 최대 4글자 입력");
-                break;
+                return name;
             }
-            catch(IllegalArgumentException e)
+            catch(IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+            }
         }
-        return name;
     }
 
     public boolean validateName(String[] name) throws IllegalArgumentException{

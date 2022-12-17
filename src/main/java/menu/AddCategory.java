@@ -39,7 +39,7 @@ public class AddCategory {
     }
     private Menu addMenu(int num,String foodName,String category,List<Menu> menu){
         List<String> countryFood = new ArrayList<>();
-        String[] food = foodName.split(",");
+        String[] food = foodName.split(", ");
         for(int i=0; i<food.length; i++)
             countryFood.add(food[i]);
         return (new Menu(num,category,countryFood));
