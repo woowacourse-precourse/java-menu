@@ -39,7 +39,7 @@ public class MenuController {
             recommendMenu();
         }
 
-        outputView.printServiceEndNotice(coaches);
+        outputView.printServiceEndNotice(categoryHistory.getCategoryHistory(), coaches);
     }
 
     private void readCoachNames() {
