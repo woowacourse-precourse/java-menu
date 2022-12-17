@@ -8,6 +8,10 @@ public class OutputView {
         System.out.println(NoticeMessage.SERVICE_START_NOTICE + '\n');
     }
 
+    public void printCoachNameInputNotice() {
+        System.out.println(NoticeMessage.COACH_NAME_INPUT_NOTICE + '\n');
+    }
+
     public void printServiceEndNotice() {
         System.out.println(NoticeMessage.SERVICE_END_NOTICE + '\n');
     }
