@@ -1,6 +1,7 @@
 package menu.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Category {
@@ -22,5 +23,9 @@ public class Category {
 
     public String getName() {
         return name;
+    }
+
+    public List<String> getAllFoods() {
+        return Collections.unmodifiableList(foods);
     }
 }
