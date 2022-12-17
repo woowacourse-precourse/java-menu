@@ -33,7 +33,7 @@ public class MenuRecommand {
         OutputView.printResult(coaches,coachesHs,category.getCategory());
     }
 
-    public String recommandMenuByCategory(List<String> inEdibleMenu, Integer category) {
+    public static String recommandMenuByCategory(List<String> inEdibleMenu, Integer category) {
         Menu menu = new Menu(category);
         return menu.recommandMenu(inEdibleMenu);
     }
