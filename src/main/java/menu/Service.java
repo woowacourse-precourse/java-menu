@@ -33,4 +33,14 @@ public class Service {
 			countCotegory.put(category.getCategory(index), 0);
 		}
 	}
+
+
+
+	public int countSelect() {
+		int count = 0;
+		for (int countValue : countCotegory.values())
+			count += countValue;
+		return count;
+	}
+
 }
