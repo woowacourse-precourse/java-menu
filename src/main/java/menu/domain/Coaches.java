@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.constant.Category;
 import menu.domain.constant.Day;
+import menu.domain.vo.CoachMenu;
 
 public class Coaches {
     private final List<Coach> coaches;
@@ -39,5 +40,12 @@ public class Coaches {
 
     public void recommendMenuForEachCoach(Day day, Category categoryOfDay) {
         coaches.forEach(coach -> coach.recommendMenuOfDay(day, categoryOfDay));
+    }
+
+    public List<CoachMenu> getCoachMenus() {
+        List<CoachMenu> coachMenus = new ArrayList<>();
+        coaches.forEach(coach -> {
+            coachMenus.add(coach.getCoachMenu());
+        });
     }
 }

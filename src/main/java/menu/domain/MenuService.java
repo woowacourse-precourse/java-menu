@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import menu.domain.constant.Category;
 import menu.domain.constant.Day;
+import menu.domain.vo.CoachMenu;
 
 public class MenuService {
     private final Coaches coaches;
@@ -39,5 +40,9 @@ public class MenuService {
     private void recommendMenuOfDay(Day day) {
         Category categoryOfDay = weeklyCategory.getCategoryOfDay(day);
         coaches.recommendMenuForEachCoach(day, categoryOfDay);
+    }
+
+    public List<CoachMenu> getCoachMenus() {
+        return coaches.getCoachMenus();
     }
 }
