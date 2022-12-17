@@ -39,7 +39,7 @@ public class MenuController {
     private void recommendMenu() {
         List<Coach> coaches = coachService.findAll();
         for (Coach coach : coaches) {
-            InvalidMenusDto invalidMenusDto = inputView.readMenuNames(coach.getName());
+            InvalidMenusDto invalidMenusDto = Retry.execute(inputView::readMenuNames, coach.getName());
             coach.addInvalidMenus(invalidMenusDto.getMenus());
         }
         MenusDto result = menuService.recommendMenus(coaches);
