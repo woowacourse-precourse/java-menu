@@ -91,18 +91,18 @@ public class RecommenderController {
     }
 
     private void recommendMenuToCoach() {
-        for (Coach coach : coaches) {
-            recommendValidMenu(coach);
+        for (Category category : recommendedCategories) {
+            recommendValidMenu(category);
         }
     }
 
-    private void recommendValidMenu(Coach coach) {
-        for (Category category : recommendedCategories) {
+    private void recommendValidMenu(Category category) {
+        for (Coach coach : coaches) {
             String menu;
             do {
                 menu = menuRecommender.recommendMenu(category);
             }
-            while (!(coach.canEatMenu(menu) && !coach.isDuplicateMenu(menu)));
+            while (!coach.canEatMenu(menu) || coach.isDuplicateMenu(menu));
             coach.setRecommendedMenu(menu);
         }
     }
