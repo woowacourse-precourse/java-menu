@@ -1,13 +1,18 @@
 package menu.controller;
 
+import menu.domain.Category;
 import menu.view.InputView;
 import menu.view.OutputView;
 
 public class MenuController {
+    private final Category category;
+    public MenuController() {
+        this.category = new Category();
+    }
     public void start() {
         try {
             OutputView.printStart();
-            boolean keep = true;
+            boolean keep = false;
             while (keep) {
                 readCoach();
                 keep = false;
