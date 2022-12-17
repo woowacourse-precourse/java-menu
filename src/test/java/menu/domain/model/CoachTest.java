@@ -1,13 +1,12 @@
 package menu.domain.model;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CoachTest {
 
@@ -35,5 +34,16 @@ class CoachTest {
         assertThatThrownBy(() -> coach = new Coach("항", menus))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 이름은 최소 2글자, 최대 4글지 이어야합니다.");
+    }
+
+    @Test
+    void 못먹는_메뉴가_0_2가아니면_예외발생() {
+        List<Menu> menus = List.of(new Menu(Category.JAPAN_FOOD, "우동"),
+                new Menu(Category.JAPAN_FOOD, "스시"),
+                new Menu(Category.JAPAN_FOOD, "오니기리")
+        );
+        assertThatThrownBy(() -> coach = new Coach("토미", menus))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 못먹는 메뉴는 최소 0개 최대 2개이어야 합니다.");
     }
 }
