@@ -12,4 +12,8 @@ public class Coach {
         this.menus = new ArrayList<>();
         this.name = name;
     }
+
+    public String getName() {
+        return name;
+    }
 }
