@@ -16,11 +16,33 @@ public class MenuRecommender {
         this.coaches = coaches;
     }
 
+    public List<List<String>> getRecommendationResult() {
+        List<List<String>> result = new ArrayList<>();
+
+        for (Coach coach : coaches) {
+            result.add(planSingleCoach(coach));
+        }
+
+        return result;
+    }
+
+    private List<String> planSingleCoach(Coach coach) {
+        List<String> singleCoach = new ArrayList<>();
+
+        for (Category category : categoryHistory) {
+            singleCoach.add(recommendMenu(category, coach));
+        }
+
+        return singleCoach;
+    }
+
     private void planCategory() {
         for (int day = 0; day < 5; day++) {
             categoryHistory.add(returnValidCategory());
         }
     }
+
+
 
     private Category returnValidCategory() {
         Category category = null;
