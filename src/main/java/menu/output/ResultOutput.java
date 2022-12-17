@@ -3,41 +3,48 @@ package menu.output;
 import java.util.List;
 import menu.domain.CategoryRecommendation;
 import menu.domain.Coach;
+import menu.domain.Day;
 import menu.domain.Food;
 import menu.domain.FoodCategory;
+import menu.message.ResultMessage;
 
 public class ResultOutput {
-    private static final String resultMessage = "메뉴 추천 결과입니다.\n"
-            + "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]";
-    private static final String firstLetterOfLine = "[ ";
-    private static final String lastLetterOfLine = " ]";
-    private static final String categoryInKorean = "카테고리";
-    private static final String delimiter = " | ";
     public static void printResult(List<Coach> coaches) {
-        System.out.println();
-        System.out.println(resultMessage);
+        printResultIntroduction();
         printRecommendedCategories();
         printCoachesRecommendedFoods(coaches);
     }
 
+    private static void printResultIntroduction() {
+        System.out.println(ResultMessage.RESULT_INTRODUCTION_MESSAGE.getMessage());
+        System.out.print(ResultMessage.HEAD_OF_LINE.getMessage()
+                + ResultMessage.CLASSIFICATION.getMessage());
+        for (Day day : Day.values()) {
+            System.out.print(ResultMessage.DELIMITER.getMessage());
+            System.out.print(day.getName());
+        }
+        System.out.println(ResultMessage.TAIL_OF_LINE.getMessage());
+    }
+
     private static void printRecommendedCategories() {
         List<FoodCategory> categoryRecommendations = CategoryRecommendation.getRecommendations();
-        System.out.print(firstLetterOfLine + categoryInKorean);
+        System.out.print(ResultMessage.HEAD_OF_LINE.getMessage()
+                + ResultMessage.CATEGORY.getMessage());
         for (FoodCategory foodCategory : categoryRecommendations) {
-            System.out.print(delimiter);
+            System.out.print(ResultMessage.DELIMITER.getMessage());
             System.out.print(foodCategory.getName());
         }
-        System.out.println(lastLetterOfLine);
+        System.out.println(ResultMessage.TAIL_OF_LINE.getMessage());
     }
 
     private static void printCoachesRecommendedFoods(List<Coach> coaches) {
         for (Coach coach : coaches) {
-            System.out.print(firstLetterOfLine + coach.getName());
+            System.out.print(ResultMessage.HEAD_OF_LINE.getMessage() + coach.getName());
             for (Food food : coach.getRecommendedFoods()) {
-                System.out.print(delimiter);
+                System.out.print(ResultMessage.DELIMITER.getMessage());
                 System.out.print(food.getName());
             }
-            System.out.println(lastLetterOfLine);
+            System.out.println(ResultMessage.TAIL_OF_LINE.getMessage());
         }
     }
 }
