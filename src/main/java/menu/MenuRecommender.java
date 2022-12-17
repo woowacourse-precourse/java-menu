@@ -28,6 +28,16 @@ public class MenuRecommender {
         categories.add(category);
     }
 
+    public void chooseMenu(String category, Member member) {
+        String menu = MenuRandomGenerator.selectRandomMenu(category);
+
+        //중복과 편식 둘 다 해당하지 않을 때 까지 반복
+        while (!validateMenuDuplication(menu, member) || !validatePickyEating(menu, member)) {
+            menu = MenuRandomGenerator.selectRandomMenu(category);
+        }
+        member.addRecommendedMeal(menu);
+    }
+
     private boolean validateMenuDuplication(String menu, Member member) {
         if (member.getRecommendedMeal().contains(menu)) {
             return false;
