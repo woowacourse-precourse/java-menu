@@ -27,7 +27,7 @@ public class OutputView {
         printDays(days);
         printCategories(categories);
         printCoachAndFoods(coachFoods);
-        System.out.println("\n추천을 완료했습니다.");
+        System.out.print("\n추천을 완료했습니다.");
     }
 
     private void printDays(List<String> days) {
