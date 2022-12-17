@@ -4,7 +4,9 @@ import java.util.List;
 import menu.domain.Category;
 import menu.domain.CategoryHistory;
 import menu.domain.Coach;
+import menu.domain.Menu;
 import menu.service.CategoryService;
+import menu.service.MenuService;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -14,6 +16,7 @@ public class MenuController {
     private OutputView outputView;
     private CategoryHistory categoryHistory;
     private CategoryService categoryService;
+    private MenuService menuService;
     private List<Coach> coaches;
 
     public void startMenuRecommendService() {
@@ -40,9 +43,12 @@ public class MenuController {
     }
 
     private void recommendMenu() {
-        // 카테고리 선정
         Category category = categoryService.selectCategory();
         categoryHistory.addCategory(category);
-        // 카테고리 내의 음식 선정
+
+        for (Coach coach : coaches) {
+            Menu menu = menuService.selectMenu(coach, category);
+            coach.addRecommendedMenu(menu);
+        }
     }
 }
