@@ -26,7 +26,7 @@ class CoachTest {
     }
 
     @Test
-    void requestFormatTest() {
+    void getRecommendMenuFormatTest() {
         coach.canEat("비빔밥");
         coach.canEat("탕수육");
         assertThat(coach.getRecommendMenuFormat().get(0)).isEqualTo("토미");
