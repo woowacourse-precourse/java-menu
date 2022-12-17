@@ -12,25 +12,28 @@ public class MenuController {
     public void init(){
         outputView.printStart();
         makeCoaches();
-        makeEachCoachesCantEatMenu();
+        addCantEatFoodToCoaches();
         menuGame.makeMenuRecommend();
         outputView.printMenuResult(menuGame.getCoachMenus(),
                 menuGame.getMenuRecommend().getCategorys());
     }
 
-    private void makeEachCoachesCantEatMenu() {
+    private void addCantEatFoodToCoaches() {
         for(int i=0;i<menuGame.getCoaches().size();i++){
-            while(true){
-                try{
-                    List<String> cantEatFoods = inputView.inputCantEatMenus(menuGame.getCoaches().get(i).getName());
-                    menuGame.addFoodCoachCantEat(menuGame.getCoaches().get(i),cantEatFoods);
-                }
-                catch (Exception e){
-                    System.out.println(e.getMessage());
-                    continue;
-                }
-                break;
+            addCantEatFoodToEachCoach(i);
+        }
+    }
+    private void addCantEatFoodToEachCoach(int i) {
+        while(true){
+            try{
+                List<String> cantEatFoods = inputView.inputCantEatMenus(menuGame.getCoaches().get(i).getName());
+                menuGame.addFoodCoachCantEat(menuGame.getCoaches().get(i),cantEatFoods);
             }
+            catch (Exception e){
+                System.out.println(e.getMessage());
+                continue;
+            }
+            break;
         }
     }
 
