@@ -62,26 +62,5 @@ Enum : Week , FoodCategory <br>
 
 ### Controller
 - [기능]
+  - 메뉴 추천 기능
 - [예외 처리]
-
-
-
-### 
-```
-[field]<br>
-
-[constructor]<br>
-
-[method]<br>
-
-```
-
-### 
-```
-[field]<br>
-
-[constructor]<br>
-
-[method]<br>
-
-```
