@@ -15,10 +15,6 @@ public class Menu {
         return name;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
     public boolean isEqualName(String name) {
         return this.name.equals(name);
     }
