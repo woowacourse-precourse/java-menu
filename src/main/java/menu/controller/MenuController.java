@@ -1,6 +1,5 @@
 package menu.controller;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,38 +17,32 @@ public class MenuController {
     private final InputView inputView = new InputView();
     private final CategoryGenerator categoryGenerator = new CategoryGenerator();
     private final FoodsFiller foodsFiller = new FoodsFiller();
-    private Crews crews;
     private BannedFoods bannedFoods = new BannedFoods();
     private Categories categories = new Categories();
+    private Crews crews;
 
     public void run() {
-        /**
-         * Todo
-         * 1. 코치 이름 받기
-         * 2. n명의 코치에 대해 못 먹는 메뉴 입력 받기
-         * 3. 요일별 카테고리 채우기
-         * 4. 요일별 코치들의 음식 채우기
-         */
         outputView.printStart();
-        // 1. 코치 이름 받기
         crews = new Crews(getCrews());
-
-        // 2. 못먹는 메뉴 입력 받기
         getBannedFoods();
-
-        // 3. 요일별 카테고리 채우기
-        categories = categoryGenerator.generateCategories();
-
-        // 4. 요일별 코치들의 음식 채우기
-        fillFoods();
-
-        // 5. 출력하기
+        processFillingFoods();
         outputView.printResult(categories, crews);
     }
 
-    private void fillFoods() {
-        for(Crew crew : crews.getCrews()) {
-            foodsFiller.fillFoods(crew, categories, bannedFoods.getBannedFoods());
+    private void processFillingFoods() {
+        for (int i = 0; i < 5; i++) {
+            fillCategory();
+            fillFoods(categories.getCategories().get(i));
+        }
+    }
+
+    private void fillCategory() {
+        categoryGenerator.generateCategories(categories);
+    }
+
+    private void fillFoods(String category) {
+        for (Crew crew : crews.getCrews()) {
+            foodsFiller.fillFoods(crew, category, bannedFoods.getBannedFoods());
         }
     }
 
