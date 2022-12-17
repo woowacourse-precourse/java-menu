@@ -5,8 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class Random {
-    int start=0;
-    int end=9;
+
     public String RandomCategory(List<Menu> menu){
         return menu.get(Randoms.pickNumberInRange(1,5)-1).category;
     }
@@ -20,8 +19,6 @@ public class Random {
             if (nonfood.contains(menuFood)) {
                 continue;
             }
-            start+=9;
-            end+=9;
             break;
         }
         return menuFood;

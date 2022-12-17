@@ -9,9 +9,12 @@ public class Recommend {
         MessageView messageView = new MessageView();
         AddCategory addCategory = new AddCategory();
         List<Menu> menu = new ArrayList<>();
+
         menu = addCategory.add(menu);
+
         List<String> category = recommendCategory(menu);
         messageView.recommendCategoryMessage(category);
+
         List<CoachFood> result =  recommendFood(category,coachInfo,menu);
         messageView.recommendResultMessage(result);
     }
