@@ -14,9 +14,9 @@ public class CoachFoodRecommand {
     private Coach coach;
     private List<String> foods;
 
-    public static CoachFoodRecommand recommandFood(Coach coach, CategoryRecommand categoryRecommand) {
+    public static CoachFoodRecommand recommandFood(Coach coach, List<String> categoryRecommand) {
         List<String> recommandFoods = new ArrayList<String>();
-        for (String category : categoryRecommand.categoryPerDay) {
+        for (String category : categoryRecommand) {
             createRecommandFoodsPerCategory(category, recommandFoods);
         }
 
@@ -54,5 +54,13 @@ public class CoachFoodRecommand {
     private CoachFoodRecommand(Coach coach, List<String> foods) {
         this.coach = coach;
         this.foods = foods;
+    }
+
+    public Coach getCoach() {
+        return this.coach;
+    }
+
+    public List<String> getFoods() {
+        return this.foods;
     }
 }

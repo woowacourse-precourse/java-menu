@@ -12,27 +12,26 @@ public class RecommandMachine {
     private static final Integer MAX_EACH_CATEGORY_COUNT = 2;
     private static final Integer ZERO = 0;
 
-    public List<CoachFoodRecommand> recommand(List<Coach> coaches) {
-        CategoryRecommand categoryRecommand = recommandCategory();
+    public List<CoachFoodRecommand> recommand(List<Coach> coaches, List<String> categories) {
         List<CoachFoodRecommand> foodRecommends = new ArrayList<>();
         for (Coach coach : coaches) {
-            CoachFoodRecommand coachFoodRecommand = CoachFoodRecommand.recommandFood(coach, categoryRecommand);
+            CoachFoodRecommand coachFoodRecommand = CoachFoodRecommand.recommandFood(coach, categories);
             foodRecommends.add(coachFoodRecommand);
         }
         return foodRecommends;
     }
 
-    private CategoryRecommand recommandCategory() {
+    public static List<String> recommandCategory() {
         HashMap<String, Integer> categoryCount = new HashMap<>();
         List<String> categoryPerDay = new ArrayList<>();
         do {
             String category = Category.findCategoryName(Randoms.pickNumberInRange(1, 5));
             putCategory(category, categoryCount, categoryPerDay);
         } while (isContinuePutCategory(categoryCount));
-        return new CategoryRecommand(categoryPerDay);
+        return categoryPerDay;
     }
 
-    private boolean isContinuePutCategory(HashMap<String, Integer> categoryCount) {
+    private static boolean isContinuePutCategory(HashMap<String, Integer> categoryCount) {
         int sum = ZERO;
         for (Integer count : categoryCount.values()) {
             sum += count;
@@ -43,7 +42,7 @@ public class RecommandMachine {
         return true;
     }
 
-    private void putCategory(String category, HashMap<String, Integer> categoryCount, List<String> categoryPerDay) {
+    private static void putCategory(String category, HashMap<String, Integer> categoryCount, List<String> categoryPerDay) {
         if (categoryCount.containsKey(category)) {
             int eachCategoryCount = categoryCount.get(category);
             categoryCount.put(category, eachCategoryCount + 1);
@@ -55,7 +54,7 @@ public class RecommandMachine {
         categoryPerDay.add(category);
     }
 
-    private void checkCountRange(String category, HashMap<String, Integer> categoryCount, List<String> categoryPerDay) {
+    private static void checkCountRange(String category, HashMap<String, Integer> categoryCount, List<String> categoryPerDay) {
         int eachCategoryCount = categoryCount.get(category);
         if (categoryCount.get(category) > MAX_EACH_CATEGORY_COUNT) {
             categoryCount.put(category, eachCategoryCount - 1);

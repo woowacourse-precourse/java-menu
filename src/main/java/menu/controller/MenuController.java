@@ -1,14 +1,12 @@
 package menu.controller;
 
-import menu.domain.Coach;
-import menu.domain.CoachFoodRecommand;
-import menu.domain.NotEatableFood;
-import menu.domain.RecommandMachine;
+import menu.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static menu.domain.Coach.makeCoach;
+import static menu.domain.RecommandMachine.recommandCategory;
 import static menu.view.InputView.*;
 import static menu.view.OutputView.*;
 
@@ -23,8 +21,9 @@ public class MenuController {
     public void start() {
         try {
             List<Coach> coaches = init();
-            List<CoachFoodRecommand> foodRecommands = recommandMachine.recommand(coaches);
-
+            List<String> categories = recommandCategory();
+            List<CoachFoodRecommand> foodRecommands = recommandMachine.recommand(coaches, categories);
+            printFinalResult(categories, foodRecommands);
         } catch (IllegalArgumentException error) {
             printErrorMessage(error.getMessage());
         }

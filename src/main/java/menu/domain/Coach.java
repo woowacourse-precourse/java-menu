@@ -21,15 +21,15 @@ public class Coach {
         return new Coach(name, notEatableFoods);
     }
 
-    public Coach (String name, NotEatableFood notEatableFoods){
+    public Coach(String name, NotEatableFood notEatableFoods) {
         validateCoachName(name);
         this.name = name;
         this.notEatableFoods = notEatableFoods;
     }
 
-    public static void validateCoachNames(List<String> coachNames){
+    public static void validateCoachNames(List<String> coachNames) {
         validateCoachesLength(coachNames);
-        for (int i =0; i< coachNames.size(); i++) {
+        for (int i = 0; i < coachNames.size(); i++) {
             validateCoachName(coachNames.get(i));
         }
     }
@@ -48,11 +48,15 @@ public class Coach {
     }
 
     private static void checkNameLength(String name) {
-        if (name.length() < MIN_COACH_NAME_LENGTH){
+        if (name.length() < MIN_COACH_NAME_LENGTH) {
             throw new IllegalArgumentException(COACH_NAME_OUT_OF_RANGE_MIN);
         }
-        if (name.length() > MAX_COACH_NAME_LENGTH){
+        if (name.length() > MAX_COACH_NAME_LENGTH) {
             throw new IllegalArgumentException(COACH_NAME_OUT_OF_RANGE_MAX);
         }
+    }
+
+    public String getName() {
+        return this.name;
     }
 }
