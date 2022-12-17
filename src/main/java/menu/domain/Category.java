@@ -18,6 +18,10 @@ public enum Category {
     private final String name;
     private final int value;
 
+    public String getName() {
+        return name;
+    }
+
     public static Category from(String name) {
         return Arrays.stream(Category.values())
                 .filter(category -> category.name.equals(name))
