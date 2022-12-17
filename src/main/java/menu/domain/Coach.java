@@ -6,6 +6,7 @@ import java.util.List;
 public class Coach {
     private final String name;
     private List<String> forbiddenFoods;
+    private List<String> recommendFoods;
 
     public Coach(String name, List<String> forbiddenFoods) {
         this.name = name;
@@ -20,4 +21,7 @@ public class Coach {
         return forbiddenFoods;
     }
 
+    public void setRecommendFoods(List<String> recommendFoods) {
+        this.recommendFoods = recommendFoods;
+    }
 }
