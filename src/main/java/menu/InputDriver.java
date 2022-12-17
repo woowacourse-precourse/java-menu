@@ -60,17 +60,8 @@ public class InputDriver {
     }
 
     public String checkIfValidStringForMenuList(String readLine) {
-        checkIfSplitMenuValid(readLine);
         checkIfMenuNumberValid(readLine);
         return readLine;
-    }
-
-
-    private void checkIfSplitMenuValid(String readLine) {
-        if (List.of(readLine.split(",")).contains("")){
-            outputDriver.printErrorForScanMenuSpliting();
-            throw new IllegalArgumentException();
-        }
     }
 
     private void checkIfMenuNumberValid(String readLine) {
