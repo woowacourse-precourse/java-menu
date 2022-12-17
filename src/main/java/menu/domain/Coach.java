@@ -5,10 +5,11 @@ import java.util.List;
 public class Coach {
 
     private String coachName;
-    private List<String> disLiekMenus;
+    private List<String> disLikeMenus;
 
-    Coach(String coachName, List<String> disLiekMenus) {
+    public Coach(String coachName, List<String> disLikeMenus) {
         this.coachName = coachName;
-        this.disLiekMenus = disLiekMenus;
+        this.disLikeMenus = disLikeMenus;
+        System.out.println("이건 코치"+ this.coachName+ this.disLikeMenus);
     }
 }
