@@ -20,7 +20,7 @@ public class Validate {
 
     private enum Message {
         ERROR_DIFFERENT_NAME_LENGTHS("[ERROR] 코치의 이름은 최소 2글자, 최대 4글자이다."),
-        ERROR_DIFFERENT_COACH_LENGTHS("[ERROR] 코치는 최소 2명, 최대 5명까지 식사를 함께 한다."),
+        ERROR_DIFFERENT_COACH_LENGTHS("[ERROR] 코치는 최소 2명, 최대 5명까지 식사를 함께 한다.");
 
         private final String message;
 
