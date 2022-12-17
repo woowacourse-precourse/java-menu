@@ -7,7 +7,7 @@ public class FoodRecommender {
     private FoodRecommender() {
     }
 
-    public static String pickRandomFood(List<String> categories) {
-        return Randoms.shuffle(categories).get(0);
+    public static String pickRandomFood(List<String> foodsInCategory) {
+        return Randoms.shuffle(foodsInCategory).get(0);
     }
 }

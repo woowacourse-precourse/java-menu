@@ -28,8 +28,9 @@ public class MenuRecommendation {
 
     //모든 코치에 대해서 수행
     public void recommendFood() {
-        coachFoods.entrySet()
-                .forEach(set -> recommendFood(set.getKey(), set.getValue(), recommendedCategory.getAllFoodsInCategoryForWeek()));
+        while (recommendedCategory.getCategories().size() < 5) {
+            recommendDailyFood();
+        }
     }
 
     public List<RecommendationResultDto> getRecommendationResult() {
@@ -50,8 +51,14 @@ public class MenuRecommendation {
                 .collect(Collectors.toList());
     }
 
-    //수행하고 업데이트
-    private void recommendFood(Coach coach, CoachFood coachFood, List<List<String>> foodsInCategory) {
+    private void recommendDailyFood() {
+        String category = recommendedCategory.pickRandomCategory();
+        coachFoods.entrySet()
+                .forEach(set -> recommendFood(set.getKey(), set.getValue(), InitialMenu.getFoodsInCategory(category)));
+    }
+
+    //이걸 매일매일 한 번씩 해주어야한다!
+    private void recommendFood(Coach coach, CoachFood coachFood, List<String> foodsInCategory) {
         coachFood.updateRecommendedFood(foodsInCategory);
         coachFoods.put(coach, coachFood);
     }

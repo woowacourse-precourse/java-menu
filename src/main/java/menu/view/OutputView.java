@@ -11,6 +11,7 @@ public class OutputView {
     private final String START_DELIMITER = "[ ";
     private final String END_DELIMITER = " ]";
     private final String DELIMITER = " | ";
+    private final String END = "추천을 완료했습니다.";
 
     public OutputView() {
     }
@@ -28,6 +29,7 @@ public class OutputView {
     public void printRecommendation(List<RecommendationResultDto> result) {
         result.stream()
                 .forEach(data -> System.out.println(transferToList(data.getCoach(), data.getFoods())));
+        System.out.println(END);
     }
 
     private String transferToList(String division, List<String> content) {

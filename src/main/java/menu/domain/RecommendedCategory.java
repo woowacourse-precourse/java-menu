@@ -2,7 +2,6 @@ package menu.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import menu.CategoryPicker;
 
 public class RecommendedCategory {
@@ -10,29 +9,24 @@ public class RecommendedCategory {
 
     public RecommendedCategory() {
         this.categories = new ArrayList<>();
-        pickRandomCategories();
-    }
-
-    //이 주의 모든 요일 각각의 추천 메뉴 반환
-    public List<List<String>> getAllFoodsInCategoryForWeek() {
-        return categories.stream()
-                .map(InitialMenu::getFoodsInCategory)
-                .collect(Collectors.toList());
     }
 
     public List<String> getCategories() {
         return categories;
     }
 
-    private void pickRandomCategories() {
-        while (categories.size() < 5) {
-            addDailyCategory(CategoryPicker.pickCategory());
-        }
+    public String pickRandomCategory() {
+        return addDailyCategory();
     }
 
-    private void addDailyCategory(String category) {
-        if (isAbleToAdd(category)) {
-            categories.add(category);
+    private String addDailyCategory() {
+        String category;
+        while (true) {
+            category = CategoryPicker.pickCategory();
+            if (isAbleToAdd(category)) {
+                categories.add(category);
+                return category;
+            }
         }
     }
 

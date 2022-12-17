@@ -13,8 +13,8 @@ public class CoachFood {
     }
 
     //모든 요일에 대해서 반복 (월 ~ 금의 추천메뉴에 대해서 수행)
-    public void updateRecommendedFood(List<List<String>> foodsInCategory) {
-        foodsInCategory.forEach(foods -> recommendedFood.pickRecommendedFood(foods, dislikeFood.getDislikeFoods()));
+    public void updateRecommendedFood(List<String> foodsInCategory) {
+        recommendedFood.pickRecommendedFood(foodsInCategory, dislikeFood.getDislikeFoods());
     }
 
     public List<String> getRecommendedFoods() {
