@@ -52,7 +52,6 @@ public class OutputView {
     public void printRecommendMenuResult(List<Category> categoryCheckList) {
         System.out.println("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
         List<String> categories = categoryCheckList.stream().map(category -> category.getCategoryName()).collect(Collectors.toList());
-        ;
         System.out.println(FRONT_BRACKET + CATEGORY + String.join(PATH_DELIMITER, categories) + BACK_BRACKET);
     }
 
