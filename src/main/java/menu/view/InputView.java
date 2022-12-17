@@ -28,6 +28,9 @@ public class InputView {
     public List<String> readCanNotEatMenus(String coachName) {
         System.out.printf((READ_CAN_NOT_EAT_MENU_MESSAGE) + "%n", coachName);
         String line = Console.readLine();
+        if (line.equals("")) {
+            return new ArrayList<>();
+        }
         List<String> canNotEatMenus = new ArrayList<>(Arrays.asList(line.split(",")));
         inputValidator.validateCanNotEatMenusLength(canNotEatMenus);
 
