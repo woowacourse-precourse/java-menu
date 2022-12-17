@@ -1,7 +1,7 @@
 package menu.domain;
 
-import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -21,10 +21,30 @@ public class Coach {
         return name;
     }
 
+    public boolean isMenuDuplicated() {
+        return (new HashSet<String>(recommendMenus)).size() != 5;
+    }
+    public List<String> getRecommendMenus() {
+        return recommendMenus;
+    }
+    public void setRecommendMenus(List<Week> weeks) {
+        weeks.stream()
+                .forEach(week -> {
+                    String recommendMenu = Category.recommendRandomMenu(week.getCategory());
+                    while(prohibitionMenus.contains(recommendMenu)) {
+                        recommendMenu = Category.recommendRandomMenu(week.getCategory());
+                    }
+                    recommendMenus.add(recommendMenu);
+                });
+
+        System.out.println(recommendMenus);
+    }
+
     public void setProhibitionMenus(String menus) {
         //TODO Category 메뉴에 없는 메뉴일시 올바르게 입력받기
         String[] inputProhibitionMenus = menus.split(",");
         if(!(0 <= inputProhibitionMenus.length && inputProhibitionMenus.length == 2)) {
+            //TODO 0개 입력시 오류
             throw new IllegalArgumentException("못먹는 메뉴는 0개에서 2개 범위를 넘을 수 없습니다.");
         }
         if(inputProhibitionMenus.length != (new HashSet<String>(List.of(inputProhibitionMenus))).size()) {

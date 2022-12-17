@@ -50,6 +50,11 @@ public class MenuController {
             }
         }
 
+        for(Coach coach : coaches) {
+            while(coach.isMenuDuplicated()) {
+                coach.setRecommendMenus(weeks);
+            }
+        }
 
     }
 
