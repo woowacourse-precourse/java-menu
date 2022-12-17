@@ -18,16 +18,30 @@ public class MenuRecommender {
 
     public void addCoaches(List<String> coachNames) {
         for (String name : coachNames) {
-            Coach coach = new Coach(name);
+            addCoach(name);
+        }
+    }
+
+    public void addCoach(String coachName) {
+        try {
+            Coach coach = new Coach(coachName);
             validateCoach(coach);
             coaches.add(coach);
+        } catch (IllegalArgumentException exception) {
+            initCoaches();
+            throw exception;
         }
     }
 
     private void validateCoach(Coach coach) {
         if (coaches.contains(coach)) {
+            initCoaches();
             throw new IllegalArgumentException(COACH_NAME_DUPLICATE_EXCEPTION_MESSAGE);
         }
+    }
+
+    private void initCoaches() {
+        coaches = new ArrayList<>();
     }
 
     public int getMinCoachNumber() {
