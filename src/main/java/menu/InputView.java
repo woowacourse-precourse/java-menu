@@ -25,14 +25,16 @@ public class InputView {
     }
 
     public List<String> readPickyEatings() {
-        List<String> pickyEatingsInput = Arrays.asList(Console.readLine().split(","));
+        String pickyEatingsInput = Console.readLine();
+        validateInputFormat(pickyEatingsInput);
+        List<String> pickEatings = Arrays.asList(Console.readLine().split(","));
+        validatePickyEatingsNumber(pickEatings);
 
-        validatePickyEatingsNumber(pickyEatingsInput);
-        for (String pickyEating : pickyEatingsInput) {
+        for (String pickyEating : pickEatings) {
             validatePickyEatingsName(pickyEating);
         }
 
-        return pickyEatingsInput;
+        return pickEatings;
     }
 
     private void validateCoachNameLength(String name) {
