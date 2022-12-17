@@ -12,5 +12,10 @@ public class MenuController {
 
     public void run() {
         OutputView.start();
+        askCoach();
+    }
+
+    private void askCoach() {
+        OutputView.askCoach();
     }
 }
