@@ -5,9 +5,7 @@ import menu.domain.Coach;
 import menu.domain.Food;
 import menu.domain.Foods;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import static menu.option.Option.CATEGORIES;
 
@@ -43,15 +41,12 @@ public class CoachController {
     }
 
     private String recommendCategory(String coach){
-        String randomCategory = makeRandomCategory();
-        if(coaches.get(coach).getCategoryCnt().get(randomCategory)<2){
+        String randomCategory = CATEGORIES[Randoms.pickNumberInRange(1,5)-1];
+        if(coaches.get(coach).getCategoryCnt().get(randomCategory)<=2){
             coaches.get(coach).addCategoryCnt(randomCategory);
             return randomCategory;
         }
         return recommendCategory(coach);
-    }
-    private String makeRandomCategory(){
-        return CATEGORIES[Randoms.pickNumberInRange(0,4)];
     }
     public HashMap<String, Coach> getCoaches(){return this.coaches;}
 }

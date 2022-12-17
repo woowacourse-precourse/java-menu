@@ -1,5 +1,7 @@
 package menu.view;
 
+import java.util.List;
+
 public class OutputView {
     public static void startRecommendView(){
         System.out.println("점심 메뉴 추천을 시작합니다.");
@@ -13,12 +15,12 @@ public class OutputView {
     public static void categoryView(){
         System.out.println("[ 카테고리 | 한식 | 한식 | 일식 | 중식 | 아시안 ]");
     }
-    public static void coachMenuView(String name, String[] foods){
+    public static void coachMenuView(String name, List<String> foods){
         System.out.print("[ " + name);
         for(String food:foods){
             System.out.print(" | " + food);
         }
-        System.out.println();
+        System.out.println(" ]");
     }
     public static void endRecommendView(){
         System.out.print("추천을 완료했습니다.");
