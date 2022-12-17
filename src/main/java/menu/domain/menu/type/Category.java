@@ -1,4 +1,7 @@
-package menu.domain.type;
+package menu.domain.menu.type;
+
+import java.util.Arrays;
+import menu.domain.menu.exception.CategoryNotFoundException;
 
 public enum Category {
     JAPANESE(1, "일식"),
@@ -22,4 +25,10 @@ public enum Category {
     public String getName() {
         return name;
     }
+
+    public static Category findByNumber(int number) {
+        return Arrays.stream(Category.values()).filter(category -> category.number == number).findFirst()
+            .orElseThrow(CategoryNotFoundException::new);
+    }
+
 }
