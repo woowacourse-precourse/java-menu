@@ -25,8 +25,15 @@
 2. 멤버변수 categories - 요일 별 카테고리 저장
 3. 
 
-## MenuRandomGenerator 
+## MenuRandomGenerator 클래스 
  - 랜덤한 숫자를 생성한다. (카테고리, 메뉴 각각에 대해서) 
+1. categoryRandomSelector() - 1~5 사이의 카테고리 번호를 생성한다.
+2. menuRandomSelector() - 리스트를 셔플해서 반환한다.
+## InputView 클래스
+ - 입력을 관리
+
+## OutputView 클래스
+ - 출력을 관리
 
 
 
