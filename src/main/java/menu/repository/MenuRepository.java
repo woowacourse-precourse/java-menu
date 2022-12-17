@@ -1,6 +1,7 @@
-package menu.domain;
+package menu.repository;
 
 import java.util.HashMap;
+import menu.domain.Category;
 
 public class MenuRepository {
 

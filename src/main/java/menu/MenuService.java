@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import menu.domain.Category;
 import menu.domain.Coach;
-import menu.domain.MenuRepository;
-import menu.tool.CategoryMaker;
+import menu.repository.MenuRepository;
+import menu.repository.ServiceRepository;
 import menu.ui.InputView;
 import menu.ui.OutputView;
 
@@ -14,7 +14,7 @@ public class MenuService {
   List<Category> categoryList = new ArrayList<>();
   final InputView input = new InputView();
   final OutputView output = new OutputView();
-  final CategoryMaker categoryMaker = new CategoryMaker();
+  final ServiceRepository serviceRepository=new ServiceRepository();
   final MenuRepository menuRepository=new MenuRepository();
 
   public void startService() {
@@ -26,7 +26,7 @@ public class MenuService {
       String[] exMenuList = input.readExcludedMenu(coachList.get(i));
       coachList.get(i).setExcludedMenu(exMenuList);
     }
-    setCategoryList(categoryMaker.categoryMaker());
+
 
 
 

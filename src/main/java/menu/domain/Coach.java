@@ -1,9 +1,11 @@
 package menu.domain;
 
+import java.util.List;
+
 public class Coach {
   private String name;
   private String[] excludedMenu;
-  private String[] menuList;
+  private List<String> menuList;
 
   public Coach(String name){
     this.name=name;
@@ -13,7 +15,7 @@ public class Coach {
     this.excludedMenu = excludedMenu;
   }
 
-  public void setMenuList(String[] menuList) {
+  public void setMenuList(List<String> menuList) {
     this.menuList = menuList;
   }
 
