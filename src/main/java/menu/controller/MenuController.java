@@ -18,14 +18,19 @@ public class MenuController {
         printStartMessage();
         saveCoachNames();
         saveHatingMenus();
+        printResult();
 
+    }
+
+    private void printResult() {
+        menuManager.activateRecommendation();
     }
 
     private void saveHatingMenus() {
         List<String> coachNames = menuManager.findAllCoachNames();
         for (String coachName : coachNames) {
             List<String> hatingMenus = getHatingMenus(coachName);
-            menuManager.saveHatingMenus(hatingMenus, coachNames);
+            menuManager.saveHatingMenus(hatingMenus, coachName);
         }
     }
 

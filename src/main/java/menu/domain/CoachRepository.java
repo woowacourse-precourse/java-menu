@@ -15,4 +15,10 @@ public class CoachRepository {
     public static List<String> getAllNames() {
         return coachs.stream().map(Coach::getName).collect(Collectors.toList());
     }
+
+    public static Coach findByName(String coachName) {
+        return coachs.stream()
+                .filter(coach -> coach.getName().equals(coachName))
+                .findFirst().get();
+    }
 }

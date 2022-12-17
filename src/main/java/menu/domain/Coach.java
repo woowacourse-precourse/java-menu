@@ -7,7 +7,7 @@ public class Coach {
 
     private String name;
 
-    private List<String> hateMenus = new ArrayList<>();
+    private List<String> hateMenus;
 
     private List<String> completeMenus = new ArrayList<>();
 
@@ -17,5 +17,9 @@ public class Coach {
 
     public String getName() {
         return name;
+    }
+
+    public void addHateMenus(List<String> hatingMenus) {
+        hateMenus = hatingMenus;
     }
 }
