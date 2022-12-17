@@ -1,2 +1,5 @@
-package menu.view;public class InputView {
+package menu.view;
+
+public class InputView {
+
 }

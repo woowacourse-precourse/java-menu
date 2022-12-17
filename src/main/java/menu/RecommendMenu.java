@@ -1,2 +1,5 @@
-package menu;public class RecommendMenu {
+package menu;
+
+public class RecommendMenu {
+
 }
