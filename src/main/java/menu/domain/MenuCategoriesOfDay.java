@@ -4,26 +4,26 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FoodCategoriesOfDay {
-    private final Map<Day, FoodCategory> foodCategories;
+public class MenuCategoriesOfDay {
+    private final Map<Day, MenuCategory> foodCategories;
 
-    public FoodCategoriesOfDay() {
+    public MenuCategoriesOfDay() {
         this.foodCategories = new HashMap<>();
     }
 
 
-    public long getCategoryCount(FoodCategory category) {
+    public long getCategoryCount(MenuCategory category) {
         return foodCategories.values()
                 .stream()
                 .filter(foodCategory -> foodCategory == category)
                 .count();
     }
 
-    public void put(Day day, FoodCategory category) {
+    public void put(Day day, MenuCategory category) {
         foodCategories.put(day, category);
     }
 
-    public Map<Day, FoodCategory> get() {
+    public Map<Day, MenuCategory> get() {
         return Collections.unmodifiableMap(foodCategories);
     }
 }

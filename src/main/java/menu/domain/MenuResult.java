@@ -5,18 +5,18 @@ import java.util.Map;
 
 public class MenuResult {
     private final Coaches coaches;
-    private final FoodCategoriesOfDay foodFoodCategoriesOfDay;
+    private final MenuCategoriesOfDay foodMenuCategoriesOfDay;
 
-    public MenuResult(Coaches coaches, FoodCategoriesOfDay foodFoodCategoriesOfDay) {
+    public MenuResult(Coaches coaches, MenuCategoriesOfDay foodMenuCategoriesOfDay) {
         this.coaches = coaches;
-        this.foodFoodCategoriesOfDay = foodFoodCategoriesOfDay;
+        this.foodMenuCategoriesOfDay = foodMenuCategoriesOfDay;
     }
 
     public List<Coach> getCoaches() {
         return coaches.get();
     }
 
-    public Map<Day, FoodCategory> getFoodCategories() {
-        return foodFoodCategoriesOfDay.get();
+    public Map<Day, MenuCategory> getFoodCategories() {
+        return foodMenuCategoriesOfDay.get();
     }
 }

@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.Coach;
-import menu.domain.FoodCategory;
-import menu.domain.FoodRecommender;
+import menu.domain.MenuCategory;
+import menu.domain.MenuRecommender;
 import menu.domain.Menu;
 import menu.domain.MenuRepository;
 import menu.domain.MenuResult;
@@ -15,7 +15,7 @@ import menu.view.OutputView;
 public class MenuController {
     private final InputView inputView;
     private final OutputView outputView;
-    private FoodRecommender recommender;
+    private MenuRecommender recommender;
 
     public MenuController() {
         inputView = new InputView();
@@ -34,8 +34,8 @@ public class MenuController {
     }
 
     private void initMenus() {
-        List<List<String>> menusByCategory = Arrays.stream(FoodCategory.values())
-                .map(FoodCategory::getFoods)
+        List<List<String>> menusByCategory = Arrays.stream(MenuCategory.values())
+                .map(MenuCategory::getFoods)
                 .collect(Collectors.toList());
         for (List<String> menus : menusByCategory) {
             menus.stream()
@@ -66,7 +66,7 @@ public class MenuController {
     private List<Coach> getCoaches() {
         try {
             List<Coach> coaches = readCoaches();
-            recommender = new FoodRecommender(coaches);
+            recommender = new MenuRecommender(coaches);
             return coaches;
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());

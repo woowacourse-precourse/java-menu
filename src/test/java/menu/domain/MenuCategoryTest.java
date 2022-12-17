@@ -6,13 +6,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class FoodCategoryTest {
+class MenuCategoryTest {
 
     @DisplayName("카테고리 숫자로 해당하는 카테고리를 생성한다")
     @ParameterizedTest
     @CsvSource({"1,JAPANESE", "2,KOREAN", "3,CHINESE", "4,ASIAN", "5,WESTERN"})
-    void createCategory(int categoryNumber, FoodCategory category) {
-        assertThat(FoodCategory.of(categoryNumber)).isEqualTo(category);
+    void createCategory(int categoryNumber, MenuCategory category) {
+        assertThat(MenuCategory.of(categoryNumber)).isEqualTo(category);
     }
 
 }

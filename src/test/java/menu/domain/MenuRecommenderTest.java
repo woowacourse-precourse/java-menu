@@ -10,13 +10,13 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class FoodRecommenderTest {
+class MenuRecommenderTest {
 
     @DisplayName("코치는 2~5명 사이가 아니면 예외를 발생한다.")
     @ParameterizedTest
     @MethodSource("generateCoach")
     void sizeTest(List<Coach> coaches) {
-        assertThatThrownBy(() -> new FoodRecommender(coaches))
+        assertThatThrownBy(() -> new MenuRecommender(coaches))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

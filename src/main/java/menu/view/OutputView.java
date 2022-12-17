@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import menu.domain.Coach;
 import menu.domain.Day;
-import menu.domain.FoodCategory;
+import menu.domain.MenuCategory;
 import menu.domain.Menu;
 import menu.domain.MenuResult;
 
@@ -36,14 +36,14 @@ public class OutputView {
         printBasicFormat(DAYS_MESSAGE, dayToStrings());
     }
 
-    private void printCategory(Map<Day, FoodCategory> foodCategory) {
+    private void printCategory(Map<Day, MenuCategory> foodCategory) {
         printBasicFormat(CATEGORY_MESSAGE, convertCategoryToName(foodCategory));
     }
 
-    private List<String> convertCategoryToName(Map<Day, FoodCategory> foodCategories) {
+    private List<String> convertCategoryToName(Map<Day, MenuCategory> foodCategories) {
         return Arrays.stream(Day.values())
                 .map(foodCategories::get)
-                .map(FoodCategory::getName)
+                .map(MenuCategory::getName)
                 .collect(Collectors.toList());
     }
 
