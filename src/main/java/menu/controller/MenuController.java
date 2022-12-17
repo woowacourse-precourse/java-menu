@@ -27,7 +27,7 @@ public class MenuController {
     }
 
     public void select() {
-        result = resultService.initializeResult();
+        result = resultService.initializeResult(coach);
         resultService.pickCategory(result);
     }
 }
