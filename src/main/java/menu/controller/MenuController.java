@@ -22,16 +22,8 @@ public class MenuController {
         // 코치들 입력받음
         List<String> names = inputCoachNames();
 
-        // 코치들별로 못먹는 음식 입력받기 & repository에 저장
-        List<Coach> coaches = new ArrayList<>();
-        for (int i = 0; i < names.size(); i++) {
-            String name = names.get(i);
-            OutputView.printCoachForbiddenFoodComment(name);
-            // 해당 코치의 못먹는 음식 리스트 입력받음
-            List<String> foods = InputView.readForbiddenFoods();
-
-            coaches.add(new Coach(name, foods));
-        }
+        // 코치들별로 못먹는 음식 입력받기
+        List<Coach> coaches = inputForbiddenFoodsOfCoaches(names);
         // 추천 카테고리는 만듦
         Recommend recommend = new Recommend();
         // 코치별로 메뉴 만들어줌
@@ -48,6 +40,20 @@ public class MenuController {
         OutputView.printResultComment();
         OutputView.printTotalRecommendResult(categories, coachRepository);
 
+    }
+
+    private List<Coach> inputForbiddenFoodsOfCoaches(List<String> names) {
+        List<Coach> coaches = new ArrayList<>();
+        for (int i = 0; i < names.size(); i++) {
+            String name = names.get(i);
+            OutputView.printCoachForbiddenFoodComment(name);
+            // 해당 코치의 못먹는 음식 리스트 입력받음
+            List<String> foods = InputView.readForbiddenFoods();
+
+            coaches.add(new Coach(name, foods));
+        }
+
+        return coaches;
     }
 
     private List<String> inputCoachNames() {
