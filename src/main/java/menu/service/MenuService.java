@@ -3,6 +3,8 @@ package menu.service;
 import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.Couch;
+import menu.domain.Menu;
+import menu.dto.CouchHateMenusRequest;
 import menu.dto.CouchNamesRequest;
 import menu.repository.CouchRepository;
 import menu.repository.MenuRepository;
@@ -25,5 +27,13 @@ public class MenuService {
 
     public List<Couch> getAllCouches() {
         return couchRepository.findAll();
+    }
+
+    public void addHateMenusForCouch(Couch couch, CouchHateMenusRequest request) {
+        List<String> hateMenuNames = request.getHateMenus();
+        for (String hateMenuName : hateMenuNames) {
+            Menu hateMenu = menuRepository.findByName(hateMenuName);
+            couch.addHateMenu(hateMenu);
+        }
     }
 }

@@ -30,4 +30,11 @@ public class MenuRepository {
             this.menus.addAll(menus);
         }
     }
+
+    public Menu findByName(String name) {
+        return menus.stream()
+                .filter(menu -> menu.isNameMatch(name))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 이름의 메뉴를 찾을 수 없습니다."));
+    }
 }

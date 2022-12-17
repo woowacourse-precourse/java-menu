@@ -14,4 +14,16 @@ public class Couch {
     public String getName() {
         return name;
     }
+
+    public void addHateMenu(Menu menu) {
+        hateMenus.add(menu);
+    }
+
+    @Override
+    public String toString() {
+        return "Couch{" +
+                "name='" + name + '\'' +
+                ", hateMenus=" + hateMenus +
+                '}';
+    }
 }
