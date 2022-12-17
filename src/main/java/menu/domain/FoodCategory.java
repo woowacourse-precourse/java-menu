@@ -25,16 +25,11 @@ public enum FoodCategory {
                 .collect(Collectors.toList());
     }
 
-    public static boolean isExistMenu(String menu){
-        try {
-            Arrays.stream(FoodCategory.values())
-                    .filter(category -> category.menus.contains(menu))
-                    .findFirst();
-
-            return true;
-        }catch (NullPointerException e) {
-            return false;
+    public static boolean isExistMenu(String menuName){
+        for(FoodCategory foodCategory : FoodCategory.values()){
+            if(foodCategory.menus.contains(menuName)) return true;
         }
+        return false;
     }
 
     public static FoodCategory getFoodCategoryByCode(String code){

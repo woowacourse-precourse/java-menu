@@ -1,5 +1,6 @@
 package menu.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -16,6 +17,10 @@ public class Coach {
     private static final Integer MAX_SIZE_INEDIBLES = 2;
     private final String name;
     private List<String> inedibles;
+
+    {
+        inedibles = new ArrayList<>();
+    }
 
     public Coach(String name) {
         validateName(name);
@@ -44,19 +49,19 @@ public class Coach {
         return name;
     }
 
-    public void addInedibles(String input_inedibles){
-        List<String> input_inedibles_List = Arrays.stream(input_inedibles.split(","))
+    public void addInedibles(String user_input_inedibles){
+        List<String> input_inedibles = Arrays.stream(user_input_inedibles.split(","))
                 .collect(Collectors.toList());
 
-        validateInediblesExist(input_inedibles_List);
-        validateInediblesSize(input_inedibles_List);
+        validateInediblesExist(input_inedibles);
+        validateInediblesSize(input_inedibles);
 
-        inedibles = input_inedibles_List;
+        inedibles = input_inedibles;
     }
 
-    private void validateInediblesExist(List<String> input_inedibles_List){
-        for(String menu : input_inedibles_List){
-            if(!FoodCategory.isExistMenu(menu))
+    private void validateInediblesExist(List<String> input_inedibles){
+        for(String inedible : input_inedibles){
+            if(!FoodCategory.isExistMenu(inedible))
                 throw new IllegalArgumentException(INEDIBLES_NOT_EXIST_MENU_ERROR_MSG);
         }
     }
