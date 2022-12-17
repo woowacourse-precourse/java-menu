@@ -30,7 +30,7 @@ public class InputController {
             try {
                 String[] menusInput = InputView.readUneatableMenus(couch);
                 couch.setUneatableMenus(new ArrayList<String>(Arrays.asList(menusInput)));
-                System.out.println(couch.getUneatableMenus());
+                //System.out.println(couch.getUneatableMenus());
                 return;
             } catch (IllegalArgumentException e2) {
                 System.out.println(e2.getMessage());

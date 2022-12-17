@@ -4,12 +4,14 @@ import menu.domain.Category;
 import menu.domain.CategoryRepository;
 import menu.domain.Couch;
 import menu.domain.CouchRepository;
+import menu.view.OutputView;
 
 public class Controller {
 
     public static void run() {
         registerCouch();
         pickMenus();
+        printMenus();
     }
 
     private static void registerCouch() {
@@ -17,11 +19,13 @@ public class Controller {
     }
 
     private static void pickMenus() {
-        while (true) {
-            selectMenus();
-            //validateMenus();
-        }
+        selectMenus();
 
+
+    }
+
+    private static void printMenus() {
+        OutputView.printMenu();
     }
 
     private static void selectMenus() {
@@ -31,11 +35,11 @@ public class Controller {
                 continue;
             }
             CouchRepository.addCategory(selectedCategory);
-            System.out.println(CouchRepository.getSelectedCategories());
+//            System.out.println(CouchRepository.getSelectedCategories());
             addMenus(selectedCategory);
             for (Couch couch : CouchRepository.getCouches()) {
-                System.out.println(couch.getName()+"못먹는메뉴"+couch.getUneatableMenus());
-                System.out.println(couch.getName()+"먹은메뉴"+couch.getEatenMenus());
+//                System.out.println(couch.getName()+"못먹는메뉴"+couch.getUneatableMenus());
+//                System.out.println(couch.getName()+"먹은메뉴"+couch.getEatenMenus());
             }
         }
 
