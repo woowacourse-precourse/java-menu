@@ -9,7 +9,7 @@ public enum Menu {
     KOREA("한식", List.of("김밥", "김치찌개", "쌈밥", "된장찌개", "비빔밥", "칼국수", "불고기", "떡볶이", "제육볶음")),
     CHINA("중식", List.of("깐풍기", "볶음면", "동파육", "짜장면", "짬뽕", "마파두부", "탕수육", "토마토 달걀볶음", "고추잡채")),
     ASIAN("아시안", List.of("팟타이", "카오 팟", "나시고렝", "파인애플 볶음밥", "쌀국수", "똠얌꿍", "반미", "월남쌈", "분짜")),
-    WESTERN("양식", List.of("라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니")), toString(, , );
+    WESTERN("양식", List.of("라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니"));
 
     private final String category;
     private final List<String> menus;
@@ -19,12 +19,20 @@ public enum Menu {
         this.menus = menus;
     }
 
-    public String recommendCategory() {
+    public String getCategory() {
+        return category;
+    }
+
+    public List<String> getMenus() {
+        return menus;
+    }
+
+    public static String recommendCategory() {
         String selectedCategory = "";
         int selectedNumber = Randoms.pickNumberInRange(1, 5);
 
         for (Menu menu : Menu.values()) {
-            if (menu.ordinal() == selectedNumber) {
+            if ((menu.ordinal() + 1) == selectedNumber) {
                 selectedCategory += menu.category;
                 break;
             }

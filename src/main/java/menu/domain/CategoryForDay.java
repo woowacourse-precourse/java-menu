@@ -6,10 +6,14 @@ import java.util.List;
 
 public class CategoryForDay {
 
-    private List<String> categories;
+    private final List<String> categories;
 
     public CategoryForDay() {
         this.categories = new ArrayList<>();
+    }
+
+    public List<String> getCategories() {
+        return categories;
     }
 
     public void setCategories() {
@@ -20,5 +24,17 @@ public class CategoryForDay {
                 categories.add(category);
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        String totalCategory = "[ 카테고리";
+
+        for (String category : categories) {
+            totalCategory += " | " + category;
+        }
+        totalCategory += " ]";
+
+        return totalCategory;
     }
 }

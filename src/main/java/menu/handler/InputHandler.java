@@ -1,7 +1,5 @@
 package menu.handler;
 
-import java.util.List;
-
 import menu.domain.Coach;
 import menu.view.InputView;
 

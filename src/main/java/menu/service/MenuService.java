@@ -1,6 +1,8 @@
 package menu.service;
 
 
+import java.util.List;
+
 import menu.domain.CategoryForDay;
 
 public class MenuService {
@@ -15,5 +17,11 @@ public class MenuService {
         categoryForDay.setCategories();
     }
 
+    public String getRecommendCategoryWord() {
+        return categoryForDay.toString();
+    }
 
+    public List<String> getRecommendCategory() {
+        return categoryForDay.getCategories();
+    }
 }

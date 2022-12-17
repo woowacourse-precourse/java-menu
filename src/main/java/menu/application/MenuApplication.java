@@ -1,5 +1,8 @@
 package menu.application;
 
+import java.util.List;
+
+import menu.controller.MenuController;
 import menu.domain.Coach;
 import menu.handler.InputHandler;
 import menu.view.InputView;
@@ -9,15 +12,26 @@ public class MenuApplication {
 
     private final InputHandler inputHandler;
     private final OutputView outputView;
+    private final MenuController menuController;
 
     public MenuApplication() {
         this.inputHandler = new InputHandler(new InputView());
         this.outputView = new OutputView();
+        this.menuController = new MenuController();
     }
 
     public void run() {
         outputView.printStart();
         Coach coach = inputHandler.readCoachName();
         inputHandler.readCoachCanNotEat(coach);
+
+        menuController.recommendCategory();
+        List<String> recommendCategory = menuController.getRecommendCategory();
+
+        menuController.recommendForCoach(coach, recommendCategory);
+
+        outputView.printResult(menuController.getRecommendCategoryWord(), coach.toString());
+
+        outputView.printEnd();
     }
 }
