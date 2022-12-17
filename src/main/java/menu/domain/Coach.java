@@ -13,6 +13,8 @@ public class Coach {
 
     public Coach(String name) {
         this.name = name;
+        cantEatMenu = new ArrayList<>();
+        eatMenu = new ArrayList<>();
     }
 
     public String getName() {
