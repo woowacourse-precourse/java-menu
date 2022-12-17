@@ -3,6 +3,7 @@ package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import menu.Constant;
+import menu.ExceptionMessage;
 import menu.vo.Coach;
 
 import java.util.ArrayList;
@@ -11,8 +12,11 @@ import java.util.List;
 
 public class InputView {
 
-    public List<String> getCoachName() {
+    public List<String> getCoachName() throws IllegalArgumentException{
         System.out.println("점심 메뉴 추천을 시작합니다. \n\n코치의 이름을 입력해 주세요. (, 로 구분)");
+        List<String> nameInput = splitInput(Console.readLine());
+        coachNameLengthValidation(nameInput);
+        
         return trimEachInput(splitInput(Console.readLine()));
     }
 
@@ -38,6 +42,16 @@ public class InputView {
             returnWords.add(word.trim());
         }
         return returnWords;
+    }
+
+    // 코치의 이름은 최소 2글자, 최대 4글자(Validation.1)
+    private void coachNameLengthValidation(List<String> coachNames) {
+        for (String name : coachNames) {
+            if (name.length() < 2 || name.length() > 4) {
+                throw new IllegalArgumentException(
+                        ExceptionMessage.INVALID_COACH_NAME_LEN.getMessage());
+            }
+        }
     }
 
 }
