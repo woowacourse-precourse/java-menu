@@ -1,6 +1,9 @@
-package menu;
+package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import menu.domain.Category;
+import menu.domain.Coach;
+import menu.controller.SystemConstant;
 
 import java.util.Arrays;
 import java.util.HashSet;

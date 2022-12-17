@@ -1,4 +1,4 @@
-package menu;
+package menu.controller;
 
 public class SystemConstant {
     public static final String ERROR = "[ERROR] ";

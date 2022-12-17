@@ -1,4 +1,4 @@
-package menu;
+package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 

@@ -1,4 +1,6 @@
-package menu;
+package menu.domain;
+
+import menu.controller.SystemConstant;
 
 import java.util.Arrays;
 import java.util.List;

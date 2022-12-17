@@ -1,4 +1,10 @@
-package menu;
+package menu.controller;
+
+import menu.domain.Coach;
+import menu.domain.CoachRepository;
+import menu.view.InputView;
+import menu.view.OutputView;
+import menu.domain.RecommendRepository;
 
 import java.util.function.Supplier;
 
