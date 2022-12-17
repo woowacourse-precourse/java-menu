@@ -1,8 +1,6 @@
 package menu.view;
 
 import menu.domain.Coach;
-import menu.domain.CoachRepository;
-import menu.domain.RecommendRepository;
 
 import java.util.List;
 

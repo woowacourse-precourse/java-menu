@@ -12,7 +12,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class InputView {
-    private final String DUPLICATE_HATE_FOOD = "이미 등록된 싫어하는 음식입니다.";
+    private final String DUPLICATE_HATE_FOOD = "싫어하는 음식은 중복 없이 입력해야합니다.";
     private final String NUMBER_OF_COACHES_ERROR = "코치는 최소 2명, 최대 5명을 입력해야합니다.";
     private final String NAME_LENGTH_ERROR = "코치의 이름은 최소 2글자, 최대 4글자만 가능합니다.";
     private final String NUMBER_OF_HATE_FOOD_ERROR = "싫어하는 음식은 최소 0개, 2개 까지만 가능합니다";
