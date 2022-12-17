@@ -54,9 +54,9 @@ public class MenuRecommendation {
 
         List<String> result = new ArrayList<>();
         for (Day value : Day.values()) {
-            String generated = generator.generate(null);
+            String generated = generator.generate();
             while (!result.isEmpty() && !validateCount(result, generated)) {
-                generated = generator.generate(null);
+                generated = generator.generate();
             }
             result.add(generated);
         }

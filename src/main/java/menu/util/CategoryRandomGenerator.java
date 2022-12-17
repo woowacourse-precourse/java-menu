@@ -3,13 +3,13 @@ package menu.util;
 import camp.nextstep.edu.missionutils.Randoms;
 import menu.domain.menu.Category;
 
-import java.util.List;
 
+public final class CategoryRandomGenerator {
 
-public final class CategoryRandomGenerator implements RandomGenerator {
+    public static final int FROM_INCLUSIVE = 1;
+    public static final int TO_INCLUSIVE = 5;
 
-    @Override
-    public String generate(List<String> list) {
-        return Category.getByIndex(Randoms.pickNumberInRange(1, 5));
+    public String generate() {
+        return Category.getByIndex(Randoms.pickNumberInRange(FROM_INCLUSIVE, TO_INCLUSIVE));
     }
 }
