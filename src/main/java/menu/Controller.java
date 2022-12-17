@@ -22,7 +22,7 @@ public class Controller {
         this.outputView = new OutputView();
     }
 
-    public void recommendMenu() {
+    public void recommendMenu() throws IllegalArgumentException{
         List<Coach> coaches = inputView.getCoachNotEat(inputView.getCoachName());
         List<CoachWeekMenu> coachWeekMenus = makeCoachWeekMenu(coaches);
         Menu menu;

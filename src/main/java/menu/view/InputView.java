@@ -20,11 +20,12 @@ public class InputView {
         return trimEachInput(splitInput(Console.readLine()));
     }
 
-    public List<Coach> getCoachNotEat(List<String> coachNames) {
+    public List<Coach> getCoachNotEat(List<String> coachNames) throws IllegalArgumentException{
         List<Coach> coaches = new ArrayList<>();
         for (String name : coachNames) {
             System.out.printf(Constant.inputNotEatFood,name);
             List<String> notEatFoods = trimEachInput(splitInput(Console.readLine()));
+            notEatFoodSizeValidation(notEatFoods);
             coaches.add(new Coach(name,notEatFoods));
         }
         return coaches;
