@@ -34,4 +34,11 @@ public class MenuRepository {
                 .map(Menu::getName)
                 .collect(Collectors.toList());
     }
+
+    public Menu getMenuByName(String name) {
+        return menus.stream()
+                .filter(v -> v.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 없는 메뉴입니다."));
+    }
 }

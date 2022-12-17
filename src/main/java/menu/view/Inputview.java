@@ -2,17 +2,21 @@ package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import java.util.stream.Collectors;
+import menu.model.Menu;
+import menu.model.MenuRepository;
 import menu.util.StringParser;
 import menu.util.Validator;
 
 public class Inputview {
-    private static final String INPUT_MANUAL_MESSAGE = "코치의 이름을 입력해 주세요. (, 로 구분)";
+    private static final String MANUAL_MESSAGE = "코치의 이름을 입력해 주세요. (, 로 구분)";
+    private static final String CANT_EAT_MESSAGE = "(이)가 못 먹는 메뉴를 입력해 주세요.";
     private static final String PARSE_COMMAND = ",";
 
     public List<String> readCoachNames() {
         while (true) {
             try {
-                System.out.println(INPUT_MANUAL_MESSAGE);
+                System.out.println(MANUAL_MESSAGE);
                 String input = Console.readLine();
                 Validator.validateCoachNames(input, PARSE_COMMAND);
                 return StringParser.parseByCommand(input, PARSE_COMMAND);
@@ -22,5 +26,20 @@ public class Inputview {
         }
     }
 
+    public List<Menu> readCantEats(String name, MenuRepository menus) {
+        while (true) {
+            try {
+                System.out.println(name + MANUAL_MESSAGE);
+                String input = Console.readLine();
+                Validator.validateMenuNum(input, PARSE_COMMAND);
+                return StringParser.parseByCommand(input, PARSE_COMMAND)
+                        .stream()
+                        .map(menus::getMenuByName).collect(
+                                Collectors.toList());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 
 }
