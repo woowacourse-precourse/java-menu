@@ -33,7 +33,6 @@ public class OutputView {
     }
 
     public void printRecommendedFood(Coach coach){
-        String str = String.join(" | ", coach.getRecommendedFood());
-        System.out.println("[ " + coach.getName() + " | " + str + " ]");
+        System.out.println(coach);
     }
 }
