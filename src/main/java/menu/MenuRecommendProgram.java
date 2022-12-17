@@ -1,11 +1,14 @@
 package menu;
 
+import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.Coaches;
+import menu.domain.Menu;
 import menu.view.InputView;
 import menu.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MenuRecommendProgram {
@@ -13,13 +16,15 @@ public class MenuRecommendProgram {
     private final InputView inputView;
     private final OutputView outputView;
     private final CategoryRandomRecommender categoryRandomRecommender;
+    private final MenuRandomRecommender menuRandomRecommender;
     private Coaches coaches;
-    private List<String> categories;
+    private List<Category> categories;
 
     public MenuRecommendProgram() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
         this.categoryRandomRecommender = new CategoryRandomRecommender();
+        this.menuRandomRecommender = new MenuRandomRecommender();
         this.coaches = new Coaches();
         this.categories = new ArrayList<>();
     }
@@ -31,7 +36,9 @@ public class MenuRecommendProgram {
         checkHateMenu(this.coaches.getCoaches());
         for (int i = 0; i < 5; i++) {
             categories.add(categoryRandomRecommender.recommend(categories));
+            recommendMenuEachCoach(i, coaches.getCoaches());
         }
+        //printResult();
     }
 
     private void makeCoach(String[] coachNames) {
@@ -46,6 +53,19 @@ public class MenuRecommendProgram {
     private void checkHateMenu(List<Coach> coaches) {
         for (Coach coach : coaches) {
             coach.checkHateMenu();
+        }
+    }
+
+    private void recommendMenuEachCoach(int index, List<Coach> coaches) {
+        for (Coach coach : coaches) {
+            String recommendedMenu =
+                    menuRandomRecommender.recommend(Arrays.stream(Menu.values())
+                            .filter(value -> value.getCategory().equals(this.categories.get(index)))
+                            .findAny()
+                            .get()
+                            .getMenu()
+                            , coach);
+            coach.addRecommendedMenu(recommendedMenu);
         }
     }
 }
