@@ -10,7 +10,8 @@ class CouchGroupTest {
 
     @Test
     void CouchGroup_객체가_중복된_이름의_Couch를_가지면_예외() {
-        List<Couch> couches = List.of(Couch.from("최준호"),
+        List<Couch> couches = List.of(
+                Couch.from("최준호"),
                 Couch.from("최준호"),
                 Couch.from("김준호"));
 
@@ -32,4 +33,14 @@ class CouchGroupTest {
                 .hasMessageContaining(ErrorMessage.COUCH_GROUP_OUT_OF_RANGE.getMessage());
     }
 
+    @Test
+    void 인자로_주어진_Couch와_size가_동일하다() {
+        List<Couch> couches = List.of(Couch.from("최준호"),
+                Couch.from("박준호"),
+                Couch.from("성준호"),
+                Couch.from("김준호"));
+
+        CouchGroup group = CouchGroup.from(couches);
+        Assertions.assertThat(group.size()).isEqualTo(couches.size());
+    }
 }
