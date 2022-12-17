@@ -33,10 +33,10 @@ public class MenuRecommendController {
         OutputView.printStartMessage();
         saveCoaches();
         OutputView.printResultMessage();
-        // TODO: 추천한 메뉴 계산
         calcRecommendResults();
         List<RecommendResult> recommendResults = recommendResultService.findAll();
-        // TODO: 추천한 메뉴 출력
+        List<Coach> coaches = coachService.findAll();
+        OutputView.printResult(recommendResults, coaches);
         OutputView.printFinishMessage();
     }
 
