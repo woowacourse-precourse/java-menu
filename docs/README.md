@@ -41,4 +41,4 @@ List<String> menu에다가 다 넣어놓기.
 
 ## Categories (domain)
 
-- [ ] 카테고리 종류들을 List<Categpory> 형의 필드로 가진다.
+- [x] 카테고리 종류들을 List<Categpory> 형의 필드로 가진다.
