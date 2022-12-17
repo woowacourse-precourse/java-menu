@@ -31,7 +31,7 @@ public class OutputView {
     }
 
     public void printError(IllegalArgumentException exception) {
-        System.out.println(exception.getMessage());
+        System.out.println("\n" + exception.getMessage());
     }
 
     public void printWeek() {
@@ -50,7 +50,7 @@ public class OutputView {
         List<Coach> coaches = coachRepository.getCoaches();
 
         for (Coach coach : coaches) {
-            System.out.print("[ " + coach.getName() + SEPARATOR);
+            System.out.print("[ " + coach.toString() + SEPARATOR);
             System.out.print(String.join(SEPARATOR, coach.getRecommendedFoods()));
             System.out.println(" ]");
         }

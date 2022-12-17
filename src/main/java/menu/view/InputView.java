@@ -47,6 +47,7 @@ public class InputView {
         System.out.println(coach + "(이)가 못 먹는 메뉴를 입력해 주세요.");
         List<String> hateFoods = Arrays.stream(Console.readLine().split(","))
                 .map(String::trim)
+                .filter(food -> !food.isBlank())
                 .collect(Collectors.toList());
 
         numberOfHateFoodValidate(hateFoods);
