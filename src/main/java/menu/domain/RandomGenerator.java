@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
 
-public class Recommend {
+public class RandomGenerator {
     private static final int RANDOM_CATEGORY_LOWER_INCLUSIVE = 1;
     private static final int RANDOM_CATEGORY_UPPER_INCLUSIVE = 5;
 

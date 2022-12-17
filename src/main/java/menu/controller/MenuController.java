@@ -2,6 +2,7 @@ package menu.controller;
 
 import menu.domain.Coach;
 import menu.domain.CoachRepository;
+import menu.domain.MenuRecommendRepository;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -18,6 +19,7 @@ public class MenuController {
     public void run() {
         outputView.guideStart();
         readCoaches();
+        recommend();
     }
 
     private void readCoaches() {
@@ -32,6 +34,10 @@ public class MenuController {
             System.out.println(e.getMessage());
             readCoaches();
         }
+    }
+
+    private void recommend() {
+        MenuRecommendRepository.recommend();
     }
 
 }

@@ -24,4 +24,17 @@ public class CoachRepository {
             throw new IllegalArgumentException(ExceptionMessage.NOT_SATISFIED_NUMBER_OF_COACH.get());
         }
     }
+
+    public static void selectMenu(String recommendedCategory) {
+        String menu;
+
+        for (Coach coach : coaches) {
+
+            do {
+                menu = RandomGenerator.forMenu(Food.getMenuByCategory(recommendedCategory));
+            } while (coach.hasSameMenuRecommend(menu));
+            coach.addMenu(menu);
+        }
+    }
+
 }
