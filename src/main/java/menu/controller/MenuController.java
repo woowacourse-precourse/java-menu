@@ -32,11 +32,16 @@ public class MenuController {
     }
 
     private List<Coach> readCoachNames() {
-        List<String> coachNames = InputView.readCoachName();
-        return coachNames.stream()
-                .map(CoachName::from)
-                .map(name -> new Coach(name))
-                .collect(Collectors.toList());
+        try {
+            List<String> coachNames = InputView.readCoachName();
+            return coachNames.stream()
+                    .map(CoachName::from)
+                    .map(name -> new Coach(name))
+                    .collect(Collectors.toList());
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return readCoachNames();
+        }
     }
 
     private Coach readConNotEatMenus(Coach coach) {
