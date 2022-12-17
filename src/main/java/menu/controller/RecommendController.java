@@ -40,13 +40,10 @@ public class RecommendController implements Controller{
             Coach createdCoach = coachService.createCoachInfo(coachName, notEatFoodNames);
             coaches.add(createdCoach);
         }
-
         for (DayWeek dayWeek : DayWeek.values()) {
             recommendService.recommend(dayWeek, coaches);
         }
-
-        recommendService.getRecommendResult(coaches);
-        outputView.printRecommendResult();
-
+        String recommendResult = recommendService.getRecommendResult(coaches);
+        outputView.printRecommendResult(recommendResult);
     }
 }
