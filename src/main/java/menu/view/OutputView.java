@@ -24,4 +24,8 @@ public class OutputView {
     public void printGetCantEatMenus() {
         System.out.println(GET_CANT_EAT_MANUS);
     }
+
+    public static void printErrorMessage(String message) {
+        System.out.println(message);
+    }
 }
