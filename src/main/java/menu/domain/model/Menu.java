@@ -12,6 +12,10 @@ public class Menu {
         this.name = name;
     }
 
+    public boolean isEqualName(String name) {
+        return this.name.equals(name);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
