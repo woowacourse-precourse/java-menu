@@ -4,6 +4,7 @@ import menu.utills.constants.Category;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Categories {
     private final List<Category> categories = new ArrayList<>();
@@ -21,6 +22,14 @@ public class Categories {
 
     public List<Category> getCategories() {
         return categories;
+    }
+
+    @Override
+    public String toString() {
+        List<String> categoryNames= categories.stream()
+                .map(Category::getLabel)
+                .collect(Collectors.toList());
+        return String.join(" | ", categoryNames);
     }
 
     private boolean duplicatedDouble(Category newCategory) {

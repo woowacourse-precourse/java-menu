@@ -6,7 +6,7 @@ public enum Category {
     JAPAN("일식",1),
     KOREA("한식",2),
     CHINA("중식",3),
-    ASIA("아사인",4),
+    ASIA("아시안",4),
     WESTERN("양식",5);
 
     private final String label;
@@ -15,6 +15,10 @@ public enum Category {
     Category(String label,int value) {
         this.label = label;
         this.value = value;
+    }
+
+    public String getLabel() {
+        return label;
     }
 
     public boolean isEqual(int value) {

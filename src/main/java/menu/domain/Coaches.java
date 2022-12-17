@@ -5,6 +5,7 @@ import menu.utills.constants.Category;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Coaches {
     private final List<Coach> coaches;
@@ -29,6 +30,12 @@ public class Coaches {
                 }
             }
         }
+    }
+
+    public List<String> getRecommendedResult() {
+        return coaches.stream()
+                .map(Coach::getRecommendedMenuNames)
+                .collect(Collectors.toList());
     }
 }
 

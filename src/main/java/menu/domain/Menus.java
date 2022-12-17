@@ -2,6 +2,7 @@ package menu.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Menus {
     private final List<Menu> menus = new ArrayList<>();
@@ -23,5 +24,14 @@ public class Menus {
                 .filter(comparedMenu -> comparedMenu.isEqualCategory(menu.getCategory()))
                 .count();
         return count >= 2;
+    }
+
+    @Override
+    public String toString() {
+        List<String> menuNames = menus.stream()
+                .map(Menu::getName)
+                .collect(Collectors.toList());
+
+        return String.join(" | ", menuNames);
     }
 }

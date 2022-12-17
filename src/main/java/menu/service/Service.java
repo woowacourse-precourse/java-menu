@@ -27,6 +27,14 @@ public class Service {
         coaches.takeRecommendByCategories(categories.getCategories());
     }
 
+    public String getCategoryString() {
+        return categories.toString();
+    }
+
+    public List<String> getRecommendedResult() {
+        return coaches.getRecommendedResult();
+    }
+
     private void addHateMenu(Coach coach, List<String> hateMenuNames) {
         for (String menuName : hateMenuNames) {
             Menu menu = MenuRepository.getMenuByName(menuName);

@@ -19,6 +19,7 @@ public class Controller {
         OutputView.printStartMessage();
         setCoach();
         recommend();
+        printResult();
     }
 
     private void setMenus() {
@@ -33,6 +34,12 @@ public class Controller {
 
     private void recommend() {
         service.recommend();
+    }
+
+    private void printResult() {
+        OutputView.printFinalMessage();
+        OutputView.printCategoryResult(service.getCategoryString());
+        OutputView.printRecommendResult(service.getRecommendedResult());
     }
 
     private List<String> getCoachNames() {

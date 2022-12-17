@@ -1,6 +1,7 @@
 package menu.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Coach {
     private final String name;
@@ -26,6 +27,14 @@ public class Coach {
 
     public boolean isAllRecommended() {
         return recommended.containFiveMenus();
+    }
+
+    public String getRecommendedMenuNames() {
+        List<String> messages = new ArrayList<>();
+        messages.add(this.name);
+        System.out.println(recommended);
+        messages.add(recommended.toString());
+        return String.join(" | ", messages);
     }
 
     private boolean unAcceptable(Menu menu) {
