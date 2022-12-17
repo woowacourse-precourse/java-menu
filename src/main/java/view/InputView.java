@@ -12,7 +12,7 @@ public class InputView {
         return toStringList(readInput());
     }
     
-    public List<String> readCanNotEatMenu(String coachName) {
+    public List<String> readInedibleMenus(String coachName) {
         System.out.println(coachName + "(이)가 못 먹는 메뉴를 입력해 주세요.");
         return toStringList(readInput());
     }
