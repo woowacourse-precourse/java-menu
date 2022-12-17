@@ -12,6 +12,7 @@ import java.util.List;
 
 public class InputView {
 
+    // 코치 이름 입력 기능
     public List<String> getCoachName() throws IllegalArgumentException{
         System.out.println(Constant.inputCoachName);
         List<String> nameInput = splitInput(Console.readLine());
@@ -20,6 +21,7 @@ public class InputView {
         return trimEachInput(nameInput);
     }
 
+    // 코치 별 못먹는 메뉴 입력 기능
     public List<Coach> getCoachNotEat(List<String> coachNames) throws IllegalArgumentException{
         List<Coach> coaches = new ArrayList<>();
         for (String name : coachNames) {

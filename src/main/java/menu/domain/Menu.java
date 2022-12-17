@@ -65,6 +65,7 @@ public class Menu {
         foods = menusToList(foodCategory.menus());
     }
 
+    // 메뉴 문자열을 쪼개 문자열 리스트로 변환
     private List<String> menusToList(String menus) {
         return Arrays.asList(menus.split(",")).stream()
                 .map(v -> v.trim())
