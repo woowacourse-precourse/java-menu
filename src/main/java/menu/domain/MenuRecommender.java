@@ -27,6 +27,7 @@ public class MenuRecommender {
             int generate = numberGenerator.generate(Category.MIN_CATEGORY_CODE, Category.MAX_CATEGORY_CODE);
             category = Category.from(generate);
         } while (category.getCount() > CAN_DUPLICATED_CATEGORY_COUNT);
+        category.plusCount();
         return category;
     }
 
