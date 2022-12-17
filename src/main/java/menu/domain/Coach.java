@@ -26,6 +26,6 @@ public class Coach {
     }
 
     public void registerInedibleFoods(List<String> inedibleFoods) {
-        inedibleFoods.forEach(food -> inedibleFoods.add(food));
+        this.inedibleFoods.addAll(inedibleFoods);
     }
 }
