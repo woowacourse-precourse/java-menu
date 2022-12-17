@@ -40,11 +40,12 @@ class CoachTest {
     void createRecommendedMenu() {
         // given
         Menu menu = new Menu("햄버거");
+        Menu recommendMenu = new Menu("햄버거");
         Coach coach = new Coach("포비", new ArrayList<>());
         coach.addMenu(menu);
 
         // when, then
-        assertThat(coach.hasNotSameMenu(menu)).isEqualTo(false);
+        assertThat(coach.hasNotSameMenu(recommendMenu)).isEqualTo(false);
     }
 
     @DisplayName("먹지 못하는 메뉴는 추천할 수 없다.")
