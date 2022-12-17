@@ -6,7 +6,7 @@ import java.util.List;
 public class Coach {
 
     private String name;
-    private List<Menu> dislikeFood;
+    private List<String> dislikeFood;
 
     public Coach(String name) {
         this.name = name;
@@ -17,11 +17,7 @@ public class Coach {
         return name;
     }
 
-    public List<Menu> getDislikeFood() {
+    public List<String> getDislikeFood() {
         return dislikeFood;
-    }
-
-    public void addDislikeFood(Menu menu) {
-        dislikeFood.add(menu);
     }
 }
