@@ -38,12 +38,10 @@ public class MenuRecommendService {
         return coaches;
     }
 
-    private Coaches selectMenuPerCoach(Category category, Coaches coaches) {
+    private void selectMenuPerCoach(Category category, Coaches coaches) {
         for (Coach coach : coaches.getCoaches()) {
             coach.addSelectMenu(selectMenu(category, coach));
         }
-
-        return coaches;
     }
 
     private String selectMenu(Category category, Coach coach) {
