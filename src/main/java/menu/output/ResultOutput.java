@@ -13,6 +13,7 @@ public class ResultOutput {
         printResultIntroduction();
         printRecommendedCategories();
         printCoachesRecommendedFoods(coaches);
+        printFinishMessage();
     }
 
     private static void printResultIntroduction() {
@@ -41,10 +42,14 @@ public class ResultOutput {
         for (Coach coach : coaches) {
             System.out.print(ResultMessage.HEAD_OF_LINE.getMessage() + coach.getName());
             for (Food food : coach.getRecommendedFoods()) {
-                System.out.print(ResultMessage.DELIMITER.getMessage());
-                System.out.print(food.getName());
+                System.out.print(ResultMessage.DELIMITER.getMessage() + food.getName());
             }
             System.out.println(ResultMessage.TAIL_OF_LINE.getMessage());
         }
+    }
+
+    private static void printFinishMessage() {
+        System.out.println();
+        System.out.println(ResultMessage.RESULT_FINISH_MESSAGE.getMessage());
     }
 }

@@ -6,7 +6,8 @@ public enum ResultMessage {
     TAIL_OF_LINE(" ]"),
     DELIMITER(" | "),
     CLASSIFICATION("구분"),
-    CATEGORY("카테고리");
+    CATEGORY("카테고리"),
+    RESULT_FINISH_MESSAGE("추천을 완료했습니다.");
 
     String message;
 
