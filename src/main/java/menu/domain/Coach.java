@@ -4,12 +4,14 @@ import menu.enums.Category;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static menu.utils.ErrorMessage.*;
 
 public class Coach {
     private final String name;
-    private List<String> doNotEatFoods = new ArrayList<String>();
+    private List<String> doNotEatFoods = new ArrayList<>();
+    private List<Food> recommendationFoods = new ArrayList<>();
 
     public Coach(String name) {
         validateNameRange(name);
@@ -49,6 +51,20 @@ public class Coach {
                 throw new IllegalArgumentException(DUPLICATE_FOOD_NAME);
             }
         }
+    }
+
+    public int categoryCount(Category category) {
+        int count = 0;
+        for (Food food : recommendationFoods) {
+            if (food.getCategory().equals(category)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public boolean isOverTwoCountOfDuplicateCategory(Category category) {
+        return categoryCount(category) > 2;
     }
 
     public String getName() {
