@@ -37,7 +37,7 @@ List<String> menu에다가 다 넣어놓기.
 
 ## Coaches (domain)
 
-- [ ] 코치들을 List<Coach> 형의 필드로 가진다.
+- [x] 코치들을 List<Coach> 형의 필드로 가진다.
 
 ## Category (domain)
 
