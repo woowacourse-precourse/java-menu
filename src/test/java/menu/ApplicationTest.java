@@ -14,6 +14,10 @@ import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 
+import menu.controller.MainController;
+import menu.util.Validate;
+import menu.view.InputView;
+import menu.view.OutputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -32,6 +36,43 @@ public class ApplicationTest extends NsTest {
     @DisplayName("전체 기능 테스트")
     @Nested
     class AllFeatureTest {
+        @Test
+        void Validate_숫자_값_포함_에러_테스트_1() {
+            assertSimpleTest(() -> {
+                try {
+                    Validate.inNumber("안녕3");
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+                assertThat(output()).contains(ERROR_NUMBER);
+            });
+        }
+
+        @Test
+        void Validate_숫자_값_포함_에러_테스트_2() {
+            assertSimpleTest(() -> {
+                try {
+                    Validate.inNumber("7안녕하세요");
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+                assertThat(output()).contains(ERROR_NUMBER);
+            });
+        }
+
+        @Test
+        void Validate_숫자_값_포함_에러_테스트_3() {
+            assertSimpleTest(() -> {
+                try {
+                    Validate.inNumber("abc0");
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+                assertThat(output()).contains(ERROR_NUMBER);
+            });
+        }
+
+
         @Test
         void 이름에_숫자_포함_예외_테스트() {
             assertSimpleTest(() -> {
