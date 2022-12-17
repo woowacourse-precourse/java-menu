@@ -16,11 +16,14 @@ public class MainService {
         this.coaches = new Coaches(coaches);
     }
 
-    public void setCantEatMenus(List<String> cantEatMenus) {
-        for (String cantEatMenu : cantEatMenus) {
-            if (!Menu.isExistMenus(cantEatMenu)) {
+    public void setCantEatMenus(List<String> hateMenus, String coachName) {
+        for (String hateMenu : hateMenus) {
+            if (!Menu.isExist(hateMenu)) {
                 throw new IllegalArgumentException("존재하지 않는 메뉴를 입력했습니다. 다시 입력해 주세요.");
             }
         }
+
+        Coach coach = coaches.findByName(coachName);
+        coach.setHateMenus(hateMenus);
     }
 }

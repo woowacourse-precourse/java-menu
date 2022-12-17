@@ -23,9 +23,9 @@ public class MainController {
     }
 
     private void setCantEatMenus(String coachName) {
-            outputView.printCoachCantEat(coachName);
-            List<String> cantEatMenus = repeat(inputView::readCantEatMenu);
-            mainService.setCantEatMenus(cantEatMenus);
+        outputView.printCoachCantEat(coachName);
+        List<String> cantEatMenus = repeat(inputView::readCantEatMenu);
+        mainService.setCantEatMenus(cantEatMenus, coachName);
     }
 
     private <T> T repeat(Supplier<T> reader) {
