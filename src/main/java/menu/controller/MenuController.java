@@ -26,7 +26,6 @@ public class MenuController {
         coaches.stream().forEach(coach -> readConNotEatMenus(coach));
         coachService.saveCoaches(coaches);
         recommendService.createWeeklyRecommendMenu();
-
     }
 
     private List<Coach> readCoachNames() {
