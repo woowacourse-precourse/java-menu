@@ -14,4 +14,8 @@ public class OutputView {
     public void printSelectedMenuResult(String menuResult) {
         System.out.println(menuResult);
     }
+
+    public void printFinalMessage() {
+        System.out.println("\n추천을 완료했습니다.");
+    }
 }
