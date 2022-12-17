@@ -33,16 +33,10 @@ public class RecommendSystem {
             String menu = Randoms.shuffle(menus).get(0);
             while(checkCanNotEatMenu(coach, menu)) {
                 menu = Randoms.shuffle(menus).get(0);
-                continue;
             }
             recommedMenus.add(menu);
         }
 
-    }
-
-    private String recommendMenu(String category) {
-        List<String> menu = Category.getmenu(category);
-        return menu.get(Randoms.pickNumberInRange(0, menu.size()-1));
     }
 
     private boolean checkCanNotEatMenu(Coach coach, String menu) {
