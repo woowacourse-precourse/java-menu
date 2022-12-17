@@ -5,6 +5,8 @@ import menu.model.domain.Coach;
 import menu.model.service.CoachService;
 import menu.model.service.FoodService;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -20,20 +22,16 @@ public class OutputView {
         System.out.println("점심 메뉴 추천을 시작합니다.\n");
     }
 
-    public static void printResult(CoachService coachService, FoodService foodService, Map<String, Category> stringCategoryMap) {
+    public static void printResult(CoachService coachService, FoodService foodService, List<Category> stringCategoryMap) {
         System.out.println("메뉴 추천 결과입니다.");
         System.out.println("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
         System.out.print("[ 카테고리");
-        for (Category category : stringCategoryMap.values()) {
-            System.out.print(" | " + category.getCategory());
-        }
-        System.out.println(" ]");
 
         List<String> allNames = coachService.findAllNames();
         for (String name : allNames) {
             Coach coach = coachService.findByName(name);
             System.out.print("[ " + coach.getName());
-            for (String foodName : coach.getLunchMenu()) {
+            for (String foodName : coach.makeLunchMenu()) {
                 System.out.print(" | " + foodName);
             }
             System.out.println(" ]");

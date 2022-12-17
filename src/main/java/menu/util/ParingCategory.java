@@ -15,74 +15,64 @@ public class ParingCategory {
     private static final String THURSDAY = "목요일";
     private static final String FRIDAY = "금요일";
 
-    public static HashMap<String, Category> initCategoryOrder() {
-        HashMap<String, Category> categoryList = new HashMap<>();
-
-        categoryList.put(TUESDAY, null);
-        categoryList.put(WEDNESDAY, null);
-        categoryList.put(THURSDAY, null);
-        categoryList.put(FRIDAY, null);
-        categoryList.put(MONDAY, null);
-//        initDayCategory(categoryList);
+    public static List<Category> initCategoryOrder() {
+        List<Category> categoryList = new ArrayList<>(5);
 
         Category category = Category.getValueOf(Randoms.pickNumberInRange(1, 5));
-        categoryList.put(MONDAY, category);
+        categoryList.add(category);
         category = Category.getValueOf(Randoms.pickNumberInRange(1, 5));
-        categoryList.put(TUESDAY, category);
-        for (String key : categoryList.keySet()) {
-            System.out.println("key: " + key + " value: " + categoryList.get(key));
-        }
+        categoryList.add(category);
         for (int i = 3; i <= 5; i++) {
             category = Category.getValueOf(Randoms.pickNumberInRange(1, 5));
             if (i == 3) {
                 List<Category> tmp = new ArrayList<>();
-                tmp.add(getCategory(1, categoryList));
-                tmp.add(getCategory(2, categoryList));
+                tmp.add(Category.getValueOf(1));
+                tmp.add(Category.getValueOf(2));
                 HashSet<Category> hashTmp = new HashSet<>(tmp);
 //                System.out.println(tmp.get(0) + " " + tmp.get(1));
                 if (hashTmp.size() == 2) {
-                    categoryList.put(WEDNESDAY, category);
+                    categoryList.add(category);
                 } else if (hashTmp.size() == 1) {
                     while (hashTmp.contains(category)) {
                         category = Category.getValueOf(Randoms.pickNumberInRange(1, 5));
                     }
-                    categoryList.put(WEDNESDAY, category);
+                    categoryList.add(category);
                 }
             } else if (i == 4) {
                 List<Category> tmp = new ArrayList<>();
-                tmp.add(getCategory(1, categoryList));
-                tmp.add(getCategory(2, categoryList));
-                tmp.add(getCategory(3, categoryList));
+                tmp.add(Category.getValueOf(1));
+                tmp.add(Category.getValueOf(2));
+                tmp.add(Category.getValueOf(3));
                 HashSet<Category> hashTmp = new HashSet<>(tmp);
                 if (hashTmp.size() == 3) {
-                    categoryList.put(THURSDAY, category);
+                    categoryList.add(category);
                 } else if (hashTmp.size() == 2) {
                     while (true) {
                         Category random = Category.getValueOf(Randoms.pickNumberInRange(1, 5));
                         if (!hashTmp.contains(random) || (hashTmp.contains(category) && tmp.stream().
                                 filter(x -> x == random)
                                 .count() < 2)) {
-                            categoryList.put(THURSDAY, random);
+                            categoryList.add(random);
                             break;
                         }
                     }
                 }
             } else if (i == 5) {
                 List<Category> tmp = new ArrayList<>();
-                tmp.add(getCategory(1, categoryList));
-                tmp.add(getCategory(2, categoryList));
-                tmp.add(getCategory(3, categoryList));
-                tmp.add(getCategory(4, categoryList));
+                tmp.add(Category.getValueOf(1));
+                tmp.add(Category.getValueOf(2));
+                tmp.add(Category.getValueOf(3));
+                tmp.add(Category.getValueOf(4));
                 HashSet<Category> hashTmp = new HashSet<>(tmp);
                 if (hashTmp.size() == 4) {
-                    categoryList.put(FRIDAY, category);
+                    categoryList.add(category);
                 } else if (hashTmp.size() == 3) {
                     while (true) {
                         Category random = Category.getValueOf(Randoms.pickNumberInRange(1, 5));
                         if (!hashTmp.contains(random) || (hashTmp.contains(random) && tmp.stream().
                                 filter(x -> x.equals(random))
                                 .count() < 2)) {
-                            categoryList.put(FRIDAY, random);
+                            categoryList.add(random);
                             break;
                         }
                     }
@@ -92,7 +82,7 @@ public class ParingCategory {
                         if (!hashTmp.contains(random) || (hashTmp.contains(random) && tmp.stream().
                                 filter(x -> x.equals(random))
                                 .count() < 2)) {
-                            categoryList.put(FRIDAY, random);
+                            categoryList.add(random);
                             break;
                         }
                     }
@@ -103,13 +93,15 @@ public class ParingCategory {
     }
 
     public static void initFoodOrderForCoach(FoodService foodService, CoachService coachService,
-                                             HashMap<String, Category> categoryMap) {
-        List<String> days = Arrays.asList(MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY);
+                                             List<Category> categoryMap) {
+        List<Category> days = Arrays.asList(Category.getValueOf(1), Category.getValueOf(2),
+                Category.getValueOf(3), Category.getValueOf(4), Category.getValueOf(5));
 
         List<String> allNames = coachService.findAllNames();
         for (String name : allNames) {
-            for (String day : days) {
-                Category category = categoryMap.get(day);
+            for (Category day : days) {
+                Category category = categoryMap.stream().filter(x -> x.equals(day))
+                        .findFirst().orElse(null);
                 Coach coach = coachService.findByName(name);
                 List<String> foodList = foodService.findAllNamesByCategory(category);
                 List<String> cannotEatFoods = coach.getCannotEatFoods();
@@ -145,24 +137,16 @@ public class ParingCategory {
         }
     }
 
-    private static void initDayCategory (HashMap <String, Category> categoryList){
-//        categoryList.put(MONDAY, null);
-//        categoryList.put(TUESDAY, null);
-//        categoryList.put(WEDNESDAY, null);
-//        categoryList.put(THURSDAY, null);
-//        categoryList.put(FRIDAY, null);
-    }
-
-    private static Category getCategory ( int index, Map<String, Category > categoryList){
+    private static Category getCategory ( int index, List<String> categoryList){
         if (index == 1) {
-            return categoryList.get(MONDAY);
+            return Category.getValueOf(1);
         } else if (index == 2) {
-            return categoryList.get(TUESDAY);
+            return Category.getValueOf(2);
         } else if (index == 3) {
-            return categoryList.get(WEDNESDAY);
+            return Category.getValueOf(3);
         } else if (index == 4) {
-            return categoryList.get(THURSDAY);
+            return Category.getValueOf(4);
         }
-        return categoryList.get(FRIDAY);
+        return Category.getValueOf(5);
     }
 }

@@ -43,7 +43,7 @@ public class LunchController {
                 }
             }
 
-            HashMap<String, Category> stringCategoryMap = ParingCategory.initCategoryOrder();
+            List<Category> stringCategoryMap = ParingCategory.initCategoryOrder();
 //            for(Map.Entry<String, Category> entry : stringCategoryMap.entrySet()) {
 //                System.out.println(entry.getKey() + " " + "카테고리: " + entry.getValue());
 //            }
