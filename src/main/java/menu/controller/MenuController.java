@@ -19,52 +19,59 @@ public class MenuController {
 
     public void run() {
         outputView.guideStart();
-        readCoaches();
-        readPickyAboutFood();
+
+        setCoaches();
+        setPickyAboutFood();
         recommend();
-        print();
+        printResult();
     }
 
-    private void readCoaches() {
+    private void setCoaches() {
         try {
             outputView.guideInputCoachNames();
-
-            for (String coach : inputView.readCoachNames()) {
-                CoachRepository.addCoaches(new Coach(coach.trim()));
-            }
+            readCoaches();
             CoachRepository.validate();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            readCoaches();
+            setCoaches();
         }
     }
 
-    private void readPickyAboutFood() {
+    private void readCoaches() {
+
+        for (String coach : inputView.readCoachNames()) {
+            CoachRepository.addCoaches(new Coach(coach.trim()));
+        }
+    }
+
+    private void setPickyAboutFood() {
 
         for (Coach coach : CoachRepository.coaches()) {
             outputView.guideInputCantEat(coach.getName());
+            readPickyAboutFood(coach);
+        }
+    }
 
-            for (String input : inputView.readPicky()) {
-                coach.addCantEat(Food.isInFoodMenu(input));
-            }
+    private void readPickyAboutFood(Coach coach) {
+
+        for (String input : inputView.readPicky()) {
+            coach.addCantEat(Food.filterNotInMenu(input));
         }
     }
 
     private void recommend() {
-        for (int day = 0; day < 5; day++) {
-            MenuRecommendRepository.selectCategory();
-            CoachRepository.selectMenu(MenuRecommendRepository.recommendedCategories().get(day));
 
+        for (Day day : Day.values()) {
+            RecommendService.selectCategory();
+            RecommendService.selectMenu(RecommendRepository.recommendedCategories().get(day.getIndex()));
         }
     }
 
-    private void print() {
+    private void printResult() {
         outputView.guideShowResult();
         outputView.showResult(Day.getDays());
-        List<String> form = new ArrayList<>();
-        form.add("카테고리");
-        form.addAll(MenuRecommendRepository.recommendedCategories());
-        outputView.showResult(form);
+        outputView.showResult(RecommendRepository.recommendedCategories());
+
         for (Coach coach : CoachRepository.coaches()) {
             outputView.showResult(coach.menus());
         }

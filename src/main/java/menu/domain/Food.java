@@ -36,12 +36,16 @@ public enum Food {
                 .menus;
     }
 
-    public static String isInFoodMenu(String menu) {
+    public static String filterNotInMenu(String menu) {
         for (Food food : Food.values()) {
             if (food.menus.contains(menu)) {
                 return menu;
             }
         }
         return "";
+    }
+
+    public String getCategory() {
+        return category;
     }
 }

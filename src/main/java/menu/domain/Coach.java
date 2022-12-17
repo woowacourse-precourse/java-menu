@@ -38,8 +38,8 @@ public class Coach {
         return menus.contains(menu);
     }
 
-    public boolean isCantEatMenu(String menu) {
-        return cantEat.contains(menu);
+    public boolean canEatMenu(String menu) {
+        return !cantEat.contains(menu);
     }
 
     public String getName() {

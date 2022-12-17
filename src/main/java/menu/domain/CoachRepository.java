@@ -15,6 +15,7 @@ public class CoachRepository {
     public static List<Coach> coaches() {
         return Collections.unmodifiableList(coaches);
     }
+
     public static void addCoaches(Coach coach) {
         coaches.add(coach);
     }
@@ -22,18 +23,6 @@ public class CoachRepository {
     public static void validate() {
         if (coaches.size() < MIN_NUMBER_OF_PEOPLE || MAX_NUMBER_OF_PEOPLE < coaches.size()) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_SATISFIED_NUMBER_OF_COACH.get());
-        }
-    }
-
-    public static void selectMenu(String recommendedCategory) {
-        String menu;
-
-        for (Coach coach : coaches) {
-
-            do {
-                menu = RandomGenerator.forMenu(Food.getMenuByCategory(recommendedCategory));
-            } while (coach.hasSameMenuRecommend(menu) || coach.isCantEatMenu(menu));
-            coach.addMenu(menu);
         }
     }
 
