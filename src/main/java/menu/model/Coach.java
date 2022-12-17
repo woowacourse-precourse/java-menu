@@ -8,6 +8,7 @@ public class Coach {
 
     private final String name;
     private HateMenu hateMenu;
+    private SelectMenu selectMenu;
 
     public Coach(String name) {
         validateName(name);
@@ -20,6 +21,9 @@ public class Coach {
 
     public void addHateMenus(HateMenu hateMenu) {
         this.hateMenu = hateMenu;
+    }
+    public void addSelectMenu(SelectMenu selectMenu) {
+        this.selectMenu = selectMenu;
     }
 
     private void validateName(String name) {
