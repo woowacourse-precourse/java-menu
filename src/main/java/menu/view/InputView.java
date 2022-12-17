@@ -18,7 +18,7 @@ public class InputView {
     }
 
     private static void validateCoachInputFormat(String input) {
-        String[] names = input.split(INPUT_DELIMITER, -1);
+        String[] names = input.split(INPUT_DELIMITER);
         if (names.length < 2 || names.length > 5) {
             throw new IllegalArgumentException("코치는 최소 2명, 최대 5명까지 식사를 함께 할 수 있습니다.");
         }
