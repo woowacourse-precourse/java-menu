@@ -1,6 +1,6 @@
 package menu.domain;
 
-import menu.Utils.Utils;
+import menu.utils.Utils;
 
 public class Menu {
     private final String name;
@@ -9,5 +9,13 @@ public class Menu {
     public Menu(String name, int categoryNum) {
         this.name = name;
         this.style = Utils.styleToCategoryConverter(categoryNum);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Style getStyle() {
+        return style;
     }
 }
