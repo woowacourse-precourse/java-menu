@@ -42,4 +42,15 @@ public class MenuRecommendProgram {
         return countOfCategorySelected.get(category) < 2;
     }
 
+    public String selectMenu(Coach coach, String category) {
+        String menu;
+        List<String> menus = Category.getMenus(category);
+        boolean isSelect;
+        do {
+            menu = menuRecommend.selectMenu(menus);
+            isSelect = validateMenu(menu);
+        } while (isSelect);
+        return menu;
+    }
+
 }
