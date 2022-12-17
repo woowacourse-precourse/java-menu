@@ -11,24 +11,27 @@ public class Controller {
         messageView.serviceStartMessage();
         recommendMenu(coachNotEatMenu(coachName()));
     }
+
     public List<String> coachName(){
         messageView.coachNameMessage();
         return inputView.coachNameInput();
     }
+
     public List<Coach> coachNotEatMenu(List<String> name){
         List<Coach> coachInfo= new ArrayList<>();
-        for(int i=0; i<name.size(); i++) {
-            List<String> notEatFood = new ArrayList<>();
-            messageView.coachNotEatMessage(name.get(i));
+        List<String> notEatFood;
+        for (String coachName : name) {
+            messageView.coachNotEatMessage(coachName);
             notEatFood = inputView.coachCantEatInput();
-            coachInfo.add(new Coach(name.get(i),notEatFood));
+            coachInfo.add(new Coach(coachName, notEatFood));
         }
         return coachInfo;
     }
-    public List<Result> recommendMenu(List<Coach> coachInfo){
+
+    public void recommendMenu(List<Coach> coachInfo){
         Recommend recommend = new Recommend();
         messageView.recommendMessage();
-        return recommend.recommend(coachInfo);
+        recommend.recommend(coachInfo);
     }
 
 }
