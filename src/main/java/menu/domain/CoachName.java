@@ -1,5 +1,7 @@
 package menu.domain;
 
+import java.util.Objects;
+
 public class CoachName {
     private static final int NAME_LENGTH_MIN = 2;
     private static final int NAME_LENGTH_MAX = 4;
@@ -24,5 +26,21 @@ public class CoachName {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof CoachName)) {
+            return false;
+        }
+        if (((CoachName) obj).name.equals(this.name)) {
+            return true;
+        }
+        return false;
     }
 }
