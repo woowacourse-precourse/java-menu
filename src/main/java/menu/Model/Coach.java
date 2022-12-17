@@ -16,7 +16,7 @@ public class Coach {
     }
 
     private void validateName(String name) {
-        if (!name.matches("^[A-Za-z]*$")) {
+        if (!name.matches("^[ㄱ-ㅎㅏ-ㅣ가-힣]*$")) {
             throw new IllegalArgumentException(INVALID_NAME);
         }
         if (name.length() > 4 || name.length() < 2) {
