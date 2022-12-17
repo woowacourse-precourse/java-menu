@@ -14,6 +14,7 @@ public class MenuRecommender {
 
     public MenuRecommender(List<Coach> coaches) {
         this.coaches = coaches;
+        planCategory();
     }
 
     public List<List<String>> getRecommendationResult() {
