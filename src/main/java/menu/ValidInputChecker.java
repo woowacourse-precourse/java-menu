@@ -2,6 +2,7 @@ package menu;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class ValidInputChecker {
@@ -20,7 +21,7 @@ public class ValidInputChecker {
     }
 
     private static String validateFoodName(String food){
-        if(food == null) return null;
+        if(Objects.equals(food, "")) return "";
         if(!FoodInformation.isExist(food))
             throw new IllegalArgumentException("[ERROR] 못 먹는 메뉴가 존재하지 않는 값입니다.");
         return food;
