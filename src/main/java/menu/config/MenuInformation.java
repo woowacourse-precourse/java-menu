@@ -8,4 +8,5 @@ public class MenuInformation {
     public static final int COACH_NAME_MAX_LENGTH = 4;
     public static final int COACH_MIN_COUNT = 2;
     public static final int COACH_MAX_COUNT = 5;
+    public static final int FORBIDDEN_FOOD_MAX_COUNT = 2;
 }
