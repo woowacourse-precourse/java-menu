@@ -1,7 +1,9 @@
 package menu;
 
+import menu.domain.MenuRecommand;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        new MenuRecommand().play();
     }
 }
