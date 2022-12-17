@@ -43,18 +43,26 @@ public class MenuSuggester {
         String menu;
         do {
             menu = Randoms.shuffle(menus).get(0);
-            possible = possibleMenu(coach, category, menu);
+            possible = possibleMenu(coach, menu);
         } while (!possible);
         return menu;
     }
 
-    private boolean possibleMenu(Coach coach, int category, String menu) {
-        return uniqueMenu(coach, category, menu);
+    private boolean possibleMenu(Coach coach, String menu) {
+        return uniqueMenu(coach, menu) && eatableMenu(coach, menu);
     }
 
-    private boolean uniqueMenu(Coach coach, int category, String menu) {
+    private boolean uniqueMenu(Coach coach, String menu) {
         List<String> eatMenu = coach.getEatMenu();
         if (eatMenu.contains(menu)) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean eatableMenu(Coach coach, String menu) {
+        List<String> noEatFood = coach.getNoEatFood();
+        if (noEatFood.contains(menu)) {
             return false;
         }
         return true;
