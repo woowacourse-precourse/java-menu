@@ -12,10 +12,10 @@ public class InputView {
     public void getCoachName() {
         System.out.println(INPUT_COACH_NAME);
         String userCoachName = Console.readLine();
-        validateCoachName(userCoachName);
+        validateDuplicateCoachName(userCoachName);
     }
 
-    private void validateCoachName(String uncheckedCoachNames) {
+    private void validateDuplicateCoachName(String uncheckedCoachNames) {
         List<String> coachNames = List.of(uncheckedCoachNames.split(","));
         Set<String> uniqueCoachNames = new HashSet<>(coachNames);
         if(coachNames.size() != uniqueCoachNames.size()) {
