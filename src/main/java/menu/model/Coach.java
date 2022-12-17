@@ -22,6 +22,7 @@ public class Coach {
     public String getName() {
         return name;
     }
+
     public List<String> getSelectMenu() {
         List<String> temp = Collections.singletonList(name);
         List<String> selectMenuResult = new ArrayList<>();
