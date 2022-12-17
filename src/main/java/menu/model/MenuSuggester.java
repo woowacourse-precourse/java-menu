@@ -8,6 +8,7 @@ public class MenuSuggester {
     private List<Coach> coaches;
     private List<List<String>> categories;
     private int[] suggestedCategory;
+    private final int CATEGORY_MAX = 2;
 
     public MenuSuggester() {
         MenuGenerator menuGenerator = new MenuGenerator();
@@ -50,7 +51,7 @@ public class MenuSuggester {
                 count++;
             }
         }
-        if (count >= 2) {
+        if (count >= CATEGORY_MAX) {
             return false;
         }
         return true;
