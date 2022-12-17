@@ -22,6 +22,10 @@ public class CoachRepository {
         return CoachRepository.InstanceHolder.INSTANCE;
     }
 
+    public void addCoach(String coachName) {
+        coaches.add(new Coach(coachName));
+    }
+
     public boolean isValidSize(int size) {
         return size >= SizeLimit.COACH_MIN_SIZE.getSize()
                 && size <= SizeLimit.COACH_MAX_SIZE.getSize();
