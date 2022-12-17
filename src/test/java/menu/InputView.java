@@ -1,6 +1,7 @@
 package menu;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -66,7 +67,7 @@ public class InputView {
 	public void askNotEatingMenu() {
 		for(int coachIndex = 0; coachIndex < coachName.size(); ) {
 			String notEatingMenu = "";
-			System.out.printf("%s(이)가 못 먹는 메뉴를 입력해 주세요.", coachName.get(i));
+			System.out.printf("%s(이)가 못 먹는 메뉴를 입력해 주세요.", coachName.get(coachIndex));
 			notEatingMenu = Console.readLine();
 			if(!errorCatchForNotEatingMenu(notEatingMenu)) {
 				continue;
@@ -79,6 +80,7 @@ public class InputView {
 	public boolean errorCatchForNotEatingMenu(String notEatingMenu) {
 		try {
 			checkMenuCount(notEatingMenu);
+			checkMenuDuplicated(notEatingMenu);
 		} catch(IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			return false;
@@ -92,6 +94,18 @@ public class InputView {
 			throw new IllegalArgumentException("[ERROR] 못 먹는 메뉴의 개수는 2개까지 작성 가능합니다.");
 		}
 		return true;
+	}
+	
+	public void checkMenuDuplicated(String notEatingMenu) {
+		String[] notEatingMenuStr = notEatingMenu.split(",");
+		int originalSize = notEatingMenuStr.length;
+		HashSet notEatingMenuSet = new HashSet<>();
+		for(String menu : notEatingMenuStr) {
+			notEatingMenuSet.add(menu);
+		}
+		if(notEatingMenuSet.size() != originalSize) {
+			throw new IllegalArgumentException("[ERROR] 못 먹는 메뉴가 중복 됩니다.");
+		}
 	}
 	
 	public void inputNotEatingMenuForEachCoach(int coachIndex, String notEatingMenu) {
