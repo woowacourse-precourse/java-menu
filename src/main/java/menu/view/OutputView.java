@@ -21,6 +21,7 @@ public class OutputView {
         printDays();
         printCategories(result);
         printMemberRecommend(result);
+        printCompleteMessage();
     }
 
     private void printDays() {
@@ -71,6 +72,10 @@ public class OutputView {
     private String getMenuOf(Map<DayRecommend, FoodCategory> result, Coach coach, String day) {
         DayRecommend dayRecommendOfDayOf = getDayRecommendOfDayOf(result, day);
         return dayRecommendOfDayOf.getMenuOf(coach).getMenuName();
+    }
+
+    private void printCompleteMessage(){
+        System.out.println("추천을 완료했습니다.");
     }
 }
 
