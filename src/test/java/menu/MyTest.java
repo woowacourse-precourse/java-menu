@@ -2,9 +2,6 @@ package menu;
 
 import static org.assertj.core.api.AssertionsForClassTypes.*;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -15,7 +12,7 @@ public class MyTest {
     @DisplayName("Coach 클래스 기능 Test")
     @Nested
     class CoachTest {
-        @DisplayName("Coach 메뉴 추가 테스트")
+        @DisplayName("메뉴 추가")
         @Test
         void addMenuTest() {
             Coach coach = new Coach("test");
@@ -24,5 +21,22 @@ public class MyTest {
             assertThat(coach.getMenus().get(0)).isEqualTo("우동");
         }
 
+        @DisplayName("같은 메뉴가 있는지 확인")
+        @Test
+        void hasSameMenuTest() {
+            Coach coach = new Coach("test");
+            coach.addMenu("우동");
+            coach.addMenu("우동");
+            assertThat(coach.hasSameMenu()).isEqualTo(true);
+        }
+
+        @DisplayName("clear")
+        @Test
+        void clearTest() {
+            Coach coach = new Coach("test");
+            coach.addMenu("우동");
+            coach.clearMenu();
+            assertThat(coach.getMenus().size()).isEqualTo(0);
+        }
     }
 }
