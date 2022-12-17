@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Coach {
-    String name;
-    List<String> cannotEatMenus;
-    List<String> suggestedMenus;
+    private final String name;
+    private final List<String> cannotEatMenus;
+    private final List<String> suggestedMenus;
 
     public Coach(String name) {
         this.name = name;
