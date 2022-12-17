@@ -1,5 +1,6 @@
 package menu.domain;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,8 +10,8 @@ import static menu.option.Option.WEEK;
 
 public class Coach {
     private String name;
-    private List<Food> cantEatList;
-    private HashMap<String,Food> foodList;
+    private List<String> cantEatList;
+    private HashMap<String,String> foodList;
     private HashMap<String,Integer> categoryCnt;
     public Coach(String name){
         this.name = name;
@@ -18,12 +19,13 @@ public class Coach {
         makeFoodList();
     }
     public void makeCantEatList(String cantEat){
+        cantEatList = new ArrayList<>();
         for(String food:cantEat.split(",")){
-            this.cantEatList.add(getFoodsList().get(food));
+            this.cantEatList.add(food);
         }
     }
     private void makeFoodList(){
-        this.foodList = new HashMap<String,Food>();
+        this.foodList = new HashMap<String,String>();
         for(String day: WEEK){
             foodList.put(day,null);
         }

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Foods {
-    private static HashMap<String,Food> foodsList;
+    private static HashMap<String,String[]> foodsList;
     private final String[] japan = {"규동", "우동", "미소시루", "스시", "가츠동", "오니기리", "하이라이스", "라멘", "오코노미야끼"};
     private final String[] korean = {"김밥", "김치찌개", "쌈밥","된장찌개", "비빔밥", "칼국수", "불고기", "떡볶이", "제육볶음"};
     private final String[] chinese = {"깐풍기", "볶음면", "동파육", "짜장면", "짬뽕", "마파두부", "탕수육", "토마토 달걀볶음", "고추잡채"};
@@ -20,9 +20,7 @@ public class Foods {
         makeFood("양식", western);
     }
     private void makeFood(String category,String[] foods){
-        for(String food:foods){
-            this.foodsList.put(food,new Food(category,food));
-        }
+        this.foodsList.put(category,foods);
     }
-    public static HashMap<String, Food> getFoodsList(){return foodsList;}
+    public static HashMap<String, String[]> getFoodsList(){return foodsList;}
 }
