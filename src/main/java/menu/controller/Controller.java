@@ -2,7 +2,9 @@ package menu.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -10,22 +12,24 @@ import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.Coaches;
 import menu.view.InputView;
+import menu.view.OutputView;
 
 public class Controller {
 
     private final InputView inputView = new InputView();
-    // private final OutputView outputView = new OutputView();
+    private final OutputView outputView = new OutputView();
     private final Coaches coaches;
 
     public Controller() {
-        // outputView.printGameStart();
+        outputView.printRecommendationStart();
         coaches = new Coaches();
     }
 
-    public List<List<String>> run() {
+    public void run() {
+        final Map<String, List<String>> results = new LinkedHashMap<>();
         final List<String> coachNames = repeat(this::toCrewNames);
         coaches.addAll(repeat(this::toCoaches, coachNames));
-        return coaches.getCoaches().stream().map(coach -> {
+        coaches.getCoaches().forEach(coach -> {
             final List<String> weeklyRecommendations = new ArrayList<>();
             for (int day = 0; day < 5; day++) {
                 while (true) {
@@ -33,14 +37,16 @@ public class Controller {
                     menus.addAll(coach.getBannedFoods());
                     menus = menus.stream().distinct().collect(Collectors.toList());
                     String menu = Randoms.shuffle(menus).get(0);
-                    if (!weeklyRecommendations.contains(menu) && !hasMoreThanTwoCategories(weeklyRecommendations, menu)) {
+                    if (!weeklyRecommendations.contains(menu) && !hasMoreThanTwoCategories(weeklyRecommendations,
+                            menu)) {
                         weeklyRecommendations.add(menu);
                         break;
                     }
                 }
             }
-            return weeklyRecommendations;
-        }).collect(Collectors.toList());
+            results.put(coach.getName(), weeklyRecommendations);
+        });
+        outputView.printResults(results);
     }
 
     private boolean hasMoreThanTwoCategories(List<String> weeklyRecommendations, String menu) {
@@ -68,8 +74,7 @@ public class Controller {
         try {
             return inputReader.get();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            //  outputView.printErrorMessage(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
             return repeat(inputReader);
         }
     }
@@ -78,8 +83,7 @@ public class Controller {
         try {
             return service.apply(parameter);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            // outputView.printException(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
             return service.apply(parameter);
         }
     }
