@@ -36,8 +36,8 @@ List<String> menu에다가 다 넣어놓기.
 
 ## Category (domain)
 
-- [ ] 카테고리 이름을 String 형의 필드로 가진다.
-- [ ] 메뉴들을 List<String> 형의 필드로 가진다.
+- [x] 카테고리 이름을 String 형의 필드로 가진다.
+- [x] 메뉴들을 List<String> 형의 필드로 가진다.
 
 ## Categories (domain)
 
