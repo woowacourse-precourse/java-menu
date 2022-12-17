@@ -1,6 +1,7 @@
 package menu.controller;
 
 import menu.service.InitializationService;
+import menu.service.ValidationService;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -21,10 +22,12 @@ public class MenuController {
         initializationService.initializeCategory();
         printStartMessage();
 
-        takeNamesOfCoaches();
+        takeCoaches();
     }
 
-    public void takeNamesOfCoaches() {
-        String name = inputView.readCoachNames();
+    public void takeCoaches() {
+        String name = ValidationService.takeCoachNames();
+
+        System.out.println(name);
     }
 }

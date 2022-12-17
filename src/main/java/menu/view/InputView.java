@@ -7,6 +7,11 @@ public class InputView {
 
     public String readCoachNames() {
         System.out.println(INPUT_COACH_NAMES);
-        return Console.readLine();
+
+        String name = Console.readLine();
+
+        System.out.println();
+
+        return name;
     }
 }
