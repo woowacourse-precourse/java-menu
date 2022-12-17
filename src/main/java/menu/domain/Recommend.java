@@ -40,7 +40,7 @@ public class Recommend {
     // 이번주 두번 이상 먹지 않았는지 확인
     private boolean checkIsValidFoodCategory(FoodCategory foodCategory) {
         Integer categoryChooseNum = weekCategoryChoose.get(foodCategory);
-        if (categoryChooseNum > 2) {
+        if (categoryChooseNum >= 2) {
             return false;
         }
         weekCategoryChoose.put(foodCategory,categoryChooseNum+1);
