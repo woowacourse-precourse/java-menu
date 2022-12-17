@@ -30,7 +30,7 @@ public class MainController {
         /*
         for(Coach coach : coaches){
             setBanFoods(coach);
-            setMenusOfWeek(coach); //이거 같이하면 테스트에서 들어오는 리스트 순서 때문에 테스트 오류남
+            setMenusOfWeek(coach);
         }
         */
         for(Coach coach : coaches){
