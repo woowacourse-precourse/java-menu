@@ -2,6 +2,7 @@ package controller;
 
 import menu.Coach;
 import repository.CoachRepository;
+import repository.MenuForWeekRepository;
 import view.InputView;
 import view.OutputView;
 
@@ -20,18 +21,53 @@ public class MenuController {
 
     public void run() {
         outputView.printStartMessage();
-        makeCoaches(inputView.readCoachNames());
-
+        List<Coach> coaches = makeCoaches(inputView.readCoachNames());
+        for (Coach coach : coaches) {
+            List<String> foodNames = getHateFoodNames(inputView.readNotAvailableFood(coach.getName()), coach.getName());
+            coach.addHateFoodList(foodNames);
+        }
+        outputView.printMenuResult(MenuForWeekRepository.getMenuResult());
     }
 
-    private void makeCoaches(String coachNames) {
+    private List<String> getHateFoodNames(String hateFoodNames, String coachName) {
         try {
-            List<String> names = splitCoaches(coachNames);
-            List<Coach> coaches = makeCoaches(names);
-            CoachRepository.initializeCoaches(coaches);
+            List<String> foodNames = splitNames(hateFoodNames);
+            validateFoodSize(foodNames);
+            validateFoodNames(foodNames);
+            return foodNames;
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception);
-            makeCoaches(inputView.readCoachNames());
+            return getHateFoodNames(inputView.readNotAvailableFood(coachName), coachName);
+        }
+    }
+
+    private void validateFoodNames(List<String> foodNames) {
+        // TODO : 정확한 메뉴 이름인지 검사 추가
+    }
+
+    private void validateFoodSize(List<String> splitFoodNames) {
+        // TODO : 하드코딩 상수화
+        if (splitFoodNames.size() > 2) {
+            throw new IllegalArgumentException("메뉴는 최대 두 개 이상 입력할 수 없습니다.");
+        }
+    }
+
+    private List<Coach> makeCoaches(String coachNames) {
+        try {
+            List<String> names = splitNames(coachNames);
+            validateCoachSize(names);
+            List<Coach> coaches = makeCoaches(names);
+            CoachRepository.initializeCoaches(coaches);
+            return coaches;
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception);
+            return makeCoaches(inputView.readCoachNames());
+        }
+    }
+
+    private void validateCoachSize(List<String> names) {
+        if (names.size() < MINIMUM_COACHES) {
+            throw new IllegalArgumentException("코치는 최소 2명 이상 입력해야 합니다.");
         }
     }
 
@@ -40,11 +76,7 @@ public class MenuController {
                 .collect(Collectors.toList());
     }
 
-    private List<String> splitCoaches(String coachNames) {
-        List<String> names = List.of(coachNames.split(","));
-        if (names.size() < MINIMUM_COACHES) {
-            throw new IllegalArgumentException("코치는 최소 2명 이상 입력해야 합니다.");
-        }
-        return names;
+    private List<String> splitNames(String coachNames) {
+        return List.of(coachNames.split(","));
     }
 }

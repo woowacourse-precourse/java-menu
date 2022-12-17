@@ -1,5 +1,15 @@
 package view;
 
+import constant.Category;
+import constant.Week;
+import menu.Coach;
+import repository.MenuForWeekRepository;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static constant.ViewMessage.*;
 
 public class OutputView {
@@ -38,5 +48,18 @@ public class OutputView {
 
     public void printReadingCoachNames() {
         println(READ_COACH_NAMES);
+    }
+
+    public void printReadingHateFood(String coachName) {
+        printFormat(READ_HATE_FOOD, coachName);
+        printNewLine();
+    }
+
+    public void printMenuResult(HashMap<Coach, List<String>> menuResult) {
+        println(WEEKDAYS);
+        HashMap<Week, Category> categoriesPerWeek = MenuForWeekRepository.getCategoriesPerWeek();
+        String categories = categoriesPerWeek.values().stream().map(category -> category.getName()).collect(Collectors.joining(" | "));
+        println("[ 카테고리 | " + categories + " ]");
+        // TODO : 코치별 음식 목록 출력하기
     }
 }

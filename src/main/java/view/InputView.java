@@ -17,4 +17,9 @@ public class InputView {
         outputView.printReadingCoachNames();
         return read();
     }
+
+    public String readNotAvailableFood(String coachName) {
+        outputView.printReadingHateFood(coachName);
+        return read();
+    }
 }
