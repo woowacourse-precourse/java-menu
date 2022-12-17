@@ -6,6 +6,7 @@ import menu.domain.Couch;
 import menu.domain.Menu;
 import menu.dto.CouchHateMenusRequest;
 import menu.dto.CouchNamesRequest;
+import menu.dto.RecommendMenusResponse;
 import menu.repository.CouchRepository;
 import menu.repository.MenuRepository;
 
@@ -35,5 +36,9 @@ public class MenuService {
             Menu hateMenu = menuRepository.findByName(hateMenuName);
             couch.addHateMenu(hateMenu);
         }
+    }
+
+    public RecommendMenusResponse createRecommendMenus() {
+        return null;
     }
 }

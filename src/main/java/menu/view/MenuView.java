@@ -1,7 +1,9 @@
 package menu.view;
 
+import java.util.List;
 import menu.dto.CouchHateMenusRequest;
 import menu.dto.CouchNamesRequest;
+import menu.dto.RecommendMenusResponse;
 
 public class MenuView {
     private final InputView inputView;
@@ -38,5 +40,9 @@ public class MenuView {
                 outputView.printException(e);
             }
         }
+    }
+
+    public void printResultMessage(List<RecommendMenusResponse> responses) {
+        outputView.printResultMessage(responses);
     }
 }
