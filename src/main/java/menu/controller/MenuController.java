@@ -5,6 +5,10 @@ import menu.service.ValidationService;
 import menu.view.InputView;
 import menu.view.OutputView;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static menu.view.OutputView.printStartMessage;
 
 public class MenuController {
@@ -22,12 +26,23 @@ public class MenuController {
         initializationService.initializeCategory();
         printStartMessage();
 
-        takeCoaches();
+        List<String> coachNames = takeCoaches();
+        takeMenuFromCoach(coachNames);
+
     }
 
-    public void takeCoaches() {
+    public List<String> takeCoaches() {
         String name = ValidationService.takeCoachNames();
 
-        System.out.println(name);
+        String[] split = name.split(",");
+
+        return Arrays.stream(split)
+                .collect(Collectors.toList());
+    }
+
+    public void takeMenuFromCoach(List<String> coachNames) {
+        for (String coachName : coachNames) {
+            String notEatMenu = inputView.readNotEatMenus(coachName);
+        }
     }
 }
