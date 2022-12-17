@@ -6,9 +6,14 @@ import menu.utils.RandomUtils;
 public class FoodRecommender {
 
     public void repeatThisWeekFood(Coach coach) {
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 5; i++) {
             recommendTodayFood(coach);
         }
+        System.out.print(coach.getName() + " : ");
+        for (Food food : coach.getThisWeekFoods()) {
+            System.out.print(food.getName() + " ");
+        }
+        System.out.println();
     }
 
     public void recommendTodayFood(Coach coach) {
