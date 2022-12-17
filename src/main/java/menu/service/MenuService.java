@@ -21,6 +21,7 @@ public class MenuService {
     }
 
     public void recommendMenu(List<Category> categories, NoEatMenu noEatMenu) {
+        List<Object> objects = new ArrayList<>();
         for (Category category : categories) {
             MenuRepository.makeRandomMenuByCategory(category);
         }

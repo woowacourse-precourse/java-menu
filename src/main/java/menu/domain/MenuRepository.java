@@ -22,13 +22,10 @@ public class MenuRepository {
         return menu;
     }
 
-    public static void makeRandomMenuByCategory(Category category) {
-        menus.stream().filter(menu -> menu.getCategory().equals(category))
+    public static String makeRandomMenuByCategory(Category category) {
+        Menu findMenu = menus.stream().filter(menu -> menu.getCategory().equals(category))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException());
-    }
-
-    private List<String> findMenuByCategory() {
-        return null;
+        return findMenu.makeRandomMenu();
     }
 }
