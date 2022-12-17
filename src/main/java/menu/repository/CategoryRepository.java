@@ -13,7 +13,10 @@ public class CategoryRepository {
     return Collections.unmodifiableList(categories);
   }
 
-  public static void addStation(Category category) {
+  public static void addAllCategory(List<Category> categories) {
+    categories.forEach(CategoryRepository::addCategory);
+  }
+  public static void addCategory(Category category) {
     categories.add(category);
   }
 }

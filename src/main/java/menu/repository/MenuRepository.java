@@ -12,7 +12,11 @@ public class MenuRepository {
     return Collections.unmodifiableList(menus);
   }
 
-  public static void addStation(Menu menu) {
+  public static void addAllMenus(List<Menu> menus) {
+    menus.forEach(MenuRepository::addMenu);
+  }
+
+  public static void addMenu(Menu menu) {
     menus.add(menu);
   }
 }
