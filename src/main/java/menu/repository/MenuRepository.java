@@ -45,6 +45,15 @@ public class MenuRepository {
 		return Collections.unmodifiableList(menus.get(category));
 	}
 
+	public static Menu getMenu(String menuName) {
+		return menus.keySet().stream()
+			.map(category -> menus.get(category))
+			.flatMap(List::stream)
+			.filter(menu -> menu.getName().equals(menuName))
+			.findFirst()
+			.orElseThrow(() -> new IllegalArgumentException("[ERROR] 이름에 해당하는 메뉴가 없습니다"));
+	}
+
 	public static void clear() {
 		menus.clear();
 	}

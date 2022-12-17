@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import menu.domain.Coach;
 import menu.domain.Menu;
@@ -27,6 +28,15 @@ public class CoachUnableMenuRepository {
 		}
 		List<Menu> unableMenus = unable.get(coach);
 		unableMenus.add(menu);
+	}
+
+	public static boolean canCoachEat(Coach coach, Menu menu) {
+		if (unable.get(coach) == null) {
+			return true;
+		}
+		return unable.get(coach).stream()
+			.filter(menu1 -> menu1.equals(menu))
+			.findAny().isEmpty();
 	}
 
 	public static void clear() {

@@ -1,6 +1,7 @@
 package menu.domain;
 
 import java.util.Arrays;
+import java.util.List;
 
 public enum Day {
 	MONDAY("1", "월요일"),
@@ -23,5 +24,9 @@ public enum Day {
 			.filter(day -> day.num.equals(numString))
 			.findFirst()
 			.orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 요일입니다."));
+	}
+
+	public static List<Day> getAllDays() {
+		return List.of(MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY);
 	}
 }

@@ -29,6 +29,10 @@ public class MenuRecommendRepository {
 		return Collections.unmodifiableMap(categoryByDay);
 	}
 
+	public static Map<Day, Map<Coach,Menu>> coachMenuByDay() {
+		return Collections.unmodifiableMap(coachMenuByDay);
+	}
+
 	private static void initCategoryByDay(Day day) {
 		Category category;
 		int count = 0;
