@@ -16,8 +16,22 @@ public class MenuService {
         outputView.printMenuRecommendStartMessage();
 
         outputView.printRequestCoachNameMessage();
+        inputCoachNameAndCheckValidation(true,"");
     }
-    
+
+    private void inputCoachNameAndCheckValidation(boolean doRetryInputCoachName , String coachNameWithComma){
+        while(doRetryInputCoachName){
+            doRetryInputCoachName = false;
+            coachNameWithComma = inputView.inputCoachNameWithComma();
+            String[] coachNames = coachNameWithComma.split(",");
+
+            if(!isValidCoachName(coachNames))
+                doRetryInputCoachName = true;
+            if(!isValidCoachCount(coachNames.length))
+                doRetryInputCoachName = true;
+        }
+        menuRecommendApp.initializeCoach(coachNameWithComma);
+    }
 
     private boolean isValidCoachName(String[] coachNames){
         for (int i = 0; i < coachNames.length; i++) {
