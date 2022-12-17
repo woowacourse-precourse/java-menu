@@ -6,6 +6,7 @@ import menu.vo.ControllerName;
 public class MenuApplication {
     public void run() {
         doSetup();
+        ControllerHolder.get(ControllerName.MAIN).process();
     }
 
     private static void doSetup() {

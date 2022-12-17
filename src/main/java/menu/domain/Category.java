@@ -1,11 +1,9 @@
 package menu.domain;
 
-public class MenuCategory {
+public class Category {
     private final String category;
 
-    public MenuCategory(String category) {
+    public Category(String category) {
         this.category = category;
     }
-
-
 }
