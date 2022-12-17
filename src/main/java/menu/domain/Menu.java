@@ -8,4 +8,12 @@ public class Menu {
         this.category = category;
         this.name =name;
     }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

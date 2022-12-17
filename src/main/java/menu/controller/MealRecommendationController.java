@@ -1,10 +1,7 @@
 package menu.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import menu.domain.Category;
-import menu.domain.CategoryRepository;
-import menu.domain.Coach;
-import menu.domain.CoachRepository;
+import menu.domain.*;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -19,10 +16,12 @@ public class MealRecommendationController {
     OutputView outputView = new OutputView();
     CoachRepository coachRepository;
     CategoryRepository categoryRepository;
+    MenuRepository menuRepository;
 
     public MealRecommendationController() {
         this.coachRepository = CoachRepository.getInstance();
         this.categoryRepository = CategoryRepository.getInstance();
+        this.menuRepository = MenuRepository.getInstance();
     }
 
     public void run() {
@@ -30,8 +29,8 @@ public class MealRecommendationController {
         getAndSaveCoaches();
         getAndSaveEachCoachHateMenu();
         List<Category> thisWeekCategories = getThisWeekCategories();
+        recommendation(thisWeekCategories);
     }
-
 
     private void getAndSaveCoaches() {
         outputView.printNameInputGuide();
@@ -78,6 +77,30 @@ public class MealRecommendationController {
 
         category.updateRecommendedCount();
         return category;
+    }
+
+    private void recommendation(List<Category> thisWeekCategories){
+        List<Coach> coaches = coachRepository.findAll();
+        for (Category category : thisWeekCategories) {
+            recommendMenuOfOneCategory(category);
+        }
+    }
+
+    private void recommendMenuOfOneCategory(Category category){ // 네이밍 이상
+        List<Menu> allMenusByCategory = menuRepository.findAllByCategory(category);
+        List<Coach> coaches = coachRepository.findAll();
+        for (Coach coach : coaches) {
+            Menu menu = recommendMenuForCoach(allMenusByCategory, coach);
+            coach.updateAteMenus(menu);
+        }
+    }
+
+    private Menu recommendMenuForCoach(List<Menu> menus, Coach coach){
+        Menu menu;
+        do{
+            menu = Randoms.shuffle(menus).get(0);
+        } while(!coach.canEat(menu));
+        return menu;
     }
 }
 

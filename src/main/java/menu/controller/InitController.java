@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class InitController {
+    // 저장순서가 유지된다.
     private final Map<String, List<String>> map = Map.of(
             "일식", List.of("규동","우동","미소시루","스시","가츠동","오니기리","하이라이스","라멘","오코노미야끼"),
             "한식", List.of("김밥", "김치찌개","쌈밥","된장찌개","비빔밥", "칼구수","불고기","떡볶이","제육볶음"),
