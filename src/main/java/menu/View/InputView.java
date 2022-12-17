@@ -27,7 +27,6 @@ public class InputView {
         if (input.length() == 0)
             return List.of();
         List<String> inedibles = List.of(input.split(","));
-        System.out.println(inedibles.size());
         for (String food : inedibles) {
             if (!Category.checkFoodInMenus(food)) {
                 throw new IllegalArgumentException(INVALID_FOOD);
