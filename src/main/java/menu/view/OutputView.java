@@ -40,13 +40,13 @@ public class OutputView {
     private void printMenu() {
         //TODO: 너무 길어 메서드 분리
         List<Coach> coaches = CoachRepository.coaches();
-        int lastIndex = coaches.size() - ONE;
 
         for (Coach coach : coaches) {
+            int lastIndex = coach.getChoicedMenus().size() - ONE;
             System.out.print(OPEN_BRAKET.get() + coach.getName() + MIDDLE_BRAKET.get());
-            for (String menu : coach.getChoicedMenu()) {
+            for (String menu : coach.getChoicedMenus()) {
                 System.out.print(menu);
-                if (coach.getChoicedMenu().indexOf(menu) != lastIndex) {
+                if (coach.getChoicedMenus().indexOf(menu) != lastIndex) {
                     System.out.print(MIDDLE_BRAKET.get());
                 }
             }
