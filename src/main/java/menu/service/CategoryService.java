@@ -4,8 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import menu.domain.Category;
 import menu.repository.CategoryRepository;
 
-import java.util.List;
-
 public class CategoryService {
     private final CategoryRepository categoryRepository = new CategoryRepository();
 
