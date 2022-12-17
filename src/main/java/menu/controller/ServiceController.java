@@ -20,16 +20,23 @@ public class ServiceController {
 
     public void run() {
         outputView.printServiceStartMessage();
-        List<String> coachNames = readCoachNames();
+        List<Coach> coaches = makeCoaches();
+        Recommendation recommendation = new Recommendation(coaches);
+        recommendation.run();
+        outputView.printServiceFinishMessage(recommendation.requestCategoryFormat(), recommendation.getCoaches());
+    }
+
+    private List<Coach> makeCoaches() {
         List<Coach> coaches = new ArrayList<>();
+
+        List<String> coachNames = readCoachNames();
         for (String coachName : coachNames) {
             List<String> canNotEatMenus = readCanNotEatMenus(coachName);
             Coach coach = new Coach(coachName, canNotEatMenus);
             coaches.add(coach);
         }
-        Recommendation recommendation = new Recommendation(coaches);
-        recommendation.run();
-        outputView.printServiceFinishMessage(recommendation.requestCategoryFormat(), recommendation.getCoaches());
+
+        return coaches;
     }
 
     private List<String> readCoachNames() {
