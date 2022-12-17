@@ -16,7 +16,7 @@ public enum Category {
 
     Category(String category, String menus) {
         this.category = category;
-        this.menus = List.of(menus.split(MenuConstants.DELIMITER));
+        this.menus = List.of(menus.split(MenuConstants.MENU_DELIMITER));
     }
 
     public String getCategory() {
