@@ -7,6 +7,18 @@ import java.util.List;
 
 public class Validator {
 
+    public static void validateLowerBound(int number, int lowerBound, ExceptionConstants exception) {
+        if (number < lowerBound) {
+            throw new IllegalArgumentException(exception.getMessage());
+        }
+    }
+
+    public static void validateUpperBound(int number, int upperBound, ExceptionConstants exception) {
+        if (number > upperBound) {
+            throw new IllegalArgumentException(exception.getMessage());
+        }
+    }
+
     public static void validateNumberOfCoaches(int numberOfCoaches) {
         if (numberOfCoaches < MenuConstants.MINIMUM_NUMBER_OF_COACHES) {
             throw new IllegalArgumentException(ExceptionConstants.NOT_ENOUGH_COACH.getMessage());
