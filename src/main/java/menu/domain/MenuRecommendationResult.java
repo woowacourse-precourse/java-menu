@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 public class MenuRecommendationResult {
-    private Map<String, Map<Day, String>> recommendationResult = new HashMap();
-    private Map<Day, Categories> categoriesResult = new HashMap<>();
+    private final Map<String, Map<Day, String>> recommendationResult = new HashMap();
+    private final Map<Day, Categories> categoriesResult = new HashMap<>();
 
     public void selectDayCategory(Day day) {
         numberGenerator randomNumberGenerator = new RandomNumberGenerator();
@@ -30,7 +30,6 @@ public class MenuRecommendationResult {
     }
 
     public void menuRecommend(Day day, String coachName) {
-
         String shuffledMenu;
         while (true) {
             shuffledMenu = Categories.getShuffledMenu(categoriesResult.get(day));

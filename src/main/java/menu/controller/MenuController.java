@@ -12,7 +12,8 @@ import java.util.function.Supplier;
 import static menu.util.TransformInput.splitInput;
 
 public class MenuController {
-    private MenuRecommendationResult menuRecommendationResult = new MenuRecommendationResult();
+    private final MenuRecommendationResult menuRecommendationResult = new MenuRecommendationResult();
+
     public void run() {
         setUp();
         selectCategory();
@@ -45,23 +46,22 @@ public class MenuController {
         initHateMenu();
     }
 
-    private List<String> initHateMenu() {
+    private void initHateMenu() {
         List<String> names = CoachRepository.getCoachNames();
         for (String name : names) {
             String menu = initCoachHateMenu(name);
             CoachRepository.hateMenuRegistration(name, splitInput(menu));
         }
-        return names;
     }
 
     private String initCoachHateMenu(String name) {
         String menu;
-        String coachnName = name;
+        String coachName = name;
         try {
-            menu = InputView.readHateMenu(coachnName);
+            menu = InputView.readHateMenu(coachName);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return initCoachHateMenu(coachnName);
+            return initCoachHateMenu(coachName);
         }
         return menu;
     }

@@ -46,15 +46,10 @@ public class InputValidator {
 
     public static void validateInvalidMenu(String input) {
         List<String> menu = splitInput(input);
-
         List<String> allMenu = new ArrayList<>();
         for (Categories categories : Categories.values()) {
-            for (String name : categories.getMenuNames()) {
-                allMenu.add(name);
-            }
+            allMenu.addAll(categories.getMenuNames());
         }
-        System.out.println(allMenu.toString());
-        System.out.println(menu);
         for (String check : menu) {
             if (!allMenu.contains(check)){
                 throw new IllegalArgumentException(INVALID_MENU_ERROR);

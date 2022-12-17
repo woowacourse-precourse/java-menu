@@ -7,9 +7,7 @@ public class CoachRepository {
     private static final Map<String, List<String>> coachHateMenu = new HashMap<>();
 
     public static void nameRegistration(List<String> names) {
-        for (String name : names) {
-            coachNames.add(name);
-        }
+        coachNames.addAll(names);
     }
 
     public static void hateMenuRegistration(String name, List<String> menu) {
