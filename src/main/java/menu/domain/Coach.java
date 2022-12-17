@@ -34,6 +34,7 @@ public class Coach {
         do {
             menu = category.getRandomMenu(categoryName);
         } while (!isEatable(menu) && !isNotDuplicated(menu));
+        eatMenus.add(menu);
     }
 
     private boolean isEatable(String menu) {
