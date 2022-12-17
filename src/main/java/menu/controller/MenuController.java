@@ -14,6 +14,7 @@ public class MenuController {
     
     public void run() {
         outputView.printApplicationStartGuide();
-        inputView.inputCoachNames(outputView);
+        String coachNames = inputView.inputCoachNames(outputView);
+        System.out.println(coachNames);
     }
 }
