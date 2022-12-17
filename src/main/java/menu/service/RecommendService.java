@@ -24,13 +24,18 @@ public class RecommendService {
             recommendResultService.saveCategoryResult(dayWeek, findCategory);
             String recommendMenu = menuService.getRecommendMenu(findCategory);
             recommendMenu = checkMenuAlreadyRecommend(findCategory, coach, recommendMenu);
-            boolean isNotEatFood = coach.isNotEatFood(recommendMenu);
-            while (isNotEatFood) {
-                recommendMenu = menuService.getRecommendMenu(findCategory);
-                isNotEatFood = coach.isNotEatFood(recommendMenu);
-            }
+            recommendMenu = checkMenuNotEatFood(findCategory, coach, recommendMenu);
             recommendResultService.createAndSaveResult(coach, dayWeek, recommendMenu);
         }
+    }
+
+    private String checkMenuNotEatFood(Category findCategory, Coach coach, String recommendMenu) {
+        boolean isNotEatFood = coach.isNotEatFood(recommendMenu);
+        while (isNotEatFood) {
+            recommendMenu = menuService.getRecommendMenu(findCategory);
+            isNotEatFood = coach.isNotEatFood(recommendMenu);
+        }
+        return recommendMenu;
     }
 
     private String checkMenuAlreadyRecommend(Category findCategory, Coach coach, String recommendMenu) {
