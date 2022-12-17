@@ -11,43 +11,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Menu {
-    private final List<String> coachNames = new ArrayList<>();
+    private CoachList coachList;
     private final List<Coach> coaches = new ArrayList<>();
     private final List<String> previousCategories = new ArrayList<>();
 
     public void addCoachNames(String coachNames) {
-        List<String> splittedCoachNames = List.of(coachNames.split(MenuConstants.INPUT_DELIMITER));
-        validateCoachNames(splittedCoachNames);
-        this.coachNames.addAll(splittedCoachNames);
-    }
-
-    private void validateCoachNames(List<String> splittedCoachNames) {
-        Validator.validateLowerBound(splittedCoachNames.size(),
-                MenuConstants.MINIMUM_NUMBER_OF_COACHES,
-                ExceptionConstants.NOT_ENOUGH_COACH);
-
-        Validator.validateUpperBound(splittedCoachNames.size(),
-                MenuConstants.MAXIMUM_NUMBER_OF_COACHES,
-                ExceptionConstants.TOO_MANY_COACHES);
-
-        Validator.validateDuplication(splittedCoachNames);
-        splittedCoachNames.stream()
-                .map(String::length)
-                .forEach(this::validateCoachNameLength);
-    }
-
-    private void validateCoachNameLength(int coachNameLength) {
-        Validator.validateLowerBound(coachNameLength,
-                MenuConstants.MINIMUM_COACH_NAME_LENGTH,
-                ExceptionConstants.TOO_SHORT_NAME_LENGTH);
-
-        Validator.validateUpperBound(coachNameLength,
-                MenuConstants.MAXIMUM_COACH_NAME_LENGTH,
-                ExceptionConstants.TOO_LONG_NAME_LENGTH);
+        coachList = new CoachList(coachNames);
     }
 
     public void addCoach(String name, String inedibleMenu) {
-        coaches.add(new Coach(name, inedibleMenu));
+        coachList.add(name, inedibleMenu);
     }
 
     public void recommendForWeek() {
@@ -88,11 +61,11 @@ public class Menu {
     }
 
     public List<String> getCoachNames() {
-        return coachNames;
+        return coachList.getCoachNames();
     }
 
-    public List<Coach> getCoaches() {
-        return coaches;
+    public List<Coach> getCoachList() {
+        return coachList.getCoachList();
     }
 
     public List<String> getPreviousCategories() {
