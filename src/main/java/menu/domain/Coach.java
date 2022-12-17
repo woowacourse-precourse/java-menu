@@ -15,11 +15,15 @@ public class Coach {
         this.name = name;
     }
 
+    public void postBannedMenus(List<String> bannedMenus) {
+        this.bannedMenus = bannedMenus;
+    }
+
     public String getName() {
         return name;
     }
 
-    public void postBannedMenus(List<String> bannedMenus) {
-        this.bannedMenus = bannedMenus;
+    public boolean isBannedMenu(String name) {
+        return menus.contains(name);
     }
 }

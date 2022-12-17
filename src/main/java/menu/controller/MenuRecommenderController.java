@@ -31,7 +31,7 @@ public class MenuRecommenderController {
     private void recommendMenus() {
         for (Coach coach : coaches) {
             List<Category> categories = menuRecommender.recommendCategories();
-            List<Menu> menus = menuRecommender.recommendMenus(categories);
+            List<Menu> menus = menuRecommender.recommendMenus(coach, categories);
         }
     }
 
