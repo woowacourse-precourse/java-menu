@@ -21,7 +21,7 @@ public class NotEatFoods {
     }
 
     public void addNotEatFood(Food notEatFood) {
-        foods.addFood(notEatFood);;
+        foods.addFood(notEatFood);
     }
 
     public void addNotEatFoods(List<Food> notEatFoods) {
