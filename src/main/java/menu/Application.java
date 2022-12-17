@@ -7,7 +7,6 @@ import menu.ui.output.Output;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class Application {
     private static Output output = new Output();
@@ -19,7 +18,7 @@ public class Application {
         List<List<String>> bannedMenus = input.receiveUnavailableMenu(coachNames);
         List<Coach> coachList = createCoachList(coachNames, bannedMenus);
         MenuRecommender menuRecommender = new MenuRecommender(coachList);
-        List<Map<Coach, List<String>>> RecommendationResult = menuRecommender.getRecommendationResult();
+        List<List<String>> RecommendationResult = menuRecommender.getRecommendationResult();
         output.notifyEnding();
     }
 

@@ -2,7 +2,11 @@ package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 
 public class MenuRecommender {
     private List<Category> categoryHistory = new ArrayList<>();
@@ -14,8 +18,8 @@ public class MenuRecommender {
         planCategory();
     }
 
-    public List<Map<Coach, List<String>>> getRecommendationResult() {
-        List<Map<Coach, List<String>>> result = new ArrayList<>();
+    public List<List<String>> getRecommendationResult() {
+        List<List<String>> result = new ArrayList<>();
 
         for (Coach coach : coaches) {
             result.add(planSingleCoach(coach));
@@ -24,14 +28,18 @@ public class MenuRecommender {
         return result;
     }
 
-    private Map<Coach, List<String>> planSingleCoach(Coach coach) {
-        Map<Coach, List<String>> singleCoach = new HashMap<>();
-        List<String> menus = new ArrayList<>();
+    public List<Category> getCategoryHistory() {
+        return categoryHistory;
+    }
+
+    private List<String> planSingleCoach(Coach coach) {
+        List<String> singleCoach = new ArrayList<>();
+        singleCoach.add(coach.getName());
 
         for (Category category : categoryHistory) {
-            menus.add(recommendMenu(category, coach));
+            singleCoach.add(recommendMenu(category, coach));
         }
-        singleCoach.put(coach, menus);
+
         return singleCoach;
     }
 
