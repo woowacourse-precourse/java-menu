@@ -12,6 +12,11 @@ public class Coach {
         this.notEatFoods = notEatFoods;
     }
 
+    @Override
+    public String toString() {
+        return coachName;
+    }
+
     public boolean isNotEatFood(String recommendMenu) {
         return notEatFoods.contains(recommendMenu);
     }
