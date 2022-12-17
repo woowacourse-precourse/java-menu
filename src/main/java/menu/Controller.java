@@ -25,6 +25,7 @@ public class Controller {
 
             members.add(new Member(coachName, pickyEatings));
         }
+        menuRecommender.setMembers(members);
 
         menuRecommender.makeRecommends();
 
@@ -32,8 +33,6 @@ public class Controller {
 
         return;
     }
-    
-
 
     public static void main(String[] args) {
         run();
