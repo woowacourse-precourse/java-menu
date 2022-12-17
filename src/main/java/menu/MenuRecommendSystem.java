@@ -6,8 +6,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Function;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import menu.model.Category;
@@ -17,11 +15,13 @@ import menu.view.InputView;
 import menu.view.OutputView;
 
 public class MenuRecommendSystem {
-    public static final String LESS_THAN_MIN_VALUE = "코치는 최소 2명 이상 입력해야 합니다.";
+    public static final String COACH_SIZE_OUT_OF_RANGE = "코치는 최소 2명 이상 5명 이하로 입력해야 합니다.";
     public static final String INVALID_MENU_SIZE = "코치는 최소 0개, 최대 2개의 못 먹는 메뉴를 가집니다.";
     public static final int LAST_DAY = 5;
     public static final int MAX_SIZE_OF_MENU_INPUT = 2;
     public static final int MIN_VALUE_OF_COACH_SIZE = 2;
+    public static final int MAX_VALUE_OF_COACH_SIZE = 5;
+    public static final String DUPLICATE_NAME = "코치의 이름은 중복될 수 없습니다.";
     private List<Coach> coaches;
     private Recommendation recommendation;
 
@@ -94,10 +94,19 @@ public class MenuRecommendSystem {
     }
 
     private List<Coach> createCoachesByNames(List<String> coachNameList) {
-        if (coachNameList.size() < MIN_VALUE_OF_COACH_SIZE) {
-            throw new IllegalArgumentException(LESS_THAN_MIN_VALUE);
-        }
+        validateCoachNames(coachNameList);
         return coachNameList.stream().map(Coach::new).collect(Collectors.toList());
+    }
+
+    private void validateCoachNames(List<String> coachNameList) {
+        int coachSize = coachNameList.size();
+        if (coachSize < MIN_VALUE_OF_COACH_SIZE || coachSize > MAX_VALUE_OF_COACH_SIZE) {
+            throw new IllegalArgumentException(COACH_SIZE_OUT_OF_RANGE);
+        }
+        Set<String> coachNameSet = new HashSet<>(coachNameList);
+        if (coachSize != coachNameSet.size()) {
+            throw new IllegalArgumentException(DUPLICATE_NAME);
+        }
     }
 
     /**

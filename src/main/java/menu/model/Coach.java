@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Coach {
-    private static final String INVALID_NAME = "코치의 이름이 올바르지 않습니다.";
+    private static final String INVALID_LENGTH_OF_NAME = "코치의 이름의 길이는 2글자 이상 4글자 이하 여야합니다.";
     public static final String ALREADY_REGISTERED = "해당 코치가 못 먹는 메뉴로 이미 등록돼있습니다.";
     public static final String INVALID_EXECUTION_FOR_RECOMMENDATION = "메뉴 추천은 5일만 할 수 있습니다.";
 
@@ -31,7 +31,7 @@ public class Coach {
 
     public void validateName(String name) {
         if (name.length() < 2 || name.length() > 4) {
-            throw new IllegalArgumentException(INVALID_NAME);
+            throw new IllegalArgumentException(INVALID_LENGTH_OF_NAME);
         }
     }
 
