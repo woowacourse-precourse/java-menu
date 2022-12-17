@@ -41,6 +41,13 @@ public class OutputView {
         printMessage(formattedDayOfTheWeek);
     }
 
+    public void printCategory(List<String> categoriesName) {
+        categoriesName.add(0, CATEGORY_MESSAGE);
+        String formattedCategoriesName = MessageFormat.format(
+                RESULT_MESSAGE_FORMAT, String.join(JOIN_DELIMITER, categoriesName));
+        printMessage(formattedCategoriesName);
+    }
+
     private void printBlankLine() {
         System.out.println();
     }
