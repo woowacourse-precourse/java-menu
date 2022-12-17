@@ -34,6 +34,13 @@ public class MenuRecommendApp {
         categoryByDayOfTheWeek.add(categoryName);
     }
 
+    public boolean isAppearCategoryMoreThanThree(int categoryNumber) {
+        checkCategoryAppearNumber[categoryNumber]++;
+        if(checkCategoryAppearNumber[categoryNumber] >= 3)
+            return true;
+        return false;
+    }
+
     public List<Coach> getCoaches() {
         return coaches;
     }
