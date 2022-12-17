@@ -11,6 +11,10 @@ public class Category {
         this.recommendedCount = 0;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public int getId() {
         return id;
     }

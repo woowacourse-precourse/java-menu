@@ -7,6 +7,8 @@ import menu.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class MealRecommendationController {
     // 이거 리팩토링
@@ -30,6 +32,8 @@ public class MealRecommendationController {
         getAndSaveEachCoachHateMenu();
         List<Category> thisWeekCategories = getThisWeekCategories();
         recommendation(thisWeekCategories);
+        printResult(thisWeekCategories);
+
     }
 
     private void getAndSaveCoaches() {
@@ -101,6 +105,14 @@ public class MealRecommendationController {
             menu = Randoms.shuffle(menus).get(0);
         } while(!coach.canEat(menu));
         return menu;
+    }
+
+    private void printResult(List<Category> thisWeekCategories){
+        Map<String, List<String>> ateMenuNamesByCoachName = coachRepository.getAteMenuNamesByCoachName();
+        List<String> thisWeekCategoriesNames = thisWeekCategories.stream()
+                .map(Category::getName)
+                .collect(Collectors.toList());
+        outputView.printResult(DAY_OF_WEEK, thisWeekCategoriesNames, ateMenuNamesByCoachName);
     }
 }
 

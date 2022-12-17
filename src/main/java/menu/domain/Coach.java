@@ -4,6 +4,7 @@ import menu.util.Validator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Coach {
     private final String name;
@@ -30,8 +31,14 @@ public class Coach {
         this.hateMenuNames = hateMenuNames;
     }
 
-    public boolean canEat(Menu menu){
+    public boolean canEat(Menu menu) {
         return !ateMenus.contains(menu) && !hateMenuNames.contains(menu.getName());
+    }
+
+    public List<String> getAteMenuNames() {
+        return ateMenus.stream().
+                map(Menu::getName)
+                .collect(Collectors.toList());
     }
 
 }
