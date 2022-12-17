@@ -32,6 +32,7 @@ public class MenuController {
         for (String name : coachNames) {
             coaches.add(createEachCoach(name));
         }
+        System.out.println("coaches = " + coaches);
         return coaches;
     }
 
