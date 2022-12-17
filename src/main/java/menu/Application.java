@@ -15,7 +15,7 @@ public class Application {
     public static void main(String[] args) {
         String[] coachNames = inputCoachNames();
         addBannedMenu(coachNames);
-        List<String> recommendedCategories = new ArrayList<>();
+        List<String> recommendedCategories = getRecommendedCategory();
         Map<String, List<String>> recommendMenusByCoach = recommendMenu(recommendedCategories, coachNames);
         showResult(coachNames, recommendedCategories, recommendMenusByCoach);
     }
@@ -88,13 +88,21 @@ public class Application {
         return bannedMenu;
     }
 
-    private static Map<String, List<String>> recommendMenu(List<String> recommendedCategories, String[] coachNames) {
+    public static List<String> getRecommendedCategory() {
+        List<String> recommendedCategories = new ArrayList<>();
         for (int i = 0; i < TOTAL_DAY.size(); i++) {
             recommendedCategories.add(CategoryRecommendService.recommendCategory());
         }
+        return recommendedCategories;
+    }
+
+    private static Map<String, List<String>> recommendMenu(List<String> recommendedCategories, String[] coachNames) {
         Map<String, List<String>> recommendMenusByCoach = new HashMap<>();
         for (String coachName : coachNames) {
             recommendMenusByCoach.put(coachName, new ArrayList<>());
+        }
+
+        for (String coachName : coachNames) {
             for (int i = 0; i < TOTAL_DAY.size(); i++) {
                 recommendMenusByCoach.get(coachName)
                         .add(MenuRecommendService.recommendMenu(coachName, recommendedCategories.get(i)));
