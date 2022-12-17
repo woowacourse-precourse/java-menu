@@ -17,4 +17,8 @@ public class FoodRepository {
     public static FoodRepository getInstance() {
         return FoodRepository.InstanceHolder.INSTANCE;
     }
+
+    public boolean isValidFood(String foodName) {
+        return foods.stream().anyMatch(foodName::equals);
+    }
 }
