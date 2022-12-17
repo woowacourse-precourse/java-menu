@@ -166,7 +166,7 @@
     ```
 
 
-### RandomCategoryNumbersGenerator
+### RandomMenuGenerator
 
 > 랜덤으로 메뉴를 선택하는 클래스
 >
