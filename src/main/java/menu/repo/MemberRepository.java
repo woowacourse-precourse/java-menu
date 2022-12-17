@@ -10,6 +10,14 @@ import java.util.Map;
 public class MemberRepository {
     private Long id = 0L;
     private final Map<Long, Member> members = new HashMap<>();
+    private static MemberRepository memberRepository = new MemberRepository();
+
+    private MemberRepository(){
+    }
+
+    public static MemberRepository getInstance() {
+        return memberRepository;
+    }
 
     public Long save(Member member) {
         members.put(id, member);

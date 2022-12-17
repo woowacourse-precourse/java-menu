@@ -6,7 +6,7 @@ import menu.repo.MemberRepository;
 import java.util.List;
 
 public class MemberService {
-    private final MemberRepository memberRepository = new MemberRepository();
+    private final MemberRepository memberRepository = MemberRepository.getInstance();
 
     public void saveMember(Member member) {
         memberRepository.save(member);

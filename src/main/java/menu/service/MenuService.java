@@ -11,7 +11,7 @@ import java.util.*;
 import static menu.domain.Category.getCategory;
 
 public class MenuService {
-    private final MenuRepository menuRepository = new MenuRepository();
+    private final MenuRepository menuRepository = MenuRepository.getInstance();
     private final MemberService memberService = new MemberService();
     private List<Category> weekCategory = new ArrayList<>();
 

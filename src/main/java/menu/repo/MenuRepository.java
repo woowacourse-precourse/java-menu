@@ -11,6 +11,14 @@ import java.util.Map;
 public class MenuRepository {
     private Long id = 0L;
     private final Map<Long, Menu> menus = new HashMap<>();
+    private static MenuRepository menuRepository = new MenuRepository();
+
+    private MenuRepository() {
+    }
+
+    public static MenuRepository getInstance() {
+        return menuRepository;
+    }
 
     public Long save(Menu menu) {
         menus.put(id, menu);
