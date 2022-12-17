@@ -1,34 +1,53 @@
 package menu.utils;
 
+import menu.exception.CoachCountException;
+import menu.exception.CoachNameLengthException;
+import menu.exception.CoachOverlappedException;
+import menu.exception.NameIsBlankException;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 public class CoachNameParser {
-    private static final String DELIMITER = ",";
+    private static final int MAX_NAME_LENGTH = 4;
+    private static final int MIN_NAME_LENGTH = 2;
+    private static final int MAX_COACH_COUNT = 5;
+    private static final int MIN_COACH_COUNT = 2;
+    private static final String NAME_DELIMITER = ",";
+
+    private static boolean isInvalidNameLength(String name) {
+        int nameLength = name.length();
+        return nameLength < MIN_NAME_LENGTH || nameLength > MAX_NAME_LENGTH;
+    }
 
     private static void validate(String name) {
-        if (name.length() > 4 || name.length() < 2) {
-            throw new IllegalArgumentException("코치님의 이름은 2에서 4글자 사이입니다.");
+        if (isInvalidNameLength(name)) {
+            throw new CoachNameLengthException();
         }
         if (name.isBlank()) {
-            throw new IllegalArgumentException("이름은 공백이 아니어야 합니다.");
+            throw new NameIsBlankException();
         }
     }
+
+    private static boolean isInvalidCoachCount(int count) {
+        return count < MIN_COACH_COUNT || count > MAX_COACH_COUNT;
+    }
+
 
     private static void validateNames(List<String> names) {
         int coachCount = names.size();
         if (new HashSet<>(names).size() != coachCount) {
-            throw new IllegalArgumentException("코치의 이름이 중복되었습니다");
+            throw new CoachOverlappedException();
         }
-        if (coachCount > 5 || coachCount < 2) {
-            throw new IllegalArgumentException("2명에서 5명 사이로 입력해주세요");
+        if (isInvalidCoachCount(coachCount)) {
+            throw new CoachCountException();
         }
     }
 
     public static List<String> parseName(String input) {
         List<String> names = new ArrayList<>();
-        for (String name: input.split(DELIMITER)) {
+        for (String name: input.split(NAME_DELIMITER)) {
             validate(name);
             names.add(name);
         }

@@ -22,7 +22,6 @@ public class MenuController {
     }
 
     private void addCoaches() {
-        outputView.printStartMessage();
         List<String> coachNames = inputView.getCoachNames();
         coachService.addCoaches(coachNames);
     }
@@ -47,6 +46,7 @@ public class MenuController {
     }
 
     public void run() {
+        outputView.printStartMessage();
         repeat(this::addCoaches);
         addDoNotRecommendMenus();
         selectRecommendMenus();
