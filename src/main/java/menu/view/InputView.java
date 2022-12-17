@@ -35,6 +35,9 @@ public class InputView {
             return List.of(hateString);
         }
         List<String> hateFoodList = Arrays.asList(hateString.split(","));
+        if (hateFoodList.size() > 2) {
+            throw new IllegalArgumentException("[ERROR] 못먹는 메뉴는 두 개까지만 입력가능합니다");
+        }
         return hateFoodList;
     }
 
