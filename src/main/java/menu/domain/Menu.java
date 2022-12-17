@@ -20,4 +20,8 @@ public class Menu {
 
         this.coachNames = splittedCoaches;
     }
+
+    public List<String> getCoachNames() {
+        return coachNames;
+    }
 }
