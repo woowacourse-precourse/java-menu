@@ -47,7 +47,7 @@ public class OutputView {
         for (Coach coach : result.keySet()) {
             System.out.print(LINE_PREFIX);
             System.out.print(coach.getName());
-            printMenusOrderedByDayOfWeek(result.get(coach), coach);
+            printMenusOrderedByDayOfWeek(result.get(coach));
             System.out.println(LINE_POSTFIX);
         }
         System.out.println(FINISHED_MENU_MESSAGE);
@@ -64,7 +64,7 @@ public class OutputView {
 
     private static void printCategories(Map<Coach, RecommendResult> result) {
         RecommendResult recommendResult = result.values().stream().findFirst().get();
-        System.out.print(LINE_PREFIX + "카테고리");
+        System.out.print(LINE_PREFIX + CATEGORY_PREFIX + DELIMITER);
         for (DayOfWeek dayOfWeek : DayOfWeek.values()) {
             System.out.print(DELIMITER);
             Category category = recommendResult.getMenus(dayOfWeek).getCategory();
@@ -73,7 +73,7 @@ public class OutputView {
         System.out.println(LINE_POSTFIX);
     }
 
-    private static void printMenusOrderedByDayOfWeek(RecommendResult result, Coach coach) {
+    private static void printMenusOrderedByDayOfWeek(RecommendResult result) {
         for (DayOfWeek dayOfWeek : DayOfWeek.values()) {
             System.out.print(DELIMITER);
             Menu menu = result.getMenus(dayOfWeek);
