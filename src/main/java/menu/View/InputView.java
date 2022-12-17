@@ -4,8 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static menu.Constant.Message.ERROR_COACH_LENGTH;
-import static menu.Constant.Message.ERROR_COACH_NUM;
+import static menu.Constant.Message.*;
 
 public class InputView {
     public List<String> readCoaches() {
@@ -40,6 +39,32 @@ public class InputView {
             if(name.length() < 2 || name.length()>4){
                 throw new IllegalArgumentException(ERROR_COACH_LENGTH);
             }
+        }
+    }
+
+    public List<String> readHateMenus() {
+        List<String> hates;
+        while(true){
+            try{
+                hates = parseCoachName(readLine());
+                return hates;
+            }catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public List<String> parseHateMenus(String input){
+        List<String> hates = Arrays.asList(input.split(","));
+
+        checkHateNumException(hates);
+
+        return hates;
+    }
+
+    private void checkHateNumException(List<String> names){
+        if(names.size() > 2){
+            throw new IllegalArgumentException(ERROR_HATE_NUM);
         }
     }
 
