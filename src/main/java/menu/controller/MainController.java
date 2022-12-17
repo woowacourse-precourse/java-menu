@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import menu.domain.Category;
+import menu.domain.Coach;
+import menu.domain.Coaches;
 import menu.domain.Menu;
+import menu.view.InputView;
+import menu.view.OutputView;
 
 public class MainController {
 
@@ -14,8 +18,24 @@ public class MainController {
     private final Category asian = new Category(makeAsian());
     private final Category western = new Category(makeWestern());
 
-    public void run(){
 
+    InputView inputView = new InputView();
+    OutputView outputView = new OutputView();
+
+    public void run(){
+        outputView.printStartMessage();
+        outputView.printAskNames();
+        Coaches coaches = makeCoaches();
+    }
+
+    private Coaches makeCoaches() {
+        try{
+            String coachesNames = inputView.readNames();
+            return new Coaches(coachesNames);
+        }catch (IllegalArgumentException e){
+            outputView.printError(e.getMessage());
+            return makeCoaches();
+        }
     }
 
 
