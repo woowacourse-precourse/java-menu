@@ -10,6 +10,7 @@ public class InputView {
         String input = Console.readLine();
         String[] coachNames = parse(input);
         InputValidator.validateCoachNamesNumber(coachNames);
+        InputValidator.validateDuplicatedCoachNames(coachNames);
         for(String coachName : coachNames){
             InputValidator.validateNameFormat(coachName);
             InputValidator.validateCoachNameLength(coachName);

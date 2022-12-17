@@ -13,5 +13,6 @@ public class Message {
     public static final String FOOD_NUMBER_ERROR = "[ERROR] 못 먹는 음식은 최대 2개까지 입력 가능합니다.";
     public static final String INVALID_FOOD_ERROR = "[ERROR] 추천 대상 목록에 없는 음식입니다.";
     public static final String INVALID_NAME_ERROR = "[ERROR] 이름은 한글만 입력 가능합니다.";
+    public static final String DUPLICATED_INPUT_ERROR = "[ERROR] 중복된 입력값이 존재합니다.";
 
 }
