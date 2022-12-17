@@ -61,7 +61,7 @@ public class MenuUseCaseImpl implements MenuUseCase {
 
     @Override
     public RecommendResultDto recommend(List<String> names, List<List<String>> notEatMenus) {
-        List<Coach> coaches = generateCoaches(names, notEatMenus);
+        List<Coach> coaches = new CoachMapper(names, notEatMenus).toCoach();
         List<Category> categories = new ArrayList<>();
         for (int i = 0; i < PICK_DATE_SIZE; i++) {
             recommendOneDay(coaches, categories);
@@ -73,16 +73,6 @@ public class MenuUseCaseImpl implements MenuUseCase {
                 .map(Coach::toDto)
                 .collect(Collectors.toList());
         return new RecommendResultDto(categoriesDto, coachesDto);
-    }
-
-    private List<Coach> generateCoaches(List<String> names, List<List<String>> notEatMenus) {
-        List<Coach> coaches = new ArrayList<>();
-        for (int i = 0; i < names.size(); i++) {
-            String name = names.get(i);
-            List<String> notEatMenu = notEatMenus.get(i);
-            coaches.add(new Coach(new CoachName(name), notEatMenu));
-        }
-        return coaches;
     }
 
     private void recommendOneDay(List<Coach> coaches, List<Category> categories) {
