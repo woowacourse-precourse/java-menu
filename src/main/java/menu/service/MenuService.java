@@ -52,11 +52,11 @@ public class MenuService implements Menu {
 
     @Override
     public void validateMenus(final MenuDto coachNameDto) {
-        final List<String> notAteMemu = coachNameDto.getMenus();
-        if (notAteMemu.size() > COACH_CANNOT_EAT_COUNT_END) {
+        final List<String> notAteMenu = coachNameDto.getMenus();
+        if (notAteMenu.size() > COACH_CANNOT_EAT_COUNT_END) {
             throw new IllegalArgumentException(COACH_CANNOT_EAT_ERROR_MSG);
         }
-        notAteMemu.forEach(this::validateMenu);
+        notAteMenu.forEach(this::validateMenu);
     }
 
     private void validateMenu(final String menu) {
