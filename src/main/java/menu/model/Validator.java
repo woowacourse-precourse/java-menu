@@ -18,6 +18,10 @@ public class Validator {
     public static List<String> isValidCoachesName(String userInput) {
         List<String> coachesName = new ArrayList<>(Arrays.asList(userInput.split(",")));
         isValidCoachesSize(coachesName);
+        for (int index = 0; index < coachesName.size(); index++) {
+            String realCoachName = coachesName.get(index).strip();
+            coachesName.set(index, realCoachName);
+        }
         isValidCoachName(coachesName);
         return coachesName;
     }
