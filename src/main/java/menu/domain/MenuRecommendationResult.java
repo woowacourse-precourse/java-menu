@@ -12,11 +12,12 @@ public class MenuRecommendationResult {
         numberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
         Categories category;
-        do {
+        while (true) {
             int index = randomNumberGenerator.generate();
             category = Categories.getCategoryBYIndex(index);
 
-        } while (validateDuplicateCategory(category));
+            if (!validateDuplicateCategory(category)) break;
+        }
         categoriesResult.put(day, category);
     }
 
@@ -30,9 +31,10 @@ public class MenuRecommendationResult {
 
     public void menuRecommend(Day day, String coachName) {
         String shuffledMenu;
-        do {
+        while (true) {
             shuffledMenu = Categories.getShuffledMenu(categoriesResult.get(day));
-        } while (!validateHateMenu(coachName, shuffledMenu) && validateDuplicateMenu(coachName, shuffledMenu));
+            if (validateHateMenu(coachName, shuffledMenu) || !validateDuplicateMenu(coachName, shuffledMenu)) break;
+        }
         if (recommendationResult.containsKey(coachName)) {
             recommendationResult.get(coachName).put(day, shuffledMenu);
             return;
