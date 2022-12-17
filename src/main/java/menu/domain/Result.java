@@ -19,4 +19,8 @@ public class Result {
     public void addCategory(String categoryName) {
         this.selectedCategory.add(categoryName);
     }
+
+    public void increaseCategoryCount(String categoryName) {
+        this.categoryCounts.put(categoryName, categoryCounts.getOrDefault(categoryName, 0) + 1);
+    }
 }

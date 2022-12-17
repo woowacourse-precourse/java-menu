@@ -23,5 +23,6 @@ public class ResultService {
             categoryName = Category.convertNumberToName(randomNumber);
         } while (result.checkCategoryCount(categoryName) >= 2);
         result.addCategory(categoryName);
+        result.increaseCategoryCount(categoryName);
     }
 }
