@@ -1,18 +1,17 @@
 package menu.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Coach {
 
     private String name;
     private DislikeFoods dislikeFoods;
-    private List<String> recommendedMenus;
+    private RecommendedMenus recommendedMenus;
 
     public Coach(String name) {
         this.name = name;
         this.dislikeFoods = new DislikeFoods();
-        this.recommendedMenus = new ArrayList<>();
+        this.recommendedMenus = new RecommendedMenus();
     }
 
     public String getName() {
@@ -24,7 +23,7 @@ public class Coach {
     }
 
     public List<String> getRecommendedMenus() {
-        return recommendedMenus;
+        return recommendedMenus.getRecommendedMenus();
     }
 
     public void addDislikeFood(String foodInput) {
@@ -32,6 +31,6 @@ public class Coach {
     }
 
     public void addRecommendedMenu(String menu) {
-        recommendedMenus.add(menu);
+        recommendedMenus.addRecommendedMenu(menu);
     }
 }
