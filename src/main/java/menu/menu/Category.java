@@ -31,7 +31,7 @@ public enum Category {
         return categoryNumber;
     }
 
-    private String getCategoryName() {
+    public String getCategoryName() {
         return categoryName;
     }
 
