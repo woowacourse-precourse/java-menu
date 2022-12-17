@@ -19,6 +19,7 @@ public class MenuRecommendController {
         outputView.onBoardingPage();
     }
     public void run() {
+        inputView.requestCoachNames();
     }
 
 
