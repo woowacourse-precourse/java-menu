@@ -102,8 +102,8 @@ public class Application {
             recommendMenusByCoach.put(coachName, new ArrayList<>());
         }
 
-        for (String coachName : coachNames) {
-            for (int i = 0; i < TOTAL_DAY.size(); i++) {
+        for (int i = 0; i < TOTAL_DAY.size(); i++) {
+            for (String coachName : coachNames) {
                 recommendMenusByCoach.get(coachName)
                         .add(MenuRecommendService.recommendMenu(coachName, recommendedCategories.get(i)));
             }
