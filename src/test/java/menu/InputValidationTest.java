@@ -1,7 +1,6 @@
 package menu;
 
 import menu.input.InputValidation;
-import menu.input.InputView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

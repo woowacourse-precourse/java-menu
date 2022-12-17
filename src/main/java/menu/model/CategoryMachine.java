@@ -12,7 +12,7 @@ public class CategoryMachine {
         coach.setCategory(new ArrayList<>());
         List<Integer> category = coach.getCategory();
 
-        while(category.size() != 5) {
+        while(category.size() != MenuConstant.DAY_SIZE) {
             checkNumberOfSameCategory(category, Randoms.pickNumberInRange(1, 5));
         }
     }
