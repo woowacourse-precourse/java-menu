@@ -6,6 +6,7 @@ import menu.domain.Coaches;
 import menu.utils.ErrorMessage;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
@@ -32,6 +33,7 @@ public class InputView {
 
     public void checkValidCoaches(String[] input) {
         validCoachesNameSize(input);
+        validCoachesNameDuplicate(input);
         for (String name : input) {
             validCoachNameSize(name);
         }
@@ -46,6 +48,15 @@ public class InputView {
     public void validCoachesNameSize(String[] names) {
         if (names.length < 2 || names.length > 5) {
             throw new IllegalArgumentException(ErrorMessage.COACH_IS_LEAST_TWO_AND_MAX_FIVE);
+        }
+    }
+
+    public void validCoachesNameDuplicate(String[] names) {
+        long originalLength = names.length;
+        long distinctLength = Arrays.stream(names).distinct().count();
+
+        if (originalLength != distinctLength) {
+            throw new IllegalArgumentException(ErrorMessage.COACH_NAME_IS_NOT_DUPLICATE);
         }
     }
 }
