@@ -61,14 +61,26 @@ public class MenuRecommendController {
     private void printResult() {
         outputView.printResultInfoMessage();
 
-        outputView.printDaysTable(List.of(Day.values()));
+        printDaysTable();
+        printCategoryTable();
+        printFoodTables();
 
+        outputView.printResultInfoEndMessage();
+    }
+
+    private void printDaysTable() {
+        outputView.printDaysTable(List.of(Day.values()));
+    }
+
+    private void printCategoryTable() {
         List<Menu> weekMenuCategory = new ArrayList<>();
         for (Day day : Day.values()) {
             weekMenuCategory.add(menuRecommender.getCategoryAt(day));
         }
         outputView.printCategoryTable(weekMenuCategory);
+    }
 
+    private void printFoodTables() {
         for (Coach coach : menuRecommender.getCoaches()) {
             List<String> eatingFoods = new ArrayList<>();
             for (Day day : Day.values()) {
@@ -76,7 +88,5 @@ public class MenuRecommendController {
             }
             outputView.printFoodTable(coach.getName(), eatingFoods);
         }
-
-        outputView.printResultInfoEndMessage();
     }
 }
