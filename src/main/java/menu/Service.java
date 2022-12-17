@@ -18,6 +18,7 @@ public class Service {
 	public void programSetting() {
 		menuMapping();
 		setCountCotegory();
+		byDayOfTheWeekSelectCategory();
 	}
 
 	public void menuMapping() {
