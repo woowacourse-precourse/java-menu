@@ -2,7 +2,6 @@ package menu.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import menu.util.StringParser;
 
@@ -21,18 +20,12 @@ public class MenuRepository {
     public void readMenu() {
         List<String> menuList = List.of(JAPANESE, KOREANS, CHINESE, ASIAN, WESTERN);
         for (int i = 0; i < Category.values().length; i++) {
-            List<String> tmpMenus = StringParser.parseByCommand(menuList.get(i), ",");
+            List<String> tmpMenus = StringParser.makeListByCommand(menuList.get(i), ",");
             int index = i + 1;
             tmpMenus.stream()
                     .map(v -> new Menu(v, Category.byNumber(index)))
                     .forEach(menus::add);
         }
-    }
-
-    public List<String> getMenuNames() {
-        return menus.stream()
-                .map(Menu::getName)
-                .collect(Collectors.toList());
     }
 
     public Menu getMenuByName(String name) {

@@ -19,7 +19,7 @@ public class Inputview {
                 System.out.println(MANUAL_MESSAGE);
                 String input = Console.readLine();
                 Validator.validateCoachNames(input, PARSE_COMMAND);
-                return StringParser.parseByCommand(input, PARSE_COMMAND);
+                return StringParser.makeListByCommand(input, PARSE_COMMAND);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

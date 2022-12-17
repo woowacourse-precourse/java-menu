@@ -14,6 +14,7 @@ import menu.view.Outputview;
 
 public class RecommendController {
     private static final int DAYS = 5;
+    private static final int NUMBER_OF_MAX_CATEGORY_DUPLICATE = 2;
     private final MenuRepository menuRepository;
     private final List<Coach> coaches;
     private final Inputview inputview;
@@ -62,7 +63,7 @@ public class RecommendController {
     public Menu recommendMenuByCategory(Category category) {
         List<Menu> menuByThisCategory = menuRepository.getMenusByCategory(category);
         List<String> menuNamesByThisCategory = menuByThisCategory.stream()
-                .map(v -> v.getName())
+                .map(Menu::getName)
                 .collect(Collectors.toList());
         String menu = Randoms.shuffle(menuNamesByThisCategory).get(0);
         return menuRepository.getMenuByName(menu);
@@ -83,7 +84,7 @@ public class RecommendController {
 
     private boolean isMoreThanTwo(List<Category> categories, Category newCategory) {
         int frequency = Collections.frequency(categories, newCategory);
-        if (frequency > 2) {
+        if (frequency > NUMBER_OF_MAX_CATEGORY_DUPLICATE) {
             return true;
         }
         return false;

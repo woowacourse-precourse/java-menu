@@ -19,9 +19,7 @@ public class Outputview {
     public void printResult(List<Coach> coachList, List<Category> categories) {
         System.out.println(RESULT_MESSAGE);
         printCategory(categories);
-        for (Coach coach : coachList) {
-            printCoach(coach);
-        }
+        coachList.stream().forEach(this::printCoach);
         System.out.println(FINAL_MESSAGE);
     }
 

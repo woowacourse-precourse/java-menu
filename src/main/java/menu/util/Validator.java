@@ -11,7 +11,7 @@ public class Validator {
     private static final String DUPLICATE_ERROR_MESSAGE = "[ERROR] 입력의 중복은 불가능합니다.";
 
     public static void validateCoachNames(String input, String command) throws IllegalArgumentException {
-        List<String> names = StringParser.parseByCommand(input, command);
+        List<String> names = StringParser.makeListByCommand(input, command);
         if (names.size() < 2 || names.size() > 5) {
             throw new IllegalArgumentException(COACH_NAME_ERROR_MESSAGE);
         }
@@ -20,7 +20,7 @@ public class Validator {
     }
 
     public static void validateMenuNum(String input, String command) throws IllegalArgumentException {
-        List<String> menus = StringParser.parseByCommand(input, command);
+        List<String> menus = StringParser.makeListByCommand(input, command);
         if (menus.size() > 2) {
             throw new IllegalArgumentException(MENU_ERROR_MESSAGE);
         }
