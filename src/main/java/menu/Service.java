@@ -62,6 +62,13 @@ public class Service {
 		return count;
 	}
 
+	public void recommendProgram() {
+		saveCoachs();
+		selectMenu();
+		outputView.resultMessage();
+		outputView.resultCategory(byDayOfTheWeekSelectCategoryRepository);
+		printSelectMenu();
+	}
 
 	public void saveCoachs() {
 		List<String> inputCoachs = checkInputCoach();
