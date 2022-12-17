@@ -16,6 +16,10 @@ public class Crew {
         return name;
     }
 
+    public List<String> getFoods() {
+        return foods;
+    }
+
     public void addFood(String name) {
         this.foods.add(name);
     }
