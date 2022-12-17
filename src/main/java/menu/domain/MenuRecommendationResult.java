@@ -50,7 +50,6 @@ public class MenuRecommendationResult {
 
     private boolean validateDuplicateMenu(String coachName, String shuffledMenu) {
         Map<Day, String> result = recommendationResult.get(coachName);
-        // true는 가지고 있는거니깐 중복
         return result.containsValue(shuffledMenu);
     }
 

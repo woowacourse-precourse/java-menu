@@ -30,12 +30,20 @@ public enum Categories {
         return type;
     }
 
+//    public static String getShuffledMenu(Categories categories) {
+////        System.out.println(categories);
+//        List<String> menus = categories.getMenuNames();
+////        System.out.println(menus.toString());
+//        String menu = Randoms.shuffle(menus).get(0);
+////        System.out.println(menu);
+//        return menu;
+//    }
+
     public static String getShuffledMenu(Categories categories) {
-        System.out.println(categories);
+        ShuffleGeneratorImpl shuffleGenerator = new ShuffleGeneratorImpl();
         List<String> menus = categories.getMenuNames();
-        System.out.println(menus.toString());
-        String menu = Randoms.shuffle(menus).get(0);
-        System.out.println(menu);
+        String menu = shuffleGenerator.generate(menus).get(0);
+//        System.out.println(menu);
         return menu;
     }
 
