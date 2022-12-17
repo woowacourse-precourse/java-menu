@@ -13,7 +13,8 @@ public class View {
     public List<String> inputCoachName() {
         System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
         String input = Console.readLine();
-        System.out.println(input);
+        System.out.println();
+//        System.out.println(input);
         List<String> coachNameList = List.of(input.split(","));
         checkCoachName(coachNameList);
         return coachNameList;
@@ -28,10 +29,15 @@ public class View {
         }
     }
 
-    public void inputCoachHateFood(String coachName) {
+    public List<String> inputCoachHateFood(String coachName) {
         System.out.println(coachName + "(이)가 못 먹는 메뉴를 입력해 주세요.");
         String input = Console.readLine();
-        System.out.println(input);
+        System.out.println();
+        List<String> hateList = List.of(input.split(","));
+        if (hateList.size() > 2)
+            throw new IllegalArgumentException();
+        return hateList;
     }
+
 
 }

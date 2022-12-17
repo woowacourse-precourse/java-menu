@@ -20,6 +20,7 @@ public class Coach {
 
     public void updateHateFood(List<String> hateFoodList){
         this.hateFood.addAll(hateFoodList);
+//        System.out.println(hateFood);
     }
 
 }

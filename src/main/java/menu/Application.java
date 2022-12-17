@@ -16,8 +16,9 @@ public class Application {
             view.startGame();
             List<String> coachNameList = view.inputCoachName();
             Managecoach coachList = makeCoachList(coachNameList);
-            for(int coachCnt= 0; coachCnt <coachList.getCoachList().size(); coachCnt++){
-                view.inputCoachHateFood(coachList.getCoachList().get(coachCnt).getName());
+            for(int cCnt= 0; cCnt <coachList.getCoachList().size(); cCnt++){
+                List<String> hateList = view.inputCoachHateFood(coachList.getCoachList().get(cCnt).getName());
+                coachList.getCoachList().get(cCnt).updateHateFood(hateList);
             }
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
