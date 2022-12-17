@@ -19,7 +19,7 @@ public class RecommendingController {
         Menu menu = new Menu();
         checkDislikeFood(menu, name.getCoachNames());
         RecommendMachine recommendMachine = new RecommendMachine();
-        recommend(recommendMachine);
+        recommend(menu, name, recommendMachine);
     }
 
     private void checkDislikeFood(Menu menu, List<String> coachNames) {
@@ -38,9 +38,19 @@ public class RecommendingController {
         }
     }
 
-    private void recommend(RecommendMachine recommendMachine) {
+    private void recommend(Menu menu, CoachName coachName, RecommendMachine recommendMachine) {
         List<String> recommendingCategory = recommendMachine.recommendCategory();
         System.out.println(recommendingCategory.toString());
+        outputView.printResultMessage();
+        outputView.printWeek();
+        outputView.printRecommendCategory(recommendingCategory);
+
+        for (String name : coachName.getCoachNames()) {
+            List<String> recommendingMenu = recommendMachine.recommendMenu(menu, name, recommendingCategory);
+            outputView.printRecommendMenu(recommendingMenu, name);
+        }
+        outputView.printEndMessage();
+
     }
 
     private List<String> inputCoachName() {
