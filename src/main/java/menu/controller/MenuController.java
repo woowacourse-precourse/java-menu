@@ -22,11 +22,7 @@ public class MenuController {
         outputView.printInit();
         CoachGroup coachGroup = input(CoachGroup::new, inputView::inputCoachName);
 
-        List<Coach> coaches = coachGroup.getCoaches();
-        for (Coach coach : coaches) {
-            List<Menu> menus = input(Menu::makeMenus, () -> inputView.inputMenu(coach.getName()));
-            coach.setNonMenus(menus);
-        }
+        List<Coach> coaches = createCoaches(coachGroup);
 
         for (Coach coach : coaches) {
             Recommend recommend = new Recommend(coach);
@@ -36,6 +32,15 @@ public class MenuController {
         }
 
         outputView.printResult( coachGroup.makeResult());
+    }
+
+    private List<Coach> createCoaches(CoachGroup coachGroup) {
+        List<Coach> coaches = coachGroup.getCoaches();
+        for (Coach coach : coaches) {
+            List<Menu> menus = input(Menu::makeMenus, () -> inputView.inputMenu(coach.getName()));
+            coach.setNonMenus(menus);
+        }
+        return coaches;
     }
 
     public <T, R> R input(Function<T, R> function, Supplier<T> supplier) {

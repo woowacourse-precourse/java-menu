@@ -12,7 +12,7 @@ public class OutputView {
     private static final String COMPLETE_MESSAGE="\n추천을 완료했습니다.";
     private static final String RESULT_MESSAGE = "메뉴 추천 결과입니다.";
     private static final String DAY_MESSAGE = "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]";
-    private static final String CATEGORY_MESSAGE = "[ 카테고리 | 한식 | 한식 | 일식 | 중식 | 아시안 ]";
+    private static final String CATEGORY_MESSAGE = "[ 카테고리 | 한식 | 양식 | 일식 | 중식 | 아시안 ]";
 
     public void printInit(){
         System.out.println(INIT_MESSAGE);

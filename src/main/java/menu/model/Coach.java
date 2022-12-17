@@ -32,7 +32,13 @@ public class Coach {
         this.nonMenus = nonMenus;
     }
 
-
+    public boolean isPossibleCategoryRecommend(){
+        int sum=0;
+        for (Integer value : recommendCategory.values()) {
+            sum+=value;
+        }
+        return sum!=5;
+    }
 
     /**
      * 추천 메뉴 추가

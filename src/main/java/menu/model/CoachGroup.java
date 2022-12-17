@@ -63,7 +63,7 @@ public class CoachGroup {
             infos.get(i).add(0,names.get(i));
         }
         for (int i = 0; i < infos.size(); i++) {
-            infos.get(i).remove(infos.size() - 1);
+            infos.get(i).remove(5);
         }
         return infos;
     }
