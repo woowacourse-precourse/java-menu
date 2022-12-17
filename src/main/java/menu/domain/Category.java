@@ -10,6 +10,7 @@ public enum Category {
     WEST("5", "양식");
 
     public static final String WRONG_COMMAND_VALUE = "잘못된 커맨드 입력";
+    public static final int maxFrequency = 2;
     private final String command;
     private final String name;
 
