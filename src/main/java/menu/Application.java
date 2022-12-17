@@ -10,6 +10,5 @@ public class Application {
         CategoryRepository.initCategories();
         OutputView.printStartMessage();
         Controller.run();
-
     }
 }
