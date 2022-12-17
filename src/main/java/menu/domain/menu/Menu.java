@@ -15,6 +15,9 @@ public class Menu {
         return new Menu(name, menuCategory);
     }
 
+    public String getName() {
+        return name;
+    }
 
     @Override
     public boolean equals(Object o) {

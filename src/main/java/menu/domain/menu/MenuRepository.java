@@ -10,6 +10,14 @@ public class MenuRepository {
         setDefaultValue();
     }
 
+    public Menu findByMenuName(String name) {
+        return menus.stream().filter(menu -> menu.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 메뉴 입니다."));
+    }
+
+
+    // ===== 기본 메뉴 설정 메서드 ===== //
     private void setDefaultValue() {
         setKoreanMenu();
         setJapaneseMenu();

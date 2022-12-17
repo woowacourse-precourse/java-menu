@@ -1,6 +1,7 @@
 package menu.domain.coach;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Coaches {
     private final List<Coach> coaches;
@@ -11,5 +12,9 @@ public class Coaches {
 
     public static Coaches of(List<Coach> coaches) {
         return new Coaches(coaches);
+    }
+
+    public List<Coach> getCoaches() {
+        return coaches;
     }
 }

@@ -1,6 +1,6 @@
 package menu;
 
-import menu.domain.menu.MenuRecommendService;
+import menu.domain.menu.MenuService;
 import menu.domain.menu.MenuRepository;
 import menu.ui.view.InputView;
 import menu.ui.view.OutputView;
@@ -9,10 +9,10 @@ public class Application {
     public static void main(String[] args) {
 
         MenuRepository menuRepository = new MenuRepository();
-        MenuRecommendService menuRecommendService = new MenuRecommendService(menuRepository);
+        MenuService menuService = new MenuService(menuRepository);
 
         MenuRecommendController menuRecommendController = new MenuRecommendController(
-                InputView.getInstance(), OutputView.getInstance(), menuRecommendService
+                InputView.getInstance(), OutputView.getInstance(), menuService
         );
 
 
