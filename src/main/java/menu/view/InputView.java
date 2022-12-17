@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class InputView {
+    private String tempCoachName;
 
     public void printStartMessage() {
         System.out.println("점심 메뉴 추천을 시작합니다.\n");
@@ -18,8 +19,13 @@ public class InputView {
         return coaches;
     }
 
-    public List<String> inputForbiddenFoods(String name) {
-        System.out.println("\n" + name + "(이)가 못 먹는 메뉴를 입력해 주세요.");
+    public void setCoachName(String name) {
+        tempCoachName = name;
+    }
+
+
+    public List<String> inputForbiddenFoods() {
+        System.out.println(tempCoachName+"(이)가 못 먹는 메뉴를 입력해 주세요.");
         String input = Console.readLine();
         List<String> forbiddenFood = validateSeparatorForForbiddenFood(input);
         return forbiddenFood;
@@ -63,7 +69,7 @@ public class InputView {
         if (input.matches(".*[^ㄱ-ㅎㅏ-ㅣ가-힣 ,]+.*")) {
             throw new IllegalArgumentException("[Error] 못먹는 음식은 ',' 로 구분해주세요");
         }
-        if (input.equals("")){
+        if (input.equals("")) {
             return Collections.emptyList();
         }
         return List.of(input.split(","));
