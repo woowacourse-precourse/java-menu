@@ -27,12 +27,12 @@ public class MainController {
         outputView.LineMessage("카테고리", categorys);
 
         categorys.stream().forEach(i -> {
-                    coachs.stream().forEach(j -> j.addMenu(Menu.selectMenu(i ,j.getCantEats(),j.getMenu())));
+                    coachs.stream().forEach(j -> j.addMenu(Menu.selectMenu(i, j.getCantEats(), j.getMenu())));
                 }
         );
 
-        coachs.stream().forEach(e->{
-            outputView.LineMessage(e.getName(),e.getMenu());
+        coachs.stream().forEach(e -> {
+            outputView.LineMessage(e.getName(), e.getMenu());
         });
 
         outputView.endMessage();
