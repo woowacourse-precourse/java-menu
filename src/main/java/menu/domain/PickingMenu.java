@@ -8,12 +8,13 @@ public class PickingMenu {
 
     MenuService menuService;
 
-    PickingMenu() {
+    public PickingMenu() {
         menuService = new MenuService();
     }
 
     public Menu getMenuByShuffle(Category category) {
-        List<Menu> menus = menuService.getMenusByCategory(category);
-        return Randoms.shuffle(menus).get(0);
+        List<String> menuNames = menuService.getMenusByCategoryToShuffle(category);
+        String menuName = Randoms.shuffle(menuNames).get(0);
+        return menuService.getMenuByMenuName(menuName);
     }
 }
