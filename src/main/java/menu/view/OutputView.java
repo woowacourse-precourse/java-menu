@@ -5,7 +5,7 @@ import menu.dto.RecommendationResultDto;
 
 public class OutputView {
     private final String START = "점심 메뉴 추천을 시작합니다.\n";
-    private final String RESULT_INFO = "메뉴 추천 결과입니다.";
+    private final String RESULT_INFO = "\n메뉴 추천 결과입니다.";
     private final String DAY = "구분";
     private final String CATEGORY = "카테고리";
     private final String START_DELIMITER = "[ ";
@@ -27,8 +27,7 @@ public class OutputView {
     }
 
     public void printRecommendation(List<RecommendationResultDto> result) {
-        result.stream()
-                .forEach(data -> System.out.println(transferToList(data.getCoach(), data.getFoods())));
+        result.forEach(data -> System.out.println(transferToList(data.getCoach(), data.getFoods())));
         System.out.println(END);
     }
 

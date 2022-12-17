@@ -21,18 +21,20 @@ public class InputView {
 
     private String readMultipleData(String input) {
         if (!input.contains(DELIMITER)) {
-            throw new IllegalArgumentException("[ERROR] 구분자는 , 를 사용해야 합니다.");
+            throw new IllegalArgumentException(String.format("[ERROR] 구분자는 %s 를 사용해야 합니다.", DELIMITER));
         }
-        if (!Pattern.matches(MULTIPLE_INPUT_REGEX, input)) {
-            throw new IllegalArgumentException("[ERROR] 한글과 , 만 입력할 수 있습니다.");
-        }
+        validateNameCondition(input);
         return input;
     }
 
     private String readIncludingNone(String input) {
-       if (!Pattern.matches(MULTIPLE_INPUT_REGEX, input)) {
-           throw new IllegalArgumentException("[ERROR] 한글과 , 만 입력할 수 있습니다.");
-       }
+        validateNameCondition(input);
        return input;
+    }
+
+    private void validateNameCondition(String input) {
+        if (!Pattern.matches(MULTIPLE_INPUT_REGEX, input)) {
+            throw new IllegalArgumentException("[ERROR] 한글과 , 만 입력할 수 있습니다.");
+        }
     }
 }
