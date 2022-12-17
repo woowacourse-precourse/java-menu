@@ -1,9 +1,13 @@
 package menu.utls;
 
 import menu.message.ErrorMessage;
+import menu.model.Category;
+import java.util.Arrays;
+import java.util.HashSet;
 
 public class Validator {
     private static final String DELIMITER = ",";
+    private static final String SPACE = " ";
     private static final int COACH_MIN_LENGTH = 2;
     private static final int COACH_MAX_LENGTH = 5;
     private static final int NAME_MIN_LENGTH = 2;
@@ -36,5 +40,25 @@ public class Validator {
         if (allegeMenu.length > ALLEGE_MENU_MAX_LENGTH) {
             throw new IllegalArgumentException(ErrorMessage.INCORRECT_ALLEGE_MENU);
         }
+        HashSet<String> exist = initExist(Category.values());
+        checkAllegeMenu(allegeMenu, exist);
+    }
+
+    private void checkAllegeMenu(String[] allegeMenu, HashSet<String> exist) {
+        for (String menu : allegeMenu) {
+            System.out.println(!exist.contains(menu));
+            if (!exist.contains(menu)) {
+                throw new IllegalArgumentException(ErrorMessage.INCORRECT_ALLEGE_MENU);
+            }
+        }
+    }
+
+    private HashSet<String> initExist(Category[] categories) {
+        HashSet<String> exist = new HashSet<>();
+        for (Category category : categories) {
+            String[] menus = category.getMenus().split(DELIMITER + SPACE);
+            exist.addAll(Arrays.asList(menus));
+        }
+        return exist;
     }
 }

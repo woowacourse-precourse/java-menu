@@ -23,10 +23,11 @@ class ValidatorTest {
                 .hasMessage(ErrorMessage.INCORRECT_COACH_NAMES);
     }
 
-    @Test
-    @DisplayName("못 먹는 메뉴가 2개 초과인 경우 에러처리")
-    void validateAllegeMenu() {
-        assertThatThrownBy(() -> validator.validateAllegeMenu("우동,스시,뇨끼"))
+    @ParameterizedTest
+    @ValueSource(strings = {"우동,스시,뇨끼", "우동,없는메뉴"})
+    @DisplayName("못 먹는 메뉴가 2개 초과인 경우 에러처리, 못 먹는 메뉴가 실제 없는 메뉴인 경우 에러처리")
+    void validateAllegeMenu(String input) {
+        assertThatThrownBy(() -> validator.validateAllegeMenu(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INCORRECT_ALLEGE_MENU);
     }
