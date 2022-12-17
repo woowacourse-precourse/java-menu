@@ -12,24 +12,15 @@ import menu.domain.menu.JapaneseFood;
 import menu.domain.menu.KoreanFood;
 
 public class FoodsFiller {
-    private final static HashMap<String, List<String>> foods = new HashMap<>();
-
-    public void setupFoods() {
-        foods.put("한식", KoreanFood.any.getAllFoods());
-        foods.put("일식", JapaneseFood.any.getAllFoods());
-        foods.put("중식", ChineseFood.any.getAllFoods());
-        foods.put("양식", ItalianFood.any.getAllFoods());
-        foods.put("아시안", AsianFood.any.getAllFoods());
-    }
-
     public void fillFoods(Crew crew, String category, List<String> bannedFoods) {
-        setupFoods();
-        makeFood(crew, category, bannedFoods);
+        HashMap<String, List<String>> foods = new HashMap<>();
+        setupFoods(foods);
+        makeFood(crew, category, bannedFoods, foods);
     }
 
-    public void makeFood(Crew crew, String category, List<String> bannedFoods) {
+    public void makeFood(Crew crew, String category, List<String> bannedFoods, HashMap<String, List<String>> foods) {
         while (true) {
-            String pickFood = getPickFood(category);
+            String pickFood = getPickFood(category, foods);
             if (!crew.isAlreadyBeenFood(pickFood) && !bannedFoods.contains(pickFood)) {
                 crew.addFood(pickFood);
                 break;
@@ -37,9 +28,17 @@ public class FoodsFiller {
         }
     }
 
-    public String getPickFood(String category) {
+    public String getPickFood(String category, HashMap<String, List<String>> foods) {
         String foodStyle = FoodStyle.getFoodStyleFromCategoryName(category).getStyle();
         String pickFood = Randoms.shuffle(foods.get(foodStyle)).get(0);
         return pickFood;
+    }
+
+    public void setupFoods(HashMap<String, List<String>> foods) {
+        foods.put("한식", KoreanFood.any.getAllFoods());
+        foods.put("일식", JapaneseFood.any.getAllFoods());
+        foods.put("중식", ChineseFood.any.getAllFoods());
+        foods.put("양식", ItalianFood.any.getAllFoods());
+        foods.put("아시안", AsianFood.any.getAllFoods());
     }
 }
