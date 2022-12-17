@@ -12,6 +12,10 @@ public class OutputView {
         System.out.println(NoticeMessage.COACH_NAME_INPUT_NOTICE + '\n');
     }
 
+    public void printDislikeFoodInputNotice(String coachName) {
+        System.out.println(coachName + NoticeMessage.DISLIKE_FOOD_INPUT_NOTICE + '\n');
+    }
+
     public void printServiceEndNotice() {
         System.out.println(NoticeMessage.SERVICE_END_NOTICE + '\n');
     }
