@@ -55,5 +55,7 @@ public class OutputView {
             System.out.print(END_SYMBOL);
         }
     }
-    
+    public void printFinishMessage() {
+        System.out.println(FINISH_RECOMMEND);
+    }
 }
