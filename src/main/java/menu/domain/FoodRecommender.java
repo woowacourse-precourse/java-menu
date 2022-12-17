@@ -6,15 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 public class FoodRecommender {
-    private static final int COACH_MIN_SIZE = 2;
-    private static final int COACH_MAX_SIZE = 5;
 
-    private final List<Coach> coaches;
+    private final Coaches coaches;
     private final Map<Day, FoodCategory> foodCategories;
 
     public FoodRecommender(List<Coach> coaches) {
-        validateSize(coaches);
-        this.coaches = coaches;
+        this.coaches = new Coaches(coaches);
         foodCategories = new HashMap<>();
     }
 
@@ -27,7 +24,7 @@ public class FoodRecommender {
     }
 
     private void setMenuByDayAndCategory(Day day, FoodCategory category) {
-        for (Coach coach : coaches) {
+        for (Coach coach : coaches.get()) {
             Menu randomMenu = getRandomMenu(category, coach);
             coach.putDayByMenu(day, randomMenu);
         }
@@ -42,11 +39,6 @@ public class FoodRecommender {
         return menu;
     }
 
-    private void validateSize(List<Coach> coaches) {
-        if (coaches.size() < COACH_MIN_SIZE || coaches.size() > COACH_MAX_SIZE) {
-            throw new IllegalArgumentException("코치는 2~5명 사이만 입력 가능합니다.");
-        }
-    }
 
     private FoodCategory generateCategory(Day day) {
         FoodCategory category = FoodCategory.of(

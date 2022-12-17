@@ -4,16 +4,16 @@ import java.util.List;
 import java.util.Map;
 
 public class MenuResult {
-    private final List<Coach> coaches;
+    private final Coaches coaches;
     private final Map<Day, FoodCategory> foodCategories;
 
-    public MenuResult(List<Coach> coaches, Map<Day, FoodCategory> foodCategories) {
+    public MenuResult(Coaches coaches, Map<Day, FoodCategory> foodCategories) {
         this.coaches = coaches;
         this.foodCategories = foodCategories;
     }
 
     public List<Coach> getCoaches() {
-        return coaches;
+        return coaches.get();
     }
 
     public Map<Day, FoodCategory> getFoodCategories() {
