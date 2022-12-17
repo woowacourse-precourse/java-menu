@@ -22,14 +22,14 @@ public class InputException {
 
     public static void notEndFormatException(String userInput) {
         if (userInput.endsWith(PrintMsg.COMMA.getMsg())) {
-            throw new IllegalArgumentException("코치 이름이 잘못된 입력 형식입니다.");
+            throw new IllegalArgumentException(ExceptionMsg.NAME_SIZE.getMsg());
         }
     }
 
     public static void notMemberSizeException(int size) {
         if (!(size >= CoachCode.MIN_MEMBER.getCode()
                 && size <= CoachCode.MAX_MEMBER.getCode())) {
-            throw new IllegalArgumentException("멤버는 최소 2명, 최대 5명까지 식사할 수 있습니다.");
+            throw new IllegalArgumentException(ExceptionMsg.MEMBER_SIZE.getMsg());
         }
     }
 
@@ -43,14 +43,14 @@ public class InputException {
     public static void notCoachNameSizeException(int size) {
         if (!(size >= CoachCode.MIN_NAME.getCode()
         && size <= CoachCode.MAX_NAME.getCode())) {
-            throw new IllegalArgumentException("코치 이름은 최소 2글자에서 최대 4글자입니다.");
+            throw new IllegalArgumentException(ExceptionMsg.COACH_NAME.getMsg());
         }
     }
 
     public static void notFoodsSizeException(int size) {
         if (!(size >= CoachCode.MIN_FOOD.getCode()
         && size <= CoachCode.MAX_FOOD.getCode())) {
-            throw new IllegalArgumentException("음식은 최소0개, 최대 2개까지만 입력 가능합니다.");
+            throw new IllegalArgumentException(ExceptionMsg.FOOD_SIZE.getMsg());
         }
     }
 }

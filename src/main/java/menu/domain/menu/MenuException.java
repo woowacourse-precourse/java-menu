@@ -1,6 +1,7 @@
 package menu.domain.menu;
 
 import menu.domain.menu.Menu;
+import menu.util.ExceptionMsg;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class MenuException {
 
     private static void notInMenuException(int count, int foodsSize) {
         if (count != foodsSize) {
-            throw new IllegalArgumentException("메뉴에 없는 음식이 입력되었습니다.");
+            throw new IllegalArgumentException(ExceptionMsg.NOT_MENU.getMsg());
         }
     }
 }
