@@ -22,4 +22,8 @@ public enum Categories {
         category.menues.addAll(categoryMenu);
     }
 
+    public static List<String> getMenuList(Categories category){
+        return category.menues;
+    }
+
 }
