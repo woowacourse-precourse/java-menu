@@ -19,10 +19,7 @@ public class CategoryForDay {
     public void setCategories() {
         while (categories.size() != 5) {
             String category = Menu.recommendCategory();
-
-            if (Collections.frequency(categories, category) < 2) {
-                categories.add(category);
-            }
+            checkCategoryFrequency(category);
         }
     }
 
@@ -36,5 +33,11 @@ public class CategoryForDay {
         totalCategory += " ]";
 
         return totalCategory;
+    }
+
+    private void checkCategoryFrequency(String category) {
+        if (Collections.frequency(categories, category) < 2) {
+            categories.add(category);
+        }
     }
 }

@@ -31,7 +31,6 @@ public class MenuController {
     public void recommendForCoach(Coach coach, List<String> categories) {
         List<String> names = coach.getNames();
 
-
         for (String category : categories) {
             for (Menu value : Menu.values()) {
                 for (String name : names) {
