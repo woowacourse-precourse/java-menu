@@ -57,6 +57,11 @@ public class Coach {
     }
 
     public void recommendMenu(Category category, Set<String> totalMenuCoachCannotToEat) {
+        String recommendMenu = pickMenuSatisfiesAllConditions(category, totalMenuCoachCannotToEat);
+        addMenu(recommendMenu);
+    }
+
+    private String pickMenuSatisfiesAllConditions(Category category, Set<String> totalMenuCoachCannotToEat) {
         String recommendMenu = null;
         while (true) {
             recommendMenu = category.getRandomMenu();
@@ -64,7 +69,7 @@ public class Coach {
                 break;
             }
         }
-        addMenu(recommendMenu);
+        return recommendMenu;
     }
 
     private void addMenu(String menu) {
