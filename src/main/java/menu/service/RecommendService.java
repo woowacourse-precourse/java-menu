@@ -30,6 +30,8 @@ public class RecommendService {
     }
 
     public Food getFood(Category category, Couch couch) {
-        return Food.getFoodByCategoryAndCouch(category, couch);
+        List<String> foods = Food.getFoodByCategoryAndCouch(category, couch);
+        String foodName = Randoms.shuffle(foods).get(0);
+        return Food.valueOf(foodName);
     }
 }

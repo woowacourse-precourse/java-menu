@@ -1,6 +1,5 @@
 package menu.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import menu.utils.Category;
 
 import java.util.Arrays;
@@ -69,12 +68,11 @@ public enum Food {
         this.category = category;
     }
 
-    public static Food getFoodByCategoryAndCouch(Category category, Couch couch) {
-        List<Food> collect = Arrays.stream(values())
+    public static List<String> getFoodByCategoryAndCouch(Category category, Couch couch) {
+        return Arrays.stream(values())
                 .filter(value -> value.category == category)
                 .filter(value -> !couch.isDeny(value))
+                .map(Enum::name)
                 .collect(Collectors.toList());
-
-        return Randoms.shuffle(collect).get(0);
     }
 }
