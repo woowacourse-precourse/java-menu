@@ -15,12 +15,9 @@ public class MenuController {
         for(Coach coach : coaches) {
             OutputView.inputInedibleFood(coach);
             coach.addFoods(InputView.readInedibleFoods());
-
-
         }
 
-        foodRecommendation.recommend(coaches);
-
+        foodRecommendation.recommend();
         OutputView.result(foodRecommendation.getCoaches(), foodRecommendation.getCategoryByWeek());
     }
 

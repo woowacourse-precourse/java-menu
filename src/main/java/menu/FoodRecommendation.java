@@ -16,7 +16,7 @@ public class FoodRecommendation {
         }
     }
 
-    public void recommend(List<Coach> coaches) {
+    public void recommend() {
         for (Week week : categoryByWeek.keySet()) {
             recommendByWeek(week);
         }
