@@ -50,4 +50,8 @@ public class MenuRecommendService {
 
         return menu;
     }
+
+    public SelectCategory getSelectCategory() {
+        return selectCategory;
+    }
 }
