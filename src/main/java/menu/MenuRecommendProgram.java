@@ -56,10 +56,10 @@ public class MenuRecommendProgram {
         for (Coach coach : coaches) {
             String recommendedMenu =
                     menuRandomRecommender.recommend(Arrays.stream(Menu.values())
-                            .filter(value -> value.getCategory().equals(this.categories.get(index)))
-                            .findAny()
-                            .get()
-                            .getMenu()
+                                    .filter(value -> value.getCategory().equals(this.categories.get(index)))
+                                    .findAny()
+                                    .get()
+                                    .getMenu()
                             , coach);
             coach.addRecommendedMenu(recommendedMenu);
         }
@@ -69,7 +69,7 @@ public class MenuRecommendProgram {
         outputView.printResultStartMessage();
         outputView.printDivision();
         outputView.printCategories(categories);
-        for (Coach coach: this.coaches) {
+        for (Coach coach : this.coaches) {
             outputView.printRecommendedMenu(coach);
         }
         outputView.printCompleteMessage();

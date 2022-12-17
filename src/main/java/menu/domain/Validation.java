@@ -18,7 +18,7 @@ public class Validation {
     }
 
     public void validateNameSize(String[] coaches) {
-        for (String coach: coaches) {
+        for (String coach : coaches) {
             if (coach.length() < MINIMUM_SIZE || coach.length() > MAXIMUM_SIZE) {
                 throw new IllegalArgumentException(NAME_SIZE_ERROR);
             }

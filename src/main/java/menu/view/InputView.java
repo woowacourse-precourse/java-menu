@@ -14,7 +14,7 @@ public class InputView {
     public String[] readCoachName() {
         String[] coachNames = Console.readLine().split(",");
 
-        try{
+        try {
             validation.validateNumberOfCoaches(coachNames);
             validation.validateNameSize(coachNames);
             return coachNames;
