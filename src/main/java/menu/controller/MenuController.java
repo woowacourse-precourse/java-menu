@@ -24,8 +24,10 @@ public class MenuController extends Controller{
     }
 
     public void generateCoachList() {
-        List<Coach> coaches = inputView.readCoaches();
+
+        List<Coach> coaches = repeat(inputView::readCoaches);
 
     }
+
 
 }
