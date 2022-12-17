@@ -10,6 +10,6 @@ public final class CategoryRandomGenerator implements RandomGenerator {
 
     @Override
     public String generate(List<String> list) {
-        return Category.getByOrdinal(Randoms.pickNumberInRange(1, 5));
+        return Category.getByIndex(Randoms.pickNumberInRange(1, 5));
     }
 }

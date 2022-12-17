@@ -33,6 +33,7 @@ public class OutputView {
                 "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]\n");
         result.append(getCategory(shuffledCategory));
         result.append(getRecommendation(people));
+        result.append("\n추천을 완료했습니다.");
         System.out.println(result);
     }
 
@@ -40,7 +41,7 @@ public class OutputView {
         StringBuilder result = new StringBuilder();
 
         for (Person person : people) {
-            StringJoiner joiner = new StringJoiner(" | ", "[ ", "]\n");
+            StringJoiner joiner = new StringJoiner(" | ", "[ ", " ]\n");
             joiner.add(person.getName());
             for (Menu menu : person.getRecommended()) {
                 joiner.add(menu.getMenuName());
@@ -51,7 +52,7 @@ public class OutputView {
     }
 
     private String  getCategory(List<String> shuffledCategory) {
-        StringJoiner categoryJoiner = new StringJoiner(" | ", "[ ", "]\n");
+        StringJoiner categoryJoiner = new StringJoiner(" | ", "[ ", " ]\n");
         categoryJoiner.add("카테고리");
         for (String category : shuffledCategory) {
             categoryJoiner.add(category);
