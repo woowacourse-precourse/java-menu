@@ -2,6 +2,7 @@ package menu.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -78,6 +79,6 @@ public enum Menu {
             menuNames.add(menu.getName());
         }
 
-        return menuNames;
+        return Collections.unmodifiableList(menuNames);
     }
 }
