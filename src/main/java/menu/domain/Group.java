@@ -1,6 +1,5 @@
 package menu.domain;
 
-import java.net.CookieHandler;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

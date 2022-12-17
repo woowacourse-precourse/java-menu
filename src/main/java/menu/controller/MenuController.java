@@ -1,6 +1,5 @@
 package menu.controller;
 
-import menu.domain.Coach;
 import menu.domain.Group;
 import menu.view.InputView;
 import menu.view.OutputView;
@@ -12,8 +11,10 @@ public class MenuController {
     private final OutputView outputView = new OutputView();
     private final Group group = new Group();
 
+    private final String START_MESSAGE = "점심 메뉴 추천을 시작합니다.";
+
     public void run() {
-        System.out.println("점심 메뉴 추천을 시작합니다.");
+        System.out.println(START_MESSAGE);
         List<String> coaches = inputView.readNames();
 
         for (String coach : coaches) {

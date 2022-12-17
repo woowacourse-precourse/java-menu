@@ -9,6 +9,9 @@ public class Coach {
     private final List<String> cannotEatMenus;
     private final List<String> eatMenus = new ArrayList<>();
 
+    private final String NAME_SIZE_INVALID = "[ERROR] 코치의 이름은 2글자에서 4글자만 가능합니다.";
+    private final String CANNOT_EAT_MENU_SIZE_INVALID = "[ERROR] 코치가 못 먹는 음식은 2개 이상이면 안됩니다.";
+
     public Coach(String name, List<String> cannotEatMenus) {
         validateName(name);
         validateCannotEatMenus(cannotEatMenus);
@@ -18,13 +21,13 @@ public class Coach {
 
     private void validateName(String name) {
         if (name.length() < 2 || name.length() > 5) {
-            throw new IllegalArgumentException("[ERROR] 코치의 이름은 2글자에서 4글자만 가능합니다.");
+            throw new IllegalArgumentException(NAME_SIZE_INVALID);
         }
     }
 
     private void validateCannotEatMenus(List<String> menus) {
         if (menus.size() > 2) {
-            throw new IllegalArgumentException("[ERROR] 코치가 못 먹는 음식은 2개 이상이면 안됩니다.");
+            throw new IllegalArgumentException(CANNOT_EAT_MENU_SIZE_INVALID);
         }
     }
 
