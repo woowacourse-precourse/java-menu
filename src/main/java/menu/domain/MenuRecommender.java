@@ -63,7 +63,7 @@ public class MenuRecommender {
     }
 
     private Category pickupCategory() {
-        int randomIndex = Randoms.pickNumberInRange(1, CATEGORIES.size());
+        int randomIndex = Randoms.pickNumberInRange(1, 5);
         return CATEGORIES.get(randomIndex - 1);
     }
 
@@ -76,7 +76,8 @@ public class MenuRecommender {
         String menu = null;
 
         while (inavailableMenu) {
-            menu = Randoms.shuffle(category.getMenus()).get(0);
+            List<String> strictMenus = category.getMenus();
+            menu = Randoms.shuffle(strictMenus).get(0);
             inavailableMenu = coach.checkMenu(menu);
         }
 
