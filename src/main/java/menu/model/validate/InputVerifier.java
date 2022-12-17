@@ -52,7 +52,7 @@ public class InputVerifier {
         try {
             for (String hateMenu : hateMenus) {
                 coachHateMenuIsKorean(hateMenu);
-//                coachHateMenusCount0To2(hateMenus.size());
+                coachHateMenusCount0To2(hateMenus.size());
             }
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
