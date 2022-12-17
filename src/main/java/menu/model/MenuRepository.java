@@ -40,6 +40,6 @@ public class MenuRepository {
     }
 
     public List<String> getMenuNames() {
-        return menus.stream().map(v -> v.getName()).collect(Collectors.toList());
+        return menus.stream().map(Menu::getName).collect(Collectors.toList());
     }
 }

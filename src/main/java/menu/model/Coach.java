@@ -18,10 +18,6 @@ public class Coach {
         return this.name;
     }
 
-    public List<Menu> getCanNotEats() {
-        return canNotEats;
-    }
-
     public void addCannotEats(List<Menu> menu) {
         canNotEats.addAll(menu);
     }
@@ -36,5 +32,9 @@ public class Coach {
 
     public List<Menu> getRecommended() {
         return recommended;
+    }
+
+    public boolean isCannotEat(Menu menu) {
+        return canNotEats.contains(menu);
     }
 }

@@ -80,7 +80,7 @@ public class RecommendController {
         Menu recommendMenu;
         do {
             recommendMenu = recommendMenu();
-        } while (!(recommendMenu.getCategory() == category) || coach.getCanNotEats().contains(recommendMenu)
+        } while (!(recommendMenu.getCategory() == category) || coach.isCannotEat(recommendMenu)
                 || coach.isRecommended(recommendMenu));
         coach.addRecommendMenu(recommendMenu);
     }
