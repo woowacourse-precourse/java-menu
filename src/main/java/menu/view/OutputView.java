@@ -18,6 +18,12 @@ public class OutputView {
         printBreak();
     }
 
+    //추천 완료 메세지 출력
+    public static void printFinish() {
+        System.out.println(FINISH_MENU_RECOMMEND);
+        //시스템 종료
+    }
+
     //에러 메세지 출력
     public static void printError(String message) {
         System.out.println("[ERROR] " + message);
