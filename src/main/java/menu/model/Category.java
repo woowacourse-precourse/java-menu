@@ -1,22 +1,9 @@
 package menu.model;
 
 public class Category {
-    private int number;
-    private String name;
+    private static final String[] categories = {"", "일식", "한식", "중식", "아시안", "양식"};
 
     public static String getName(int number) {
-        if (number == 1) {
-            return "일식";
-        }
-        if (number == 2) {
-            return "한식";
-        }
-        if (number == 3) {
-            return "중식";
-        }
-        if (number == 4) {
-            return "아시안";
-        }
-        return "양식";
+        return categories[number];
     }
 }
