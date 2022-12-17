@@ -4,17 +4,21 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
+    private static void validateCoach(String[] coaches) {
+        if (coaches.length < 2 || coaches.length > 5)
+            throw new IllegalArgumentException("[ERROR] 코치는 2명 이상 5명 이하입니다.");
+        for (String coach : coaches) {
+            if (coach.length() < 2 || coach.length() > 4)
+                throw new IllegalArgumentException("[ERROR] 코치의 이름은 최소 2글자, 최대 4글자 입니다.");
+        }
+    }
+
     public String[] INPUT_COACH_NAME() {
         System.out.println(InputString.COACH_NAME_INPUT);
         try {
             String names = Console.readLine();
             String[] coaches = names.split(",");
-            if (coaches.length < 2 || coaches.length > 5)
-                throw new IllegalArgumentException("[ERROR] 코치는 2명 이상 5명 이하입니다.");
-            for (String coach : coaches) {
-                if (coach.length() < 2 || coach.length() > 4)
-                    throw new IllegalArgumentException("[ERROR] 코치의 이름은 최소 2글자, 최대 4글자 입니다.");
-            }
+            validateCoach(coaches);
             return names.split(",");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
