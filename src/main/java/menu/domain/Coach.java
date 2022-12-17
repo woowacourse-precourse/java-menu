@@ -1,7 +1,9 @@
 package menu.domain;
 
 import static menu.domain.constant.MenuRule.MAXIMUM_COACH_NAME_LENGTH;
+import static menu.domain.constant.MenuRule.MAXIMUM_INEDIBLE_FOOD_COUNT;
 import static menu.domain.constant.MenuRule.MINIMUM_COACH_NAME_LENGTH;
+import static menu.domain.constant.MenuRule.MINIMUM_INEDIBLE_FOOD_COUNT;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -41,7 +43,20 @@ public class Coach {
     }
 
     public void registerInedibleFoods(List<String> inedibleFoods) {
+        validateInedibleFoods(inedibleFoods);
         this.inedibleFoods.addAll(inedibleFoods);
+    }
+
+    private void validateInedibleFoods(List<String> inedibleFoods) {
+        if (MINIMUM_INEDIBLE_FOOD_COUNT <= inedibleFoods.size()
+                && inedibleFoods.size() <= MAXIMUM_INEDIBLE_FOOD_COUNT) {
+            return;
+        }
+        throw new IllegalArgumentException(String.format(
+                "[ERROR] 못 먹는 메뉴는 코치 당 %d개 이상 %d개 이하여야 합니다.",
+                MINIMUM_INEDIBLE_FOOD_COUNT,
+                MAXIMUM_INEDIBLE_FOOD_COUNT
+        ));
     }
 
     public void recommendMenuOfDay(Day day, Category categoryOfDay) {
