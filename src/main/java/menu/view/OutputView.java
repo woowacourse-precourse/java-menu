@@ -61,4 +61,8 @@ public class OutputView {
         sb.replace(sb.length() - 2, sb.length() - 1, "]");
         System.out.println(sb);
     }
+
+    public static void newLine() {
+        System.out.println();
+    }
 }

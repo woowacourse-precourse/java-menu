@@ -12,10 +12,15 @@ public class MenuController {
     FoodRecommendation foodRecommendation;
 
     public void run() {
-        OutputView.start();
+        start();
         setCoachesAndInedibles();
         recommendFood();
         result();
+    }
+
+    private void start() {
+        OutputView.start();
+        OutputView.newLine();
     }
 
     private List<Coach> readCoachName() {
@@ -27,11 +32,13 @@ public class MenuController {
 
     private void setCoachesAndInedibles() {
         List<Coach> coaches = readCoachName();
+        OutputView.newLine();
         foodRecommendation = new FoodRecommendation(coaches);
         foodRecommendation.selectRandomCategory();
         for (Coach coach : coaches) {
             OutputView.inputInedibleFood(coach);
             coach.addInedibleFoods(InputView.readInedibleFoods());
+            OutputView.newLine();
         }
     }
 
