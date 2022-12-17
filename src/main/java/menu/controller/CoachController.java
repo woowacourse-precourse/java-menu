@@ -8,6 +8,7 @@ import menu.domain.Coach;
 import menu.domain.Menu;
 import menu.repository.CoachRepository;
 import menu.repository.MenuRepository;
+import menu.utils.Parser;
 import menu.validator.CoachDuplicateValidator;
 import menu.validator.CoachGroupSizeValidator;
 import menu.validator.CoachNameSizeValidator;
@@ -63,7 +64,7 @@ public class CoachController {
 
     private List<String> getParsedCoachNames() {
         String names = InputView.inputCoachNames();
-        return Arrays.stream(names.split(COACH_DELIMITER)).collect(Collectors.toList());
+        return Parser.parse(names, COACH_DELIMITER);
     }
 
     private void addNoEatableMenuOfCoaches(List<Coach> coaches) {
@@ -89,8 +90,7 @@ public class CoachController {
     }
 
     private List<Menu> getParsedNoEatableMenu(String inputNoEatableMenus) { //TODO Parsing util클래스 생성
-        List<String> parsedNames = Arrays.stream(inputNoEatableMenus.split(NO_EATABLE_MENU_DELIMITER))
-                .collect(Collectors.toList());
+        List<String> parsedNames = Parser.parse(inputNoEatableMenus, NO_EATABLE_MENU_DELIMITER);
         validateNoEatableMenuSize(parsedNames.size());
         if (parsedNames.get(FIRST_INDEX).equals(BLANK)) {
             return null;
