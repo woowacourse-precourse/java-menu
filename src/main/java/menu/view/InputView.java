@@ -14,4 +14,14 @@ public class InputView {
             return getCoachNames();
         }
     }
+
+    public static String getCantEatMenu(String coachName) {
+        try {
+            System.out.printf("%s(이)가 못 먹는 메뉴를 입력해 주세요.", coachName);
+            return InputValidator.validateCantEatMenu(Console.readLine());
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+            return getCantEatMenu(coachName);
+        }
+    }
 }
