@@ -10,7 +10,7 @@ public class Coach {
     private final String name;
     private final List<Menu> banFoods;
 
-    private List<Menu> recommendFoods = new ArrayList<>();
+    private List<Menu> recommendMenu = new ArrayList<>();
     private List<Category> categories = new ArrayList<>();
 
     public Coach(String name, List<Menu> banFoods) {
@@ -26,5 +26,9 @@ public class Coach {
         return categories.stream()
                 .filter(category -> category.getName().equals(inputCategory.getName()))
                 .count() >= CATEGORY_MAX_COUNT;
+    }
+
+    public boolean hasSameMenu(Menu menu) {
+        return recommendMenu.contains(menu);
     }
 }
