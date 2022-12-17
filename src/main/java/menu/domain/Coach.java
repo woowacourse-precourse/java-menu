@@ -3,6 +3,7 @@ package menu.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Coach {
     private final String name;
@@ -35,6 +36,10 @@ public class Coach {
 
     public boolean isContainForRecommend(Menu menu){
         return recommendMenus.contains(menu);
+    }
+
+    public List<String> getRecommendMenuNames(){
+        return recommendMenus.stream().map(menu -> menu.getName()).collect(Collectors.toList());
     }
 
     @Override
