@@ -1,6 +1,7 @@
 package menu.view;
 
 import java.util.List;
+import menu.type.CategoryType;
 
 public class OutputView {
 
@@ -19,10 +20,10 @@ public class OutputView {
                 + "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
     }
 
-    public void printCategory(List<String> categories) {
+    public void printCategory(List<CategoryType> categories) {
         String message = "[ 카테고리 | ";
         for (int i = 0; i < categories.size(); i++) {
-            message += categories.get(i) + " | ";
+            message += categories.get(i).getCategory() + " | ";
         }
         System.out.println(message.substring(0, message.length() - 2) + "]");
     }
