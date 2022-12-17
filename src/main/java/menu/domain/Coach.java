@@ -37,7 +37,7 @@ public class Coach {
     }
 
     private boolean isNotDuplicated(String menu) {
-        return Collections.frequency(eatMenus, menu) == 0;
+        return !eatMenus.contains(menu);
     }
 
     public List<String> getMenus() {
