@@ -22,7 +22,6 @@ public class MenuForWeekRepository {
     }
 
     public static boolean isCategoryAvailableToAdd(Category recommendCategory) {
-        //  TODO : 카테고리가 선택된 횟수가 2번 이하라면 true
         int sameCategoryCounts = (int) categoriesPerWeek.values().stream()
                 .filter(category -> category.equals(recommendCategory))
                 .count();

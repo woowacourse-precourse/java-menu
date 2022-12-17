@@ -16,12 +16,14 @@ public class MenuRecommender {
     }
 
     private static Category getRecommendCategory() {
-        Category recommendCategory = Category.getCategoryByNumber(Randoms.pickNumberInRange(1, 5));
-        checkCategoryDuplication(recommendCategory);
+        Category recommendCategory;
+        while (true) {
+            recommendCategory = Category.getCategoryByNumber(Randoms.pickNumberInRange(1, 5));
+            if (MenuForWeekRepository.isCategoryAvailableToAdd(recommendCategory)) {
+                break;
+            }
+        }
         return recommendCategory;
     }
 
-    private static void checkCategoryDuplication(Category recommendCategory) {
-        MenuForWeekRepository.isCategoryAvailableToAdd(recommendCategory);
-    }
 }

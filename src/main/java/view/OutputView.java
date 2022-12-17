@@ -61,5 +61,7 @@ public class OutputView {
         String categories = categoriesPerWeek.values().stream().map(category -> category.getName()).collect(Collectors.joining(" | "));
         println("[ 카테고리 | " + categories + " ]");
         // TODO : 코치별 음식 목록 출력하기
+        printNewLine();
+        println(FINISH_MESSAGE);
     }
 }

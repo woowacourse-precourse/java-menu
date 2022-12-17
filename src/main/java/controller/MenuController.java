@@ -1,6 +1,7 @@
 package controller;
 
 import menu.Coach;
+import menu.MenuRecommender;
 import repository.CoachRepository;
 import repository.MenuForWeekRepository;
 import view.InputView;
@@ -26,6 +27,7 @@ public class MenuController {
             List<String> foodNames = getHateFoodNames(inputView.readNotAvailableFood(coach.getName()), coach.getName());
             coach.addHateFoodList(foodNames);
         }
+        MenuRecommender.addRecommendMenus(coaches);
         outputView.printMenuResult(MenuForWeekRepository.getMenuResult());
     }
 
