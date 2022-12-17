@@ -9,6 +9,7 @@
  - 이미 먹은 음식이면 다시 시도
  - 못 먹는 음식이면 다시 시도
 6. 4, 5를 요일 별로 반복
+7. 결과 출력
 
 ---
 
@@ -17,7 +18,9 @@
  - 각 멤버별로 (추천된 식사, 못 먹는 음식)을 유지한다.
 
 ## Category - enum 
-- 각 카테고리 별로 메뉴를 저장한다. -> list?? 멤버로 각각에 해당하는 번호를 가져야함 
+- 각 카테고리 별로 메뉴를 저장한다. -> (이름, 번호, 해당 메뉴)
+1. findByNumber() - Category 객체를 번호로 검색해 반환한다.
+2. findByName() - Category 객체를 이름으로 검색해 반환한다.ㄴ
 
 ## MenuRecommender 클래스 
  - 메뉴를 추천해서 결과를 유지한다.
@@ -30,6 +33,7 @@
 7. validateMenuDuplication() - 해당 메뉴가 중복되었는지 확인하는 메서드
 8. validateCategoryDuplication() - 해당 카테고리가 2회 이상 나왔는지 확인하는 메서드
 9. validatePickyEating() - 해당 음식이 못먹는 음식인지 확인하는 메서드 (인자로 음식 이름, 멤버 객체를 받아야하나?)
+10. 
 
 ## MenuRandomGenerator 클래스 
  - 랜덤한 숫자를 생성한다. (카테고리, 메뉴 각각에 대해서) 
@@ -47,6 +51,8 @@
  - 정해진 메뉴에 존재하는 이름인지
 
 3. validateInputformat() - 입력 형식이 올바른지 검증
+4. validateDuplication() - 중복된 요소가 입력되었는지 검증
+
 ## OutputView 클래스
  - 출력을 관리
 1. printStartMessage() - 시작 안내 메세지 출력
@@ -59,7 +65,7 @@
 8. printResultTalbe() - 결과 테이블을 출력
 
 ## Controller 클래스
- - view단과 도메인을 활용해서 프로그램을 돌리는 단계
+ - view단과 도메인을 활용해서 프로그램을 실행한다.
 1. run() - 프로그램을 돌린다
 2. 
 
