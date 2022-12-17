@@ -33,24 +33,24 @@ public class Outputview {
         for (Category category : categories) {
             categoryMessage.append(category.getName() + BAR);
         }
-        int index = categoryMessage.lastIndexOf(BAR);
-        String categoryFinal = categoryMessage.substring(0, index);
-        System.out.println(categoryFinal.concat(EACH_LINE_CLOSE));
+        printWithoutLastBAR(categoryMessage);
     }
 
     private void printDays() {
         StringBuilder daysResult = new StringBuilder(EACH_LINE_OPEN + DAYS_START + BAR);
         Arrays.stream(Days.values()).forEach(v -> daysResult.append(v.getName() + BAR));
-        int index = daysResult.lastIndexOf(BAR);
-        String categoryFinal = daysResult.substring(0, index);
-        System.out.println(categoryFinal.concat(EACH_LINE_CLOSE));
+        printWithoutLastBAR(daysResult);
     }
 
     private void printCoach(Coach coach) {
         StringBuilder coachMessage = new StringBuilder(EACH_LINE_OPEN + coach.getName() + BAR);
         coach.getRecommended().stream().forEach(v -> coachMessage.append(v.getName() + BAR));
-        int index = coachMessage.lastIndexOf(BAR);
-        String coachFinal = coachMessage.substring(0, index);
+        printWithoutLastBAR(coachMessage);
+    }
+
+    private void printWithoutLastBAR(StringBuilder sentence) {
+        int index = sentence.lastIndexOf(BAR);
+        String coachFinal = sentence.substring(0, index);
         System.out.println(coachFinal.concat(EACH_LINE_CLOSE));
     }
 }
