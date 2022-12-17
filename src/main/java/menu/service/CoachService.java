@@ -10,11 +10,12 @@ public class CoachService {
 
   private List<Coach> coaches = new ArrayList<>();
 
-  public void makeCoaches(String coachName) {
+  public List<Coach> makeCoaches(String coachName) {
     String[] coachesName = coachName.split(",");
     for (int i = 0; i < coachesName.length; i++) {
       coaches.add(new Coach(coachesName[i], new HashSet<>()));
     }
+    return coaches;
   }
 
   public void insertHateFood(String coachName, String hateFoodNames) {
