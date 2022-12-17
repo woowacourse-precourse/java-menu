@@ -25,7 +25,7 @@ public class InputView {
     }
 
     public static List<String> readCanNotEatMenu(String name) {
-        System.out.printf("%s(이)가 못 먹는 메뉴를 입력해 주세요.", name);
+        System.out.printf("%s(이)가 못 먹는 메뉴를 입력해 주세요.\n", name);
         String input = Console.readLine();
         validateCanNotEatMenuFormat(input);
         return Arrays.stream(input.split(INPUT_DELIMITER))
