@@ -1,9 +1,7 @@
 package menu.controller;
 
-import menu.domain.Coach;
-import menu.domain.CoachRepository;
-import menu.domain.Menu;
-import menu.domain.MenuRepository;
+import menu.domain.*;
+import menu.domain.generator.RandomCategoryGenerator;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -20,6 +18,7 @@ public class MenuController {
         OutputView.printServiceStartMessage();
         addCoaches();
         addCoachesDislikeMenus();
+        showResult();
     }
 
     private void initMenus() {
@@ -46,10 +45,19 @@ public class MenuController {
     }
 
     private List<Menu> getDislikeMenus(Coach coach) {
-        String coachName = coach.getCoachName();
-        List<String> dislikeMenusName = InputView.inputDislikeMenus(coachName);
-        return dislikeMenusName.stream()
-                .map(MenuRepository::findByName)
-                .collect(Collectors.toUnmodifiableList());
+        try {
+            List<String> dislikeMenusName = InputView.inputDislikeMenus(coach.getCoachName());
+            return dislikeMenusName.stream()
+                    .map(MenuRepository::findByName)
+                    .collect(Collectors.toUnmodifiableList());
+        } catch (IllegalArgumentException exception) {
+            OutputView.printErrorMessage(exception.getMessage());
+            return getDislikeMenus(coach);
+        }
+    }
+
+    private void showResult() {
+        RecommendMaker recommendMaker = new RecommendMaker(new RandomCategoryGenerator());
+        recommendMaker.recommend();
     }
 }

@@ -26,4 +26,8 @@ public enum Category {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_PREFIX + "존재하지 않는 카테고리입니다."));
     }
+
+    public boolean isSameCategory(Category category) {
+        return categoryName.equals(category.categoryName);
+    }
 }

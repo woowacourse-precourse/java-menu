@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static menu.constant.SystemConstant.COACH_INPUT_SPLIT_OPTION;
+import static menu.constant.SystemConstant.INPUT_SPLIT_OPTION;
 
 public class InputView {
 
@@ -29,7 +29,7 @@ public class InputView {
     }
 
     private static List<String> parseToSplitOption(String input) {
-        return Arrays.stream(input.split(COACH_INPUT_SPLIT_OPTION))
+        return Arrays.stream(input.split(INPUT_SPLIT_OPTION))
                 .collect(Collectors.toUnmodifiableList());
     }
 }

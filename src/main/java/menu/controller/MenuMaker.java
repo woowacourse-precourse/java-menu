@@ -10,6 +10,7 @@ public class MenuMaker {
         makeKoreanMenu();
         makeChineseMenu();
         makeAsianMenu();
+        makeWesternMenu();
     }
 
     private void makeJapaneseMenu() {
