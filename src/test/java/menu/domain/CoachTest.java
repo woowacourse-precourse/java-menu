@@ -26,10 +26,12 @@ class CoachTest {
     }
 
     @Test
-    void toStringTest() {
-        coach.canEat("쌈밥");
-        coach.canEat("미소시루");
-        String expected = "[ 쌈밥 | 미소시루 ]";
-        assertThat(coach.toString()).isEqualTo(expected);
+    void requestFormatTest() {
+        coach.canEat("비빔밥");
+        coach.canEat("탕수육");
+        assertThat(coach.requestFormat().get(0)).isEqualTo("토미");
+        assertThat(coach.requestFormat().get(1)).isEqualTo("비빔밥");
+        assertThat(coach.requestFormat().get(2)).isEqualTo("탕수육");
     }
+
 }

@@ -1,9 +1,11 @@
 package menu.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Recommendation {
     private final List<Coach> coaches;
+    private final List<String> categories;
     private final CategoryCount categoryCount;
     private final CategoryMaker categoryMaker;
     private final MenuMaker menuMaker;
@@ -13,11 +15,13 @@ public class Recommendation {
         categoryCount = new CategoryCount();
         categoryMaker = new CategoryMaker();
         menuMaker = new MenuMaker();
+        categories = new ArrayList<>();
     }
 
     public void run() {
         for (int i = 0; i < 5; i++) {
             Category category = selectCategory();
+            categories.add(category.getName());
             selectMenu(category);
         }
     }
