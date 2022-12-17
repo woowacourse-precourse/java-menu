@@ -22,6 +22,8 @@ public class MenuController {
     public void start(){
         OutputView.recommendStart();
         getRecommendMenu();
+        OutputView.printResult(menuService.getCoach());
+        OutputView.quit();
     }
 
     public void getRecommendMenu(){

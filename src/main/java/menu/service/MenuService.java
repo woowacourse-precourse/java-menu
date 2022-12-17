@@ -24,7 +24,7 @@ public class MenuService {
         }
     }
     public void recommend(){
-        Category category = getRandomCategory(categoryCounter);
+        Category category = getRandomCategory(this.categoryCounter);
         Integer count = categoryCounter.get(category);
         categoryCounter.put(category, count + 1);
         for(Coach coach : coaches){
@@ -47,5 +47,9 @@ public class MenuService {
 
     public String getRecommendMenu(List<String> menus){
         return menuGenerator.pick(menus);
+    }
+
+    public List<Coach> getCoach() {
+        return this.coaches;
     }
 }
