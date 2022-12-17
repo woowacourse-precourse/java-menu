@@ -20,6 +20,16 @@ public class ExcludeMenuDto {
         if (!isValidMenuLength(allMenu)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_EXCLUDE_MENU_COUNT);
         }
+        if (isDuplicated(allMenu)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_EXCLUDE_MENU);
+        }
+    }
+
+    private boolean isDuplicated(final String allMenu) {
+        int count = (int) Arrays.stream(allMenu.split(","))
+                .distinct()
+                .count();
+        return count == allMenu.split(",").length;
     }
 
     private boolean isValidMenuLength(final String allMenu) {
