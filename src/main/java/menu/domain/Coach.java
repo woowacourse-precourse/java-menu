@@ -31,4 +31,8 @@ public class Coach {
     public List<Menu> getRecommendMenus() {
         return recommendMenus;
     }
+
+    public String getCoachName() {
+        return coachName;
+    }
 }
