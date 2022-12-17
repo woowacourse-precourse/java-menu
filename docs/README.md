@@ -41,7 +41,9 @@
 - [x] 문구 생성
 - [x] InputView
     - [x] 문자열 리스트를 읽는 기능
-
+- [ ] OutputView
+    - [ ] 문구 출력 기능
+    - [ ] 메뉴 추천 결과 출력 기능
 
 ## MainController
 
