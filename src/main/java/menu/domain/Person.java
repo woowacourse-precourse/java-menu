@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Person {
+public final class Person {
 
     public static final String DELIMITER = ",";
     public static final String REGEX = ".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*";

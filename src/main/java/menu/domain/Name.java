@@ -1,6 +1,6 @@
 package menu.domain;
 
-public class Name {
+public final class Name {
     public static final int MIN_COUNT = 2;
     public static final int MAX_COUNT = 4;
 

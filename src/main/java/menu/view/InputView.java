@@ -7,7 +7,7 @@ import menu.domain.Person;
 import menu.dto.input.ReadNamesDto;
 import menu.dto.input.ReadUnavailableMenuDto;
 
-public class InputView {
+public final class InputView {
     private static final String DELIMITER = ",";
 
     private InputView() {

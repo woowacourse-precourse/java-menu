@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Menus implements Iterable<Menu>{
+public final class Menus implements Iterable<Menu>{
     private final List<Menu> menus;
 
     public Menus() {

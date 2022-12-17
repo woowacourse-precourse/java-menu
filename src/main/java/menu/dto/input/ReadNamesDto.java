@@ -1,6 +1,6 @@
 package menu.dto.input;
 
-public class ReadNamesDto {
+public final class ReadNamesDto {
     private final String names;
 
     public ReadNamesDto(String input) {

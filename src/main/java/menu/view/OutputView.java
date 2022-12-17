@@ -10,7 +10,7 @@ import menu.dto.output.PrintRecommendationsDto;
 import java.util.List;
 import java.util.StringJoiner;
 
-public class OutputView {
+public final class OutputView {
 
     public static final String DELIMITER = " | ";
     public static final String PREFIX = "[ ";

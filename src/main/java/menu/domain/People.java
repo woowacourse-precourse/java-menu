@@ -5,7 +5,7 @@ import menu.util.MenuRandomGenerator;
 import java.util.Iterator;
 import java.util.List;
 
-public class People implements Iterable<Person> {
+public final class People implements Iterable<Person> {
     public static final int MIN = 2;
     public static final int MAX = 5;
 

@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
 
-public class MenuRandomGenerator{
+public final class MenuRandomGenerator{
 
     private static final int FIRST_INDEX = 0;
 

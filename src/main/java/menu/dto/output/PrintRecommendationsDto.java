@@ -4,7 +4,7 @@ import menu.domain.People;
 
 import java.util.List;
 
-public class PrintRecommendationsDto {
+public final class PrintRecommendationsDto {
 
     private final People people;
     private final List<String> shuffledCategory;

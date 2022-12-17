@@ -1,6 +1,6 @@
 package menu.dto.output;
 
-public class PrintCriticalExceptionDto {
+public final class PrintCriticalExceptionDto {
     private final Exception exception;
 
     public PrintCriticalExceptionDto(Exception exception) {
