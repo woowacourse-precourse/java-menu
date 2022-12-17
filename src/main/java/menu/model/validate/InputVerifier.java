@@ -33,7 +33,6 @@ public class InputVerifier {
 
     public static boolean tryCoachesCountMin2Max5(List<String> coachesName) {
         try {
-            System.out.println("coachesName.size() = " + coachesName.size());
             coachesCountMin2Max5(coachesName.size());
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());

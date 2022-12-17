@@ -20,7 +20,7 @@ public class CoachService {
     // 에러 발생시 그 시점부터 재시작해야하는데 재귀성 문제 해결해야함.
     public List<String> getCoaches() {
         String coaches = InputView.getCoaches();
-        List<String> coachesName = Separator.separateCoachName(coaches);
+        List<String> coachesName = Separator.separateCoachInfo(coaches);
         for (String coachName : coachesName) {
             if (!InputVerifier.tryCoachesCountMin2Max5(coachesName)) {
                 getCoaches();
@@ -32,11 +32,17 @@ public class CoachService {
         return coachesName;
     }
 
-    public List<Coach> saveName(List<String> coachesName) {
-        List<Coach> coaches = new ArrayList<>();
-        for (String name : coachesName) {
-            new Coach(name);
+    public List<Coach> getHateMenus(List<String> coachesName) {
+        List<Coach> result = new ArrayList<>();
+        for (String coachName : coachesName) {
+            String hateMenu = InputView.getCoachHateMenus(coachName);
+            List<String> hateMenus = Separator.separateCoachInfo(hateMenu);
+            result.add(applyHateMenus(coachName, hateMenus));
         }
-        return coaches;
+        return result;
+    }
+
+    private Coach applyHateMenus(String coachName, List<String> hateMenus) {
+        return new Coach(coachName, hateMenus);
     }
 }

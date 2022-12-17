@@ -13,7 +13,6 @@ public class Application {
         OutputView.printStart();
         List<String> coachesName = coachController.getCoachesName();
 
-        List<Coach> coaches = coachController.saveCoachName(coachesName);
-
+        System.out.println(coachController.getCoachHateMenus(coachesName));
     }
 }

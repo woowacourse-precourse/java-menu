@@ -12,7 +12,12 @@ public class Coach {
     private String name;
     private List<String> hateMenus;
 
-    public Coach(String name) {
+    public Coach(String name, List<String> hateMenus) {
         this.name = name;
+        this.hateMenus = hateMenus;
+    }
+
+    public String getName() {
+        return name;
     }
 }

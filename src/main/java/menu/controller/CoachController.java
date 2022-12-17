@@ -22,7 +22,7 @@ public class CoachController {
         return coachService.getCoaches();
     }
 
-    public List<Coach> saveCoachName(List<String> coachesName) {
-        return coachService.saveName(coachesName);
+    public List<Coach> getCoachHateMenus(List<String> coachesName) {
+        return coachService.getHateMenus(coachesName);
     }
 }

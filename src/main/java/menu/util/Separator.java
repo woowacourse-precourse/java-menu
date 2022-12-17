@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class Separator {
 
-    public static List<String> separateCoachName(String coaches) {
+    public static List<String> separateCoachInfo(String coaches) {
         return Arrays.asList(coaches.split(","));
     }
 }

@@ -14,4 +14,9 @@ public class InputView {
         OutputView.printInputCoach();
         return Console.readLine();
     }
+
+    public static String getCoachHateMenus(String coachName) {
+        OutputView.printInputCoachHateMenus(coachName);
+        return Console.readLine();
+    }
 }
