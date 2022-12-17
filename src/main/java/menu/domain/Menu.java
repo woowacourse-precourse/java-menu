@@ -4,18 +4,18 @@ import menu.domain.enums.Category;
 
 import java.util.Objects;
 
-public class Food {
+public class Menu {
 
     private final Category category;
     private final String name;
 
-    public Food(final Category category, final String name) {
+    public Menu(final Category category, final String name) {
         this.category = category;
         this.name = name;
     }
 
-    public static Food ofName(final String name) {
-        return new Food(Category.mapByName(name), name);
+    public static Menu ofName(final String name) {
+        return new Menu(Category.mapByName(name), name);
     }
 
     public Category category() {
@@ -28,11 +28,11 @@ public class Food {
 
     @Override
     public boolean equals(final Object o) {
-        if (!(o instanceof Food)) {
+        if (!(o instanceof Menu)) {
             return false;
         }
-        Food food = (Food) o;
-        return category == food.category && Objects.equals(name, food.name);
+        Menu menu = (Menu) o;
+        return category == menu.category && Objects.equals(name, menu.name);
     }
 
     @Override

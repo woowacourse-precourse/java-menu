@@ -1,7 +1,7 @@
 package menu.service;
 
 import menu.domain.Coach;
-import menu.domain.Food;
+import menu.domain.Menu;
 import menu.domain.Group;
 import menu.domain.enums.Category;
 import menu.domain.enums.Weekday;
@@ -41,8 +41,8 @@ public class MenuRecommend implements MenuRecommendUseCase {
 
     private void recommendForCoachOfCategory(final Coach coach,
                                              final Category category) {
-        Food food = selectMenuForCoach(coach, category);
-        coach.addRecommend(food);
+        Menu menu = selectMenuForCoach(coach, category);
+        coach.addRecommendedMenus(menu);
     }
 
     private Category selectCategory(final Group group) {
@@ -55,15 +55,15 @@ public class MenuRecommend implements MenuRecommendUseCase {
         return selected;
     }
 
-    private Food selectMenuForCoach(final Coach coach,
+    private Menu selectMenuForCoach(final Coach coach,
                                     final Category category) {
-        List<String> foodNames = category.foodNames();
-        Food food;
+        List<String> menuNames = category.menuNames();
+        Menu menu;
         do {
-            String foodName = shuffle(foodNames).get(FIRST_SELECT_MENU_INDEX);
-            food = Category.mapFoodByName(foodName);
-        } while (!coach.isEdible(food));
+            String menuName = shuffle(menuNames).get(FIRST_SELECT_MENU_INDEX);
+            menu = Category.mapMenuByName(menuName);
+        } while (!coach.isEdible(menu));
 
-        return food;
+        return menu;
     }
 }

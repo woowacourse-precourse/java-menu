@@ -1,7 +1,7 @@
 package menu.view;
 
 import menu.domain.Coach;
-import menu.domain.Food;
+import menu.domain.Menu;
 import menu.domain.Group;
 import menu.domain.enums.Category;
 import menu.domain.enums.Weekday;
@@ -22,15 +22,21 @@ public class OutputView {
     private static final String CATEGORY_FORMAT = "[ 카테고리 | %s ]";
     private static final String COACH_RECOMMENDED_FOOD_FORMAT = "[ %s | %s ]";
 
+    /**
+     * 음식 추천 시작
+     */
     public static void printRecommendStart() {
         System.out.println(START_RECOMMEND);
     }
 
+    /**
+     * 추천 결과 출력
+     */
     public static void printRecommendResult(final Group group) {
         System.out.println(RECOMMEND_RESULT);
         printDivision();
         printCategory(group.categories());
-        printRecommends(group);
+        printRecommendedMenu(group);
         System.out.println(END_RECOMMEND);
     }
 
@@ -43,7 +49,6 @@ public class OutputView {
         System.out.println(message);
     }
 
-
     private static void printCategory(final List<Category> categories) {
         String category = categories.stream()
                 .map(Category::categoryName)
@@ -52,10 +57,10 @@ public class OutputView {
         System.out.println(message);
     }
 
-    private static void printRecommends(final Group group) {
+    private static void printRecommendedMenu(final Group group) {
         for (Coach coach : group.coaches()) {
-            String menus = coach.recommends().stream()
-                    .map(Food::name)
+            String menus = coach.recommendedMenus().stream()
+                    .map(Menu::name)
                     .collect(joining(BAR));
             String message = format(COACH_RECOMMENDED_FOOD_FORMAT, coach.name(), menus);
             System.out.println(message);

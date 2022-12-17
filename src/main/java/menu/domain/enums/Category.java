@@ -1,6 +1,6 @@
 package menu.domain.enums;
 
-import menu.domain.Food;
+import menu.domain.Menu;
 
 import java.util.List;
 
@@ -33,18 +33,18 @@ public enum Category {
     ;
 
     private static final String NO_EXIST_CATEGORY_INDEX_FORMAT = "번호[%d]에 해당하는 카테고리가 없습니다.";
-    private static final String NO_EXIST_CATEGORY_CONTAIN_FOOD_FORMAT = "음식[%s]을(를) 포함한 카테고리가 존재하지 않습니다.";
-    private static final String NO_EXIST_FOOD_FORMAT = "음식[%s]이(가) 존재하지 않습니다.";
+    private static final String NO_EXIST_CATEGORY_CONTAIN_MENU_FORMAT = "음식[%s]을(를) 포함한 카테고리가 존재하지 않습니다.";
+    private static final String NO_EXIST_MENU_FORMAT = "음식[%s]이(가) 존재하지 않습니다.";
 
     private final int number;
-    private final List<Food> foods;
+    private final List<Menu> menus;
     private final String categoryName;
 
-    Category(int number, String categoryName, List<String> foods) {
+    Category(int number, String categoryName, List<String> menus) {
         this.number = number;
         this.categoryName = categoryName;
-        this.foods = foods.stream()
-                .map(it -> new Food(this, it))
+        this.menus = menus.stream()
+                .map(it -> new Menu(this, it))
                 .collect(toUnmodifiableList());
     }
 
@@ -59,40 +59,38 @@ public enum Category {
 
     public static Category mapByName(final String name) {
         for (Category category : values()) {
-            if (isContainFood(name, category)) {
+            if (category.isContainMenu(name)) {
                 return category;
             }
         }
         throw new IllegalArgumentException(
-                format(NO_EXIST_CATEGORY_CONTAIN_FOOD_FORMAT, name));
+                format(NO_EXIST_CATEGORY_CONTAIN_MENU_FORMAT, name));
     }
 
-    private static boolean isContainFood(final String name,
-                                         final Category category) {
-        List<Food> foods = category.foods;
-        for (Food food : foods) {
-            if (food.name().equals(name)) {
+    private boolean isContainMenu(String name) {
+        for (Menu menu : this.menus) {
+            if (menu.name().equals(name)) {
                 return true;
             }
         }
         return false;
     }
 
-    public static Food mapFoodByName(final String foodName) {
+    public static Menu mapMenuByName(final String menuName) {
         for (Category category : values()) {
-            Food food = findFood(foodName, category);
-            if (food != null) {
-                return food;
+            Menu menu = findMenu(menuName, category);
+            if (menu != null) {
+                return menu;
             }
         }
         throw new IllegalArgumentException(
-                format(NO_EXIST_FOOD_FORMAT, foodName));
+                format(NO_EXIST_MENU_FORMAT, menuName));
     }
 
-    private static Food findFood(final String foodName,
+    private static Menu findMenu(final String menuName,
                                  final Category category) {
-        return category.foods.stream()
-                .filter(it -> it.name().equals(foodName))
+        return category.menus.stream()
+                .filter(it -> it.name().equals(menuName))
                 .findAny()
                 .orElse(null);
     }
@@ -105,9 +103,9 @@ public enum Category {
         return categoryName;
     }
 
-    public List<String> foodNames() {
-        return foods.stream()
-                .map(Food::name)
+    public List<String> menuNames() {
+        return menus.stream()
+                .map(Menu::name)
                 .collect(toUnmodifiableList());
     }
 }

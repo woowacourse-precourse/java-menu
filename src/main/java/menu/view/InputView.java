@@ -19,7 +19,7 @@ public class InputView {
     /**
      * 못 먹는 음식 입력
      */
-    public static String inputInedibleFoodForCoach(final Coach coach) {
+    public static String inputInedibleMenuForCoach(final Coach coach) {
         String message = String.format(INPUT_COACH_INEDIBLE_FOOD_FORMAT, coach.name());
         System.out.println(message);
         return Console.readLine();

@@ -4,7 +4,7 @@ import menu.common.Logger;
 import menu.controller.MenuRecommendController;
 import menu.controller.mapper.MenuMapper;
 import menu.domain.Coach;
-import menu.domain.Food;
+import menu.domain.Menu;
 import menu.domain.Group;
 import menu.view.InputView;
 
@@ -24,9 +24,9 @@ public class InputInedibleMenuStep extends MenuRecommendApplicationStep {
     @Override
     protected Step pureAction() {
         for (Coach coach : group.coaches()) {
-            String s = InputView.inputInedibleFoodForCoach(coach);
-            List<Food> foods = MenuMapper.toMenus(s);
-            coach.addInedibleFoods(foods);
+            String s = InputView.inputInedibleMenuForCoach(coach);
+            List<Menu> menus = MenuMapper.toMenus(s);
+            coach.addInedibleMenus(menus);
         }
         return new MenuRecommendStep(group, controller, logger);
     }

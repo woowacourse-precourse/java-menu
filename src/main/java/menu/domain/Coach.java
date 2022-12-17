@@ -10,12 +10,12 @@ public class Coach {
     private static final int MAX_DUPLICATED_COUNT = 2;
 
     private final String name;
-    private final List<Food> inedibleFoods;
-    private final List<Food> recommends = new ArrayList<>();
+    private final List<Menu> inedibleMenus;
+    private final List<Menu> recommendedMenus = new ArrayList<>();
 
-    public Coach(final String name, final List<Food> inedibleFoods) {
+    public Coach(final String name, final List<Menu> inedibleMenus) {
         this.name = name;
-        this.inedibleFoods = inedibleFoods;
+        this.inedibleMenus = inedibleMenus;
     }
 
     public static Coach ofName(final String name) {
@@ -26,26 +26,26 @@ public class Coach {
         return name;
     }
 
-    public List<Food> recommends() {
-        return recommends;
+    public List<Menu> recommendedMenus() {
+        return recommendedMenus;
     }
 
     public boolean isDuplicatedCategory(final Category category) {
-        long count = inedibleFoods.stream()
+        long count = inedibleMenus.stream()
                 .filter(it -> it.category().equals(category))
                 .count();
         return MAX_DUPLICATED_COUNT <= count;
     }
 
-    public boolean isEdible(final Food food) {
-        return !inedibleFoods.contains(food);
+    public boolean isEdible(final Menu menu) {
+        return !inedibleMenus.contains(menu);
     }
 
-    public void addInedibleFoods(final List<Food> foods) {
-        inedibleFoods.addAll(foods);
+    public void addInedibleMenus(final List<Menu> menus) {
+        inedibleMenus.addAll(menus);
     }
 
-    public void addRecommend(final Food food) {
-        this.recommends.add(food);
+    public void addRecommendedMenus(final Menu menu) {
+        this.recommendedMenus.add(menu);
     }
 }
