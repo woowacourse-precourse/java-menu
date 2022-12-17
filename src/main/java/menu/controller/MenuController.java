@@ -1,6 +1,7 @@
 package menu.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import menu.dto.RecommendationDTO;
 import menu.model.Category;
 import menu.model.Coach;
 import menu.utls.Validator;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MenuController {
     private static final String DELIMITER = ",";
@@ -30,6 +32,29 @@ public class MenuController {
         addAllegeMenu(coaches);
         List<Category> categories = getCategories();
         recommendMenu(coaches, categories);
+        outputView.outputRecommendation(createRecommendationDTO(coaches, categories));
+    }
+
+    private RecommendationDTO createRecommendationDTO(List<Coach> coaches, List<Category> categories) {
+        return new RecommendationDTO(getDTOCategories(categories),
+                getDTOCoaches(coaches),
+                getDTORecommendedMenus(coaches));
+    }
+
+    private List<List<String>> getDTORecommendedMenus(List<Coach> coaches) {
+        List<List<String>> recommendedMenus = new ArrayList<>();
+        for (Coach coach : coaches) {
+            recommendedMenus.add(coach.getRecommendation());
+        }
+        return recommendedMenus;
+    }
+
+    private List<String> getDTOCoaches(List<Coach> coaches) {
+        return coaches.stream().map(Coach::getName).collect(Collectors.toList());
+    }
+
+    private List<String> getDTOCategories(List<Category> categories) {
+        return categories.stream().map(Category::getName).collect(Collectors.toList());
     }
 
     private void recommendMenu(List<Coach> coaches, List<Category> categories) {

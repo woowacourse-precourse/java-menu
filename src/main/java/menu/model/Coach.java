@@ -18,6 +18,10 @@ public class Coach {
         return name;
     }
 
+    public List<String> getRecommendation() {
+        return recommendation;
+    }
+
     public void addAllergy(String allegeMenu) {
         allergy.add(allegeMenu);
     }
