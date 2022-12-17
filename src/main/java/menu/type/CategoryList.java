@@ -30,4 +30,14 @@ public enum CategoryList {
     public List<String> getMenus() {
         return menus;
     }
+
+    public static List<String> getMenusByCategory(String category) {
+        for (CategoryList categories : CategoryList.values()) {
+            if (categories.toString().equals(category)) {
+                return categories.getMenus();
+
+            }
+        }
+        throw new IllegalArgumentException("해당하는 카테고리가 없습니다.");
+    }
 }

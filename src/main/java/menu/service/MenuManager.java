@@ -27,6 +27,7 @@ public class MenuManager {
 
     public void activateRecommendation() {
         weeklyCategories.pickCategories();
+        CoachRepository.pickMenus(weeklyCategories.getCategoryList());
 
     }
 }

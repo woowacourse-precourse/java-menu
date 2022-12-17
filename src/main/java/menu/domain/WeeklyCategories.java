@@ -37,4 +37,8 @@ public class WeeklyCategories {
         }
         throw new IllegalArgumentException("프로그램이 예기치 못하게 종료되었습니다.");
     }
+
+    public List<String> getCategoryList() {
+        return Collections.unmodifiableList(categories);
+    }
 }
