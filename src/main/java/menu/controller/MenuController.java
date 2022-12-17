@@ -44,7 +44,7 @@ public class MenuController {
         outputView.printCoachNameInputNotice();
         String coachNameInput = inputView.readCoachNames();
 
-        String[] coachNames = coachNameInput.split(",");
+        String[] coachNames = coachNameInput.split(Constant.INPUT_DELIMITER);
         for (String name : coachNames) {
             coaches.add(new Coach(name));
         }

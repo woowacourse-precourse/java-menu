@@ -23,7 +23,7 @@ public class OutputView {
         System.out.println('\n' + coachName + NoticeMessage.DISLIKE_FOOD_INPUT_NOTICE);
     }
 
-    public void printServiceEndNotice(List<Category> categoryHistory , List<Coach> coaches) {
+    public void printServiceEndNotice(List<Category> categoryHistory, List<Coach> coaches) {
         StringBuilder endNotice = new StringBuilder(NoticeMessage.SERVICE_END_NOTICE_TOP).append('\n');
 
         endNotice.append(makeCategoryRecommendResult(categoryHistory)).append('\n');

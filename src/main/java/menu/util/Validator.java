@@ -10,7 +10,7 @@ public class Validator {
             throw new IllegalArgumentException(ErrorMessage.INCORRECT_INPUT_FORMAT);
         }
 
-        String[] coaches = input.split(",");
+        String[] coaches = input.split(Constant.INPUT_DELIMITER);
 
         if (isLessThanMinimumNumberOfCoach(coaches)) {
             throw new IllegalArgumentException(ErrorMessage.LESS_THAN_MINIMUM_NUMBER_OF_COACH);
@@ -25,7 +25,7 @@ public class Validator {
             throw new IllegalArgumentException(ErrorMessage.INCORRECT_INPUT_FORMAT);
         }
 
-        String[] foods = input.split(",");
+        String[] foods = input.split(Constant.INPUT_DELIMITER);
 
         if (isOverMaximumNumberOfDislikeFood(foods)) {
             throw new IllegalArgumentException(ErrorMessage.OVER_MAXIMUM_NUMBER_OF_DISLIKE_FOOD);
