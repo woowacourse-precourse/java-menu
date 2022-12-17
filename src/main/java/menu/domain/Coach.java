@@ -36,10 +36,7 @@ public class Coach {
     }
 
     private boolean wasRecommended(String foodName) {
-        long count = recommendedFoods.stream()
-                .filter(element -> element.equals(Food.from(foodName)))
-                .count();
-        return count != 0;
+        return recommendedFoods.contains(Food.from(foodName));
     }
 
     public List<Food> getRecommendedFoods() {
