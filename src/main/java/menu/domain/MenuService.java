@@ -1,7 +1,9 @@
 package menu.domain;
 
+import java.util.Arrays;
 import java.util.List;
 import menu.domain.constant.Category;
+import menu.domain.constant.Day;
 
 public class MenuService {
     private final Coaches coaches;
@@ -27,5 +29,15 @@ public class MenuService {
 
     private void checkFoods(List<String> foods) {
         foods.forEach(Category::checkFoodExist);
+    }
+
+    public void recommendMenu() {
+        Arrays.stream(Day.values())
+                .forEach(day -> recommendMenuOfDay(day));
+    }
+
+    private void recommendMenuOfDay(Day day) {
+        Category categoryOfDay = weeklyCategory.getCategoryOfDay(day);
+        coaches.recommandMenuForEachCoach(day, categoryOfDay);
     }
 }
