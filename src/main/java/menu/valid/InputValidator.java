@@ -18,5 +18,11 @@ public class InputValidator {
             throw new IllegalArgumentException("코치는 최소 2명, 최대 5명까지 식사를 함께 합니다.");
         }
     }
-
+    private static void validateCoachNameLength(String[] names) {
+        for (String name : names) {
+            if (name.length() < MIN_COACH_NAME_LENGTH || name.length() > MAX_COACH_NAME_LENGTH) {
+                throw new IllegalArgumentException("코치의 이름은 최소 2글자, 최대 4글자입니다.");
+            }
+        }
+    }
 }
