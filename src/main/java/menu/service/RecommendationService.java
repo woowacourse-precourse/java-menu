@@ -71,7 +71,7 @@ public class RecommendationService {
         String recommendedFood;
         do {
             recommendedFood = categoryService.pickRandomFoodInCategory(category);
-        } while(canBeRecommended(coach, recommendedFood));
+        } while(!canBeRecommended(coach, recommendedFood));
         return recommendedFood;
     }
 
