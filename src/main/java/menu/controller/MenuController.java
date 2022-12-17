@@ -15,17 +15,30 @@ public class MenuController {
 
     private void start() {
         String a = "";
+        int e = 1;
         a = InputView.mainInput();
         String[] coach = a.split(",");
         if (coach.length < 2 || coach.length > 5){
+            e = 0;
             throw new IllegalArgumentException("코치 인원을 재설정 해주세요(2~5명 사이)");
             //OutputView.printError("코치 인원을 재설정 해주세요(2~5명 사이)");
             //start();
         }
-
+        if (e == 0) {
+            start();
+        }
+        
+        List<String> ac = new ArrayList<>();
+        String c;
         //못먹는 음식 검사해야함(0~2개)
         for (int i = 0; i < coach.length; i++) {
-            InputView.notFoodInput(coach[i]);
+            
+            c = InputView.notFoodInput(coach[i]);
+            ac.add(c);
+        }
+        
+        if (0 > ac.size() || ac.size() > 2) {
+            throw new IllegalArgumentException("못 먹는 음식 제대로 설정하세요");
         }
 
         OutputView.printResult();
