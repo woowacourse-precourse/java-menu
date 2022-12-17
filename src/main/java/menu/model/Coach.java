@@ -12,7 +12,7 @@ public class Coach {
 
     private final String name;
     private HateMenu hateMenu;
-    private SelectMenu selectMenu = new SelectMenu();
+    private final SelectMenu selectMenu = new SelectMenu();
 
     public Coach(String name) {
         validateName(name);
