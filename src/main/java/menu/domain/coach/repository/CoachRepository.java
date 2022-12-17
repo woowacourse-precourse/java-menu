@@ -18,10 +18,6 @@ public class CoachRepository {
         return Collections.unmodifiableList(coaches);
     }
 
-    public boolean existsByName(String coachName) {
-        return coaches.stream().anyMatch(coach -> coach.matchesByName(coachName));
-    }
-
     public Optional<Coach> findByName(String coachName) {
         return coaches.stream().filter(coach -> coach.matchesByName(coachName)).findAny();
     }
