@@ -17,7 +17,7 @@ class CoachTest {
     @DisplayName("이미 먹은 메뉴는 추천하지 않는다.")
     void 이미_먹은_메뉴_추천_테스트() {
         eunkeeee.addMenuNotToEat(List.of(menuNotToEat));
-        eunkeeee.addMenuAlreadyEaten(Day.FRIDAY, alreadyEatenMenu);
+        eunkeeee.addMenuAlreadyEaten(alreadyEatenMenu);
 
         Assertions.assertFalse(eunkeeee.isAvailableMenu(menuNotToEat));
         Assertions.assertFalse(eunkeeee.isAvailableMenu(alreadyEatenMenu));

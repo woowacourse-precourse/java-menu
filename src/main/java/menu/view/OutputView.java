@@ -32,7 +32,7 @@ public class OutputView {
                 formatDelimiters(categories.stream().map(Category::getName)));
         for (Coach coach : coaches) {
             System.out.printf(Message.OUTPUT_MENU_FORMAT.message, coach.getName(),
-                    formatDelimiters(coach.getMenuAlreadyEaten().values().stream().map(Menu::getName)));
+                    formatDelimiters(coach.getMenuAlreadyEaten().stream().map(Menu::getName)));
         }
         System.out.println(Message.OUTPUT_FINISH_RECOMMENDATION.message);
     }

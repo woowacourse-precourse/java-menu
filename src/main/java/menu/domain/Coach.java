@@ -1,15 +1,13 @@
 package menu.domain;
 
 import java.util.ArrayList;
-import java.util.EnumMap;
 import java.util.List;
-import java.util.Map;
 
 public class Coach {
 
     private final String name;
     private final List<Menu> menuNotToEat = new ArrayList<>();
-    private final Map<Day, Menu> menuAlreadyEaten = new EnumMap<>(Day.class);
+    private final List<Menu> menuAlreadyEaten = new ArrayList<>();
 
     public Coach(String name) {
         this.name = name;
@@ -20,8 +18,8 @@ public class Coach {
     }
 
 
-    public void addMenuAlreadyEaten(Day day, Menu menu) {
-        menuAlreadyEaten.put(day, menu);
+    public void addMenuAlreadyEaten(Menu menu) {
+        menuAlreadyEaten.add(menu);
     }
 
     public boolean isAvailableMenu(Menu menu) {
@@ -29,7 +27,7 @@ public class Coach {
     }
 
     private boolean isNotAlreadyEatenMenu(Menu menu) {
-        return !menuAlreadyEaten.containsValue(menu);
+        return !menuAlreadyEaten.contains(menu);
     }
 
     private boolean isNotMenuNotToEat(Menu menu) {
@@ -40,7 +38,7 @@ public class Coach {
         return name;
     }
 
-    public Map<Day, Menu> getMenuAlreadyEaten() {
+    public List<Menu> getMenuAlreadyEaten() {
         return menuAlreadyEaten;
     }
 
