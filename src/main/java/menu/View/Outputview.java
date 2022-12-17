@@ -11,6 +11,7 @@ public class Outputview {
     private final String START_MESSAGE = "점심 메뉴 추천을 시작합니다.";
     private final String RESULT_MESSAGE = "메뉴 추천 결과입니다.";
     private final String END_MESSAGE = "추천을 완료했습니다.";
+    private final String ERROR_PREFIX = "[ERROR] ";
 
     private void printBlank() {
         System.out.println();
@@ -52,5 +53,9 @@ public class Outputview {
         elements += String.join(" | ", list);
         elements += " ]";
         return elements;
+    }
+
+    public void printError(String Message) {
+        System.out.println(ERROR_PREFIX + Message);
     }
 }
