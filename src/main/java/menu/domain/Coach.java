@@ -5,15 +5,17 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
+import menu.view.OutputView;
 
 public class Coach {
+    private static final String INVALID_NAME_RANGE = "[ERROR] 코치의 이름은 2글자 이상 4글자 이하입니다.";
     private String name;
     private List<String> prohibitionMenus = new ArrayList<String>();
     private List<String> recommendMenus = new ArrayList<String>();
 
     public Coach(String name) {
         if (!(2 <= name.length() && name.length() <= 4)) {
-            throw new IllegalArgumentException("[ERROR] 코치의 이름은 2글자 이상 4글자 이하입니다.");
+            throw new IllegalArgumentException(INVALID_NAME_RANGE);
         }
         this.name = name;
     }
@@ -23,8 +25,8 @@ public class Coach {
     }
 
     public String getFormat() {
-        return "[ " + name + " | " + recommendMenus.stream().collect(Collectors.joining(" | "))
-                + " ]";
+        return OutputView.COACH_LINE_START + name + OutputView.RESULT_SEPERATOR + recommendMenus.stream().collect(Collectors.joining(" | "))
+                + OutputView.LINE_END;
     }
 
     public void setRecommendMenus(Week week) {
