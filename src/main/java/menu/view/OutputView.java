@@ -19,7 +19,7 @@ public class OutputView {
         System.out.println(Format.toString(days));
         System.out.println(Format.toString(categories));
         for (Coach coach : coaches) {
-            List<String> menus = coach.requestFormat();
+            List<String> menus = coach.getRecommendMenuFormat();
             System.out.println(Format.toString(menus));
         }
         System.out.println();

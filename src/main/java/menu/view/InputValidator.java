@@ -37,7 +37,7 @@ public class InputValidator {
     public void validateCanNotEatMenu(String menuName) {
         boolean contain = false;
         for (Category category : Category.values()) {
-            List<String> menus = category.getMenu();
+            List<String> menus = category.getMenus();
             if (menus.contains(menuName)) {
                 contain = true;
                 break;

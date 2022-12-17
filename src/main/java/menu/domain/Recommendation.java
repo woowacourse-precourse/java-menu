@@ -39,7 +39,7 @@ public class Recommendation {
     }
 
     private void selectMenu(Category category) {
-        List<String> menus = category.getMenu();
+        List<String> menus = category.getMenus();
 
         for (Coach coach : coaches) {
             boolean finish = false;

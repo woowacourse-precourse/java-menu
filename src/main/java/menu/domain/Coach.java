@@ -28,7 +28,7 @@ public class Coach {
         return true;
     }
 
-    public List<String> requestFormat() {
+    public List<String> getRecommendMenuFormat() {
         List<String> format = new ArrayList<>();
         format.add(name);
         format.addAll(recommendedMenu);

@@ -29,9 +29,9 @@ class CoachTest {
     void requestFormatTest() {
         coach.canEat("비빔밥");
         coach.canEat("탕수육");
-        assertThat(coach.requestFormat().get(0)).isEqualTo("토미");
-        assertThat(coach.requestFormat().get(1)).isEqualTo("비빔밥");
-        assertThat(coach.requestFormat().get(2)).isEqualTo("탕수육");
+        assertThat(coach.getRecommendMenuFormat().get(0)).isEqualTo("토미");
+        assertThat(coach.getRecommendMenuFormat().get(1)).isEqualTo("비빔밥");
+        assertThat(coach.getRecommendMenuFormat().get(2)).isEqualTo("탕수육");
     }
 
 }

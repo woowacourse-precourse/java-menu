@@ -6,25 +6,26 @@ import java.util.List;
 public class CategoryCount {
 
     private static final int NUMBER_OF_CATEGORY = 5;
-    private List<Integer> counts;
+    private final List<Integer> countsOfEatingEachCategory;
 
     public CategoryCount() {
-        counts = new ArrayList<>();
-        counts.add(null);
+        countsOfEatingEachCategory = new ArrayList<>();
+        countsOfEatingEachCategory.add(null);
 
         for (int i = 0; i < NUMBER_OF_CATEGORY; i++) {
-            counts.add(0);
+            countsOfEatingEachCategory.add(0);
         }
     }
 
     public boolean canEat(Category category) {
         int categoryCode = category.getCode();
-        int countOfCategoryCode = counts.get(categoryCode);
-        if (countOfCategoryCode >= 2) {
+
+        int countOfEating = countsOfEatingEachCategory.get(categoryCode);
+        if (countOfEating >= 2) {
             return false;
         }
 
-        counts.set(categoryCode, countOfCategoryCode + 1);
+        countsOfEatingEachCategory.set(categoryCode, countOfEating + 1);
         return true;
     }
 
