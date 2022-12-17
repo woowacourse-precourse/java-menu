@@ -28,12 +28,12 @@ public class MenuEngine {
 
         MenuMaker menuMaker = new MenuMaker();
 
-        Map<String, List<String>> stringListMap = menuMaker.addMenu(category,
-                                                                    coachNames,
-                                                                    exceptedFoods);
+        Map<String, List<String>> menu = menuMaker.addMenu(category,
+                                                           coachNames,
+                                                           exceptedFoods);
 
         OutputView.printDay();
         OutputView.printCategory(category);
-        OutputView.printMenu(stringListMap);
+        OutputView.printMenu(menu);
     }
 }
