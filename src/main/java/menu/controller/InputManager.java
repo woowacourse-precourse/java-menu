@@ -18,6 +18,7 @@ public class InputManager {
         outputView = new ConsoleOutputView();
     }
     public List<Coach> getCoachListInput() {
+        outputView.println("코치의 이름을 입력해 주세요. (, 로 구분)");
         List<String> coachNameList = inputView.readStringList();
         validateCoachNames(coachNameList);
 
@@ -29,7 +30,8 @@ public class InputManager {
         return coachList;
     }
 
-    public List<Menu> getMenuListInput() {
+    public List<Menu> getMenuListInput(String coachName) {
+        outputView.println(coachName + "(이)가 못 먹는 메뉴를 입력해 주세요.");
         List<String> menuNameList = inputView.readStringList();
         validateMenuNames(menuNameList);
 
