@@ -12,7 +12,7 @@ public class InputView {
     }
 
     public List<String> readMenuCantEat(String name) {
-        System.out.println(name + "(이) 못 먹는 메뉴를 입력해주세요.");
+        System.out.println(name + "(이)가 못 먹는 메뉴를 입력해주세요.");
         String line = Console.readLine();
         return List.of(line.split(","));
     }
