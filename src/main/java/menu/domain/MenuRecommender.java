@@ -16,12 +16,29 @@ public class MenuRecommender {
         this.coaches = coaches;
     }
 
+    private void planCategory() {
+        for (int day = 0; day < 5; day++) {
+            categoryHistory.add(returnValidCategory());
+        }
+    }
+
+    private Category returnValidCategory() {
+        Category category = null;
+        boolean inavailableCategory = true;
+        while (inavailableCategory) {
+            category = pickupCategory();
+            inavailableCategory = validCategory(category);
+        }
+
+        return category;
+    }
+
     private Category pickupCategory() {
         return CATEGORIES.get(Randoms.pickNumberInRange(1, 5));
     }
 
     private boolean validCategory(Category category) {
-        return Collections.frequency(categoryHistory, category) == 3;
+        return Collections.frequency(categoryHistory, category) < 3;
     }
 
     private String recommendMenu(Category category, Coach coach) {
