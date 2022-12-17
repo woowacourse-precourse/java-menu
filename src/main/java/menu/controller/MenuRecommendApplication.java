@@ -1,4 +1,4 @@
-package controller;
+package menu.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import menu.domain.Category;
@@ -34,7 +34,15 @@ public class MenuRecommendApplication {
         List<List<String>> hatesFood = scanHatesFood(coachNames);
         makeAllCoach(coachNames, hatesFood);
         WeeklyRecommendCategory weeklyCategory = makeWeeklyCategory(Weekly.allDaySize());
-        System.out.println(weeklyCategory.getCategoryIdxs());
+        //System.out.println(weeklyCategory.getCategoryIdxs());
+        makeAllCoachesDiet(weeklyCategory);
+    }
+
+    private void makeAllCoachesDiet(WeeklyRecommendCategory weeklyCategory) {
+        for (Coach coach : allCoach) {
+            coach.makeMeals(weeklyCategory);
+            System.out.println(coach.getMeals());
+        }
     }
 
     private WeeklyRecommendCategory makeWeeklyCategory(int allDaySize) {

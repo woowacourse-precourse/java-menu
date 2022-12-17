@@ -1,5 +1,7 @@
 package menu.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -26,7 +28,15 @@ public class Coach {
         return meals;
     }
 
-    public void setMeals(List<String> weeklyCategory) {
-        this.meals = meals;
+    public void makeMeals(WeeklyRecommendCategory weeklyCategory) {
+        List<Integer> categoryIdx = weeklyCategory.getCategoryIdxs();
+        for (int idx : categoryIdx) {
+            List<String> eachMenus = Category.getWantCategoryMenu(idx);
+            String menu = Randoms.shuffle(eachMenus).get(0);
+            while (meals.contains(menu) || hates.contains(menu)) {
+                menu = Randoms.shuffle(eachMenus).get(0);
+            }
+            meals.add(menu);
+        }
     }
 }

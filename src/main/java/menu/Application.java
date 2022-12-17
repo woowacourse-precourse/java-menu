@@ -1,6 +1,6 @@
 package menu;
 
-import controller.MenuRecommendApplication;
+import menu.controller.MenuRecommendApplication;
 
 public class Application {
     public static void main(String[] args) {
