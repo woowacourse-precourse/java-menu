@@ -7,8 +7,6 @@ import static menu.view.OutputView.printStartMessage;
 
 import menu.domain.Coach;
 import menu.domain.CoachRepository;
-import menu.domain.RecommendationMenu;
-import menu.domain.RecommendationMenuRepository;
 import menu.service.InitializationService;
 import menu.service.ValidationService;
 import menu.view.InputView;
@@ -36,7 +34,8 @@ public class MenuController {
         List<String> coachNames = takeCoaches();
         takeMenuFromCoach(coachNames);
 
-        takeRandoms(coachNames);
+        List<String> randomCategories = takeRandoms(coachNames);
+        outputView.printResult(coachNames, randomCategories);
     }
 
     public List<String> takeCoaches() {
@@ -80,8 +79,10 @@ public class MenuController {
         saveCoach(coach);
     }
 
-    public void takeRandoms(List<String> coachNames) {
+    public List<String> takeRandoms(List<String> coachNames) {
         List<String> randomCategories = findRandomCategory();
         findMenu(coachNames, randomCategories);
+
+        return randomCategories;
     }
 }
