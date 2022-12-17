@@ -1,6 +1,8 @@
 package menu.domain;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public enum Category {
     JAPANESE(1, "일식"),
@@ -23,5 +25,11 @@ public enum Category {
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 1 ~ 5 범위의 값만 가능합니다."))
                 .categoryName;
+    }
+
+    public static List<String> getCategoryNames() {
+        return Arrays.stream(Category.values())
+                .map(category -> category.categoryName)
+                .collect(Collectors.toList());
     }
 }
