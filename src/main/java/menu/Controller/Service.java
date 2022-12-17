@@ -12,18 +12,35 @@ public class Service {
 
     private Coachs coachs;
 
+    public Service() {
+        this.output.printStart();
+    }
+
     public void generateCoachs() {
-        this.coachs = this.input.readCoachNames();
+        try {
+            this.coachs = this.input.readCoachNames();
+        } catch (Exception e) {
+            this.output.printError(e.getMessage());
+        }
     }
 
     public void setInedible() {
-        for (Coach coach : this.coachs.getCoachs()) {
-            coach.setInedible(this.input.readInedibles(coach));
+        try {
+            for (Coach coach : this.coachs.getCoachs()) {
+                coach.setInedible(this.input.readInedibles(coach));
+            }
+        } catch (Exception e) {
+            this.output.printError(e.getMessage());
         }
     }
 
     public void makeRecommendations() {
         recommend.makeRecommendations(this.coachs);
+    }
+
+    public void endService() {
+        this.output.printResult(this.coachs);
+        this.output.printEnd();
     }
 
 }
