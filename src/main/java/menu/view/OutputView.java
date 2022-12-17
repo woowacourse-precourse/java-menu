@@ -10,11 +10,11 @@ import java.util.stream.Collectors;
 import static java.text.MessageFormat.format;
 
 public class OutputView {
-    private static final String RECOMMEND_LIST = "메뉴 추천 결과입니다.\n" +
-            "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]\n";
+    private static final String RECOMMEND_LIST = "\n메뉴 추천 결과입니다.\n" +
+            "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]";
     private static final String CATEGORIES = "[ 카테고리 | {0} | {1} | {2} | {3} | {4} ]";
     private static final String RECOMMEND_MENUS = "[ {0} | {1} | {2} | {3} | {4} | {5} ]";
-    private static final String END_RECOMMEND = "추천을 완료했습니다.";
+    private static final String END_RECOMMEND = "\n추천을 완료했습니다.";
     private static final String START_RUN = "점심 메뉴 추천을 시작합니다.\n";
     private static final String ERROR = "[ERROR] ";
 
