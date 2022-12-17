@@ -27,14 +27,9 @@ public class Controller {
                 continue;
             }
             CouchRepository.addCategory(selectedCategory);
-//            System.out.println(CouchRepository.getSelectedCategories());
             for (Couch couch : CouchRepository.getCouches()) {
                 addMenus(selectedCategory, couch);
             }
-//            for (Couch couch : CouchRepository.getCouches()) {
-//                System.out.println(couch.getName()+"못먹는메뉴"+couch.getUneatableMenus());
-//                System.out.println(couch.getName()+"먹은메뉴"+couch.getEatenMenus());
-//            }
         }
     }
 

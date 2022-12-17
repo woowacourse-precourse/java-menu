@@ -23,14 +23,14 @@ public class InputView {
         return menus.split(",");
     }
 
-    public static void validateNames(String names) {
+    private static void validateNames(String names) {
         String format = "([가-힣0-9a-zA-Z]{2,4},){1,3}([가-힣0-9a-zA-Z]{2,4})";
         if (!Pattern.matches(format, names)) {
             throw new IllegalArgumentException("[ERROR] 이름은 최소 2자에서 4자까지며 코치는 최소 2명에서 최대 5명입니다.");
         }
     }
 
-    public static void validateMenus(String menus) {
+    private static void validateMenus(String menus) {
         String format = "[.]?([가-힣0-9-a-zA-Z]+)?(,[가-힣0-9-a-zA-Z]+)?";
         if (!Pattern.matches(format, menus)) {
             throw new IllegalArgumentException("[ERROR] 못먹는 메뉴는 최대 2개까지 가능합니다.");
