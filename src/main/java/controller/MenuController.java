@@ -49,6 +49,7 @@ public class MenuController {
     private List<Coach> makeCoaches(String coachNames) {
         try {
             List<String> names = splitNames(coachNames);
+            CoachException.validate(names);
             List<Coach> coaches = makeCoaches(names);
             MenuForWeekRepository.initializeCoaches(coaches);
             return coaches;
@@ -65,7 +66,6 @@ public class MenuController {
 
     private List<String> splitNames(String names) {
         List<String> splitNames = List.of(names.split(","));
-        CoachException.validate(splitNames);
         return splitNames;
     }
 }

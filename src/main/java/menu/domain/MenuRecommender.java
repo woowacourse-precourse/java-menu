@@ -8,16 +8,15 @@ import repository.MenuForWeekRepository;
 import java.util.List;
 
 public class MenuRecommender {
-    // TODO : 컨트롤러로 카테고리를 반환하고, 메뉴를 반환하도록 해서 컨트롤러에서 레포지토리 등록하도록 변경해보기
     public static void addRecommendMenus(List<Coach> coaches) {
         for (Week weekday : Week.values()) {
             Category category = getRecommendCategory();
             MenuForWeekRepository.addCategory(weekday, category);
-            getRecommendMenu(coaches, weekday, category); // 코치별 메뉴 생성 -> result repository 등록
+            createRecommendMenu(coaches, category); // 코치별 메뉴 생성 -> result repository 등록
         }
     }
 
-    private static void getRecommendMenu(List<Coach> coaches, Week weekday, Category category) {
+    private static void createRecommendMenu(List<Coach> coaches, Category category) {
         List<String> menus = category.getMenus();
         for (Coach coach : coaches) {
             String recommendMenu = getMenuByShuffle(coach, menus);
