@@ -5,12 +5,12 @@ public class Day {
     private final String name;
     private final Category category;
 
-    public Day(String name, ValidCategories category) {
+    public Day(String name, Category category) {
         this.name = name;
-        this.category = new Category(category);
+        this.category = category;
     }
 
-    public String getCategoryName() {
-        return category.getName();
+    public Category getCategory() {
+        return category;
     }
 }

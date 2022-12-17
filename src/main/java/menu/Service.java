@@ -9,11 +9,11 @@ import menu.view.OutputView;
 
 public class Service {
 
-    private static final List<Coach> group = new ArrayList();
     private static final List<Menu> menus = new ArrayList();
-    private static final List<Category> categories = new ArrayList<>();
-    private static final List<Day> daysResult = new ArrayList<>();
 
+    private static final List<Category> categories = new ArrayList<>();
+    private final List<Coach> group = new ArrayList();
+    private final List<Day> daysResult = new ArrayList<>();
     public void start() {
         OutputView.start();
         initAll();
@@ -109,7 +109,9 @@ public class Service {
         int categoryNumber = Randoms.pickNumberInRange(1, 5);
         while (true) {
             if (isAbleCategory(daysResult, ValidCategories.getCategoryByNumber(categoryNumber))) {
-                daysResult.add(new Day(dayName.getKorean(), ValidCategories.getCategoryByNumber(categoryNumber)));
+                Category categoryByName = findCategoryByName(
+                    ValidCategories.getCategoryByNumber(categoryNumber).getKorean());
+                daysResult.add(new Day(dayName.getKorean(), categoryByName));
                 return;
             }
             categoryNumber = Randoms.pickNumberInRange(1, 5);
@@ -119,7 +121,7 @@ public class Service {
     public static boolean isAbleCategory(List<Day> days, ValidCategories category) {
         int count = 0;
         for (Day day : days) {
-            if (day.getCategoryName().equals(category.getKorean())) {
+            if (day.getCategory().getMenus().equals(category.getKorean())) {
                 count++;
             }
             if (count == 2) {
@@ -127,5 +129,42 @@ public class Service {
             }
         }
         return true;
+    }
+
+    public void recommendMenu() {
+        for (Day day : daysResult) {
+            recommendToCoach(day.getCategory());
+        }
+    }
+
+    public void recommendToCoach(Category category) {
+        for (Coach coach : group) {
+            fixRecommend(coach, category);
+        }
+    }
+
+    public void fixRecommend(Coach coach, Category category) {
+        while (true) {
+            int randomMenuNumber = Randoms.pickNumberInRange(0, category.getMenus().size() - 1);
+            Menu recommendMenu = category.getMenus().get(randomMenuNumber);
+            if (!coach.isHate(recommendMenu) || coach.getRecommended().contains(recommendMenu)) {
+                coach.addRecommend(recommendMenu);
+                break;
+            }
+        }
+    }
+
+    public void showResult() {
+        OutputView.showDays();
+        OutputView.showCategories(this);
+        OutputView.showRecommended(this);
+    }
+
+    public List<Day> getDaysResult() {
+        return daysResult;
+    }
+
+    public List<Coach> getGroup() {
+        return group;
     }
 }

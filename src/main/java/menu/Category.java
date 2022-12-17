@@ -19,4 +19,8 @@ public class Category {
     public String getName() {
         return name;
     }
+
+    public List<Menu> getMenus() {
+        return menus;
+    }
 }

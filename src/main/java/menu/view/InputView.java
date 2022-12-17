@@ -21,6 +21,9 @@ public class InputView {
 
     public static void insertHateMenuBy(Service service, Coach coach) {
         String input = Console.readLine();
+        if (input.equals("")) {
+            return;
+        }
         Arrays.stream(input.split(DIVIDE)).forEach(hateMenuInput -> {
             Validate.menu(hateMenuInput);
             Menu menu = service.getMenuByName(hateMenuInput);
