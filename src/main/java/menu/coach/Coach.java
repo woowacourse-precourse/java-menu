@@ -18,7 +18,12 @@ public class Coach {
          foodEaten.add(food);
      }
 
+     public boolean isEat(String food) {
+         return validate(food, foodNotEat) && validate(food, foodEaten);
+     }
+
      private boolean validate(String food, List<String> notEatFood) {
          return !notEatFood.contains(food);
      }
+
 }
