@@ -25,14 +25,6 @@ public class Coach {
         this.cantEatMenu = cantEatMenu;
     }
 
-    public List<String> getCantEatMenu() {
-        return Collections.unmodifiableList(cantEatMenu);
-    }
-
-    public void setEatMenu(List<String> eatMenu) {
-        this.eatMenu = eatMenu;
-    }
-
     public List<String> getEatMenu() {
         return Collections.unmodifiableList(eatMenu);
     }

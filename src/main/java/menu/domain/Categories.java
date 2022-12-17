@@ -16,10 +16,6 @@ public class Categories {
         this.categories = categories;
     }
 
-    public List<Category> getCategories() {
-        return Collections.unmodifiableList(categories);
-    }
-
     public List<Category> getRecommendedCategories() {
         List<Category> recommendedCategories = new ArrayList<>();
         while (recommendedCategories.size() != 5) {
