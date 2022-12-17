@@ -2,19 +2,20 @@ package menu.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import menu.cofig.InitMenu;
 import menu.domain.Category;
+import menu.domain.CategoryMenu;
 import menu.domain.Coach;
 import menu.service.CoachFactory;
 import menu.service.MenuFactory;
+import menu.service.RandomCategoryFactory;
 import menu.ui.InputView;
 import menu.ui.OutputView;
 
 public class MenuController {
-    private final List<Category> categories;
+    private final List<CategoryMenu> categoryMenus;
 
-    public MenuController(List<Category> categories) {
-        this.categories = categories;
+    public MenuController(List<CategoryMenu> categoryMenus) {
+        this.categoryMenus = categoryMenus;
     }
 
     public void start() {
