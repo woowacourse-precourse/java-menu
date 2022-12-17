@@ -32,4 +32,8 @@ public class Coach {
     public boolean isEdible(Food food) {
         return !inedibleFoods.contains(food);
     }
+
+    public void addInedibleFoods(List<Food> foods) {
+        inedibleFoods.addAll(foods);
+    }
 }

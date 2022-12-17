@@ -1,5 +1,9 @@
 package menu.view;
 
+import menu.domain.WeekRecommends;
+
+import java.util.List;
+
 public class OutputView {
 
     private static final String START_RECOMMEND = "점심 메뉴 추천을 시작합니다.";
@@ -17,7 +21,7 @@ public class OutputView {
         System.out.println(BLANK);
     }
 
-    public static void printRecommendResult() {
+    public static void printRecommendResult(List<WeekRecommends> recommend) {
         System.out.println(RECOMMEND_RESULT);
         System.out.println(BLANK);
         printRecommends();
