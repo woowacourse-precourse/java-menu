@@ -32,16 +32,13 @@ public class MenuRecommendService {
         }
     }
 
-    public List<DayOfTheWeek> generateDayOfTheWeeks() {
-        return DayOfTheWeek.getDaysOfTheWeek();
-    }
-
-    public void recommendCategory() {
+    public Category recommendCategory() {
         Category recommendedCategory = RandomCategoryGenerator.generate();
         while (thisWeekRecommendedCategory.isRecommendCategoryCountOverTwo(recommendedCategory)) {
             recommendedCategory = RandomCategoryGenerator.generate();
         }
         thisWeekRecommendedCategory.updateRecommendCategory(recommendedCategory);
+        return recommendedCategory;
     }
 
     public void recommendMenu(List<String> coachNames, Category recommendedCategory) {
@@ -53,5 +50,10 @@ public class MenuRecommendService {
             }
             findCoach.updateAlreadyEatFood(recommendMenu);
         }
+    }
+
+    public List<String> getRecommendMenusByCoachName(String coachName) {
+        Coach findCoach = coachRepository.findByCoachName(coachName);
+        return findCoach.getAlreadyEatenFoods();
     }
 }

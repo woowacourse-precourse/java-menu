@@ -2,6 +2,7 @@ package menu.model.coach;
 
 import menu.model.Category;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Coach {
@@ -42,5 +43,9 @@ public class Coach {
 
     private boolean isAlreadyEat(String recommendFood) {
         return alreadyEatenFoods.contains(recommendFood);
+    }
+
+    public List<String> getAlreadyEatenFoods() {
+        return Collections.unmodifiableList(alreadyEatenFoods);
     }
 }

@@ -2,11 +2,12 @@ package menu.model.coach;
 
 import menu.ErrorConstants;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CoachRepository {
 
-    private List<Coach> coaches;
+    private final List<Coach> coaches = new ArrayList<>();
 
     public void saveCoach(Coach coach) {
         coaches.add(coach);
