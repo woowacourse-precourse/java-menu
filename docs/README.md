@@ -24,7 +24,7 @@
   - [x] 중복되는 코치의 이름이 있다면 IllegalArgumentException 발생
 - [x] 코치가 먹지 못하는 음식을 ,로 구분지어서 입력 받는다.
   - [x] 등록된 메뉴에 없는 음식을 입력 받으면 IllegalArgumentException 발생
-  - [ ] 입력 받은 먹지 못하는 음식들을 List 형태로 변환시켜준다.
+  - [x] 입력 받은 먹지 못하는 음식들을 List 형태로 변환시켜준다.
   - [ ] 먹지 못하는 메뉴가 2개를 초과할 경우 IllegalArgumentException 발생
 
 ### 메뉴 추천

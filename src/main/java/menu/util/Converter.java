@@ -13,4 +13,10 @@ public class Converter {
             .map(Coach::new)
             .collect(Collectors.toList());
     }
+
+    public static List<String> stringToBannedMenus(String menus) {
+        String[] splitMenus = menus.split(",");
+        return Arrays.stream(splitMenus)
+            .collect(Collectors.toList());
+    }
 }
