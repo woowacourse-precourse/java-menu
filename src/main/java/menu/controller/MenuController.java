@@ -22,6 +22,7 @@ public class MenuController {
 
     private void saveCoachNames() {
         List<String> coachNames = getCoachNames();
+        menuManager.saveCoach(coachNames);
 
     }
 
