@@ -31,6 +31,7 @@
 ## service
 - [x] CategoryService
     - [x] 랜덤 카테고리 뽑는 기능
+    - [ ] 특정 카테고리에서 음식을 뽑는 기능
 - [ ] RecommendationService
     - [ ] 생성자에서 요일별 카테고리 정하는 기능
     - [ ] 코치에 맞는 추천리스트 생성
