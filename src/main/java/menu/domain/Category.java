@@ -42,7 +42,7 @@ public enum Category {
         return category;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public List<Menu> getMenuList() {
+        return menuList;
     }
 }
