@@ -1,7 +1,11 @@
 package menu.service;
 
+import java.util.ArrayList;
+import java.util.List;
+import menu.domain.FoodCategory;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 class RecommendServiceTest {
@@ -17,5 +21,21 @@ class RecommendServiceTest {
         //then
         Assertions.assertThatThrownBy(() -> recommendService.recommendCategory(1))
             .isInstanceOf(IllegalStateException.class);
+    }
+    
+    @Test
+    @DisplayName("랜덤 값 받아서 추천 확인 테스트")
+    void recommendRandomTest() {
+        //given
+        RecommendService recommendService = new RecommendService();
+        //when
+        List<FoodCategory> result = new ArrayList<>();
+        for (int i = 0; i <10; i++) {
+            FoodCategory foodCategory = recommendService.recommendCategory();
+            result.add(foodCategory);
+        }
+        //then
+        Assertions.assertThat(result)
+            .contains(FoodCategory.values());
     }
 }
