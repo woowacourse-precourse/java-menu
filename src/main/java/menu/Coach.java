@@ -14,10 +14,9 @@ public class Coach {
         this.name = name;
     }
 
-    public String recommendFood(int category){
-        FoodInfo foodInfo = new FoodInfo();
+    public String recommendFood(FoodInformation category){
         while(true){
-            String cand = foodInfo.getRandomFood(category);
+            String cand = FoodInformation.getRandomFood(category);
             if(thisWeekAteFoods.contains(cand) || canNotEatFoods.contains(cand))
                 continue;
             

@@ -2,6 +2,7 @@ package menu.controller;
 
 import menu.Category;
 import menu.Coach;
+import menu.FoodInformation;
 import menu.view.Input;
 import menu.view.Output;
 
@@ -12,7 +13,7 @@ public class RecommendationSystem {
     List<Coach> coachList = new ArrayList<>();
     private void calculateResult(){
         for(int day = 0; day < 5; ++day){
-            int todayCategory = Category.recommendCategory();
+            FoodInformation todayCategory = Category.recommendCategory();
             coachList.forEach(coach -> coach.recommendFood(todayCategory));
         }
     }

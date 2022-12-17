@@ -2,15 +2,14 @@ package menu;
 
 public class Category {
     static int[] thisWeekCategoryInfo = new int[6];
-    public static int recommendCategory(){
-        FoodInfo foodInfo = new FoodInfo();
+    public static FoodInformation recommendCategory(){
         while(true){
-            int cand = foodInfo.getRandomCategory();
-            if(thisWeekCategoryInfo[cand] >= 2)
+            FoodInformation foodInformation = FoodInformation.getRandomCategory();
+            if(thisWeekCategoryInfo[foodInformation.getCategory()] >= 2)
                 continue;
 
-            ++thisWeekCategoryInfo[cand];
-            return cand;
+            ++thisWeekCategoryInfo[foodInformation.getCategory()];
+            return foodInformation;
         }
     }
 }
