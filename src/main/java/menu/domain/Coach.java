@@ -6,13 +6,14 @@ import java.util.List;
 
 public class Coach {
     private final String name;
+    private final List<String> eatenMenu;
     private List<String> hateMenu;
-    private List<String> eatenMenu;
+
 
     public Coach(String name) {
         this.name = name;
-        hateMenu = new ArrayList<>();
         eatenMenu = new ArrayList<>();
+        hateMenu = new ArrayList<>();
     }
 
     public String getName() {
