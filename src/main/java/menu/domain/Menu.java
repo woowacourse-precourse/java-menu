@@ -15,10 +15,9 @@ public class Menu {
         return this.menu.equals(menuName);
     }
 
+
     @Override
     public String toString() {
-        return "Menu{" +
-                "menu='" + menu + '\'' +
-                '}';
+        return menu;
     }
 }

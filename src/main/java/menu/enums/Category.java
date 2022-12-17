@@ -18,8 +18,8 @@ public enum Category {
     private final int number;
     private final String name;
 
-    public int getNumber() {
-        return number;
+    public String getName() {
+        return name;
     }
 
     public static Category getCategoryFromNumber(int inputNum) {
@@ -28,5 +28,6 @@ public enum Category {
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 잘못된 카테고리 번호입니다."));
     }
+
 
 }

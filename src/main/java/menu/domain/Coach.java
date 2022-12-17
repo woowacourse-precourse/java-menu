@@ -11,11 +11,16 @@ public class Coach {
         this.excludeMenus = excludeMenus;
     }
 
+    public boolean isExcludeMenu(String menuName) {
+        return excludeMenus.stream().anyMatch(m -> m.isSameMenu(menuName));
+    }
+
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
-        return "Coach{" +
-                "name='" + name + '\'' +
-                ", excludeMenus=" + excludeMenus +
-                '}';
+        return "name='" + name;
     }
 }
