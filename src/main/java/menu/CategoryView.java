@@ -49,8 +49,7 @@ public class CategoryView {
             boolean flag = true;
             while (flag) {
                 try {
-                    List<String> hateFoods = InputView.readHateFoods(name);
-                    categoryController.makeCoach(name, hateFoods);
+                    makeCoach(name);
                     flag = false;
                 } catch (IllegalArgumentException e) {
                     OutputView.printError(e.getMessage());
@@ -59,10 +58,13 @@ public class CategoryView {
         }
     }
 
+    private void makeCoach(String name) {
+        List<String> hateFoods = InputView.readHateFoods(name);
+        categoryController.makeCoach(name, hateFoods);
+    }
+
     private void printResult(List<String> coachNames, List<Category> categories) {
-        OutputView.printWeek();
-        List<String> categoryNames = categoryController.getCategoryNames(categories);
-        OutputView.printCategories(categoryNames);
+        getCategoryNames(categories);
 
         for (String name : coachNames) {
             List<String> recommendMenus = categoryController.getRecommendMenus(name);
@@ -70,5 +72,11 @@ public class CategoryView {
         }
 
         OutputView.printEnd();
+    }
+
+    private void getCategoryNames(List<Category> categories) {
+        OutputView.printWeek();
+        List<String> categoryNames = categoryController.getCategoryNames(categories);
+        OutputView.printCategories(categoryNames);
     }
 }
