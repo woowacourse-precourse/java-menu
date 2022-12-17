@@ -12,20 +12,20 @@ public class OutputView {
     private static final String endMessage = "추천을 완료했습니다.";
     private static final String categoryMessage = "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]";
 
-    public void printStart() {
+    public static void printStart() {
         System.out.println(startMessage);
     }
 
-    public void printCoachMessage() {
+    public static void printCoachMessage() {
         System.out.println(inputCoachMessage);
     }
 
-    public void printMenuMessage(String coachName) {
+    public static void printMenuMessage(String coachName) {
         String message = "\n" + coachName + inputMenuMessage;
         System.out.println(message);
     }
 
-    public void printResult(List<String> category, List<Coach> coaches) {
+    public static void printResult(List<String> category, List<Coach> coaches) {
         System.out.println(resultStartMessage);
         System.out.println(categoryMessage);
         printCategory(category);
@@ -33,19 +33,19 @@ public class OutputView {
         System.out.println(endMessage);
     }
     
-    private void printCategory(List<String> category) {
+    private static void printCategory(List<String> category) {
         String message = "[ 카테고리 | " + String.join(" | ", category) + " ]";
         System.out.println(message);
     }
 
-    private void printAllCoachsEatenMenu(List<Coach> coaches) {
+    private static void printAllCoachsEatenMenu(List<Coach> coaches) {
         for (Coach coach: coaches) {
             printOneCoachEatenMenu(coach);
         }
         System.out.println();
     }
 
-    private void printOneCoachEatenMenu(Coach coach) {
+    private static void printOneCoachEatenMenu(Coach coach) {
         List<String> foodsEaten = coach.getFoodEaten();
         String coachName = coach.getName();
         String message = "[ " + coachName + " | " + String.join(" | ", foodsEaten) + " ]";
