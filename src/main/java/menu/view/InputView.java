@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.InputException;
 
@@ -74,6 +75,7 @@ public class InputView {
 
     public void validateCannotEatMenus(String uncheckedMenus) {
         validateDuplicateMenus(uncheckedMenus);
+        validateMenuInCategory(uncheckedMenus);
     }
 
     private void validateDuplicateMenus(String uncheckedMenus) {
@@ -81,6 +83,16 @@ public class InputView {
         Set<String> uniqueCoachNames = new HashSet<>(cannotEatMenus);
         if(cannotEatMenus.size() != uniqueCoachNames.size()) {
             throw new IllegalArgumentException(InputException.DUPLICATE_COACH_MENUS.getExceptionMessage());
+        }
+    }
+
+    private void validateMenuInCategory(String uncheckedMenus) {
+        List<String> cannotEatMenus = convertStringToList(uncheckedMenus);
+        for(String cannotEatMenu : cannotEatMenus) {
+            Category menuCategory = Category.validateMenu(cannotEatMenu);
+            if(menuCategory == Category.INVALID_CATEGORY) {
+                throw new IllegalArgumentException(InputException.INVALID_MENU.getExceptionMessage());
+            }
         }
     }
 }
