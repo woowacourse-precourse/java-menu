@@ -1,9 +1,12 @@
-package menu.controller;
+package menu.service;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import menu.domain.category.Category;
+import menu.domain.coach.Coach;
 
 public class FoodMenu {
 
@@ -58,5 +61,13 @@ public class FoodMenu {
             Arrays.asList("라자냐", "그라탱", "뇨끼",
                 "끼슈", "프렌치 토스트", "바게트",
                 "스파게티", "피자", "파니니"));
+    }
+
+    public String getRandomMenuWithoutHates(Category category, Coach coach, LunchSuggestion lunchSuggestion) {
+        String food = Randoms.shuffle(foodMenu.get(category)).get(0);
+        while (coach.isUnEatables(food) && !lunchSuggestion.sameFoodInWeek(coach, food)){
+            food = Randoms.shuffle(foodMenu.get(category)).get(0);
+        }
+        return food;
     }
 }

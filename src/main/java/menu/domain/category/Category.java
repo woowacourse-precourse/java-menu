@@ -1,4 +1,4 @@
-package menu.controller;
+package menu.domain.category;
 
 public enum Category {
 

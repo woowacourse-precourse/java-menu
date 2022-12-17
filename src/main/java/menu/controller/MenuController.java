@@ -2,6 +2,12 @@ package menu.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import menu.domain.category.Categories;
+import menu.domain.category.Category;
+import menu.domain.coach.Coach;
+import menu.domain.coach.Coaches;
+import menu.service.FoodMenu;
+import menu.service.LunchSuggestion;
 import menu.view.InputView;
 import menu.view.Messages;
 import menu.view.OutputView;
@@ -18,7 +24,6 @@ public class MenuController {
         this.lunchSuggestion = new LunchSuggestion();
     }
 
-
     public void run() {
         outputView.print(Messages.LUNCH_SUGGEST_START);
         FoodMenu foodMenu = new FoodMenu();
@@ -31,26 +36,40 @@ public class MenuController {
         showLunchSuggestionWith(categories);
     }
 
-
-
-    private Categories suggestLunch(Coaches coaches, FoodMenu foodMenu) {
-        Categories categories = new Categories();
-        //요일별로 도는 동안
-        for (int i = 0; i < 5; i++) {
-            Category category = pickRandomCategory(); // 랜덤으로 카테고리 하나 고르고,
-            categories.add(category);
-            pickRandomMenu(coaches, foodMenu, category); // 각 코치가 월요일에 먹을 메뉴를 추천한다.
-        }
-        return categories;
+    private Coaches readCoaches() {
+        return inputView.readCoaches();
     }
 
-    private void pickRandomMenu(Coaches coaches, FoodMenu foodMenu, Category category) {
+    private void readUnEatable(Coaches coaches) {
+        readUnEatableWithMessage(coaches);
+    }
+
+    private void readUnEatableWithMessage(Coaches coaches) {
         List<Coach> coachNames = coaches.getCoaches();
 
         for (Coach coach : coachNames) {
-            String food = foodMenu.getRandomMenuWithoutHates(category, coach,lunchSuggestion);
-            lunchSuggestion.addSuggestion(coach, food);
+            String name = coach.getName();
+            outputView.print(Messages.COACH_UNEATABLE, name);
+            coach.addUnEatable(inputView.inputBasicLine());
+
+//            try {
+//                coach.addUnEatable(inputView.inputBasicLine()); // 에러 다시 입력
+//            } catch (IllegalArgumentException e) {
+//                System.out.println(e.getMessage());
+//                return coach.addUnEatable(inputView.inputBasicLine());
+//            }
+//            coach.addUnEatable(readUnEatables()); // 에러 다시 입력
         }
+    }
+
+    private Categories suggestLunch(Coaches coaches, FoodMenu foodMenu) {
+        Categories categories = new Categories();
+        for (int i = 0; i < 5; i++) {
+            Category category = pickRandomCategory();
+            categories.add(category);
+            pickRandomMenu(coaches, foodMenu, category);
+        }
+        return categories;
     }
 
     private Category pickRandomCategory() {
@@ -77,18 +96,20 @@ public class MenuController {
         return Category.findBy(category);
     }
 
-    private void readUnEatable(Coaches coaches) {
-        readUnEatableWithMessage(coaches);
-    }
 
-    private void readUnEatableWithMessage(Coaches coaches) {
+    private void pickRandomMenu(Coaches coaches, FoodMenu foodMenu, Category category) {
         List<Coach> coachNames = coaches.getCoaches();
 
         for (Coach coach : coachNames) {
-            String name = coach.getName();
-            outputView.print(Messages.COACH_UNEATABLE, name);
-            coach.addUnEatable(inputView.inputBasicLine()); // 에러 다시 입력
+            String food = foodMenu.getRandomMenuWithoutHates(category, coach,lunchSuggestion);
+            lunchSuggestion.addSuggestion(coach, food);
         }
+    }
+
+
+
+    private String readUnEatables() {
+        return inputView.inputBasicLine();
     }
 
 //    private Coaches readCoaches() {
@@ -96,9 +117,6 @@ public class MenuController {
 //        return new Coaches(inputView.inputBasicLine());
 //    }
 
-    private Coaches readCoaches() {
-        return inputView.readCoaches();
-    }
 
     private void showLunchSuggestionWith(Categories categories) {
         outputView.print(Messages.LUNCH_SUGGEST_RESULT);

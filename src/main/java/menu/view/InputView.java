@@ -3,7 +3,7 @@ package menu.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-import menu.controller.Coaches;
+import menu.domain.coach.Coaches;
 import menu.utils.CoachesInputParser;
 
 public class InputView {

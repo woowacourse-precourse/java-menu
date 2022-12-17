@@ -1,7 +1,7 @@
 package menu.view;
 
-import menu.controller.Categories;
-import menu.controller.LunchSuggestion;
+import menu.domain.category.Categories;
+import menu.service.LunchSuggestion;
 
 public class OutputView {
 

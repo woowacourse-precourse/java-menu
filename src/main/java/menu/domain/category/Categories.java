@@ -1,4 +1,4 @@
-package menu.controller;
+package menu.domain.category;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -2,7 +2,7 @@ package menu.utils;
 
 import java.util.function.Function;
 import java.util.stream.Stream;
-import menu.controller.Coaches;
+import menu.domain.coach.Coaches;
 
 public class CoachesInputParser {
 

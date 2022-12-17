@@ -1,10 +1,11 @@
-package menu.controller;
+package menu.service;
 
 import java.util.ArrayList;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import menu.domain.coach.Coach;
 
 public class LunchSuggestion {
 
