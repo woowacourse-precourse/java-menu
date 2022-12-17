@@ -21,7 +21,7 @@ public class MenuController {
         for (CoachName coach : coaches) {
             addCannotEatMenus(coach);
         }
-        group.makeMenus();
+        makeMenus();
         outputView.renderResult(group.getMenu());
     }
 
@@ -43,6 +43,15 @@ public class MenuController {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             addCannotEatMenus(coach);
+        }
+    }
+
+    private void makeMenus() {
+        try {
+            group.makeMenus();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            makeMenus();
         }
     }
 }
