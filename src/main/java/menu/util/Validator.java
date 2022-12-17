@@ -22,4 +22,10 @@ public class Validator {
             throw new IllegalArgumentException(ExceptionConstants.TOO_LONG_NAME.getMessage());
         }
     }
+
+    public void validateNumberOfInedibleMenus(int numberOfInedibleMenus) {
+        if (MenuConstants.MAXIMUM_NUMBER_OF_INEDIBLE_MENUS < numberOfInedibleMenus) {
+            throw new IllegalArgumentException(ExceptionConstants.TOO_MANY_MENUS.getMessage());
+        }
+    }
 }
