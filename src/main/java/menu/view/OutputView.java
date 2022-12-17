@@ -24,7 +24,7 @@ public class OutputView {
 
     public void printResult(List<String> previousCategories, List<Coach> coaches) {
         System.out.println(ViewConstants.RESULT);
-        System.out.println(ViewConstants.DAYS);
+        printStyledRow(ViewConstants.DAYS);
         printCategories(previousCategories);
         coaches.stream()
                 .map(Coach::getResult)
