@@ -2,8 +2,10 @@ package menu.util;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.MenuRecommender;
+import menu.exception.CannotRecommendCategoryException;
 
 public class Validator {
 
@@ -14,6 +16,8 @@ public class Validator {
     private static final int MAX_COACH_NAME_SIZE = 4;
 
     private static final int MAX_BANNED_MENU_SIZE = 2;
+
+    private static final int MAX_CATEGORY_SIZE = 2;
 
     public static void validateCoaches(List<Coach> coaches) {
         validateCoachSize(coaches.size());
@@ -67,6 +71,22 @@ public class Validator {
     private static void validateMenuOverTwo(int menuSize) {
         if (menuSize > MAX_BANNED_MENU_SIZE) {
             throw new IllegalArgumentException("[ERROR] 먹지 못하는 음식은 두 개까지 등록 가능힙니다.");
+        }
+    }
+
+    public static void validateCategories(Category category, List<Category> categories) {
+        validateDuplicatedCategory(category, categories);
+    }
+
+    private static void validateDuplicatedCategory(Category category, List<Category> categories) {
+        int duplicatedCount = 0;
+        for (Category recommendCategory : categories) {
+            if (category == recommendCategory) {
+                duplicatedCount++;
+            }
+        }
+        if (duplicatedCount >= MAX_CATEGORY_SIZE) {
+            throw new CannotRecommendCategoryException();
         }
     }
 }
