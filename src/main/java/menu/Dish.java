@@ -23,8 +23,8 @@ public enum Dish {
         this.menus = menus;
     }
 
-    public static List<String> pickCategory(int random) {
-        Dish dish = Arrays.stream(Dish.values()).filter(s -> s.number == random)
+    public static List<String> pickCategory(String name) {
+        Dish dish = Arrays.stream(Dish.values()).filter(s -> s.name.equals(name))
                 .findFirst().get();
         return dish.menus;
     }

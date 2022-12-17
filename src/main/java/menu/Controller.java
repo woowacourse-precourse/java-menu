@@ -25,11 +25,17 @@ public class Controller {
         if (count == DAYS) {
             return EXIT;
         }
-        int category = menuSelector.pickCategory();
+        String category = menuSelector.pickCategory();
         List<String> menus = Dish.pickCategory(category);
         for (Coach coach : coaches) {
             coach.pickFood(menus);
         }
         return calculateMenu(count + 1);
+    }
+
+    public void printResult() {
+        System.out.println(Output.PRINT_RESULT);
+
+        System.out.println(Output.END);
     }
 }
