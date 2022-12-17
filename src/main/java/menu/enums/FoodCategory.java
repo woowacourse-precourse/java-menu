@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum FoodCategory {
-    KOR(1,"한식"),
-    JAP(2,"일식"),
+    JAP(1,"일식"),
+    KOR(2,"한식"),
     CHI(3,"중식"),
     ASI(4,"아시안"),
     WES(5,"양식")
