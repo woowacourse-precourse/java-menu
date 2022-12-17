@@ -72,7 +72,7 @@ public class OutputView {
             sb2.append(getEachRecommendationStatusGuide(ateMenuNamesByCoachName, coachName))
                     .append("\n");
         }
-        return sb.toString().trim();
+        return sb2.toString().trim();
     }
 
     private String getEachRecommendationStatusGuide(Map<String, List<String>> ateMenuNamesByCoachName, String coachName) {
