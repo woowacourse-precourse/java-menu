@@ -1,5 +1,6 @@
 package menu.view;
 
+import java.awt.datatransfer.FlavorListener;
 import java.util.List;
 
 import static menu.view.ViewConstants.*;
@@ -8,12 +9,12 @@ public class OutputView {
     private final String BAR_DELIMITER = " | ";
 
     public void showStartRecommender() {
-        System.out.println(startLunchRecommenderMessage);
+        System.out.println(START_LUNCH_RECOMMENDER_MESSAGE);
     }
 
     public void showRecommendResults() {
-        System.out.println(showRecommendResultMessage);
-        System.out.println(listOfDayMessage);
+        System.out.println(SHOW_RECOMMEND_RESULT_MESSAGE);
+        System.out.println(LIST_OF_DAY_MESSAGE);
     }
 
     public void showRecommendedCategory(List<String> recommendedCategories) {
@@ -27,6 +28,6 @@ public class OutputView {
     }
 
     public void showEndRecommender() {
-        System.out.println(endLunchRecommenderMessage);
+        System.out.println(END_LUNCH_RECOMMENDER_MESSAGE);
     }
 }
