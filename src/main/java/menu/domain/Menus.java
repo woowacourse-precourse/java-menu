@@ -1,11 +1,11 @@
-package menu.domain.menu;
+package menu.domain;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class Menus implements Iterable<Menu>{
-    private List<Menu> menus;
+    private final List<Menu> menus;
 
     public Menus() {
         this.menus = new ArrayList<>();

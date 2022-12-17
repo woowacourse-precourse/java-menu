@@ -1,8 +1,5 @@
 package menu.domain;
 
-import menu.domain.menu.Category;
-import menu.domain.menu.Menu;
-import menu.domain.menu.Menus;
 import menu.util.MenuRandomGenerator;
 
 import java.util.Arrays;

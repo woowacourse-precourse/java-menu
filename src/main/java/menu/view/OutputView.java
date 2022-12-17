@@ -2,7 +2,7 @@ package menu.view;
 
 import menu.domain.People;
 import menu.domain.Person;
-import menu.domain.menu.Menu;
+import menu.domain.Menu;
 import menu.dto.output.PrintCriticalExceptionDto;
 import menu.dto.output.PrintExceptionDto;
 import menu.dto.output.PrintRecommendationsDto;

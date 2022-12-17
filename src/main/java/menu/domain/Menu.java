@@ -1,4 +1,4 @@
-package menu.domain.menu;
+package menu.domain;
 
 import java.util.Arrays;
 
