@@ -17,11 +17,11 @@ public enum Weekly {
         this.name = name;
     }
 
-    public List<String> allDays() {
-        return Arrays.stream(values()).map(Weekly::name).collect(Collectors.toList());
+    public static List<String> getAllDays() {
+        return Arrays.stream(values()).map(Weekly::getName).collect(Collectors.toList());
     }
 
-    public static int allDaySize() {
+    public static int getAllDaySize() {
         return values().length;
     }
 

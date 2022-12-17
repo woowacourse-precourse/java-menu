@@ -33,9 +33,10 @@ public class MenuRecommendApplication {
         //System.out.println(coachNames);
         List<List<String>> hatesFood = scanHatesFood(coachNames);
         makeAllCoach(coachNames, hatesFood);
-        WeeklyRecommendCategory weeklyCategory = makeWeeklyCategory(Weekly.allDaySize());
+        WeeklyRecommendCategory weeklyCategory = makeWeeklyCategory(Weekly.getAllDaySize());
         //System.out.println(weeklyCategory.getCategoryIdxs());
         makeAllCoachesDiet(weeklyCategory);
+        outputView.printRecommendedMenu(allCoach, weeklyCategory);
     }
 
     private void makeAllCoachesDiet(WeeklyRecommendCategory weeklyCategory) {

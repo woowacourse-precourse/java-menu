@@ -11,7 +11,7 @@ public class WeeklyRecommendCategory {
     }
 
     private void validate(List<Integer> categoryIdxs) {
-        if (categoryIdxs.size() != Weekly.allDaySize()) {
+        if (categoryIdxs.size() != Weekly.getAllDaySize()) {
             throw new IllegalArgumentException("[ERROR] 주간 음식 카테고리 오류");
         }
         for (int categoryIdx : categoryIdxs) {
