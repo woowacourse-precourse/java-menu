@@ -15,6 +15,9 @@
     - [x] 필드, 생성자 
     - [x] 등록된 음식인지 조회
 - [ ] categoryRepository
+    - [ ] 필드, 생성자
+    - [ ] 등록된 카테고리인지 조회
+    - [ ] 카테고리 이름들 조회
 - [ ] coachRepository
 
 ## service
