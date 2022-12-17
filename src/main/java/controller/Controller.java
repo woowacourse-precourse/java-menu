@@ -16,6 +16,7 @@ public class Controller {
         List<String> coaches = MenuRecommender.splitter(coachNames);
         getCoachesInfo(coaches);
         MenuRecommender.getCoachRecommendFoods();
+        outputView.printRecommendResult(MenuRecommender.getResult());
     }
 
     private void getCoachesInfo(List<String> coachNames) {

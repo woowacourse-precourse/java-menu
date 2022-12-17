@@ -9,4 +9,8 @@ public class Category {
     public static String getCategories(int number) {
         return categories.get(number - 1);
     }
+
+    public String toString() {
+        return "[ 카테고리 | " + String.join(" | ", categories) + " ]";
+    }
 }

@@ -26,7 +26,11 @@ public class Coach {
         menus.add(menu);
     }
 
+    public List<String> getMenus() {
+        return menus;
+    }
+
     public String toString() {
-        return "카테고리 : " + categories.toString() + "\n 추천 음식 : " + menus;
+        return "[ " + name + " | " + String.join(" | ", menus) + " ]";
     }
 }

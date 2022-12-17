@@ -1,5 +1,6 @@
 package menu;
 
+import utils.ConstValue;
 import utils.RandomCategoryGenerator;
 import utils.RandomMenuSelector;
 
@@ -11,6 +12,8 @@ public class MenuRecommender {
     private static final List<Coach> coaches = new ArrayList<>();
     private static List<String> categories;
     private static Map<String, Integer> categoriesCounter = initCounter();
+
+    static Category category = new Category();
 
     public static List<String> splitter(String coachNames) {
         return Arrays.stream(coachNames.split(DELIMITER))
@@ -29,12 +32,10 @@ public class MenuRecommender {
 
     public static void getCoachRecommendFoods() {
         categories = getRandomCategories();
-        System.out.println(categories);
 
         for (Coach coach : coaches) {
             coach.setCategories(categories);
             getEachCoachRecommend(coach);
-            System.out.println(coach);
         }
     }
 
@@ -96,5 +97,24 @@ public class MenuRecommender {
         counter.put(Category.getCategories(5), 0);
 
         return counter;
+    }
+
+    public static String getResult() {
+        StringBuilder result = new StringBuilder();
+        result.append(combine(ConstValue.days)).append("\n");
+        result.append(category.toString()).append("\n");
+
+        for (Coach coach : coaches) {
+            result.append(coach.toString()).append("\n");
+        }
+
+        return result.toString();
+    }
+
+    public static String combine(List<String> contents) {
+        StringBuilder sb = new StringBuilder("[ ");
+        sb.append(String.join(" | ", contents)).append(" ]");
+
+        return sb.toString();
     }
 }
