@@ -5,6 +5,12 @@ package menu.model;
  * @CreateAt : 2022/12/17
  */
 public class Menu {
-    private MenuCategory menuCategory;
-    private String name;
+    private final MenuCategory menuCategory;
+    private final String name;
+
+
+    public Menu(MenuCategory menuCategory, String name) {
+        this.menuCategory = menuCategory;
+        this.name = name;
+    }
 }

@@ -13,7 +13,7 @@ public class OutputView {
 
 
 
-    public void printStartMessage() {
+    public static void printStartMessage() {
         System.out.println(START_RECOMMEND_MESSAGE);
     }
 
