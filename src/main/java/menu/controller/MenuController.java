@@ -66,6 +66,16 @@ public class MenuController {
         List<String> names = InputView.readNames();
         System.out.println();
 
+//        List<String> names = new ArrayList<>();
+//        try {
+//            OutputView.printCoachNameComment();
+//            names = InputView.readNames();
+//            System.out.println();
+//        } catch (IllegalArgumentException e) {
+//            System.out.println(e.getMessage());
+//            inputCoachNames();
+//        }
+
         return names;
     }
 }
