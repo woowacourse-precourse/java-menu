@@ -1,5 +1,6 @@
 package menu.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import menu.domain.Category;
 import menu.domain.CategoryHistory;
@@ -19,6 +20,15 @@ public class MenuController {
     private CategoryService categoryService;
     private MenuService menuService;
     private List<Coach> coaches;
+
+    public MenuController() {
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
+        this.categoryHistory = new CategoryHistory();
+        this.categoryService = new CategoryService();
+        this.menuService = new MenuService();
+        this.coaches = new ArrayList<>();
+    }
 
     public void startMenuRecommendService() {
         outputView.printServiceStartNotice();
