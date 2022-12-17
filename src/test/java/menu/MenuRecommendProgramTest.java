@@ -1,10 +1,13 @@
 package menu;
 
+import menu.coach.Coach;
 import menu.menu.Category;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -31,6 +34,22 @@ public class MenuRecommendProgramTest {
                 continue;
             }
             assertThat(countOfCategorySelected.get(category)).isEqualTo(2);
+        }
+    }
+
+    @DisplayName("이미 먹은 메뉴나 먹지 못하는 메뉴는 추천하지 않는다.")
+    @Test
+    void selectMenuTest() {
+        MenuRecommendProgram menuRecommendProgram = new MenuRecommendProgram();
+        Coach coach = new Coach("한빈");
+        coach.addFoodNotEat("스시");
+        List<String> notEatFoods = new ArrayList<>();
+        notEatFoods.add("스시");
+
+        for (int i = 0; i < 8; i++) {
+            String menu = menuRecommendProgram.selectMenu(coach, "일식");
+            assertThat(notEatFoods.contains(menu)).isFalse();
+            notEatFoods.add(menu);
         }
     }
 }
