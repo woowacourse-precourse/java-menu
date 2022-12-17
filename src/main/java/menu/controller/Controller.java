@@ -50,7 +50,7 @@ public class Controller {
 
     private Status readNames() {
         ReadNamesDto readNamesDto = ioViewResolver.inputViewResolve(ReadNamesDto.class);
-        menuRecommendation = new MenuRecommendation(readNamesDto.getMenuRecommendation());
+        menuRecommendation = new MenuRecommendation(readNamesDto.getNames());
         return Status.READ_UNAVAILABLE_MENU;
     }
 

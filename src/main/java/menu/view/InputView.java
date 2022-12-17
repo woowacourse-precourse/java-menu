@@ -23,7 +23,7 @@ public class InputView {
 
 
     public ReadNamesDto readNames() {
-        print(ViewMessage.INPUT_COACH_NAMES.message);
+        print(ViewMessage.INPUT_COACH_NAMES);
         return new ReadNamesDto(readUserInput());
     }
 
@@ -31,7 +31,7 @@ public class InputView {
         People people = MenuRecommendation.getPeople();
         ReadUnavailableMenuDto readUnavailableMenuDto = new ReadUnavailableMenuDto();
         for (Person person : people) {
-            print(String.format(ViewMessage.INPUT_UNAVAILABLE_MENUS.message, person.getName()));
+            print(String.format(ViewMessage.INPUT_UNAVAILABLE_MENUS, person.getName()));
             readUnavailableMenuDto.add(readUserInput());
         }
         return readUnavailableMenuDto;
@@ -45,14 +45,8 @@ public class InputView {
         System.out.println(message);
     }
 
-    private enum ViewMessage {
-        INPUT_COACH_NAMES("코치의 이름을 입력해 주세요. (%s 로 구분)", DELIMITER),
-        INPUT_UNAVAILABLE_MENUS("%s(이)가 못 먹는 메뉴를 입력해 주세요.");
-
-        private final String message;
-
-        ViewMessage(String message, Object... replaces) {
-            this.message = String.format(message, replaces);
-        }
+    private static class ViewMessage {
+        private static final String INPUT_COACH_NAMES = String.format("코치의 이름을 입력해 주세요. (%s 로 구분)", DELIMITER);
+        private static final String INPUT_UNAVAILABLE_MENUS = "%s(이)가 못 먹는 메뉴를 입력해 주세요.";
     }
 }

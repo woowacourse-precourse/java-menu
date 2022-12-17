@@ -1,6 +1,5 @@
 package menu.domain;
 
-import menu.domain.menu.Category;
 import menu.util.CategoryRandomGenerator;
 import menu.util.MenuRandomGenerator;
 
@@ -11,32 +10,35 @@ import java.util.stream.Collectors;
 
 public class MenuRecommendation {
 
+    public static final String DELIMITER = ",";
+    public static final String REGEX = ".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*";
+
     private static People people;
     private List<String> shuffledCategories;
 
-    public MenuRecommendation(String input) {
-        String[] split = validate(input);
+    public MenuRecommendation(String names) {
+        String[] split = validate(names);
         List<Person> result = Arrays.stream(split)
                 .map(Person::new)
                 .collect(Collectors.toList());
         people = new People(result);
     }
 
-    private String[] validate(String input) {
-        String[] split = input.split(",");
-        for (String s : split) {
-            if (!s.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")) {
+    private String[] validate(String names) {
+        String[] split = names.split(DELIMITER);
+        for (String name : split) {
+            if (!name.matches(REGEX)) {
                 throw new IllegalArgumentException("올바른 입력이 아닙니다. 쉽표로 구분하여 입력해주세요");
             }
         }
         return split;
     }
-    public static People getPeople() {
-        return people;
-    }
 
     public void addUnavailableMenus(List<String> inputs) {
         people.addUnavailableMeneus(inputs);
+    }
+    public static People getPeople() {
+        return people;
     }
 
     public People getRecommendations(CategoryRandomGenerator categoryRandomGenerator, MenuRandomGenerator menuRandomGenerator) {
