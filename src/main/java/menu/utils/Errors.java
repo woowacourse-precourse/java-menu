@@ -20,6 +20,6 @@ public enum Errors {
     }
 
     public static void printLog(final String log) {
-        System.out.println(ERROR_TAG + log);
+        System.out.println(ERROR_TAG.getMessage() + log);
     }
 }
