@@ -17,7 +17,8 @@ public class MenuUseCaseImpl implements MenuUseCase {
     }
 
     @Override
-    public MenusDto recommend(ValidateNameCommand nameCommand, ValidateMenuCommand menuCommand) {
+    public MenusDto recommend(List<String> names, List<String> menus) {
         return null;
     }
+
 }

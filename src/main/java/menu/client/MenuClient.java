@@ -1,5 +1,8 @@
 package menu.client;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import menu.di.MenuUseCase;
 import menu.di.ValidateMenuCommand;
@@ -15,27 +18,37 @@ public class MenuClient {
 
     public void run() {
         printStartMessage();
-        ValidateNameCommand validateNameCommand = handleError(this::askNames);
-        ValidateMenuCommand validateMenuCommand = handleError(this::askMenus);
-        printResult(validateNameCommand, validateMenuCommand);
+        List<String> names = handleError(this::askNames);
+        List<List<String>> menus = handleError(() -> askMenus(names));
+        printResult(names, menus);
     }
+
 
     private void printStartMessage() {
         OutputView.printStartMessage();
     }
 
-    private ValidateNameCommand askNames() {
+    private List<String> askNames() {
         ValidateNameCommand validateNameCommand = InputView.askNames();
         menuUseCase.validateNames(validateNameCommand);
-        return validateNameCommand;
+        return validateNameCommand.getNames();
     }
 
-    private ValidateMenuCommand askMenus() {
-        return null;
+    private List<List<String>> askMenus(List<String> names) {
+        List<List<String>> menus = new ArrayList<>();
+        for (String name : names) {
+            menus.add(askOneCoachMenu(name));
+        }
+        return menus;
     }
 
-    private void printResult(ValidateNameCommand validateNameCommand, ValidateMenuCommand validateMenuCommand) {
+    private List<String> askOneCoachMenu(String name) {
+        ValidateMenuCommand validateMenuCommand = InputView.askMenus(name);
+        menuUseCase.validateMenus(validateMenuCommand);
+        return validateMenuCommand.getMenus();
+    }
 
+    private void printResult(List<String> names, List<List<String>> menus) {
     }
 
     private void handleError(Runnable something) {
