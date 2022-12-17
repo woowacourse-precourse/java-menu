@@ -1,5 +1,7 @@
 package menu.view;
 
+import menu.enums.MyValue;
+
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -24,14 +26,14 @@ public class OutputView {
 
     public void makeCategoryPhrase(List<String> pickedCategories) {
         String phrase = "";
-        for (int i = 0; i < 5; i++) {
+        for (int i = MyValue.MONDAY.getValue(); i < MyValue.SATURDAY.getValue(); i++) {
             phrase += " " + pickedCategories.get(i) + " ";
 
-            if (i != 4) {
+            if (i != MyValue.FRIDAY.getValue()) {
                 phrase += "|";
             }
         }
-        System.out.println("[ 카테고리 |" + phrase + "]");;
+        System.out.println("[" + " 카테고리 " + "|" + phrase + "]");;
     }
 
     public void printRecommendationResult(Map<String, List<String>> foodRecommendedByCoaches) {
@@ -43,13 +45,13 @@ public class OutputView {
 
     public void makeRecommendationPhrase(String name, Map<String, List<String>> foodRecommendedByCoaches) {
         String phrase = "[ " + name + " |";
-        for (int i = 0; i < 5; i++) {
+        for (int i = MyValue.MONDAY.getValue(); i < MyValue.SATURDAY.getValue(); i++) {
             phrase += " " + foodRecommendedByCoaches.get(name).get(i) + " ";
 
-            if (i != 4) {
+            if (i != MyValue.FRIDAY.getValue()) {
                 phrase += "|";
             }
-            if (i == 4) {
+            if (i == MyValue.FRIDAY.getValue()) {
                 phrase += "]";
             }
         }

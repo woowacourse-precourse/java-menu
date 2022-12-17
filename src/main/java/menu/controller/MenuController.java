@@ -1,6 +1,7 @@
 package menu.controller;
 
 import menu.domain.Menu;
+import menu.enums.MyValue;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -10,12 +11,12 @@ import java.util.stream.Collectors;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class MenuController {
-    private Map<String, List<String>> categoriesAndMenu;
     private List<String> allCategory;
     private List<String> coachName;
+    private List<String> pickedCategories = new ArrayList<>();
+    private Map<String, List<String>> categoriesAndMenu;
     private Map<String, List<String>> coachDislikeFood;
     private Map<String, List<String>> foodRecommendedByCoaches = new LinkedHashMap<>();
-    private List<String> pickedCategories = new ArrayList<>();
 
     private Menu menu;
     private InputView inputView;
@@ -49,7 +50,7 @@ public class MenuController {
     }
 
     public void checkDuplicateCategories(String pickedCategory) {
-        int duplicateCount = 0;
+        int duplicateCount = MyValue.ZERO_SETTING.getValue();
         if (pickedCategories.size() == 0) {
             return;
         }
@@ -58,8 +59,8 @@ public class MenuController {
                 duplicateCount++;
             }
         }
-        if (duplicateCount > 2) {
-            throw new IllegalArgumentException("[ERROR] 한 주에 카테고리가 2번 보다 더 겹칠 수는 없습니다.");
+        if (duplicateCount > MyValue.CATEGORY_MINIMUM_DUPLICATE_COUNT.getValue()) {
+            throw new IllegalArgumentException();
         }
     }
 
@@ -76,11 +77,11 @@ public class MenuController {
 
     public void validateRecommendationMenu(String name, String menu) {
         if (coachDislikeFood.get(name).contains(menu)) {
-            throw new IllegalArgumentException("[ERROR] 코치가 싫어하는 음식입니다.");
+            throw new IllegalArgumentException();
         }
         if (foodRecommendedByCoaches.size() != 0) {
             if (foodRecommendedByCoaches.get(name).contains(menu)) {
-                throw new IllegalArgumentException("[ERROR] 이미 코치가 이번주에 추천받은 음식입니다.");
+                throw new IllegalArgumentException();
             }
         }
     }
@@ -89,7 +90,7 @@ public class MenuController {
         for (String name : coachName) {
             foodRecommendedByCoaches.put(name, new ArrayList<>());
         }
-        for (int i = 0; i < 5; i++) {
+        for (int i = MyValue.MONDAY.getValue(); i < MyValue.SATURDAY.getValue(); i++) {
             String pickedCategory = pickTodayRandomCategory();
             pickedCategories.add(i, pickedCategory);
             for (String name : coachName) {
