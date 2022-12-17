@@ -1,10 +1,10 @@
 package menu;
 
-import menu.controller.MenuSuggestionController;
+import menu.controller.MenuRecommendController;
 
 public class Application {
     public static void main(String[] args) {
-        MenuSuggestionController menuSuggestionController = new MenuSuggestionController();
-        menuSuggestionController.startSuggestion();
+        MenuRecommendController menuRecommendController = new MenuRecommendController();
+        menuRecommendController.startSuggestion();
     }
 }

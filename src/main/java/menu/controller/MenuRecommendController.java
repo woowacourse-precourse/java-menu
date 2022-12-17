@@ -6,7 +6,7 @@ import menu.view.OutputView;
 
 import java.util.List;
 
-public class MenuSuggestionController {
+public class MenuRecommendController {
 
     private static final int MIN_COACH_NUMBER = 2;
     private static final int MAX_COACH_NUMBER = 5;
@@ -14,7 +14,7 @@ public class MenuSuggestionController {
     private final OutputView outputView;
     private final InputView inputView;
 
-    public MenuSuggestionController() {
+    public MenuRecommendController() {
         outputView = new OutputView();
         inputView = new InputView();
     }
