@@ -2,6 +2,8 @@ package menu.repository;
 
 import static menu.repository.CoachRepository.coaches;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -24,7 +26,9 @@ public class RecommendationResultRepository {
   }
 
   public static void addMenu(Coach coach, Menu menu) {
-    result.get(coach).add(menu);
+    List<Menu> menus = new ArrayList<>(result.get(coach));
+    menus.add(menu);
+    result.put(coach, menus);
   }
 
   public static boolean existMenu(Coach coach, Menu menu) {

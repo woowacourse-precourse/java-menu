@@ -40,7 +40,7 @@ public class MenuRecommendationService {
     Menu menu;
     do {
       menu = getRandomMenu(category);
-    } while (!existMenu(coach, menu));
+    } while (existMenu(coach, menu));
     return menu;
   }
 
