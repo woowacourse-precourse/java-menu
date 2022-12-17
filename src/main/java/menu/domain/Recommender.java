@@ -17,7 +17,7 @@ public class Recommender {
         this.picker = picker;
     }
 
-    public void recommendTimes(List<Coach> coaches) {
+    public void recommend(List<Coach> coaches) {
         for (int i = 0; i < PICK_DATE_SIZE; i++) {
             recommendOneDay(coaches);
         }
