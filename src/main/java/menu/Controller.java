@@ -16,13 +16,18 @@ public class Controller {
     public void run() {
         setMenus();
         OutputView.printStartMessage();
-        List<String> coachNames = getCoachNames();
-        List<List<String>> hateMenus = getHateMenu(coachNames);
+        setCoach();
 
     }
 
     private void setMenus() {
         service.setMenus();
+    }
+
+    private void setCoach() {
+        List<String> coachNames = getCoachNames();
+        List<List<String>> hateMenus = getHateMenu(coachNames);
+        service.setCoach(coachNames,hateMenus);
     }
 
     private List<String> getCoachNames() {
