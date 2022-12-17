@@ -7,8 +7,13 @@ package menu.view;
  */
 public class OutputView {
 
+    private static final String ERROR_TITLE = "[ERROR] ";
     private static final String START_RECOMMEND_LAUNCH_MENU = "점심 메뉴 추천을 시작합니다.";
-    private static final String INPUT_COACH_NAME = "코치의 이름을 입력해 주세요. (, 로 구분)";
+    private static final String INPUT_COACH_NAME = "\n코치의 이름을 입력해 주세요. (, 로 구분)";
+
+    public static void printError(String errorMessage) {
+        System.out.println(ERROR_TITLE + errorMessage);
+    }
 
     public static void printStart() {
         System.out.println(START_RECOMMEND_LAUNCH_MENU);

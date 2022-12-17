@@ -12,7 +12,6 @@ public class InputView {
 
     public static String getCoaches() {
         OutputView.printInputCoach();
-        String coaches = Console.readLine();
-        return coaches;
+        return Console.readLine();
     }
 }

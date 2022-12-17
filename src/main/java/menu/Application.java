@@ -1,11 +1,15 @@
 package menu;
 
-import menu.view.InputView;
+import menu.controller.CoachController;
+import menu.model.service.CoachService;
 import menu.view.OutputView;
+
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
+        CoachController coachController = new CoachController(new CoachService());
         OutputView.printStart();
-        System.out.println(InputView.getCoaches());
+        List<String> coachesName = coachController.getCoachesName();
     }
 }
