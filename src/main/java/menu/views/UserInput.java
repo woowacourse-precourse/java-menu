@@ -25,8 +25,11 @@ public class UserInput {
         do{
             userInput = Console.readLine().split(",");
             isRightInput = validator.validateNotHaveMenuList(userInput);
-        }while(isRightInput);
+        }while(!isRightInput);
 
+        if(userInput[0].length() == 0){
+            userInput = null;
+        }
         return Arrays.asList(userInput);
     }
 }
