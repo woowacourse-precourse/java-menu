@@ -4,6 +4,7 @@ import menu.constants.CoachRules;
 import menu.view.ErrorMessages;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Coach {
@@ -41,7 +42,7 @@ public class Coach {
     }
 
     public List<String> getFoods() {
-        return foods;
+        return Collections.unmodifiableList(foods);
     }
 
     public boolean contains(String food) {
