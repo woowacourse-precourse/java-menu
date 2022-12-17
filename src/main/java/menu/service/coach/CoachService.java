@@ -13,11 +13,13 @@ public class CoachService {
     private static final String NAME_SEPARATOR = ",";
     private static final int MIN_COACHES_COUNT = 2;
     private static final int MAX_COACHES_COUNT = 5;
+    private static final int MAX_INEDIBLE_MENUS_COUNT = 2;
 
     private static final String COACHES_NAME_EXCEPTION_MESSAGE = "중복된 코치 이름이 존재합니다.";
-    private static final String COACHES_COUNT_EXCEPTION_MESSAGE = "코치는 최소 %d명, 최대 %d명만 가능합니다.";
+    private static final String COACHES_COUNT_EXCEPTION_MESSAGE = "코치는 최소 %d명, 최대 %d명만 지정 가능합니다.";
     private static final String NOT_FOUND_COACH = "해당 이름을 가진 코치를 찾을 수 없습니다.";
     private static final String NOT_FOUND_MENU = "해당 이름을 가진 메뉴를 찾을 수 없습니다.";
+    private static final String TOO_MANY_INEDIBLE_MENUS_EXCEPTION_MESSAGE = "먹을 수 없는 메뉴는 최대 %d개만 지정 가능합니다.";
 
     private final CoachRepository coachRepository;
     private final MenuRepository menuRepository;
@@ -57,22 +59,31 @@ public class CoachService {
         return coachRepository.findAll().stream().map(Coach::getName).collect(Collectors.toUnmodifiableList());
     }
 
-    public void addNotEatMenuByCoachName(String coachName, String notEatMenusName) {
-        if (notEatMenusName.isBlank()) {
+    public void addInedibleMenuByCoachName(String coachName, String inedibleMenusName) {
+        if (inedibleMenusName.isBlank()) {
             return;
         }
         Coach coach = coachRepository.findByName(coachName)
                 .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_COACH));
 
-        coach.addAllInedibleMenus(findAllByNotEatMenusName(notEatMenusName));
+        List<Menu> inedibleMenus = findAllByInedibleMenusName(inedibleMenusName);
+        validateInedibleMenusCount(inedibleMenus);
+        coach.addAllInedibleMenus(inedibleMenus);
     }
 
-    private List<Menu> findAllByNotEatMenusName(String notEatMenus) {
+    private List<Menu> findAllByInedibleMenusName(String notEatMenus) {
         String[] menuNames = notEatMenus.split(NAME_SEPARATOR);
 
         return Arrays.stream(menuNames)
                 .map(menuName -> menuRepository.findByName(menuName)
                 .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_MENU)))
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    private void validateInedibleMenusCount(final List<Menu> inedibleMenus) {
+        if (inedibleMenus.size() > MAX_INEDIBLE_MENUS_COUNT) {
+            throw new IllegalArgumentException(
+                    String.format(TOO_MANY_INEDIBLE_MENUS_EXCEPTION_MESSAGE, MAX_INEDIBLE_MENUS_COUNT));
+        }
     }
 }
