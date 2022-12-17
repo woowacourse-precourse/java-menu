@@ -6,10 +6,11 @@ import menu.domain.MenuRepository;
 import menu.outputview.MainOutputView;
 
 import java.util.List;
+import java.util.Map;
 
 public class SetupController extends AbstractController {
     @Override
-    public void doProcess() {
+    public void doProcess(Map<String, Object> model) {
         MainOutputView.printStartingMessage();
         saveJapanMenus();
         saveKoreaMenus();

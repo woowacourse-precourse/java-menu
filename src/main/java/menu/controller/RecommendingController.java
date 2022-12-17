@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class RecommendingController extends AbstractController {
     @Override
-    public void doProcess() {
+    public void doProcess(Map<String, Object> model) {
         RecommendingService.doRecommending();
         List<String> categoryNames = getRecommendedCategoryNames();
         Map<Coach, List<Menu>> recommendedMenus = RecommendingService.getMenusPerCoach();
