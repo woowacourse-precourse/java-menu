@@ -17,14 +17,11 @@ import menu.view.OutputView;
 public class Service {
 
     private final List<Menu> menus = new ArrayList();
-
-    public List<Category> getCategories() {
-        return categories;
-    }
-
     private final List<Category> categories = new ArrayList<>();
     private final List<Coach> group = new ArrayList();
     private final List<Day> daysResult = new ArrayList<>();
+    private final int MIN_CATEGORY_NUMBER = 1;
+    private final int MAX_CATEGORY_NUMBER = 5;
 
     public void start() {
         OutputView.start();
@@ -40,15 +37,6 @@ public class Service {
         for (ValidCategories category : ValidCategories.values()) {
             categories.add(new Category(category));
         }
-    }
-
-    public Category findCategoryByName(String categoryName) {
-        for (Category category : categories) {
-            if (category.getName().equals(categoryName)) {
-                return category;
-            }
-        }
-        throw new IllegalArgumentException(ErrorMessages.ERROR.toString() + "없는 카테고리 입니다.");
     }
 
     public void initMenus() {
@@ -69,6 +57,10 @@ public class Service {
         }
     }
 
+    public void addCoach(Coach coach) {
+        group.add(coach);
+    }
+
     public void getHateMenus() {
         group.forEach(coach -> {
             getHateMenuByCoach(coach);
@@ -87,8 +79,13 @@ public class Service {
         }
     }
 
-    public void addCoach(Coach coach) {
-        group.add(coach);
+    public Category findCategoryByName(String categoryName) {
+        for (Category category : categories) {
+            if (category.getName().equals(categoryName)) {
+                return category;
+            }
+        }
+        throw new IllegalArgumentException(ErrorMessages.ERROR.toString() + "없는 카테고리 입니다.");
     }
 
     public void addMenu(Menu menu) {
@@ -107,7 +104,6 @@ public class Service {
                 return menu;
             }
         }
-        addMenu(new Menu(this, ValidMenus.findMenuByName(name)));
         return null;
     }
 
@@ -118,7 +114,7 @@ public class Service {
     }
 
     public void initDay(DaysName dayName) {
-        int categoryNumber = Randoms.pickNumberInRange(1, 5);
+        int categoryNumber = Randoms.pickNumberInRange(MIN_CATEGORY_NUMBER, MAX_CATEGORY_NUMBER);
         while (true) {
             if (isAbleCategory(daysResult, ValidCategories.getCategoryByNumber(categoryNumber))) {
                 Category categoryByName = findCategoryByName(
@@ -131,12 +127,13 @@ public class Service {
     }
 
     public static boolean isAbleCategory(List<Day> days, ValidCategories category) {
+        final int FULL = 2;
         int count = 0;
         for (Day day : days) {
             if (day.getCategory().getMenus().equals(category.getKorean())) {
                 count++;
             }
-            if (count == 2) {
+            if (count == FULL) {
                 return false;
             }
         }
