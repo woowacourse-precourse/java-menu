@@ -7,6 +7,7 @@ import menu.domain.Menu;
 
 public class OutputView {
     private final static String SERVICE_START = "점심 메뉴 추천을 시작합니다.\n";
+    private final static String MENU_RECOMMEND_RESULT = "메뉴 추천 결과입니다.";
     private final static String RECOMMEND_RESULT_DAY_WEEK = "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]";
     private final static String RECOMMEND_RESULT_CATEGORY = "[ 카테고리 | ";
     private final static String RECOMMEND_RESULT_PARTITION = " | ";
@@ -40,6 +41,7 @@ public class OutputView {
     }
 
     public void printCoachesMenu(List<Coach> coaches) {
+        System.out.println(MENU_RECOMMEND_RESULT);
         for (Coach coach : coaches) {
             printCoachMenu(coach);
         }
