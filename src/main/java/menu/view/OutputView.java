@@ -19,7 +19,7 @@ public class OutputView {
             System.out.print(coach.getName());
             for (Food food : coach.getThisWeekFoods()) {
                 System.out.print(PRINT_SEPARATOR);
-                System.out.print(food.getName());
+                System.out.print("(" + food.getCategory().getCategoryName() + ")" + food.getName());
             }
             System.out.println(PRINT_SQUARE_BRACKETS_END);
         }

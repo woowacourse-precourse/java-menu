@@ -3,19 +3,7 @@ package menu.domain;
 import menu.enums.Category;
 import menu.utils.RandomUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class FoodRecommender {
-    private final List<String> menus;
-
-    public FoodRecommender() {
-        List<String> menus = new ArrayList<>();
-        for (Category category : Category.values()) {
-            menus.addAll(category.getFoods());
-        }
-        this.menus = menus;
-    }
 
     public void repeatThisWeekFood(Coach coach) {
         for (int i = 0; i < 6; i++) {
@@ -39,7 +27,7 @@ public class FoodRecommender {
 
     private Category getValidCategory(Coach coach) {
         while (true) {
-            Category todayCategory = RandomUtils.pickCategoryInRandom();
+            Category todayCategory = Category.selectCategoryByCode(RandomUtils.pickCategoryNumberInRandom());
             if (!coach.isOverTwoCountOfDuplicateCategory(todayCategory)) {
                 return todayCategory;
             }
@@ -48,7 +36,7 @@ public class FoodRecommender {
 
     private Food returnTodayFoodInCategory(Category todayCategory) {
         while (true) {
-            Food todayFood = new Food(RandomUtils.pickFoodNameInShuffle(menus));
+            Food todayFood = new Food(RandomUtils.pickFoodNameInShuffle(todayCategory.getFoods()));
             if (todayFood.getCategory().equals(todayCategory)) {
                 return todayFood;
             }

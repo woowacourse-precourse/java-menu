@@ -24,6 +24,9 @@ public class Coach {
     }
 
     public void addCoachDoNotEatFood(String foods) {
+        if (foods.equals("")) {
+            return;
+        }
         String[] splitNames = foods.split(",");
         validateFoodsCount(splitNames);
         for (String foodName : splitNames) {
@@ -63,7 +66,7 @@ public class Coach {
     }
 
     public boolean isOverTwoCountOfDuplicateCategory(Category category) {
-        return categoryCount(category) > 2;
+        return categoryCount(category) > 1;
     }
 
     public boolean addTodayFood(Food todayFood) {

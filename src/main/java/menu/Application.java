@@ -7,3 +7,4 @@ public class Application {
         new Controller().run();
     }
 }
+

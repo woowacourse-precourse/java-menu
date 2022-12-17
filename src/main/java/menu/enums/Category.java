@@ -39,4 +39,8 @@ public enum Category {
     public List<String> getFoods() {
         return foods;
     }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
 }
