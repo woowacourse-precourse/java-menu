@@ -8,7 +8,7 @@ public class Coach {
 
     private final String name;
     private final List<String> cannotEatFoods = new ArrayList<>();
-    private final List<String> alreadyEatFoods = new ArrayList<>();
+    private final Menus alreadyEatFoods = new Menus();
 
     public Coach(final String name) {
         this.name = name;
@@ -18,12 +18,12 @@ public class Coach {
         return name;
     }
 
-    public void addCannotEatFood(final List<String> foods) {
-        cannotEatFoods.addAll(foods);
+    public void addCannotEatFood(final Menus menus) {
+        alreadyEatFoods.addMenus(menus);
     }
 
     public void addAlreadyEatFood(final List<String> foods) {
-        alreadyEatFoods.addAll(foods);
+        cannotEatFoods.addAll(foods);
     }
 
     public boolean cannotEatMenu(final String menu) {
@@ -36,7 +36,7 @@ public class Coach {
 
     private long getDuplicateCategoryCount(final List<String> categoryMenus) {
         final List<String> categoryMenusClone = clone(categoryMenus);
-        final List<String> alreadyEatFoodsClone = clone(alreadyEatFoods);
+        final List<String> alreadyEatFoodsClone = alreadyEatFoods.getCloneMenus();
 
         categoryMenusClone.retainAll(alreadyEatFoodsClone);
 

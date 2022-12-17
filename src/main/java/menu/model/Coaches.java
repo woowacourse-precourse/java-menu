@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Coaches extends Serializer {
-    private static final String REGEX_KOREAN = "^[ㄱ-ㅎ가-힣,]*$";
+    private static final String REGEX_KOREAN = "^[ㄱ-ㅎ가-힣, ]*$";
 
     private final List<Coach> coaches;
 
