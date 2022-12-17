@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import menu.model.Category;
+import menu.model.Menu;
 import org.junit.jupiter.api.Test;
 
 class RecommendControllerTest {
@@ -21,5 +22,12 @@ class RecommendControllerTest {
             actual.add(category);
             assertThat(category).as("카테고리가 맞는지").isInstanceOf(Category.class);
         }
+    }
+
+    @Test
+    void recommendMenu() {
+        RecommendController recommendController = new RecommendController();
+        Menu actual = recommendController.recommendMenuByCategory(Category.Korean);
+        assertThat(actual.getCategory()).isEqualTo(Category.Korean);
     }
 }
