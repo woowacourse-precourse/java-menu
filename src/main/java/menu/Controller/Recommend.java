@@ -5,6 +5,7 @@ import menu.Model.Coachs;
 import menu.Model.Coach;
 
 import java.util.Map;
+import java.util.HashMap;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -13,7 +14,7 @@ public class Recommend {
     private final int WEEK_NUMBER = 5;
     private final int START_CATEGORY_RANK = 1;
     private final int END_CATEGORY_RANK = 5;
-    private Map<Category, Integer> categoryCounts;
+    private Map<Category, Integer> categoryCounts = new HashMap<>();
 
     public Recommend() {
         for (Category cg : Category.values()) {
