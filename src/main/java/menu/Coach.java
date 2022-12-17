@@ -35,4 +35,8 @@ public class Coach {
     public List<String> getEatenFood() {
         return eatenFood;
     }
+
+    public String getName() {
+        return name;
+    }
 }

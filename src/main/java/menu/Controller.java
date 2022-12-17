@@ -35,7 +35,10 @@ public class Controller {
 
     public void printResult() {
         System.out.println(Output.PRINT_RESULT);
-
+        System.out.println(ResultView.print("카테고리", menuSelector.getCategoryRepository()));
+        for (Coach coach : coaches) {
+            System.out.println(ResultView.print(coach.getName(), coach.getEatenFood()));
+        }
         System.out.println(Output.END);
     }
 }

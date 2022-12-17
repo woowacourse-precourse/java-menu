@@ -7,5 +7,6 @@ public class Application {
         Controller controller = new Controller();
         controller.initGame();
         controller.calculateMenu(INIT);
+        controller.printResult();
     }
 }

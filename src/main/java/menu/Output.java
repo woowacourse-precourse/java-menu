@@ -9,4 +9,5 @@ public class Output {
     public static final String INPUT_HATE = "%s(이)가 못 먹는 메뉴를 입력해 주세요.";
     public static final String PRINT_RESULT = "메뉴 추천 결과입니다.";
     public static final String END = "추천을 완료했습니다.";
+    public static final String DAYS = "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]";
 }
