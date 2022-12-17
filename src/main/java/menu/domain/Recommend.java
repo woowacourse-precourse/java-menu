@@ -18,8 +18,27 @@ public class Recommend {
         initCoachEatenMenu(coaches);
     }
 
+    public void chooseMenu() {
+    }
+
     private FoodCategory recommendFoodCategory() {
-        return FoodCategory.valueOfNumber(Randoms.pickNumberInRange(1,5));
+        FoodCategory foodCategory;
+        while (true) {
+            foodCategory = FoodCategory.valueOfNumber(Randoms.pickNumberInRange(1, 5));
+            if (checkIsValidFoodCategory(foodCategory) == true) {
+                break;
+            }
+        }
+        return foodCategory;
+    }
+
+    private boolean checkIsValidFoodCategory(FoodCategory foodCategory) {
+        Integer categoryChooseNum = weekCategoryChoose.get(foodCategory);
+        if (categoryChooseNum > 2) {
+            return false;
+        }
+        weekCategoryChoose.put(foodCategory,categoryChooseNum+1);
+        return true;
     }
 
     private void initWeekCategoryChoose() {
