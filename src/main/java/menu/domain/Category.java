@@ -46,13 +46,13 @@ public enum Category {
 
     private static Category getValidCategory(List<Category> categories) {
         Category category = Category.of(pickNumberInRange(CATEGORY_INDEX_LOWER_BOUND, CATEGORY_INDEX_UPPER_BOUND));
-        if (getCount(categories, category) >= INVALID_CATEGORY_SIZE) {
+        if (checkCategoryCount(categories, category) >= INVALID_CATEGORY_SIZE) {
             return getValidCategory(categories);
         }
         return category;
     }
 
-    private static long getCount(List<Category> categories, Category other) {
+    private static long checkCategoryCount(List<Category> categories, Category other) {
         return categories.stream()
                 .filter(category -> category.equals(other))
                 .count();
