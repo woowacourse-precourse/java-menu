@@ -1,3 +1,17 @@
+- test(TestListGenerator): 리스트가 들어갈때 앞에서부터 순서대로 하나씩 삭제하여 get(0)시 리스트에 있는 순서대로 값을 받을 수 있게 TestListGenerator 구현
+- test(CategoriesTest): 카테고리를 순서대로 generate했을 때 그대로 나오는지 test
+- Randoms.shuffle() 함수 ListGenerator 인터페이스를 통해 다형성 확보 및 기능 분리
+- refactor(NumberGenerator): 랜덤 숫자 생성 기능을 인터페이스를 사용하여 기능 분리
+- test(CoarchService): Coach가 먹지 않는 음식이 제대로 등록 되는지 구현
+- test(CoarchService): 코치가 제대로 등록 되는지 확인하는 테스트 구현
+- refactor(MenuController): Coach 객체에 직접 못먹는 음식을 set하던 기능을 Service로 넘겨 기능 분리
+- refactor: 함수명 coach 카멜케이스 수정
+- refactor: couch를 coach로 오타 수정
+- test(InputViewValidation): 못먹는 음식이 전체 음식에 없을 때 예외 처리
+- test(InputViewValidation): 입력한 코치의 이름이 2자보다 작거나 4자보다 클때 예외처리 테스트
+- fix(InputViewValidation): 코치 이름 수 제한이 5자리 였던 에러 수정
+- test(InputViewValidation): 입력한 코치의 수가 범위 안에 없을 시에 예외처리 확인 테스트
+- docs(CHANGELOG.md): commit Log작성
 - refactor: 자바 코딩 컨벤션에 맞게 일부 수정
 - feat: 랜덤 추천한 메뉴를 출력하는 기능 구현
 - feat: 각 코치가 요일 별 먹을 메뉴를 추천하는 기능 및 반복, 먹지 못하는 음식 시 다시 추천 기능 구현
