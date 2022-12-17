@@ -6,19 +6,23 @@ import java.util.List;
 public class Coach {
 
     private String name;
-    private List<String> cannotEat = new ArrayList<>();
-    private List<String> recommendedMenu = new ArrayList<>();
+    private List<String> cannotEatMenus = new ArrayList<>();
+    private List<String> recommendedMenus = new ArrayList<>();
 
     public Coach(String name) {
         this.name = name;
     }
 
-    public void setCannotEat(List<String> cannotEat) {
-        this.cannotEat = cannotEat;
+    public String getName() {
+        return name;
+    }
+
+    public void addCannotEat(String cannotEat) {
+        this.cannotEatMenus.add(cannotEat);
     }
 
     public void setRecommendedMenu(List<String> recommendedMenu) {
-        this.recommendedMenu = recommendedMenu;
+        this.recommendedMenus = recommendedMenu;
     }
 
 }

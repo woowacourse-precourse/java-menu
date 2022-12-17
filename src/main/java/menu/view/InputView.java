@@ -1,6 +1,8 @@
 package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import menu.category.CategoryService;
+import menu.coach.Coach;
 
 import java.util.NoSuchElementException;
 
@@ -37,6 +39,35 @@ public class InputView {
             }
         }
         return true;
+    }
+
+    /**
+     * 코치가 못 먹는 메뉴 입력받기
+     * @param coach
+     * @return
+     */
+    public static String[] setCoachesCannotEats() {
+        String coachCannotEats_input = Console.readLine();
+        String[] coachCannotEats = coachCannotEats_input.split(", ");
+        if (!checkCoachCannotEats_number(coachCannotEats) || !checkCoachCannotEats_value(coachCannotEats)) {
+            throw new IllegalStateException();
+        }
+        return coachCannotEats;
+    }
+
+    // 못 먹는 메뉴의 수 : 최소 0개, 최대 2개
+    private static boolean checkCoachCannotEats_number(String[] coachCannotEat) {
+        return coachCannotEat.length <= 2;
+    }
+
+    // 없는 메뉴일 경우
+    private static boolean checkCoachCannotEats_value(String[] coachCannotEats) {
+        for (String coachCannotEat : coachCannotEats) {
+            if (CategoryService.isInMenu(coachCannotEat)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

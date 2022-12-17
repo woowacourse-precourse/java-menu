@@ -14,7 +14,9 @@ public class CoachService {
         return coaches;
     }
 
-    // 코치 이름 입력받기
+    /**
+     * 코치 이름 입력받기
+     */
     public static void setCoaches() {
         // InputView 호출
         String[] coachesName;
@@ -41,9 +43,23 @@ public class CoachService {
         return coachesName;
     }
 
-    // 못 먹는 메뉴 입력받기
+    /**
+     * 못 먹는 메뉴 입력받기
+     */
     private static void setCoachesCannotEat() {
-        // InputView 호출
+        for (Coach coach : coaches) {
+            String[] cannotEats;
+            while (true) {
+                OutputView.printSetCoachesCannotEat(coach);
+                cannotEats = InputView.setCoachesCannotEats();
+                if (cannotEats != null) {
+                    break;
+                }
+            }
+            for (String cannotEat : cannotEats) {
+                coach.addCannotEat(cannotEat);
+            }
+        }
     }
 
 }
