@@ -27,12 +27,27 @@ public class OutputView {
         System.out.println("\n메뉴 추천 결과입니다.");
         System.out.println("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
         printCategory(category);
+        printCoachMenu(coachesName, menu);
+        System.out.println("\n추천을 완료했습니다.");
     }
 
     public static void printCategory(List<Integer> category) {
         System.out.print("[ 카테고리 ");
         for (int i = 0; i < category.size(); i++)
-            System.out.print("| "+CategoryEnum.getMessageByValue(category.get(i)));
+            System.out.print(" | "+CategoryEnum.getMessageByValue(category.get(i)));
+        System.out.println(" ]");
+    }
+
+    public static void printCoachMenu(List<String> coachesName, List<String[]> menu) {
+        for (int i = 0; i < coachesName.size(); i++) {
+            System.out.print("[ "+coachesName.get(i));
+            printMenu(menu.get(i));
+        }
+    }
+
+    public static void printMenu(String[] menu) {
+        for (int i = 0 ; i < menu.length; i++)
+            System.out.print(" | " +menu[i]);
         System.out.println(" ]");
     }
 }
