@@ -8,7 +8,6 @@ import menu.view.OutputView;
 
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class MenuController {
@@ -32,6 +31,12 @@ public class MenuController {
         }
         menuService.selectCategories();
         coachService.recommendMenus();
+        outputView.printStartRecommend();
+        outputView.printCategories(menuService.getRecommendedCategories());
+        for (Coach coach : coachService.getAllCoaches()) {
+            outputView.printRecommendedMenus(coach.getName(), coach.getRecommendedFoods());
+        }
+        outputView.printEndMessage();
     }
 
     private <T> T repeat(Supplier<T> function) {

@@ -37,4 +37,8 @@ public class MenuService {
             addCategory();
         }
     }
+
+    public List<MenuCategory> getRecommendedCategories() {
+        return RecommendCategoryRepository.getMenuCategories();
+    }
 }

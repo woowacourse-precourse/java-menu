@@ -3,17 +3,17 @@ package menu.repository;
 import menu.domain.coach.Coach;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.List;
 
 public class CoachRepository {
-    private static final HashMap<String, Coach> coaches = new HashMap<>();
+    private static final List<Coach> coaches = new ArrayList<>();
 
     public static void addCoach(Coach coach) {
-        coaches.put(coach.getName(), coach);
+        coaches.add(coach);
     }
 
     public static List<Coach> getAllCoaches() {
-        return new ArrayList<>(coaches.values());
+        return Collections.unmodifiableList(coaches);
     }
 }

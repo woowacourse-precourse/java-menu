@@ -1,6 +1,7 @@
 package menu.domain.coach;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Coach {
@@ -34,5 +35,9 @@ public class Coach {
 
     public boolean canRecommend(String menu) {
         return isNotRecommended(menu) && likeMenu(menu);
+    }
+
+    public List<String> getRecommendedFoods() {
+        return Collections.unmodifiableList(recommendedFoods);
     }
 }
