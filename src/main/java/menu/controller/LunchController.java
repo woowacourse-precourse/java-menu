@@ -1,18 +1,17 @@
 package menu.controller;
 
+import menu.model.domain.Category;
 import menu.model.domain.Coach;
 import menu.model.domain.Food;
 import menu.model.service.CoachService;
 import menu.model.service.FoodService;
-import menu.util.CoachGenerator;
-import menu.util.CoachValidator;
-import menu.util.Parser;
-import menu.util.Validator;
+import menu.util.*;
 import menu.view.InputView;
 import menu.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LunchController {
 
@@ -39,14 +38,18 @@ public class LunchController {
             }
             ///
             List<String> allNames = coachService.findAllNames();
-            for (String name : allNames) {
-                Coach byName = coachService.findByName(name);
-                System.out.println("이름: " + byName.getName());
-                for(Food food : byName.getCannotEatFoods()) {
-                    System.out.println("못먹는거 :" + food.getName());
-                }
+//            for (String name : allNames) {
+//                Coach byName = coachService.findByName(name);
+//                System.out.println("이름: " + byName.getName());
+//                for(Food food : byName.getCannotEatFoods()) {
+//                    System.out.println("못먹는거 :" + food.getName());
+//                }
+//            }
+
+            Map<String, Category> stringCategoryMap = ParingCategory.initCategoryOrder(foodService, coachService);
+            for(Map.Entry<String, Category> entry : stringCategoryMap.entrySet()) {
+                System.out.println(entry.getKey() + " " + "카테고리: " + entry.getValue());
             }
-            ///
         }
 //            return menuController.RunAndReturnCommand(input, pairService, missionService, memberService);
         catch (
@@ -54,5 +57,7 @@ public class LunchController {
             OutputView.printErrorMessage(e.getMessage());
             inputLunchAndRun(coachService, foodService);
         }
+
+        OutputView.finishRecommend();
     }
 }
