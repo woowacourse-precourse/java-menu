@@ -51,7 +51,7 @@ public enum ValidMenus {
     프렌치토스트("프렌치 토스트"),
     바게트("바게트"),
     스파게티("스파게티"),
-    피자("스파게티"),
+    피자("피자"),
     파니니("파니니");
 
     private final String name;

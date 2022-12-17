@@ -16,6 +16,12 @@ public class Service {
         OutputView.start();
     }
 
+    public void initMenus() {
+        for (ValidMenus menu : ValidMenus.values()) {
+            menus.add(new Menu(menu));
+        }
+    }
+
     public void getCoach() {
         while (true) {
             try {
