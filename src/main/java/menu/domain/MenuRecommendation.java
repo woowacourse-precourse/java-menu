@@ -1,5 +1,6 @@
 package menu.domain;
 
+import menu.domain.menu.Category;
 import menu.util.StandardRandomGenerator;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 public class MenuRecommendation {
 
     private static People people;
+    private List<String> shuffledCategory;
 
     public MenuRecommendation(String input) {
         String[] split = validate(input);
@@ -36,15 +38,21 @@ public class MenuRecommendation {
         people.addUnavailableMeneus(inputs);
     }
 
-    public void getResult(StandardRandomGenerator generator) {
+    public People getRecommendations(StandardRandomGenerator generator) {
         List<String> menus = Arrays.stream(Category.values()).map(Category::getTitle)
                 .collect(Collectors.toList());
 
-        List<String> shuffledCategory = getShuffledCategory(generator, menus);
+        shuffledCategory = calculateShuffledCategory(generator, menus);
+        people.setShuffledCategory(shuffledCategory, generator);
 
+        return people;
     }
 
-    private List<String> getShuffledCategory(StandardRandomGenerator generator, List<String> menus) {
+    public List<String> getShuffledCategory() {
+        return shuffledCategory;
+    }
+
+    private List<String> calculateShuffledCategory(StandardRandomGenerator generator, List<String> menus) {
         List<String> shuffledCategory = Arrays.stream(Day.values())
                 .map(m -> generator.generate(menus))
                 .collect(Collectors.toList());

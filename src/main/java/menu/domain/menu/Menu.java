@@ -1,4 +1,4 @@
-package menu.domain;
+package menu.domain.menu;
 
 import java.util.Arrays;
 
@@ -65,5 +65,9 @@ public enum Menu {
                 .filter(menu -> menu.menuName.equals(input))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 메뉴입니다."));
+    }
+
+    public String getMenuName() {
+        return menuName;
     }
 }

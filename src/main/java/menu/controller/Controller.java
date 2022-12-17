@@ -1,15 +1,18 @@
 package menu.controller;
 
 import menu.domain.MenuRecommendation;
+import menu.domain.People;
 import menu.domain.Status;
 import menu.dto.input.ReadNamesDto;
 import menu.dto.input.ReadUnavailableMenuDto;
 import menu.dto.output.PrintCriticalExceptionDto;
 import menu.dto.output.PrintExceptionDto;
+import menu.dto.output.PrintRecommendationsDto;
 import menu.util.StandardRandomGenerator;
 import menu.view.IOViewResolver;
 
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -56,7 +59,10 @@ public class Controller {
     }
 
     private Status printResult(StandardRandomGenerator generator) {
-        menuRecommendation.getResult(generator);
+        People result = menuRecommendation.getRecommendations(generator);
+        List<String> shuffledCategory = menuRecommendation.getShuffledCategory();
+
+        ioViewResolver.outputViewResolve(new PrintRecommendationsDto(result, shuffledCategory));
         return Status.EXIT;
     }
 }

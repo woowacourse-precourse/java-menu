@@ -1,5 +1,7 @@
 package menu.domain;
 
+import menu.util.StandardRandomGenerator;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -17,14 +19,20 @@ public class People implements Iterable<Person> {
         return people;
     }
 
-    @Override
-    public Iterator<Person> iterator() {
-        return people.iterator();
-    }
-
     public void addUnavailableMeneus(List<String> inputs) {
         for (int index = 0; index < inputs.size(); index++) {
             people.get(index).addUnavailableMenus(inputs.get(index));
         }
+    }
+
+    public void setShuffledCategory(List<String> shuffledCategory, StandardRandomGenerator generator) {
+        for (int index = 0; index < shuffledCategory.size(); index++) {
+            people.get(index).recommendMenu(shuffledCategory.get(index), generator);
+        }
+    }
+
+    @Override
+    public Iterator<Person> iterator() {
+        return people.iterator();
     }
 }

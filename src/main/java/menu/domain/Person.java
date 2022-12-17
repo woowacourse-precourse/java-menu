@@ -1,5 +1,10 @@
 package menu.domain;
 
+import menu.domain.menu.Category;
+import menu.domain.menu.Menu;
+import menu.domain.menu.Menus;
+import menu.util.StandardRandomGenerator;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,6 +13,7 @@ public class Person {
 
     private final String name;
     private Menus unavailable;
+    private Menus recommended;
 
     public Person(String name) {
         this.name = validateName(name);
@@ -43,5 +49,26 @@ public class Person {
             throw new IllegalArgumentException("최대 2개의 못 먹는 메뉴만 입력할 수 있습니다.");
         }
         return split;
+    }
+
+    public Menus getRecommended() {
+        return recommended;
+    }
+
+    public void recommendMenu(String menu, StandardRandomGenerator generator) {
+        Category category = Category.map(menu);
+        List<String> menus = Arrays.stream(Menu.values())
+                .filter(m -> m.toString().startsWith(category.toString()))
+                .map(m -> m.getMenuName())
+                .collect(Collectors.toList());
+
+        while (true) {
+            String generate = generator.generate(menus);
+            if (recommended.contains(generate) || unavailable.contains(generate)) {
+                continue;
+            }
+            recommended.addMenu(Menu.map(generate));
+            break;
+        }
     }
 }

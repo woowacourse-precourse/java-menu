@@ -4,6 +4,7 @@ import menu.dto.input.ReadNamesDto;
 import menu.dto.input.ReadUnavailableMenuDto;
 import menu.dto.output.PrintCriticalExceptionDto;
 import menu.dto.output.PrintExceptionDto;
+import menu.dto.output.PrintRecommendationsDto;
 import menu.view.exception.NotFoundViewException;
 
 import java.util.HashMap;
@@ -27,7 +28,7 @@ public final class IOViewResolver {
     }
 
     private void initOutputViewMappings(OutputView outputView) {
-//        outputViewMap.put(PrintVendingMachineCoinDto.class, dto -> outputView.printVendingMachineCoin((PrintVendingMachineCoinDto) dto));
+        outputViewMap.put(PrintRecommendationsDto.class, dto -> outputView.printRecommendations((PrintRecommendationsDto) dto));
         outputViewMap.put(PrintExceptionDto.class, dto -> outputView.printException((PrintExceptionDto) dto));
         outputViewMap.put(PrintCriticalExceptionDto.class, dto -> outputView.printCriticalException((PrintCriticalExceptionDto) dto));
     }
