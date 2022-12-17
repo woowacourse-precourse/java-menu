@@ -34,7 +34,22 @@ public class OutputView {
         System.out.println(endNotice);
     }
 
-    private String makeRecommendResult(Coach coach) {
+    private String makeCategoryRecommendResult(List<Category> categoryHistory) {
+        StringBuilder result = new StringBuilder();
+        result.append(END_NOTICE_PREFIX);
+        result.append("카테고리");
+
+        for (int day = 0; day < 5; day++) {
+            result.append(END_NOTICE_MIDFIX);
+            result.append(categoryHistory.get(day).getName());
+        }
+
+        result.append(END_NOTICE_SUFFIX);
+
+        return result.toString();
+    }
+
+    private String makeMenuRecommendResult(Coach coach) {
         StringBuilder result = new StringBuilder();
         result.append(END_NOTICE_PREFIX);
 
