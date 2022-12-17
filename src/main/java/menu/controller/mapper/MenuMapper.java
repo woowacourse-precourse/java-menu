@@ -3,10 +3,7 @@ package menu.controller.mapper;
 import menu.domain.Menu;
 import menu.domain.enums.Category;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import static java.lang.String.format;
 import static java.util.Arrays.stream;

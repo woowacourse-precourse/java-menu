@@ -1,8 +1,8 @@
 package menu.view;
 
 import menu.domain.Coach;
-import menu.domain.Menu;
 import menu.domain.Group;
+import menu.domain.Menu;
 import menu.domain.enums.Category;
 import menu.domain.enums.Weekday;
 
