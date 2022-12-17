@@ -19,7 +19,7 @@ public class Coach {
         initiateFoodPerDay();
     }
     public void validateName(String name){
-        if(name.length()<MAX_NAME_LENGTH || name.length()>MAX_NAME_LENGTH){
+        if(name.length()<MIN_NAME_LENGTH || name.length()>MAX_NAME_LENGTH){
             throw new IllegalArgumentException(ErrorResource.ERROR_START+ErrorResource.WRONG_COACH_NAME_LENGTH);
         }
     }
