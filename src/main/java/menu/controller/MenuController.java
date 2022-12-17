@@ -22,7 +22,12 @@ public class MenuController {
     }
 
     private void requestInputExcludeMenu(final Coaches coaches) {
-        inputView.inputExcludeMenu(coaches);
+        try {
+            inputView.inputExcludeMenu(coaches);
+        } catch (IllegalArgumentException exception) {
+            outputView.printMessage(exception.getMessage());
+            requestInputExcludeMenu(coaches);
+        }
     }
 
     private Coaches requestInputCoach() {
