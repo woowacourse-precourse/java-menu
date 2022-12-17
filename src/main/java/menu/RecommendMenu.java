@@ -125,10 +125,10 @@ public class RecommendMenu {
 	
 	public String checkIfNotEatingFood(int person, int indexOfCategory) {
 		String food = "";
-		ArrayList<String> notEatingMenu = notEatingMenuForEachCoach.get(person);
+		ArrayList<String> notEatingMenu = notEatingMenuForEachCoach.get(coachName.get(person));
 		ArrayList<String> thisMenu = changeStringArrToList(menu.get(indexOfCategory));
 		while(true) {
-			Randoms.shuffle(thisMenu);
+			thisMenu = (ArrayList<String>) Randoms.shuffle(thisMenu);
 			food = thisMenu.get(0);
 			if(!notEatingMenu.contains(food) && !checkIfDuplicatedFood(food)) {
 				return food;

@@ -108,7 +108,7 @@ public class InputView {
 	public void checkMenuDuplicated(String notEatingMenu) {
 		String[] notEatingMenuStr = notEatingMenu.split(",");
 		int originalSize = notEatingMenuStr.length;
-		HashSet notEatingMenuSet = new HashSet<>();
+		HashSet<String> notEatingMenuSet = new HashSet<>();
 		for(String menu : notEatingMenuStr) {
 			notEatingMenuSet.add(menu);
 		}
