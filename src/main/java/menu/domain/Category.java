@@ -31,4 +31,8 @@ public enum Category {
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("카테고리 오류"));
     }
+
+    public String getName() {
+        return name;
+    }
 }

@@ -49,7 +49,7 @@ public class MenuRepository {
         return menu;
     }
 
-    private static Menus allMenus() {
+    public static Menus allMenus() {
         return menus.values().stream()
                 .map(Menus::getMenus)
                 .flatMap(List::stream)

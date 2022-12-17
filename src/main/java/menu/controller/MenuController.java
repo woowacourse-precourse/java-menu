@@ -2,6 +2,7 @@ package menu.controller;
 
 import menu.dto.CoachNamesDto;
 import menu.dto.NoEatsDto;
+import menu.dto.RecommendationResultDto;
 import menu.service.MenuService;
 import menu.view.InputView;
 import menu.view.OutputView;
@@ -15,7 +16,7 @@ public class MenuController {
         outputView.init();
         CoachNamesDto coachNamesDto = registerCoaches();
         setCannotEat(coachNamesDto);
-
+        recommendMenus();
     }
 
     private CoachNamesDto registerCoaches() {
@@ -35,5 +36,10 @@ public class MenuController {
             outputView.printErr(e.getMessage());
             setCannotEat(coachNamesDto);
         }
+    }
+
+    private void recommendMenus() {
+        RecommendationResultDto recommendationResultDto = menuService.recommendMenus();
+        outputView.printRecommendationResult(recommendationResultDto);
     }
 }

@@ -1,5 +1,9 @@
 package menu.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Coach {
     private final String name;
     private final Menus noEat;
@@ -24,5 +28,11 @@ public class Coach {
     public void receiveRecommendation(Menus allMenus, Category category, RecommendationMachine recommendationMachine) {
         Menus notAllowed = noEat.combine(eaten);
         eaten.add(recommendationMachine.menu(allMenus, category, notAllowed));
+    }
+
+    public List<String> getRecommendationResult() {
+        List<String> result = new ArrayList<>(eaten.getNames());
+        result.add(0, name);
+        return Collections.unmodifiableList(result);
     }
 }

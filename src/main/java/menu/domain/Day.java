@@ -34,6 +34,27 @@ public enum Day {
                 .count() < 2;
     }
 
+    public static List<List<String>> getCategories() {
+        return List.of(getDays(), getCategoryByDay());
+    }
+
+    private static List<String> getDays() {
+        List<String> days = inOrder().stream()
+                .map(day -> day.getName())
+                .collect(Collectors.toList());
+        days.add(0, "구분");
+        return days;
+    }
+
+    private static List<String> getCategoryByDay() {
+        List<String> categories = inOrder().stream()
+                .map(day -> day.getCategory())
+                .map(Category::getName)
+                .collect(Collectors.toList());
+        categories.add(0, "카테고리");
+        return categories;
+    }
+
     public void setCategory(Category category) {
         this.category = category;
     }
