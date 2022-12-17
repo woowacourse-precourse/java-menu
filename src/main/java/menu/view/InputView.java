@@ -19,6 +19,14 @@ public class InputView {
         return coachNames;
     }
 
+    public List<String> readFoodName(String name) {
+        printMessage(name + FOOD_NAME_INPUT_MESSAGE);
+        String names = Console.readLine();
+        List<String> foodNames = Parser.getNames(names);
+        InputValidator.checkNames(foodNames);
+        return foodNames;
+    }
+
     private void printMessage(String message) {
         System.out.println(message);
     }
