@@ -26,6 +26,8 @@ public class OutputView {
         System.out.println();
         System.out.println(Message.RESULT.getMessage());
         printMenu(suggestedCategory, coaches);
+        System.out.println();
+        System.out.println(Message.END.getMessage());
     }
 
     private static void printMenu(int[] suggestedCategory, List<Coach> coaches) {
