@@ -25,6 +25,16 @@ public class MenuSuggester {
         int category = Randoms.pickNumberInRange(1, 5);
         suggestedCategory.put(category, suggestedCategory.getOrDefault(category, 0) + 1);
 
-        pick
+        for (Coach coach : coaches) {
+            String menu = pickMenu(category);
+            System.out.println(menu);
+        }
+
+    }
+
+    private String pickMenu(int category) {
+        List<String> menus = categories.get(category);
+        String menu = Randoms.shuffle(menus).get(0);
+        return menu;
     }
 }
