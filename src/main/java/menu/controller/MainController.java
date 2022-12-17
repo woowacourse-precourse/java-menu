@@ -22,6 +22,8 @@ public class MainController {
         }
 
         mainService.recommend();
+        outputView.printRecommendResult(mainService.getCategories(), mainService.getCoaches());
+        outputView.printEnd();
     }
 
     private void setCantEatMenus(String coachName) {

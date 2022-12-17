@@ -1,5 +1,6 @@
 package menu.service;
 
+import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.Coaches;
 import menu.domain.Menu;
@@ -42,5 +43,13 @@ public class MainService {
     public void recommend() {
         recommender = new Recommender();
         exceptionHandler.process(coaches::recommendMenus, recommender);
+    }
+
+    public List<Category> getCategories() {
+        return recommender.getCategories();
+    }
+
+    public List<Coach> getCoaches() {
+        return coaches.getCoaches();
     }
 }

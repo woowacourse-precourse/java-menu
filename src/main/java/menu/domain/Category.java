@@ -13,7 +13,15 @@ public enum Category {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public static Category of(int index) {
+        index--;
+        if (index >= 5) {
+            index--;
+        }
         Category[] categories = Category.values();
         return categories[index];
     }

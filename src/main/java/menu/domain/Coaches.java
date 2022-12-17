@@ -1,5 +1,6 @@
 package menu.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Coaches {
@@ -7,6 +8,10 @@ public class Coaches {
 
     public Coaches(List<Coach> coaches) {
         this.coaches = coaches;
+    }
+
+    public List<Coach> getCoaches() {
+        return Collections.unmodifiableList(coaches);
     }
 
     public Coach findByName(String name) {

@@ -13,6 +13,14 @@ public class Coach {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public List<String> getRecommendedMenus() {
+        return recommendedMenus;
+    }
+
     public void setHateMenus(List<String> hateMenus) {
         for (String hateMenu : hateMenus) {
             this.hateMenus.add(hateMenu);

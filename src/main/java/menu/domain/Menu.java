@@ -43,6 +43,7 @@ public enum Menu {
                 .flatMap(menus -> menus.stream())
                 .collect(Collectors.toList());
 
-        return shuffle(menuNames).get(0);
+        List<String> shuffle = shuffle(menuNames);
+        return shuffle.get(0);
     }
 }
