@@ -1,5 +1,6 @@
 package menu.model;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,11 +11,12 @@ import java.util.Map;
 public class RecommendResult {
     private DayOfTheWeek dayOfTheWeek;
     private MenuCategory menuCategory;
-    private Map<Coach, List<Menu>> coachAndMenus;
+    private Map<Coach, Menu> coachAndMenu;
 
     public RecommendResult(DayOfTheWeek dayOfTheWeek, MenuCategory menuCategory) {
         this.dayOfTheWeek = dayOfTheWeek;
         this.menuCategory = menuCategory;
+        coachAndMenu = new HashMap<>();
     }
 
     public DayOfTheWeek getDayOfTheWeek() {
@@ -23,9 +25,5 @@ public class RecommendResult {
 
     public MenuCategory getMenuCategory() {
         return menuCategory;
-    }
-
-    public Map<Coach, List<Menu>> getCoachAndMenus() {
-        return coachAndMenus;
     }
 }

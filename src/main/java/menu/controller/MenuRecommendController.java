@@ -4,6 +4,7 @@ import menu.model.*;
 import menu.service.CoachService;
 import menu.service.MenuCategoryService;
 import menu.service.MenuService;
+import menu.service.RecommendResultService;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -20,11 +21,12 @@ public class MenuRecommendController {
     private final CoachService coachService;
     private final MenuService menuService;
     private final MenuCategoryService menuCategoryService;
-
+    private final RecommendResultService recommendResultService;
     public MenuRecommendController() {
         this.coachService = new CoachService();
         this.menuService = new MenuService();
         this.menuCategoryService = new MenuCategoryService();
+        this.recommendResultService = new RecommendResultService();
     }
 
     public void startRecommend() {
@@ -35,22 +37,21 @@ public class MenuRecommendController {
         OutputView.printFinishMessage();
     }
 
-    private List<RecommendResult> getRecommendResultsHaveMenuCategory() {
-        List<RecommendResult> recommendResults = new ArrayList<>();
+    private void saveRecommendResultsHaveMenuCategory() {
         List<DayOfTheWeek> dayOfTheWeeks = Arrays.stream(DayOfTheWeek.values()).collect(Collectors.toList());
         for (DayOfTheWeek day : dayOfTheWeeks) {
-            MenuCategory menuCategory = getRandomMenuCategory(recommendResults);
-            recommendResults.add(new RecommendResult(day, menuCategory));
+            MenuCategory menuCategory = getRandomMenuCategory();
+            recommendResultService.save(new RecommendResult(day, menuCategory));
         }
-        return recommendResults;
     }
 
-    private MenuCategory getRandomMenuCategory(List<RecommendResult> recommendResults) {
+    private MenuCategory getRandomMenuCategory() {
+        List<RecommendResult> recommendResults = recommendResultService.findAll();
         MenuCategory menuCategory = menuCategoryService.getRandomMenuCategory();
         MenuCategory finalMenuCategory = menuCategory;
         if(recommendResults.stream().filter(recommendResult
                 -> recommendResult.getMenuCategory().equals(finalMenuCategory)).count() >= 2) {
-            menuCategory = getRandomMenuCategory(recommendResults); // 카테고리가 2회 이상 겹치는 경우 다시 뽑는다.
+            menuCategory = getRandomMenuCategory(); // 카테고리가 2회 이상 겹치는 경우 다시 뽑는다.
         }
         return menuCategory;
     }

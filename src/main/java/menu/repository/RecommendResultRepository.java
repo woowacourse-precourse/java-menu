@@ -33,7 +33,11 @@ public class RecommendResultRepository {
 
     }
 
-    public List<RecommendResult> getResult() {
+    public List<RecommendResult> findAll() {
         return recommendResults;
+    }
+
+    public void save(RecommendResult recommendResult) {
+        recommendResults.add(recommendResult);
     }
 }
