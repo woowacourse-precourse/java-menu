@@ -16,18 +16,28 @@ public class InputView {
     // 코치를 입력 받는 기능
     public static List<String> inputCoachName() {
         OutputView.printPhrase(COACH_NAME_INPUT);
-        List<String> names = Arrays.asList(Console.readLine().split(SPLIT));
-        Validation.validateCoachsLength(names);
-        Validation.validateCoachNameLength(names);
-        return names;
+        try{
+            List<String> names = Arrays.asList(Console.readLine().split(SPLIT));
+            Validation.validateCoachsLength(names);
+            Validation.validateCoachNameLength(names);
+            return names;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputCoachName();
+        }
     }
 
     public static String inputCanNotEatFood(Coach coach) {
         OutputView.printPhrase(coach.getName() + CAN_NOT_EAT_FOOD_INPUT);
-        String canNotEatFood = Console.readLine();
-        System.out.println();
+        try {
+            String canNotEatFood = Console.readLine();
+            System.out.println();
 
-        Validation.validateCoachCanNotEatFoodLength(canNotEatFood);
-        return canNotEatFood;
+            Validation.validateCoachCanNotEatFoodLength(canNotEatFood);
+            return canNotEatFood;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputCanNotEatFood(coach);
+        }
     }
 }
