@@ -18,7 +18,6 @@ public class InputView {
 
     public static String[] readExcludeMenu(String coach) {
         System.out.printf(REQUIRE_COACH_EXCLUDE_MENU_FORMAT, coach);
-        //개수 validation
         String[] menus = readLine().split(",");
         validateMenuSize(menus);
         return menus;
