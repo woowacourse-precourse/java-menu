@@ -15,7 +15,6 @@ public class Coach {
 
     public void addDislikeMenu(String[] dislike) {
         for (String menu : dislike) {
-//            System.out.println(menu);
             dislikeMenu.add(menu);
         }
     }
