@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import menu.util.ExceptionMessage;
 
 public class MenuRepository {
     private MenuRepository() {
@@ -30,6 +31,7 @@ public class MenuRepository {
         return menus.stream()
                 .filter(element -> element.getName().equals(name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException());
+                .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.NO_SUCH_MENU.getMessage()));
     }
+
 }

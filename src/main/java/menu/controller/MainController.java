@@ -1,8 +1,13 @@
 package menu.controller;
 
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
+import menu.domain.Coach;
+import menu.domain.CoachRepository;
+import menu.domain.Menu;
+import menu.domain.MenuRepository;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -46,13 +51,21 @@ public class MainController {
 
     private ApplicationStatus receiveCoachData() {
         outputView.printStart();
-        System.out.println(inputView.readCoachNames());
+        inputView.readCoachNames().forEach(CoachRepository::add);
+        System.out.println(MenuRepository.menus());
+
+        for (Coach coach : CoachRepository.coaches()) {
+            List<Menu> menuNotToEat = inputView.readMenuNotToEat(coach.getName());
+            coach.addMenuNotToEat(menuNotToEat);
+        }
+
         return ApplicationStatus.APPLICATION_EXIT;
     }
 
     private enum ApplicationStatus {
         INITIALIZE_MENUS,
         RECEIVE_COACH_DATA,
+
         APPLICATION_EXIT;
 
         public boolean playable() {
