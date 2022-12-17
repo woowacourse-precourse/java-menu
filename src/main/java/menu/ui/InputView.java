@@ -15,15 +15,15 @@ public class InputView {
         return coachNames;
     }
 
-    public List<String> readInedibleFoodsOfCoach(String coachName) {
+    public List<String> readInedibleMenusOfCoach(String coachName) {
         System.out.printf("%s(이)가 못 먹는 메뉴를 입력해 주세요.", coachName);
         addEmptyLine();
-        List<String> inedibleFoods = Arrays.asList(
+        List<String> inedibleMenus = Arrays.asList(
                 Console.readLine().split(",")
         );
         addEmptyLine();
-        checkSpace(inedibleFoods);
-        return inedibleFoods;
+        checkSpace(inedibleMenus);
+        return inedibleMenus;
     }
 
     private void addEmptyLine() {

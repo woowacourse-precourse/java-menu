@@ -20,7 +20,7 @@ public class MenuController {
     public void start() {
         outputView.announceStart();
         generateCoaches();
-        registerInedibleFoods();
+        registerInedibleMenus();
         announceMenuRecommendResult();
     }
 
@@ -36,16 +36,16 @@ public class MenuController {
         }
     }
 
-    private void registerInedibleFoods() {
+    private void registerInedibleMenus() {
         List<String> coachNames = menuService.getCoachNames();
-        coachNames.forEach(this::registerInedibleFoodsEachCoach);
+        coachNames.forEach(this::registerInedibleMenusEachCoach);
     }
 
-    private void registerInedibleFoodsEachCoach(String coachName) {
+    private void registerInedibleMenusEachCoach(String coachName) {
         while (true) {
             try {
-                List<String> inedibleFoods = inputView.readInedibleFoodsOfCoach(coachName);
-                menuService.registerInedibleFoodsToCoach(coachName, inedibleFoods);
+                List<String> inedibleMenus = inputView.readInedibleMenusOfCoach(coachName);
+                menuService.registerInedibleMenusToCoach(coachName, inedibleMenus);
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());

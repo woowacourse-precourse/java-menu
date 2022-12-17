@@ -23,20 +23,20 @@ public class MenuService {
         return coaches.getCoachNames();
     }
 
-    public void registerInedibleFoodsToCoach(String coachName, List<String> inedibleFoods) {
-        checkFoods(inedibleFoods);
-        coaches.registerInedibleFoodsToCoach(coachName, inedibleFoods);
+    public void registerInedibleMenusToCoach(String coachName, List<String> inedibleMenus) {
+        checkMenus(inedibleMenus);
+        coaches.registerInedibleMenusToCoach(coachName, inedibleMenus);
     }
 
-    private void checkFoods(List<String> foods) {
-        if (haveOnlyEmptyValue(foods)) {
+    private void checkMenus(List<String> menus) {
+        if (haveOnlyEmptyValue(menus)) {
             return;
         }
-        foods.forEach(Category::checkFoodExist);
+        menus.forEach(Category::checkMenuExist);
     }
 
-    private boolean haveOnlyEmptyValue(List<String> foods) {
-        if (foods.get(0).equals("")) {
+    private boolean haveOnlyEmptyValue(List<String> menus) {
+        if (menus.get(0).equals("")) {
             return true;
         }
         return false;

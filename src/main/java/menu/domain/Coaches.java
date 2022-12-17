@@ -39,9 +39,9 @@ public class Coaches {
                 .collect(Collectors.toList());
     }
 
-    public void registerInedibleFoodsToCoach(String coachName, List<String> inedibleFoods) {
-        Coach coachToAddInedibleFoods = getCoachByName(coachName);
-        coachToAddInedibleFoods.registerInedibleFoods(inedibleFoods);
+    public void registerInedibleMenusToCoach(String coachName, List<String> inedibleMenus) {
+        Coach coachToAddInedibleMenus = getCoachByName(coachName);
+        coachToAddInedibleMenus.registerInedibleMenus(inedibleMenus);
     }
 
     private Coach getCoachByName(String coachName) {

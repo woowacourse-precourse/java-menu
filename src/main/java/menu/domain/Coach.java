@@ -1,9 +1,9 @@
 package menu.domain;
 
 import static menu.domain.constant.MenuRule.MAXIMUM_COACH_NAME_LENGTH;
-import static menu.domain.constant.MenuRule.MAXIMUM_INEDIBLE_FOOD_COUNT;
+import static menu.domain.constant.MenuRule.MAXIMUM_INEDIBLE_MENU_COUNT;
 import static menu.domain.constant.MenuRule.MINIMUM_COACH_NAME_LENGTH;
-import static menu.domain.constant.MenuRule.MINIMUM_INEDIBLE_FOOD_COUNT;
+import static menu.domain.constant.MenuRule.MINIMUM_INEDIBLE_MENU_COUNT;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -15,14 +15,14 @@ import menu.domain.vo.CoachMenu;
 
 public class Coach {
     private final String name;
-    private final List<String> inedibleFoods;
-    private final Map<Day, String> weeklyFoods;
+    private final List<String> inedibleMenus;
+    private final Map<Day, String> weeklyMenus;
 
     public Coach(String name) {
         validate(name);
         this.name = name;
-        this.inedibleFoods = new ArrayList<>();
-        this.weeklyFoods = new LinkedHashMap<>();
+        this.inedibleMenus = new ArrayList<>();
+        this.weeklyMenus = new LinkedHashMap<>();
     }
 
     private void validate(String name) {
@@ -42,20 +42,20 @@ public class Coach {
         return this.name.equals(name);
     }
 
-    public void registerInedibleFoods(List<String> inedibleFoods) {
-        validateInedibleFoods(inedibleFoods);
-        this.inedibleFoods.addAll(inedibleFoods);
+    public void registerInedibleMenus(List<String> inedibleMenus) {
+        validateInedibleMenus(inedibleMenus);
+        this.inedibleMenus.addAll(inedibleMenus);
     }
 
-    private void validateInedibleFoods(List<String> inedibleFoods) {
-        if (MINIMUM_INEDIBLE_FOOD_COUNT <= inedibleFoods.size()
-                && inedibleFoods.size() <= MAXIMUM_INEDIBLE_FOOD_COUNT) {
+    private void validateInedibleMenus(List<String> inedibleMenus) {
+        if (MINIMUM_INEDIBLE_MENU_COUNT <= inedibleMenus.size()
+                && inedibleMenus.size() <= MAXIMUM_INEDIBLE_MENU_COUNT) {
             return;
         }
         throw new IllegalArgumentException(String.format(
                 "[ERROR] 못 먹는 메뉴는 코치 당 %d개 이상 %d개 이하여야 합니다.",
-                MINIMUM_INEDIBLE_FOOD_COUNT,
-                MAXIMUM_INEDIBLE_FOOD_COUNT
+                MINIMUM_INEDIBLE_MENU_COUNT,
+                MAXIMUM_INEDIBLE_MENU_COUNT
         ));
     }
 
@@ -64,22 +64,22 @@ public class Coach {
         do {
             recommendMenu = categoryOfDay.getRandomMenu();
         } while (!canAddMenu(recommendMenu));
-        weeklyFoods.put(day, recommendMenu);
+        weeklyMenus.put(day, recommendMenu);
     }
 
     private boolean canAddMenu(String menu) {
-        if (inedibleFoods.contains(menu)) {
+        if (inedibleMenus.contains(menu)) {
             return false;
         }
-        List<String> existFoods = new ArrayList<>(weeklyFoods.values());
-        if (existFoods.contains(menu)) {
+        List<String> existMenus = new ArrayList<>(weeklyMenus.values());
+        if (existMenus.contains(menu)) {
             return false;
         }
         return true;
     }
 
     public CoachMenu getCoachMenu() {
-        List<String> existFoods = new ArrayList<>(weeklyFoods.values());
-        return new CoachMenu(name, existFoods);
+        List<String> existMenus = new ArrayList<>(weeklyMenus.values());
+        return new CoachMenu(name, existMenus);
     }
 }
