@@ -19,4 +19,21 @@ public class MenuController {
         this.menu = menu;
     }
 
+    private List<String> getNames() {
+        final CoachNameDto coachNameDto = InputView.getNames();
+        menu.validateCoachNames(coachNameDto);
+        return coachNameDto.getNames();
+    }
+
+    private List<List<String>> getMenus(final List<String> names) {
+        return names.stream().
+                map(name -> exceptionError(() -> getCoachMenu(name)))
+                .collect(Collectors.toList());
+    }
+
+    private List<String> getCoachMenu(final String name) {
+        final MenuDto menuDto = InputView.getMenus(name);
+        menu.validateMenus(menuDto);
+        return menuDto.getMenus();
+    }
 }
