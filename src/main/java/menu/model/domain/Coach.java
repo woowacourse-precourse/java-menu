@@ -9,8 +9,8 @@ import java.util.List;
  */
 public class Coach {
 
-    private String name;
-    private List<String> hateMenus;
+    private final String name;
+    private final List<String> hateMenus;
     public String monday;
     public String tuesday;
     public String wednesday;

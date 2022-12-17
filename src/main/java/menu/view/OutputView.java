@@ -50,41 +50,12 @@ public class OutputView {
         savingCategory(categories);
 
         System.out.println(DAY_OF_THE_WEEK);
-        System.out.printf((CATEGORY) + "%n",
-                category1,
-                category2,
-                category3,
-                category4,
-                category5
-        );
+        System.out.printf((CATEGORY) + "%n", category1, category2, category3, category4, category5);
 
+        savingMenu(coaches);
         for (Coach coach : coaches) {
-            coach.monday = Menu.getRandomMenu(category1, coach.getHateMenus());
-        }
-
-        for (Coach coach : coaches) {
-            coach.tuesday = Menu.getRandomMenu(category2, coach.getHateMenus());
-        }
-        for (Coach coach : coaches) {
-            coach.wednesday = Menu.getRandomMenu(category3, coach.getHateMenus());
-        }
-
-        for (Coach coach : coaches) {
-            coach.thursday = Menu.getRandomMenu(category4, coach.getHateMenus());
-        }
-
-        for (Coach coach : coaches) {
-            coach.friday = Menu.getRandomMenu(category5, coach.getHateMenus());
-        }
-
-        for (Coach coach : coaches) {
-            System.out.printf((MENU) + "%n",
-                    coach.getName(),
-                    coach.monday,
-                    coach.tuesday,
-                    coach.wednesday,
-                    coach.thursday,
-                    coach.friday
+            System.out.printf((MENU) + "%n", coach.getName(),
+                    coach.monday, coach.tuesday, coach.wednesday, coach.thursday, coach.friday
             );
         }
 
@@ -107,6 +78,27 @@ public class OutputView {
         categories.add(category5);
     }
 
+    private static void savingMenu(List<Coach> coaches) {
+        for (Coach coach : coaches) {
+            coach.monday = Menu.getRandomMenu(category1, coach.getHateMenus());
+        }
+
+        for (Coach coach : coaches) {
+            coach.tuesday = Menu.getRandomMenu(category2, coach.getHateMenus());
+        }
+
+        for (Coach coach : coaches) {
+            coach.wednesday = Menu.getRandomMenu(category3, coach.getHateMenus());
+        }
+
+        for (Coach coach : coaches) {
+            coach.thursday = Menu.getRandomMenu(category4, coach.getHateMenus());
+        }
+
+        for (Coach coach : coaches) {
+            coach.friday = Menu.getRandomMenu(category5, coach.getHateMenus());
+        }
+    }
     public static void printEnd() {
         System.out.println(END);
     }

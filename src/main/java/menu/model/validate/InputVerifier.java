@@ -48,7 +48,7 @@ public class InputVerifier {
         }
     }
 
-    public static boolean tryCoachesHateMenu(List<String> hateMenus) {
+    public static void tryCoachesHateMenu(List<String> hateMenus) {
         try {
             for (String hateMenu : hateMenus) {
                 coachHateMenuIsKorean(hateMenu);
@@ -56,9 +56,7 @@ public class InputVerifier {
             }
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
-            return false;
         }
-        return true;
     }
 
     private static void coachHateMenuIsKorean(String hateMenu) {
