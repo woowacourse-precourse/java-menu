@@ -29,18 +29,41 @@ public class MenuController {
         outputView.printApplicationStartGuide();
         List<Coach> coaches = inputView.repeatInput(() -> CoachCreator.from(inputView.inputCoachNames(outputView)), outputView);
     
-        coachesAddUneatableMenus(coaches);
-    
+        allCoachesAddUneatableMenus(coaches);
         addMenu(coaches);
     
         outputView.printRecommendResult(coaches);
     }
     
-    private void coachesAddUneatableMenus(List<Coach> coaches) {
+    private void allCoachesAddUneatableMenus(List<Coach> coaches) {
         for (Coach coach : coaches) {
-            List<Menu> uneatableMenus = inputView.repeatInput(() -> addUneatableMenus(coach), outputView);
+            List<Menu> uneatableMenus = inputView.repeatInput(() -> oneCoachAddUneatableMenus(coach), outputView);
             coach.addUneatableMenu(uneatableMenus);
         }
+    }
+    
+    private List<Menu> oneCoachAddUneatableMenus(Coach coach) {
+        String menusString = inputView.inputUneatableMenu(outputView, coach.name());
+        if (menusString.isEmpty()) {
+            return new ArrayList<>();
+        }
+        
+        List<String> menuNames = parseMenuNames(menusString);
+        return parseUneatableMenus(menuNames);
+    }
+    
+    private List<String> parseMenuNames(String menusString) {
+        return Arrays.stream(menusString.split(","))
+                .collect(Collectors.toUnmodifiableList());
+    }
+    
+    private List<Menu> parseUneatableMenus(List<String> menuNames) {
+        List<Menu> uneatableMenus = new ArrayList<>();
+        for (String menuName : menuNames) {
+            Menu menu = MenuRepository.findByMenuName(menuName);
+            uneatableMenus.add(menu);
+        }
+        return uneatableMenus;
     }
     
     private void addMenu(List<Coach> coaches) {
@@ -71,29 +94,5 @@ public class MenuController {
     
     private boolean isUnavailableMenu(Coach coach, Menu menu) {
         return coach.isExistSameMenu(menu) || coach.isExistSameCategoryOverTwo(menu) || coach.isUneatableMenu(menu);
-    }
-    
-    private List<Menu> addUneatableMenus(Coach coach) {
-        String menusString = inputView.inputUneatableMenu(outputView, coach.name());
-        if (menusString.isEmpty()) {
-            return new ArrayList<>();
-        }
-    
-        List<String> menuNames = parseMenuNames(menusString);
-        return parseUneatableMenus(menuNames);
-    }
-    
-    private static List<Menu> parseUneatableMenus(List<String> menuNames) {
-        List<Menu> uneatableMenus = new ArrayList<>();
-        for (String menuName : menuNames) {
-            Menu menu = MenuRepository.findByMenuName(menuName);
-            uneatableMenus.add(menu);
-        }
-        return uneatableMenus;
-    }
-    
-    private static List<String> parseMenuNames(String menusString) {
-        return Arrays.stream(menusString.split(","))
-                .collect(Collectors.toUnmodifiableList());
     }
 }
