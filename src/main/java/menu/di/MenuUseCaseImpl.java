@@ -19,6 +19,7 @@ public class MenuUseCaseImpl implements MenuUseCase {
     private static final int MAXIMUM_COACH_COUNT = 5;
     private static final int COACH_CANNOT_EAT_COUNT_START = 2;
     private static final int COACH_CANNOT_EAT_COUNT_END = 5;
+    private static final int MAX_SAME_CATEGORY = 2;
     private static final String COACH_CANNOT_EAT_ERROR_MESSAGE = "0개부터 2개까지만 못먹는 음식으로 등록할 수 있습니다";
     private static final int PICK_DATE_SIZE = 5;
     private final Map<Category, List<String>> menus;
@@ -79,12 +80,27 @@ public class MenuUseCaseImpl implements MenuUseCase {
     }
 
     private void recommendOneDay(List<Coach> coaches, List<Category> categories) {
-        Category picked = new CategoryPicker(picker).pickCategory();
-        categories.add(picked);
+        Category picked = pickCategory(categories);
         List<String> oneCategoryMenus = menus.get(picked);
         for (Coach coach : coaches) {
             recommendOneDayOneCoach(coach, oneCategoryMenus);
         }
+    }
+
+    private Category pickCategory(List<Category> picked) {
+        while (true) {
+            Category other = new CategoryPicker(picker).pickCategory();
+            if (canPickCategory(picked, other)) {
+                picked.add(other);
+                return other;
+            }
+        }
+    }
+
+    private boolean canPickCategory(List<Category> picked, Category newCategory) {
+        return picked.stream()
+                .filter(it -> it == newCategory)
+                .count() < MAX_SAME_CATEGORY;
     }
 
     private void recommendOneDayOneCoach(Coach coach, List<String> oneCategoryMenus) {
