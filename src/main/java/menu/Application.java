@@ -3,9 +3,7 @@ package menu;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.StringTokenizer;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import input.Input;
 import view.View;
@@ -18,6 +16,7 @@ public class Application {
 	public static List<List<String>> menuRecommendResult;
 	public static List<String> menuRecommend;
 	public static List<Integer> categoryCount;
+	public static List<String> weeklyCategory;
 
 	public static void main(String[] args) {
 		init();
@@ -40,16 +39,28 @@ public class Application {
 		//메뉴 추천하기
 
 		//카테고리 정하기
-		int categoryNumber = Randoms.pickNumberInRange(1, 5);
+		for(int i=0;i<5;i++) {
+			int categoryNumber = Randoms.pickNumberInRange(1, 5);
 
-		//한 주에 같은 카테고리는 최대 2회까지만 고를 수 있다.
-		while (categoryCount.get(categoryNumber) >= 2) {
-			categoryNumber = Randoms.pickNumberInRange(1, 5);
+			//한 주에 같은 카테고리는 최대 2회까지만 고를 수 있다.
+			while (categoryCount.get(categoryNumber) >= 2) {
+				categoryNumber = Randoms.pickNumberInRange(1, 5);
+			}
+
+			categoryCount.set(categoryNumber, categoryCount.get(categoryNumber) + 1);
+			//1이면 일식, 2면 한식, 3이면 중식, 4면 아시안, 5면 양식
+			weeklyCategory.add(Category.getCategoryName(categoryNumber));
+			List<String> menus = Category.getMenus(categoryNumber);
 		}
 
-		categoryCount.set(categoryNumber, categoryCount.get(categoryNumber) + 1);
-		//1이면 일식, 2면 한식, 3이면 중식, 4면 아시안, 5면 양식
-		List<String> menus = Category.getMenus(categoryNumber);
+		for(String category : weeklyCategory){
+			System.out.println(category);
+		}
+
+
+
+
+		//메뉴 선택하기
 
 		//메뉴 추천 결과 출력
 		//View.showRecommendResult(menuRecommendResult);
@@ -60,6 +71,7 @@ public class Application {
 
 	private static void init() {
 		coachesHateFood = new ArrayList<>();
+		weeklyCategory = new ArrayList<>();
 
 		categoryCount = new ArrayList<>();
 		for (int i = 0; i < 6; i++) {

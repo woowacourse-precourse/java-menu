@@ -37,4 +37,23 @@ public enum Category {
 
 	}
 
+	public static String getCategoryName(int categoryNumber) {
+		if (categoryNumber == 1) {
+			return "일식";
+		}
+		if (categoryNumber == 2) {
+			return "한식";
+		}
+		if (categoryNumber == 3) {
+			return "중식";
+		}
+		if (categoryNumber == 4) {
+			return "아시안";
+		}
+
+		return "양식";
+	}
+
+
+
 }

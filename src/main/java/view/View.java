@@ -18,6 +18,7 @@ public class View {
 
 	public static void showRecommendResult(List<List<String>> menuList) {
 		System.out.println("\n메뉴 추천 결과입니다.");
+		System.out.println("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
 
 		for(List<String> menus: menuList){
 			System.out.print("[ ");
