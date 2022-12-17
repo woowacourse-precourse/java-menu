@@ -16,8 +16,7 @@ public class Controller {
         System.out.println(Output.INIT);
         String[] names = ExceptionHandler.input(Input::inputName);
         for (String name : names) {
-            System.out.printf((Output.INPUT_HATE) + "%n", name);
-            List<String> hates = ExceptionHandler.input(Input::inputHate);
+            List<String> hates = Input.inputHate(name);
             coaches.add(new Coach(name, hates));
         }
     }

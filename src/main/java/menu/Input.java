@@ -33,9 +33,15 @@ public class Input {
         }
     }
 
-    public static List<String> inputHate() {
+    public static List<String> inputHate(String name) {
+        System.out.printf((Output.INPUT_HATE) + "%n", name);
         String input = Console.readLine();
-        validateHate(input);
+        try {
+            validateHate(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputHate(name);
+        }
         List<String> hateFoods = new ArrayList<>(List.of(input.split(DELiMITER)));
         return hateFoods;
     }
