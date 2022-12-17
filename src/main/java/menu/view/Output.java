@@ -13,8 +13,8 @@ public class Output {
         System.out.println(NEW_LINE + "코치의 이름을 입력해 주세요. (, 로 구분)");
     }
 
-    public void askCantEatMenu(Coach coache) {
-        System.out.println(String.format(NEW_LINE + "%s(이)가 못 먹는 메뉴를 입력해 주세요.", coache.getName()));
+    public void askCantEatMenu(Coach coach) {
+        System.out.println(String.format(NEW_LINE + "%s(이)가 못 먹는 메뉴를 입력해 주세요.", coach.getName()));
     }
 
     public void printError(String message) {
