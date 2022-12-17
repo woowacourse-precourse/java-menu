@@ -29,4 +29,11 @@ public class MenuRepository {
                 .map(menuName -> new Menu(menuName, category))
                 .collect(Collectors.toUnmodifiableList());
     }
+    
+    public static Menu findByMenuName(String menuName) {
+        return menus.stream()
+                .filter(menu -> menu.isSameMenuName(menuName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 메뉴입니다."));
+    }
 }
