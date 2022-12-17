@@ -1,5 +1,6 @@
 package menu.controller;
 
+import menu.domain.category.Category;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -46,7 +47,15 @@ public class InputController {
 
     private List<String> readHateMenus(String coachName) {
         outputView.printHateMenuGuide(coachName);
-        return inputView.readHateMenus();
+        List<String> menus = inputView.readHateMenus();
+        validateMenusName(menus);
+        return menus;
+    }
+
+    private void validateMenusName(List<String> menus) {
+        for (String menu : menus) {
+            Category.validateMenuName(menu);
+        }
     }
 
     private <T> T repeatUntilGettingValidValue(Supplier<T> getSomething) {
