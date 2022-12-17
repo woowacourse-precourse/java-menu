@@ -14,7 +14,6 @@ public class OutputView {
 
     public static void printStartMessage() {
         println(START_MESSAGE);
-        println();
     }
 
     private static void println() {
