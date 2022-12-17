@@ -60,7 +60,7 @@ public class MenuService {
             }
         }
     }
-    
+
     public void printServiceStart() {
         outputView.printStart();
     }
