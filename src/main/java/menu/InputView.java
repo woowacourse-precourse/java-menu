@@ -28,5 +28,15 @@ public class InputView {
         }
     }
 
+    private void validatePickyEatingsNumber(List<String> pickyEatings) {
+        if (pickyEatings.size() < 0 || pickyEatings.size() > 2) {
+            throw new IllegalArgumentException(MENU_NUMBER_ERROR_MESSAGE);
+        }
+    }
+
+//    private void validatePickyEatingsName(String pickEating) {
+//
+//    }
+
 
 }
