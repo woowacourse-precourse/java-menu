@@ -62,6 +62,16 @@ public class Service {
 		return count;
 	}
 
+
+	public void saveCoachs() {
+		List<String> inputCoachs = checkInputCoach();
+		for (String inputCoach : inputCoachs) {
+			List<String> inputNotEatFoods = checkInputNotEatFood(inputCoach);
+			coachRepository.setCoachs(inputCoach, inputNotEatFoods);
+		}
+		coach.setCoachsName(inputCoachs);
+	}
+
 	public void selectMenu() {
 		for (String category : byDayOfTheWeekSelectCategoryRepository) {
 			List<String> categoryMenu = totelMenu.getCategoryMenu(category);
