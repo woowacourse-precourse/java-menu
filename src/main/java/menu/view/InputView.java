@@ -1,10 +1,12 @@
 package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import menu.domain.Coach;
 import menu.domain.NotEatableFood;
 
 import java.util.List;
 
+import static menu.domain.Coach.validateCoachNames;
 import static menu.domain.NotEatableFood.createNotEatableFood;
 import static menu.view.OutputView.printCoachNames;
 import static menu.view.OutputView.printGetCoachNameMessage;
@@ -16,6 +18,7 @@ public class InputView {
         printGetCoachNameMessage();
         String names = Console.readLine();
         List<String> coachNames = List.of(names.split(","));
+        validateCoachNames(coachNames);
         printCoachNames(coachNames);
         return coachNames;
     }

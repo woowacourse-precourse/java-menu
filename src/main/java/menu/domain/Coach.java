@@ -27,16 +27,14 @@ public class Coach {
         this.notEatableFoods = notEatableFoods;
     }
 
-    public List<String> getCoachNames(String names) {
-        List<String> coachNames = List.of(names.split(","));
+    public static void validateCoachNames(List<String> coachNames){
         validateCoachesLength(coachNames);
         for (int i =0; i< coachNames.size(); i++) {
             validateCoachName(coachNames.get(i));
         }
-        return coachNames;
     }
 
-    private void validateCoachesLength(List<String> testNames) {
+    private static void validateCoachesLength(List<String> testNames) {
         if (testNames.size() < MIN_COACH_COUNT) {
             throw new IllegalArgumentException(COACH_COUNT_OUT_OF_RANGE_MIN);
         }
@@ -45,11 +43,11 @@ public class Coach {
         }
     }
 
-    private void validateCoachName(String name) {
+    private static void validateCoachName(String name) {
         checkNameLength(name);
     }
 
-    private void checkNameLength(String name) {
+    private static void checkNameLength(String name) {
         if (name.length() < MIN_COACH_NAME_LENGTH){
             throw new IllegalArgumentException(COACH_NAME_OUT_OF_RANGE_MIN);
         }

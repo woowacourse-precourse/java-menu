@@ -14,16 +14,16 @@ public class MenuController {
 
     public void start() {
         try {
-            init();
+            List<Coach> coaches = init();
 
         } catch (IllegalArgumentException error) {
             printErrorMessage(error.getMessage());
         }
     }
 
-    private void init() {
+    private List<Coach> init() {
         printStartMessage();
-        createCoaches();
+        return createCoaches();
     }
 
     private List<Coach> createCoaches() {
@@ -32,7 +32,6 @@ public class MenuController {
         for (String name : coachNames) {
             coaches.add(createEachCoach(name));
         }
-        System.out.println("coaches = " + coaches);
         return coaches;
     }
 
