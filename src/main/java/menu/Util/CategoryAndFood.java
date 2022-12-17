@@ -28,4 +28,12 @@ public class CategoryAndFood {
         categories.add(category);
         dataBase.put(category,line.subList(1, line.size()-1));
     }
+
+    public List<String> getCategoryList(){
+        return categories;
+    }
+
+    public HashMap<String, List<String>> getDataBase(){
+        return dataBase;
+    }
 }
