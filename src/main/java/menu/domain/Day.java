@@ -2,13 +2,10 @@ package menu.domain;
 
 import menu.domain.coach.Coach;
 import menu.domain.coach.Coachs;
-import menu.domain.menu.Food;
 import menu.domain.menu.Menu;
 import menu.util.MenuStatus;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Day {
@@ -38,7 +35,7 @@ public class Day {
         }
     }
 
-    public String getCoachsMenu(Menu menu, String categoriName) {
+    public String getCoachsRandomMenu(Menu menu, String categoriName) {
         return menu.getRandomMenuName(categoriName);
     }
 

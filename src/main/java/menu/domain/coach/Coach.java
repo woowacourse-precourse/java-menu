@@ -24,6 +24,4 @@ public class Coach {
     public void initFoods(List<String> foods) {
         this.foods = foods;
     }
-
-
 }

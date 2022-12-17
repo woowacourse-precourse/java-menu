@@ -74,17 +74,26 @@ public class DaysRecommand {
     }
 
     public void setDayMenu(Coach coach, Menu menu, String dayName) {
-        boolean eat = true;
+        boolean change = true;
         String menuName = MenuStatus.NOT_EAT.getMenu();
-        while (eat) {
-            menuName = days.get(dayName).getCoachsMenu(menu, getCategoriName());
-            eat = isAlreadyEat(coach, menuName);
-            eat = isHate(coach, menuName);
+        while (change) {
+            menuName = days.get(dayName).getCoachsRandomMenu(menu, getCategoriName());
+            change = haveToChangeMenu(coach, menuName);
         }
         days.get(dayName).setCoachsMenu(coach, menuName);
     }
+    private boolean haveToChangeMenu(Coach coach, String menuName) {
+        if (isAlreadyEat(coach, menuName)) {
+            return true;
+        }
 
-    public boolean isAlreadyEat(Coach coach, String menuName) {
+        if (isHate(coach, menuName)) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isAlreadyEat(Coach coach, String menuName) {
         for (DayStatus dayStatus : DayStatus.values()) {
             Map<Coach, String> day =  days.get(dayStatus.getDay()).getCoachMenu();
             if (isEat(menuName, day.get(coach))) {
@@ -94,14 +103,14 @@ public class DaysRecommand {
         return false;
     }
 
-    public boolean isEat(String menuName, String coachEat) {
+    private boolean isEat(String menuName, String coachEat) {
         if (menuName.equals(coachEat)) {
             return true;
         }
         return false;
     }
 
-    public boolean isHate(Coach coach, String menuName) {
+    private boolean isHate(Coach coach, String menuName) {
         if (coach.getFoods().contains(menuName)) {
             return true;
         }
