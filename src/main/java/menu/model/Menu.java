@@ -1,6 +1,7 @@
 package menu.model;
 
 public class Menu {
+
     private MenuCategory category;
     private String name;
 

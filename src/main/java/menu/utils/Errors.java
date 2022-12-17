@@ -1,6 +1,7 @@
 package menu.utils;
 
 public enum Errors {
+
     ERROR_TAG("[ERROR] "),
     INPUT_KOREAN_COACH_NAME("코치 이름은 한글만 입력할 수 있습니다."),
     NOT_RIGHT_NUMBER_OF_NAME_LENGTH("코치 이름은 2글자에서 4글자 사이어야 합니다."),

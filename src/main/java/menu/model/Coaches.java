@@ -12,6 +12,7 @@ import static menu.utils.Errors.NOT_RIGHT_COACH_SIZE;
 import static menu.utils.Errors.NOT_RIGHT_NUMBER_OF_NAME_LENGTH;
 
 public class Coaches extends Serializer {
+
     private static final String REGEX_KOREAN = "^[ㄱ-ㅎ가-힣, ]*$";
     private static final int MAX_MERMBER_SIZE = 5;
     private static final int MIN_MEMBER_SIZE = 2;

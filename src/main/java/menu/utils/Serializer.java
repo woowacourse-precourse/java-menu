@@ -1,6 +1,7 @@
 package menu.utils;
 
 public abstract class Serializer {
+
     private static final String SPACE = " ";
     private static final String NONE = "";
     private static final String COMMA = ",";

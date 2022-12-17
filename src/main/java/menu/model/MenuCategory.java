@@ -5,6 +5,7 @@ import java.util.Arrays;
 import static menu.utils.Errors.NOT_EXIST_CATEGORY;
 
 public enum MenuCategory {
+
     JAPAN("일식", 1),
     KOREA("한식", 2),
     CHINA("중식", 3),

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Coach {
-    private static final long MAX_RECOMMENDED_COUNT = 2L;
 
     private final String name;
     private final List<String> cannotEatFoods = new ArrayList<>();

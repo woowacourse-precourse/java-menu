@@ -12,6 +12,7 @@ import static menu.utils.Errors.ENTER_KOREAN_MENU;
 import static menu.utils.Errors.NOT_RIGHT_NUMBER_OF_MENU;
 
 public class Menus extends Serializer {
+
     private static final String REGEX_KOREAN = "^[ㄱ-ㅎ가-힣, ]*$";
     private static final int MAX_CANNOT_EAT_FOOD_NUMBER = 2;
 

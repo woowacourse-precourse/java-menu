@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RecommendResult {
+
     private final Coach coach;
     private final List<Menu> menus;
 

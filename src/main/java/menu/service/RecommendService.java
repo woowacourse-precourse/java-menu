@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecommendService {
+
     private static final int FIRST = 1;
     private static final String INITIAL_MENU_NAME = "";
 

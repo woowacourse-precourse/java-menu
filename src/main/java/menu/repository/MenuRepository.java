@@ -15,6 +15,7 @@ import static menu.model.MenuCategory.KOREA;
 import static menu.model.MenuCategory.WESTERN;
 
 public class MenuRepository {
+
     private static final Map<MenuCategory, List<String>> menus = new HashMap<>();
 
     private static final String JAPANESE_FOOD = "규동, 우동, 미소시루, 스시, 가츠동, 오니기리, 하이라이스, 라멘, 오코노미야끼";

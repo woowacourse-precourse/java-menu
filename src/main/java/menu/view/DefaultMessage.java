@@ -1,6 +1,7 @@
 package menu.view;
 
 public abstract class DefaultMessage {
+
     protected static void addNewLine() {
         System.out.println();
     }
