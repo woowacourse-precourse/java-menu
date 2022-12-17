@@ -22,7 +22,7 @@ class CategoryTest {
         assertThat(Category.getCategory(index)).isEqualTo(categories.get(index - 1));
     }
 
-    @DisplayName("2번 추천된 카테고리는 추천할 수 없다.")
+    @DisplayName("2번 이상 추천된 카테고리는 추천할 수 없다.")
     @Test
     void createOverCategoryCount() {
         // given
