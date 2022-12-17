@@ -24,7 +24,7 @@ public class Category {
     }
 
     public boolean isAlreadyRecommendedOver(int count){ // 네이밍 이상
-        return recommendedCount > count;
+        return recommendedCount >= count;
     }
 
     public void updateRecommendedCount(){
