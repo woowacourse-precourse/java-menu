@@ -52,7 +52,7 @@ public class MenuSuggester {
                 count++;
             }
         }
-        if (count > 2) {
+        if (count >= 2) {
             return false;
         }
         return true;
