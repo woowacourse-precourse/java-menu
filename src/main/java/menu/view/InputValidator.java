@@ -4,6 +4,7 @@ import menu.enums.MenuOption;
 import menu.module.NotModule;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -12,6 +13,8 @@ import static menu.message.ErrorMsg.*;
 public class InputValidator extends NotModule {
 
     private static final String COMMA = ",";
+    private static final String BLANK = "";
+    private static final int ZERO = 0;
     private static final int LOWER_COACH_NUMBER_INCLUSIVE = 2;
     private static final int UPPER_COACH_NUMBER_INCLUSIVE = 5;
     private static final int UPPER_SIZE_OF_HATE_FOODS_INCLUSIVE = 2;
@@ -53,6 +56,9 @@ public class InputValidator extends NotModule {
     }
 
     private boolean isNotExistFoods(List<String> hateFoods) {
+        if (Objects.equals(hateFoods.get(ZERO), BLANK)) {
+            return false;
+        }
         for (String food : hateFoods) {
             if (not(MenuOption.isExistFood(food))) {
                 return true;
