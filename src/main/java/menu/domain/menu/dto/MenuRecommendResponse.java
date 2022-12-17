@@ -21,4 +21,15 @@ public class MenuRecommendResponse {
     public List<Food> getFoods() {
         return foods;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[ ").append(coach.getName());
+        for (Food food : foods) {
+            sb.append(" | ").append(food.getName());
+        }
+        sb.append(" ]");
+        return sb.toString();
+    }
 }
