@@ -23,6 +23,12 @@ public class Validator {
     }
 
     public static void validateFoodName(String[] names) {
+        validateFoodNameNumber(names);
+    }
 
+    private static void validateFoodNameNumber(String[] names) {
+        if (2 < names.length) {
+            throw new IllegalArgumentException(INVALID_NUMBER_COACH_NAME);
+        }
     }
 }
