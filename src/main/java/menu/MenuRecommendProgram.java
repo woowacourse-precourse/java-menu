@@ -1,6 +1,7 @@
 package menu;
 
 import menu.coach.Coach;
+import menu.input.InputView;
 import menu.menu.Category;
 
 import java.util.ArrayList;
@@ -8,10 +9,14 @@ import java.util.HashMap;
 import java.util.List;
 
 public class MenuRecommendProgram {
+
+    private static final InputView inputView = new InputView();
+
     private HashMap<String, Integer> countOfCategorySelected;
     private List<Coach> coaches;
     private MenuRecommend menuRecommend;
     private List<String> selectedCategory;
+
 
     public MenuRecommendProgram() {
         countOfCategorySelected = new HashMap<>() {{
@@ -37,6 +42,21 @@ public class MenuRecommendProgram {
         }
 
         // 결과 출력
+    }
+
+    private void start() {
+        // 메뉴 추천 문구 출력
+        // 이름 입력 메서드 사용
+
+        // 메뉴 입력 메서드 사용
+    }
+
+    private void inputCoach() {
+        List<String> coachNames = inputView.readCoaches();
+        for (String coachName: coachNames) {
+            Coach coach = new Coach(coachName);
+            coaches.add(coach);
+        }
     }
 
     public void selectMenus(String category) {
