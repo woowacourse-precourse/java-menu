@@ -1,6 +1,7 @@
 package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import menu.model.Coach;
 import menu.utils.Converter;
 
 import java.util.List;
@@ -17,5 +18,12 @@ public class InputView {
         String names = Console.readLine();
         System.out.println();
         return converter.convertToList(names);
+    }
+
+    public List<String> getNoMenu(Coach coach) {
+        System.out.printf("%s(이)가 못 먹는 메뉴를 입력해 주세요.\n", coach.getName());
+        String menu = Console.readLine();
+        System.out.println();
+        return converter.convertToList(menu);
     }
 }
