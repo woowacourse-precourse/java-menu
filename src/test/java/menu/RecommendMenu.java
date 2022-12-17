@@ -2,6 +2,9 @@ package menu;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+
+import org.assertj.core.util.Arrays;
+
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class RecommendMenu {
@@ -102,13 +105,11 @@ public class RecommendMenu {
 		recommendedMenu = new ArrayList<>();
 		String category = "";
 		int indexOfCategory = 0;
-		int randFoodIndex = 0;
 		String food = "";
 		for(int i = 0; i < categoryForWeek.size(); i++) {
 			category = categoryForWeek.get(i);
 			indexOfCategory = findCategoryIndex(category);
-			randFoodIndex = Randoms.pickNumberInRange(0, menu.get(indexOfCategory).length - 1);
-			food = checkIfNotEatingFood(person, indexOfCategory, randFoodIndex);
+			food = checkIfNotEatingFood(person, indexOfCategory);
 			recommendedMenu.add(food);
 		}
 	}
@@ -123,16 +124,16 @@ public class RecommendMenu {
 		return categoryindex;
 	}
 	
-	public String checkIfNotEatingFood(int person, int indexOfCategory, int randFoodIndex) {
+	public String checkIfNotEatingFood(int person, int indexOfCategory) {
 		String food = "";
-		int newrandFoodIndex = randFoodIndex;
 		ArrayList<String> notEatingMenu = notEatingMenuForEachCoach.get(person);
+		ArrayList<String> thisMenu = new ArrayList(Arrays.asList(menu.get(indexOfCategory));
 		while(true) {
-			food = menu.get(indexOfCategory)[newrandFoodIndex];
+			Randoms.shuffle(thisMenu);
+			food = thisMenu.get(0);
 			if(!notEatingMenu.contains(food) && !checkIfDuplicatedFood(food)) {
 				return food;
 			}
-			newrandFoodIndex = Randoms.pickNumberInRange(0, menu.get(indexOfCategory).length - 1);
 		}
 	}
 	
