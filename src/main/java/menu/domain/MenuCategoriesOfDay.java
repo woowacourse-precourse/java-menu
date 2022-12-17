@@ -30,6 +30,6 @@ public class MenuCategoriesOfDay {
     }
 
     public boolean canAdd(MenuCategory category) {
-        return getCategoryCount(category) < MAX_DUPLICATE_CATEGORY_SIZE;
+        return getCategoryCount(category) <= MAX_DUPLICATE_CATEGORY_SIZE;
     }
 }
