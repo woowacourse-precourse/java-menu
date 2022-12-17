@@ -64,7 +64,7 @@ public class OutputView {
 
     private static void printCategories(Map<Coach, RecommendResult> result) {
         RecommendResult recommendResult = result.values().stream().findFirst().get();
-        System.out.print(LINE_PREFIX + CATEGORY_PREFIX + DELIMITER);
+        System.out.print(LINE_PREFIX + CATEGORY_PREFIX);
         for (DayOfWeek dayOfWeek : DayOfWeek.values()) {
             System.out.print(DELIMITER);
             Category category = recommendResult.getMenus(dayOfWeek).getCategory();
