@@ -20,4 +20,8 @@ public class Coach {
     public List<Menu> getDislikeFood() {
         return dislikeFood;
     }
+
+    public void addDislikeFood(Menu menu) {
+        dislikeFood.add(menu);
+    }
 }
