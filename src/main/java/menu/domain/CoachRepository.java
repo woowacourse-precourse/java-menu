@@ -3,6 +3,7 @@ package menu.domain;
 import menu.utils.ExceptionMessage;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CoachRepository {
@@ -11,6 +12,9 @@ public class CoachRepository {
 
     private static final List<Coach> coaches = new ArrayList<>();
 
+    public static List<Coach> coaches() {
+        return Collections.unmodifiableList(coaches);
+    }
     public static void addCoaches(Coach coach) {
         coaches.add(coach);
     }
