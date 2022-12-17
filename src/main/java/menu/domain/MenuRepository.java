@@ -2,6 +2,7 @@ package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,13 +35,37 @@ public class MenuRepository {
                 .collect(Collectors.toList());
     }
 
+    private static List<Menu> findAll() {
+        ArrayList<Menu> totalMenus = new ArrayList<>();
+        menus.forEach((category, menusByCategory) -> totalMenus.addAll(menusByCategory));
+        return totalMenus;
+    }
+
+    private static boolean has(Menu menu) {
+        return findAll().contains(menu);
+    }
+
     private static class Validator {
 
         public static final String INVALID_BANNED_MENU_SIZE = "각 코치는 최소 0개, 최대 2개의 못 먹는 메뉴가 있다.";
 
+        public static final String MENU_NOT_EXISTING = "존재하지 않는 메뉴 이름";
         public static void validateOnSavingBannedMenu(List<Menu> bannedMenusToSave) {
+            for (Menu menu : bannedMenusToSave) {
+                isExistingMenu(menu);
+            }
+            hasValidSize(bannedMenusToSave);
+        }
+
+        private static void hasValidSize(List<Menu> bannedMenusToSave) {
             if (bannedMenusToSave.size() < Menu.MIN_BANNED_MENU || Menu.MAX_BANNED_MENU < bannedMenusToSave.size()) {
                 throw new IllegalArgumentException(INVALID_BANNED_MENU_SIZE);
+            }
+        }
+
+        private static void isExistingMenu(Menu menu) {
+            if (!MenuRepository.has(menu)) {
+                throw new IllegalArgumentException(MENU_NOT_EXISTING);
             }
         }
     }

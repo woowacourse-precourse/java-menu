@@ -33,6 +33,7 @@ public class CoachInfoInputView extends AbstractInputView {
         public static List<Menu> toMenus(String bannedMenusInput) {
             String[] bannedMenus = splitSentenceByComma(bannedMenusInput);
             return Arrays.stream(bannedMenus)
+                    .filter(value -> !value.isEmpty())
                     .map(Menu::new)
                     .collect(Collectors.toList());
         }
