@@ -17,6 +17,8 @@ public class Controller {
         for (Coach coach : CoachRepository.coaches()) {
             foodRecommender.repeatThisWeekFood(coach);
         }
+        OutputView.printRecommendationResult(CoachRepository.coaches());
+        OutputView.printMenuRecommendationEnd();
     }
 
     public void inputAndSaveCoachName() {
@@ -39,10 +41,5 @@ public class Controller {
                 System.out.println(e.getMessage());
             }
         }
-    }
-
-    public static void main(String[] args) {
-        new Controller().run();
-        CoachRepository.coaches().forEach((coach) -> System.out.println(coach.getName() + " : " + coach.getDoNotEatFoods().toString()));
     }
 }
