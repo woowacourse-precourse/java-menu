@@ -1,24 +1,24 @@
 package menu.controller;
 
 import menu.service.MainService;
+import menu.util.ExceptionHandler;
 import menu.view.InputView;
 import menu.view.OutputView;
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public class MainController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final MainService mainService = new MainService();
+    private final ExceptionHandler exceptionHandler = new ExceptionHandler(outputView);
+    private final MainService mainService = new MainService(exceptionHandler);
 
     public void run() {
         outputView.printStart();
-        List<String> coachNames = repeat(inputView::readNames);
+        List<String> coachNames = exceptionHandler.repeat(inputView::readNames);
         mainService.generateCoaches(coachNames);
 
         for (String coachName : coachNames) {
-            process(this::setCantEatMenus, coachName);
+            exceptionHandler.process(this::setCantEatMenus, coachName);
         }
 
         mainService.recommend();
@@ -26,25 +26,7 @@ public class MainController {
 
     private void setCantEatMenus(String coachName) {
         outputView.printCoachCantEat(coachName);
-        List<String> cantEatMenus = repeat(inputView::readCantEatMenu);
+        List<String> cantEatMenus = exceptionHandler.repeat(inputView::readCantEatMenu);
         mainService.setCantEatMenus(cantEatMenus, coachName);
-    }
-
-    private <T> T repeat(Supplier<T> reader) {
-        try {
-            return reader.get();
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            return repeat(reader);
-        }
-    }
-
-    private <T> void process(Consumer<T> consumer, T t) {
-        try {
-            consumer.accept(t);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            process(consumer, t);
-        }
     }
 }

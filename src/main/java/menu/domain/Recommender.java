@@ -2,19 +2,17 @@ package menu.domain;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class Recommend {
+public class Recommender {
     private static final int DAYS_OF_A_WEEK = 5;
     private static final int MIN_RANGE = 0;
     private static final int MAX_RANGE = 4;
 
     private final List<Category> categories = new ArrayList<>(DAYS_OF_A_WEEK);
 
-    public Recommend() {
+    public Recommender() {
         recommendCategories();
     }
 

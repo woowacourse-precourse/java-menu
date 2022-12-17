@@ -3,13 +3,19 @@ package menu.service;
 import menu.domain.Coach;
 import menu.domain.Coaches;
 import menu.domain.Menu;
-import menu.domain.Recommend;
+import menu.domain.Recommender;
+import menu.util.ExceptionHandler;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class MainService {
+    private final ExceptionHandler exceptionHandler;
     private Coaches coaches;
-    private Recommend recommend;
+    private Recommender recommender;
+
+    public MainService(ExceptionHandler exceptionHandler) {
+        this.exceptionHandler = exceptionHandler;
+    }
 
     public void generateCoaches(List<String> coachNames) {
         List<Coach> coaches = coachNames.stream()
@@ -34,7 +40,7 @@ public class MainService {
     }
 
     public void recommend() {
-        recommend = new Recommend();
-        List<String> recommendMenus = recommend.recommendMenus();
+        recommender = new Recommender();
+        exceptionHandler.process(coaches::recommendMenus, recommender);
     }
 }
