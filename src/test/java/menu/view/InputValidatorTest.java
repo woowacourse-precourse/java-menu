@@ -1,5 +1,6 @@
 package menu.view;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
@@ -36,4 +37,18 @@ class InputValidatorTest {
                 .hasMessage("못 먹는 메뉴는 2개까지만 가능합니다.");
     }
 
+    @ParameterizedTest
+    @CsvSource({"샥스핀", "똥냠꿍"})
+    void validateCanNotEatMenuTest(String menuName) {
+        assertThatThrownBy(() -> inputValidator.validateCanNotEatMenu(menuName))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("카테고리에 존재하지 않는 메뉴입니다.");
+    }
+
+    @ParameterizedTest
+    @CsvSource({"규동", "김치찌개", "라자냐"})
+    void validateCanNotEatMenu_메서드는_카테고리에_존재하는_메뉴에_대해서는_예외를_발생시키지_않는다(String menuName) {
+        assertThatCode(() -> inputValidator.validateCanNotEatMenu(menuName))
+                .doesNotThrowAnyException();
+    }
 }

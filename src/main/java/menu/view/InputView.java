@@ -29,6 +29,10 @@ public class InputView {
         List<String> canNotEatMenus = new ArrayList<>(Arrays.asList(line.split(",")));
         inputValidator.validateCanNotEatMenusLength(canNotEatMenus);
 
+        for (String canNotEatMenu : canNotEatMenus) {
+            inputValidator.validateCanNotEatMenu(canNotEatMenu);
+        }
+
         return canNotEatMenus;
     }
 }
