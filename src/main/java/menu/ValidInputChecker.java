@@ -20,9 +20,9 @@ public class ValidInputChecker {
     }
 
     private static String validateFoodName(String food){
-        Menu menu = new Menu();
+        FoodInfo foodInfo = new FoodInfo();
         if(food == null) return null;
-        if(!menu.isExist(food))
+        if(!foodInfo.isExist(food))
             throw new IllegalArgumentException("[ERROR] 못 먹는 메뉴가 존재하지 않는 값입니다.");
         return food;
     }
