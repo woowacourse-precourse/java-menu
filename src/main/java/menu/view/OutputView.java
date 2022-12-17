@@ -15,12 +15,11 @@ public class OutputView {
     public static final String THURSDAY = "목요일";
     public static final String FRIDAY = "금요일";
 
-    public static void printResult(List<String> categories){
+    public static void printResult(){
         System.out.println(SystemMessage.RESULT_OUTPUT_MESSAGE);
         printDay();
-        printCategory(categories);
     }
-    public static void printDay() {
+    private static void printDay() {
         StringJoiner day = new StringJoiner(" | ", "[ ", " ]");
 
         day.add(MONDAY);

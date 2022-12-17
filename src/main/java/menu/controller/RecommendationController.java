@@ -1,7 +1,8 @@
 package menu.controller;
 
 import static menu.controller.CategoryRegister.getMenus;
-import static menu.view.OutputView.printDay;
+import static menu.view.OutputView.printCategory;
+import static menu.view.OutputView.printResult;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -30,8 +31,8 @@ public class RecommendationController {
             Coach coach = new Coach(coachName, dislikeMenus);
             coaches.add(coach);
         }
-//        System.out.println(coaches);
         runRecommendation(coaches);
+        printResult();
     }
 
     private void runRecommendation(List<Coach> coaches) {
@@ -40,20 +41,25 @@ public class RecommendationController {
             MatchingCategory matchingCategory = new MatchingCategory(
                     categoryNumberGenerator.generate());
             String Category = matchingCategory.getCategory();
-            System.out.println(Category);
             List<String> recommendedResult = new ArrayList<>();
             recommendedResult.add(matchingMenu(Category));
-            System.out.println(recommendedResult);
             addRecommendResult(coaches,recommendedResult);
         }
-    }
+        printResults(coaches);
 
+    }
+    private void printResults(List<Coach> coaches){
+        for(Coach coach : coaches){
+            printCategory(coach.getRecommendMenus());
+        }
+    }
     private void addRecommendResult(List<Coach> coaches, List<String> recommendedResult) {
         for(Coach coach : coaches){
             coach.setRecommendMenus(recommendedResult);
         }
     }
     private String matchingMenu(String Category) {
-        return Randoms.shuffle(getMenus(Category)).get(0);
+        String currentmenu = Randoms.shuffle(getMenus(Category)).get(0);
+        return currentmenu;
     }
 }

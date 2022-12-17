@@ -12,12 +12,13 @@ public class Coach {
     public Coach(String coachName, List<String> disLikeMenus) {
         this.coachName = coachName;
         this.disLikeMenus = disLikeMenus;
-        System.out.println("이건 코치"+ this.coachName+ this.disLikeMenus);
     }
 
     public void setRecommendMenus(List<String> recommendMenus) {
         this.recommendMenus = recommendMenus;
-        for(String s: recommendMenus)
-            System.out.print(coachName+":"+s);
+    }
+
+    public List<String> getRecommendMenus(){
+        return this.recommendMenus;
     }
 }
