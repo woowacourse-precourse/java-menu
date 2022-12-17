@@ -70,8 +70,12 @@ public class MenuController {
 
     private List<String> getInputs() {
         List<String> inputs = new ArrayList<>();
-        for (String coach : menuService.getCoachesName())
-            inputs.add(inputView.readCoachesAvoidance(coach));
+        for (String coach : menuService.getCoachesName()) {
+            String menu = inputView.readCoachesAvoidance(coach);
+            Category.isValidMenu(menu);
+
+            inputs.add(menu);
+        }
 
         return inputs;
     }

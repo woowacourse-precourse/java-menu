@@ -1,6 +1,11 @@
 package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import menu.exception.InputException;
+
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public enum Category {
     JAPANESE("일식", new Japanese()),
@@ -21,7 +26,22 @@ public enum Category {
         return categoryName;
     }
 
+    public AbstractCategory getCategory() {
+        return category;
+    }
+
     public String pickMenu() {
         return Randoms.shuffle(this.category.menus).get(0);
+    }
+
+    public static void isValidMenu(String menu) {
+        Set<String> allMenus = Arrays.stream(Category.values())
+                .map(Category::getCategory)
+                .flatMap(o -> o.menus.stream())
+                .collect(Collectors.toSet());
+        allMenus.add("");
+
+        if(!allMenus.contains(menu))
+            throw new IllegalArgumentException(InputException.INVALID_AVOIDANCE.getMessage());
     }
 }
