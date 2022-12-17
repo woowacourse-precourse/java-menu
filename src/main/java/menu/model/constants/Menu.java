@@ -2,6 +2,7 @@ package menu.model.constants;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -41,17 +42,36 @@ public enum Menu {
         return menu;
     }
 
-    public static List<String> getRandomCategoryWeek() {
-
+    public static String getRandomCategoryWeek(List<String> categories) {
+        while (categories.size() != 5) {
+            String category = getRandomCategory();
+            if (categories.size() < 3) {
+                return category;
+            }
+            if (!isCategoryListIn2(categories, category)) {
+                return category;
+            }
+        }
+        return null;
     }
 
     public static String getRandomCategory() {
-        int randomNumber = Randoms.pickNumberInList(Arrays.asList(1, 2, 3, 4, 5));
+        int randomNumber = Randoms.pickNumberInRange(1, 5);
         for (Menu menu : Menu.values()) {
             if (menu.getMenuNumber() == randomNumber) {
                 return menu.getMenuCategory();
             }
         }
         return null;
+    }
+
+    private static boolean isCategoryListIn2(List<String> categories, String category) {
+        int cnt = 0;
+        for (String menuCategory : categories) {
+            if (menuCategory.equals(category)) {
+                cnt++;
+            }
+        }
+        return cnt == 2;
     }
 }

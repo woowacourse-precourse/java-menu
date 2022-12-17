@@ -3,6 +3,7 @@ package menu.view;
 import menu.model.constants.Menu;
 import menu.model.domain.Coach;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,7 +20,12 @@ public class OutputView {
     private static final String DAY_OF_THE_WEEK =
                     "\n메뉴 추천 결과입니다." +
                     "\n[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]";
-    private static final String CATEGORY = "\n[ 카테고리 | %s | %s | %s | %s | %s ]";
+    private static final String CATEGORY = "[ 카테고리 | %s | %s | %s | %s | %s ]";
+    private static String category1;
+    private static String category2;
+    private static String category3;
+    private static String category4;
+    private static String category5;
 
     public static void printError(String errorMessage) {
         System.out.println(ERROR_TITLE + errorMessage);
@@ -38,7 +44,34 @@ public class OutputView {
     }
 
     public static void printRecommendMenu(List<Coach> coaches) {
+        List<String> categories = new ArrayList<>();
+        savingCategory(categories);
+
         System.out.println(DAY_OF_THE_WEEK);
-        System.out.println(String.format(CATEGORY, Menu.getRandomCategory(), ));
+        System.out.printf((CATEGORY) + "%n",
+                category1,
+                category2,
+                category3,
+                category4,
+                category5
+        );
     }
+
+    private static void savingCategory(List<String> categories) {
+        category1 = Menu.getRandomCategoryWeek(categories);
+        categories.add(category1);
+
+        category2 = Menu.getRandomCategoryWeek(categories);
+        categories.add(category2);
+
+        category3 = Menu.getRandomCategoryWeek(categories);
+        categories.add(category3);
+
+        category4 = Menu.getRandomCategoryWeek(categories);
+        categories.add(category4);
+
+        category5 = Menu.getRandomCategoryWeek(categories);
+        categories.add(category5);
+    }
+
 }
