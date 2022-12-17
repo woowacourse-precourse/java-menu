@@ -50,8 +50,7 @@ public class CoachService {
         for (Coach coach : coaches) {
             String[] cannotEats;
             while (true) {
-                OutputView.printSetCoachesCannotEat(coach);
-                cannotEats = InputView.setCoachesCannotEats();
+                cannotEats = askCoachesCannotEats(coach);
                 if (cannotEats != null) {
                     break;
                 }
@@ -60,6 +59,17 @@ public class CoachService {
                 coach.addCannotEat(cannotEat);
             }
         }
+    }
+
+    private static String[] askCoachesCannotEats(Coach coach) {
+        OutputView.printSetCoachesCannotEat(coach);
+        String[] cannotEats = null;
+        try {
+            cannotEats = InputView.setCoachesCannotEats();
+        } catch (IllegalArgumentException exception) {
+            OutputView.printErrorMessage_setCoachesCannotEats();
+        }
+        return cannotEats;
     }
 
 }

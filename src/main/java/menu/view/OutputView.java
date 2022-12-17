@@ -12,6 +12,8 @@ public class OutputView {
 
     private static final String ERROR_MESSAGE_START = "[ERROR] ";
     private static final String ERROR_MESSAGE_SET_COACHES_NAME = "코치는 최소 2명 이상, 5명 이하 입력해야 합니다.\n";
+    private static final String ERROR_MESSAGE_SET_COACHES_CANNOT_EATS = "못 먹는 메뉴는 최대 2개까지만 가능하며, 존재하는 메뉴여야 합니다.\n";
+
 
     public static void printStartMessage() {
         System.out.println(START_MESSAGE);
@@ -31,6 +33,10 @@ public class OutputView {
 
     public static void printSetCoachesCannotEat(Coach coach) {
         System.out.println(coach.getName() + SET_COACHES_CANNOT_EAT);
+    }
+
+    public static void printErrorMessage_setCoachesCannotEats() {
+        System.out.println(ERROR_MESSAGE_START + ERROR_MESSAGE_SET_COACHES_CANNOT_EATS);
     }
 
 }
