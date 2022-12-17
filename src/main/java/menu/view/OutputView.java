@@ -24,10 +24,11 @@ public class OutputView {
     }
 
     public void printRecommendedResult(List<Day> rowTitles, Map<String, List<String>> menusByCoach, List<Category> categories) {
-        print(Message.RESULT_GUIDE.getMessage());
         String titleMessage = makeTitleMessage(rowTitles);
-        print(titleMessage);
         String categoryMessage = makeCategoryMessage(categories);
+
+        print(Message.RESULT_GUIDE.getMessage());
+        print(titleMessage);
         print(categoryMessage);
         printRecommendedMenuByCoach(menusByCoach);
         print(Message.RECOMMENDATION_FINISHING.getMessage());
