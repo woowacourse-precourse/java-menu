@@ -15,7 +15,7 @@ public class InputException {
     }
 
     public static void hateMenusNumCheck(String[] hateMenus) throws IllegalArgumentException {
-        if (hateMenus.length > 3)
+        if (hateMenus.length > 2)
             throw new IllegalArgumentException("최대 2개의 먹지 못하는 메뉴를 \",\"로 구분하여 입력하였는지 확인하세요.");
     }
 }

@@ -28,7 +28,6 @@ public class FoodRecommender {
         return categories;
     }
 
-
     private void pickMenu(Coach coach, String category) {
         String newMenu;
         while (true) {
