@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Coach {
     private String name;
-    private List<String> category;
+    private static List<Integer> category;
     private List<String> notEatMenus;
     private List<String> recommendedMenus;
 
@@ -20,11 +20,11 @@ public class Coach {
         this.name = name;
     }
 
-    public List<String> getCategory() {
+    public List<Integer> getCategory() {
         return category;
     }
 
-    public void setCategory(List<String> category) {
+    public void setCategory(List<Integer> category) {
         this.category = category;
     }
 
