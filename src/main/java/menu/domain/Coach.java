@@ -14,7 +14,7 @@ public class Coach {
     public Coach(String name) {
         this.name = name;
         this.notEatableMenu = new ArrayList<>();
-        pickMenu = null;
+        pickMenu = new PickMenu();
     }
 
     public String getName() {
@@ -30,8 +30,8 @@ public class Coach {
         }
     }
 
-    public void makePickMenu(PickCategory pickCategory) {
-        pickMenu = new PickMenu(pickCategory, notEatableMenu);
+    public void makePickMenu(PickCategory pickCategory, int weekend) {
+        pickMenu.addPickMenu(pickCategory.getCategories().get(weekend), notEatableMenu, weekend);
     }
 
     public List<Menu> getPickMenu() {

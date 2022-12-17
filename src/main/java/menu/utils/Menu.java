@@ -37,7 +37,7 @@ public enum Menu {
     GOCHUJAMCHAE("고추잡채", "중식",9, 3),
     PATAI("팟타이", "아시안",1, 4),
     CAOPAT("카오 팟", "아시안",2, 4),
-    NASIGORANG("나시고랭", "아시안",3, 4),
+    NASIGORANG("나시고렝", "아시안",3, 4),
     PINEAPPLE("파인애플 볶음밥", "아시안",4, 4),
     SSALGUKSU("쌀국수", "아시안",5, 4),
     DDOMYANGGUNG("똠양꿍", "아시안",6, 4),

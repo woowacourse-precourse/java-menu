@@ -20,8 +20,10 @@ public class Coaches {
     }
 
     public void pickMenus(PickCategory pickCategory) {
-        for (Coach coach : coaches) {
-            coach.makePickMenu(pickCategory);
+        for (int i = 0 ; i < 5 ; i++) {
+            for (Coach coach : coaches) {
+                coach.makePickMenu(pickCategory, i);
+            }
         }
     }
 }

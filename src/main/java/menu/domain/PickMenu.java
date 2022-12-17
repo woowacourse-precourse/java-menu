@@ -14,36 +14,33 @@ public class PickMenu {
     private static final int MIN_MENU_NUMBER = 1;
     private final List<Menu> menus;
 
-    public PickMenu(PickCategory pickCategory, List<Menu> notEatableMenu) {
-        this.menus = pickRandomMenus(pickCategory, notEatableMenu);
+    public PickMenu() {
+        menus = new ArrayList<>();
     }
 
-    private List<Menu> pickRandomMenus(PickCategory pickCategory, List<Menu> notEatableMenu) {
+    public void addPickMenu(Category category, List<Menu> notEatableMenu, int weekend) {
         boolean isDuplicate = true;
         boolean isNotEatable = true;
-        List<Menu> makeMenu = new ArrayList<>();
+        Menu pickMenu = null;
         while(isDuplicate || isNotEatable) {
-            makeMenu.clear();
-            for (Category category : pickCategory.getCategories()) {
-                makeMenu.add(Menu.getRandomFood(category));
-            }
-            isDuplicate = validDuplicate(makeMenu);
-            isNotEatable = validNotEatable(notEatableMenu, makeMenu);
+            pickMenu = Menu.getRandomFood(category);
+            isDuplicate = validDuplicate();
+            isNotEatable = validNotEatable(notEatableMenu);
         }
-        return makeMenu;
+        menus.add(pickMenu);
     }
 
-    private boolean validDuplicate(List<Menu> makeMenu) {
-        for (int i = 0 ; i < makeMenu.size(); i++) {
-            if (Collections.frequency(makeMenu, makeMenu.get(i)) > 1)
+    private boolean validDuplicate() {
+        for (int i = 0 ; i < menus.size(); i++) {
+            if (Collections.frequency(menus, menus.get(i)) > 1)
                 return true;
         }
         return false;
     }
 
-    private boolean validNotEatable(List<Menu> notEatable, List<Menu> makeMenu) {
+    private boolean validNotEatable(List<Menu> notEatable) {
         for (Menu menu : notEatable) {
-            if (Collections.frequency(makeMenu, menu) >= 1) {
+            if (Collections.frequency(menus, menu) >= 1) {
                 return true;
             }
         }
