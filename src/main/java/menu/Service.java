@@ -12,8 +12,14 @@ public class Service {
 	Category category = new Category();
 	Menu menu = new Menu();
 	TotelMenu totelMenu = new TotelMenu();
+	InputView inputView = new InputView();
+	CoachRepository coachRepository = new CoachRepository();
 	List<String> byDayOfTheWeekSelectCategoryRepository = new ArrayList<>();
+	Coach coach = new Coach();
+	OutputView outputView = new OutputView();
 	Map<String, Integer> countCotegory = new HashMap<>();
+
+	Map<String, List<String>> perCoachRecommendMenu = new HashMap<>();
 
 	public void programSetting() {
 		menuMapping();
@@ -35,7 +41,6 @@ public class Service {
 		}
 	}
 
-
 	public void byDayOfTheWeekSelectCategory() {
 		while (countSelect() != 5) {
 			String selectCategory = category.getCategory(Randoms.pickNumberInRange(0, 4));
@@ -44,13 +49,11 @@ public class Service {
 	}
 
 	public void judgmentCotegotyAdd(String selectCategory) {
-		if (countCotegory.get(selectCategory) < 2)
+		if (countCotegory.get(selectCategory) < 2) {
+			countCotegory.put(selectCategory, countCotegory.get(selectCategory) + 1);
 			byDayOfTheWeekSelectCategoryRepository.add(selectCategory);
+		}
 	}
-
-
-
-
 
 	public int countSelect() {
 		int count = 0;
@@ -58,8 +61,6 @@ public class Service {
 			count += countValue;
 		return count;
 	}
-
-
 	private List<String> checkInputCoach() {
 		try {
 			outputView.coachInputMessage();
