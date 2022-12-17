@@ -1,4 +1,4 @@
-package menu.domain;
+package menu.domain.vo;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNoException;
@@ -6,6 +6,8 @@ import static org.assertj.core.api.Assertions.assertThatNoException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import menu.domain.vo.Name;
 
 public class NameTest {
 
