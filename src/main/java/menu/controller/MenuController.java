@@ -1,6 +1,9 @@
 package menu.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import menu.domain.Coach;
+import menu.domain.FoodRecommender;
 import menu.view.InputView;
 
 public class MenuController {
@@ -11,6 +14,9 @@ public class MenuController {
     }
 
     public void run() {
-        List<String> coaches = inputView.readCoaches();
+        List<Coach> coaches = inputView.readCoaches()
+                .stream().map(Coach::new)
+                .collect(Collectors.toList());
+        FoodRecommender recommender = new FoodRecommender(coaches);
     }
 }
