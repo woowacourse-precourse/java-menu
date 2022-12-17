@@ -2,7 +2,6 @@ package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import java.util.stream.Collectors;
 import menu.model.Menu;
 import menu.model.MenuRepository;
 import menu.util.StringParser;

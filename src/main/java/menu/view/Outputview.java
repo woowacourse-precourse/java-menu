@@ -1,14 +1,17 @@
 package menu.view;
 
+import java.util.Arrays;
 import java.util.List;
 import menu.model.Category;
 import menu.model.Coach;
+import menu.model.Days;
 
 public class Outputview {
     private static final String START_MESSAGE = "점심 메뉴 추천을 시작합니다.";
     private static final String BAR = " | ";
-    private static final String RESULT_MESSAGE = "\n메뉴 추천 결과입니다.\n[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]";
+    private static final String RESULT_MESSAGE = "\n메뉴 추천 결과입니다.";
     private static final String FINAL_MESSAGE = "추천을 완료했습니다.";
+    private static final String DAYS_START = "구분";
     private static final String EACH_LINE_OPEN = "[ ";
     private static final String EACH_LINE_CLOSE = " ]";
 
@@ -18,6 +21,7 @@ public class Outputview {
 
     public void printResult(List<Coach> coachList, List<Category> categories) {
         System.out.println(RESULT_MESSAGE);
+        printDays();
         printCategory(categories);
         coachList.stream().forEach(this::printCoach);
         System.out.println(FINAL_MESSAGE);
@@ -30,6 +34,14 @@ public class Outputview {
         }
         int index = categoryMessage.lastIndexOf(BAR);
         String categoryFinal = categoryMessage.substring(0, index);
+        System.out.println(categoryFinal.concat(EACH_LINE_CLOSE));
+    }
+
+    private void printDays() {
+        StringBuilder daysResult = new StringBuilder(EACH_LINE_OPEN + DAYS_START + BAR);
+        Arrays.stream(Days.values()).forEach(v -> daysResult.append(v.getName() + BAR));
+        int index = daysResult.lastIndexOf(BAR);
+        String categoryFinal = daysResult.substring(0, index);
         System.out.println(categoryFinal.concat(EACH_LINE_CLOSE));
     }
 

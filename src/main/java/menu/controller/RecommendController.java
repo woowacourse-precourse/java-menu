@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import menu.model.Category;
 import menu.model.Coach;
+import menu.model.Days;
 import menu.model.Menu;
 import menu.model.MenuRepository;
 import menu.view.Inputview;
 import menu.view.Outputview;
 
 public class RecommendController {
-    private static final int DAYS = 5;
     private static final int NUMBER_OF_MAX_CATEGORY_DUPLICATE = 2;
     private final MenuRepository menuRepository;
     private final List<Coach> coaches;
@@ -52,7 +52,7 @@ public class RecommendController {
         outputview.printResult(coaches, categories);
     }
 
-    public void recommendMenuEachCoach(Coach coach, Category category) {
+    private void recommendMenuEachCoach(Coach coach, Category category) {
         Menu recommendMenu;
         do {
             recommendMenu = recommendMenuByCategory(category);
@@ -71,7 +71,7 @@ public class RecommendController {
 
     public List<Category> getFiveCategories() {
         List<Category> categories = new ArrayList<>();
-        for (int i = 0; i < DAYS; ) {
+        for (int i = 0; i < Days.values().length; ) {
             Category tmpCategory = Category.byNumber(Randoms.pickNumberInRange(1, 5));
             if (isMoreThanTwo(categories, tmpCategory)) {
                 continue;
