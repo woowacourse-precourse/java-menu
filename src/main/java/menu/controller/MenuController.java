@@ -23,7 +23,7 @@ public class MenuController {
         try {
             OutputView.recommendStart();
             getRecommendMenu();
-            OutputView.printResult(menuService.getCoach());
+            OutputView.printResult(menuService.getCoach(), menuService.getCategories());
             OutputView.quit();
         }
         catch (IllegalArgumentException | IllegalStateException exception){

@@ -33,6 +33,7 @@ public class OutputView {
     }
 
     private static void printCategory(List<Category> categories) {
+        categories.add(0,Category.CATEGORY);
         String category = categories
                 .stream().map(Category::getName)
                 .collect(Collectors.joining(" | ", "[ ", " ]"));
