@@ -42,7 +42,7 @@ public class LunchTable {
                 .filter(selectCategory -> selectCategory.equals(category)).count());
     }
 
-    private void matchingFood(){
+    public void matchingLunch(){
         for(int i = 0; i<5; i++){
             matchCoachRandomFood(categories.get(i));
         }
@@ -68,8 +68,16 @@ public class LunchTable {
 
     }
 
+    public List<String> getCategoriesName(){
+        List<String> categoriesName = new ArrayList<>();
+
+        for(Categories category: this.categories){
+            categoriesName.add(category.getCategoryName());
+        }
+
+        return categoriesName;
+    }
     public HashMap<Coach, List<String>> getFoodsMatchingResult(){
-        matchingFood();
         return this.foodsMatchingResult;
     }
 }
