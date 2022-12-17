@@ -2,8 +2,8 @@ package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import menu.dto.CoachNamesDto;
-import menu.dto.NoEatDto;
-import menu.dto.NoEatsDto;
+import menu.dto.CoachDto;
+import menu.dto.CoachesDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,18 +28,18 @@ public class InputView {
         return new CoachNamesDto(List.of(names.split(",")));
     }
 
-    public NoEatsDto readNoEats(CoachNamesDto coachNamesDto) {
+    public CoachesDto readNoEats(CoachNamesDto coachNamesDto) {
         return coachNamesDto.getNames().stream()
                 .map(this::readNoEat)
-                .collect(Collectors.collectingAndThen(Collectors.toUnmodifiableList(), NoEatsDto::new));
+                .collect(Collectors.collectingAndThen(Collectors.toUnmodifiableList(), CoachesDto::new));
     }
 
-    private NoEatDto readNoEat(String coachName) {
+    private CoachDto readNoEat(String coachName) {
         System.out.println(String.format("%s(이)가 못 먹는 메뉴를 입력해 주세요.", coachName));
         String noEat = Console.readLine();
         printBlankLine();
         InputValidator.validateNoEat(noEat);
-        return new NoEatDto(coachName, List.of(noEat.split(",")));
+        return new CoachDto(coachName, List.of(noEat.split(",")));
     }
 
     private void printBlankLine() {
