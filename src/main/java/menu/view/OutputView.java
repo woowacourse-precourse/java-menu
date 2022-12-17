@@ -13,7 +13,11 @@ public class OutputView {
         printBreak();
     }
 
-
+    //에러 메세지 출력
+    public static void printError(String message) {
+        System.out.println("[ERROR] " + message);
+        printBreak();
+    }
 
     public static void printBreak() {
         System.out.println();
