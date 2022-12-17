@@ -3,6 +3,8 @@ package menu.util;
 import menu.constant.ExceptionConstants;
 import menu.constant.MenuConstants;
 
+import java.util.List;
+
 public class Validator {
 
     public static void validateNumberOfCoaches(int numberOfCoaches) {
@@ -26,6 +28,15 @@ public class Validator {
     public static void validateNumberOfInedibleMenus(int numberOfInedibleMenus) {
         if (MenuConstants.MAXIMUM_NUMBER_OF_INEDIBLE_MENUS < numberOfInedibleMenus) {
             throw new IllegalArgumentException(ExceptionConstants.TOO_MANY_MENUS.getMessage());
+        }
+    }
+
+    public static void validateDuplication(String input) {
+        List<String> splittedInput = List.of(input.split(MenuConstants.DELIMITER));
+        if (splittedInput.size() != splittedInput.stream()
+                .distinct()
+                .count()) {
+            throw new IllegalArgumentException(ExceptionConstants.DUPLICATION.getMessage());
         }
     }
 }
