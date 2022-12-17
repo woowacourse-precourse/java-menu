@@ -60,8 +60,8 @@ class CoachTest {
 
         Coach tomi = new Coach("토미", menus, newArrayList(recommendResult, recommendResult2));
 
-        boolean duplicateCategory = tomi.isDuplicateCategory(Category.JAPAN_FOOD, Day.WED);
-        assertThat(duplicateCategory).isTrue();
+        boolean result = tomi.isDuplicateCategory(Category.JAPAN_FOOD);
+        assertThat(result).isTrue();
     }
 
     @Test
@@ -76,8 +76,8 @@ class CoachTest {
 
         Coach tomi = new Coach("토미", menus, newArrayList(recommendResult, recommendResult2));
 
-        boolean duplicateCategory = tomi.isDuplicateCategory(Category.EUROPE_FOOD, Day.WED);
-        assertThat(duplicateCategory).isFalse();
+        boolean result = tomi.isDuplicateCategory(Category.EUROPE_FOOD);
+        assertThat(result).isFalse();
     }
 
     @Test
@@ -92,8 +92,8 @@ class CoachTest {
 
         Coach tomi = new Coach("토미", menus, newArrayList(recommendResult, recommendResult2));
 
-        boolean duplicateCategory = tomi.isDuplicateMenu(new Menu(Category.JAPAN_FOOD, "오니기리"));
-        assertThat(duplicateCategory).isTrue();
+        boolean result = tomi.isDuplicateMenu(new Menu(Category.JAPAN_FOOD, "오니기리"));
+        assertThat(result).isTrue();
     }
 
     @Test
@@ -108,7 +108,23 @@ class CoachTest {
 
         Coach tomi = new Coach("토미", menus, newArrayList(recommendResult, recommendResult2));
 
-        boolean duplicateCategory = tomi.isDuplicateMenu(new Menu(Category.EUROPE_FOOD, "피자"));
-        assertThat(duplicateCategory).isFalse();
+        boolean result = tomi.isDuplicateMenu(new Menu(Category.EUROPE_FOOD, "피자"));
+        assertThat(result).isFalse();
+    }
+
+    @Test
+    void 못먹는_메뉴인지_검사() {
+        List<Menu> menus = List.of(new Menu(Category.JAPAN_FOOD, "우동"),
+                new Menu(Category.JAPAN_FOOD, "스시")
+        );
+        RecommendResult recommendResult =
+                new RecommendResult(Day.MON, Category.JAPAN_FOOD, new Menu(Category.JAPAN_FOOD, "오니기리"));
+        RecommendResult recommendResult2 =
+                new RecommendResult(Day.TUE, Category.EUROPE_FOOD, new Menu(Category.JAPAN_FOOD, "피자"));
+
+        Coach tomi = new Coach("토미", menus, newArrayList(recommendResult, recommendResult2));
+
+        boolean result = tomi.canEat(new Menu(Category.EUROPE_FOOD, "우동"));
+        assertThat(result).isFalse();
     }
 }

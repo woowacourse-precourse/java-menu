@@ -42,15 +42,10 @@ public class Coach {
         }
     }
 
-    public boolean isDuplicateCategory(Category category, Day day) {
-        int count = 0;
-        for (int i = 0; i < day.getIndex(); i++) {
-            RecommendResult recommendResult = recommendResults.get(i);
-            if (recommendResult.isEqualCategory(category)) {
-                count++;
-            }
-        }
-        System.out.println(count);
+    public boolean isDuplicateCategory(Category category) {
+        long count = recommendResults.stream()
+                .filter(recommendResult -> recommendResult.isEqualCategory(category))
+                .count();
         return count >= MACIMUM_CATEGORY_SIZE;
     }
 
