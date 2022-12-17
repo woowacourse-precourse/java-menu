@@ -1,13 +1,11 @@
 package menu.domain.coach;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Coach {
     private final String name;
-    private final List<String> recommendedFoods = new ArrayList<>();
-    private final List<String> doNotRecommendFoods = new ArrayList<>();
+    private final Menus recommendedMenus = Menus.generate();
+    private final Menus hateMenus = Menus.generate();
 
     public Coach(String name) {
         this.name = name;
@@ -17,20 +15,20 @@ public class Coach {
         return name;
     }
 
-    public void addDoNotRecommendFood(String name) {
-        doNotRecommendFoods.add(name);
+    public void addHateMenu(String menu) {
+        hateMenus.add(menu);
     }
 
-    public void recommendFood(String name) {
-        recommendedFoods.add(name);
+    public void recommend(String menu) {
+        recommendedMenus.add(menu);
     }
 
     private boolean isNotRecommended(String menu) {
-        return !recommendedFoods.contains(menu);
+        return recommendedMenus.doNotHas(menu);
     }
 
     private boolean likeMenu(String menu) {
-        return !doNotRecommendFoods.contains(menu);
+        return hateMenus.doNotHas(menu);
     }
 
     public boolean canRecommend(String menu) {
@@ -38,6 +36,6 @@ public class Coach {
     }
 
     public List<String> getRecommendedFoods() {
-        return Collections.unmodifiableList(recommendedFoods);
+        return recommendedMenus.getAll();
     }
 }
