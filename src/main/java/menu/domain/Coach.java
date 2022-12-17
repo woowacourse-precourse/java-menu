@@ -2,6 +2,7 @@ package menu.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import menu.util.NullValidator;
 
 public class Coach {
 
@@ -10,8 +11,18 @@ public class Coach {
     private final List<String> ateMenu = new ArrayList<>();
 
     public Coach(CoachName coachName, List<String> notEatMenus) {
+        validateCoachName(coachName);
+        validateNotEatMenus(notEatMenus);
         this.coachName = coachName;
         this.notEatMenus = notEatMenus;
+    }
+
+    private void validateNotEatMenus(List<String> notEatMenus) {
+        NullValidator.throwIfNull(notEatMenus);
+    }
+
+    private void validateCoachName(CoachName coachName) {
+        NullValidator.throwIfNull(coachName);
     }
 
     public boolean canEat(String menu) {
