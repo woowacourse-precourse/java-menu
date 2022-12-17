@@ -9,6 +9,8 @@ public enum Category {
     ASIAN("아시안", 4),
     WEST("양식", 5);
 
+    public static final int MIN_CATEGORY_CODE = 1;
+    public static final int MAX_CATEGORY_CODE = 5;
     private static final String INVALID_CATEGORY_VALUE_MESSAGE = "유효하지 않은 값입니다.";
     private final String name;
     private final int code;
@@ -18,8 +20,7 @@ public enum Category {
         this.code = code;
     }
 
-    //TODO: val의 네이밍 꼭 변경하기
-    public Category from(int code) {
+    public static Category from(int code) {
         return Arrays.stream(values())
                 .filter(category -> category.code == code)
                 .findFirst()

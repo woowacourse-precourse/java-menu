@@ -1,6 +1,8 @@
 package menu.domain;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public enum Menu {
     규동("규동", Category.JAPANESE),
@@ -60,8 +62,15 @@ public enum Menu {
 
     public static Menu from(String name) {
         return Arrays.stream(values())
-                .filter(menu -> menu.name == name)
+                .filter(menu -> menu.name.equals(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_MENU_VALUE_MESSAGE));
+    }
+
+    public static List<String> findByCategory(Category category) {
+        return Arrays.stream(Menu.values())
+                .filter(menu -> menu.category == category)
+                .map(menu -> menu.name)
+                .collect(Collectors.toList());
     }
 }
