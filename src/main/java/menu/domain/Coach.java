@@ -27,4 +27,11 @@ public class Coach {
         }
         ateMenu.add(menu);
     }
+
+    public List<String> toDto() {
+        List<String> dto = new ArrayList<>();
+        dto.add(coachName.getName());
+        dto.addAll(ateMenu);
+        return dto;
+    }
 }

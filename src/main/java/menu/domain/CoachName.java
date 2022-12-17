@@ -20,4 +20,8 @@ public class CoachName {
             throw new IllegalArgumentException("한글 2~4 글자 가 아닙니다");
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }

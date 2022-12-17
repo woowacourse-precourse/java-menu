@@ -30,3 +30,8 @@ public enum Category {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("카테고리가 존재하지 않습니다"));
     }
+
+    public String toDto() {
+        return keyword;
+    }
+}
