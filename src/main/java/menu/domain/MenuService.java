@@ -29,7 +29,17 @@ public class MenuService {
     }
 
     private void checkFoods(List<String> foods) {
+        if (haveOnlyEmptyValue(foods)) {
+            return;
+        }
         foods.forEach(Category::checkFoodExist);
+    }
+
+    private boolean haveOnlyEmptyValue(List<String> foods) {
+        if (foods.get(0).equals("")) {
+            return true;
+        }
+        return false;
     }
 
     public void recommendMenu() {
