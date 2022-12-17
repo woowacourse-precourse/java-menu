@@ -2,6 +2,7 @@ package menu.controller;
 
 import java.util.List;
 
+import menu.model.Category;
 import menu.model.Coaches;
 import menu.model.Menu;
 import menu.model.MenuList;
@@ -14,6 +15,7 @@ public class Controller {
 	private Menu menu;
 	private MenuList menusCantEat;
 	private InputView inputView;
+	private Category category;
 
 	public Controller() {
 		this.inputView = new InputView();
@@ -22,10 +24,9 @@ public class Controller {
 
 	public void logic() {
 		OutputView.printStartMessage();
-		// List<String> coachNames = inputView.inputCoaches();
 		coaches = setCoachesName();
 		menusCantEat = setMenusCantEat();
-		// OutputView.printResult();
+		OutputView.printResult();
 	}
 
 	private Coaches setCoachesName() {
