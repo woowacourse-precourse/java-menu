@@ -10,24 +10,33 @@ import menu.domain.FoodCategory;
 import menu.domain.MenuResult;
 
 public class OutputView {
+    private static final String START_MESSAGE = "점심 메뉴 추천을 시작합니다.";
+    private static final String RESULT_MESSAGE = "메뉴 추천 결과입니다.";
+    private static final String FINISH_MESSAGE = "추천을 완료했습니다.";
+    private static final String DAYS_MESSAGE = "구분";
+    private static final String CATEGORY_MESSAGE = "카테고리";
+    private static final String RESULT_BASIC_FORMAT = "[ %s | %s ]\n";
+    private static final String DELIMITER = " | ";
+    private static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s\n";
+
     public void printStart() {
-        System.out.println("점심 메뉴 추천을 시작합니다.");
+        System.out.println(START_MESSAGE);
     }
 
     public void printResult(MenuResult menuResult) {
-        System.out.println("메뉴 추천 결과입니다.");
+        System.out.println(RESULT_MESSAGE);
         printDays();
         printCategory(menuResult.getFoodCategories());
         printMenusByCoach(menuResult.getCoaches());
-        System.out.println("추천을 완료했습니다.");
+        System.out.println(FINISH_MESSAGE);
     }
 
     private void printDays() {
-        System.out.printf("[ 구분 | %s ]\n", String.join(" | ", dayToStrings()));
+        printBasicFormat(DAYS_MESSAGE, dayToStrings());
     }
 
     private void printCategory(Map<Day, FoodCategory> foodCategory) {
-        System.out.printf("[ 카테고리 | %s ]\n", String.join(" | ", convertCategoryToName(foodCategory)));
+        printBasicFormat(CATEGORY_MESSAGE, convertCategoryToName(foodCategory));
     }
 
     private List<String> convertCategoryToName(Map<Day, FoodCategory> foodCategories) {
@@ -45,9 +54,12 @@ public class OutputView {
 
     private void printMenusByCoach(List<Coach> coaches) {
         for (Coach coach : coaches) {
-            System.out.printf("[ %s | %s ]\n", coach.getName(),
-                    String.join(" | ", convertMenuToName(coach.getMenus())));
+            printBasicFormat(coach.getName(), convertMenuToName(coach.getMenus()));
         }
+    }
+
+    private void printBasicFormat(String subject, List<String> elements) {
+        System.out.printf(RESULT_BASIC_FORMAT, subject, String.join(DELIMITER, elements));
     }
 
     private List<String> convertMenuToName(Map<Day, String> foodCategories) {
@@ -57,7 +69,7 @@ public class OutputView {
     }
 
     public void printError(String message) {
-        System.out.printf("[ERROR] %s\n", message);
+        System.out.printf(ERROR_MESSAGE_FORMAT, message);
     }
 }
 

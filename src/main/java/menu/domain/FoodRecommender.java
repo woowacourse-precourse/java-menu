@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 public class FoodRecommender {
+    private static final int COACH_MIN_SIZE = 2;
+    private static final int COACH_MAX_SIZE = 5;
+
     private final List<Coach> coaches;
     private Map<Day, FoodCategory> foodCategories;
 
@@ -39,13 +42,14 @@ public class FoodRecommender {
     }
 
     private void validateSize(List<Coach> coaches) {
-        if (coaches.size() < 2 || coaches.size() > 5) {
+        if (coaches.size() < COACH_MIN_SIZE || coaches.size() > COACH_MAX_SIZE) {
             throw new IllegalArgumentException("코치는 2~5명 사이만 입력 가능합니다.");
         }
     }
 
     private FoodCategory generateCategory(Day day) {
-        FoodCategory category = FoodCategory.of(Randoms.pickNumberInRange(1, 5));
+        FoodCategory category = FoodCategory.of(
+                Randoms.pickNumberInRange(FoodCategory.getFirstNumber(), FoodCategory.getLastNumber()));
         if (getCategorySelectCount(category) == 2) {
             return generateCategory(day);
         }

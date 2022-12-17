@@ -27,6 +27,14 @@ public enum FoodCategory {
                 .orElseThrow(() -> new IllegalArgumentException("해당 번호는 카테고리에 없습니다"));
     }
 
+    public static int getLastNumber() {
+        return WESTERN.categoryNumber;
+    }
+
+    public static int getFirstNumber() {
+        return JAPANESE.categoryNumber;
+    }
+
     public String getName() {
         return name;
     }

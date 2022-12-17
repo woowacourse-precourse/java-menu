@@ -39,16 +39,19 @@ public class MenuController {
 
     private List<Coach> getCoaches() {
         try {
-            List<Coach> coaches = inputView.readCoaches()
-                    .stream()
-                    .map(Coach::new)
-                    .collect(Collectors.toList());
+            List<Coach> coaches = readCoaches();
             recommender = new FoodRecommender(coaches);
             return coaches;
-
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return getCoaches();
         }
+    }
+
+    private List<Coach> readCoaches() {
+        return inputView.readCoaches()
+                .stream()
+                .map(Coach::new)
+                .collect(Collectors.toList());
     }
 }
