@@ -7,6 +7,8 @@ import menu.domain.WeeklyRecommendCategory;
 
 import java.util.List;
 
+import static menu.constatnts.Constants.*;
+
 public class OutputView {
     private static final String START_MSG = "[ ";
     private static final String OR_MSG = " | ";
@@ -14,13 +16,13 @@ public class OutputView {
 
     public void printRecommendedMenu(List<Coach> allCoach, WeeklyRecommendCategory weeklyCategory) {
         System.out.println();
-        System.out.println("메뉴 추천 결과입니다.");
+        System.out.println(PRINT_RECOMMEND_FOOD_MSG);
         printWeeklyDay();
         printWeeklyRecommendCategory(weeklyCategory);
         for (Coach coach : allCoach) {
             printMealsEachCoach(coach);
         }
-        System.out.println("추천을 완료했습니다.");
+        System.out.println(PRINT_RECOMMEND_FOOD_END_MSG);
     }
 
     private void printMealsEachCoach(Coach coach) {
@@ -34,7 +36,7 @@ public class OutputView {
 
     private void printWeeklyDay() {
         System.out.print(START_MSG);
-        System.out.print("구분");
+        System.out.print(PRINT_SUBJECT_DAY_MSG);
         for (String day : Weekly.getAllDays()) {
             System.out.print(OR_MSG + day);
         }
@@ -43,7 +45,7 @@ public class OutputView {
 
     private void printWeeklyRecommendCategory(WeeklyRecommendCategory weeklyCategory) {
         System.out.print(START_MSG);
-        System.out.print("카테고리");
+        System.out.print(PRINT_CATEGORY_DAY_MSG);
         for (int idx : weeklyCategory.getCategoryIdxs()) {
             System.out.print(OR_MSG + Category.getWantCategoryName(idx));
         }

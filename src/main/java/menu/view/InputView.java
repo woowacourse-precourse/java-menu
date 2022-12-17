@@ -7,27 +7,30 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.PatternSyntaxException;
 
+import static menu.constatnts.Constants.*;
+
 public class InputView {
+
     public List<String> scanCoachNames() {
         System.out.println();
-        System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
+        System.out.println(SCAN_COACH_NAMES_MSG);
         List<String> names;
         try {
-            names = Arrays.asList(Console.readLine().split(","));
+            names = Arrays.asList(Console.readLine().split(SPLITTER_INPUT));
         } catch (PatternSyntaxException e) {
-            throw new IllegalArgumentException("[ERROR]코치의 이름은 ,로 구분하여 2명이상 5명 이하 입니다.");
+            throw new IllegalArgumentException(ERROR_COACH_NAME_SPLITTER);
         }
         return validateNames(names);
     }
 
     public List<String> validateNames(List<String> names) {
-        if (names.size() < 2 || 5 < names.size()) {
-            throw new IllegalArgumentException("[ERROR] 코치 인원수가 너무 적거나 많음");
+        if (names.size() < COACH_NUMS_MIN || COACH_NUMS_MAX < names.size()) {
+            throw new IllegalArgumentException(ERROR_COACH_NUMS);
         }
 
         for (String name : names) {
-            if (name.length() < 2 || 4 < name.length()) {
-                throw new IllegalArgumentException("[ERROR] 코치의 이름 길이는 2이상 4이하 입니다.");
+            if (name.length() < COACH_NAMES_LENGTH_MIN || COACH_NAMES_LENGTH_MAX < name.length()) {
+                throw new IllegalArgumentException(ERROR_COACH_NAME_LENGTH);
             }
         }
         return names;
@@ -35,20 +38,20 @@ public class InputView {
 
     public List<String> scanHatesFood(String name) {
         System.out.println();
-        System.out.printf("%s(이)가 못 먹는 메뉴를 입력해 주세요.\n", name);
+        System.out.printf(SCAN_COACH_HATES_FOOD_MSG, name);
         List<String> hates;
         try {
-            hates = Arrays.asList(Console.readLine().split(","));
+            hates = Arrays.asList(Console.readLine().split(SPLITTER_INPUT));
         } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR]싫어하는 음식을 잘못 입력 하셨습니다.");
+            throw new IllegalArgumentException(ERROR_COACH_FOODS_SPLITTER);
         }
         return validateHatesFood(hates);
     }
 
     public List<String> validateHatesFood(List<String> hates) {
 
-        if (2 < hates.size()) {
-            throw new IllegalArgumentException("[ERROR] 싫어 하는 음식을 너무 많이 입력 하셨습니다.");
+        if (COACH_HATE_FOOD_MAX < hates.size()) {
+            throw new IllegalArgumentException(ERROR_COACH_HEATED_FOOD_MANY);
         }
         //싫어 하는게 없는 경우
         if (hates.equals(List.of(""))) {
