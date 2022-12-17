@@ -32,7 +32,7 @@
 - [x] 각 코치들에게 월요일부터 금요일까지의 음식 카테고리를 Randoms.pickNumberInRange()을 사용하여 추천해준다.
   - [x] 한 주에 같은 음식 카테고리가 3개 이상 있는지 확인하고, 있다면 CannotRecommendCategoryException 발생
   - [x] CannotRecommendCategoryException 에러 발생 시 해당 코치에게 다시 음식 카테고리를 추천해준다.
-- [ ] 음식 카테고리 안에서 음식을 Randoms.shuffle()을 사용하여 섞고, 가장 앞에 있는 음식을 추천해준다.
+- [x] 음식 카테고리 안에서 음식을 Randoms.shuffle()을 사용하여 섞고, 가장 앞에 있는 음식을 추천해준다.
   - [ ] 한 주에 같은 음식이 2개 이상 있는지 확인하고, 있다면 CannotRecommendMenuException 발생
   - [ ] CannotRecommendMenuException 에러 발생 시 해당 코치에게 다시 음식을 추천해준다. 
 - [ ] 메뉴 추천 결과를 출력해준다.

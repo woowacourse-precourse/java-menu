@@ -1,6 +1,5 @@
 package menu.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -15,21 +14,11 @@ public class MenuRecommender {
         this.menus = menus;
     }
 
-    public boolean isExistedMenu(String menu) {
-        for (Menus menus : this.menus.values()) {
-            if (menus.isExistedMenu(menu)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public List<Category> recommendCategories() {
         List<Category> categories = new ArrayList<>();
         while (categories.size() < 5) {
             try {
-                int randomIdx = Randoms.pickNumberInRange(1, 5);
-                Category category = Category.get(randomIdx);
+                Category category = Category.pickRandomCategory();
                 Validator.validateCategories(category, categories);
                 categories.add(category);
             } catch (CannotRecommendCategoryException exception) {
@@ -37,5 +26,24 @@ public class MenuRecommender {
             }
         }
         return categories;
+    }
+
+    public List<Menu> recommendMenus(List<Category> categories) {
+        List<Menu> recommendMenus = new ArrayList<>();
+        for (Category category : categories) {
+            Menus candidateMenus = menus.get(category);
+            recommendMenus.add(candidateMenus.pickRandomMenu());
+        }
+
+        return recommendMenus;
+    }
+
+    public boolean isExistedMenu(String menu) {
+        for (Menus menus : this.menus.values()) {
+            if (menus.isExistedMenu(menu)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

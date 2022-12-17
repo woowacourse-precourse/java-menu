@@ -1,5 +1,6 @@
 package menu.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class Menus {
@@ -19,5 +20,9 @@ public class Menus {
             }
         }
         return false;
+    }
+
+    public Menu pickRandomMenu() {
+        return Randoms.shuffle(menus).get(0);
     }
 }

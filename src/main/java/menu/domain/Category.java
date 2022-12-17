@@ -1,5 +1,6 @@
 package menu.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
 
 public enum Category {
@@ -17,7 +18,9 @@ public enum Category {
         this.value = value;
     }
 
-    public static Category get(int category) {
+    public static Category pickRandomCategory() {
+        int category = Randoms.pickNumberInRange(1, 5);
+
         return Arrays.stream(Category.values())
             .filter(c -> c.value == category)
             .findAny()
