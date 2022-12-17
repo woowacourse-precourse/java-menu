@@ -21,4 +21,10 @@ public class Coach {
     public boolean canNotEat(Menu menu) {
         return banFoods.contains(menu);
     }
+
+    public boolean hasMaxCategoryCount(Category inputCategory) {
+        return categories.stream()
+                .filter(category -> category.getName().equals(inputCategory.getName()))
+                .count() >= CATEGORY_MAX_COUNT;
+    }
 }
