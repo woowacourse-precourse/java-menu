@@ -38,9 +38,10 @@ public class MenuRecommendController {
     private List<Coach> initCoaches() {
         List<Coach> coaches = new ArrayList<>();
 
-        String[] coachNames = inputView.readCoachNames();
+        String[] coachNames = Validator.repeatUntilValid(InputView::readCoachNames);
         for (int i = 0; i < coachNames.length; i++) {
-            String[] excludeMenu = inputView.readExcludeMenu(coachNames[i]);
+            String coachName = coachNames[i];
+            String[] excludeMenu = Validator.repeatUntilValid(() -> inputView.readExcludeMenu(coachName));
             List<Menu> excludeMenus = new ArrayList<>();
 
             for (String menuName: excludeMenu) {
