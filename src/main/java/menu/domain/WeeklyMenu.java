@@ -27,7 +27,6 @@ public class WeeklyMenu {
 
 	public String getWeeklyMenuResult() {
 		StringBuilder stringBuilder = new StringBuilder();
-		System.out.println(recommendation);
 		recommendation.forEach(category -> stringBuilder.append(String.format("| %s ", category.getName())));
 		return stringBuilder.toString();
 	}

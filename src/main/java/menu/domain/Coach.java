@@ -30,7 +30,6 @@ public class Coach {
 	public String getWeeklyMenu(List<Category> recommendation) {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(String.format(" %s ", getName()));
-		System.out.println(recommendation);
 		for (Category category : recommendation) {
 			Set<String> intersections = new HashSet<>(category.getMenu());
 			intersections.removeAll(new HashSet<>(avoidMenu));
