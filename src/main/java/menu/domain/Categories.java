@@ -39,4 +39,13 @@ public class Categories {
         }
         return count;
     }
+
+    public boolean isExistMenu(String menu) {
+        for (Category category : categories) {
+            if (!category.isExistMenu(menu)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
