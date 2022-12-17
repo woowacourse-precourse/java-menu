@@ -15,18 +15,23 @@ public class MenuController {
     public void run() {
         try {
             Coaches coaches = requestInputCoach();
-            requestInputExcludeMenu(coaches);
+            requestInputExcludeMenu(coaches, 1);
         } catch (IllegalArgumentException exception) {
             outputView.printMessage(exception.getMessage());
+            run();
         }
     }
 
-    private void requestInputExcludeMenu(final Coaches coaches) {
+    private void requestInputExcludeMenu(final Coaches coaches, final int count) {
+        if (coaches.isCoachesCount(count - 1)) {
+            return;
+        }
         try {
-            inputView.inputExcludeMenu(coaches);
+            menuService.saveExcludeMenu(inputView.inputExcludeMenu(coaches, count));
+            requestInputExcludeMenu(coaches, count + 1);
         } catch (IllegalArgumentException exception) {
             outputView.printMessage(exception.getMessage());
-            requestInputExcludeMenu(coaches);
+            requestInputExcludeMenu(coaches, count);
         }
     }
 

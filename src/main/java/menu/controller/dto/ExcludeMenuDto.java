@@ -39,7 +39,7 @@ public class ExcludeMenuDto {
         int count = (int) Arrays.stream(allMenu.split(","))
                 .distinct()
                 .count();
-        return count == allMenu.split(",").length;
+        return count != allMenu.split(",").length;
     }
 
     private boolean isValidMenuLength(final String allMenu) {
