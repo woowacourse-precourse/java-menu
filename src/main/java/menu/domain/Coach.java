@@ -9,7 +9,6 @@ public class Coach {
 
     private final String name;
     private final List<Menu> menuNotToEat = new ArrayList<>();
-    private final List<Category> categoriesAlreadyEaten = new ArrayList<>();
     private final Map<Day, Menu> menuAlreadyEaten = new EnumMap<>(Day.class);
 
     public Coach(String name) {
@@ -20,14 +19,10 @@ public class Coach {
         this.menuNotToEat.addAll(menuNotToEat);
     }
 
-    public void addCategoriesAlreadyEaten(Category category) {
-        categoriesAlreadyEaten.add(category);
-    }
 
     public void addMenuAlreadyEaten(Day day, Menu menu) {
         menuAlreadyEaten.put(day, menu);
     }
-
 
     public boolean isAvailableMenu(Menu menu) {
         return isNotAlreadyEatenMenu(menu) && isNotMenuNotToEat(menu);
@@ -39,11 +34,6 @@ public class Coach {
 
     private boolean isNotMenuNotToEat(Menu menu) {
         return !menuNotToEat.contains(menu);
-    }
-
-    private int countCategoryOf(Category category) {
-        return (int) categoriesAlreadyEaten.stream()
-                .filter(element -> element == category).count();
     }
 
     public String getName() {

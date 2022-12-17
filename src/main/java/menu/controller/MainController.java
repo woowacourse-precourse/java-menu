@@ -68,14 +68,12 @@ public class MainController {
             Category category = pickAvailableCategory();
             for (Coach coach : CoachRepository.coaches()) {
                 Menu menu = pickAvailableMenu(coach, category);
-                coach.addCategoriesAlreadyEaten(category);
                 coach.addMenuAlreadyEaten(day, menu);
             }
             CategoryRepository.addCategoryCount(category);
         }
-        CoachRepository.coaches().forEach(coach -> System.out.println(coach.getMenuAlreadyEaten()));
-
-        outputView.printRecommendedMenus(CoachRepository.coaches());
+        outputView.printRecommendedMenus(CategoryRepository.getCategoriesAlreadyEaten(), CoachRepository.coaches());
+        outputView.printFinishRecommendation();
         return ApplicationStatus.APPLICATION_EXIT;
     }
 
