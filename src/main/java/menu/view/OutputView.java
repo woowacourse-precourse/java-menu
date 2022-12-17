@@ -1,6 +1,8 @@
 package menu.view;
 
 public class OutputView {
+    private final static String ERROR = "[ERROR] ";
+
     public void printStart() {
         System.out.println("점심 메뉴 추천을 시작합니다.");
     }
@@ -17,5 +19,9 @@ public class OutputView {
         System.out.println("\n메뉴 추천 결과입니다.");
         System.out.println("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
         // todo : 추후에 결과 출력을 위해 Crews와 Category 받기
+    }
+
+    public static void printError(String message) {
+        System.out.println(ERROR + message);
     }
 }
