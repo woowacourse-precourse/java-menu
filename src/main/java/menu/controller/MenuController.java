@@ -8,7 +8,6 @@ import menu.view.OutputView;
 
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public class MenuController {
     private final MenuService menuService = new MenuService();
@@ -22,40 +21,38 @@ public class MenuController {
         coachService.addDoNotRecommendFoods(coach, doNoRecommendFoods);
     }
 
-    public void run() {
+    private void addCoaches() {
         outputView.printStartMessage();
-        List<String> coachNames = repeat(inputView::getCoachNames);
+        List<String> coachNames = inputView.getCoachNames();
         coachService.addCoaches(coachNames);
+    }
+
+    private void addDoNotRecommendMenus() {
         for (Coach coach : coachService.getAllCoaches()) {
             repeat(this::addDoNotRecommendMenus, coach);
         }
+    }
+
+    private void selectRecommendMenus() {
         menuService.selectCategories();
         coachService.recommendMenus();
+    }
+
+    private void showRecommendMenus() {
         outputView.printStartRecommend();
         outputView.printCategories(menuService.getRecommendedCategories());
         for (Coach coach : coachService.getAllCoaches()) {
             outputView.printRecommendedMenus(coach.getName(), coach.getRecommendedFoods());
         }
+    }
+
+    public void run() {
+        repeat(this::addCoaches);
+        addDoNotRecommendMenus();
+        selectRecommendMenus();
+        showRecommendMenus();
         outputView.printEndMessage();
     }
-
-    private <T> T repeat(Supplier<T> function) {
-        try {
-            return function.get();
-        } catch (IllegalArgumentException exception) {
-            outputView.printError(exception.getMessage());
-            return repeat(function);
-        }
-    }
-
-//    private <T, R> R repeat(Function<T, R> function, T argument) {
-//        try {
-//            return function.apply(argument);
-//        } catch (IllegalArgumentException exception) {
-//            outputView.printError(exception.getMessage());
-//            return repeat(function, argument);
-//        }
-//    }
 
     private <T> void repeat(Consumer<T> function, T argument) {
         try {
@@ -65,4 +62,14 @@ public class MenuController {
             repeat(function, argument);
         }
     }
+
+    private void repeat(Runnable function) {
+        try {
+            function.run();
+        } catch (IllegalArgumentException exception) {
+            outputView.printError(exception.getMessage());
+            repeat(function);
+        }
+    }
+
 }
