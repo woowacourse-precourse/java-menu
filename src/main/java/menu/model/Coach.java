@@ -1,0 +1,45 @@
+package menu.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Coach {
+    private String name;
+    private List<String> noEatFood;
+    private List<String> eatMenu;
+
+    public Coach(String name) {
+        this.name = name;
+        this.eatMenu = new ArrayList<>();
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setNoEatFood(List<String> noEatFood) {
+        this.noEatFood = noEatFood;
+    }
+
+    public void addFood(String food) {
+        eatMenu.add(food);
+    }
+
+    public List<String> getEatMenu() {
+        return this.eatMenu;
+    }
+
+    public boolean uniqueMenu(String menu) {
+        if (eatMenu.contains(menu)) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean eatableMenu(String menu) {
+        if (noEatFood.contains(menu)) {
+            return false;
+        }
+        return true;
+    }
+}
