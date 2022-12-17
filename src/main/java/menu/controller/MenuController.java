@@ -1,7 +1,5 @@
 package menu.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 import menu.domain.Category;
 import menu.domain.CategoryHistory;
 import menu.domain.Coach;
@@ -34,7 +32,9 @@ public class MenuController {
 
     public void startMenuRecommendService() {
         outputView.printServiceStartNotice();
+
         readCoachNames();
+
         readDislikeFoods();
 
         for (int day = MONDAY; day <= FRIDAY; day++) {
@@ -49,6 +49,7 @@ public class MenuController {
         String coachNameInput = inputView.readCoachNames();
 
         String[] coachNames = coachNameInput.split(Constant.INPUT_DELIMITER);
+
         for (String name : coachNames) {
             coaches.addCoach(new Coach(name));
         }
