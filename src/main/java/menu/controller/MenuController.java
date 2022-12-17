@@ -31,7 +31,7 @@ public class MenuController {
                     .map(CoachName::new)
                     .collect(Collectors.toList());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printExceptionMessage(e.getMessage());
             return readCoachNames();
         }
     }
@@ -41,7 +41,7 @@ public class MenuController {
             List<String> cannotEatMenus = inputView.readMenuCantEat(coach.getName());
             group.addCoach(coach, cannotEatMenus);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printExceptionMessage(e.getMessage());
             addCannotEatMenus(coach);
         }
     }
@@ -50,7 +50,7 @@ public class MenuController {
         try {
             group.makeMenus();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printExceptionMessage(e.getMessage());
             makeMenus();
         }
     }
