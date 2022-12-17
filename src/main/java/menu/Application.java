@@ -6,7 +6,7 @@ public class Application {
         try {
             Controller.run();
         } catch (IllegalArgumentException error) {
-            System.out.println("[ERROR] " + error.getMessage());
+            System.out.println(OutputView.ERROR_PREFIX + error.getMessage());
         }
     }
 }
