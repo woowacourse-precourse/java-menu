@@ -11,9 +11,9 @@
     - [x] 먹을 수 있는 음식인지 체크 기능
 
 ## repository
-- [ ] foodRepository
-    - [ ] 필드 생성
-    - [ ] 등록된 음식인지 조회
+- [x] foodRepository
+    - [x] 필드, 생성자 
+    - [x] 등록된 음식인지 조회
 - [ ] categoryRepository
 - [ ] coachRepository
 
