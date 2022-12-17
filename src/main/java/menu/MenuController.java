@@ -1,10 +1,7 @@
 package menu;
 
 import menu.input.InputView;
-import menu.model.Category;
-import menu.model.CategoryMachine;
-import menu.model.Coach;
-import menu.model.MenuMachine;
+import menu.model.*;
 import menu.output.OutputView;
 
 import java.util.ArrayList;
@@ -72,7 +69,7 @@ public class MenuController {
 
     private void selectMenus() {
         MenuMachine menuMachine = new MenuMachine();
-        for(int cnt = 0; cnt < 5; cnt++) {
+        for(int cnt = 0; cnt < MenuConstant.DAY_SIZE; cnt++) {
             for(Coach eachCoach : coach) {
                 menuMachine.setCoach(eachCoach);
                 menuMachine.selectMenus();
