@@ -1,12 +1,13 @@
 package menu.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Coach {
     private String name;
     private static List<Integer> category;
     private List<String> notEatMenus;
-    private List<String> recommendedMenus;
+    private List<String> recommendedMenus = new ArrayList<>();
 
     public Coach(String name) {
         this.name = name;
