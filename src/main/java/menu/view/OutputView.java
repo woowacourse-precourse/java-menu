@@ -13,6 +13,6 @@ public class OutputView {
 	}
 
 	public static void printMenuInputMessage(String name) {
-		System.out.printf(MENU_INPUT_MSG, name);
+		System.out.printf(name + MENU_INPUT_MSG);
 	}
 }
