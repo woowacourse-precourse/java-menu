@@ -7,23 +7,16 @@ public class InputView {
     public String[] INPUT_COACH_NAME() {
         System.out.println(InputString.COACH_NAME_INPUT);
         try {
-            try {
-                String names = Console.readLine();
-                String[] coaches = names.split(",");
-                if (coaches.length < 2 || coaches.length > 5)
-                    throw new IllegalArgumentException("[ERROR] 코치는 2명 이상 5명 이하입니다.");
-                for (String coach : coaches) {
-                    if (coach.length() < 2 || coach.length() > 4)
-                        throw new IllegalArgumentException("[ERROR] 코치의 이름은 최소 2글자, 최대 4글자 입니다.");
-                }
-                return names.split(",");
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                return INPUT_COACH_NAME();
-            } catch (Exception e) {
-                throw new IllegalArgumentException("[ERROR] 입력에 오류가 있습니다.");
+            String names = Console.readLine();
+            String[] coaches = names.split(",");
+            if (coaches.length < 2 || coaches.length > 5)
+                throw new IllegalArgumentException("[ERROR] 코치는 2명 이상 5명 이하입니다.");
+            for (String coach : coaches) {
+                if (coach.length() < 2 || coach.length() > 4)
+                    throw new IllegalArgumentException("[ERROR] 코치의 이름은 최소 2글자, 최대 4글자 입니다.");
             }
-        } catch (Exception e) {
+            return names.split(",");
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return INPUT_COACH_NAME();
         }
