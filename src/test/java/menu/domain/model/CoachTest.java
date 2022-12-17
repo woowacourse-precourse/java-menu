@@ -61,7 +61,6 @@ class CoachTest {
         Coach tomi = new Coach("토미", menus, newArrayList(recommendResult, recommendResult2));
 
         boolean duplicateCategory = tomi.isDuplicateCategory(Category.JAPAN_FOOD, Day.WED);
-        System.out.println(duplicateCategory);
         assertThat(duplicateCategory).isTrue();
     }
 
@@ -78,7 +77,38 @@ class CoachTest {
         Coach tomi = new Coach("토미", menus, newArrayList(recommendResult, recommendResult2));
 
         boolean duplicateCategory = tomi.isDuplicateCategory(Category.EUROPE_FOOD, Day.WED);
-        System.out.println(duplicateCategory);
+        assertThat(duplicateCategory).isFalse();
+    }
+
+    @Test
+    void 이미_추천한_메뉴가있는지_검사() {
+        List<Menu> menus = List.of(new Menu(Category.JAPAN_FOOD, "우동"),
+                new Menu(Category.JAPAN_FOOD, "스시")
+        );
+        RecommendResult recommendResult =
+                new RecommendResult(Day.MON, Category.JAPAN_FOOD, new Menu(Category.JAPAN_FOOD, "오니기리"));
+        RecommendResult recommendResult2 =
+                new RecommendResult(Day.TUE, Category.EUROPE_FOOD, new Menu(Category.JAPAN_FOOD, "피자"));
+
+        Coach tomi = new Coach("토미", menus, newArrayList(recommendResult, recommendResult2));
+
+        boolean duplicateCategory = tomi.isDuplicateMenu(new Menu(Category.JAPAN_FOOD, "오니기리"));
+        assertThat(duplicateCategory).isTrue();
+    }
+
+    @Test
+    void 이미_추천한_메뉴가있는지_검사2() {
+        List<Menu> menus = List.of(new Menu(Category.JAPAN_FOOD, "우동"),
+                new Menu(Category.JAPAN_FOOD, "스시")
+        );
+        RecommendResult recommendResult =
+                new RecommendResult(Day.MON, Category.JAPAN_FOOD, new Menu(Category.JAPAN_FOOD, "오니기리"));
+        RecommendResult recommendResult2 =
+                new RecommendResult(Day.TUE, Category.EUROPE_FOOD, new Menu(Category.JAPAN_FOOD, "피자"));
+
+        Coach tomi = new Coach("토미", menus, newArrayList(recommendResult, recommendResult2));
+
+        boolean duplicateCategory = tomi.isDuplicateMenu(new Menu(Category.EUROPE_FOOD, "피자"));
         assertThat(duplicateCategory).isFalse();
     }
 }

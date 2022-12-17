@@ -66,4 +66,9 @@ public class Coach {
                 ", recommendResults=" + recommendResults +
                 '}';
     }
+
+    public boolean isDuplicateMenu(Menu menu) {
+        return recommendResults.stream()
+                .anyMatch(recommendResult -> recommendResult.hasMenu(menu));
+    }
 }
