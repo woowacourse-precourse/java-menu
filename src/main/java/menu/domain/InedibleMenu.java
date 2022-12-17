@@ -14,4 +14,8 @@ public class InedibleMenu {
         Validator.validateNumberOfInedibleMenus(splittedInedibleMenu.size());
         this.inedibleMenu = splittedInedibleMenu;
     }
+
+    public boolean isEdible(String menu) {
+        return !inedibleMenu.contains(menu);
+    }
 }
