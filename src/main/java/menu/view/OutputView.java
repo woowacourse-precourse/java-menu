@@ -34,6 +34,12 @@ public class OutputView {
         printBlankLine();
         printMessage(RECOMMEND_MENU_RESULT_MESSAGE);
     }
+    public void printDayOfTheWeek(List<String> daysOfTheWeek) {
+        daysOfTheWeek.add(0, SPLIT_MESSAGE);
+        String formattedDayOfTheWeek = MessageFormat.format(
+                RESULT_MESSAGE_FORMAT, String.join(JOIN_DELIMITER, daysOfTheWeek));
+        printMessage(formattedDayOfTheWeek);
+    }
 
     private void printBlankLine() {
         System.out.println();
