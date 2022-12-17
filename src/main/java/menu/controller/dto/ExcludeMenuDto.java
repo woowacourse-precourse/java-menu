@@ -40,6 +40,9 @@ public class ExcludeMenuDto {
     private boolean isExistMenu(final String allMenu) {
         List<String> menus = Arrays.stream(allMenu.split(","))
                 .collect(Collectors.toList());
+        if (menus.size() == 1 && menus.get(0).equals("")) {
+            return true;
+        }
         return Menu.isExists(menus);
     }
 
