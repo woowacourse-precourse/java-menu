@@ -21,7 +21,7 @@ public class Controller {
     }
 
     private void recommendMenu() {
-        menuService.pickCategory();
+        menuService.recommendMenu();
     }
 
     private void saveMember() {
