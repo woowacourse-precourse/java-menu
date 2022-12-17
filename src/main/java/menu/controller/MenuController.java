@@ -8,6 +8,7 @@ import menu.view.OutputView;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class MenuController {
@@ -59,6 +60,9 @@ public class MenuController {
             throw new IllegalArgumentException("싫어하는 메뉴의 수는 2개를 넘을 수 없습니다.");
         }
         for(String menu : hateMenus){
+            if(Objects.equals(menu, "")){
+                return hateMenus;
+            }
             if(!MenuList.find(menu)){
                 throw new IllegalArgumentException("존재하지 않는 메뉴입니다.");
             }
