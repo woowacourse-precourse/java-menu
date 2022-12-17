@@ -8,31 +8,24 @@ import java.util.HashSet;
 import java.util.List;
 
 public class MenuRecommendService {
-    private final List<Category> categories = Category.getCategories();
+    private final Categories categories = new Categories();
     private final List<Week> weeks = Week.getWeeks();
-
+    List<Category> recommendCategories;
     private final List<Category> recommendedCategories = new ArrayList<>();
 
-    public void recommendCategory() {
-        HashMap<Category, Integer> categoryNum = makeCategoryAppearMap();
-        for (int i = 0; i < weeks.size(); i++) {
-            Category category = categories.get(Randoms.pickNumberInRange(1, 5) - 1);
-            if (categoryNum.get(category) == 2) {
-                i--;
-                continue;
-            }
-            recommendedCategories.add(category);
-            categoryNum.put(category,categoryNum.get(category)+1);
-        }
+    public MenuRecommendService() {
+        recommendCategory();
     }
 
-    private HashMap<Category,Integer> makeCategoryAppearMap() {
-        HashMap<Category,Integer> categoryNum = new HashMap<>();
-        for (Category category:
-             categories) {
-            categoryNum.put(category,0);
+    public void recommendCategory() {
+        recommendCategories = categories.getRecommendCategory();
+    }
+
+    public void recommendMenu() {
+        for (Category category :
+                recommendedCategories) {
+            String menu = Randoms.shuffle(category.getFoods()).get(0);
         }
-        return categoryNum;
     }
 
 }

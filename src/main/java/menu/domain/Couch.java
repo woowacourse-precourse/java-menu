@@ -7,6 +7,7 @@ public class Couch {
 
     private String name;
     private List<String> cannotEatFoods = new ArrayList<>();
+    private List<String> recommendedFoods = new ArrayList<>();
 
     public Couch(String name) {
         this.name = name;
@@ -14,6 +15,10 @@ public class Couch {
 
     public String getName() {
         return name;
+    }
+
+    public List<String> getRecommendedFoods() {
+        return recommendedFoods;
     }
 
     public List<String> getCannotEatFoods() {

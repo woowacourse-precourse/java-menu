@@ -2,6 +2,7 @@ package menu.controller;
 
 import menu.domain.Couch;
 import menu.domain.CouchService;
+import menu.domain.MenuRecommendService;
 import menu.ui.InputView;
 
 import java.util.Arrays;
@@ -11,11 +12,17 @@ public class MenuController {
     private InputView inputView = new InputView();
     private final String START = "점심 메뉴 추천을 시작합니다.";
     private CouchService couchService = new CouchService();
+    private MenuRecommendService menuRecommendService = new MenuRecommendService();
 
     public void doRecommendMenu() {
         System.out.println(START);
         registerCouches();
         registerCannotEat();
+        recommendMenu();
+    }
+
+    private void recommendMenu() {
+        menuRecommendService.recommendCategory();
     }
 
     private void registerCouches() {
