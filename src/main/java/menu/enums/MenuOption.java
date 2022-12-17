@@ -27,6 +27,10 @@ public enum MenuOption {
         return this.category;
     }
 
+    public boolean isContainsInCategroy(String menu) {
+        return this.menus.contains(menu);
+    }
+
     public static String getCategoryFromNumber(int number) {
         return Stream.of(values())
                 .filter(option -> option.number == number)

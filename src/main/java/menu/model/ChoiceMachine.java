@@ -16,11 +16,11 @@ public class ChoiceMachine extends NotModule {
         CoachRepository.addCategory(MenuOption.fromCategory(category));
     }
 
-    public void choiceMenu(Coach coach) {
+    public void choiceMenu(Coach coach, int day) {
         String menu;
         do {
             menu = randomMenuGenerator.randomMenuChoice();
-        } while (not(coach.canAddMenu(menu)));
+        } while (not(coach.canAddMenu(menu) && CoachRepository.canAddMenuInThisCategory(menu, day)));
 
         coach.addMenu(menu);
     }

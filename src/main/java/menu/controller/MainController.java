@@ -48,7 +48,7 @@ public class MainController extends RepeatModule {
     public void choiceMenu() {
         for (Coach coach : CoachRepository.coaches()) {
             for (int day = ZERO; day < DAY_COUNT; day++) {
-                choiceMachine.choiceMenu(coach);
+                choiceMachine.choiceMenu(coach, day);
             }
         }
 
