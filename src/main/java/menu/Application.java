@@ -1,7 +1,12 @@
 package menu;
 
+import menu.controller.MenuDecideController;
+import menu.utils.InitDB;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        InitDB.init();
+        MenuDecideController controller = new MenuDecideController();
+        controller.run();
     }
 }
