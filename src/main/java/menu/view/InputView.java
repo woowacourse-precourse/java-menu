@@ -5,6 +5,7 @@ import menu.domain.Coach;
 import menu.domain.Coaches;
 import menu.utils.ErrorMessage;
 import menu.utils.Menu;
+import menu.utils.Validation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,14 +18,14 @@ public class InputView {
 
     public Coaches getCoachesName() {
         String[] input = Console.readLine().split(",");
-        checkValidCoaches(input);
+        Validation.checkValidCoaches(input);
         return convertStringToCoaches(input);
     }
     public void getNotEatableMenu(Coaches coaches) {
         for (Coach coach : coaches.getCoaches()) {
             System.out.println("\n" +coach.getName() + GET_NOT_EATABLE_MENU);
             String[] input = Console.readLine().split(",");
-            checkValidNotEatable(input);
+            Validation.checkValidNotEatable(input);
             coach.addNotEatableMenus(input);
         }
     }
@@ -35,59 +36,6 @@ public class InputView {
             coaches.add(new Coach(name.trim()));
         }
         return new Coaches(coaches);
-    }
-
-    public void checkValidNotEatable(String[] input) {
-        validNotEatableSize(input);
-        validElementDuplicate(input, CHECK_MENU_NUMBER);
-        validMenuIsExist(input);
-    }
-
-    public void checkValidCoaches(String[] input) {
-        validCoachesNameSize(input);
-        validElementDuplicate(input, CHECK_COACHES_NUMBER);
-        for (String name : input) {
-            validCoachNameSize(name.trim());
-        }
-    }
-
-    public void validCoachNameSize(String name) {
-        if (name.length() < 2 || name.length() > 5) {
-            throw new IllegalArgumentException(ErrorMessage.COACH_NAME_SIZE_IS_BETWEEN_TWO_AND_FOUR);
-        }
-    }
-
-    public void validCoachesNameSize(String[] names) {
-        if (names.length < 2 || names.length > 5) {
-            throw new IllegalArgumentException(ErrorMessage.COACH_IS_LEAST_TWO_AND_MAX_FIVE);
-        }
-    }
-
-    public void validElementDuplicate(String[] names, int checkNumber) {
-        long originalLength = names.length;
-        long distinctLength = Arrays.stream(names).distinct().count();
-
-        if (originalLength != distinctLength) {
-            if (checkNumber == CHECK_COACHES_NUMBER) {
-                throw new IllegalArgumentException(ErrorMessage.COACH_NAME_IS_NOT_DUPLICATE);
-            }
-            if (checkNumber == CHECK_MENU_NUMBER) {
-                throw new IllegalArgumentException(ErrorMessage.NOT_MENU_NAME_DUPLICATE);
-            }
-        }
-    }
-
-    public void validNotEatableSize(String[] input) {
-        if (input.length > 2) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_EATABLE_MENU_SIZE_IS_LESS_THAN_TWO);
-        }
-    }
-
-    public void validMenuIsExist(String[] input) {
-        for (String name : input) {
-            if (Menu.valueOfMenu(name) == null && !name.trim().isBlank())
-                throw new IllegalArgumentException(ErrorMessage.MENU_IS_NOT_EXIST_IS_LIST);
-        }
     }
 
 }
