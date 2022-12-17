@@ -57,6 +57,6 @@ public class Coach {
     }
 
     public String toStringCoach() {
-        return START_BRACKET + " " + coachName + STICK + foodPerDate.get(0) + STICK + foodPerDate.get(1) + STICK + foodPerDate.get(2) + STICK + foodPerDate.get(3) + STICK + foodPerDate.get(4)  + END_BRACKET +'\n';
+        return START_BRACKET + " " + coachName + STICK + foodPerDate.get(0) + STICK + foodPerDate.get(1) + STICK + foodPerDate.get(2) + STICK + foodPerDate.get(3) + STICK + foodPerDate.get(4) +" " + END_BRACKET+ '\n';
     }
 }

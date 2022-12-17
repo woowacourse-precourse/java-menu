@@ -64,7 +64,7 @@ public class Party {
     }
 
     public String toStringFoodCategories() {
-        return START_BRACKET + "카테고리" + STICK + foodCategories.get(0).getCategoryName() + STICK + foodCategories.get(1).getCategoryName() + STICK + foodCategories.get(2).getCategoryName() + STICK + foodCategories.get(3).getCategoryName() + STICK + foodCategories.get(4).getCategoryName() + END_BRACKET;
+        return START_BRACKET + "카테고리" + STICK + foodCategories.get(0).getCategoryName() + STICK + foodCategories.get(1).getCategoryName() + STICK + foodCategories.get(2).getCategoryName() + STICK + foodCategories.get(3).getCategoryName() + STICK + foodCategories.get(4).getCategoryName() + " " + END_BRACKET;
     }
 
 }
