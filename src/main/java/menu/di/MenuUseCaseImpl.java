@@ -1,9 +1,12 @@
 package menu.di;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import menu.domain.Category;
+import menu.domain.Coach;
 import menu.domain.CoachName;
 import menu.domain.Picker;
 
@@ -48,8 +51,56 @@ public class MenuUseCaseImpl implements MenuUseCase {
 
     @Override
     public RecommendResultDto recommend(List<String> names, List<List<String>> notEatMenus) {
+        List<Coach> coaches = generateCoaches(names, notEatMenus);
+        List<Category> categories = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            recommendOneDay(coaches, categories);
+        }
+        List<String> categoriesDto = categories.stream()
+                .map(Category::toDto)
+                .collect(Collectors.toList());
+        List<List<String>> coachesDto = coaches.stream()
+                .map(Coach::toDto)
+                .collect(Collectors.toList());
+        return new RecommendResultDto(categoriesDto, coachesDto);
+    }
 
-        return null;
+    private List<Coach> generateCoaches(List<String> names, List<List<String>> notEatMenus) {
+        List<Coach> coaches = new ArrayList<>();
+        for (int i = 0; i < names.size(); i++) {
+            String name = names.get(i);
+            List<String> notEatMenu = notEatMenus.get(i);
+            coaches.add(new Coach(name, notEatMenu));
+        }
+        return coaches;
+    }
+
+    private void recommendOneDay(List<Coach> coaches, List<Category> categories) {
+        Category picked = pickCategory();
+        categories.add(picked);
+        List<String> oneCategoryMenus = menus.get(picked);
+        for (Coach coach : coaches) {
+            recommendOneDayOneCoach(coach, oneCategoryMenus);
+        }
+    }
+
+    private void recommendOneDayOneCoach(Coach coach, List<String> oneCategoryMenus) {
+        while (true) {
+            String menu = getOneMenu(oneCategoryMenus);
+            if (coach.canEat(menu)) {
+                coach.eat(menu);
+                break;
+            }
+        }
+    }
+
+    private String getOneMenu(List<String> oneCategoryMenus) {
+        return picker.shuffle(oneCategoryMenus).get(0);
+    }
+
+    private Category pickCategory() {
+        int picked = picker.pickNumberInRange(1, 5);
+        return Category.from(picked);
     }
 
 }
