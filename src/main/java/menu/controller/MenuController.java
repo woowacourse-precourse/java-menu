@@ -2,6 +2,7 @@ package menu.controller;
 
 import java.util.List;
 import menu.domain.MenuService;
+import menu.domain.vo.CoachMenu;
 import menu.ui.InputView;
 import menu.ui.OutputView;
 
@@ -46,6 +47,8 @@ public class MenuController {
     }
 
     private void announceMenuRecommendResult() {
-
+        menuService.recommendMenu();
+        List<CoachMenu> coachMenus = menuService.getCoachMenus();
+        outputView.printMenuRecommencResult(coachMenus);
     }
 }
