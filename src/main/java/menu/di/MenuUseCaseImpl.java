@@ -6,6 +6,7 @@ import menu.domain.CrewName;
 
 public class MenuUseCaseImpl implements MenuUseCase {
 
+    private static final String MENU_NOT_FOUND_MESSAGE = "없는 메뉴입니다";
     private final List<String> categories;
     private final Map<String, List<String>> menus;
 
@@ -22,7 +23,15 @@ public class MenuUseCaseImpl implements MenuUseCase {
 
     @Override
     public void validateMenus(ValidateMenuCommand validateMenuCommand) {
+        validateMenuCommand.getMenus()
+                .forEach(this::validateMenu);
+    }
 
+    private void validateMenu(String menu) {
+        boolean menuIsValid = menus.values().stream().anyMatch(it -> it.contains(menu));
+        if (!menuIsValid) {
+            throw new IllegalArgumentException(MENU_NOT_FOUND_MESSAGE);
+        }
     }
 
     @Override
