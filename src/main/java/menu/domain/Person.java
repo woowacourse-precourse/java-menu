@@ -10,10 +10,17 @@ public class Person {
     private Menus unavailable;
 
     public Person(String name) {
-        this.name = name;
+        this.name = validateName(name);
     }
 
     public String getName() {
+        return name;
+    }
+
+    private String validateName(String name) {
+        if (name.length() < 2 || name.length() > 4) {
+            throw new IllegalArgumentException("코치의 이름은 최소 2글자, 최대 4글자여야 합니다.");
+        }
         return name;
     }
 
