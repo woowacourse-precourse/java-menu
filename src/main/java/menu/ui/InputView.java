@@ -12,7 +12,6 @@ public class InputView {
         List<String> coachNames = Arrays.asList(coachNamesRaw.split(","));
         addEmptyLine();
         checkSpace(coachNames);
-        System.out.println(coachNames);
         return coachNames;
     }
 
