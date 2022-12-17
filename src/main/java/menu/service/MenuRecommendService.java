@@ -54,6 +54,6 @@ public class MenuRecommendService {
 
     public List<String> getRecommendMenusByCoachName(String coachName) {
         Coach findCoach = coachRepository.findByCoachName(coachName);
-        return findCoach.getAlreadyEatenFoods();
+        return findCoach.getAlreadyEatenFoodsForPrint();
     }
 }

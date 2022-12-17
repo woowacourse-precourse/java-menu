@@ -2,6 +2,7 @@ package menu.model.coach;
 
 import menu.model.Category;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -9,7 +10,7 @@ public class Coach {
 
     private String name;
     private List<String> cannotEatFoods;
-    private List<String> alreadyEatenFoods;
+    private List<String> alreadyEatenFoods = new ArrayList<>();
 
     public Coach(String name) {
         this.name = name;
@@ -45,7 +46,8 @@ public class Coach {
         return alreadyEatenFoods.contains(recommendFood);
     }
 
-    public List<String> getAlreadyEatenFoods() {
+    public List<String> getAlreadyEatenFoodsForPrint() {
+        alreadyEatenFoods.add(0, name);
         return Collections.unmodifiableList(alreadyEatenFoods);
     }
 }
