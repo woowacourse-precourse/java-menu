@@ -13,7 +13,8 @@ public class MenuController {
 
     public void run() {
         start();
-        setCoachesAndInedibles();
+        List<Coach> coaches = setCoaches();
+        selectCategory(coaches);
         recommendFood();
         result();
     }
@@ -30,12 +31,17 @@ public class MenuController {
                 .collect(Collectors.toList());
     }
 
-    private void setCoachesAndInedibles() {
+    private List<Coach> setCoaches() {
         List<Coach> coaches = readCoachName();
         OutputView.newLine();
         for (Coach coach : coaches) {
             setInedible(coach);
         }
+
+        return coaches;
+    }
+
+    private void selectCategory(List<Coach> coaches) {
         foodRecommendation = new FoodRecommendation(coaches);
         foodRecommendation.selectRandomCategory();
     }
