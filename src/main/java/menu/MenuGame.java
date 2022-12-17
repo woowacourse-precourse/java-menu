@@ -115,5 +115,7 @@ public class MenuGame {
         }
     }
 
-
+    public List<Food> getFoods() {
+        return foods;
+    }
 }
