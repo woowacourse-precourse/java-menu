@@ -61,11 +61,16 @@ public class MenuController {
     private void fillBannedFoods(int crewSize) {
         for (int i = 0; i < crewSize; i++) {
             Crew crew = crews.getCrews().get(i);
-            outputView.printRequestOfBannedFoods(crew.getName());
-            String foods = inputView.readBannedFoods();
-            Arrays.stream(foods.split(","))
+            String bannedFoodsInput = getBannedFoods(crew);
+            Arrays.stream(bannedFoodsInput.split(","))
                     .forEach(name -> bannedFoods.addBannedFood(name));
         }
+    }
+
+    private String getBannedFoods(Crew crew) {
+        outputView.printRequestOfBannedFoods(crew.getName());
+        String bannedFoodsInput = inputView.readBannedFoods();
+        return bannedFoodsInput;
     }
 
     private List<Crew> getCrews() {
