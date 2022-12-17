@@ -18,6 +18,8 @@ public class SuggestProgram {
         List<String> coachesName = userInput.requestCoachName();
         List<Coach> coaches = makeCoachList(coachesName);
 
+        addCannotHaveMenu(coaches);
+
     }
 
     private List<Coach> makeCoachList(List<String> coaches){
@@ -26,5 +28,11 @@ public class SuggestProgram {
             coachList.add(new Coach(coach));
         }
         return coachList;
+    }
+
+    private void addCannotHaveMenu(List<Coach> coaches){
+        for (Coach coach : coaches) {
+            coach.updateCannotHaveMenu(userInput, output);
+        }
     }
 }
