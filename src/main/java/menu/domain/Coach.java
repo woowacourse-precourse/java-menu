@@ -35,6 +35,10 @@ public class Coach {
         String menu;
         do {
             menu = category.getRandomMenu(categoryName);
-        } while (Collections.frequency(eatMenus, menu) < 2);
+        } while (isEatable(menu) && Collections.frequency(eatMenus, menu) < 2);
+    }
+
+    private boolean isEatable(String menu) {
+        return !cannotEatMenus.contains(menu);
     }
 }
