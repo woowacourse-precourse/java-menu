@@ -1,8 +1,10 @@
 package menu;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import menu.model.Category;
 import menu.model.Coach;
 import menu.model.Recommendation;
@@ -93,9 +95,19 @@ public class MenuRecommendSystem {
      * 메뉴 추천 결과 출력 메서드*
      */
     private void showRecommendationResult() {
-
-
+        List<String> recommendationResult = coaches.stream().map(
+                this::recommendationToString
+        ).collect(Collectors.toList());
+        OutputView.printRecommendationResult(recommendationResult);
     }
+
+    private String recommendationToString(Coach coach) {
+        String result = Stream.of(List.of(coach.getName()), coach.getRecommendationForWeek()).flatMap(
+                Collection::stream).collect(
+                Collectors.joining(" |"));
+        return String.format("[ %s ]", result);
+    }
+
     /**
      * 종료 메서드*
      */

@@ -6,7 +6,6 @@ import java.util.List;
 
 public class Recommendation {
     public List<Category> categories = new ArrayList<>();
-    public List<PersonalRecommendation> recommendationForCoaches = new ArrayList();
 
     public Recommendation() {
         for (int i = 0; i < 5; i++) {
