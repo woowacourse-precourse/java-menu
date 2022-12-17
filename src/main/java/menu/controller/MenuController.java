@@ -1,5 +1,6 @@
 package menu.controller;
 
+import java.util.List;
 import menu.domain.MenuService;
 import menu.ui.InputView;
 import menu.ui.OutputView;
@@ -23,7 +24,15 @@ public class MenuController {
     }
 
     private void generateCoaches() {
-
+        while (true) {
+            try {
+                List<String> coachNames = inputView.readCoachNames();
+                menuService.generateCoaches(coachNames);
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
     private void registerInedibleFoods() {
