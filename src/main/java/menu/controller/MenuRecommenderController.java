@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import menu.domain.Category;
 import menu.domain.Coach;
@@ -11,6 +12,7 @@ import menu.domain.Menu;
 import menu.domain.MenuRecommender;
 import menu.domain.Menus;
 import menu.view.InputView;
+import menu.view.OutputView;
 
 public class MenuRecommenderController {
 
@@ -20,6 +22,7 @@ public class MenuRecommenderController {
     }
 
     private List<Coach> initCoaches() {
+        OutputView.printGuideOfAppStart();
         return InputView.inputCoaches();
     }
 
