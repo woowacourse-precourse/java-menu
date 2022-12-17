@@ -17,10 +17,16 @@ public class InputView {
     }
 
     private void validateCoachNameLength(String name) {
-        if (name.length() < 2 || name.length() > 5) {
+        if (name.length() < 2 || name.length() > 4) {
             throw new IllegalArgumentException(COACH_NAME_LENGTH_ERROR_MESSAGE);
         }
     }
 
-    
+    private void validateCoachNumber(List<String> coaches) {
+        if (coaches.size() < 2 || coaches.size() > 5) {
+            throw new IllegalArgumentException(COACH_NUMBER_ERROR_MESSAGE);
+        }
+    }
+
+
 }
