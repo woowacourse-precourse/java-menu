@@ -11,4 +11,7 @@ public class TotelMenu {
 		totelMenus.put(categories, menus);
 	}
 
+	public List<String> getCategoryMenu(String category) {
+		return totelMenus.get(category);
+	}
 }
