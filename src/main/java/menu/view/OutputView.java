@@ -7,7 +7,6 @@ import menu.utils.Category;
 import menu.utils.Menu;
 
 public class OutputView {
-
     private final String FIRST_RUN_MESSAGE = "점심 메뉴 추천을 시작합니다.\n";
     private final String GET_COACHES_NAME_MESSAGE = "코치의 이름을 입력해 주세요. (, 로 구분)";
     private final String RESULT_OF_MENU_RECOMMEND = "메뉴 추천 결과입니다.";

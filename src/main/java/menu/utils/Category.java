@@ -27,8 +27,4 @@ public enum Category {
     public String getCategory() {
         return category;
     }
-
-    public int getPickNumber() {
-        return pickNumber;
-    }
 }

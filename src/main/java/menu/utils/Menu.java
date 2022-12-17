@@ -3,7 +3,6 @@ package menu.utils;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -74,18 +73,6 @@ public enum Menu {
 
     public String getMenu() {
         return menu;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public int getPickNumber() {
-        return pickNumber;
-    }
-
-    public int getCategoryNumber() {
-        return categoryNumber;
     }
 
     public static Menu getRandomFood(Category pickCategory) {

@@ -11,15 +11,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
-
-    private final String FIRST_RUN_MESSAGE = "점심 메뉴 추천을 시작합니다.\n";
     private final String GET_NOT_EATABLE_MENU = "(이)가 못 먹는 메뉴를 입력해 주세요.";
     private static int CHECK_COACHES_NUMBER = 1;
     private static int CHECK_MENU_NUMBER = 2;
-
-    public void startMessage() {
-        System.out.println(FIRST_RUN_MESSAGE);
-    }
 
     public Coaches getCoachesName() {
         String[] input = Console.readLine().split(",");

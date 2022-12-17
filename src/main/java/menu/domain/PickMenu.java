@@ -9,9 +9,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class PickMenu {
-    private static final int MAX_CATEGORY_NUMBER = 5;
-    private static final int MAX_MENU_NUMBER = 9;
-    private static final int MIN_MENU_NUMBER = 1;
     private final List<Menu> menus;
 
     public PickMenu() {
