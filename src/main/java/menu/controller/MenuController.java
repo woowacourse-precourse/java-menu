@@ -11,6 +11,7 @@ import menu.view.InputView;
 import menu.view.OutputView;
 
 public class MenuController {
+    private static final int NUMBER_OF_DAY = 5;
 
     private InputView inputView;
     private OutputView outputView;
@@ -23,6 +24,10 @@ public class MenuController {
         outputView.printServiceStartNotice();
         readCoachNames();
         readDislikeFoods();
+
+        for (int day = 1; day <= NUMBER_OF_DAY; day++) {
+            recommendMenu();
+        }
     }
 
     private void readCoachNames() {
