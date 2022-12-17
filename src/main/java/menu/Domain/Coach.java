@@ -2,7 +2,7 @@ package menu.Domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import menu.Util.ErrorMessage;
-import menu.Util.OutputView;
+import menu.View.OutputView;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,6 @@
-package menu.Util;
+package menu.View;
+
+import menu.Util.SystemMessage;
 
 import java.util.ArrayList;
 import java.util.Iterator;

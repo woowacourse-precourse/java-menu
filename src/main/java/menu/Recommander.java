@@ -3,8 +3,8 @@ package menu;
 import menu.Domain.CategoryGenerator;
 import menu.Domain.Coach;
 import menu.Util.CategoryAndFood;
-import menu.Util.InputView;
-import menu.Util.OutputView;
+import menu.View.InputView;
+import menu.View.OutputView;
 import menu.Util.SystemMessage;
 
 import java.util.ArrayList;

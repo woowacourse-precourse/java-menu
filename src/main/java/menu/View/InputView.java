@@ -1,6 +1,7 @@
-package menu.Util;
+package menu.View;
 
 import camp.nextstep.edu.missionutils.Console;
+import menu.Util.Validator;
 
 import java.util.List;
 
