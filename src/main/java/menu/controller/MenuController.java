@@ -27,37 +27,45 @@ public class MenuController {
         OutputView.finish();
     }
 
-    private List<List<String>> shuffleRandomMenu(List<Coach> coaches, List<List<String>> cantEatMenus) {
+    private void shuffleRandomMenu(List<Coach> coaches, List<List<String>> cantEatMenus) {
         List<Category> randomCategories = RandomCategoryFactory.randomCategory();
-        List<List<String>> result = new ArrayList<>();
-        for (int i = 0; i < coaches.size(); i++) {
-            List<String> canEatMenus = new ArrayList<>();
-            for (Category randomCategory : randomCategories) {
-                canEatMenus.add(makeShuffleMenus(randomCategory, cantEatMenus.get(i), canEatMenus));
+        List<List<String>> results = new ArrayList<>();
+        for (Category randomCategory : randomCategories) {
+            List<String> canEatCategoryMenus = new ArrayList<>();
+            for (int i = 0; i < cantEatMenus.size(); i++) {
+                canEatCategoryMenus.add(makeShuffleMenus(randomCategory, cantEatMenus.get(i), results, i));
             }
-            result.add(canEatMenus);
+            results.add(canEatCategoryMenus);
         }
-        return result;
+        OutputView.result(coaches, randomCategories, results);
     }
 
-    private String makeShuffleMenus(Category randomCategory, List<String> cantEatMenus, List<String> canEatMenus) {
+    private String makeShuffleMenus(Category randomCategory, List<String> cantEatMenus, List<List<String>> results,
+                                    int index) {
         String randomCategoryMenu = "";
         for (CategoryMenu categoryMenu : categoryMenus) {
             if (categoryMenu.findSameCategory(randomCategory)) {
-                randomCategoryMenu = shuffleOneMenu(categoryMenu, cantEatMenus, canEatMenus);
+                randomCategoryMenu = shuffleOneMenu(categoryMenu, cantEatMenus, results, index);
             }
         }
         return randomCategoryMenu;
     }
 
-    private String shuffleOneMenu(CategoryMenu categoryMenu, List<String> cantEatMenus, List<String> canEatMenus) {
+    private String shuffleOneMenu(CategoryMenu categoryMenu, List<String> cantEatMenus, List<List<String>> results,
+                                  int index) {
         String menu = "";
         while (menu.length() == 0) {
-            List<String> shuffleMenu = categoryMenu.shuffleMenu();
-            if (cantEatMenus.contains(shuffleMenu.get(0)) || canEatMenus.contains(menu)) {
+            List<String> shuffleMenus = categoryMenu.shuffleMenu();
+            String shuffleMenu = shuffleMenus.get(0);
+            if (cantEatMenus.contains(shuffleMenu)) {
                 continue;
             }
-            menu = shuffleMenu.get(0);
+            for (List<String> result : results) {
+                if (result.get(index).equals(menu)) {
+                    continue;
+                }
+            }
+            menu = shuffleMenu;
         }
         return menu;
     }

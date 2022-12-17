@@ -27,4 +27,8 @@ public enum Category {
     private boolean isSameIndex(int index) {
         return this.index == index;
     }
+
+    public String printName() {
+        return name;
+    }
 }
