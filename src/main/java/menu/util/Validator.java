@@ -13,4 +13,13 @@ public class Validator {
             throw new IllegalArgumentException(ExceptionConstants.TOO_MANY_COACHES.getMessage());
         }
     }
+
+    public void validateCoachNameLength(int coachNameLength) {
+        if (coachNameLength < MenuConstants.MINIMUM_COACH_NAME_LENGTH) {
+            throw new IllegalArgumentException(ExceptionConstants.TOO_SHORT_NAME.getMessage());
+        }
+        if (MenuConstants.MAXIMUM_COACH_NAME_LENGTH < coachNameLength) {
+            throw new IllegalArgumentException(ExceptionConstants.TOO_LONG_NAME.getMessage());
+        }
+    }
 }
