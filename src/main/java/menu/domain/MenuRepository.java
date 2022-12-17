@@ -19,6 +19,7 @@ public class MenuRepository {
 
     private static void generateJapan() {
         menus.add(new Menu(Category.JAPAN, "규동"));
+        menus.add(new Menu(Category.JAPAN, "동"));
         menus.add(new Menu(Category.JAPAN, "미소시루"));
         menus.add(new Menu(Category.JAPAN, "스시"));
         menus.add(new Menu(Category.JAPAN, "가츠동"));
@@ -30,6 +31,7 @@ public class MenuRepository {
 
     private static void generateKorea() {
         menus.add(new Menu(Category.KOREA, "김밥"));
+        menus.add(new Menu(Category.KOREA, "김치찌개"));
         menus.add(new Menu(Category.KOREA, "쌈밥"));
         menus.add(new Menu(Category.KOREA, "된장찌개"));
         menus.add(new Menu(Category.KOREA, "비빔밥"));
