@@ -1,5 +1,6 @@
 package menu.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,8 +19,9 @@ public enum DayOfTheWeek {
     }
 
     public static List<String> getDaysOfTheWeekName() {
-        return Arrays.stream(values())
-                .map(value -> value.name)
-                .collect(Collectors.toList());
+        List<String> daysOfTheWeekName = new ArrayList<>();
+        Arrays.stream(values())
+                .forEach(value -> daysOfTheWeekName.add(value.name));
+        return daysOfTheWeekName;
     }
 }

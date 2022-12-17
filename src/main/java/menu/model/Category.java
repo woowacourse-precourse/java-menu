@@ -2,6 +2,7 @@ package menu.model;
 
 import menu.ErrorConstants;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,8 +51,9 @@ public enum Category {
     }
 
     public static List<String> getCategoriesName() {
-        return Arrays.stream(values())
-                .map(value -> value.name)
-                .collect(Collectors.toList());
+        List<String> categoriesName = new ArrayList<>();
+        Arrays.stream(values())
+                .forEach(value -> categoriesName.add(value.name));
+        return categoriesName;
     }
 }
