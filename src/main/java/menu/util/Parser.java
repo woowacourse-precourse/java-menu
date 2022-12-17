@@ -11,9 +11,6 @@ import java.util.stream.Collectors;
 public class Parser {
 
     public static List<String> splitInfo(String info) {
-        String[] infos = info.split(", ");
-        ArrayList<String> coach = new ArrayList<>();
-        Collections.addAll(coach, infos);
-        return coach;
+        return Arrays.stream(info.split(",")).collect(Collectors.toList());
     }
 }
