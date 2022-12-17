@@ -1,5 +1,6 @@
 package menu.domain.service;
 
+import menu.domain.dto.CoachRequestDto;
 import menu.domain.dto.RecommendResultDto;
 import menu.domain.model.Category;
 import menu.domain.model.Coach;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 
 class MenuRecommendServiceTest {
@@ -64,5 +66,29 @@ class MenuRecommendServiceTest {
         for (int i = 0; i < menuNames.size(); i++) {
             assertThat(resultDtos.get(i).getMenu()).isEqualTo(menuNames.get(i));
         }
+    }
+
+    @Test
+    void 코치의_식사하는_인원수가_2명미만일시_예외발생() {
+        CoachRequestDto requestDto = new CoachRequestDto("토미", List.of());
+        assertThatThrownBy(() -> menuRecommendService.createCoach(List.of(requestDto)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 최소 2명에서 최대 5명까지 식사를 같이할 수 있습니다.");
+    }
+
+    @Test
+    void 코치의_식사하는_인원수가_6명일시_예외발생() {
+        CoachRequestDto requestDto1 = new CoachRequestDto("토미1", List.of());
+        CoachRequestDto requestDto2 = new CoachRequestDto("토미2", List.of());
+        CoachRequestDto requestDto3 = new CoachRequestDto("토미3", List.of());
+        CoachRequestDto requestDto4 = new CoachRequestDto("토미4", List.of());
+        CoachRequestDto requestDto5 = new CoachRequestDto("토미5", List.of());
+        CoachRequestDto requestDto6 = new CoachRequestDto("토미6", List.of());
+
+        List<CoachRequestDto> requestDtos =
+                List.of(requestDto1, requestDto2, requestDto3, requestDto4, requestDto5, requestDto6);
+        assertThatThrownBy(() -> menuRecommendService.createCoach(requestDtos))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 최소 2명에서 최대 5명까지 식사를 같이할 수 있습니다.");
     }
 }

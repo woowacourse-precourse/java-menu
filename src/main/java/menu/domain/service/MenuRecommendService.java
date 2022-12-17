@@ -16,13 +16,24 @@ import java.util.stream.Collectors;
 
 public class MenuRecommendService {
 
+    private static final String ERROR_INVALID_COACH_SIZE = "[ERROR] 최소 2명에서 최대 5명까지 식사를 같이할 수 있습니다.";
+    private static final int MINIMUM_COACH_SIZE = 2;
+    private static final int MAXIMUM_COACH_SIZE = 5;
+
     public void createCoach(List<CoachRequestDto> requestDtos) {
+        validateCoachSize(requestDtos);
         for (CoachRequestDto requestDto : requestDtos) {
             String name = requestDto.getName();
             List<String> canNotEatFoodsName = requestDto.getCanNotEatFoods();
             List<Menu> canNotEatFoods = MenuRepository.findByNames(canNotEatFoodsName);
 
             CoachRepository.save(new Coach(name, canNotEatFoods));
+        }
+    }
+
+    private static void validateCoachSize(List<CoachRequestDto> requestDtos) {
+        if (requestDtos.size() < MINIMUM_COACH_SIZE || requestDtos.size() > MAXIMUM_COACH_SIZE) {
+            throw new IllegalArgumentException(ERROR_INVALID_COACH_SIZE);
         }
     }
 
