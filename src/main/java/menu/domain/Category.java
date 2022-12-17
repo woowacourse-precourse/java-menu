@@ -1,6 +1,7 @@
 package menu.domain;
 
 public enum Category {
+    CATEGORY("카테고리"),
     JAPAN("일식"),
     KOREA("한식"),
     CHINA("중식"),
