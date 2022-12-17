@@ -30,4 +30,16 @@ public class Coach {
             throw new IllegalArgumentException("코치의 이름은 최대 4글자로 입력해야 합니다.");
         }
     }
+    
+    public void addCanNotEatMenus(List<String> canNotEatMenus) {
+        validLessThanSize(canNotEatMenus);
+        this.canNotEatMenus = canNotEatMenus;
+    }
+    
+    private void validLessThanSize(List<String> canNotEatMenus) {
+        int canNotEatMenusSize = canNotEatMenus.size();
+        if (canNotEatMenusSize > 2) {
+            throw new IllegalArgumentException("못 먹는 메뉴는 최대 2개 까지 입력해야 합니다.");
+        }
+    }
 }
