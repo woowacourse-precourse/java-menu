@@ -18,10 +18,15 @@ public class OutputView {
     }
 
     public void printResultMessage(Map<DayRecommend, FoodCategory> result) {
+        printResultIntroducingMessage();
         printDays();
         printCategories(result);
         printMemberRecommend(result);
         printCompleteMessage();
+    }
+
+    public void printResultIntroducingMessage(){
+        System.out.println("메뉴 추천 결과입니다.");
     }
 
     private void printDays() {

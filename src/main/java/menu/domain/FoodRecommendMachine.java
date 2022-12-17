@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class FoodRecommendMachine {
     public static final int MAX_CATEGORY_NUM = 2;
@@ -70,8 +71,7 @@ public class FoodRecommendMachine {
     }
 
     private Menu getRandomMenuOf(FoodCategory category) {
-        Menu menu = Randoms.shuffle(category.getMenus()).get(0);
-        return menu;
+        return FoodCategory.getMenuOf(Randoms.shuffle(makeMenuListToString(category.getMenus())).get(0));
     }
 
     private boolean checkMenuDuplication(Coach coach, Menu menu) {
@@ -82,5 +82,10 @@ public class FoodRecommendMachine {
             return true;
         }
         return false;
+    }
+
+    private List<String> makeMenuListToString(List<Menu> data) {
+        return data.stream().map(menu -> menu.getMenuName())
+                .collect(Collectors.toList());
     }
 }
