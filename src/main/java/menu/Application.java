@@ -1,7 +1,12 @@
 package menu;
 
 import camp.nextstep.edu.missionutils.Console;
+import menu.service.CategoryRecommendService;
 import menu.service.MenuRecommendService;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -19,6 +24,12 @@ public class Application {
             for (String bannedMenu : bannedMenus.split(",")) {
                 MenuRecommendService.addBannedMenu(coachName, bannedMenu);
             }
+        }
+
+        List<String> totalDay = Arrays.asList("월요일", "화요일", "수요일", "목요일", "금요일");
+        List<String> recommendedCategories = new ArrayList<>();
+        for (int i = 0; i < totalDay.size(); i++) {
+            recommendedCategories.add(CategoryRecommendService.recommendCategory());
         }
     }
 }
