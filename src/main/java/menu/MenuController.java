@@ -24,6 +24,7 @@ public class MenuController {
         List<String> disLikeFoods = new ArrayList<>();
         coach = writeDisLikeFoods(coachNames, disLikeFoods);
         menu.recommendCoach(coach);
+        endProgram(menu);
     }
 
     private Coach writeDisLikeFoods(List<String> coachNames, List<String> disLikeFoods) {
@@ -38,6 +39,33 @@ public class MenuController {
         }
         coach = new Coach(coaches);
         return coach;
+    }
+
+    private void endProgram(Menu menu) {
+        List<String> categoryResult = convertCategory(menu);
+        List<List<String>> menuResult = convertRecommendedMenu(menu);
+        outputView.printResult(categoryResult, menuResult);
+        outputView.printEnd();
+    }
+
+    private List<String> convertCategory(Menu menu) {
+        List<String> categoryResult = new ArrayList<>();
+        categoryResult.add("카테고리");
+        categoryResult.addAll(menu.getWeekCategories());
+        return categoryResult;
+    }
+
+    private List<List<String>> convertRecommendedMenu(Menu menu) {
+        List<List<String>> menuResult = new ArrayList<>();
+        Map<String, List<String>> recommendMenus = menu.getRecommendedMenus() ;
+
+        for (String coachName : recommendMenus.keySet()) {
+            List<String> eachMenuResult = new ArrayList<>();
+            eachMenuResult.add(coachName);
+            eachMenuResult.addAll(recommendMenus.get(coachName));
+            menuResult.add(eachMenuResult);
+        }
+        return menuResult;
     }
 
     private <T> T repeat(Supplier<T> inputReader) {

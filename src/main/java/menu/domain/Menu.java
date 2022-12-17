@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import menu.validation.CategoryValidation;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static menu.constant.MenuConstant.*;
 
@@ -26,6 +27,12 @@ public class Menu {
         addCategoryNames();
         addCategoryValues();
         makeWeekCategoryNames();
+    }
+
+    public List<String> getWeekCategories() {
+        return weekCategories.stream()
+                .map(Category::getName)
+                .collect(Collectors.toList());
     }
 
     public Map<String, List<String>> getRecommendedMenus() {
@@ -90,7 +97,8 @@ public class Menu {
 
     private void recommendMenu(String coachName) {
         for (Category weekCategory : weekCategories) {
-            List<String> todayMenus = categoryValues.get(weekCategory);
+            List<String> todayMenus = new ArrayList<>();
+            todayMenus = categoryValues.get(weekCategory);
             String menu = shuffleMenu(coachName, todayMenus);
             recommendedMenus.get(coachName).add(menu);
         }

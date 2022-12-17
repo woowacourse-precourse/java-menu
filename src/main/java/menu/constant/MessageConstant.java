@@ -8,7 +8,11 @@ public class MessageConstant {
 
 
     public static final String MESSAGE_OUTPUT_START = "점심 메뉴 추천을 시작합니다.";
+    public static final String MESSAGE_OUTPUT_RESULT = "메뉴 추천 결과입니다.\n" +
+            "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]";
     public static final String MESSAGE_OUTPUT_END = "추천을 완료했습니다.";
+    public static final String MESSAGE_OUTPUT_BRACKET = "[ %s ]";
+    public static final String MESSAGE_OUTPUT_WALL = " | ";
 
 
 }
