@@ -77,3 +77,7 @@ List<String> menu에다가 다 넣어놓기.
 ## ExceptionConstants (constant)
 
 - [x] 예외 처리 시에 사용되는 상수를 관리한다.
+
+## CategoryConstants (constant)
+
+- [ ] 카테고리와 메뉴에 대한 상수를 관리한다.
