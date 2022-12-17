@@ -19,7 +19,9 @@ public class InputView {
                 throw new IllegalArgumentException("[ERROR] 코치이름의 길이를 확인해주세요");
             }
         }
-
+        if (coachList.size() > 5 || coachList.size() < 2) {
+            throw new IllegalArgumentException("[ERROR] 코치는 두 명과 다섯명 사이로 입력해주세요");
+        }
         return coachList;
     }
 
