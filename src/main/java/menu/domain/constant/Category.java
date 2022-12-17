@@ -1,5 +1,9 @@
 package menu.domain.constant;
 
+import static menu.domain.constant.MenuRule.COUNT_OF_CATEGORIES;
+import static menu.domain.constant.MenuRule.START_NUMBER_OF_CATEGORY;
+
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,5 +38,17 @@ public enum Category {
 
     private boolean haveFood(String food) {
         return menus.contains(food);
+    }
+
+    public static Category getRandomCategory() {
+        return Arrays.stream(Category.values())
+                .filter(category -> category.isNumberOf(
+                        Randoms.pickNumberInRange(START_NUMBER_OF_CATEGORY, COUNT_OF_CATEGORIES)))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 번호의 카테고리입니다."));
+    }
+
+    private boolean isNumberOf(int number) {
+        return this.number == number;
     }
 }
