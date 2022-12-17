@@ -18,6 +18,11 @@ public class OutputView {
         System.out.println(Message.GET_COACH_NAMES_MESSAGE);
     }
 
+    public static void printGetBanFoodsMessage(String coachName){
+        System.out.println();
+        String output = coachName + Message.GET_BAN_FOODS_MESSAGE;
+        System.out.println(output);
+    }
 
 
 }
