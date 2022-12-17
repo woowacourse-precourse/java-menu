@@ -2,6 +2,7 @@ package menu.controller;
 
 import menu.domain.Coach;
 import menu.service.CategoryService;
+import menu.service.CategoryServiceImpl;
 import menu.service.CoachService;
 import menu.service.RecommendMenuService;
 import menu.view.InputView;
@@ -21,7 +22,7 @@ public class MenuControllerImpl implements MenuController {
     public MenuControllerImpl() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.categoryService = new CategoryService();
+        this.categoryService = new CategoryServiceImpl();
         printStart();
         this.coachService = new CoachService(initCoachList());
         this.recommendMenuService = new RecommendMenuService();
