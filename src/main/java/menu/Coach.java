@@ -10,7 +10,7 @@ public class Coach {
     private static final int MAX_MEMBER_SIZE = 5;
     private static final int MIN_MEMBER_NAME = 2;
     private static final int MAX_MEMBER_NAME = 4;
-    private static final String NUM_OF_NAMES_ERROR = "[ERROR] 코치는 최소 2명 이상 입력해야 합니다.";
+    private static final String NUM_OF_NAMES_ERROR = "[ERROR] 코치의 수는 2-5명입니다.";
     private static final String NAME_LENGTH_ERROR = "[ERROR] 코치의 이름의 길이는 2-4글자 입니다.";
 
 
