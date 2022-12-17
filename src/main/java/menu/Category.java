@@ -45,4 +45,9 @@ public enum Category {
     public List<String> getFoods() {
         return this.foods;
     }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }
