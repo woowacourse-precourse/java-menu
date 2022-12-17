@@ -37,7 +37,7 @@ public class Recommend {
     private void setMenuUntilValid(Coach coach, List<String> menus) {
         while (true) {
             String menu = Randoms.shuffle(menus).get(0);
-            if (coach.setRecommend(menu))
+            if (coach.setRecommendOrFalse(menu))
                 return;
         }
     }

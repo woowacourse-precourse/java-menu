@@ -29,8 +29,8 @@ public class Coach {
         this.inedibles = inedibles;
     }
 
-    public boolean setRecommend(String food) {
-        if (this.recommends.contains(food))
+    public boolean setRecommendOrFalse(String food) {
+        if (this.recommends.contains(food) || this.inedibles.contains(food))
             return false;
         this.recommends.add(food);
         return true;
