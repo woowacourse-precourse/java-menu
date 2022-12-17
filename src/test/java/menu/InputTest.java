@@ -31,10 +31,19 @@ public class InputTest {
 
     @DisplayName("코치의 못 먹는 메뉴 입력이 옳은가")
     @Test
-    void 코치_못먹는메뉴_입력_테스트2(){
+    void 코치_못먹는메뉴_입력_테스트1(){
         String canNotEatMenusWithComma = "하나,둘,셋,넷";
         String[] canNotEatMenus = canNotEatMenusWithComma.split(",");
 
         Assertions.assertThat(inputValidation.isValidCoachCanNotEatMenuCount(canNotEatMenus.length)).isFalse();
+    }
+
+    @DisplayName("코치의 못 먹는 메뉴 입력이 옳은가")
+    @Test
+    void 코치_못먹는메뉴_입력_테스트2(){
+        String canNotEatMenusWithComma = "하나,둘";
+        String[] canNotEatMenus = canNotEatMenusWithComma.split(",");
+
+        Assertions.assertThat(inputValidation.isValidCoachCanNotEatMenuCount(canNotEatMenus.length)).isTrue();
     }
 }
