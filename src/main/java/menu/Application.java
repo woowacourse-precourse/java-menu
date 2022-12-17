@@ -3,9 +3,7 @@ package menu;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 public class Application {
 
@@ -41,10 +39,10 @@ public class Application {
         String name = Console.readLine();
         String[] cNames = name.split(",");
         coachNumber = cNames.length;
-        CheckCoachNameError(name);
         for (int i = 0; i < coachNumber; i++) {
             coachNames.add(cNames[i].trim());
         }
+        CheckCoachNameError(name);
         for (int i = 0; i < coachNumber; i++) {
             coaches.add(NoFood(coachNames.get(i)));
         }
@@ -62,6 +60,10 @@ public class Application {
         if(coachNumber>5){
             throw new IllegalArgumentException("[ERROR] 코치는 최대 5명 이하 입력해야 합니다.\n");
         }
+        Set<String> strSet = new HashSet<>(coachNames);
+        if(strSet.size()!= coachNames.size()){
+            throw new IllegalArgumentException("[ERROR] 중복된 이름이 입력되었습니다.");
+        }
 
     }
 
@@ -73,6 +75,10 @@ public class Application {
         CheckNoFoodError(foods.length);
         for (int i = 0; i < foods.length; i++) {
             food.add(foods[i].trim());
+        }
+        Set<String> strSet = new HashSet<>(food);
+        if(strSet.size()!= food.size()){
+            throw new IllegalArgumentException("[ERROR] 중복된 입력값이 있습니다.");
         }
         return food;
     }
