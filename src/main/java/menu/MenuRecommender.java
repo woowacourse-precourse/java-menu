@@ -1,5 +1,7 @@
 package menu;
 
+import utils.RandomCategoryGenerator;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,5 +24,30 @@ public class MenuRecommender {
         coaches.add(coach);
 
         return coach;
+    }
+
+    public static void getCoachRecommendFoods() {
+        for (Coach coach : coaches) {
+            getEachCoachRecommendFoods(coach);
+            System.out.println(coach);
+        }
+    }
+
+    private static void getEachCoachRecommendFoods(Coach coach) {
+        List<String> categories = getRandomCategories(coach);
+        coach.setCategories(categories);
+    }
+
+    private static List<String> getRandomCategories(Coach coach) {
+        List<String> categories = new ArrayList<>();
+
+        for (int i = 0 ; i < 5 ; i++) {
+            String category = RandomCategoryGenerator.getRandomCategory();
+            if (coach.isValidCategory(category)) {
+                categories.add(category);
+            }
+        }
+
+        return categories;
     }
 }
