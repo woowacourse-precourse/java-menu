@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import menu.domain.Category;
+import menu.domain.Menus;
 import menu.domain.Result;
 
 public class ResultService {
@@ -24,5 +25,9 @@ public class ResultService {
         } while (result.checkCategoryCount(categoryName) >= 2);
         result.addCategory(categoryName);
         result.increaseCategoryCount(categoryName);
+    }
+
+    public void pickMenu(String categoryName) {
+        String menu = Randoms.shuffle(Menus.parseMenuNames(categoryName)).get(0);
     }
 }
