@@ -18,15 +18,8 @@ public class Recommend {
         initWeekCategoryChoose();
     }
 
+    // 카테고리 추천 메서드
     public FoodCategory recommendCategory() {
-        return recommendFoodCategory();
-    }
-
-    public List<FoodCategory> getWeekCategory() {
-        return weekCategory;
-    }
-
-    private FoodCategory recommendFoodCategory() {
         FoodCategory foodCategory;
         while (true) {
             foodCategory = FoodCategory.valueOfNumber(Randoms.pickNumberInRange(
@@ -38,6 +31,13 @@ public class Recommend {
         return foodCategory;
     }
 
+    // weekCategory getter
+    public List<FoodCategory> getWeekCategory() {
+        return weekCategory;
+    }
+
+
+    // private
     // 이번주 두번 이상 먹지 않았는지 확인
     private boolean checkIsValidFoodCategory(FoodCategory foodCategory) {
         Integer categoryChooseNum = weekCategoryChoose.get(foodCategory);
