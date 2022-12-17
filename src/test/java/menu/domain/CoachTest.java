@@ -19,7 +19,8 @@ class CoachTest {
     @ValueSource(strings = {"민", "김이박최신"})
     void createWrongNameSize(String name) {
         assertThatThrownBy(() -> new Coach(name, new ArrayList<>()))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("코치 이름은 최소 2자, 최대 4자 입니다.");
     }
 
     @DisplayName("추천하지 않은 메뉴는 추천할 수 있다.")
