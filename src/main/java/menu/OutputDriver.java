@@ -20,12 +20,8 @@ public class OutputDriver {
         System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
     }
 
-    public void printErrorForScanName() {
-        System.out.println("[ERROR] 이름을 입력하실 때 맨 앞에 , 를 붙이면 안되고, 이름의 길이는 2 - 4 글자, 코치는 2 - 5명 까지만 가능합니다.");
-    }
-
     public void printErrorForScanMenuNumber() {
-        System.out.println("[ERROR] 못 먹는 메뉴는 0 - 2개 까지만 입력이 가능합니다.");
+        System.out.println("[ERROR] 못 먹는 메뉴는 0 - 2개 범위만 입력이 가능합니다.");
     }
 
     public void printErrorForScanSpliting() {
@@ -46,5 +42,9 @@ public class OutputDriver {
 
     public void printErrorForScanMenuHasSpace() {
         System.out.println("[ERROR] 메뉴를 입력하실 때 공백을 넣으시면 안됩니다.");
+    }
+
+    public void printErrorForSameName() {
+        System.out.println("[ERROR] 코치들의 이름은 중복되면 안됩니다.");
     }
 }
