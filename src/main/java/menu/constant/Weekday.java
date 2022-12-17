@@ -18,6 +18,10 @@ public enum Weekday {
         return name;
     }
 
+    public static int length() {
+        return values().length;
+    }
+
     public static List<String> getNames() {
         return Arrays.stream(values())
                 .map(Weekday::getName)

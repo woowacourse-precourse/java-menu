@@ -6,6 +6,7 @@ import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import menu.constant.Category;
+import menu.constant.Weekday;
 
 public class Recommender {
 
@@ -31,7 +32,7 @@ public class Recommender {
     }
 
     public void recommend() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < Weekday.length(); i++) {
             Category category = pickCategory();
             for (Coach coach : coaches) {
                 coach.pickFrom(category);
