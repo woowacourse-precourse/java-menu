@@ -5,11 +5,11 @@ import java.util.List;
 
 public enum Category {
 
-    JAPANESE(1),
-    KOREAN(2),
-    CHINESE(3),
-    ASIAN(4),
-    WESTERN(5);
+    JAPANESE(1, "일식"),
+    KOREAN(2, "한식"),
+    CHINESE(3, "중식"),
+    ASIAN(4, "아시안"),
+    WESTERN(5, "양식");
 
     private static final List<String> JAPANESE_FOOD = List.of(
             "규동", "우동", "미소시루", "스시", "가츠동", "오니기리", "하이라이스", "라멘", "오코노미야끼"
@@ -30,9 +30,19 @@ public enum Category {
     private static final String INVALID_NUMBER = "카테고리 선정을 하려면 1에서 5 사이의 숫자를 입력해주세요.";
 
     private final int number;
+    private final String categoryName;
 
-    Category(int number) {
+    Category(int number, String categoryName) {
         this.number = number;
+        this.categoryName = categoryName;
+    }
+
+    public static String findCategoryNameBy(int RandomNumber) {
+        return Arrays.stream(values())
+                .filter(category -> category.number == RandomNumber)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_NUMBER))
+                .getCategoryName();
     }
 
     public static List<String> findFoodBy(int RandomNumber) {
@@ -40,6 +50,14 @@ public enum Category {
                 .filter(category -> category.number == RandomNumber)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_NUMBER))
+                .getFood();
+    }
+
+    public static List<String> findCategoryBy(String categoryName) {
+        return Arrays.stream(values())
+                .filter(category -> category.categoryName.equals(categoryName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException())
                 .getFood();
     }
 
@@ -73,5 +91,25 @@ public enum Category {
             return ASIAN.number;
         }
             return WESTERN.number;
+    }
+
+    public static String findCategoryNameBy(String menu) {
+        if (JAPANESE_FOOD.contains(menu)) {
+            return JAPANESE.categoryName;
+        }
+        if (KOREAN_FOOD.contains(menu)) {
+            return KOREAN.categoryName;
+        }
+        if (CHINESE_FOOD.contains(menu)) {
+            return CHINESE.categoryName;
+        }
+        if (ASIAN_FOOD.contains(menu)) {
+            return ASIAN.categoryName;
+        }
+        return WESTERN.categoryName;
+    }
+
+    public String getCategoryName() {
+        return this.categoryName;
     }
 }

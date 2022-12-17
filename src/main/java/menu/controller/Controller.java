@@ -28,30 +28,39 @@ public class Controller {
     public void run() {
         final Map<String, List<String>> results = new LinkedHashMap<>();
         final List<String> coachNames = repeat(this::toCrewNames);
+        final List<String> categories = new ArrayList<>();
         coaches.addAll(repeat(this::toCoaches, coachNames));
         coaches.getCoaches().forEach(coach -> {
             final List<String> weeklyRecommendations = new ArrayList<>();
-            for (int day = 0; day < 5; day++) {
-                while (true) {
-                    List<String> menus = new ArrayList<>(Category.findFoodBy(Randoms.pickNumberInRange(1, 5)));
-                    menus.addAll(coach.getBannedFoods());
-                    menus = menus.stream().distinct().collect(Collectors.toList());
-                    String menu = Randoms.shuffle(menus).get(0);
-                    if (!weeklyRecommendations.contains(menu) && !hasMoreThanTwoCategories(weeklyRecommendations,
-                            menu)) {
-                        weeklyRecommendations.add(menu);
-                        break;
-                    }
+            for (int index = 0; index < 5; index++) {
+                final String randomCategory = Category.findCategoryNameBy(Randoms.pickNumberInRange(1, 5));
+                while (!categories.contains(randomCategory) && !hasMoreThanTwoCategories(categories, randomCategory)) {
+                    categories.add(randomCategory);
                 }
             }
+            categories.forEach(category -> {
+                updateWeeklyRecommendations(coach, category, weeklyRecommendations);
+            });
             results.put(coach.getName(), weeklyRecommendations);
         });
+        outputView.printResultsTitle(categories);
         outputView.printResults(results);
+        outputView.printEnd();
     }
 
-    private boolean hasMoreThanTwoCategories(List<String> weeklyRecommendations, String menu) {
-        return 1 < (int) weeklyRecommendations.stream().filter(recommendation ->
-                        Category.findNumberBy(recommendation) == Category.findNumberBy(menu))
+    private void updateWeeklyRecommendations(Coach coach, String category, List<String> weeklyRecommendations) {
+        List<String> menus = new ArrayList<>(Category.findCategoryBy(category));
+        menus.addAll(coach.getBannedFoods());
+        String menu = Randoms.shuffle(menus).get(0);
+        while (weeklyRecommendations.contains(menu)) {
+            menu = Randoms.shuffle(menus).get(0);
+        }
+        weeklyRecommendations.add(menu);
+    }
+
+    private boolean hasMoreThanTwoCategories(List<String> categories, String giveCategory) {
+        return 1 < (int) categories.stream().filter(category ->
+                        category.equals(giveCategory))
                 .count();
     }
 
