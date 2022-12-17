@@ -1,15 +1,15 @@
 package menu;
 
-import menu.category.CategoryService;
-import menu.coach.CoachService;
+import menu.category.CategoryController;
+import menu.coach.CoachController;
 import menu.view.OutputView;
 
 public class ProgramController {
 
     public void runProgram() {
         OutputView.printStartMessage();
-        CoachService.setCoaches();
-        CategoryService.recommendMenu();
+        CoachController.setCoaches();
+        CategoryController.recommendMenu();
         OutputView.printEndMessage();
     }
 

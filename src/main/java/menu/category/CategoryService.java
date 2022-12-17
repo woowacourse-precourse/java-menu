@@ -2,8 +2,6 @@ package menu.category;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import menu.coach.Coach;
-import menu.coach.CoachService;
-import menu.view.OutputView;
 import org.assertj.core.util.Sets;
 
 import java.util.ArrayList;
@@ -18,19 +16,10 @@ public class CategoryService {
         return recommendCategoryNumbers;
     }
 
-    // 못 먹는 메뉴 기반 랜덤 추천
-    public static void recommendMenu() {
-        List<Coach> coaches = CoachService.getCoaches();
-        recommendCategories();
-        for (Coach coach : coaches) {
-            List<String> recommendMenusToCoach = setRecommendMenusToCoach(coach);
-            coach.setMenusRecommended(recommendMenusToCoach);
-        }
-        OutputView.printRecommendResult(coaches);
-    }
-
-    // 카테고리 랜덤 추천 (한 주에 같은 카테고리는 최대 2회)
-    private static void recommendCategories() {
+    /**
+     * 카테고리 랜덤 추천 (한 주에 같은 카테고리는 최대 2회)
+     */
+    public static void recommendCategories() {
         List<Integer> recommendCategoryNumbers = new ArrayList<>();
         while (true) {
             for (int i = 0; i < 5; i++) {
@@ -43,8 +32,13 @@ public class CategoryService {
         CategoryService.recommendCategoryNumbers = recommendCategoryNumbers;
     }
 
-    // 코치별 메뉴 랜덤 추천 (중복되지 않도록)
-    private static List<String> setRecommendMenusToCoach(Coach coach) {
+    /**
+     * 코치별 메뉴 랜덤 추천 (중복되지 않도록, 못 먹는 메뉴는 제외)
+     *
+     * @param coach
+     * @return
+     */
+    public static List<String> setRecommendMenusToCoach(Coach coach) {
         List<String> recommendMenus = new ArrayList<>();
         List<String> cannotEats = coach.getMenusCannotEats();
 
