@@ -30,6 +30,17 @@ public class Menu {
         coaches.add(new Coach(name, inedibleMenu));
     }
 
+    public void recommendForWeek() {
+        for (int i = 0 ; i < MenuConstants.NUMBER_OF_DAYS; i++) {
+            recommendForDay();
+        }
+    }
+
+    private void recommendForDay() {
+        Category category = pickCategory();
+        coaches.forEach(coach -> pickMenu(coach, category));
+    }
+
     private Category pickCategory() {
         int categoryIndex = Randoms.pickNumberInRange(MenuConstants.FIRST_CATEGORY, MenuConstants.LAST_CATEGORY);
         Category category = Arrays.stream(Category.values())
