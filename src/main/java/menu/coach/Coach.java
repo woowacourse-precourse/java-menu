@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Coach {
-    String name;
-    List<String> foodNotEat;
-    List<String> foodEaten;
+    private String name;
+    private List<String> foodNotEat;
+    private List<String> foodEaten;
 
-    Coach(String name) {
+    public Coach(String name) {
         this.name = name;
         this.foodNotEat = new ArrayList<>();
         this.foodEaten = new ArrayList<>();
