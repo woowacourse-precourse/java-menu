@@ -81,10 +81,13 @@ public class Coaches {
         return coachList;
     }
 
-    public Menu findMenu(String menu) {
+    public void findMenu(String menu) {
+        if(menu.equals("")){
+            return;
+        }
         for(Day day : days){
             if(day.haveMenu(menu)){
-                return day.findMenu(menu);
+                return;
             }
         }
         throw new IllegalArgumentException("[ERROR] 없는 메뉴입니다.");
@@ -111,5 +114,40 @@ public class Coaches {
             return makeSelectedMenus(selectedCategories);
         }
         return selectedMenus;
+    }
+
+    public List<Day> getDays() {
+        return days;
+    }
+
+    public String printAllDays() {
+        List<String>allDays= new ArrayList<>();
+        for(Day day : days){
+            allDays.add(day.getDay());
+        }
+        return "[ 구분 | "
+                + String.join(" | ", allDays)
+                +  "]";
+    }
+
+    public List<List<Menu>> makeDailyMenus(List<Category> selectedCategories) {
+        List<List<Menu>> selectedMenus = new ArrayList<>();
+        for(Coach coach : coachList){
+            List<Menu>eachCoachesSelectedMenu = makeEachCoachesMenu(selectedCategories, coach);
+            selectedMenus.add(eachCoachesSelectedMenu);
+        }
+        return selectedMenus;
+    }
+
+    private List<Menu> makeEachCoachesMenu(List<Category> selectedCategories, Coach coach) {
+        List<Menu>selectedMenus = makeSelectedMenus(selectedCategories);
+        if(!coach.checkCanEat(selectedMenus)){
+            return makeEachCoachesMenu(selectedCategories, coach);
+        }
+        return selectedMenus;
+    }
+
+    public Coach getCoach(int index) {
+        return coachList.get(index);
     }
 }

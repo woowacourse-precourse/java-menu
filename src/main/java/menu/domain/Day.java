@@ -40,4 +40,8 @@ public class Day {
     public List<Category> getCategories() {
         return categories;
     }
+
+    public String getDay() {
+        return day;
+    }
 }

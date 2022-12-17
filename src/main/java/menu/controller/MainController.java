@@ -32,30 +32,13 @@ public class MainController {
         makeCoaches();
         makeCantEatMenus();
         List<Category>selectedCategories = coaches.makeSelectedCategories();
-        List<List<Menu>>selectedMenus = makeDailyMenus(selectedCategories);
-    }
-
-    private List<List<Menu>> makeDailyMenus(List<Category> selectedCategories) {
-        List<List<Menu>> selectedMenus = new ArrayList<>();
-        for(Coach coach : coaches.getCoaches()){
-            List<Menu>eachCoachesSelectedMenu = makeEachCoachesMenu(selectedCategories, coach);
-            selectedMenus.add(eachCoachesSelectedMenu);
-        }
-        return selectedMenus;
-    }
-
-    private List<Menu> makeEachCoachesMenu(List<Category> selectedCategories, Coach coach) {
-        List<Menu>selectedMenus = coaches.makeSelectedMenus(selectedCategories);
-        if(!coach.checkCanEat(selectedMenus)){
-            return makeEachCoachesMenu(selectedCategories, coach);
-        }
-        return selectedMenus;
+        List<List<Menu>>selectedMenus = coaches.makeDailyMenus(selectedCategories);
+        outputView.printResult(coaches, selectedCategories, selectedMenus);
     }
 
     private void makeCantEatMenus() {
         for (Coach coach : coaches.getCoaches()) {
-            List<Menu> cantEatMenus = new ArrayList<>();
-            getEachCoachesCantEatMenus(cantEatMenus, coach);
+            setEachCoachesCantEatMenus(coach);
         }
     }
 
@@ -68,24 +51,23 @@ public class MainController {
         }
     }
 
-    private void getEachCoachesCantEatMenus(List<Menu> cantEatMenus, Coach coach) {
+    private void setEachCoachesCantEatMenus(Coach coach) {
         try {
             outputView.printAskCoachCantEat(coach);
             List<String> menus = inputView.readCantEat();
             if(menus.size()!=0){
-                fineMenus(cantEatMenus, menus);
+                findMenus(menus);
             }
-            coach.setCantEat(cantEatMenus);
+            coach.setCantEat(menus);
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
-            getEachCoachesCantEatMenus(cantEatMenus, coach);
+            setEachCoachesCantEatMenus(coach);
         }
     }
 
-    private void fineMenus(List<Menu> cantEatMenus, List<String> menus) {
+    private void findMenus(List<String> menus) {
         for (String menu : menus) {
-            Menu cantEatMenu = coaches.findMenu(menu);
-            cantEatMenus.add(cantEatMenu);
+            coaches.findMenu(menu);
         }
     }
 
