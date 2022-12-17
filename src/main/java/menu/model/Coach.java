@@ -1,19 +1,23 @@
 package menu.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Coach {
     private String name;
     private String[] banFoods;
-    private MenusOfWeek menusOfWeek;
+    //private MenusOfWeek menusOfWeek;
+    List<Menu> menusOfWeek;
 
     public Coach(String name){
         this.name = name;
-        menusOfWeek = new MenusOfWeek();
+        menusOfWeek = new ArrayList<>();
     }
 
     public void setBanFoods(String[] banFoods){
         this.banFoods = banFoods;
     }
-    public MenusOfWeek getMenusOfWeek(){
+    public List<Menu> getMenusOfWeek(){
         return menusOfWeek;
     }
 

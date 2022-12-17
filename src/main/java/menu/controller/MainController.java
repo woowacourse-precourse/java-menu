@@ -86,15 +86,6 @@ public class MainController {
 
     private void setMenuOfDay(Day day, Category category, Coach coach){
         String recommendedMenu = recommender.recommendMenuOfCategory(category);
-        /*
-        while(true){
-            if(!isDuplicatedMenu(coach, recommendedMenu) || !isBanMenu(coach, recommendedMenu)){
-                break;
-            }
-            recommendedMenu = recommender.recommendMenuOfCategory(category);
-        }
-        */
-
         if(isDuplicatedMenu(coach, recommendedMenu)){
             setMenuOfDay(day, category, coach);
             return;
@@ -108,7 +99,7 @@ public class MainController {
     }
 
     private boolean isDuplicatedMenu(Coach coach, String recommendedMenu){
-        List<Menu> menusOfCoach = coach.getMenusOfWeek().getMenus();
+        List<Menu> menusOfCoach = coach.getMenusOfWeek();
         for(Menu menu : menusOfCoach){
             if(menu.getMenuName().equals(recommendedMenu)){
                 return true;
@@ -128,6 +119,7 @@ public class MainController {
     }
 
     private void displayRecommendationResult(){
+        OutputView.printRecommendationResultMessage();
         OutputView.printDays();
         OutputView.printCategories(categories);
         for(Coach coach : coaches){

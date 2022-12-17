@@ -4,7 +4,6 @@ import menu.constant.Category;
 import menu.constant.Message;
 import menu.model.Coach;
 import menu.model.Menu;
-import menu.model.MenusOfWeek;
 
 import java.util.List;
 
@@ -30,8 +29,12 @@ public class OutputView {
         System.out.println(output);
     }
 
-    public static void printDays(){
+    public static void printRecommendationResultMessage(){
         System.out.println();
+        System.out.println(Message.RECOMMENDATION_RESULT_MESSAGE);
+    }
+
+    public static void printDays(){
         System.out.println("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
     }
 
@@ -47,7 +50,7 @@ public class OutputView {
 
     public static void printRecommendedMenus(Coach coach){
         String output = "[ " + coach.getName();
-        List<Menu> menus = coach.getMenusOfWeek().getMenus();
+        List<Menu> menus = coach.getMenusOfWeek();
         for(Menu menu : menus){
             output += " | ";
             output += menu.getMenuName();
