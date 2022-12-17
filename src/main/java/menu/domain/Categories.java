@@ -35,4 +35,12 @@ public class Categories {
         }
         return false;
     }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for(String category : categories) {
+            sb.append("| " + category + " ");
+        }
+        return sb.toString();
+    }
 }
