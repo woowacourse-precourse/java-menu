@@ -1,3 +1,16 @@
+
+# 기능 구현 목록
+- [X] 어플리케이션 시작 - MainController.run()
+- [X] 코치 이름 입력 받음(,) 로 구분 - InitController.initCoaches()
+  - [X] 입력 받고, 코치 객체 생성 - InitController.initCoaches
+    - [X] 예외 시 처리 - Validator.coachNameCheck();
+  - [X] 코치 별 못먹는 메뉴 입력(최소 0개 최대 2개) - InitController.initNotPreferMenus()
+    - [X] 예외 시 처리 - Validator.recommendMenuCheck();
+- [X] 초기 값 설정 - RecommendController
+- [X] 추천 시작 - RecommendController.recommendStart();
+- [X] 결과 출력 - OutputView.printRecommendResult();
+
+
 # 미션 - 점심 메뉴 추천
 
 ## 🔍 진행 방식
