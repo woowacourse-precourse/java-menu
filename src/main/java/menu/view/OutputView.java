@@ -28,8 +28,8 @@ public class OutputView {
         System.out.print("[ 카테고리");
         List<String> categoryList = new ArrayList<>();
 
-        for (String category : categoryList) {
-            System.out.print(" | " + category);
+        for (Category category : stringCategoryMap) {
+            System.out.print(" | " + category.getCategory());
         }
         System.out.println(" ]");
 
