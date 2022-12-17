@@ -1,4 +1,4 @@
 package menu.ui.input;
 
-public class input {
+public class Input {
 }
