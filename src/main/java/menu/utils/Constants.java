@@ -25,5 +25,4 @@ public class Constants {
     public static final String KOREAN = ".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*";
 
 
-
 }

@@ -65,7 +65,7 @@ public class FoodMenu {
 
     public String getRandomMenuWithoutHates(Category category, Coach coach, LunchSuggestion lunchSuggestion) {
         String food = Randoms.shuffle(foodMenu.get(category)).get(0);
-        while (coach.isUnEatables(food) && !lunchSuggestion.sameFoodInWeek(coach, food)){
+        while (coach.isUnEatables(food) && !lunchSuggestion.sameFoodInWeek(coach, food)) {
             food = Randoms.shuffle(foodMenu.get(category)).get(0);
         }
         return food;

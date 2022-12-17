@@ -1,7 +1,6 @@
 package menu.service;
 
 import java.util.ArrayList;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,9 +38,9 @@ public class LunchSuggestion {
             stringBuilder.append(" | ");
 
             List<String> foods = lunchSuggestion.get(coach);
-            for (int i = 0; i < foods.size(); i++){
+            for (int i = 0; i < foods.size(); i++) {
                 stringBuilder.append(foods.get(i));
-                if (i != foods.size() - 1){
+                if (i != foods.size() - 1) {
                     stringBuilder.append(" | ");
                 }
             }

@@ -9,7 +9,7 @@ import menu.utils.CoachesInputParser;
 public class InputView {
 
     public Coaches readCoaches() {
-        String coachesInput =  inputWithMessage(Messages.INPUT_COACH_NAME);
+        String coachesInput = inputWithMessage(Messages.INPUT_COACH_NAME);
         try {
             return CoachesInputParser.parseCoaches(coachesInput);
         } catch (IllegalArgumentException e) {

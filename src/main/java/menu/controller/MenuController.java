@@ -101,11 +101,10 @@ public class MenuController {
         List<Coach> coachNames = coaches.getCoaches();
 
         for (Coach coach : coachNames) {
-            String food = foodMenu.getRandomMenuWithoutHates(category, coach,lunchSuggestion);
+            String food = foodMenu.getRandomMenuWithoutHates(category, coach, lunchSuggestion);
             lunchSuggestion.addSuggestion(coach, food);
         }
     }
-
 
 
     private String readUnEatables() {

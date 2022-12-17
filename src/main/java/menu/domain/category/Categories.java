@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Categories {
+
     public final List<Category> categories;
 
     public Categories() {
@@ -20,9 +21,9 @@ public class Categories {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[ 카테고리 | ");
 
-        for (int i = 0; i < categories.size(); i++){
+        for (int i = 0; i < categories.size(); i++) {
             stringBuilder.append(categories.get(i).getCategory());
-            if (i != categories.size() - 1){
+            if (i != categories.size() - 1) {
                 stringBuilder.append(" | ");
             }
         }
