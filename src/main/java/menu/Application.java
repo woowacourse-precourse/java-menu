@@ -5,6 +5,7 @@ import menu.domain.CategoryRecommendation;
 import menu.domain.Coach;
 import menu.initializer.FoodInitializer;
 import menu.input.InputView;
+import menu.recommendator.MenuRecommender;
 
 public class Application {
     public static void main(String[] args) {
@@ -17,5 +18,6 @@ public class Application {
         List<Coach> coaches = InputView.readCoachNames();
         InputView.readInedibleFoodsOfCoaches(coaches);
         CategoryRecommendation.recommendCategories();
+        MenuRecommender.recommendMenuOfCoaches(coaches);
     }
 }

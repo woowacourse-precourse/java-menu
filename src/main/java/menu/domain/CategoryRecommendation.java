@@ -41,4 +41,8 @@ public class CategoryRecommendation {
         }
         return false;
     }
+
+    public static List<FoodCategory> getRecommendations() {
+        return recommendations;
+    }
 }

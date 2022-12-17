@@ -9,6 +9,16 @@ public class FoodRepository {
         return foods;
     }
 
+    public static List<String> getFoodNamesByCategory(FoodCategory foodCategory) {
+        List<String> categorizedFoods = new ArrayList<>();
+        for (Food food : foods) {
+            if (food.getFoodCategory() == foodCategory) {
+                categorizedFoods.add(food.getName());
+            }
+        }
+        return categorizedFoods;
+    }
+
     public static void addFood(Food food) {
         foods.add(food);
     }

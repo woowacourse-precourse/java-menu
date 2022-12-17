@@ -12,4 +12,8 @@ public class Food {
     public String getName() {
         return name;
     }
+
+    public FoodCategory getFoodCategory() {
+        return foodCategory;
+    }
 }
