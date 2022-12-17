@@ -13,6 +13,7 @@ public class OutputView {
     private static final String ELEMENTS_PRINT_FORMAT = "[ %s ]\n";
     private static final String WEEKDAY_TITLE = "구분";
     private static final String CATEGORY_TITLE = "카테고리";
+    private static final String ERROR_PREFIX = "[ERROR] ";
 
     public void printServiceStart() {
         System.out.println("점심 메뉴 추천을 시작합니다.");
@@ -26,6 +27,10 @@ public class OutputView {
             printElements(coach.getName(), getFoodNamesWithBlank(coach.getRecommendedFoods()));
         }
         System.out.println("추천을 완료했습니다.");
+    }
+
+    public void printError(String message) {
+        System.out.println(ERROR_PREFIX + message);
     }
 
     private List<String> getCategoryNamesOf(List<Category> categories) {

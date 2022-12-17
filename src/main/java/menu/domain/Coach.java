@@ -9,11 +9,15 @@ import menu.constant.Food;
 
 public class Coach {
 
-    private final String name;
+    private final Name name;
     private final List<Food> inedibles;
     private final List<Food> recommendedFoods;
 
     public Coach(String name, List<Food> inedibles) {
+        this(new Name(name), inedibles);
+    }
+
+    public Coach(Name name, List<Food> inedibles) {
         validateInediblesLength(inedibles);
         this.name = name;
         this.inedibles = inedibles;
@@ -51,6 +55,6 @@ public class Coach {
     }
 
     public String getName() {
-        return name;
+        return name.getName();
     }
 }
