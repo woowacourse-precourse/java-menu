@@ -9,9 +9,9 @@ import menu.view.OutputView;
 
 public class Coach {
     private static final String INVALID_NAME_RANGE = "[ERROR] 코치의 이름은 2글자 이상 4글자 이하입니다.";
-    private String name;
     private List<String> prohibitionMenus = new ArrayList<String>();
     private List<String> recommendMenus = new ArrayList<String>();
+    private String name;
 
     public Coach(String name) {
         if (!(2 <= name.length() && name.length() <= 4)) {
@@ -25,7 +25,8 @@ public class Coach {
     }
 
     public String getFormat() {
-        return OutputView.COACH_LINE_START + name + OutputView.RESULT_SEPERATOR + recommendMenus.stream().collect(Collectors.joining(" | "))
+        return OutputView.COACH_LINE_START + name + OutputView.RESULT_SEPERATOR + recommendMenus.stream()
+                .collect(Collectors.joining(" | "))
                 + OutputView.LINE_END;
     }
 
@@ -35,14 +36,6 @@ public class Coach {
             recommendMenu = Category.recommendRandomMenu(week.getCategory());
         }
         recommendMenus.add(recommendMenu);
-    }
-
-    public boolean isEatable() {
-        int prohibitMenuCount = (int) recommendMenus.stream()
-                .filter(menu -> prohibitionMenus.contains(menu))
-                .count();
-        int duplicatedCount = new HashSet<String>(recommendMenus).size();
-        return prohibitMenuCount == 0 && duplicatedCount == 5;
     }
 
     public void setProhibitionMenus(String menus) {
@@ -63,7 +56,14 @@ public class Coach {
         for (String menu : inputProhibitionMenus) {
             prohibitionMenus.add(menu);
         }
+    }
 
+    public boolean isEatable() {
+        int prohibitMenuCount = (int) recommendMenus.stream()
+                .filter(menu -> prohibitionMenus.contains(menu))
+                .count();
+        int duplicatedCount = new HashSet<String>(recommendMenus).size();
+        return prohibitMenuCount == 0 && duplicatedCount == 5;
     }
 
 
