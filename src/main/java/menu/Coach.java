@@ -25,6 +25,15 @@ public class Coach {
             category = Category.from(Randoms.pickNumberInRange(1, 5));
         }
         recommendedCategories.add(category);
+        String foodName = pickFoodName(category);
+        while (isRecommended(foodName)) {
+            foodName = pickFoodName(category);
+        }
+        recommendedFoods.add(Food.from(foodName));
+    }
+
+    private String pickFoodName(Category category) {
+        return Randoms.shuffle(Food.foodNamesFromCategory(category)).get(0);
     }
 
     private boolean isRecommendedTwice(Category category) {
@@ -32,5 +41,12 @@ public class Coach {
                 .filter(element -> element.equals(category))
                 .count();
         return count == 2;
+    }
+
+    private boolean isRecommended(String foodName) {
+        long count = recommendedFoods.stream()
+                .filter(element -> element.equals(Food.from(foodName)))
+                .count();
+        return count != 0;
     }
 }

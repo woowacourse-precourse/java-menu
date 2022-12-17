@@ -34,4 +34,16 @@ public enum Food {
                 .map(Enum::name)
                 .collect(Collectors.toList());
     }
+
+    public static Food from(String foodNameWithSpace) {
+        return Arrays.stream(values())
+                .filter(foodName -> foodName.isEqualConsideringSpaceTo(foodNameWithSpace))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("음식을 찾지 못했습니다"));
+    }
+
+    private boolean isEqualConsideringSpaceTo(String foodNameWithSpace) {
+        String foodNameWithoutSpace = foodNameWithSpace.replaceAll("_", " ");
+        return name().equals(foodNameWithoutSpace);
+    }
 }
