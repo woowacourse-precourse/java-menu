@@ -3,11 +3,13 @@ package menu.domain;
 import java.util.Arrays;
 
 public enum Category {
-    JAPANESE(1), KOREAN(2), CHINESE(3), ASIAN(4), WESTERN(5);
+    JAPANESE("일식", 1), KOREAN("한식", 2), CHINESE("중식", 3), ASIAN("아시안", 4), WESTERN("양식", 5);
 
+    private String name;
     private int id;
 
-    Category(int id) {
+    Category(String name, int id) {
+        this.name = name;
         this.id = id;
     }
 
