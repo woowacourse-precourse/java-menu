@@ -1,6 +1,9 @@
 package menu.controller;
 
 import menu.model.Coach;
+import menu.model.MenuResult;
+import menu.model.RecommendResult;
+import menu.service.MenuService;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -12,18 +15,25 @@ public class MenuController {
     private InputView inputView;
     private OutputView outputView;
     private List<Coach> coachList;
+    private MenuService menuService;
 
     public MenuController() {
         inputView = new InputView();
         outputView = new OutputView();
         coachList = new ArrayList<>();
+        menuService = new MenuService();
     }
 
     public void run() {
         start();
         readCoachInfo();
+        recommendMenu();
         printResult();
         end();
+    }
+
+    public void recommendMenu() {
+        RecommendResult recommendResult = menuService.recommendMenu(coachList);
     }
 
     public void start() {
