@@ -59,13 +59,17 @@ public class Recommander {
 
         for (Coach coach :
                 coachList) {
+            setAllegyByCoach(coach);
+        }
+    }
+
+    private void setAllegyByCoach(Coach coach){
+        try {
             OutputView.getAllergic(coach.name);
-            try {
-                coach.setAllergic(InputView.getAllergy());
-            } catch (IllegalArgumentException error) {
-                System.out.println(error.getMessage());
-                getCoaches();
-            }
+            coach.setAllergic(InputView.getAllergy());
+        } catch (IllegalArgumentException error) {
+            System.out.println(error.getMessage());
+            setAllegyByCoach(coach);
         }
     }
 

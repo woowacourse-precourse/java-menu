@@ -1,6 +1,7 @@
 package menu.Domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import menu.Util.ErrorMessage;
 import menu.Util.OutputView;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class Coach {
     }
 
     public void setAllergic(List<String> allergy) {
+        validate(allergy);
         this.allergic = allergy;
     }
 
@@ -45,5 +47,24 @@ public class Coach {
                 return menu;
             }
         }
+    }
+
+    private void validate(List<String> allergic) {
+        for (String tmp :
+                allergic) {
+            if(!valid(tmp)){
+                throw new IllegalArgumentException(ErrorMessage.NoSuchFood.getMessage());
+            }
+        }
+    }
+
+    private boolean valid(String allergy){
+        for (List<String> foods:
+                database.values()) {
+            if(foods.contains(allergy)){
+                return true;
+            }
+        }
+        return false;
     }
 }
