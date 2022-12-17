@@ -4,7 +4,7 @@ import menu.domain.category.Category;
 import menu.view.InputView;
 import menu.view.OutputView;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -34,7 +34,7 @@ public class InputController {
     }
 
     private Map<String, List<String>> readHateMenusByCoach(List<String> coachNames) {
-        Map<String, List<String>> hateMenusByCoach = new HashMap<>();
+        Map<String, List<String>> hateMenusByCoach = new LinkedHashMap<>();
         for (String coachName : coachNames) {
             hateMenusByCoach.put(coachName, readValidHateMenus(coachName));
         }
