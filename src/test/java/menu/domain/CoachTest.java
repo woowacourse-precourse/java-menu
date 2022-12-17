@@ -3,8 +3,6 @@ package menu.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -45,5 +43,12 @@ class CoachTest {
     void isRecommendedMenu() {
         assertTrue(coach.isRecommendedMenu("김밥"));
         assertFalse(coach.isRecommendedMenu("나시고렝"));
+    }
+
+    @DisplayName("추천 메뉴 추가하기")
+    @Test
+    void addRecommendedMenu() {
+         coach.addRecommendedMenu("나시고렝");
+         assertThat(coach.getRecommendedMenu()).isEqualTo(List.of("김밥", "뇨끼", "우동", "나시고렝"));
     }
 }
