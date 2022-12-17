@@ -29,11 +29,8 @@ public class RecommendMenuRepository {
     private boolean validateCategoryRange(Category randomCategory) {
         int count = 0;
         for (Category category : categories){
-            System.out.println("검사하는 항목"+category);
             if(category == randomCategory) count++;
         }
-        System.out.println("카운트" + count);
-        System.out.println(count<2);
         return count<2;
     }
 
