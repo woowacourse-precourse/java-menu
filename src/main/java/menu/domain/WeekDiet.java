@@ -3,6 +3,7 @@ package menu.domain;
 import menu.util.CategoryChoicer;
 import menu.util.MenuChoicer;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +27,7 @@ public class WeekDiet {
 
     private boolean is3DuplicateCategoriesInList(List<FoodCategory> createdFoodCategories){
         for(FoodCategory foodCategory : createdFoodCategories){
-            List<FoodCategory> copy = List.copyOf(createdFoodCategories);
+            List<FoodCategory> copy = new ArrayList(createdFoodCategories);
             copy.retainAll(List.of(foodCategory));
             if(copy.size()>2) return true;
         }
@@ -58,7 +59,7 @@ public class WeekDiet {
     }
     @Override
     public String toString() {
-        //TODO: 구현
+        //TODO: 구
         return "";
     }
 }
