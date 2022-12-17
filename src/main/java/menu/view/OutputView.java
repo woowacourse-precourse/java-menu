@@ -19,7 +19,6 @@ public class OutputView {
 		Message.printMessage(Message.SERVICE_START);
 	}
 
-	// 메뉴 추천 결과 출력
 	public void recommendMenuPrint(List<Coach> list) {
 		Message.printFinalMessage(list);
 	}

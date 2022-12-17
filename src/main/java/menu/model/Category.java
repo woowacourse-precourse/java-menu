@@ -21,7 +21,6 @@ public enum Category {
 	}
 
 	public static Category getCategory(int menuNumber) {
-
 		for (Category category : Category.values()) {
 			if (category.menuNumber == menuNumber) {
 				return category;
