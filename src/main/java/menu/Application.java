@@ -1,7 +1,12 @@
 package menu;
 
+import menu.config.MenuApplicationFactory;
+import menu.domain.MenuApplication;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        MenuApplicationFactory menuApplicationFactory = new MenuApplicationFactory();
+        MenuApplication menuApplication = menuApplicationFactory.generateApp();
+        menuApplication.run();
     }
 }
