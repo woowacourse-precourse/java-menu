@@ -1,5 +1,6 @@
 package menu.domain;
 
+import java.net.CookieHandler;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -37,5 +38,9 @@ public class Group {
 
     public List<Coach> getCoaches() {
         return Collections.unmodifiableList(coaches);
+    }
+
+    public List<String> getCategoryHistory() {
+        return Collections.unmodifiableList(categoryHistory);
     }
 }

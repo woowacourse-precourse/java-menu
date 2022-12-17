@@ -3,6 +3,7 @@ package menu.controller;
 import menu.domain.Coach;
 import menu.domain.Group;
 import menu.view.InputView;
+import menu.view.OutputView;
 
 import java.util.List;
 
@@ -22,6 +23,6 @@ public class MenuController {
 
         group.makeMenus();
 
-        outputView.renderResult(group.getCoaches());
+        outputView.renderResult(group.getCoaches(), group.getCategoryHistory());
     }
 }
