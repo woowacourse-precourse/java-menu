@@ -12,12 +12,12 @@ public class InputView {
     public String[] getCoachNames() {
         String input = readLine();
         Validation.isCoachNames(input);
-        return input.split(",");
+        return input.split("\\s*,\\s*");
     }
 
     public String[] getCantEatMenus() {
         String input = readLine();
         Validation.isCantEatMenus(input);
-        return input.split(",");
+        return input.split("\\s*,\\s*");
     }
 }
