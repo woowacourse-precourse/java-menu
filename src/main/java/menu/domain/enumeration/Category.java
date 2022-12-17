@@ -29,7 +29,7 @@ public enum Category {
     public static String findCategoryName(Integer index) {
         return Arrays.stream(Category.values())
                 .filter(category -> category.categoryIndex.equals(index))
-                .findAny()
+                .findFirst()
                 .map(Category::getCategoryName)
                 .orElse(null);
     }

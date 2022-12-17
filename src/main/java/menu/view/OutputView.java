@@ -55,7 +55,7 @@ public class OutputView {
 
     private static void printEachCoachRecommandFoods(CoachFoodRecommand foodRecommand) {
         StringBuilder result = new StringBuilder();
-        result.append(START + foodRecommand.getCoach().getName() + SPACE);
+        result.append(START + SPACE + foodRecommand.getCoach().getName() + SPACE);
         List<String> foods = foodRecommand.getFoods();
         for (String food : foods) {
             result.append(EACH + SPACE + food + SPACE);
