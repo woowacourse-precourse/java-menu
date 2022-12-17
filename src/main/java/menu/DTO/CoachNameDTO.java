@@ -7,6 +7,8 @@ import menu.domain.Coach;
 
 public class CoachNameDTO {
 
+    private static final int MAXIMUM_COACH_NUMBER = 5;
+    private static final int MINIMUM_COACH_NUMBER = 2;
     private final List<Coach> coaches = new ArrayList<>();
     private static final CoachNameDTO coachNameDTO = new CoachNameDTO();
 
@@ -25,5 +27,10 @@ public class CoachNameDTO {
         List<String> names = List.of(nameInput.split(","));
 
         names.forEach(name -> coaches.add(new Coach(name)));
+        if (names.size() > MAXIMUM_COACH_NUMBER
+                || names.size() < MINIMUM_COACH_NUMBER) {
+            throw new IllegalArgumentException(
+                    "[ERROR] 함께 식사하는 코치느 최소 2명, 최대 5명입니다.");
+        }
     }
 }

@@ -1,6 +1,5 @@
 package menu.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -17,7 +16,7 @@ public class FoodRepository {
         return Collections.unmodifiableList(foods);
     }
 
-    public void addFood(final Food food) {
+    public void add(final Food food) {
         foods.add(food);
     }
 
@@ -25,9 +24,18 @@ public class FoodRepository {
         return foods.removeIf(food -> Objects.equals(food.getName(), name));
     }
 
+    public int size() {
+        return foods.size();
+    }
+
     public boolean contains(final Food food) {
         return foods.contains(food);
     }
+
+    public boolean contains(final String otherFood) {
+        return foods.stream().anyMatch(food -> food.getName().equals(otherFood));
+    }
+
 
     public void deleteAll() {
         foods.clear();
