@@ -31,5 +31,8 @@ public class MenuRecommendProgram {
         } while (isSelect);
     }
 
+    private boolean validateCategory(String category) {
+        return countOfCategorySelected.get(category) < 2;
+    }
 
 }
