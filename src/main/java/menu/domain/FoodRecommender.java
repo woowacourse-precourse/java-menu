@@ -28,13 +28,14 @@ public class FoodRecommender {
 
     private void setMenuByDayAndCategory(Day day, FoodCategory category) {
         for (Coach coach : coaches) {
-            String randomMenu = getRandomMenu(category, coach);
+            Menu randomMenu = getRandomMenu(category, coach);
             coach.putDayByMenu(day, randomMenu);
         }
     }
 
-    private String getRandomMenu(FoodCategory category, Coach coach) {
-        String menu = Randoms.shuffle(category.getFoods()).get(0);
+    private Menu getRandomMenu(FoodCategory category, Coach coach) {
+        String menuName = Randoms.shuffle(category.getFoods()).get(0);
+        Menu menu = MenuRepository.findByName(menuName);
         if (coach.isBlacklist(menu) || coach.isDuplicate(menu)) {
             return getRandomMenu(category, coach);
         }

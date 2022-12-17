@@ -11,8 +11,8 @@ public class Coach {
     private static final int BLACKLIST_MAX_SIZE = 2;
 
     private final String name;
-    private List<String> blacklist;
-    private Map<Day, String> menus;
+    private List<Menu> blacklist;
+    private Map<Day, Menu> menus;
 
     public Coach(String name) {
         validateName(name);
@@ -26,16 +26,16 @@ public class Coach {
         }
     }
 
-    public Map<Day, String> getMenus() {
+    public Map<Day, Menu> getMenus() {
         return menus;
     }
 
-    public void setBlacklist(List<String> blacklist) {
+    public void setBlacklist(List<Menu> blacklist) {
         validateBlacklist(blacklist);
         this.blacklist = blacklist;
     }
 
-    private void validateBlacklist(List<String> blacklist) {
+    private void validateBlacklist(List<Menu> blacklist) {
         if (blacklist.size() > BLACKLIST_MAX_SIZE) {
             throw new IllegalArgumentException("못 먹는 메뉴는 2가지까지만 가능합니다");
         }
@@ -45,15 +45,15 @@ public class Coach {
         return name;
     }
 
-    public void putDayByMenu(Day day, String menu) {
+    public void putDayByMenu(Day day, Menu menu) {
         menus.put(day, menu);
     }
 
-    public boolean isBlacklist(String menu) {
+    public boolean isBlacklist(Menu menu) {
         return blacklist.contains(menu);
     }
 
-    public boolean isDuplicate(String menu) {
+    public boolean isDuplicate(Menu menu) {
         return menus.values()
                 .stream()
                 .anyMatch(coachMenu -> coachMenu.equals(menu));

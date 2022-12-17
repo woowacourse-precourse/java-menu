@@ -1,9 +1,13 @@
 package menu.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.Coach;
+import menu.domain.FoodCategory;
 import menu.domain.FoodRecommender;
+import menu.domain.Menu;
+import menu.domain.MenuRepository;
 import menu.domain.MenuResult;
 import menu.view.InputView;
 import menu.view.OutputView;
@@ -20,6 +24,7 @@ public class MenuController {
 
     public void run() {
         outputView.printStart();
+        initMenus();
         List<Coach> coaches = getCoaches();
         for (Coach coach : coaches) {
             addBlacklist(coach);
@@ -28,13 +33,34 @@ public class MenuController {
         outputView.printResult(menuResult);
     }
 
+    private void initMenus() {
+        List<List<String>> menusByCategory = Arrays.stream(FoodCategory.values())
+                .map(FoodCategory::getFoods)
+                .collect(Collectors.toList());
+        for (List<String> menus : menusByCategory) {
+            menus.stream()
+                    .map(Menu::new)
+                    .forEach(MenuRepository::addMenu);
+        }
+
+
+    }
+
     private void addBlacklist(Coach coach) {
         try {
-            coach.setBlacklist(inputView.readBlackList(coach));
+            List<Menu> menus = findAll(inputView.readBlackList(coach));
+            coach.setBlacklist(menus);
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             addBlacklist(coach);
         }
+    }
+
+    private List<Menu> findAll(List<String> names) {
+        return names.stream()
+                .filter(name -> !name.equals(""))
+                .map(MenuRepository::findByName)
+                .collect(Collectors.toList());
     }
 
     private List<Coach> getCoaches() {

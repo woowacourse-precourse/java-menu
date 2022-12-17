@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import menu.domain.Coach;
 import menu.domain.Day;
 import menu.domain.FoodCategory;
+import menu.domain.Menu;
 import menu.domain.MenuResult;
 
 public class OutputView {
@@ -62,9 +63,10 @@ public class OutputView {
         System.out.printf(RESULT_BASIC_FORMAT, subject, String.join(DELIMITER, elements));
     }
 
-    private List<String> convertMenuToName(Map<Day, String> foodCategories) {
+    private List<String> convertMenuToName(Map<Day, Menu> foodCategories) {
         return Arrays.stream(Day.values())
                 .map(foodCategories::get)
+                .map(Menu::getName)
                 .collect(Collectors.toList());
     }
 
