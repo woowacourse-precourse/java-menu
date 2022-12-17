@@ -11,6 +11,7 @@ public class Validator {
     private final int MAX_COACH_NUMBER = 5;
     private final int MIN_NAME_LENGTH = 2;
     private final int MAX_NAME_LENGTH = 4;
+    private final int MAX_DISLIKE_MENU = 2;
 
     public List<String> isValidCoachesName(String userInput) {
         List<String> coachesName = new ArrayList<>(Arrays.asList(userInput.split(",")));
@@ -28,9 +29,21 @@ public class Validator {
 
     private void isValidCoachName(List<String> coachesName) {
         for (String name : coachesName) {
-            if (name.length() < 2 || name.length() > 4) {
+            if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
                 throw new IllegalArgumentException(error + "코치의 이름은 최소 2글자, 최대 4글자 내에서 입력해 주세요.");
             }
+        }
+    }
+
+    public List<String> isValidDislikeMenus(String userInput) {
+        List<String> dislikeMenus = new ArrayList<>(Arrays.asList(userInput.split(",")));
+        isValidMenuSize(dislikeMenus);
+        return dislikeMenus;
+    }
+
+    private void isValidMenuSize(List<String> menus) {
+        if (menus.size() > MAX_DISLIKE_MENU) {
+            throw new IllegalArgumentException(error + "못 먹는 메뉴는 최대 2개까지만 입력해주세요.");
         }
     }
 }
