@@ -25,10 +25,8 @@ public class OutputView {
         System.out.println(ViewConstants.RESULT);
         System.out.println(ViewConstants.DAYS);
         printCategories(previousCategories);
-
         coaches.forEach(this::printCoachMenus);
         System.out.println();
-        System.out.println(ViewConstants.COMPLETION);
     }
 
     private void printCategories(List<String> previousCategories) {
@@ -40,6 +38,10 @@ public class OutputView {
     private void printCoachMenus(Coach coach) {
         System.out.println(coach.getResult().stream()
                 .collect(Collectors.joining(ViewConstants.DELIMITER, ViewConstants.FRONT, ViewConstants.BACK)));
+    }
+
+    public void printCompletion() {
+        System.out.println(ViewConstants.COMPLETION);
     }
 
     public void printException(Exception e) {

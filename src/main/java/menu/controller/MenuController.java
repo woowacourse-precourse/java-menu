@@ -13,6 +13,7 @@ public class MenuController {
         init();
         menu.recommendForWeek();
         outputView.printResult(menu.getPreviousCategories(), menu.getCoaches());
+        outputView.printCompletion();
     }
 
     private void init() {
