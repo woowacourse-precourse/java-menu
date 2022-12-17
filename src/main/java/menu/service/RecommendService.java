@@ -15,9 +15,10 @@ import menu.utils.ErrorMessages;
 
 public class RecommendService {
 
+    public static final int RECOMMEND_DAYS = 5;
+    public static final int MAX_CATEGORY_COUNTS = 2;
     public static final int MIN_CATEGORY_NUM = 1;
     public static final int MAX_CATEGORY_NUM = 5;
-    public static final int RECOMMEND_DAYS = 5;
 
     private final Map<FoodCategory, Integer> categoryCounts = new HashMap<>();
     private final Map<Coach, List<Menu>> eatFoods = new HashMap<>();
@@ -53,7 +54,7 @@ public class RecommendService {
     public FoodCategory recommendCategory(int randomNum) {
         FoodCategory category = getCategory(randomNum);
         Integer counts = categoryCounts.getOrDefault(category, 0);
-        if (counts >= 2) {
+        if (counts >= MAX_CATEGORY_COUNTS) {
             throw new IllegalStateException(ErrorMessages.OVER_RECOMMEND);
         }
         categoryCounts.put(category, counts + 1);
