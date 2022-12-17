@@ -7,7 +7,7 @@ public class InputViewValidation {
     private final String ERROR = "[ERROR] ";
     private final int MAX_COUCH = 5;
     private final int MIN_COUCH = 2;
-    private final int MAX_COUCH_NAME = 5;
+    private final int MAX_COUCH_NAME = 4;
     private final int MIN_COUCH_NAME = 2;
     private final int MAX_FOOD = 2;
 
