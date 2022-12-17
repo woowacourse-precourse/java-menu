@@ -18,6 +18,18 @@ public class Menu {
         this.category = category;
     };
 
+    public String[] recommandMenu(List<String> inEdibleMenu) {
+        List<String> rmdMenu = new ArrayList<>();
+        while(rmdMenu.size() < 5) {
+            List<String> menus = menuList.get(category.get(rmdMenu.size())-1);
+            String menu = Randoms.shuffle(menus).get(0);
+            if (isInEdibleMenu(inEdibleMenu, menu))
+                continue;
+            rmdMenu.add(menu);
+        }
+        return rmdMenu.toArray(new String[rmdMenu.size()]);
+    }
+
     public static boolean isInEdibleMenu(List<String> inEdibleMenu, String menu) {
         for (int i = 0; i < inEdibleMenu.size(); i++) {
             if (inEdibleMenu.get(i).equals(menu))
