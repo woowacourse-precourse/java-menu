@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import menu.constant.Category;
 import menu.constant.Food;
 import menu.constant.Weekday;
@@ -55,7 +54,7 @@ public class Recommender {
     }
 
     private Category pickCategory() {
-        return Category.from(Randoms.pickNumberInRange(1, 5));
+        return Category.pickRandomCategory();
     }
 
     private boolean isRecommendedTwice(Category category) {
