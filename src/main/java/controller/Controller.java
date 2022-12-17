@@ -19,9 +19,9 @@ public class Controller {
 	public static List<String> coachNames;
 	public static List<String> hateFoods;
 	public static List<List<String>> menuRecommendResult;
-	public static String recommendMenu;
 	public static List<Integer> categoryCount;
 	public static List<String> weeklyCategory;
+	public static String recommendMenu;
 
 	public static void programStart() {
 		init();
@@ -86,7 +86,6 @@ public class Controller {
 		int categoryNumber = Randoms.pickNumberInRange(
 			CategoryIndex.MIN_CATEGORY_INDEX.getIndex(), CategoryIndex.MAX_CATEGORY_INDEX.getIndex());
 
-		//한 주에 같은 카테고리는 최대 2회까지만 고를 수 있다.
 		while (categoryCount.get(categoryNumber) >= MAX_CATEGORY_CHOSEN) {
 			categoryNumber = Randoms.pickNumberInRange(CategoryIndex.MIN_CATEGORY_INDEX.getIndex(),
 				CategoryIndex.MAX_CATEGORY_INDEX.getIndex());
