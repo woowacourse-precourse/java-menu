@@ -31,15 +31,15 @@ public class Person {
         unavailable = new Menus(result);
     }
 
-    private String[] validateUnavailableMenus(String input) {
-        String[] split = input.split(DELIMITER);
-        for (String s : split) {
-            if (!s.matches(REGEX)) {
-                throw new IllegalArgumentException("올바른 입력이 아닙니다. 쉽표로 구분하여 입력해주세요");
+    private String[] validateUnavailableMenus(String menus) {
+        String[] split = menus.split(DELIMITER);
+        for (String menu : split) {
+            if (!menu.matches(REGEX)) {
+                throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_FORMAT);
             }
         }
         if (split.length > UNAVAILABLE_MENU_COUNT_LIMIT) {
-            throw new IllegalArgumentException("최대 2개의 못 먹는 메뉴만 입력할 수 있습니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_UNAVAILABLE_COUNT);
         }
         return split;
     }
@@ -69,4 +69,10 @@ public class Person {
             break;
         }
     }
+
+    private static final class ErrorMessage {
+        private static final String INVALID_INPUT_FORMAT = "올바른 입력이 아닙니다. 쉽표로 구분하여 입력해주세요";
+        private static final String INVALID_UNAVAILABLE_COUNT = String.format("최대 %d개의 못 먹는 메뉴만 입력할 수 있습니다.", UNAVAILABLE_MENU_COUNT_LIMIT);
+    }
+
 }
