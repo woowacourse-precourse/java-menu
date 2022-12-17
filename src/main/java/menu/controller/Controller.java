@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import menu.constant.Food;
 import menu.domain.Coach;
-import menu.domain.Name;
+import menu.domain.vo.Name;
 import menu.domain.Recommender;
 import menu.view.InputView;
 import menu.view.OutputView;
@@ -19,10 +19,9 @@ public class Controller {
 
     public void run() {
         OUTPUT_VIEW.printServiceStart();
-        List<Coach> coaches = readCoaches();
-        Recommender recommender = new Recommender(coaches);
+        Recommender recommender = new Recommender(readCoaches());
         recommender.recommend();
-        OUTPUT_VIEW.printMenus(recommender.getRecommendedCategories(), coaches);
+        OUTPUT_VIEW.printMenus(recommender.getRecommendedCategories(), recommender.getRecommendations());
     }
 
     private List<Coach> readCoaches() {

@@ -59,4 +59,12 @@ public class Recommender {
     public List<Category> getRecommendedCategories() {
         return Collections.unmodifiableList(recommendedCategories);
     }
+
+    public Map<Name, List<Food>> getRecommendations() {
+        Map<Name, List<Food>> recommendedFoods = new HashMap<>();
+        for (Coach coach : coaches) {
+            recommendedFoods.put(coach.getName(), coach.getRecommendedFoods());
+        }
+        return Collections.unmodifiableMap(recommendedFoods);
+    }
 }

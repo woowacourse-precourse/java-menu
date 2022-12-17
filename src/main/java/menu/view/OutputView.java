@@ -1,12 +1,13 @@
 package menu.view;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import menu.constant.Category;
 import menu.constant.Food;
 import menu.constant.Weekday;
-import menu.domain.Coach;
+import menu.domain.vo.Name;
 
 public class OutputView {
     private static final String SEPARATOR = " | ";
@@ -19,12 +20,13 @@ public class OutputView {
         System.out.println("점심 메뉴 추천을 시작합니다.");
     }
 
-    public void printMenus(List<Category> categories, List<Coach> coaches) {
+    public void printMenus(List<Category> categories, Map<Name, List<Food>> recommendations) {
         System.out.println("메뉴 추천 결과입니다.");
         printElements(WEEKDAY_TITLE, Weekday.getNames());
         printElements(CATEGORY_TITLE, getCategoryNamesOf(categories));
-        for (Coach coach : coaches) {
-            printElements(coach.getName(), getFoodNamesWithBlank(coach.getRecommendedFoods()));
+        for (Name coachName : recommendations.keySet()) {
+            List<Food> foodsForCoach = recommendations.get(coachName);
+            printElements(coachName.getName(), getFoodNamesWithBlank(foodsForCoach));
         }
         System.out.println("추천을 완료했습니다.");
     }
