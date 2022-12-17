@@ -4,6 +4,7 @@ import menu.domain.CouchGroup;
 import menu.domain.Food;
 import menu.service.RecommendService;
 import menu.utils.Category;
+import menu.utils.Weekend;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -32,11 +33,11 @@ public class RecommendController {
 
         couchDenyFood(couchGroup);
 
-        for (int i = 0; i < 5; i++) {
-            Category category = recommendService.getCategory();
-            categories.add(category);
-            couchRecommendedFood(couchGroup, category);
-        }
+        IntStream.range(0, Weekend.size())
+                .mapToObj(index -> recommendService.getCategory()).forEach(category -> {
+                    categories.add(category);
+                    couchRecommendedFood(couchGroup, category);
+                });
 
         outputView.printResult(couchGroup, categories);
     }
