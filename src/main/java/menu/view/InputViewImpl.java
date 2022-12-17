@@ -20,7 +20,7 @@ public class InputViewImpl implements InputView {
 
     @Override
     public Coach sendHateMenuBySpecificCoach(CoachNameDto coachNameDto) {
-        System.out.println(coachNameDto.getName() + "(이)가 못 먹는 메뉴를 입력해주세요.");
+        System.out.println(coachNameDto.getName() + "(이)가 못 먹는 메뉴를 입력해 주세요.");
         List<String> hateMenuNames = Arrays.asList(Console.readLine().split(","));
         return new Coach(coachNameDto.getName(), hateMenuNames);
     }
