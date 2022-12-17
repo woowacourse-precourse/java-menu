@@ -29,6 +29,44 @@ public class MenuController {
         List<Coach> coaches = getCoaches();
         addAllegeMenu(coaches);
         List<Category> categories = getCategories();
+        recommendMenu(coaches, categories);
+    }
+
+    private void recommendMenu(List<Coach> coaches, List<Category> categories) {
+        for (Coach coach : coaches) {
+            List<String> menus = getRecommendMenus(categories, coach);
+            addMenu(coach, menus);
+        }
+    }
+
+    private List<String> getRecommendMenus(List<Category> categories, Coach coach) {
+        HashSet<String> exist = new HashSet<>();
+        List<String> menus = new ArrayList<>();
+        for (int day = 0; day < 5; day++) {
+            while (true) {
+                String menuName = getFirstMenu(categories.get(day));
+                if (!exist.contains(menuName) && !coach.checkAllegeMenu(menuName)) {
+                    addExist(exist, menus, menuName);
+                    break;
+                }
+            }
+        }
+        return menus;
+    }
+
+    private void addExist(HashSet<String> exist, List<String> menus, String menuName) {
+        menus.add(menuName);
+        exist.add(menuName);
+    }
+
+    private void addMenu(Coach coach, List<String> menus) {
+        for (String menu : menus) {
+            coach.addRecommendation(menu);
+        }
+    }
+
+    private String getFirstMenu(Category category) {
+        return Randoms.shuffle(Category.getMenusByCategory(category.getName())).get(0);
     }
 
     private List<Category> getCategories() {
@@ -79,7 +117,7 @@ public class MenuController {
         String[] coachNames = input.split(DELIMITER);
         List<Coach> coaches = new ArrayList<>();
         for (String coachName : coachNames) {
-            coaches.add(new Coach(coachName, new HashSet<>()));
+            coaches.add(new Coach(coachName, new HashSet<>(), new ArrayList<>()));
         }
         return coaches;
     }
