@@ -19,7 +19,7 @@ public class Input {
         }
     }
 
-    public static List<String> readNoFoods(String coachName) {
+    public static List<String> readInedibleFoods(String coachName) {
         while(true){
             try{
                 System.out.println(coachName + "(이)가 못 먹는 메뉴를 입력해 주세요.");

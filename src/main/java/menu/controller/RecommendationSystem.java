@@ -20,7 +20,7 @@ public class RecommendationSystem {
     public void start(){
         List<String> coaches = Input.readCoachesName();
         for (String coach : coaches)
-            coachList.add(new Coach(Input.readNoFoods(coach), coach));
+            coachList.add(new Coach(Input.readInedibleFoods(coach), coach));
 
         calculateResult();
 
