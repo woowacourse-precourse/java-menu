@@ -9,10 +9,11 @@ import java.util.Set;
 public class Couch {
 
     private final String name;
-    private final Set<Menu> alreadyRecommended = new LinkedHashSet<>();
+    private final Set<Menu> alreadyRecommended;
 
-    public Couch(String name) {
+    public Couch(String name, List<Menu> disableMenu) {
         this.name = name;
+        this.alreadyRecommended = new LinkedHashSet<>(disableMenu);
     }
 
     public String getName() {
@@ -24,6 +25,10 @@ public class Couch {
     }
 
     public void recommendMenu(Menu menu) {
+        alreadyRecommended.add(menu);
+    }
+
+    public void addDisableMenu(Menu menu) {
         alreadyRecommended.add(menu);
     }
 
