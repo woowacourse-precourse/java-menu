@@ -1,3 +1,5 @@
+package menu;
+
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Category {
