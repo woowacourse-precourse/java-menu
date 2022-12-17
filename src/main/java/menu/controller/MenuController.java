@@ -50,6 +50,7 @@ public class MenuController {
         menuService.recommendMenu();
         List<String> categoriesOfWeek = menuService.getCategoriesOfWeek();
         List<CoachMenu> coachMenus = menuService.getCoachMenus();
-        outputView.printMenuRecommencResult(coachMenus);
+        outputView.printTopOfTable(categoriesOfWeek);
+        outputView.printMenuRecommendResult(coachMenus);
     }
 }
