@@ -45,20 +45,6 @@ public class Coach {
         recommendFoods.get(name).add(food);
     }
 
-    //삭제해야함
-    public void printMap() {
-        for (String s : coaches.keySet()) {
-            System.out.println(s + coaches.get(s));
-        }
-    }
-
-    //삭제해야함
-    public void printRecommend() {
-        for (String s : recommendFoods.keySet()) {
-            System.out.println(s + recommendFoods.get(s));
-        }
-    }
-
     @Override
     public String toString() {
         String totalRecommend = "";
@@ -78,8 +64,15 @@ public class Coach {
         String[] names = input.split(",");
 
         for (String name : names) {
+            validateName(name);
             coaches.put(name, new ArrayList<>());
             recommendFoods.put(name, new ArrayList<>());
+        }
+    }
+
+    private void validateName(String name) {
+        if (name.length() < 2 || name.length() > 4) {
+            throw new IllegalArgumentException("[ERROR] 2~4자리의 이름만 입력이 가능합니다.");
         }
     }
 }
