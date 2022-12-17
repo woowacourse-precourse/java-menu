@@ -31,7 +31,6 @@ public class MenuController extends Controller{
 
     public void generateCoachList() {
         List<Coach> coaches = repeat(inputView::readCoaches);
-
     }
 
     public List<Coach> inputHateMenus() {
