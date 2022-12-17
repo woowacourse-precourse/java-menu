@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Set;
 import menu.domain.Category;
 import menu.domain.Coach;
-import menu.domain.InputException;
+import menu.domain.exception.InputException;
 
 public class InputView {
     private final static String INPUT_COACH_NAME = "코치의 이름을 입력해 주세요. (, 로 구분)\n";
