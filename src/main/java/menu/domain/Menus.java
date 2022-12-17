@@ -43,4 +43,8 @@ public class Menus {
     public void add(Menu menu) {
         menus.add(menu);
     }
+
+    public List<Menu> getMenus() {
+        return menus;
+    }
 }

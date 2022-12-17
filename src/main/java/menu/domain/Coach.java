@@ -5,7 +5,7 @@ public class Coach {
     private final Menus noEat;
     private final Menus eaten;
 
-    public Coach(String name, Menus noEat, Menus eaten) {
+    public Coach(String name, Menus noEat) {
         validate(name);
         this.name = name;
         this.noEat = noEat;
