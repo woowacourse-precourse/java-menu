@@ -6,10 +6,10 @@ import java.util.Objects;
 
 public class Menu {
     private final Category category;
-    private final String menuName;
+    private final MenuName menuName;
     
     public Menu(String menuName, Category category) {
-        this.menuName = menuName;
+        this.menuName = new MenuName(menuName);
         this.category = category;
     }
     
@@ -30,7 +30,7 @@ public class Menu {
     public String toString() {
         return "Menu{" +
                 "category=" + category +
-                ", menuName='" + menuName + '\'' +
+                ", menuName=" + menuName +
                 '}';
     }
 }
