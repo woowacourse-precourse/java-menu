@@ -126,7 +126,7 @@ public class RecommendMenu {
 	public String checkIfNotEatingFood(int person, int indexOfCategory) {
 		String food = "";
 		ArrayList<String> notEatingMenu = notEatingMenuForEachCoach.get(person);
-		ArrayList<String> thisMenu = new ArrayList(Arrays.asList(menu.get(indexOfCategory));
+		ArrayList<String> thisMenu = changeStringArrToList(menu.get(indexOfCategory));
 		while(true) {
 			Randoms.shuffle(thisMenu);
 			food = thisMenu.get(0);
@@ -134,6 +134,14 @@ public class RecommendMenu {
 				return food;
 			}
 		}
+	}
+	
+	public ArrayList<String> changeStringArrToList(String[] menu){
+		ArrayList<String> thisMenu = new ArrayList<>();
+		for(int i = 0; i < menu.length; i++) {
+			thisMenu.add(menu[i]);
+		}
+		return thisMenu;
 	}
 	
 	public boolean checkIfDuplicatedFood(String food) {

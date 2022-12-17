@@ -21,7 +21,7 @@ public class InputView {
 			String coachNames = "";
 			coachNames = Console.readLine();
 			if(checkPass = errorCatchForCoachName(coachNames)) {
-				coachName = new ArrayList<>(List.of(coachNames));
+				coachName = splitCoachName(coachNames);
 			}
 		}
 	}
@@ -62,6 +62,15 @@ public class InputView {
 			throw new IllegalArgumentException("[ERROR] 코치의 수가 2-5명이 아닙니다.");
 		}
 		return true;
+	}
+	
+	public ArrayList<String> splitCoachName(String coachNames){
+		String[] coachStr = coachNames.split(",");
+		ArrayList<String> coachName = new ArrayList<>();
+		for(String name : coachStr) {
+			coachName.add(name);
+		}
+		return coachName;
 	}
 	
 	public void askNotEatingMenu() {
