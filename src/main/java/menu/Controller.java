@@ -18,7 +18,7 @@ public class Controller {
         List<Coach> coaches = getCoachData();
         recommender = new Recommender(coaches);
         recommender.startRecommend();
-        endRecommend();
+        outputView.printRecommendResult(recommender.getCategories(), recommender.getCoaches());
     }
 
     private List<Coach> getCoachData(){
@@ -44,12 +44,6 @@ public class Controller {
         return inputView.readHateMenus();
     }
 
-    private void endRecommend(){
-        System.out.println(MSG_PRINT_RESULT);
-        System.out.println(MSG_RESULT_DAYS);
-        outputView.printCategory(recommender.getCategories());
-        outputView.printCoachesResult(recommender.getCoaches());
-        System.out.println(MSG_END);
-    }
+
 
 }

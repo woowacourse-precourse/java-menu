@@ -5,7 +5,17 @@ import menu.Constant.Menu;
 
 import java.util.List;
 
+import static menu.Constant.Message.*;
+
 public class OutputView {
+
+    public void printRecommendResult(List<Menu> categories, List<Coach> coaches){
+        System.out.println(MSG_PRINT_RESULT);
+        System.out.println(MSG_RESULT_DAYS);
+        printCategory(categories);
+        printCoachesResult(coaches);
+        System.out.println(MSG_END);
+    }
 
     public void printCategory(List<Menu> categories){
         String text = "[ 카테고리";
