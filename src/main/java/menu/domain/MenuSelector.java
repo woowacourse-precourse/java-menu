@@ -12,11 +12,15 @@ public class MenuSelector {
         coachRepository.setCoach(coaches);
         List<Category> categories = new ArrayList<>();
         for (int i = 0; i < Weekday.values().length; i++) {
-            Category category = Category.randomCategory();
-            categories.add(category);
-            addCoachMenu(coaches, category);
+            addRandomMenuByCategory(coaches, categories);
         }
         return categories;
+    }
+
+    private void addRandomMenuByCategory(Coaches coaches, List<Category> categories) {
+        Category category = Category.randomCategory();
+        categories.add(category);
+        addCoachMenu(coaches, category);
     }
 
     private void addCoachMenu(Coaches coaches, Category category) {
