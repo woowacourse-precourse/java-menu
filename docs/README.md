@@ -18,3 +18,11 @@
   
 
 ### 예외 처리 사항
+- ERROR_COACH_NAME_SPLITTER, "," 입력 오류
+- ERROR_COACH_NUMS, 코치 인원수는 2이상 5이하
+- ERROR_COACH_NAME_LENGTH, 코치 이름 길이는 2이상 4이하
+- ERROR_COACH_FOODS_SPLITTER ",' 입력 오류
+- ERROR_COACH_HATED_FOOD_MANY , 싫어하는 음식으 2개 이하
+- ERROR_NONE_MENU , 싫어 하는 음식에 없는 메뉴를 입력
+- ERROR_WEEKLY_CATEGORY_SIZE , 일주일 음식 카테고리가 정해진 요일보다 더 들어온 경우
+- ERROR_NONE_CATEGORY, 없는 카테고리가 선택된 경우

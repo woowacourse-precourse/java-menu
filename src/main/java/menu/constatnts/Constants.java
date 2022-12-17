@@ -8,6 +8,8 @@ public class Constants {
     public static final int COACH_HATE_FOOD_MAX = 2;
     public static final int CATEGORY_START_NUM = 1;
     public static final int CATEGORY_END_NUM = 5;
+    public static final int ABLE_ONE_WEEK_DUPLICATE_CATEGORY = 2; //일 주일에 음식종류가 같을수 있는 최대경우
+
     public static final String SPLITTER_INPUT = ",";
 
     public static final String PRINT_START_MSG = "점심 메뉴 추천을 시작합니다.";

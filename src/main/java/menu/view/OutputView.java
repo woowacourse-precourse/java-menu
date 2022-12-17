@@ -22,6 +22,7 @@ public class OutputView {
         for (Coach coach : allCoach) {
             printMealsEachCoach(coach);
         }
+        System.out.println();
         System.out.println(PRINT_RECOMMEND_FOOD_END_MSG);
     }
 

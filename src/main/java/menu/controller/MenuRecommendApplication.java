@@ -34,11 +34,11 @@ public class MenuRecommendApplication {
         List<List<String>> hatesFood = scanHatesFood(coachNames);
         makeAllCoach(coachNames, hatesFood);
         WeeklyRecommendCategory weeklyCategory = makeWeeklyCategory(Weekly.getAllDaySize());
-        makeAllCoachesDiet(weeklyCategory);
+        makeAllCoachesMeals(weeklyCategory);
         outputView.printRecommendedMenu(allCoach, weeklyCategory);
     }
 
-    private void makeAllCoachesDiet(WeeklyRecommendCategory weeklyCategory) {
+    private void makeAllCoachesMeals(WeeklyRecommendCategory weeklyCategory) {
         for (int categoryIdx : weeklyCategory.getCategoryIdxs()) {
             makeMeals(categoryIdx);
         }
@@ -46,7 +46,7 @@ public class MenuRecommendApplication {
 
     public void makeMeals(int weeklyCategoryIdx) {
         List<String> menus = Category.getWantCategoryMenu(weeklyCategoryIdx);
-        for (Coach coach :allCoach) {
+        for (Coach coach : allCoach) {
             String menu = Randoms.shuffle(menus).get(0);
             while (coach.getMeals().contains(menu) || coach.getHates().contains(menu)) {
                 menu = Randoms.shuffle(menus).get(0);
@@ -62,7 +62,7 @@ public class MenuRecommendApplication {
 
         while (allDaySize-- > 0) {
             int categoryIdx = Randoms.pickNumberInRange(CATEGORY_START_NUM, CATEGORY_END_NUM);
-            while (categoryDuplicates.getOrDefault(categoryIdx, 0) >= 2) {
+            while (categoryDuplicates.getOrDefault(categoryIdx, 0) >= ABLE_ONE_WEEK_DUPLICATE_CATEGORY) {
                 categoryIdx = Randoms.pickNumberInRange(CATEGORY_START_NUM, CATEGORY_END_NUM);
             }
             weeklyCategory.add(categoryIdx);
