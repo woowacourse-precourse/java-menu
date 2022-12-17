@@ -1,5 +1,6 @@
 package menu;
 
+import java.util.ArrayList;
 import java.util.List;
 import menu.ui.InputView;
 import menu.ui.OutputView;
@@ -14,23 +15,43 @@ public class MenuGame {
     }
 
     private void play() {
+        List<Coach> coaches = new ArrayList<>();
         try {
-            createCoaches();
+            coaches = createCoaches();
         }catch(IllegalArgumentException illegalArgumentException){
             OutputView.printErrorMessage(illegalArgumentException.getMessage());
         }
+
     }
 
-    private void createCoaches() {
+    private List<Coach> createCoaches() {
         List<String> coachesNameOrigin;
         do{
             coachesNameOrigin = List.of((InputView.readCoachesName()).split(","));
         }while(!isValidCoachesName(coachesNameOrigin));
+
+        return makeCoaches(coachesNameOrigin);
+    }
+
+    private List<Coach> makeCoaches(List<String> coachesNameOrigin) {
+        List<Coach> coaches = new ArrayList<>();
+        for(String coach : coachesNameOrigin){
+            coaches.add(new Coach(coach));
+        }
+        return coaches;
     }
 
     private boolean isValidCoachesName(List<String> coachesNameOrigin) {
-        if(!isValidCoachesCount(coachesNameOrigin))
+        if(!isValidCoachesCount(coachesNameOrigin) || !isValidCoachName(coachesNameOrigin))
             return false;
+        return true;
+    }
+
+    private boolean isValidCoachName(List<String> coachesNameOrigin) {
+        for(String coachName : coachesNameOrigin){
+            if(!(coachName.length() >= 2 && coachName.length() <= 4))
+                throw new IllegalArgumentException("[ERROR] 코치 이름의 길이가 올바르지 않습니다.");
+        }
         return true;
     }
 
