@@ -29,6 +29,7 @@ public class InputView {
         String input = Console.readLine();
         validateCanNotEatMenuFormat(input);
         return Arrays.stream(input.split(INPUT_DELIMITER))
+                .map(s -> s.trim())
                 .collect(Collectors.toList());
     }
 
