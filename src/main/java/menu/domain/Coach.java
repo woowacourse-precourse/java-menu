@@ -11,4 +11,8 @@ public class Coach {
     public String getName() {
         return name;
     }
+
+    public boolean containsName(final String coachName) {
+        return name.equals(coachName);
+    }
 }
