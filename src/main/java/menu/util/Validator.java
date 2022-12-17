@@ -4,6 +4,9 @@ import menu.message.ErrorMessage;
 
 public class Validator {
     private static final String NAME_OR_COMMA = "^[가-힣,]*$";
+    private static final int MINIMUM_NUMBER_OF_COACH = 2;
+    private static final int MAXIMUM_NUMBER_OF_COACH = 5;
+    private static final int MAXIMUM_NUMBER_OF_DISLIKE_FOOD = 2;
 
     public static void validateCoachNamesInput(String input) {
         if (!containsOnlyCommaOrName(input)) {
@@ -37,14 +40,14 @@ public class Validator {
     }
 
     private static boolean isLessThanMinimumNumberOfCoach(String[] coaches) {
-        return coaches.length < 2;
+        return coaches.length < MINIMUM_NUMBER_OF_COACH;
     }
 
     private static boolean isOverMaximumNumberOfCoach(String[] coaches) {
-        return coaches.length > 5;
+        return coaches.length > MAXIMUM_NUMBER_OF_COACH;
     }
 
     private static boolean isOverMaximumNumberOfDislikeFood(String[] foods) {
-        return foods.length > 2;
+        return foods.length > MAXIMUM_NUMBER_OF_DISLIKE_FOOD;
     }
 }
