@@ -20,13 +20,13 @@ public class RecommendMenusResponse {
                 .collect(Collectors.toList());
         LinkedHashMap<String, List<String>> menus = initMenus(recommendMenus);
         for (RecommendMenu recommendMenu : recommendMenus) {
-            extracted(menus, recommendMenu);
+            addRecommendMenu(menus, recommendMenu);
         }
 
         return new RecommendMenusResponse(categories, menus);
     }
 
-    private static void extracted(LinkedHashMap<String, List<String>> menus, RecommendMenu recommendMenu) {
+    private static void addRecommendMenu(LinkedHashMap<String, List<String>> menus, RecommendMenu recommendMenu) {
         List<CouchMenu> couchMenus = recommendMenu.getCouchMenus();
         for (CouchMenu couchMenu : couchMenus) {
             String couchName = couchMenu.getCouchName();

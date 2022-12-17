@@ -43,4 +43,9 @@ public class MenuRepository {
                 .filter(menu -> menu.isCategoryMath(category))
                 .collect(Collectors.toList());
     }
+
+    public Category getCategoryByName(String name) {
+        Menu menu = findByName(name);
+        return menu.getCategory();
+    }
 }

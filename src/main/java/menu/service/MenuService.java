@@ -11,8 +11,8 @@ import menu.domain.Menu;
 import menu.dto.CouchHateMenusRequest;
 import menu.dto.CouchMenu;
 import menu.dto.CouchNamesRequest;
+import menu.dto.RecommendCouchMenu;
 import menu.dto.RecommendMenu;
-import menu.dto.RecommendMenusResponse;
 import menu.repository.CouchRepository;
 import menu.repository.MenuRepository;
 
@@ -44,6 +44,27 @@ public class MenuService {
         }
     }
 
+    public RecommendCouchMenu createRecommendCouchMenu(List<String> recommendsCategory, Couch couch) {
+        List<String> recommendMenus = new ArrayList<>();
+        for (String category : recommendsCategory) {
+            String recommendMenu = getRecommendMenu(couch, category, recommendMenus);
+            recommendMenus.add(recommendMenu);
+        }
+        return new RecommendCouchMenu(couch.getName(), recommendMenus);
+    }
+
+    private String getRecommendMenu(Couch couch, String category, List<String> recommendMenus) {
+        while (true) {
+            String menu = pickRandomMenu(category);
+            if (recommendMenus.contains(menu)) {
+                continue;
+            }
+            if (!couch.isHateMenu(menu)) {
+                return menu;
+            }
+        }
+    }
+
     public List<String> createRecommendCategories() {
         List<String> categories = Arrays.stream(Category.values())
                 .map(Category::getName)
@@ -66,7 +87,7 @@ public class MenuService {
         recommendsCategory.add(newCategory);
     }
 
-    public RecommendMenusResponse createRecommendMenus(List<String> recommendCategories) {
+    public List<RecommendMenu> createRecommendMenus(List<String> recommendCategories) {
         List<Couch> couches = couchRepository.findAll();
         List<RecommendMenu> recommendMenus = new ArrayList<>();
         for (String category : recommendCategories) {
@@ -77,7 +98,37 @@ public class MenuService {
             }
             recommendMenus.add(recommendMenu);
         }
-        return RecommendMenusResponse.of(recommendMenus);
+        return recommendMenus;
+    }
+
+    public boolean validateRecommendMenus(List<RecommendMenu> recommendMenus) {
+        if (validateDuplicateMenus(recommendMenus)) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateDuplicateMenus(List<RecommendMenu> recommendMenus) {
+        List<Couch> couches = couchRepository.findAll();
+        for (Couch couch : couches) {
+            for (RecommendMenu recommendMenu : recommendMenus) {
+                List<CouchMenu> couchMenus = getCouchMenus(couch, recommendMenu);
+                long noDuplicateCount = couchMenus.stream()
+                        .map(CouchMenu::getMenuName)
+                        .distinct()
+                        .count();
+                if (noDuplicateCount == 5) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private List<CouchMenu> getCouchMenus(Couch couch, RecommendMenu recommendMenu) {
+        return recommendMenu.getCouchMenus().stream()
+                .filter(couchMenu -> couchMenu.isCouchNameMatch(couch.getName()))
+                .collect(Collectors.toList());
     }
 
     private String pickRandomMenu(String category) {

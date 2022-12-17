@@ -1,9 +1,12 @@
 package menu.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import menu.domain.Couch;
 import menu.dto.CouchHateMenusRequest;
 import menu.dto.CouchNamesRequest;
+import menu.dto.RecommendCouchMenu;
+import menu.dto.RecommendMenu;
 import menu.dto.RecommendMenusResponse;
 import menu.service.MenuService;
 import menu.view.MenuView;
@@ -28,7 +31,9 @@ public class MenuController {
         }
         List<String> recommendCategories = menuService.createRecommendCategories();
         menuView.printResultCategories(recommendCategories);
-        RecommendMenusResponse recommendMenus = menuService.createRecommendMenus(recommendCategories);
-        menuView.printResultMessage(recommendMenus);
+        List<RecommendCouchMenu> collect = couches.stream()
+                .map(couch -> menuService.createRecommendCouchMenu(recommendCategories, couch))
+                .collect(Collectors.toList());
+        menuView.printResultMessage(collect);
     }
 }

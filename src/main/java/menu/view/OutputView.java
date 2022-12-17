@@ -1,6 +1,7 @@
 package menu.view;
 
 import java.util.List;
+import menu.dto.RecommendCouchMenu;
 import menu.dto.RecommendMenusResponse;
 
 public class OutputView {
@@ -21,10 +22,10 @@ public class OutputView {
         System.out.printf("[ 카테고리 | %s ]%n",String.join(" | ", categories));
     }
 
-    public void printResultMessage(RecommendMenusResponse responses) {
-        responses.getMenus().forEach((couch, menus) -> {
-            System.out.printf("[ %s | %s ]%n", couch, String.join(" | ", menus));
-        });
+    public void printResultMessage(List<RecommendCouchMenu> responses) {
+        for (RecommendCouchMenu response : responses) {
+            System.out.println(response);
+        }
         System.out.println("추천을 완료했습니다.");
     }
 }

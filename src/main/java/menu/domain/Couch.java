@@ -26,4 +26,10 @@ public class Couch {
                 ", hateMenus=" + hateMenus +
                 '}';
     }
+
+    public boolean isHateMenu(String offer) {
+        return hateMenus.stream()
+                .map(Menu::getName)
+                .anyMatch(menu -> menu.equals(offer));
+    }
 }
