@@ -64,3 +64,13 @@ public class MenuService implements Menu {
             coaches.add(new Coach(new CoachName(name), notAteMenu));
         }
     }
+
+    private void recommendDay(final List<Coach> coaches, final List<Category> categories) {
+        categories.add(getCategory());
+        final List<String> categoryMenus = menus.get(getCategory());
+
+        for (final Coach coach : coaches) {
+            recommendDayAndCoach(coach, categoryMenus);
+        }
+    }
+
