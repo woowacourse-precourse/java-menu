@@ -28,6 +28,16 @@ public class CategoryRepository {
         return null;
     }
 
+    public static int getCountByName(String name) {
+        int count = 0;
+        for (Category category : categories) {
+            if (category.getName().equals(name)) {
+                count += 1;
+            }
+        }
+        return count;
+    }
+
     public static boolean contains(String name) {
         return categories.contains(getCategoryByName(name));
     }

@@ -1,4 +1,7 @@
-package menu;
+package menu.service;
+
+import menu.InputView;
+import menu.OutputView;
 
 public class MenuService {
     private static final InputView inputView = new InputView();
@@ -22,6 +25,17 @@ public class MenuService {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+
+
+
+    public void printServiceStart() {
+        outputView.printStart();
+    }
+
+    public void printServiceExit() {
+        outputView.printResult();
     }
 
 }
