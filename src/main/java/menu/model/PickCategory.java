@@ -18,12 +18,12 @@ public class PickCategory {
     public void setRecommandCategory() {
         generateRandomNumber.setRandomNumbers();
         for (String numbers : generateRandomNumber.getRandomNumbers()) {
-            String category = getOneCategory(numbers);
+            String category = setOneCategory(numbers);
             recommandCategory.add(category);
         }
     }
 
-    public String getOneCategory(String numbers) {
+    public String setOneCategory(String numbers) {
         int number = Integer.valueOf(numbers);
 
         if (number == Category.JAP.getValue()) {
