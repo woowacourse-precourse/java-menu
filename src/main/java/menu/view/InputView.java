@@ -15,7 +15,7 @@ public class InputView {
         return List.of(line.split(DELIMITER));
     }
 
-    public List<String> readMenuCantEat(String name) {
+    public List<String> readInedibleMenus(String name) {
         System.out.printf(READ_MENU_CANT_EAT_MESSAGE, name);
         String line = Console.readLine();
         return List.of(line.split(DELIMITER));

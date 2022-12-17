@@ -50,7 +50,7 @@ public class MenuController {
 
     private void addCannotEatMenus(Coach coach) {
         try {
-            List<String> cannotEatMenus = inputView.readMenuCantEat(coach.getName());
+            List<String> cannotEatMenus = inputView.readInedibleMenus(coach.getName());
             group.addInedibleMenus(coach.getName(), cannotEatMenus);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());

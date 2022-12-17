@@ -13,7 +13,7 @@ public class OutputView {
         System.out.println(RESULT_MESSAGE);
         System.out.println(WEEK_EXPRESSION);
         printCategories(menu);
-        printCoachMenus(menu);
+        printMenusForEachCoach(menu);
         System.out.println(SYSTEM_OVER_MESSAGE);
     }
 
@@ -22,7 +22,7 @@ public class OutputView {
                 .collect(Collectors.joining(" | ", "[ 카테고리 | ", " ]")));
     }
 
-    private void printCoachMenus(MenuDTO menu) {
+    private void printMenusForEachCoach(MenuDTO menu) {
         menu.getCoaches()
                 .forEach(coach -> {
                     System.out.print("[ " + coach.getName() + " | ");
