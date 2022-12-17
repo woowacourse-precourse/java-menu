@@ -46,9 +46,10 @@ public class MenuRecommendProgram {
 
     private void start() {
         // 메뉴 추천 문구 출력
-        // 이름 입력 메서드 사용
-
-        // 메뉴 입력 메서드 사용
+        inputCoach();
+        for (Coach coach: coaches) {
+            inputMenus(coach);
+        }
     }
 
     private void inputCoach() {
