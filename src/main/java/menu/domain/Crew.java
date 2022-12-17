@@ -23,4 +23,8 @@ public class Crew {
     public boolean isAlreadyBeenFood(String foodName) {
         return foods.contains(foodName);
     }
+
+    public boolean isDoneFillingFoods() {
+        return foods.size() == 5;
+    }
 }
