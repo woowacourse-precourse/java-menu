@@ -43,4 +43,8 @@ public enum Category {
         }
         return EMPTY.getCategoryName();
     }
+
+    public List<String> getMenus(Category category) {
+        return category.menus;
+    }
 }
