@@ -38,7 +38,7 @@ public class MenuRecommendProgram {
             categories.add(categoryRandomRecommender.recommend(categories));
             recommendMenuEachCoach(i, coaches.getCoaches());
         }
-        //printResult();
+        printResult();
     }
 
     private void makeCoach(String[] coachNames) {
@@ -67,5 +67,15 @@ public class MenuRecommendProgram {
                             , coach);
             coach.addRecommendedMenu(recommendedMenu);
         }
+    }
+
+    private void printResult() {
+        outputView.printResultStartMessage();
+        outputView.printDivision();
+        outputView.printCategories(categories);
+        for (Coach coach: this.coaches.getCoaches()) {
+            outputView.printRecommendedMenu(coach);
+        }
+        outputView.printCompleteMessage();
     }
 }
