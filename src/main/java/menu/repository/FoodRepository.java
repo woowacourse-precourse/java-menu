@@ -2,11 +2,11 @@ package menu.repository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.Category;
 import menu.domain.Food;
+import menu.util.constants.ExceptionMessage;
 
 public class FoodRepository {
 
@@ -24,7 +24,7 @@ public class FoodRepository {
 
     public static List<Food> findFoodsByFoodNames(List<String> foodNames) {
         if (!isExistByFoodNames(foodNames)) {
-            throw new IllegalArgumentException("[ERROR] 일치하는 음식이 없습니다.");
+            throw new IllegalArgumentException(ExceptionMessage.NOT_MATCHING_FOOD);
         }
         return foodRepository.stream()
                 .filter(food -> foodNames.contains(food.getFoodName()))
@@ -33,7 +33,7 @@ public class FoodRepository {
 
     public static Food findFoodByFoodName(String foodName) {
         if (!isExistByFoodName(foodName)) {
-            throw new IllegalArgumentException("[ERROR] 일치하는 음식이 없습니다.");
+            throw new IllegalArgumentException(ExceptionMessage.NOT_MATCHING_FOOD);
         }
         return foodRepository.stream()
                 .filter(food -> foodName.equals(food.getFoodName()))
@@ -59,10 +59,6 @@ public class FoodRepository {
     public static void initFoods(List<String> foodNames) {
         foodNames.stream()
                 .forEach(foodName -> addFood(new Food(foodName)));
-    }
-
-    public static List<Food> findAll() {
-        return Collections.unmodifiableList(foodRepository);
     }
 
 }

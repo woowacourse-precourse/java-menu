@@ -3,6 +3,7 @@ package menu.domain;
 import java.util.Arrays;
 import java.util.List;
 import menu.util.FoodData;
+import menu.util.constants.ExceptionMessage;
 
 public enum Category {
 
@@ -16,7 +17,7 @@ public enum Category {
     private final String koreanName;
     private final List<String> foodNames;
 
-    Category(int code, String koreanName ,List<String> foodNames) {
+    Category(int code, String koreanName, List<String> foodNames) {
         this.code = code;
         this.koreanName = koreanName;
         this.foodNames = foodNames;
@@ -34,7 +35,7 @@ public enum Category {
         return Arrays.stream(Category.values())
                 .filter(category -> inputCode == category.code)
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 코드에 맞는 카테고리를 찾을 수 없습니다."));
+                .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.NOT_MATCHING_CATEGORY));
 
     }
 
