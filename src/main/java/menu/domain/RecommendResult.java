@@ -35,4 +35,7 @@ public class RecommendResult {
         }
     }
 
+    public List<Category> getCategories() {
+        return categories;
+    }
 }
