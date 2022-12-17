@@ -24,6 +24,10 @@ public class Recommender {
         return categories;
     }
 
+    public List<Coach> getCoaches() {
+        return coaches;
+    }
+
     private void makeRandomCategories(){
         List<Integer> randomCategory = new ArrayList<>();
 

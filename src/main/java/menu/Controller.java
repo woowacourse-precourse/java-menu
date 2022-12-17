@@ -48,7 +48,8 @@ public class Controller {
         System.out.println(MSG_PRINT_RESULT);
         System.out.println(MSG_RESULT_DAYS);
         outputView.printCategory(recommender.getCategories());
-
+        outputView.printCoachesResult(recommender.getCoaches());
+        System.out.println(MSG_END);
     }
 
 }
