@@ -6,12 +6,13 @@ import java.util.NoSuchElementException;
 import menu.domain.food.AsiaFood;
 import menu.domain.food.ChinaFood;
 import menu.domain.food.Food;
+import menu.domain.food.JapanFood;
 import menu.domain.food.KoreanFood;
 import menu.domain.food.WesternFood;
 
 public enum Category {
 
-	JAPAN_CATEGORY("일식", 1, new AsiaFood()),
+	JAPAN_CATEGORY("일식", 1, new JapanFood()),
 	KOREAN_CATEGORY("한식", 2, new KoreanFood()),
 	CHINA_CATEGORY("중식", 3, new ChinaFood()),
 	ASIA_CATEGORY("아시안", 4, new AsiaFood()),

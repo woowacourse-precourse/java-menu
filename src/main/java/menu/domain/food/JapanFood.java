@@ -10,7 +10,7 @@ public class JapanFood implements Food {
 
 	private List<String> foods;
 
-	JapanFood() {
+	public JapanFood() {
 		initFood();
 	}
 
