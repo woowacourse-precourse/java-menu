@@ -1,5 +1,6 @@
 package menu.domain;
 
+import java.net.PortUnreachableException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,7 @@ public class Coach {
 
     private final String name;
     private final List<Menu> hateMenus = new ArrayList<>();
+    private final List<Menu> lunchMenus = new ArrayList<>();
 
     public Coach(String name) {
         validate(name);
@@ -27,6 +29,18 @@ public class Coach {
         if (hateMenus.size() > 2) {
             throw new IllegalArgumentException("코치가 못먹는 메뉴는 최대 2개입니다. 현재 못먹는 메뉴 갯수  : " + hateMenus.size());
         }
+    }
+
+    public boolean isHateMenu(Menu menu) {
+        return hateMenus.contains(menu);
+    }
+
+    public boolean duplicateLunchMenu(Menu menu) {
+        return lunchMenus.contains(menu);
+    }
+
+    public void addLunchMenu(Menu menu) {
+        lunchMenus.add(menu);
     }
 
     public String getName() {
