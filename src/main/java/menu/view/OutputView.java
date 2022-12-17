@@ -7,7 +7,12 @@ public class OutputView {
         printNewLine();
     }
 
-    public void printNewLine() {
+    private void printNewLine() {
         System.out.println();
+    }
+
+    public void printError(String errorMessage) {
+        final String ERROR_LOG_PREFIX = "[ERROR] ";
+        System.out.println(ERROR_LOG_PREFIX + errorMessage);
     }
 }
