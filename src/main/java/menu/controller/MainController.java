@@ -23,14 +23,21 @@ public class MainController {
 
     public void start() {
         outputView.printStart();
+        createCoach();
+        recommendRepository.recommendStart(coachRepository);
+        finish();
+    }
+
+    private void createCoach() {
         outputView.printCoachNameRequest();
         coachRepository.generateCoaches(repeat(inputView::inputNameOfCoaches));
 
         for (Coach coach : coachRepository.getCoaches()) {
             coach.setHateFood(repeat(() -> inputView.inputHateFood(coach)));
         }
+    }
 
-        recommendRepository.recommendStart(coachRepository);
+    private void finish() {
         outputView.printResult();
         outputView.printWeek();
         outputView.printCategory(recommendRepository);
