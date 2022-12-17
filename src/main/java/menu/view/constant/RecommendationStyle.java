@@ -3,7 +3,9 @@ package menu.view.constant;
 public enum RecommendationStyle {
     START("[ "),
     END(" ]"),
-    DELIMITER(" | ");
+    DELIMITER(" | "),
+    DAY("구분"),
+    CATEGORY("카테고리");
 
     private final String style;
 
