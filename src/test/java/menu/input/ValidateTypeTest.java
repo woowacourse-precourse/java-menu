@@ -41,5 +41,19 @@ public class ValidateTypeTest {
         assertThat(canRead).isTrue();
     }
 
+    @DisplayName("메뉴 개수에 따른 예외 테스트")
+    @ValueSource(strings = {"3"})
+    @ParameterizedTest
+    void checkMenuCount_예외(String input) {
+        boolean canRead = ValidationType.validate(ValidationType.CHECK_MENUS_COUNT, input);
+        assertThat(canRead).isFalse();
+    }
 
+    @DisplayName("메뉴 개수에 따른 정상 테스트")
+    @ValueSource(strings = {"0", "1", "2"})
+    @ParameterizedTest
+    void checkMenuCount_정상(String input) {
+        boolean canRead = ValidationType.validate(ValidationType.CHECK_MENUS_COUNT, input);
+        assertThat(canRead).isTrue();
+    }
 }
