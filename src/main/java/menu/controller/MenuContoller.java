@@ -72,6 +72,17 @@ public class MenuContoller {
     }
 
     public void endRecommand() {
+        outputView.printResult();
+
+        String text = "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]";
+        System.out.println(text);
+        System.out.println();
+        List<String> cat = pickCategory.getRecommandCategory();
+        String up =cat.toString();
+        System.out.println(up.replace(", ", "|"));
+
+
+
         System.out.println(resultBoard.getCrewmenu());
     }
 
