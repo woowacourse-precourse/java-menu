@@ -24,13 +24,13 @@ public class InputView {
     private static String[] getValidCoachNames() throws IllegalArgumentException {
         String[] coachNames = Console.readLine().split(",");
         if (coachNames.length < 2) {
-            throw new IllegalArgumentException("[ERROR] 코치는 최소 2명 이상 입력해야 합니다.");
+            throw new IllegalArgumentException(InputErrorCode.TOO_LOW_COACH_NUMBER.toString());
         }
         if (coachNames.length > 5) {
-            throw new IllegalArgumentException("[ERROR] 코치는 최대 5명 입력해야 합니다.");
+            throw new IllegalArgumentException(InputErrorCode.TOO_MUCH_COACH_NUMBER.toString());
         }
         if (Stream.of(coachNames).anyMatch((coachName) -> coachName.length() < 2 || coachName.length() > 4)) {
-            throw new IllegalArgumentException("[ERROR] 코치 이름은 2~4글자이어야 합니다.");
+            throw new IllegalArgumentException(InputErrorCode.INVALID_COACH_NAME.toString());
         }
         return coachNames;
     }
@@ -55,10 +55,10 @@ public class InputView {
         }
         String[] bannedMenu = bannedSentence.split(",");
         if (bannedMenu.length > 2) {
-            throw new IllegalArgumentException("[ERROR] 메뉴는 최대 2개까지 입력 가능합니다.");
+            throw new IllegalArgumentException(InputErrorCode.TOO_MUCH_BANNED_MENU.toString());
         }
         if (Stream.of(bannedMenu).anyMatch((menu) -> !MenuRecommendService.isValidMenu(menu))) {
-            throw new IllegalArgumentException("[ERROR] 존재하지 않는 메뉴가 있습니다.");
+            throw new IllegalArgumentException(InputErrorCode.MENU_NOT_EXIST.toString());
         }
         return bannedMenu;
     }
