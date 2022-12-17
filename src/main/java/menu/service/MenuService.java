@@ -33,6 +33,7 @@ public class MenuService {
             if (categoryPool[i] > 0) {
                 selected++;
                 categoryResult.add(convertCategoryNumberToString(i));
+                categoryPool[i]--;
             }
         }
         return new CategoryResult(categoryResult);
