@@ -17,6 +17,10 @@ public class MenuService {
         return categories;
     }
 
+    public List<Coach> getCoaches() {
+        return coaches;
+    }
+
     public void getCoachesName(String input) {
         validateCountOfCoaches(input);
 

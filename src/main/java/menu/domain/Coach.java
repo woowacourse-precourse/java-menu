@@ -14,6 +14,10 @@ public class Coach {
         this.name = name;
     }
 
+    public List<String> getRecommended() {
+        return recommended;
+    }
+
     /**
      * 도메인 로직
      */

@@ -1,5 +1,6 @@
 package menu.service;
 
+import menu.domain.Coach;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -81,5 +82,19 @@ class MenuServiceTest {
 
         //then
         assertThat(menuService.getCategories().stream().distinct().count()).isGreaterThan(3);
+    }
+
+    @Test
+    void 메뉴_정하기_테스트() throws Exception{
+        //given
+        MenuService menuService = new MenuService();
+        menuService.getCoachesName("하나,두울");
+        menuService.setCategories();
+
+        //when
+        menuService.setMenus();
+
+        //then
+        assertThat(menuService.getCoaches()).allMatch(o -> o.getRecommended().stream().distinct().count() == 5);
     }
 }
