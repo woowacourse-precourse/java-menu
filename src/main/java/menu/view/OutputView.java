@@ -2,6 +2,7 @@ package menu.view;
 
 import menu.domain.Category;
 import menu.domain.Coach;
+import menu.domain.WeekDay;
 
 import java.util.List;
 
@@ -11,8 +12,6 @@ public class OutputView {
     private static final String INPUT_COACH_NAME_MESSAGE = "\n코치의 이름을 입력해 주세요. (, 로 구분)";
     private static final String INPUT_COACH_HATE_MENU_MESSAGE = "(이)가 못 먹는 메뉴를 입력해 주세요.";
     private static final String RESULT_MESSAGE = "\n메뉴 추천 결과입니다.";
-    private static final String DAY_DIVISION_MESSAGE = "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]";
-    private static final String CATEGORY_MESSAGE = "[ 카테고리 | %s | %s | %s | %s | %s ]";
     private static final String RECOMMENDED_MENU_MESSAGE = "[ %s | %s | %s | %s | %s | %s ]";
     private static final String COMPLETE_RECOMMEND_MENU_MESSAGE = "\n추천을 완료했습니다.";
 
@@ -34,21 +33,29 @@ public class OutputView {
     }
 
     public void printDivision() {
-        System.out.println(DAY_DIVISION_MESSAGE);
+        System.out.println(String.format(RECOMMENDED_MENU_MESSAGE, "구분",
+                WeekDay.MONDAY.getName(), WeekDay.TUESDAY.getName(), WeekDay.WEDNESDAY.getName(),
+                WeekDay.THURSDAY.getName(), WeekDay.FRIDAY.getName()));
     }
 
     public void printCategories(List<Category> categories) {
-        System.out.println(String.format(CATEGORY_MESSAGE,
-                categories.get(0).getName(), categories.get(1).getName(), categories.get(2).getName(),
-                categories.get(3).getName(), categories.get(4).getName()));
+        System.out.println(String.format(RECOMMENDED_MENU_MESSAGE, "카테고리",
+                categories.get(WeekDay.MONDAY.getIndex()).getName(),
+                categories.get(WeekDay.TUESDAY.getIndex()).getName(),
+                categories.get(WeekDay.WEDNESDAY.getIndex()).getName(),
+                categories.get(WeekDay.THURSDAY.getIndex()).getName(),
+                categories.get(WeekDay.FRIDAY.getIndex()).getName()));
     }
 
     public void printRecommendedMenu(Coach coach) {
         List<String> recommendedMenu = coach.getRecommendedMenu();
 
         System.out.println(String.format(RECOMMENDED_MENU_MESSAGE, coach.getName(),
-                recommendedMenu.get(0), recommendedMenu.get(1), recommendedMenu.get(2),
-                recommendedMenu.get(3), recommendedMenu.get(4)));
+                recommendedMenu.get(WeekDay.MONDAY.getIndex()),
+                recommendedMenu.get(WeekDay.TUESDAY.getIndex()),
+                recommendedMenu.get(WeekDay.WEDNESDAY.getIndex()),
+                recommendedMenu.get(WeekDay.THURSDAY.getIndex()),
+                recommendedMenu.get(WeekDay.FRIDAY.getIndex())));
     }
 
     public void printCompleteMessage() {
