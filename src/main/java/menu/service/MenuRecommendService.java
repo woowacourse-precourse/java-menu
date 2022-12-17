@@ -4,7 +4,6 @@ import menu.constants.Category;
 import menu.model.Coach;
 import menu.model.Coaches;
 import menu.model.SelectCategory;
-import menu.model.SelectMenu;
 import menu.util.RandomCategoryValueGenerator;
 import menu.util.RandomMenuValueGenerator;
 
