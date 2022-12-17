@@ -9,6 +9,7 @@ public class ExceptionMessage {
     public static final String COACH_NAME_DUPLICATE = PREFIX + "코치의 이름은 중복될 수 없습니다.";
     public static final String COACH_NUMBER = PREFIX + "코치는 최소 2명, 최대 5명까지 등록할 수 있습니다.";
 
+    public static final String NOT_EAT_FOOD_NOT_EMPTY = PREFIX + "못 먹는 음식은 공백일 수 없습니다.";
     public static final String NOT_EAT_FOOD_NUMBER = PREFIX + "못 먹는 음식은 최소 0개, 최대 2개여야 합니다.";
     public static final String NOT_EAT_FOOD_DUPLICATE = PREFIX + "못 먹는 음식은 중복될 수 없습니다.";
 

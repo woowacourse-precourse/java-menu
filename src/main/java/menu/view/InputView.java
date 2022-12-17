@@ -3,7 +3,8 @@ package menu.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import menu.util.Converter;
-import menu.util.Validator;
+import menu.util.validator.CoachValidator;
+import menu.util.validator.NotEatFoodValidator;
 import menu.view.dto.NotEatFoodsDTO;
 
 public class InputView {
@@ -14,14 +15,14 @@ public class InputView {
     public static List<String> readCoach() {
         System.out.println(INPUT_COACH);
         String coaches = Console.readLine();
-        Validator.validateCoach(coaches);
+        CoachValidator.validateCoach(coaches);
         return Converter.restArrayToList(coaches);
     }
 
     public static NotEatFoodsDTO readNotEatFoodByCoach(String name) {
         System.out.printf(INPUT_NOT_EAT_FOODS, name);
         String notEatFoods = Console.readLine();
-        Validator.validateNotEatFoods(notEatFoods);
+        NotEatFoodValidator.validateNotEatFoods(notEatFoods);
         return new NotEatFoodsDTO(name, Converter.restArrayToList(notEatFoods));
     }
 
