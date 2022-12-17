@@ -36,26 +36,26 @@ public enum Category {
     private final FoodRepository foodRepository;
     private final Consumer<Controller> consumer;
 
-    Category(String name, FoodRepository foodRepository, Consumer<Controller> consumer) {
+    Category(final String name, final FoodRepository foodRepository, final Consumer<Controller> consumer) {
         this.name = name;
         this.foodRepository = foodRepository;
         this.consumer = consumer;
     }
 
-    public static Category from(Food food) {
+    public static Category from(final Food food) {
         return Arrays.stream(Category.values())
                 .filter(Category -> Category.getRepository().contains(food))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 목록의 음식을 입력해주세요."));
     }
 
-    private static List<Food> getFoods(List<String> names) {
+    private static List<Food> getFoods(final List<String> names) {
         List<Food> foods = new ArrayList<>(names.size());
         names.forEach(name -> foods.add(new Food(name)));
         return foods;
     }
 
-    public void process(Controller controller) {
+    public void process(final Controller controller) {
         ExceptionHandler.process(consumer, controller);
     }
 

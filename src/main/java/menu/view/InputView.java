@@ -22,7 +22,7 @@ public class InputView {
         return coachNameDTO;
     }
 
-    public static FoodCanNotEatDTO readFoodCanNotEat(String name) {
+    public static FoodCanNotEatDTO readFoodCanNotEat(final String name) {
         System.out.println();
         printFoodCanNotEatInputRequest(name);
         foodCanNotEatDTO.setFoodsCanNotEat(Console.readLine());
@@ -33,7 +33,7 @@ public class InputView {
         System.out.println(COACH_NAME_INPUT_REQUEST);
     }
 
-    private static void printFoodCanNotEatInputRequest(String name) {
+    private static void printFoodCanNotEatInputRequest(final String name) {
         System.out.println(name + FOOD_CAN_NOT_EAT_INPUT_REQUEST);
     }
 }

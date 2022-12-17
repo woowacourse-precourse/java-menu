@@ -9,7 +9,7 @@ public class FoodRepository {
 
     private final List<Food> foods;
 
-    public FoodRepository(List<Food> foods) {
+    public FoodRepository(final List<Food> foods) {
         this.foods = foods;
     }
 
@@ -17,15 +17,15 @@ public class FoodRepository {
         return Collections.unmodifiableList(foods);
     }
 
-    public void addFood(Food food) {
+    public void addFood(final Food food) {
         foods.add(food);
     }
 
-    public boolean deleteLineByName(String name) {
+    public boolean deleteLineByName(final String name) {
         return foods.removeIf(food -> Objects.equals(food.getName(), name));
     }
 
-    public boolean contains(Food food) {
+    public boolean contains(final Food food) {
         return foods.contains(food);
     }
 

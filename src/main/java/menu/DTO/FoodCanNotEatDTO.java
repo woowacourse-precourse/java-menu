@@ -19,7 +19,7 @@ public class FoodCanNotEatDTO {
         return Collections.unmodifiableList(foodsCanNotEat);
     }
 
-    public void setFoodsCanNotEat(String nameInput) {
+    public void setFoodsCanNotEat(final String nameInput) {
         foodsCanNotEat.clear();
         List<String> names = List.of(nameInput.split(","));
         for (String name : names) {

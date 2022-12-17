@@ -4,7 +4,7 @@ public class Food {
 
     private final String name;
 
-    public Food(String name) {
+    public Food(final String name) {
         this.name = name;
     }
 
@@ -13,7 +13,7 @@ public class Food {
     }
 
     @Override
-    public boolean equals(Object other) {
+    public boolean equals(final Object other) {
         if (this == other) {
             return true;
         }

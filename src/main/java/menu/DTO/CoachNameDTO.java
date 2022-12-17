@@ -20,9 +20,10 @@ public class CoachNameDTO {
         return Collections.unmodifiableList(coaches);
     }
 
-    public void setCoaches(String nameInput) {
+    public void setCoaches(final String nameInput) {
         coaches.clear();
         List<String> names = List.of(nameInput.split(","));
+
         names.forEach(name -> coaches.add(new Coach(name)));
     }
 }
