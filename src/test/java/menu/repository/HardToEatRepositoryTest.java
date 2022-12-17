@@ -36,4 +36,17 @@ class HardToEatRepositoryTest {
         assertThat(menus.size()).isEqualTo(1);
         assertThat(menus).containsExactly(menu1);
     }
+
+    @DisplayName("초기화하면 아무것도 남아있지 않는다.")
+    @Test
+    void clear() {
+        Coach coach = new Coach("홍길동");
+        String menu = "김밥";
+
+        HardToEatRepository.addMenus(coach, menu);
+        HardToEatRepository.clear();
+        List<String> menus = HardToEatRepository.findByCoach(coach);
+
+        assertThat(menus.size()).isEqualTo(0);
+    }
 }
