@@ -3,6 +3,10 @@ package menu;
 import java.util.Arrays;
 import java.util.List;
 
+//출력 사이에 공백줄 추가 필요
+//결과 테이블에서 원소 사이에 공백 추가 필요
+//printResult()에서 오류
+
 public class OutputView {
     private static final String SERVICE_START_MESSAGE = "점심 메뉴 추천을 시작합니다.";
     private static final String RESULT_INFORM_MESSAGE = "메뉴 추천 결과입니다.";
@@ -26,8 +30,8 @@ public class OutputView {
         System.out.println(COACH_NAME_INFORM_MESSAGE);
     }
 
-    public void printPickEatingsInformMessage() {
-        System.out.println(PICKYEATINGS_INFORM_MESSAGE);
+    public void printPickEatingsInformMessage(String name) {
+        System.out.println(name + PICKYEATINGS_INFORM_MESSAGE);
     }
 
     private void printResultInformMessage() {
@@ -36,11 +40,11 @@ public class OutputView {
 
     public void printResult(MenuRecommender menuRecommender) {
         printResultInformMessage();
-        printResultTalbe(menuRecommender);
+        printResultTable(menuRecommender);
         printEndMessage();
     }
 
-    private void printResultTalbe(MenuRecommender menuRecommender) {
+    private void printResultTable(MenuRecommender menuRecommender) {
         System.out.println(formatAsTable(DIVISION, DAY_OF_THE_WEEKS));
         System.out.println(formatAsTable(CATEGORY, menuRecommender.getCategories()));
         for (Member member : menuRecommender.getMembers()) {
@@ -51,11 +55,11 @@ public class OutputView {
 
     private String formatAsTable(String title, List<String> contents) {
         StringBuilder form = new StringBuilder();
-        form.append("[").append(title);
+        form.append("[ ").append(title);
         for (int i = 0; i < contents.size(); i++) {
-            form.append("|").append(contents.get(i));
+            form.append(" | ").append(contents.get(i));
         }
-        form.append("]");
+        form.append(" ]");
 
         return form.toString();
     }
