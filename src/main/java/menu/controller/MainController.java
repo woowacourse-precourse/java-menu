@@ -1,6 +1,7 @@
-package menu;
+package menu.controller;
 
 
+import menu.entity.Coach;
 import menu.dto.SuggestMenuResultDto;
 import menu.repository.CoachRepository;
 import menu.service.SuggestMenuService;
@@ -40,15 +41,19 @@ public class MainController {
         while (true) {
             try {
                 List<Coach> coaches = inputView.readCoach();
-                for (Coach coach : coaches) {
-                    List<String> hateMenu = inputView.readHateMenu(coach);
-                    coach.addHateMenus(hateMenu);
-                    coachRepository.save(coach);
-                }
+                saveCoaches(coaches);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(ERROR_MESSAGE_PREFIX + e.getMessage());
             }
+        }
+    }
+
+    private void saveCoaches(List<Coach> coaches) {
+        for (Coach coach : coaches) {
+            List<String> hateMenu = inputView.readHateMenu(coach);
+            coach.addHateMenus(hateMenu);
+            coachRepository.save(coach);
         }
     }
 

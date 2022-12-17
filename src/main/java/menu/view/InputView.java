@@ -2,12 +2,10 @@ package menu.view;
 
 
 import camp.nextstep.edu.missionutils.Console;
-import menu.Coach;
+import menu.entity.Coach;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import static menu.view.InputValidators.*;
@@ -25,18 +23,11 @@ public class InputView {
     }
 
     public List<Coach> readCoach() {
-        List<Coach> coaches = null;
+        List<Coach> coaches;
         while (true) {
             try {
-                System.out.println(
-                        "\n" +
-                        "코치의 이름을 입력해 주세요. (, 로 구분)");
-                String input = Console.readLine();
-                String[] names = input.split(",");
-                coaches = Arrays.stream(names)
-                        .map(Coach::new)
-                        .collect(Collectors.toList());
-
+                System.out.println("\n" + "코치의 이름을 입력해 주세요. (, 로 구분)");
+                coaches = mapNameToCoach(Console.readLine().split(","));
                 validateDuplicateCoachName(coaches);
                 validateCoachesSize(coaches);
                 break;
@@ -47,19 +38,18 @@ public class InputView {
         return coaches;
     }
 
-
-
+    private List<Coach> mapNameToCoach(String[] names) {
+        return Arrays.stream(names)
+                .map(Coach::nameOf)
+                .collect(Collectors.toList());
+    }
 
     public List<String> readHateMenu(Coach coach) {
-        List<String> hateMenus = null;
+        List<String> hateMenus;
         while (true) {
             try {
                 System.out.println(coach.getName() + "(이)가 못 먹는 메뉴를 입력해 주세요.");
-                String input = Console.readLine();
-                String[] names = input.split(",");
-
-                hateMenus = Arrays.asList(names);
-
+                hateMenus = Arrays.asList(Console.readLine().split(","));
                 validateHateMenusSize(hateMenus);
                 validateDuplicateHateMenuName(hateMenus);
                 break;

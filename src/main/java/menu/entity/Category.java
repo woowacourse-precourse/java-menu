@@ -1,8 +1,11 @@
-package menu;
+package menu.entity;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public enum Category {
     JAPAN(1, "일식",
@@ -20,6 +23,7 @@ public enum Category {
     WESTERN(5, "양식",
             List.of("라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니"));
 
+    //    private final static int WEEK
     private int code;
     private String categoryName;
     private List<String> menuList;
@@ -30,36 +34,40 @@ public enum Category {
         this.menuList = new ArrayList<>(menuList);
     }
 
-//    public static Category of(char option) {
-//        return Arrays.stream(Category.values())
-//                .filter(o -> o.isEqual(option))
-//                .findFirst()
-//                .orElseThrow(() -> new IllegalArgumentException("잘못된 이름의 메인옵션을 입력하였습니다."));
-//    }
-
-    public static List<Category> getCategoryOfWeekList(){
+    public static List<Category> getCategoryOfWeekList() {
         Category[] categories = values();
-
-        Map<Category, Integer> categoryCnt = new HashMap<>();
-        for (Category category: categories) {
-            categoryCnt.put(category, 0);
-        }
-
+        Map<Category, Integer> categoryCnt = initCategoryCnt(categories);
         List<Category> dailyList = new ArrayList<>();
-        for(int i = 0; i < 5; i++){
-            Category randomCategory = null;
 
-            while(true){
-                randomCategory = categories[Randoms.pickNumberInRange(1, 5) - 1];
-                if (categoryCnt.get(randomCategory) + 1 <= 2){
-                    categoryCnt.put(randomCategory, categoryCnt.get(randomCategory) + 1);
-                    break;
-                }
-            }
-
+        for (int i = 0; i < 5; i++) {
+            Category randomCategory = findRandomCategory(categories, categoryCnt);
             dailyList.add(randomCategory);
         }
         return dailyList;
+    }
+
+    private static Category findRandomCategory(Category[] categories, Map<Category, Integer> categoryCnt) {
+        Category randomCategory;
+        do {
+            randomCategory = categories[Randoms.pickNumberInRange(1, 5) - 1];
+        } while (!isAvailableCategory(categoryCnt, randomCategory));
+        return randomCategory;
+    }
+
+    private static boolean isAvailableCategory(Map<Category, Integer> categoryCnt, Category randomCategory) {
+        if (categoryCnt.get(randomCategory) + 1 <= 2) {
+            categoryCnt.put(randomCategory, categoryCnt.get(randomCategory) + 1);
+            return true;
+        }
+        return false;
+    }
+
+    private static Map<Category, Integer> initCategoryCnt(Category[] categories) {
+        Map<Category, Integer> categoryCnt = new HashMap<>();
+        for (Category category : categories) {
+            categoryCnt.put(category, 0);
+        }
+        return categoryCnt;
     }
 
     public List<String> getMenuList() {

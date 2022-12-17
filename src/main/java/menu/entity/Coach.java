@@ -1,4 +1,4 @@
-package menu;
+package menu.entity;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -25,26 +25,29 @@ public class Coach {
 
     public List<String> getWeeklyMenuList(List<Category> categories) {
         List<String> weeklyMenuList = new ArrayList<>();
-
         Set<String> menuAlreadyPicked = new HashSet<>();
 
         for (Category category : categories) {//5 times
-            final List<String> menuList = category.getMenuList();
-            String menu;
-            while (true) {
-
-                menu = Randoms.shuffle(menuList).get(0);
-
-                if (!(isDuplicateMenu(menuAlreadyPicked, menu) || isHateMenu(menu))) {
-                    menuAlreadyPicked.add(menu);
-                    break;
-                }
-            }
-
+            String menu = findRandomMenu(menuAlreadyPicked, category.getMenuList());
             weeklyMenuList.add(menu);
         }
-
         return weeklyMenuList;
+    }
+
+    private String findRandomMenu(Set<String> menuAlreadyPicked, List<String> menuList) {
+        String menu;
+        do {
+            menu = Randoms.shuffle(menuList).get(0);
+        } while (!isAvilableMenu(menuAlreadyPicked, menu));
+        return menu;
+    }
+
+    private boolean isAvilableMenu(Set<String> menuAlreadyPicked, String menu) {
+        if (!(isDuplicateMenu(menuAlreadyPicked, menu) || isHateMenu(menu))) {
+            menuAlreadyPicked.add(menu);
+            return true;
+        }
+        return false;
     }
 
     private boolean isHateMenu(String menu) {
@@ -55,8 +58,8 @@ public class Coach {
         return menuAlreadyPicked.contains(menu);
     }
 
-    private static Coach nameOf(String name){
-        if(name.length() >= 2 && name.length() <= 4 )
+    public static Coach nameOf(String name) {
+        if (name.length() >= 2 && name.length() <= 4)
             return new Coach(name);
         throw new IllegalArgumentException("코치의 이름은 2글자에서 4글자여야 합니다.");
     }

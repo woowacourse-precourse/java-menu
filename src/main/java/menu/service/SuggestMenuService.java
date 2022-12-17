@@ -1,7 +1,7 @@
 package menu.service;
 
-import menu.Category;
-import menu.Coach;
+import menu.entity.Category;
+import menu.entity.Coach;
 import menu.dto.SuggestMenuResultDto;
 import menu.repository.CoachRepository;
 
@@ -27,10 +27,14 @@ public class SuggestMenuService {
         SuggestMenuResultDto resultDto = new SuggestMenuResultDto(dailyCategoryList);
 
         List<Coach> coachList = coachRepository.findAll();
+        findResultOfCoaches(dailyCategoryList, resultDto, coachList);
+        return resultDto;
+    }
+
+    private void findResultOfCoaches(List<Category> dailyCategoryList, SuggestMenuResultDto resultDto, List<Coach> coachList) {
         for (Coach coach : coachList) {
             List<String> weeklyMenuList = coach.getWeeklyMenuList(new ArrayList<>(dailyCategoryList));
             resultDto.addCoachMenuList(coach.getName(), weeklyMenuList);
         }
-        return resultDto;
     }
 }

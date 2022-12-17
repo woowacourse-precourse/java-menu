@@ -1,6 +1,6 @@
 package menu.dto;
 
-import menu.Category;
+import menu.entity.Category;
 
 import java.util.ArrayList;
 import java.util.HashMap;

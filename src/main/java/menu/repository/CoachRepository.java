@@ -1,9 +1,11 @@
 package menu.repository;
 
-import menu.Coach;
-import menu.service.SuggestMenuService;
+import menu.entity.Coach;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class CoachRepository {
 
@@ -20,10 +22,13 @@ public class CoachRepository {
     }
 
     public void save(Coach coach) {
+        validateDuplicateEntity(coach);
+        coachDB.put(coach.getName(), coach);
+    }
+
+    private void validateDuplicateEntity(Coach coach) {
         if (coachDB.containsKey(coach.getName()))
             throw new IllegalStateException("이미 존재하는 코치");
-
-        coachDB.put(coach.getName(), coach);
     }
 
     public List<Coach> findAll() {
