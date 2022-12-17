@@ -23,3 +23,8 @@
 - [x] Category: 카테고리를 표현할 enum 추가
 - [x] Menu: 메뉴를 표현할 클래스 추가
 - [x] Menus: 메뉴 일급 컬렉션 추가
+- [x] MenuRepository: 메뉴들을 저장할 저장소 추가
+
+### Utils
+
+- [x] Retry: 반복을 위한 Retry Util 추가
