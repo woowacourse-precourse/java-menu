@@ -28,4 +28,11 @@ public class ValidatorTest {
         List<String> coaches_2 = List.of("woo","wa","tech","cou","se","test");
         assertThatThrownBy(() -> Validator.validateCoachesLength(coaches_2)).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("먹지 못하는 메뉴의 갯수를 확인하는 함수 테스트")
+    void checkInEdibleMenuLengthTest() {
+        List<String> inEdibleMenu = List.of("쌈밥","된장찌개","비빔밥");
+        assertThatThrownBy(() -> Validator.validateInEdibleMenuLength(inEdibleMenu)).isInstanceOf(IllegalArgumentException.class);
+    }
 }
