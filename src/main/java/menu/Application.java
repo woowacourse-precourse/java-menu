@@ -7,14 +7,12 @@ import menu.ui.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-
         MenuRepository menuRepository = new MenuRepository();
         MenuService menuService = new MenuService(menuRepository);
 
         MenuRecommendController menuRecommendController = new MenuRecommendController(
                 InputView.getInstance(), OutputView.getInstance(), menuService
         );
-
 
         menuRecommendController.init();
         menuRecommendController.run();

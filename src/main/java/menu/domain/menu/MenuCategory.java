@@ -2,6 +2,7 @@ package menu.domain.menu;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
+import menu.common.ErrorMessage;
 
 public enum MenuCategory {
     JAPANESE("일식", 1),
@@ -34,21 +35,21 @@ public enum MenuCategory {
         return Arrays.stream(MenuCategory.values())
                 .filter(m -> m.categoryCode == pickNumberInRange)
                 .findFirst()
-                .orElseThrow();
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.INVALID_MENU_CODE));
     }
 
     private static int getMinCode() {
         return Arrays.stream(MenuCategory.values())
                 .mapToInt(MenuCategory::getCategoryCode)
                 .min()
-                .getAsInt();
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.DUPLICATED_MAX_NUMBER));
     }
 
     private static int getMaxCode() {
         return Arrays.stream(MenuCategory.values())
                 .mapToInt(MenuCategory::getCategoryCode)
                 .max()
-                .getAsInt();
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.DUPLICATED_MIN_NUMBER));
     }
 }
 

@@ -3,6 +3,7 @@ package menu.ui.dto;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import menu.common.ErrorMessage;
 import menu.domain.coach.Coach;
 import menu.domain.coach.Coaches;
 
@@ -34,17 +35,17 @@ public class CoachesRequest {
                 .count();
 
         if (distinctSize != coaches.length) {
-            throw new IllegalArgumentException("[ERROR] 동일한 코치를 입력 할 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.COACH_NAME_DUPLICATED);
         }
     }
 
     private static void validateSize(String[] coaches) {
         if (coaches.length < 2) {
-            throw new IllegalArgumentException("[ERROR] 코치는 최소 2명 이상 입력해야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.COACHES_UNDER_MIN_SIZE);
         }
 
         if (coaches.length > 5) {
-            throw new IllegalArgumentException("[ERROR] 코치는 최대 5명 까지 입력 가능 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.COACHES_OVER_MAX_SIZE);
         }
     }
 

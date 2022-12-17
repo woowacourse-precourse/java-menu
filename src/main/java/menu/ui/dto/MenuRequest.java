@@ -3,8 +3,10 @@ package menu.ui.dto;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import menu.common.ErrorMessage;
 
 public class MenuRequest {
+    private static final String LIST_DIAMETER = ",";
     private final List<String> menus;
 
     private MenuRequest(List<String> menus) {
@@ -13,21 +15,21 @@ public class MenuRequest {
 
     public static MenuRequest from(String userInput) {
         validate(userInput);
-        List<String> menus = Arrays.stream(userInput.split(","))
+        List<String> menus = Arrays.stream(userInput.split(LIST_DIAMETER))
                 .map(String::trim)
                 .collect(Collectors.toList());
         return new MenuRequest(menus);
     }
 
     private static void validate(String userInput) {
-        String[] coaches = userInput.split(",");
+        String[] coaches = userInput.split(LIST_DIAMETER);
         validateSize(coaches);
         validateDuplication(coaches);
     }
 
     private static void validateSize(String[] coaches) {
         if (coaches.length > 2) {
-            throw new IllegalArgumentException("[ERROR] 못먹는 메뉴는 최대 2개만 입력 가능 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.AVOID_MENU_OVER_MAX_SIZE);
         }
     }
 
@@ -38,7 +40,7 @@ public class MenuRequest {
                 .count();
 
         if (distinctSize != coaches.length) {
-            throw new IllegalArgumentException("[ERROR] 동일한 메뉴를 입력 할 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.MENU_NAME_DUPLICATED);
         }
     }
 

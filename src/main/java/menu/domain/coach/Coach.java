@@ -2,8 +2,8 @@ package menu.domain.coach;
 
 import java.util.ArrayList;
 import java.util.List;
+import menu.common.ErrorMessage;
 import menu.domain.menu.Menu;
-import menu.ui.dto.MenuRequest;
 
 public class Coach {
     private final String name;
@@ -21,7 +21,7 @@ public class Coach {
     private void validate(String name) {
         int nameLength = name.length();
         if (nameLength < 2 || nameLength > 4) {
-            throw new IllegalArgumentException("[ERROR] 코치의 이름은 최소 2글자, 최대 4글자입니다.");
+            throw new IllegalArgumentException(ErrorMessage.COACH_NAME_LENGTH_ERROR);
         }
     }
 

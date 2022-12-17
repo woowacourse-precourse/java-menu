@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import menu.common.ErrorMessage;
 
 public class MenuRepository {
     private final List<Menu> menus = new ArrayList<>();
@@ -15,11 +16,11 @@ public class MenuRepository {
     public Menu findByMenuName(String name) {
         return menus.stream().filter(menu -> menu.getName().equals(name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 메뉴 입니다."));
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.INVALID_MENU));
     }
 
     public Menu findRandomNameByCategory(MenuCategory menuCategory) {
-        List<String> namesByCategory =  menus.stream().filter(menu -> menu.matchCategory(menuCategory))
+        List<String> namesByCategory = menus.stream().filter(menu -> menu.matchCategory(menuCategory))
                 .map(Menu::getName)
                 .collect(Collectors.toList());
         String pickedMenuName = Randoms.shuffle(namesByCategory).get(0);
