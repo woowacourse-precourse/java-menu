@@ -28,7 +28,6 @@ public class MenuRepository {
                 .add(menu);
     }
 
-    // 매번 stream 말고 다른 방법은?
     public List<String> findAllByCategory(Category category) {
         return menusByCategory.get(category);
     }
