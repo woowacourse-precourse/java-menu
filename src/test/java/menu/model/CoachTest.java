@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static menu.model.MenuCategory.KOREA;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("코치와 관련된 테스트를 진행한다.")
 class CoachTest {
@@ -27,8 +27,9 @@ class CoachTest {
         coach.addAlreadyEatFood(List.of("김치찌개", "비빔밥"));
 
         //when
+        final boolean result = coach.isTooManySameCategory(menuRepository.getMenus(KOREA), KOREA);
+
         //then
-        assertThatThrownBy(() -> coach.isTooManySameCategory(menuRepository.getMenus(KOREA), KOREA))
-                .isInstanceOf(IllegalStateException.class);
+        assertThat(result).isTrue();
     }
 }
