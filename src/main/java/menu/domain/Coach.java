@@ -1,17 +1,24 @@
 package menu.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Coach {
+    private static final String ERROR_NAME_LENGTH = "[ERROR] 코치의 이름은 최소 2글자 최대 4글자까지 입력 가능합니다.";
 
     private final String name;
     private final UnavailableMenu unavailableMenu;
 
     private Coach(String name) {
+        validateName(name.length());
         this.name = name;
         this.unavailableMenu = new UnavailableMenu();
+    }
+
+    private static void validateName(int length) {
+        if (!(length >= 2 && length <= 4)) {
+            throw new IllegalArgumentException(ERROR_NAME_LENGTH);
+        }
     }
 
     public static Coach createCoach(String name) {

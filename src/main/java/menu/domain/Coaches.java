@@ -5,13 +5,22 @@ import java.util.List;
 
 public class Coaches {
 
+    private static final String ERROR_MAX_SIZE = "[ERROR] 5명이상의 코치는 입력할 수 없습니다.";
+
     private final List<Coach> coaches = new ArrayList<>();
 
     public Coaches() {
     }
 
     public void addCoach(Coach coach) {
+        validateCount(coaches.size());
         coaches.add(coach);
+    }
+
+    private void validateCount(int size) {
+        if (size >= 5) {
+            throw new IllegalArgumentException(ERROR_MAX_SIZE);
+        }
     }
 
     public List<String> getAllCoachesNames() {
