@@ -74,18 +74,10 @@ public class MenuSuggester {
     }
 
     private boolean uniqueMenu(Coach coach, String menu) {
-        List<String> eatMenu = coach.getEatMenu();
-        if (eatMenu.contains(menu)) {
-            return false;
-        }
-        return true;
+        return coach.newFood(menu);
     }
 
     private boolean eatableMenu(Coach coach, String menu) {
-        List<String> noEatFood = coach.getNoEatFood();
-        if (noEatFood.contains(menu)) {
-            return false;
-        }
-        return true;
+        return coach.eatable(menu);
     }
 }

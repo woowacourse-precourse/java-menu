@@ -29,7 +29,17 @@ public class Coach {
         return this.eatMenu;
     }
 
-    public List<String> getNoEatFood() {
-        return this.noEatFood;
+    public boolean newFood(String menu) {
+        if (eatMenu.contains(menu)) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean eatable(String menu) {
+        if (noEatFood.contains(menu)) {
+            return false;
+        }
+        return true;
     }
 }
