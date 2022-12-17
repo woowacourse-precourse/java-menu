@@ -12,6 +12,8 @@
 
 ## repository
 - [ ] foodRepository
+    - [ ] 필드 생성
+    - [ ] 등록된 음식인지 조회
 - [ ] categoryRepository
 - [ ] coachRepository
 
