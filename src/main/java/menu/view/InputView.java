@@ -11,7 +11,13 @@ public class InputView {
         System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
         String input = Console.readLine();
         String[] names = input.split(",");
-        return Arrays.asList(names);
+        return toTrimList(names);
+    }
+
+    private List<String> toTrimList(String[] names) {
+        return Arrays.stream(names)
+                .map(String::trim)
+                .collect(Collectors.toList());
     }
 
     public List<String> readCantEatMenu() {
