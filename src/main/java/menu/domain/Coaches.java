@@ -1,5 +1,6 @@
 package menu.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Coaches {
@@ -10,9 +11,13 @@ public class Coaches {
     
     private final List<Coach> coaches;
     
-    public Coaches(List<Coach> coaches) {
+    public Coaches() {
+        this.coaches = new ArrayList<>();
+    }
+
+    public void addAll(List<Coach> coaches) {
         validate(coaches);
-        this.coaches = coaches;
+        this.coaches.addAll(coaches);
     }
 
     private void validate(List<Coach> coaches) {

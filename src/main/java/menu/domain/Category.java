@@ -58,4 +58,20 @@ public enum Category {
         }
         return WESTERN_FOOD;
     }
+
+    public static int findNumberBy(String menu) {
+        if (JAPANESE_FOOD.contains(menu)) {
+            return JAPANESE.number;
+        }
+        if (KOREAN_FOOD.contains(menu)) {
+            return KOREAN.number;
+        }
+        if (CHINESE_FOOD.contains(menu)) {
+            return CHINESE.number;
+        }
+        if (ASIAN_FOOD.contains(menu)) {
+            return ASIAN.number;
+        }
+            return WESTERN.number;
+    }
 }
