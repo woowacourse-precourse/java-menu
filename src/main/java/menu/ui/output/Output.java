@@ -10,7 +10,7 @@ public class Output {
     private static final String SEPERATOR = " | ";
     private static final String FIRST_WRAPPER = "[ ";
     private static final String LAST_WRAPPER = " ]";
-    private static final List<String> DAYS = Arrays.asList("월요일", "화요일", "수요일", "목요일", "금요일");
+    private static final List<String> DAYS = Arrays.asList("구분", "월요일", "화요일", "수요일", "목요일", "금요일");
     private static final String CATEGORY = "카테고리";
 
     public void notifyInitializing() {
