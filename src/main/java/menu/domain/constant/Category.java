@@ -19,4 +19,20 @@ public enum Category {
         this.name = name;
         this.menus = menus;
     }
+
+    public static void checkFoodExist(String food) {
+        boolean haveFood = false;
+        for (Category category : Category.values()) {
+            if (category.haveFood(food)) {
+                haveFood = true;
+            }
+        }
+        if (!haveFood) {
+            throw new IllegalArgumentException("[ERROR] 존재하지 않는 메뉴입니다.");
+        }
+    }
+
+    private boolean haveFood(String food) {
+        return menus.contains(food);
+    }
 }
