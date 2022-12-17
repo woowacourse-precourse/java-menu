@@ -21,10 +21,6 @@ public class RecommendMaker {
         }
     }
 
-    private void recommendEachCoach(Coach coach, Category category) {
-        recommendMenu(category, coach);
-    }
-
     private Category recommendCategory() {
         Category category;
         do {

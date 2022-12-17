@@ -1,6 +1,10 @@
 package menu.controller;
 
-import menu.domain.*;
+import menu.domain.Coach;
+import menu.domain.CoachRepository;
+import menu.domain.Menu;
+import menu.domain.MenuRepository;
+import menu.domain.RecommendMaker;
 import menu.domain.generator.RandomCategoryGenerator;
 import menu.view.InputView;
 import menu.view.OutputView;
