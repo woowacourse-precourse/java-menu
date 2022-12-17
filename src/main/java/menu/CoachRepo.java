@@ -25,11 +25,13 @@ public class CoachRepo {
     }
 
     private Coach getTargetCoach(String coachName) {
+        Coach targetCoach = null;
         for (Coach coach : coachList){
             if (coach.name == coachName){
-                return coach;
+                targetCoach = coach;
+                break;
             }
         }
-        return new Coach("TEST");
+        return targetCoach;
     }
 }
