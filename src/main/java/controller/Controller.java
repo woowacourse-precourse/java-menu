@@ -110,7 +110,7 @@ public class Controller {
 		menuRecommendResult = new ArrayList<>();
 		categoryCount = new ArrayList<>();
 
-		for (int i = Init.INIT.getIndex(); i < Init.INIT_CATEGORY_COUNT_SIZE.getIndex(); i++) {
+		for (int index = Init.INIT.getIndex(); index < Init.INIT_CATEGORY_COUNT_SIZE.getIndex(); index++) {
 			categoryCount.add(Init.INIT.getIndex());
 		}
 	}
