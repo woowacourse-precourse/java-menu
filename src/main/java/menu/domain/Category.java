@@ -41,6 +41,4 @@ public enum Category {
     public String createRandomMenu() {
         return Randoms.shuffle(menus).get(0);
     }
-
-
 }

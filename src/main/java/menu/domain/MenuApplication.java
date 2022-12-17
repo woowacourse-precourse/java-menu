@@ -2,6 +2,7 @@ package menu.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import menu.dto.request.HateMenuDto;
 import menu.dto.response.CoachesWeeklyMenu;
 import menu.dto.request.CoachNameDto;
 import menu.view.InputView;
@@ -33,7 +34,10 @@ public class MenuApplication {
 
     private Coaches addEachCoachesHateMenu(List<CoachNameDto> coachNameDtos) {
         return coachNameDtos.stream()
-                .map(inputView::sendHateMenuBySpecificCoach)
+                .map(coachNameDto -> {
+                    HateMenuDto hateMenuDto = inputView.sendHateMenuBySpecificCoach(coachNameDto);
+                    return new Coach(coachNameDto.getName(), hateMenuDto.getHateMenus());
+                } )
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Coaches::new));
     }
 
