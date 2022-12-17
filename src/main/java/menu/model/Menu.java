@@ -9,8 +9,8 @@ public class Menu {
         this.name = name;
     }
 
-    public MenuCategory getCategory() {
-        return category;
+    public String getCategoryName() {
+        return category.getCategory();
     }
 
     public String getName() {

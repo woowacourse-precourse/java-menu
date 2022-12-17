@@ -21,4 +21,10 @@ public class RecommendResult {
                 .map(Menu::getName)
                 .collect(Collectors.toList());
     }
+
+    public List<String> getMenuCategoryNames() {
+        return menus.stream()
+                .map(Menu::getCategoryName)
+                .collect(Collectors.toList());
+    }
 }

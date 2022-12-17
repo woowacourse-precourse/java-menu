@@ -29,4 +29,8 @@ public enum MenuCategory {
     private boolean equalsNumber(final int number) {
         return this.number == number;
     }
+
+    public String getCategory() {
+        return this.category;
+    }
 }

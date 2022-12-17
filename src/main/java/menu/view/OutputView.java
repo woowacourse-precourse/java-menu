@@ -21,10 +21,20 @@ public class OutputView extends DefaultMessage {
     public static void printResult(final List<RecommendResult> recommendMenus) {
         addNewLine();
         printMessage(RESULT_MESSAGE);
+        printRecommendCategory(recommendMenus);
         printRecommendResultMessage(recommendMenus);
 
         addNewLine();
         printMessage(END_MESSAGE);
+    }
+
+    private static void printRecommendCategory(final List<RecommendResult> recommendMenus) {
+        final RecommendResult result = recommendMenus.get(0);
+        printMessage(getTypeView(result));
+    }
+
+    private static String getTypeView(final RecommendResult result) {
+        return OPEN_BRACKET + "구분" + DELIMITER + String.join(DELIMITER, result.getMenuCategoryNames()) + CLOSE_BRACKET;
     }
 
     private static void printRecommendResultMessage(final List<RecommendResult> recommendMenus) {
