@@ -15,4 +15,9 @@ public class Validator {
         if (coaches.size() < 2 || coaches.size() > 5)
             throw new IllegalArgumentException("코치는 최소 2명 이상, 5명 이하로 입력해야 합니다.");
     }
+
+    public static void validateInEdibleMenuLength(List<String> inEdibleMenu) {
+        if (inEdibleMenu.size() > 2)
+            throw new IllegalArgumentException("먹지 못하는 메뉴는 최대 2개까지 입력이 가능합니다.");
+    }
 }
