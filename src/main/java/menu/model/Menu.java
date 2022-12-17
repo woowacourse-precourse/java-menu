@@ -24,14 +24,14 @@ public enum Menu {
         this.names = names;
     }
 
-    public static Menu getCodeToMenu(int code) {
+    private static Menu getCodeToMenu(int code) {
         return Arrays.stream(Menu.values())
                 .filter(e -> e.code == code)
                 .findAny()
                 .orElseGet(() -> getCodeToMenu(Randoms.pickNumberInRange(1, 5)));
     }
 
-    public static String getCategoryToName(String category) {
+    private static String getCategoryToName(String category) {
         List<String> names = Arrays.stream(Menu.values())
                 .filter(e -> e.category == category)
                 .findAny()
