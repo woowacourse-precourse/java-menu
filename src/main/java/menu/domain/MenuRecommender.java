@@ -22,13 +22,11 @@ public class MenuRecommender {
     public void run() {
         int cnt = 0;
         while (cnt < 5) {
-            // 카테고리 정하기
             Category category = selectCategory();
 
-            // 각 코치가 먹을 메뉴 추천
             List<Coach> coaches = coachRepository.getCoaches();
             for (Coach coach : coaches) {
-                String menu = selectMenu(coach, category);
+                selectMenu(coach, category);
             }
             cnt++;
         }
@@ -45,12 +43,9 @@ public class MenuRecommender {
     }
 
     public boolean validateMenu(String menu, Coach coach) {
-        // 각 코치가 못 먹는 메뉴인지 확인
         if (!coach.canEat(menu)) {
             return false;
         }
-
-        // 각 코치에게 이미 추천한 메뉴인지 확인
         if (coach.isRecommended(menu)) {
             return false;
         }

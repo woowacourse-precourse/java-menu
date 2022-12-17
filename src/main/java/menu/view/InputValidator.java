@@ -16,7 +16,6 @@ public class InputValidator {
                 throw new IllegalArgumentException("[ERROR] 코치 이름은 최소 2글자, 최대 4글자입니다.");
             }
         }
-
     }
 
     public void validateNoEatFoodsCommand(String command) {

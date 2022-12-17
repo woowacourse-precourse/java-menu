@@ -20,23 +20,11 @@ public enum Category {
         this.menus = menus;
     }
 
-    public static Category valueOfLabel(String label) {
-        return Arrays.stream(values())
-                .filter(value -> value.label.equals(label))
-                .findAny()
-                .orElse(null);
-    }
-
     public static Category valueOfNum(int num) {
         return Arrays.stream(values())
                 .filter(value -> value.num == num)
                 .findAny()
                 .orElse(null);
-    }
-
-    public String toGeneralString() {
-        String result = this.name().substring(0, 1) + this.name().substring(1).toLowerCase();
-        return result;
     }
 
     public List<String> getMenus() {
