@@ -17,4 +17,8 @@ public class Menus {
         return Arrays.stream(menus.split(","))
                 .collect(Collectors.toList());
     }
+
+    public int size() {
+        return menus.size();
+    }
 }
