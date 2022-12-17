@@ -6,6 +6,10 @@ import java.util.List;
 public class InputView {
     public static List<String> readCoachNames() {
         String names = Console.readLine();
-        return null;
+        return parseCoachNames(names);
+    }
+
+    private static List<String> parseCoachNames(String names) {
+        return List.of(names.split(","));
     }
 }
