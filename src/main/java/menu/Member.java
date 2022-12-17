@@ -1,5 +1,6 @@
 package menu;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Member {
@@ -10,6 +11,7 @@ public class Member {
     public Member(String name, List<String> pickyEatings) {
         this.name = name;
         this.pickyEatings = pickyEatings;
+        recommendedMeal = new ArrayList<>();
     }
 
     public String getName() {
