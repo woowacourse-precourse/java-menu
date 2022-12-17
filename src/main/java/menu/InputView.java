@@ -37,7 +37,7 @@ public class InputView {
 
     public boolean validateName(String[] name) throws IllegalArgumentException{
         for (String validateName : name) {
-            if (validateName.length() < 2 || validateName.length() > 5) {
+            if (validateName.length() < 2 || validateName.length() > 4) {
                 return true;
             }
         }
