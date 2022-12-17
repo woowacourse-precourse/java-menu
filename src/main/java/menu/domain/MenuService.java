@@ -14,4 +14,8 @@ public class MenuService {
     public void generateCoaches(List<String> coachNames) {
         coaches.addCoaches(coachNames);
     }
+
+    public List<String> getCoachNames() {
+        return coaches.getCoachNames();
+    }
 }
