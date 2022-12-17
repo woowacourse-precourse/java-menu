@@ -2,6 +2,12 @@ package menu.view;
 
 public class OutputView {
 
+    private static final String ERROR = "[ERROR]";
+
+    public static void printErrorMessage(String message) {
+        System.out.println(ERROR + " " + message);
+    }
+
     public static void startLunch() {
         System.out.println("점심 메뉴 추천을 시작합니다.\n");
     }
