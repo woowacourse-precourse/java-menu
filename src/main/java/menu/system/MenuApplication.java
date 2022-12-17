@@ -7,6 +7,11 @@ public class MenuApplication {
 
     public void run() {
         doSetup();
+        getCoachInfo();
+        ControllerHolder.get(ControllerName.RECOMMANDING).process();
+    }
+
+    private static void getCoachInfo() {
         ControllerHolder.get(ControllerName.COACH_INFO).process();
     }
 
