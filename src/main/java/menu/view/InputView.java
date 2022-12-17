@@ -15,10 +15,23 @@ public class InputView {
         String inputNames = Console.readLine();
 
         String[] splitNames = inputNames.split(",");
-        for(int i=0; i< splitNames.length; i++) {
+        for (int i = 0; i < splitNames.length; i++) {
             names.add(splitNames[i]);
         }
         nameValidator.validate(names);
         return names;
+    }
+
+    public static List<String> readForbiddenFoods() {
+        List<String> foods = new ArrayList<>();
+        String inputFoods = Console.readLine();
+
+        String[] splitFoods = inputFoods.split(",");
+        for (int i = 0; i < splitFoods.length; i++) {
+            foods.add(splitFoods[i]);
+        }
+        // TODO: 유효성 처리할 수 있으면 하기
+        
+        return foods;
     }
 }
