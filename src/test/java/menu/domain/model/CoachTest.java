@@ -64,4 +64,21 @@ class CoachTest {
         System.out.println(duplicateCategory);
         assertThat(duplicateCategory).isTrue();
     }
+
+    @Test
+    void 코치의_추천결과중_카테고리가2회이상인지_테스트2() {
+        List<Menu> menus = List.of(new Menu(Category.JAPAN_FOOD, "우동"),
+                new Menu(Category.JAPAN_FOOD, "스시")
+        );
+        RecommendResult recommendResult =
+                new RecommendResult(Day.MON, Category.JAPAN_FOOD, new Menu(Category.JAPAN_FOOD, "오니기리"));
+        RecommendResult recommendResult2 =
+                new RecommendResult(Day.TUE, Category.JAPAN_FOOD, new Menu(Category.JAPAN_FOOD, "오코노미야끼"));
+
+        Coach tomi = new Coach("토미", menus, newArrayList(recommendResult, recommendResult2));
+
+        boolean duplicateCategory = tomi.isDuplicateCategory(Category.EUROPE_FOOD, Day.WED);
+        System.out.println(duplicateCategory);
+        assertThat(duplicateCategory).isFalse();
+    }
 }

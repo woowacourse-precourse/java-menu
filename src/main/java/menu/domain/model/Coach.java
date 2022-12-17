@@ -10,6 +10,7 @@ public class Coach {
     private static final int MAXIMUM_NAME_LENGTH = 4;
     private static final String ERROR_INVALID_CANNOT_FOOD_SIZE = "[ERROR] 못먹는 메뉴는 최소 0개 최대 2개이어야 합니다.";
     private static final int MAXIMUM_SIZE_CANNOT_FOOD = 2;
+    private static final int MACIMUM_CATEGORY_SIZE = 2;
 
     private final String name;
     private final List<Menu> canNotEatFoods;
@@ -50,7 +51,7 @@ public class Coach {
             }
         }
         System.out.println(count);
-        return count >= 2;
+        return count >= MACIMUM_CATEGORY_SIZE;
     }
 
     public boolean canEat(Menu menu) {
