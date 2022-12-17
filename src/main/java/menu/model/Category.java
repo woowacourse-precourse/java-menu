@@ -1,5 +1,7 @@
 package menu.model;
 
+import menu.ErrorConstants;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,5 +29,13 @@ public enum Category {
                 .count();
 
         return menuCount == 0;
+    }
+
+    public static Category getCategory(int randomCategoryNumber) {
+        return Arrays.stream(values())
+                .filter(value -> value.number == randomCategoryNumber)
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(
+                        ErrorConstants.ERROR_PREFIX + "카테고리 숫자가 올바르지 않습니다."));
     }
 }
