@@ -20,16 +20,32 @@ public class MenuController {
     }
 
     public void run() {
+        start();
+        readCoachInfo();
+        printResult();
+        end();
+    }
+
+    public void start() {
         outputView.printStart();
-        outputView.printReadCoachName();
+    }
+
+    public void readCoachInfo() {
+        outputView.printReadCoachNames();
         List<String> coachNames = inputView.readCoachNames();
         for (String coachName : coachNames) {
             outputView.printReadImpossibleMenus(coachName);
             List<String> impossibleMenuList = inputView.readImpossibleMenus();
             coachList.add(new Coach(coachName, impossibleMenuList));
         }
+    }
+
+    public void printResult() {
         outputView.printResultHead();
         outputView.printResultBody();
+    }
+
+    public void end() {
         outputView.printEnd();
     }
 

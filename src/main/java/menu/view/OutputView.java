@@ -22,7 +22,7 @@ public class OutputView {
         printlnMessage("");
     }
 
-    public void printReadCoachName() {
+    public void printReadCoachNames() {
         printlnMessage(READ_COACH_NAME_MESSAGE);
     }
 
