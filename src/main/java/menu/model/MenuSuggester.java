@@ -35,12 +35,10 @@ public class MenuSuggester {
     }
 
     private int pickCategory(int idx) {
-        boolean possible;
         int category;
         do {
             category = Randoms.pickNumberInRange(1, 5);
-            possible = possibleCategory(category);
-        } while (!possible);
+        } while (!possibleCategory(category));
         suggestedCategory[idx] = category;
         return category;
     }
@@ -60,24 +58,15 @@ public class MenuSuggester {
 
     private String pickMenu(Coach coach, int category) {
         List<String> menus = categories.get(category);
-        boolean possible;
         String menu;
         do {
             menu = Randoms.shuffle(menus).get(0);
-            possible = possibleMenu(coach, menu);
-        } while (!possible);
+        } while (!possibleMenu(coach, menu));
         return menu;
     }
 
     private boolean possibleMenu(Coach coach, String menu) {
-        return uniqueMenu(coach, menu) && eatableMenu(coach, menu);
+        return coach.uniqueMenu(menu) && coach.eatableMenu(menu);
     }
 
-    private boolean uniqueMenu(Coach coach, String menu) {
-        return coach.newFood(menu);
-    }
-
-    private boolean eatableMenu(Coach coach, String menu) {
-        return coach.eatable(menu);
-    }
 }

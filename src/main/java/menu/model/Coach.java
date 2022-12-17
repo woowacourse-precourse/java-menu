@@ -29,14 +29,14 @@ public class Coach {
         return this.eatMenu;
     }
 
-    public boolean newFood(String menu) {
+    public boolean uniqueMenu(String menu) {
         if (eatMenu.contains(menu)) {
             return false;
         }
         return true;
     }
 
-    public boolean eatable(String menu) {
+    public boolean eatableMenu(String menu) {
         if (noEatFood.contains(menu)) {
             return false;
         }
