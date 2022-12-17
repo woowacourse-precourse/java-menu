@@ -1,6 +1,7 @@
 package menu.service;
 
 import menu.model.Category;
+import menu.model.DayOfTheWeek;
 import menu.model.MenuRecommendMachine;
 import menu.model.RandomCategoryGenerator;
 import menu.model.coach.Coach;
@@ -32,8 +33,8 @@ public class MenuRecommendService {
         }
     }
 
-    public String recommendMenu() {
-        Category recommendedCategory = RandomCategoryGenerator.generate();
-        return menuRecommendMachine.recommend(recommendedCategory);
+    public List<DayOfTheWeek> generateDayOfTheWeeks() {
+        return DayOfTheWeek.getDaysOfTheWeek();
     }
+
 }
