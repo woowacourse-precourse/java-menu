@@ -48,14 +48,14 @@ public class Validator {
     }
 
     public static void validateBannedMenus(List<String> bannedMenus, MenuRecommender menuRecommender) {
-        for (String bannedMenu : bannedMenus) {
-            validateExistedMenu(bannedMenu, menuRecommender);
-        }
+        validateExistedMenus(bannedMenus, menuRecommender);
     }
 
-    private static void validateExistedMenu(String input, MenuRecommender menuRecommender) {
-        if (!menuRecommender.isExistedMenu(input)) {
-            throw new IllegalArgumentException("[ERROR] 존재하지 않는 메뉴입니다.");
+    private static void validateExistedMenus(List<String> bannedMenus, MenuRecommender menuRecommender) {
+        for (String bannedMenu : bannedMenus) {
+            if (!menuRecommender.isExistedMenu(bannedMenu)) {
+                throw new IllegalArgumentException("[ERROR] 존ㄱ하지 않는 메뉴입니다.");
+            }
         }
     }
 }
