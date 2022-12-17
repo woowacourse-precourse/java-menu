@@ -7,15 +7,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public final class MenuByCategoryData {
+public class MenuByCategoryData {
 
-    private final Map<Category, List<Menu>> menuData = new HashMap<>();
+    private Map<Category, List<Menu>> menuData;
 
     public MenuByCategoryData() throws IOException {
-        FileResolver.resolveFileToMenuByCategoryData(menuData, "src/main/resources/categories.md");
+        menuData = FileResolver.resolveFileToMenuByCategoryData("src/main/resources/categories.md");
     }
 
-    public Map<Category, List<Menu>> getMenuData() {
-        return menuData;
+
+    public boolean hasMenu(String name) {
+        boolean isEqual = false;
+        for (Category category : menuData.keySet()) {
+            List<Menu> menus = menuData.get(category);
+            if (menus.contains(new Menu(name))) {
+                isEqual = true;
+            }
+        }
+        return isEqual;
     }
+
 }
