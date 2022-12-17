@@ -10,7 +10,7 @@ public class InputView {
 	public List<String> inputCoaches() {
 		String input = Console.readLine();
 		String[] names = input.split(",");
-		// isStrigValidate();
+		// isStringValidate();
 		// isNameLengthValidate();
 		return Stream.of(names)
 			.collect(Collectors.toList());
