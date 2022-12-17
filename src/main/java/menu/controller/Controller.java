@@ -35,6 +35,7 @@ public class Controller {
 
     private List<Food> readInedibles(String coachName) {
         return INPUT_VIEW.readInedibleOf(coachName).stream()
+                .filter(String::isBlank)
                 .map(Food::from)
                 .collect(Collectors.toList());
     }
