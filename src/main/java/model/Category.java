@@ -25,7 +25,7 @@ public enum Category {
         return number;
     }
     
-    private String getName() {
+    public String getName() {
         return name;
     }
     
@@ -35,7 +35,7 @@ public enum Category {
     
     public static Category findByNumber(int number) {
         return Arrays.stream(values())
-                .filter(menu -> isEquals(number, menu))
+                .filter(category -> isEquals(number, category))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("잘못된 숫자가 입력되었습니다."));
     }
