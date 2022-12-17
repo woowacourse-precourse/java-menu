@@ -63,7 +63,8 @@ public class Service {
             coaches.getCoaches().forEach(coach -> {
                 while (true) {
                     String recommendedMenu = Randoms.shuffle(menu).get(0);
-                    if (coach.getInedibleMenus().contains(recommendedMenu) && coach.getMenus().contains(recommendedMenu)) {
+                    if (coach.getInedibleMenus().contains(recommendedMenu) && coach.getMenus()
+                        .contains(recommendedMenu)) {
                         continue;
                     }
                     coach.addMenu(recommendedMenu);

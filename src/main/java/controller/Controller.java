@@ -19,7 +19,14 @@ public class Controller {
 
     private void init() {
         outputView.printStartMessage();
-        service.saveCoachNames(inputView.readCoachNames());
+        while (true) {
+            try {
+                service.saveCoachNames(inputView.readCoachNames());
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e);
+            }
+        }
         while (service.isOnInitializing()) {
             service.saveInedibleMenu(service.getCoachName(), inputView.readInedibleMenu(service.getCoachName()));
         }

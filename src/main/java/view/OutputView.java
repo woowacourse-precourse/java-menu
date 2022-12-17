@@ -14,4 +14,8 @@ public class OutputView {
     public void printEndMessage() {
         System.out.println(ViewConstants.END);
     }
+
+    public void printErrorMessage(IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+    }
 }
