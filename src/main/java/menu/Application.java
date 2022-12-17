@@ -8,33 +8,16 @@ import java.util.*;
 import java.util.stream.Stream;
 
 public class Application {
+    public static final List<String> TOTAL_DAY = Arrays.asList("월요일", "화요일", "수요일", "목요일", "금요일");
+
     public static void main(String[] args) {
         String[] coachNames = inputCoachNames();
         addBannedMenu(coachNames);
-
-        List<String> totalDay = Arrays.asList("월요일", "화요일", "수요일", "목요일", "금요일");
         List<String> recommendedCategories = new ArrayList<>();
-        for (int i = 0; i < totalDay.size(); i++) {
-            recommendedCategories.add(CategoryRecommendService.recommendCategory());
-        }
-        Map<String, List<String>> recommendMenusByCoach = new HashMap<>();
-        for (String coachName : coachNames) {
-            recommendMenusByCoach.put(coachName, new ArrayList<>());
-            for (int i = 0; i < totalDay.size(); i++) {
-                recommendMenusByCoach.get(coachName)
-                        .add(MenuRecommendService.recommendMenu(coachName, recommendedCategories.get(i)));
-            }
-        }
-
-        System.out.println("메뉴 추천 결과입니다.");
-        printFormattedResultLine("구분", totalDay);
-        printFormattedResultLine("카테고리", recommendedCategories);
-        for (String coachName : coachNames) {
-            printFormattedResultLine(coachName, recommendMenusByCoach.get(coachName));
-        }
-        System.out.println();
-        System.out.println("추천을 완료했습니다.");
+        Map<String, List<String>> recommendMenusByCoach = recommendMenu(recommendedCategories, coachNames);
+        showResult(coachNames, recommendedCategories, recommendMenusByCoach);
     }
+
 
     private static void addBannedMenu(String[] coachNames) {
         for (String coachName : coachNames) {
@@ -48,7 +31,6 @@ public class Application {
             }
         }
     }
-
 
     private static String[] inputCoachNames() {
         while (true) {
@@ -103,6 +85,32 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 존재하지 않는 메뉴가 있습니다.");
         }
         return bannedMenu;
+    }
+
+    private static Map<String, List<String>> recommendMenu(List<String> recommendedCategories, String[] coachNames) {
+        for (int i = 0; i < TOTAL_DAY.size(); i++) {
+            recommendedCategories.add(CategoryRecommendService.recommendCategory());
+        }
+        Map<String, List<String>> recommendMenusByCoach = new HashMap<>();
+        for (String coachName : coachNames) {
+            recommendMenusByCoach.put(coachName, new ArrayList<>());
+            for (int i = 0; i < TOTAL_DAY.size(); i++) {
+                recommendMenusByCoach.get(coachName)
+                        .add(MenuRecommendService.recommendMenu(coachName, recommendedCategories.get(i)));
+            }
+        }
+        return recommendMenusByCoach;
+    }
+
+    private static void showResult(String[] coachNames, List<String> recommendedCategories, Map<String, List<String>> recommendMenusByCoach) {
+        System.out.println("메뉴 추천 결과입니다.");
+        printFormattedResultLine("구분", TOTAL_DAY);
+        printFormattedResultLine("카테고리", recommendedCategories);
+        for (String coachName : coachNames) {
+            printFormattedResultLine(coachName, recommendMenusByCoach.get(coachName));
+        }
+        System.out.println();
+        System.out.println("추천을 완료했습니다.");
     }
 
     private static void printFormattedResultLine(String group, List<String> contents) {
