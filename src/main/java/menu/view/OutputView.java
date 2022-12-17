@@ -58,7 +58,7 @@ public class OutputView {
             stringBuilder.append(DIVISION_SPACE + dayOfTheWeek.getDayOfTheWeek() + DIVISION_SPACE + DIVISION_LINE);
         }
         stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-        stringBuilder.append(DIVISION_SPACE + DIVISION_END);
+        stringBuilder.append(DIVISION_END);
         System.out.println(stringBuilder);
     }
 
@@ -69,7 +69,7 @@ public class OutputView {
             stringBuilder.append(DIVISION_SPACE + menuCategory.getMenuCategory() + DIVISION_SPACE + DIVISION_LINE);
         }
         stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-        stringBuilder.append(DIVISION_SPACE + DIVISION_END);
+        stringBuilder.append(DIVISION_END);
         System.out.println(stringBuilder);
     }
 
@@ -87,7 +87,7 @@ public class OutputView {
             stringBuilder.append(DIVISION_SPACE + menu.getName() + DIVISION_SPACE + DIVISION_LINE);
         }
         stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-        stringBuilder.append(DIVISION_SPACE + DIVISION_END);
+        stringBuilder.append(DIVISION_END);
         return stringBuilder.toString();
     }
 }
