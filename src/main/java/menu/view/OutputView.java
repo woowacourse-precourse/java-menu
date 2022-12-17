@@ -26,6 +26,9 @@ public class OutputView {
         }
         System.out.println(" ]");
     }
+    public static void chaingeLine(){
+        System.out.println();
+    }
     public static void endRecommendView(){
         System.out.print("추천을 완료했습니다.");
     }

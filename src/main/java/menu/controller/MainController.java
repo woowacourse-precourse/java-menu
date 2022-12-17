@@ -11,6 +11,7 @@ public class MainController {
     CoachController coachController = new CoachController();
     public void startRecommend(){
         startRecommendView();
+        chaingeLine();
         coachController.makeCoachList(inputCoachesView());
         inputCantEat();
         for(String week: WEEK){
@@ -18,6 +19,7 @@ public class MainController {
         }
         coachController.makeFoodList();
         printResult();
+        chaingeLine();
         endRecommendView();
     }
     private void printResult(){
@@ -34,6 +36,7 @@ public class MainController {
     private void inputCantEat(){
         for(String coach:coachController.getCoachList()){
             coachController.makeCantEat(coach,inputCantView(coach));
+            chaingeLine();
         }
     }
     private void recommendMenu(){
