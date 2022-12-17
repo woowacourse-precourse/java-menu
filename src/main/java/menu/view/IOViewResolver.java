@@ -1,5 +1,6 @@
 package menu.view;
 
+import menu.dto.input.ReadNamesDto;
 import menu.dto.output.PrintExceptionDto;
 import menu.view.exception.NotFoundViewException;
 
@@ -18,7 +19,7 @@ public final class IOViewResolver {
     }
 
     private void initInputViewMappings(InputView inputView) {
-//        inputViewMap.put(ReadChangeDto.class, inputView::readChange);
+        inputViewMap.put(ReadNamesDto.class, inputView::readNames);
 
     }
 

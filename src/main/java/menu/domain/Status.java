@@ -1,4 +1,4 @@
-package menu;
+package menu.domain;
 
 public enum Status {
     READ_NAMES,

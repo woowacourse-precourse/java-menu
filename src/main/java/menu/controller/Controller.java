@@ -1,6 +1,8 @@
 package menu.controller;
 
-import menu.Status;
+import menu.domain.MenuRecommendation;
+import menu.domain.Status;
+import menu.dto.input.ReadNamesDto;
 import menu.dto.output.PrintExceptionDto;
 import menu.view.IOViewResolver;
 
@@ -11,6 +13,7 @@ import java.util.function.Supplier;
 public class Controller {
     private final IOViewResolver ioViewResolver;
     private final Map<Status, Supplier<Status>> statusMap;
+    private MenuRecommendation menuRecommendation;
 
 
     public Controller(IOViewResolver ioViewResolver) {
@@ -33,8 +36,8 @@ public class Controller {
     }
 
     private Status readNames() {
+        ReadNamesDto readNamesDto = ioViewResolver.inputViewResolve(ReadNamesDto.class);
+        menuRecommendation = new MenuRecommendation(readNamesDto.getUserInput());
         return null;
     }
-
-
 }

@@ -1,6 +1,7 @@
 package menu;
 
 import menu.controller.Controller;
+import menu.domain.Status;
 import menu.view.IOViewResolver;
 import menu.view.InputView;
 import menu.view.OutputView;
