@@ -25,9 +25,6 @@ public class Coaches {
     }
 
     public void recommendMenus(Recommender recommender) {
-        for (Coach coach : coaches) {
-            List<String> recommendMenus = recommender.recommendMenus();
-            coach.setRecommendedMenus(recommendMenus);
-        }
+        recommender.recommendMenus(this.coaches);
     }
 }

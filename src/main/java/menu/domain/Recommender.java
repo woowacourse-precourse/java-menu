@@ -45,19 +45,14 @@ public class Recommender {
         return count;
     }
 
-    public List<String> recommendMenus() {
-        List<String> result = new ArrayList<>();
-
+    public void recommendMenus(List<Coach> coaches) {
         for (int i = 0; i < categories.size(); i++) {
-            String randomMenu = Menu.getRandomMenuByCategory(categories.get(i));
+            Category dailyCategory = categories.get(i);
 
-            if (result.contains(randomMenu)) {
-                i--;
-                continue;
+            for (Coach coach : coaches) {
+                String randomMenuByCategory = Menu.getRandomMenuByCategory(dailyCategory);
+                coach.setRecommendedMenus(randomMenuByCategory);
             }
-
-            result.add(randomMenu);
         }
-        return result;
     }
 }

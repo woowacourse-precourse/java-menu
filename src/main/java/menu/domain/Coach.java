@@ -27,16 +27,12 @@ public class Coach {
         }
     }
 
-    public void setRecommendedMenus(List<String> menus) {
-        for (String menu : menus) {
-            if (this.hateMenus.contains(menu)) {
-                throw new IllegalStateException("먹지 못하는 음식이 존재합니다. 다시 추천해주세요.");
-            }
+    public void setRecommendedMenus(String menu) {
+        if (this.hateMenus.contains(menu)) {
+            throw new IllegalStateException("먹지 못하는 음식이 존재합니다. 다시 추천해주세요.");
         }
 
-        for (String menu : menus) {
-            this.recommendedMenus.add(menu);
-        }
+        this.recommendedMenus.add(menu);
     }
 
     @Override
