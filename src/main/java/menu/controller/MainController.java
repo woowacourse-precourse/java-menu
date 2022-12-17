@@ -7,7 +7,6 @@ import menu.model.Menu;
 import menu.model.Recommender;
 import menu.view.InputView;
 import menu.view.OutputView;
-import org.junit.jupiter.params.ParameterizedTest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,12 +88,6 @@ public class MainController {
             }
         }
         return count;
-    }
-
-    private void setMenusOfWeek(Coach coach){
-        for(int i = 0; i < 5; i++){
-            setMenuOfDay(Day.get(i), categories.get(i), coach);
-        }
     }
 
     private void setMenusOfDayForALLCoach(Day day){

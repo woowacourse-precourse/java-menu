@@ -6,9 +6,11 @@ import menu.constant.Category;
 import java.util.List;
 
 public class Recommender {
+    private static final int MIN = 1;
+    private static final int MAX = 5;
     
     public Category recommendCategory(){
-        int randomNumber = Randoms.pickNumberInRange(1, 5);
+        int randomNumber = Randoms.pickNumberInRange(MIN, MAX);
         return Category.get(randomNumber-1);
     }
 
