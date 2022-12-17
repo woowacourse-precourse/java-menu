@@ -16,6 +16,15 @@ public class MenuController {
 
     private void setUp() {
         CoachRepository.nameRegistration(initCoachNames());
+        initHateMenu();
+    }
+
+    private void initHateMenu() {
+        List<String> names = CoachRepository.getCoachNames();
+        for (String name : names) {
+            String menu = InputView.readHateMenu(name);
+            CoachRepository.hateMenuRegistration(name, splitInput(menu));
+        }
     }
 
     private List<String> initCoachNames() {
