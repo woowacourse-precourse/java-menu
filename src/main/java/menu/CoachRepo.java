@@ -9,7 +9,7 @@ public class CoachRepo {
     public void setCoachList(String scanCoachName) {
         String coachNameList[] = scanCoachName.split(",");
         for (int i=0; i<coachNameList.length; i++){
-            Coach coach = new Coach(coachNameList[i]);
+            Coach coach = new Coach(refreshString(coachNameList[i]));
             coachList.add(coach);
         }
     }
@@ -24,11 +24,11 @@ public class CoachRepo {
     }
 
     private String refreshString(String s) {
-        if (s.charAt(0) == ' ') {
+        while(s.charAt(0) == ' '){
             s=s.substring(1);
         }
-        if (s.charAt(s.length()-1) == ' '){
-            s=s.substring(0,s.length()-1);
+        while(s.charAt(s.length()-1) == ' ') {
+            s = s.substring(0, s.length() - 1);
         }
         return s;
     }
