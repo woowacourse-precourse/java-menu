@@ -1,6 +1,7 @@
 package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import java.util.List;
 import menu.utils.Validator;
 
@@ -20,8 +21,13 @@ public class InputView {
         return parsedNames;
     }
 
-    public static List<String> readBanMenu() {
+    public static ArrayList<String> readBanMenu() {
         String banMenu = Console.readLine();
-        return null;
+        return new ArrayList<>(parseBanMenu(banMenu));
+    }
+
+    private static List<String> parseBanMenu(String banMenu) {
+        List<String> parsedBanMenu = List.of(banMenu.split(","));
+        return parsedBanMenu;
     }
 }
