@@ -19,7 +19,7 @@ public class MenuByCategoryData {
         }
     }
 
-    public boolean hasMenu(String name) throws IOException {
+    public static boolean hasMenu(String name) throws IOException {
         boolean isEqual = false;
         for (Category category : menuData.keySet()) {
             List<Menu> menus = menuData.get(category);
@@ -28,6 +28,10 @@ public class MenuByCategoryData {
             }
         }
         return isEqual;
+    }
+
+    public static List<Menu> getMenuByCategory(Category category) {
+        return menuData.get(category);
     }
 
 }

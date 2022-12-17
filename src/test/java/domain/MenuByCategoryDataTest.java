@@ -1,5 +1,6 @@
 package domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,9 +13,13 @@ class MenuByCategoryDataTest {
     @Test
     void hasMenu() throws IOException {
         //given
-        MenuByCategoryData menuData = new MenuByCategoryData();
         //when
-        boolean result = menuData.hasMenu("규동");
+        boolean result = MenuByCategoryData.hasMenu("규동");
+
+        for (int i = 0; i < 10; i++) {
+            System.out.println(Randoms.pickNumberInRange(0, 3));
+        }
+
         //then
         Assertions.assertThat(result)
                   .isTrue();

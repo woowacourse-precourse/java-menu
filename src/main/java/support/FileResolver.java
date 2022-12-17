@@ -31,7 +31,7 @@ public final class FileResolver {
         return menuData;
     }
 
-    private static List<Menu> generateMenusName(String[] menus) {
+    private static List<Menu> generateMenusName(String[] menus) throws IOException {
         List<Menu> menusName = new ArrayList<>();
         for (String menu : menus) {
             menusName.add(new Menu(menu));
