@@ -37,12 +37,31 @@ public class CategoryController {
         }
     }
 
+    public String randomNumberToString() {
+        int randomNumber = getRandomNumber();
+        if (randomNumber == 1) {
+            return "일식";
+        }
+        if (randomNumber == 2) {
+            return "한식";
+        }
+        if (randomNumber == 3) {
+            return "중식";
+        }
+        if (randomNumber == 4) {
+            return "아시안";
+        }
+        if (randomNumber == 5) {
+            return "양식";
+        }
+        return null;
+    }
+
     public List<String> selectWeekMenuCategory() {
         List<String> weekCategory = new ArrayList<>();
 
         do {
-
-            String categoryName = categorys.get(getRandomNumber()).getName();
+            String categoryName = randomNumberToString();
             weekCategory.add(categoryName);
             if (Collections.frequency(weekCategory, categoryName) > 2) {
                 weekCategory.remove(weekCategory.size() - 1);
@@ -57,8 +76,8 @@ public class CategoryController {
         int i = -1;
         while (true) {
             try {
-                i = Randoms.pickNumberInRange(0, 4);
-                if (i > 4) {
+                i = Randoms.pickNumberInRange(1, 5);
+                if (i > 5) {
                     throw new IllegalArgumentException("[ERROR] 랜덤에러");
                 }
                 break;
