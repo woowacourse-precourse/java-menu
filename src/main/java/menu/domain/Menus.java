@@ -2,14 +2,14 @@ package menu.domain;
 
 import static java.util.stream.Collectors.toUnmodifiableList;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Menus {
 
     private final List<Menu> menus;
 
-    private Menus(List<Menu> menus) {
+    public Menus(List<Menu> menus) {
         this.menus = menus;
     }
 
@@ -17,5 +17,9 @@ public class Menus {
         return new Menus(names.stream()
                 .map(Menu::new)
                 .collect(toUnmodifiableList()));
+    }
+
+    public Menu pickShuffledMenu() {
+        return Randoms.shuffle(menus).get(0);
     }
 }

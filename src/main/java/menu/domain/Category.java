@@ -1,5 +1,6 @@
 package menu.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
 
 public enum Category {
@@ -25,11 +26,15 @@ public enum Category {
         this.menus = menus;
     }
 
-    public static Category from(int number) {
+    private static Category from(int number) {
         return Arrays.stream(values())
                 .filter(category -> category.number == number)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("카테고리를 찾을 수 없습니다."));
+    }
+
+    public static Category randomCategory() {
+        return from(Randoms.pickNumberInRange(1, 5));
     }
 
     public String getName() {

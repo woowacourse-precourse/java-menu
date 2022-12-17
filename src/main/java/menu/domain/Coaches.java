@@ -14,4 +14,8 @@ public class Coaches {
     public void add(Coach coach) {
         coaches.add(coach);
     }
+
+    public List<Coach> getCoaches() {
+        return this.coaches;
+    }
 }

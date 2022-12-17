@@ -13,4 +13,8 @@ public class Coach {
     public void validateName(String name) {
 
     }
+    @Override
+    public String toString() {
+        return name;
+    }
 }
