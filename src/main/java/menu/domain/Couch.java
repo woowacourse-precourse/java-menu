@@ -21,6 +21,10 @@ public class Couch {
         return recommendedFoods;
     }
 
+    public void addRecommendedFood(String food) {
+        recommendedFoods.add(food);
+    }
+
     public List<String> getCannotEatFoods() {
         return cannotEatFoods;
     }

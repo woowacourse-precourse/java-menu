@@ -24,8 +24,18 @@ public class MenuRecommendService {
     public void recommendMenu() {
         for (Category category :
                 recommendedCategories) {
-            String menu = Randoms.shuffle(category.getFoods()).get(0);
+            recommendMenuEachPeople(category);
         }
     }
 
+    private void recommendMenuEachPeople(Category category) {
+        for (int i = 0; i < CouchRepository.couches().size(); i++) {
+            String menu = Randoms.shuffle(category.getFoods()).get(0);
+            if (CouchRepository.couches().get(i).getCannotEatFoods().contains(menu) || CouchRepository.couches().get(i).getRecommendedFoods().contains(menu)) {
+                i--;
+                continue;
+            }
+            CouchRepository.couches().get(i).addRecommendedFood(menu);
+        }
+    }
 }
