@@ -20,6 +20,8 @@ public class MenuController extends Controller{
     @Override
     public void run() {
         start();
+        generateCoachList();
+        inputHateMenus();
 
     }
 
@@ -32,7 +34,8 @@ public class MenuController extends Controller{
 
     }
 
-    public void inputHateMenus(List<Coach> coaches) {
+    public void inputHateMenus() {
+        List<Coach> coaches = coachService.findAll();
         coaches.forEach(coach -> {
             List<Menu> hateMenus = repeat(inputView::readHateMenus);
             coachService.inputHateMenus(coach, hateMenus);

@@ -21,6 +21,12 @@ public class CoachService {
         coachRepository.removeCoach(coach.getName());
         coach.addHateMenus(hateMenus);
         coachRepository.insertCoach(coach);
+
+        coachRepository.printAll();
+    }
+
+    public List<Coach> findAll() {
+        return coachRepository.findAll();
     }
 
 }

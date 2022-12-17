@@ -22,9 +22,20 @@ public class CoachRepository {
                 .forEach(li -> coaches.remove(li));
     }
 
+    public List<Coach> findAll() {
+        return coaches;
+    }
+
     public Optional<Coach> selectCoachByName(String name) {
         return coaches.stream()
                 .filter(coach -> coach.getName().equals(name))
                 .findAny();
+    }
+
+    public void printAll() {
+        coaches.forEach(coach -> {
+            System.out.println("coach.getName() = " + coach.getName());
+            System.out.println("coach.getName() = " + coach.getHateMenu());
+        });
     }
 }
