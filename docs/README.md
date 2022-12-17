@@ -48,7 +48,7 @@
     - 추천할 카테고리는 Randoms.pickNumberInRange()에서 생성해 준 값을 이용하여 정해야 한다
     - Randoms.pickNumberInRange()의 결과가 1이면 일식, 2면 한식, 3이면 중식, 4면 아시안, 5면 양식을 추천해야 한다.
     - 추천할 수 없는 카테고리인 경우 다시 Randoms.pickNumberInRange()를 통해 임의의 값을 생성해서 추천할 카테고리를 정해야 한다.
-- 각 코치가 월요일에 먹을 메뉴를 추천한다.
+- 각 코치가 월~금요일에 먹을 메뉴를 추천한다.
     - 추천할 메뉴는 Randoms.shuffle()을 통해 임의의 순서로 섞은 후, 첫 번째 값을 사용해야 한다.
     - 카테고리에 포함되는 메뉴 목록을 List<String> 형태로 준비한다. (String menu = Randoms.shuffle(menus).get(0);)
     - 코치에게 추천할 메뉴를 정할 때 이미 추천한 메뉴, 먹지 못하는 메뉴도 포함된 리스트를 전달해야 한다.
