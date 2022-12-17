@@ -11,6 +11,7 @@ public class MenuController {
 
     public void run() {
         init();
+        menu.recommendForWeek();
         outputView.printResult(menu.getPreviousCategories(), menu.getCoaches());
     }
 
