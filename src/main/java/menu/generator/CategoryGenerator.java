@@ -19,8 +19,4 @@ public class CategoryGenerator {
         }
         return pick;
     }
-
-//    public Category pickRemainCategory(List<Category> categories){
-//        return categories.get(Randoms.pickNumberInRange(1, categories.size()));
-//    }
 }
