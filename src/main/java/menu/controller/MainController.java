@@ -45,5 +45,11 @@ public class MainController extends RepeatModule {
 
         //TODO: 삭제해야 함
         CoachRepository.print();
+
+        end();
+    }
+
+    public void end() {
+        outputView.printEnd();
     }
 }

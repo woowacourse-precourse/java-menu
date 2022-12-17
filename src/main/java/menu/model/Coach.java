@@ -23,4 +23,8 @@ public class Coach {
     public List<String> getHateFoods() {
         return this.hateFoods;
     }
+
+    public List<String> getChoicedMenu() {
+        return this.choicedMenu;
+    }
 }
