@@ -10,7 +10,7 @@ public class OutputView {
     private static final String SPLIT = ",";
     private static final String FINAL_RESULT_MESSAGE = "메뉴 추천 결과입니다.";
     private static final String DAY_MESSAGE = "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]";
-    private static final String CATEGORY_START = "[ 구분 ";
+    private static final String CATEGORY_START = "[ 카테고리 ";
     private static final String SPACE = " ";
     private static final String END = "]";
     private static final String START = "[";
