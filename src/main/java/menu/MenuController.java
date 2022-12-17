@@ -2,6 +2,7 @@ package menu;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 import menu.coach.Coaches;
 import menu.view.InputView;
 import menu.view.OutputView;
@@ -18,8 +19,9 @@ public class MenuController {
 
     public void run() {
         outputView.printStartMessage();
-        inputView.inputCoaches();
-        inputView.inputCoachesHateFoods();
+        inputCoaches();
+        inputCoachesHateFood();
+
 
         Menus.init();
 
@@ -28,6 +30,26 @@ public class MenuController {
         arrToList(rm.getResult());
         outputView.printEndMessage();
     }
+
+    private void inputCoachesHateFood() {
+        try {
+            inputView.inputCoachesHateFoods();
+        } catch (IllegalArgumentException error) {
+            outputView.printErrorMessage(error.getMessage());
+            inputCoachesHateFood();
+        }
+    }
+
+    private void inputCoaches() {
+        try {
+            inputView.inputCoaches();
+        } catch (IllegalArgumentException error) {
+            outputView.printErrorMessage(error.getMessage());
+            inputCoaches();
+        }
+    }
+
+
 
     private void arrToList(String[][] arr) {
         for (int j = 0; j < Coaches.getCoaches().size(); j++) {
