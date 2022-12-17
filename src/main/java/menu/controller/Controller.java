@@ -6,6 +6,7 @@ import menu.dto.input.ReadNamesDto;
 import menu.dto.input.ReadUnavailableMenuDto;
 import menu.dto.output.PrintCriticalExceptionDto;
 import menu.dto.output.PrintExceptionDto;
+import menu.util.StandardRandomGenerator;
 import menu.view.IOViewResolver;
 
 import java.util.EnumMap;
@@ -18,16 +19,16 @@ public class Controller {
     private MenuRecommendation menuRecommendation;
 
 
-    public Controller(IOViewResolver ioViewResolver) {
+    public Controller(IOViewResolver ioViewResolver, StandardRandomGenerator generator) {
         this.ioViewResolver = ioViewResolver;
         this.statusMap = new EnumMap<>(Status.class);
-        initStatusMap();
+        initStatusMap(generator);
     }
 
-    private void initStatusMap() {
+    private void initStatusMap(StandardRandomGenerator generator) {
         statusMap.put(Status.READ_NAMES, this::readNames);
         statusMap.put(Status.READ_UNAVAILABLE_MENU, this::readUnavailableMenu);
-        statusMap.put(Status.PRINT_RESULT, this::printResult);
+        statusMap.put(Status.PRINT_RESULT, () -> printResult(generator));
     }
 
     public Status run(Status status) {
@@ -54,8 +55,8 @@ public class Controller {
         return Status.PRINT_RESULT;
     }
 
-    private Status printResult() {
-        menuRecommendation.getResult();
+    private Status printResult(StandardRandomGenerator generator) {
+        menuRecommendation.getResult(generator);
         return Status.EXIT;
     }
 }

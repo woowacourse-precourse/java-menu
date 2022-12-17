@@ -1,5 +1,7 @@
 package menu.domain;
 
+import menu.util.StandardRandomGenerator;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,7 +35,7 @@ public class MenuRecommendation {
         people.addUnavailableMeneus(inputs);
     }
 
-    public void getResult() {
+    public void getResult(StandardRandomGenerator generator) {
 
     }
 }
