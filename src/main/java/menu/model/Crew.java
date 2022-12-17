@@ -4,23 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Crew {
-    ArrayList<String>[] crews;
+    ArrayList<ArrayList<String>> crews;
     List<String> names ;
 
     public Crew(List<String> names){
-        crews  = new ArrayList[names.size()];
+
+        crews  = new ArrayList<>(names.size());
         this.names = names;
     }
 
     public void setCrews(){
-        for(int i = 0 ; i < names.size(); i++){
-            crews[i] = new ArrayList<>();
+        System.out.println(names.get(0));
+        for(int i = 0 ; i <names.size();i++)
+        {
+            crews.add(new ArrayList<>(List.of(names.get(i))));
         }
-        for(int i = 0 ; i < names.size(); i++){
-            crews[i].add(names.get(i));
-        }
+        System.out.println(crews);
     }
-    public ArrayList<String>[] getCrews(){
+    public ArrayList<ArrayList<String>> getCrews(){
         return crews;
     }
     public String getNamesToString(){
