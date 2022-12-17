@@ -20,10 +20,18 @@ public class MenuController {
     }
 
     public void start(){
-        OutputView.recommendStart();
-        getRecommendMenu();
-        OutputView.printResult(menuService.getCoach());
-        OutputView.quit();
+        try {
+            OutputView.recommendStart();
+            getRecommendMenu();
+            OutputView.printResult(menuService.getCoach());
+            OutputView.quit();
+        }
+        catch (IllegalArgumentException | IllegalStateException exception){
+            System.out.println("[ERROR]" + exception.getMessage());
+        }
+        catch (NullPointerException exception){
+            System.out.println("[ERROR]" + "프로그램이 정상작동하지 않았습니다.");
+        }
     }
 
     public void getRecommendMenu(){
