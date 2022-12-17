@@ -30,4 +30,13 @@ public class ExceptionHandler {
             process(consumer, t);
         }
     }
+
+    public <T> void run(Runnable runnable) {
+        try {
+            runnable.run();
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            run(runnable);
+        }
+    }
 }

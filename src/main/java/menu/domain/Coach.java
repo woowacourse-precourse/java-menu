@@ -5,12 +5,23 @@ import java.util.List;
 import java.util.Objects;
 
 public class Coach {
+    private static final int MIN_NAME_SIZE = 2;
+    private static final int MAX_NAME_SIZE = 4;
+
     private final String name;
     private List<String> hateMenus = new ArrayList<>();
     private List<String> recommendedMenus = new ArrayList<>();
 
     public Coach(String name) {
+        validateNameLength(name);
         this.name = name;
+    }
+
+    private void validateNameLength(String name) {
+        int length = name.length();
+        if (length < MIN_NAME_SIZE || length > MAX_NAME_SIZE) {
+            throw new IllegalArgumentException("코치의 이름은 최소 2글자에서 4글자입니다.");
+        }
     }
 
     public String getName() {

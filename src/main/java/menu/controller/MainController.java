@@ -14,8 +14,7 @@ public class MainController {
 
     public void run() {
         outputView.printStart();
-        List<String> coachNames = exceptionHandler.repeat(inputView::readNames);
-        mainService.generateCoaches(coachNames);
+        List<String> coachNames = exceptionHandler.repeat(this::initCoaches);
 
         for (String coachName : coachNames) {
             exceptionHandler.process(this::setHateMenus, coachName);
@@ -24,6 +23,12 @@ public class MainController {
         mainService.recommend();
         outputView.printRecommendResult(mainService.getCategories(), mainService.getCoaches());
         outputView.printEnd();
+    }
+
+    private List<String> initCoaches() {
+        List<String> coachNames = exceptionHandler.repeat(inputView::readNames);
+        mainService.generateCoaches(coachNames);
+        return coachNames;
     }
 
     private void setHateMenus(String coachName) {
