@@ -33,7 +33,6 @@ public enum Category {
         return menus;
     }
 
-    //해당 번호 및, 카테고리 이름으로 검색하는 메서드 작성 필요
     public static Category findByNumber(int number) {
         for (Category category : Category.values()) {
             if (category.getNumber() == number) {

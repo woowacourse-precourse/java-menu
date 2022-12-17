@@ -3,10 +3,6 @@ package menu;
 import java.util.Arrays;
 import java.util.List;
 
-//출력 사이에 공백줄 추가 필요
-//결과 테이블에서 원소 사이에 공백 추가 필요
-//printResult()에서 오류
-
 public class OutputView {
     private static final String SERVICE_START_MESSAGE = "점심 메뉴 추천을 시작합니다.";
     private static final String RESULT_INFORM_MESSAGE = "메뉴 추천 결과입니다.";

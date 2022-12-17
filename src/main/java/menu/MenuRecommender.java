@@ -5,7 +5,7 @@ import java.util.List;
 
 public class MenuRecommender {
     private List<Member> members;
-    private List<String> categories; //카테고리 이름으로 저장
+    private List<String> categories;
 
     public MenuRecommender() {
         members = new ArrayList<>();
@@ -53,7 +53,6 @@ public class MenuRecommender {
     private void chooseMenu(String category, Member member) {
         String menu = MenuRandomGenerator.selectRandomMenu(category);
 
-        //중복과 편식 둘 다 해당하지 않을 때 까지 반복
         while (!validateMenuDuplication(menu, member) || !validatePickyEating(menu, member)) {
             menu = MenuRandomGenerator.selectRandomMenu(category);
         }
