@@ -55,6 +55,7 @@ public class Person {
         return recommended;
     }
 
+
     public void recommendMenu(String menu, StandardRandomGenerator generator) {
         Category category = Category.map(menu);
         List<String> menus = Arrays.stream(Menu.values())

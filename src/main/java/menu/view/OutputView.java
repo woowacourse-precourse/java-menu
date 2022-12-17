@@ -38,8 +38,10 @@ public class OutputView {
 
     private String getRecommendation(People people) {
         StringBuilder result = new StringBuilder();
+
         for (Person person : people) {
             StringJoiner joiner = new StringJoiner(" | ", "[ ", "]\n");
+            joiner.add(person.getName());
             for (Menu menu : person.getRecommended()) {
                 joiner.add(menu.getMenuName());
             }
@@ -50,6 +52,7 @@ public class OutputView {
 
     private String  getCategory(List<String> shuffledCategory) {
         StringJoiner categoryJoiner = new StringJoiner(" | ", "[ ", "]\n");
+        categoryJoiner.add("카테고리");
         for (String category : shuffledCategory) {
             categoryJoiner.add(category);
         }
