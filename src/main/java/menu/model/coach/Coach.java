@@ -13,7 +13,7 @@ public class Coach {
     private final List<Menu> hatingMenuList;
 
     public Coach(String name) {
-        validate(name);
+        validateName(name);
 
         this.name = name;
         this.hatingMenuList = new ArrayList<>();
@@ -35,7 +35,7 @@ public class Coach {
 
     }
 
-    private void validate(String str) {
+    private void validateName(String str) {
         if(hasComma(str)) {
             throw new IllegalArgumentException("이름에 ,가 들어갈 수 없습니다.");
         }
