@@ -18,6 +18,14 @@ public class Coach {
         this.suggestedMenus = new ArrayList<>();
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public List<String> getSuggestedMenus() {
+        return suggestedMenus;
+    }
+
     public void updateCannotHaveMenu(UserInput input, ProgramOutput output){
         output.printRequestNotHaveMenu(this.name);
         List<String> cannotHaveMenu = input.requestCannotEatMenu();

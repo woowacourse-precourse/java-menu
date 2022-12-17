@@ -44,7 +44,7 @@ public class SuggestProgram {
         for (Coach coach : coaches) {
             coach.updateSuggestedMenus(suggestedCategory);
         }
-
-
+        output.printSuggestedMenuResult(suggestedCategory,coaches);
+        output.printSuggestingEnd();
     }
 }
