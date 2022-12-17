@@ -39,7 +39,7 @@ public class Coach {
 //    }
 
     public boolean isRecommendFinish() {
-        return recommendMenus.size() == DAY_COUNT;
+        return getRecommendMenus().size() == DAY_COUNT;
     }
 
     public boolean checkTooManySameCategory(Category category) {
@@ -47,6 +47,18 @@ public class Coach {
             return recommendMenus.containsKey(category);
         }
         return true;
+    }
+
+    public boolean checkOverlappedMenu(Menu menu) {
+        return getRecommendMenus().stream()
+                .anyMatch(recommendMenu -> recommendMenu.equals(menu));
+    }
+
+    public List<Menu> getRecommendMenus() {
+        List<Menu> recommends = new ArrayList<>();
+        recommendMenus.keySet()
+                .forEach(category -> recommends.addAll(recommendMenus.get(category)));
+        return recommends;
     }
 
     private void validateNameLength(String coachName) {
@@ -57,9 +69,4 @@ public class Coach {
             throw new IllegalArgumentException(ERROR_PREFIX + "코치의 이름은 최소 " + COACH_NAME_MIN_LENGTH + "자 입니다.");
         }
     }
-
-//    private boolean checkOverlappedMenu(Menu menu) {
-//        return recommendMenus.stream()
-//                .anyMatch(recommendMenu -> recommendMenu.equals(menu));
-//    }
 }

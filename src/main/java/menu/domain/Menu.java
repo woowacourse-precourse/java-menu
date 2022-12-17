@@ -16,8 +16,12 @@ public class Menu {
         return menuName.equals(this.menuName);
     }
 
-    public boolean isSameCategory(Menu menu) {
-        return category.equals(menu.category);
+    public boolean isSameCategory(Category category) {
+        return this.category.equals(category);
+    }
+
+    public String getMenuName() {
+        return menuName;
     }
 
     @Override

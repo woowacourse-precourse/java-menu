@@ -2,6 +2,7 @@ package menu.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static menu.constant.SystemConstant.ERROR_PREFIX;
 
@@ -18,5 +19,12 @@ public class MenuRepository {
                 .filter(menu -> menu.isSameName(menuName))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_PREFIX + "존재하지 않는 메뉴를 입력하셨습니다."));
+    }
+
+    public static List<String> getCategoryMenus(Category category) {
+        return menus.stream()
+                .filter(menu -> menu.isSameCategory(category))
+                .map(Menu::getMenuName)
+                .collect(Collectors.toUnmodifiableList());
     }
 }

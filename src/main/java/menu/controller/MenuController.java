@@ -18,7 +18,7 @@ public class MenuController {
         OutputView.printServiceStartMessage();
         addCoaches();
         addCoachesDislikeMenus();
-        showResult();
+        recommend();
     }
 
     private void initMenus() {
@@ -56,7 +56,7 @@ public class MenuController {
         }
     }
 
-    private void showResult() {
+    private void recommend() {
         RecommendMaker recommendMaker = new RecommendMaker(new RandomCategoryGenerator());
         recommendMaker.recommend();
     }
