@@ -17,8 +17,13 @@ public class FoodRecommender {
         menuCheck = new HashSet<>();
     }
 
-    public String pickMenu() {
-
+    public void pickMenu(Coach coach, String category) {
+        String newMenu;
+        while (true) {
+            newMenu = Randoms.shuffle(Arrays.asList(FoodPool.foods.get(category))).get(0);
+            if (!coach.checkIsAteMenu(newMenu) || !coach.checkIsHateMenu(newMenu)) break;
+        }
+        coach.addAteMenus(newMenu);
     }
 
     public String pickCategory() {
