@@ -56,4 +56,11 @@ public class MainController {
         List<String> coaches = coachService.findAllCoaches();
         coaches.forEach(recommendationService::recommend);
     }
+
+    public void showRecommendations() {
+        outputView.printRecommendations(
+                recommendationService.findRecommendedCategories(),
+                recommendationService.findAllRecommendation()
+        );
+    }
 }
