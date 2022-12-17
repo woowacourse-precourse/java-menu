@@ -14,6 +14,7 @@ import domain.Menus;
 import domain.SelectedCategories;
 
 public class Service {
+    public static final String CATEGORY = "카테고리";
     private final Coaches coaches = new Coaches();
     private boolean onInitializing = true;
     private SelectedCategories selectedCategories;
@@ -69,25 +70,25 @@ public class Service {
     }
 
     private void getRecommendedMenu(List<String> menuOfCategory) {
-        coaches.getCoaches().forEach(coach -> {
-            while (true) {
-                String recommendedMenu = Randoms.shuffle(menuOfCategory).get(0);
-                if (coach.getInedibleMenus().contains(recommendedMenu) && coach.getMenus()
-                    .contains(recommendedMenu)) {
-                    continue;
-                }
-                coach.addMenu(recommendedMenu);
-                break;
+        coaches.getCoaches().forEach(coach -> recommend(coach, menuOfCategory));
+    }
+
+    private void recommend(Coach coach, List<String> menuOfCategory) {
+        while (true) {
+            String recommendedMenu = Randoms.shuffle(menuOfCategory).get(0);
+            if (coach.getInedibleMenus().contains(recommendedMenu) || coach.getMenus().contains(recommendedMenu)) {
+                continue;
             }
-        });
+            coach.addMenu(recommendedMenu);
+            break;
+        }
     }
 
     public List<List<String>> getRecommendation() {
         List<List<String>> recommendation = new ArrayList<>();
-        List<String> categories = new ArrayList<>();
-        categories.add("카테고리");
-        categories.addAll(selectedCategories.getSelectedCategories());
-        recommendation.add(categories);
+
+        recommendation.add(makeCategories());
+
         coaches.getCoaches().forEach(coach -> {
             List<String> coachAndMenu = new ArrayList<>();
             coachAndMenu.add(coach.getName());
@@ -95,5 +96,12 @@ public class Service {
             recommendation.add(coachAndMenu);
         });
         return recommendation;
+    }
+
+    private List<String> makeCategories() {
+        List<String> categories = new ArrayList<>();
+        categories.add(CATEGORY);
+        categories.addAll(selectedCategories.getSelectedCategories());
+        return categories;
     }
 }

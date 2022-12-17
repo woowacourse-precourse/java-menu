@@ -7,6 +7,13 @@ import constant.ErrorLog;
 import domain.Menus;
 
 public class Validator {
+    private final static int MIN_NAME_LENGTH = 2;
+    private final static int MAX_NAME_LENGTH = 4;
+    private final static int MIN_COACH_NUMBER = 2;
+    private final static int MAX_COACH_NUMBER = 5;
+    private final static String EMPTY = "";
+    private final static int MAX_NUMBER_OF_INEDIBLE_MENU = 2;
+    private final static int MAX_NUMBER_OF_REPETITION_LIMIT_OF_CATEGORY = 2;
 
     public static void validateCoach(List<String> coachNames) {
         validateCoachNumber(coachNames);
@@ -16,14 +23,14 @@ public class Validator {
 
     private static void validateCoachName(List<String> coachNames) {
         coachNames.forEach(name -> {
-            if (name.length() < 2 || name.length() > 4) {
+            if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
                 throw new IllegalArgumentException(ErrorLog.INVALID_NAME.getLog());
             }
         });
     }
 
     private static void validateCoachNumber(List<String> coachNames) {
-        if (coachNames.size() < 2 || coachNames.size() > 5) {
+        if (coachNames.size() < MIN_COACH_NUMBER || coachNames.size() > MAX_COACH_NUMBER) {
             throw new IllegalArgumentException(ErrorLog.INVALID_COACH_NUMBER.getLog());
         }
     }
@@ -41,7 +48,7 @@ public class Validator {
     }
 
     private static void validateMenuSize(List<String> inedibleMenus) {
-        if (inedibleMenus.size() > 2) {
+        if (inedibleMenus.size() > MAX_NUMBER_OF_INEDIBLE_MENU) {
             throw new IllegalArgumentException(ErrorLog.INVALID_MENU_SIZE.getLog());
         }
     }
@@ -49,7 +56,8 @@ public class Validator {
     private static void validateMenuInOrigin(List<String> inedibleMenus) {
         inedibleMenus.forEach(
             menu -> {
-                if (Arrays.stream(Menus.values()).noneMatch(category -> category.getMenus().contains(menu)) && !menu.equals("")) {
+                if (Arrays.stream(Menus.values()).noneMatch(category -> category.getMenus().contains(menu))
+                    && !menu.equals(EMPTY)) {
                     throw new IllegalArgumentException(ErrorLog.NO_MENU.getLog());
                 }
             });
@@ -57,7 +65,8 @@ public class Validator {
 
     public static void validateCategories(List<String> selectedCategories) {
         for (String category : selectedCategories) {
-            if (selectedCategories.stream().filter(x -> x.equals(category)).count() > 2) {
+            if (selectedCategories.stream().filter(x -> x.equals(category)).count()
+                > MAX_NUMBER_OF_REPETITION_LIMIT_OF_CATEGORY) {
                 throw new IllegalArgumentException(ErrorLog.INVALID_CATEGORY_SELECTION.getLog());
             }
         }

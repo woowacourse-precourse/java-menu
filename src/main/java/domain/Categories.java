@@ -14,6 +14,9 @@ public enum Categories {
     ASIAN(4, "아시안"),
     WESTERN(5, "양식");
 
+    private static final int WEEKDAY = 5;
+    private static final int STARTER = 1;
+    private static final int LIMIT_OF_REPETITION = 2;
     private final int key;
     private final String category;
 
@@ -31,10 +34,10 @@ public enum Categories {
 
     public static List<String> generateCategories() {
         List<String> categories = new ArrayList<>();
-        while (categories.size() != 5) {
-            int key = Randoms.pickNumberInRange(1, 5);
+        while (categories.size() != WEEKDAY) {
+            int key = Randoms.pickNumberInRange(STARTER, Categories.values().length);
             String category = getCategory(key);
-            if (categories.stream().filter(x -> x.equals(category)).count() < 2) {
+            if (categories.stream().filter(x -> x.equals(category)).count() < LIMIT_OF_REPETITION) {
                 categories.add(category);
             }
         }

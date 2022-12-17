@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import util.Validator;
 
 public class Coach {
+    private static final String COMMA = ",";
     private final String name;
     private final List<String> menus = new ArrayList<>();
     private List<String> inedibleMenus = null;
@@ -17,7 +18,7 @@ public class Coach {
     }
 
     public void addInedibleMenu(String inedibleMenu) {
-        List<String> menuCandidate = Arrays.stream(inedibleMenu.split(",")).collect(Collectors.toList());
+        List<String> menuCandidate = Arrays.stream(inedibleMenu.split(COMMA)).collect(Collectors.toList());
         Validator.validateMenus(menuCandidate);
         inedibleMenus = menuCandidate;
     }
