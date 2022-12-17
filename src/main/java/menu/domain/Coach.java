@@ -10,6 +10,7 @@ public class Coach {
     private static final int MAX_CANT_EAT_MENU_SIZE = 2;
     private static final String INVALID_NAME_MESSAGE = "코치의 이름은 최소 2글자, 최대 4글자입니다.";
     private static final String INVALID_MENU_SIZE_MESSAGE = "먹지 못하는 메뉴의 개수는 0~2여야 합니다.";
+    private static final String DUPLICATED_MENU_MESSAGE = "중복되지 않는 메뉴를 입력해주세요";
     private final String name;
     private final List<Menu> cantEatMenus = new ArrayList<>();
 
@@ -25,10 +26,17 @@ public class Coach {
     }
 
     public void addCantEatMenus(List<Menu> menus) {
+        validateCantEatMenus(menus);
+        cantEatMenus.addAll(menus);
+    }
+
+    private static void validateCantEatMenus(List<Menu> menus) {
         if (menus.size() > MAX_CANT_EAT_MENU_SIZE) {
             throw new IllegalArgumentException(INVALID_MENU_SIZE_MESSAGE);
         }
-        cantEatMenus.addAll(menus);
+        if (menus.size() != menus.stream().distinct().count()) {
+            throw new IllegalArgumentException(DUPLICATED_MENU_MESSAGE);
+        }
     }
 
     public String getName() {
