@@ -62,8 +62,7 @@ public class MenuController {
         for (int i = 0; i < crewSize; i++) {
             Crew crew = crews.getCrews().get(i);
             String bannedFoodsInput = getBannedFoods(crew);
-            Arrays.stream(bannedFoodsInput.split(","))
-                    .forEach(name -> bannedFoods.addBannedFood(name));
+            bannedFoods.addBannedFoods(bannedFoodsInput);
         }
     }
 
