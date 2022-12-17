@@ -5,22 +5,25 @@ import menu.enums.FoodCategory;
 import menu.vo.Coach;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Recommend {
     private Map<FoodCategory, Integer>  weekCategoryChoose;
-    private Map<Coach,List<String>> coachEatenMenu;
+    private List<FoodCategory> weekCategory;
 
-    public Recommend(List<Coach> coaches) {
+    public Recommend() {
+        weekCategory = new ArrayList<>();
         initWeekCategoryChoose();
-        initCoachEatenMenu(coaches);
     }
 
-    public void chooseMenu() {
-        FoodCategory foodCategory = recommendFoodCategory();
+    public FoodCategory recommendCategory() {
+        return recommendFoodCategory();
+    }
 
-
+    public List<FoodCategory> getWeekCategory() {
+        return weekCategory;
     }
 
     private FoodCategory recommendFoodCategory() {
@@ -34,26 +37,24 @@ public class Recommend {
         return foodCategory;
     }
 
+    // 이번주 두번 이상 먹지 않았는지 확인
     private boolean checkIsValidFoodCategory(FoodCategory foodCategory) {
         Integer categoryChooseNum = weekCategoryChoose.get(foodCategory);
         if (categoryChooseNum > 2) {
             return false;
         }
         weekCategoryChoose.put(foodCategory,categoryChooseNum+1);
+        weekCategory.add(foodCategory);
         return true;
     }
 
+    // weekCategoryChoose 초기화
     private void initWeekCategoryChoose() {
+        weekCategoryChoose = new HashMap<>();
         weekCategoryChoose.put(FoodCategory.KOR,0);
         weekCategoryChoose.put(FoodCategory.JAP,0);
         weekCategoryChoose.put(FoodCategory.CHI,0);
         weekCategoryChoose.put(FoodCategory.ASI,0);
         weekCategoryChoose.put(FoodCategory.WES,0);
-    }
-
-    private void initCoachEatenMenu(List<Coach> coaches) {
-        for (Coach coach : coaches) {
-            coachEatenMenu.put(coach,new ArrayList<>());
-        }
     }
 }
