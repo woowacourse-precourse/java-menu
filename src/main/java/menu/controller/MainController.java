@@ -24,12 +24,12 @@ public class MainController {
 
     public void execute(){
         displayStartMessage();
-        setCategories();
         setCoachNames();
         for(Coach coach : coaches){
             setBanFoods(coach);
         }
         for(int i = 0; i < Day.size(); i++){
+            setCategoryOfDay();
             setMenusOfDayForALLCoach(Day.get(i));
         }
         displayRecommendationResult();
