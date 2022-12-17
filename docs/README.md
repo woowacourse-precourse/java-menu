@@ -139,11 +139,6 @@
 
 ## constants
 
-### Constants
-
-> 메뉴 추천 서비스에서 반복적으로 사용되는 상수들을 모아둔 클래스 → private static
->
-
 ### ExceptionMessage
 
 > 예외에 사용되는 상수들을 모아둔 enum 클래스
