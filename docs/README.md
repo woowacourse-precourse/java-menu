@@ -1,6 +1,5 @@
 # 기능 목록
 ## domain
-- [ ] Food
 - [ ] Category
 - [ ] Coach
 
