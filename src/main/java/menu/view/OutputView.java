@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import menu.constant.Category;
 import menu.constant.Food;
+import menu.constant.Weekday;
 import menu.domain.Coach;
 
 public class OutputView {
@@ -16,7 +17,7 @@ public class OutputView {
 
     public void printMenus(List<Category> categories, List<Coach> coaches) {
         System.out.println("메뉴 추천 결과입니다.");
-        printElements("구분", List.of("월요일", "화요일", "수요일", "목요일", "금요일"));
+        printElements("구분", Weekday.getNames());
         printElements("카테고리", getCategoryNames(categories));
         for (Coach coach : coaches) {
             printElements(coach.getName(), getFoodNamesWithBlank(coach.getRecommendedFoods()));
