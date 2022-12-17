@@ -5,6 +5,7 @@ import menu.domain.dto.CoachRequestDto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class InputView {
@@ -36,6 +37,9 @@ public class InputView {
 
     private static List<String> inputCanNotEatFood() {
         String foods = Console.readLine();
+        if (foods.isBlank()) {
+            return Collections.emptyList();
+        }
         String[] splitFoods = foods.split(REGEX_SPLIT);
         return Arrays.asList(splitFoods);
     }
