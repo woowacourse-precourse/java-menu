@@ -43,20 +43,23 @@ public class RecommendationController {
             String Category = matchingCategory.getCategory();
             List<String> recommendedResult = new ArrayList<>();
             recommendedResult.add(matchingMenu(Category));
-            addRecommendResult(coaches,recommendedResult);
+            addRecommendResult(coaches, recommendedResult);
         }
         printResults(coaches);
     }
-    private void printResults(List<Coach> coaches){
-        for(Coach coach : coaches){
+
+    private void printResults(List<Coach> coaches) {
+        for (Coach coach : coaches) {
             printCategory(coach.getRecommendMenus());
         }
     }
+
     private void addRecommendResult(List<Coach> coaches, List<String> recommendedResult) {
-        for(Coach coach : coaches){
+        for (Coach coach : coaches) {
             coach.setRecommendMenus(recommendedResult);
         }
     }
+
     private String matchingMenu(String Category) {
         String currentmenu = Randoms.shuffle(getMenus(Category)).get(0);
         return currentmenu;

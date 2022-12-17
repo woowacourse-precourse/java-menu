@@ -18,7 +18,7 @@ public class Coach {
         this.recommendMenus = recommendMenus;
     }
 
-    public List<String> getRecommendMenus(){
+    public List<String> getRecommendMenus() {
         return this.recommendMenus;
     }
 }
