@@ -22,6 +22,7 @@ public class OutputView {
                     "\n[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]";
     private static final String CATEGORY = "[ 카테고리 | %s | %s | %s | %s | %s ]";
     private static final String MENU = "[ %s | %s | %s | %s | %s | %s ]";
+    private static final String END = "\n추천을 완료했습니다.";
     private static String category1;
     private static String category2;
     private static String category3;
@@ -58,15 +59,35 @@ public class OutputView {
         );
 
         for (Coach coach : coaches) {
+            coach.monday = Menu.getRandomMenu(category1, coach.getHateMenus());
+        }
+
+        for (Coach coach : coaches) {
+            coach.tuesday = Menu.getRandomMenu(category2, coach.getHateMenus());
+        }
+        for (Coach coach : coaches) {
+            coach.wednesday = Menu.getRandomMenu(category3, coach.getHateMenus());
+        }
+
+        for (Coach coach : coaches) {
+            coach.thursday = Menu.getRandomMenu(category4, coach.getHateMenus());
+        }
+
+        for (Coach coach : coaches) {
+            coach.friday = Menu.getRandomMenu(category5, coach.getHateMenus());
+        }
+
+        for (Coach coach : coaches) {
             System.out.printf((MENU) + "%n",
                     coach.getName(),
-                    Menu.getRandomMenu(category1, coach.getHateMenus()),
-                    Menu.getRandomMenu(category2, coach.getHateMenus()),
-                    Menu.getRandomMenu(category3, coach.getHateMenus()),
-                    Menu.getRandomMenu(category4, coach.getHateMenus()),
-                    Menu.getRandomMenu(category5, coach.getHateMenus())
+                    coach.monday,
+                    coach.tuesday,
+                    coach.wednesday,
+                    coach.thursday,
+                    coach.friday
             );
         }
+
     }
 
     private static void savingCategory(List<String> categories) {
@@ -86,4 +107,7 @@ public class OutputView {
         categories.add(category5);
     }
 
+    public static void printEnd() {
+        System.out.println(END);
+    }
 }

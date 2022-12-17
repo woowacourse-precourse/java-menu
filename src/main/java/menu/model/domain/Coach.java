@@ -11,6 +11,11 @@ public class Coach {
 
     private String name;
     private List<String> hateMenus;
+    public String monday;
+    public String tuesday;
+    public String wednesday;
+    public String thursday;
+    public String friday;
 
     public Coach(String name, List<String> hateMenus) {
         this.name = name;

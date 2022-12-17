@@ -15,5 +15,7 @@ public class Application {
 
         List<Coach> coaches = coachController.getCoachHateMenus(coachesName);
         coachController.showRecommendMenu(coaches);
+
+        OutputView.printEnd();
     }
 }
