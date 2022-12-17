@@ -14,7 +14,7 @@ public class MenuService {
     }
 
     private void pickCategories() {
-        while(pickedCategories.size() < 5) {
+        while (pickedCategories.size() < 5) {
             int order = Randoms.pickNumberInRange(1, 5);
             for (Category category : Category.values()) {
                 addCategories(category, order);
@@ -37,5 +37,12 @@ public class MenuService {
             }
         }
         return count == 2;
+    }
+
+    private boolean hasMenu(List<String> coachMenu, String menu) {
+        if (coachMenu.isEmpty()) {
+            return false;
+        }
+        return coachMenu.contains(menu);
     }
 }
