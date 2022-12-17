@@ -16,6 +16,10 @@ public enum GuideMessage {
     this.message = message;
   }
 
+  public String getMessage() {
+    return message;
+  }
+
   GuideMessage(Function<String, String> template) {
     this.template = template;
   }
