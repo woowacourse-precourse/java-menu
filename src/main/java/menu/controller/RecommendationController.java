@@ -7,7 +7,6 @@ import static menu.view.OutputView.printResult;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import menu.domain.CategoryNumberGenerator;
 import menu.domain.CategoryRandomNumberGenerator;
 import menu.domain.Coach;

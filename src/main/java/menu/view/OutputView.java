@@ -22,6 +22,7 @@ public class OutputView {
     private static void printDay() {
         StringJoiner day = new StringJoiner(" | ", "[ ", " ]");
 
+        day.add("구분");
         day.add(MONDAY);
         day.add(TUESDAY);
         day.add(WEDNESDAY);
