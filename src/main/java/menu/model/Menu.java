@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * 지정된 메뉴를 관리하는 클래스이다.
+ */
 public class Menu {
 
     public List<String> getInstance(int category) {

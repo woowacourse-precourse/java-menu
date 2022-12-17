@@ -24,7 +24,7 @@ class OutputViewTest {
     }
 
     @BeforeEach
-    void outputStreamInit(){
+    void outputStreamInit() {
         outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
     }
@@ -45,6 +45,7 @@ class OutputViewTest {
         outputView.newLine();
         assertThat(outputStream.toString()).isEqualTo(output);
     }
+
     @DisplayName("코치이름입력")
     @Test
     void 코치이름입력() {

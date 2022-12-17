@@ -16,54 +16,69 @@ public class MenuRecommendationController {
     final OutputView outputView = new OutputView();
     final RecommendationGenerator recommendationGenerator = new RecommendationGenerator();
     final MenuGenerator menuGenerator = new MenuGenerator();
-    public void run(){
+
+    /**
+     * 프로그램의 시작점
+     */
+    public void run() {
         outputView.startMsg();
         outputView.promptReadCoachName();
-
         List<String> coaches = this.readCoachNamesNotError();
         List<Category> categories = recommendationGenerator.recommendCategory();
         List<List<String>> recommendedMenus = new ArrayList<>();
-        List<List<String>> donEatMenus =new ArrayList<>();
-        for (String coach: coaches){
+        List<List<String>> donEatMenus = new ArrayList<>();
+
+        for (String coach : coaches) {
             outputView.promptDontEatMenuCoach(coach);
             List<String> dontEats = this.readCoachDontEatsNotError();
             donEatMenus.add(dontEats);
             recommendedMenus.add(new ArrayList<>());
         }
 
-        for (int i = 0; i<5; i++){
-            for (int j=0; j<coaches.size(); j++){
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < coaches.size(); j++) {
                 List<String> userMenus = recommendedMenus.get(j);
                 userMenus.add(menuGenerator.recommendMenu(userMenus, categories.get(i), donEatMenus.get(j)));
                 recommendedMenus.set(j, userMenus);
             }
         }
+
         outputView.printResult(coaches, categories, recommendedMenus);
         outputView.endingMsg();
     }
 
-    public List<String> readCoachNamesNotError(){
+    /**
+     * 에러없이 코치이름 입력받기
+     *
+     * @return
+     */
+    public List<String> readCoachNamesNotError() {
         List<String> coachNames = null;
         do {
             try {
                 coachNames = inputView.readCoachNames();
-            }catch (CustomIllegalArgumentException e) {
+            } catch (CustomIllegalArgumentException e) {
                 outputView.printError(e);
             }
-        }while (Objects.isNull(coachNames));
+        } while (Objects.isNull(coachNames));
 
         return coachNames;
     }
 
-    public List<String> readCoachDontEatsNotError(){
+    /**
+     * 에러없이 못먹는 음식 입력받기
+     *
+     * @return
+     */
+    public List<String> readCoachDontEatsNotError() {
         List<String> coachDontEats = null;
         do {
             try {
                 coachDontEats = inputView.readCoachDontEatMenus();
-            }catch (CustomIllegalArgumentException e) {
+            } catch (CustomIllegalArgumentException e) {
                 outputView.printError(e);
             }
-        }while (Objects.isNull(coachDontEats));
+        } while (Objects.isNull(coachDontEats));
 
         return coachDontEats;
     }
