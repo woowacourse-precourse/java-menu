@@ -31,4 +31,12 @@ public class Crew {
     public boolean isDoneFillingFoods() {
         return foods.size() == 5;
     }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for(String food : foods) {
+            sb.append("| " + food + " ");
+        }
+        return sb.toString();
+    }
 }
