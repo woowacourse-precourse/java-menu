@@ -63,7 +63,8 @@ public class MenuRecommender {
     }
 
     private Category pickupCategory() {
-        return CATEGORIES.get(Randoms.pickNumberInRange(0, CATEGORIES.size() - 1));
+        int randomIndex = Randoms.pickNumberInRange(1, CATEGORIES.size());
+        return CATEGORIES.get(randomIndex - 1);
     }
 
     private boolean validCategory(Category category) {
