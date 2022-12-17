@@ -22,9 +22,10 @@ public class MenuController {
     }
 
     private void initCoaches() {
+        outputView.printAskingCoachNames();
         while (true) {
             try {
-                String coachNames = inputView.readCoachNames();
+                String coachNames = inputView.readLine();
                 menu.addCoachNames(coachNames);
                 return;
             } catch (IllegalArgumentException e) {
@@ -34,9 +35,10 @@ public class MenuController {
     }
 
     private void initCoach(String coachName) {
+        outputView.printAskingInedibleMenus(coachName);
         while (true) {
             try {
-                String inedibleMenu = inputView.readInedibleMenu(coachName);
+                String inedibleMenu = inputView.readLine();
                 menu.addCoach(coachName, inedibleMenu);
                 return;
             } catch (IllegalArgumentException e) {
