@@ -31,15 +31,20 @@ public class RecommendMenuService {
 
     private void selectMenuForCoach(List<Coach> coaches, String category) {
         for (Coach coach : coaches) {
-            while (true) {
-                String menu = getRandomMenu(category);
-                if (coach.isNotRefuseMenu(menu) && coach.isFirstRecommendMenu(menu)) {
-                    coach.addRecommendMenu(menu);
-                    break;
-                }
+            String menu = getRandomMenu(category);
+            addMenuToCoach(coach, menu);
+        }
+    }
+
+    private void addMenuToCoach(Coach coach, String menu) {
+        while (true) {
+            if (coach.isNotRefuseMenu(menu) && coach.isFirstRecommendMenu(menu)) {
+                coach.addRecommendMenu(menu);
+                break;
             }
         }
     }
+
     private String getRandomMenu(String category) {
         return Randoms.shuffle(menus.get(category)).get(0);
     }
