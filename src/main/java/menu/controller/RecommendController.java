@@ -52,7 +52,7 @@ public class RecommendController {
         }
     }
 
-    public List<Category> getFiveCategories() {
+    private List<Category> getFiveCategories() {
         List<Category> categories = new ArrayList<>();
         for (int i = 0; i < Days.values().length; ) {
             Category tmpCategory = Category.byNumber(Randoms.pickNumberInRange(1, 5));
@@ -74,7 +74,7 @@ public class RecommendController {
         return false;
     }
 
-    public Menu recommendMenuByCategory(Category category) {
+    private Menu recommendMenuByCategory(Category category) {
         List<Menu> menuByThisCategory = menuRepository.getMenusByCategory(category);
         List<String> menuNamesByThisCategory = menuByThisCategory.stream()
                 .map(Menu::getName)
