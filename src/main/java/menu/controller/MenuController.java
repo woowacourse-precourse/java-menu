@@ -97,14 +97,22 @@ public class MenuController {
     private void addCategory(List<Category> categories, HashMap<String, Integer> categoryCheck) {
         int day = 0;
         while (day < DAY_LENGTH) {
-            Category category = Category.getCategoryByRandomNumber(Randoms.pickNumberInRange(CATEGORY_START_INCLUSIVE, CATEGORY_END_INCLUSIVE));
+            Category category = Category.getCategoryByRandomNumber(getCategoryRandomNumber());
             String categoryName = category.getName();
-            if (!categoryCheck.containsKey(categoryName) || categoryCheck.get(categoryName) < CATEGORY_LIMIT) {
+            if (canAddCategory(categoryCheck, categoryName)) {
                 categoryCheck.put(categoryName, categoryCheck.getOrDefault(categoryName, 0) + 1);
                 categories.add(category);
                 day++;
             }
         }
+    }
+
+    private boolean canAddCategory(HashMap<String, Integer> categoryCheck, String categoryName) {
+        return !categoryCheck.containsKey(categoryName) || categoryCheck.get(categoryName) < CATEGORY_LIMIT;
+    }
+
+    private int getCategoryRandomNumber() {
+        return Randoms.pickNumberInRange(CATEGORY_START_INCLUSIVE, CATEGORY_END_INCLUSIVE);
     }
 
     private void addAllegeMenu(List<Coach> coaches) {
