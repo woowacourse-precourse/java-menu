@@ -22,4 +22,7 @@ public class HateMenus {
         return hateMenusName;
     }
 
+    public boolean isContainHateMenu(Menu menu) {
+        return hateMenusName.contains(menu);
+    }
 }

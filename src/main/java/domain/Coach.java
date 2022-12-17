@@ -25,7 +25,7 @@ public class Coach {
         this.hateMenus = hateMenus;
     }
 
-    public HateMenus getHateMenus() {
-        return hateMenus;
+    public boolean isContainHateMenu(Menu menu) {
+        return hateMenus.isContainHateMenu(menu);
     }
 }
