@@ -13,6 +13,7 @@ public class OutputView {
         System.out.println(Constant.outputRecommendFoodResultWeek);
         printCategory(weekCategory);
         printCoachMenu(coachWeekMenus);
+        System.out.println(Constant.outputFinishRecommend);
     }
 
     private void printCoachMenu(List<CoachWeekMenu> coachWeekMenu) {

@@ -10,5 +10,6 @@ public class Constant {
     public static final String outputRecommendFoodResultStart = "[ ";
     public static final String outputRecommendFoodResultEnd = " ]";
     public static final String outputRecommendFoodResultCenter = " | ";
+    public static final String outputFinishRecommend = "\n추천을 완료했습니다.";
 
 }
