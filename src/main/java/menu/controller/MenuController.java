@@ -1,6 +1,7 @@
 package menu.controller;
 
 import menu.domain.Coach;
+import menu.domain.Recommend;
 import menu.repository.CoachRepository;
 import menu.view.InputView;
 import menu.view.OutputView;
@@ -31,7 +32,20 @@ public class MenuController {
 
             coaches.add(new Coach(name, foods));
         }
+//        coachRepository.setCoaches(coaches);
 
+        // 추천 카테고리는 만듦
+        Recommend recommend = new Recommend();
+        // 코치별로 메뉴 만들어줌
+        List<Coach> newCoaches = new ArrayList<>();
+        for (int i = 0; i < coaches.size(); i++) {
+            Coach nowCoach = coaches.get(i);
+            List<String> recommendFoods = recommend.generateRecommendMenus(nowCoach);
+            nowCoach.setRecommendFoods(recommendFoods);
+            newCoaches.add(nowCoach);
+        }
+        
+        // 출력
 
     }
 

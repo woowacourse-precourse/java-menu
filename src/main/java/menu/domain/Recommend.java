@@ -1,6 +1,7 @@
 package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import menu.repository.CoachRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,10 +9,12 @@ import java.util.List;
 public class Recommend {
     private static final int CATEGORY_COUNT_MAX = 2;
 
+    private List<Integer> randoms;
     private List<String> categories;
 
     public Recommend() {
-        categories = generateCategories(generateRandomNumbers());
+        randoms = generateRandomNumbers();
+        categories = generateCategories(randoms);
     }
 
     private List<String> generateCategories(List<Integer> randoms) {
@@ -42,5 +45,57 @@ public class Recommend {
         }
 
         return randoms;
+    }
+
+
+    public List<String> generateRecommendMenus(Coach coach) {
+        List<String> recommendMenus = new ArrayList<>();
+
+        List<String> forbiddenFoods = coach.getForbiddenFoods();
+
+        int index = 0;
+        while (true) {
+            if(recommendMenus.size() > 5) break;
+
+            int categoryNumber = randoms.get(index);
+            List<String> menus = Category.getMenus(categoryNumber);
+            String menu = Randoms.shuffle(menus).get(0);
+
+            if(forbiddenFoods.contains(menu)) {
+                continue;
+            }
+
+            if(isDuplicatedMenu(recommendMenus)) {
+                index = 0;
+                recommendMenus = new ArrayList<>();
+            }
+
+            recommendMenus.add(menu);
+            index++;
+        }
+
+
+
+//        do{
+//            for (int i = 0; i < categories.size(); i++) {
+//                int categoryNumber = randoms.get(i);
+//                List<String> menus = Category.getMenus(categoryNumber);
+//                String menu = Randoms.shuffle(menus).get(0);
+//
+//
+//                recommendMenus.add(menu);
+//            }
+//        } while (isDuplicatedMenu(recommendMenus));
+
+        return recommendMenus;
+    }
+
+    private boolean isDuplicatedMenu(List<String> recommendMenus) {
+        for(String menu : recommendMenus) {
+            if(recommendMenus.contains(menu)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

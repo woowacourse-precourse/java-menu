@@ -1,5 +1,8 @@
 package menu.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum Category {
     JAPAN(1, "일식"),
     KOREAN(2, "한식"),
@@ -22,41 +25,60 @@ public enum Category {
     }
 
     public static String getNameByNumber(int number) {
-        if(number == 1) {
+        if (number == 1) {
             return JAPAN.name;
         }
-        if(number == 2) {
+        if (number == 2) {
             return KOREAN.name;
         }
-        if(number == 3) {
+        if (number == 3) {
             return CHINESE.name;
         }
-        if(number == 4) {
+        if (number == 4) {
             return ASIAN.name;
         }
-        if(number == 5) {
+        if (number == 5) {
             return WESTERN.name;
         }
         return "카테고리 번호 다시 입력";
     }
 
-    public static String getMenus(int categoryNumber) {
-        if(categoryNumber == 1) {
+    public static List<String> getMenus(int categoryNumber) {
+        String categoryName = Category.getNameByNumber(categoryNumber);
+
+        String menu = getMenusByCategoryName(categoryName);
+
+        List<String> menus = stringToList(menu);
+        return menus;
+    }
+
+    private static String getMenusByCategoryName(String name) {
+        if(name.equals("일식")) {
             return JAPANESE_MENU;
         }
-        if(categoryNumber == 2) {
+        if(name.equals("한식")) {
             return KOREAN_MENU;
         }
-        if(categoryNumber == 3) {
+        if(name.equals("중식")) {
             return CHINESE_MENU;
         }
-        if(categoryNumber == 4) {
+        if(name.equals("아시안")) {
             return ASIAN_MENU;
         }
-        if(categoryNumber == 5) {
+        if(name.equals("양식")) {
             return WESTERN_MENU;
         }
 
-        return "1~5 입력되어야함.";
+        return "카테고리 이름으로 메뉴 못불러옴";
+    }
+
+    private static List<String> stringToList(String menu) {
+        List<String> menus = new ArrayList<>();
+        String[] splitMenu = menu.split(", ");
+        for (int i = 0; i < splitMenu.length; i++) {
+            menus.add(splitMenu[i]);
+        }
+
+        return menus;
     }
 }
