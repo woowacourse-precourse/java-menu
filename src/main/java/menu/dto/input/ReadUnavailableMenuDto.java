@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReadUnavailableMenuDto {
-    private final List<String> inputs = new ArrayList<>();
+    private final List<String> unavailableMenus = new ArrayList<>();
 
     public void add(String input) {
-        this.inputs.add(input);
+        this.unavailableMenus.add(input);
     }
 
-    public List<String> getInputs() {
-        return inputs;
+    public List<String> getUnavailableMenus() {
+        return unavailableMenus;
     }
 }

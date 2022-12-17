@@ -1,13 +1,13 @@
 package menu.dto.input;
 
 public class ReadNamesDto {
-    private final String userInput;
+    private final String menuRecommendation;
 
     public ReadNamesDto(String readUserInput) {
-        this.userInput = readUserInput;
+        this.menuRecommendation = readUserInput;
     }
 
-    public String getUserInput() {
-        return userInput;
+    public String getMenuRecommendation() {
+        return menuRecommendation;
     }
 }
