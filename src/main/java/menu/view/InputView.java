@@ -11,10 +11,7 @@ public class InputView {
         String[] coachNames = parse(input);
         InputValidator.validateCoachNamesNumber(coachNames);
         InputValidator.validateDuplicatedCoachNames(coachNames);
-        for(String coachName : coachNames){
-            InputValidator.validateNameFormat(coachName);
-            InputValidator.validateCoachNameLength(coachName);
-        }
+        InputValidator.validateAllCoachNameLength(coachNames);
         return coachNames;
     }
 
@@ -23,9 +20,7 @@ public class InputView {
         String[] banFoods = parse(input);
         InputValidator.validateBanFoodsNumber(banFoods);
         InputValidator.validateDuplicatedBanFoodNames(banFoods);
-        for(String banFood : banFoods){
-            InputValidator.validateExistFood(banFood);
-        }
+        InputValidator.validateAllFoodIsExist(banFoods);
         return banFoods;
     }
 

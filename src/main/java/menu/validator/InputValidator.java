@@ -9,6 +9,13 @@ import java.util.Set;
 
 public class InputValidator {
     public static final String KOREAN_REGEX = "^[ㄱ-ㅎ가-힣]*$";
+
+    public static void validateAllCoachNameLength(String[] coachNames){
+        for(String coachName : coachNames){
+            InputValidator.validateNameFormat(coachName);
+            InputValidator.validateCoachNameLength(coachName);
+        }
+    }
     public static void validateCoachNameLength(String name){
         if(name.length() < 2 || name.length() > 4){
             throw new IllegalArgumentException(Message.NAME_LENGTH_ERROR);
@@ -24,6 +31,12 @@ public class InputValidator {
     public static void validateBanFoodsNumber(String[] banFoods){
         if(banFoods.length > 2){
             throw new IllegalArgumentException(Message.FOOD_NUMBER_ERROR);
+        }
+    }
+
+    public static void validateAllFoodIsExist(String[] banFoods){
+        for(String banFood : banFoods){
+            InputValidator.validateExistFood(banFood);
         }
     }
 
