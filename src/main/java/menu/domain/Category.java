@@ -1,6 +1,5 @@
 package menu.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Category {
@@ -13,7 +12,7 @@ public class Category {
         this.menus = menus;
     }
 
-    public static Category of (String name, List<String> menus) {
+    public static Category of(String name, List<String> menus) {
         return new Category(name, menus);
     }
 

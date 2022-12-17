@@ -46,8 +46,8 @@ public class Controller {
                 break;
             }
         }
-
     }
+
     private static void printMenus() {
         OutputView.printMenu();
     }

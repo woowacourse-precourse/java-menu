@@ -1,10 +1,10 @@
 package menu.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import camp.nextstep.edu.missionutils.Randoms;
 
 public class CategoryRepository {
 
@@ -18,13 +18,9 @@ public class CategoryRepository {
         categories.add(Category.of("양식", new ArrayList<String>(Arrays.asList("라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니"))));
     }
 
-    public static List<Category> getCategories() {
-        return categories;
-    }
-
     public static Category pickRandomCategory() {
         int randomNumber = Randoms.pickNumberInRange(1, 5);
-        Category pickedCategory = categories.get(randomNumber-1);
+        Category pickedCategory = categories.get(randomNumber - 1);
         return pickedCategory;
     }
 

@@ -17,20 +17,8 @@ public class Couch {
         return new Couch(name);
     }
 
-    public void setUneatableMenus(List<String> menus) {
-        uneatableMenus = menus;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public List<String> getUneatableMenus() {
-        return uneatableMenus;
-    }
-
-    public List<String> getEatenMenus() {
-        return eatenMenus;
+    public void addMenu(String selectedMenu) {
+        eatenMenus.add(selectedMenu);
     }
 
     public boolean validateMenu(String selectedMenu) {
@@ -54,7 +42,16 @@ public class Couch {
         return true;
     }
 
-    public void addMenu(String selectedMenu) {
-        eatenMenus.add(selectedMenu);
+    public void setUneatableMenus(List<String> menus) {
+        uneatableMenus = menus;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+
+    public List<String> getEatenMenus() {
+        return eatenMenus;
     }
 }
