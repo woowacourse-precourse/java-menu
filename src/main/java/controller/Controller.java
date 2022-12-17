@@ -14,17 +14,17 @@ public class Controller {
         outputView.printMenuRecommendStart();
         String coachNames = inputView.getCoachNames();
         List<String> coaches = MenuRecommender.splitter(coachNames);
-        getCoachsHateFood(coaches);
+        getCoachesInfo(coaches);
     }
 
-    private void getCoachsHateFood(List<String> coaches) {
-        for (String coach : coaches) {
-            getEachCoachHateFoods(coach);
+    private void getCoachesInfo(List<String> coachNames) {
+        for (String coach : coachNames) {
+            String hateFoods = getEachCoachHateFoods(coach);
+            MenuRecommender.creatorCoach(coach, hateFoods);
         }
     }
 
-    private void getEachCoachHateFoods(String name) {
-        String hateFoods = inputView.getHateFood(name);
-        System.out.println(hateFoods);
+    private String getEachCoachHateFoods(String name) {
+        return inputView.getHateFood(name);
     }
 }
