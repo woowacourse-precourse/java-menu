@@ -53,8 +53,8 @@ public class MainController {
     }
 
     private void makeCantEatMenus() {
-        List<Menu> cantEatMenus = new ArrayList<>();
         for (Coach coach : coaches.getCoaches()) {
+            List<Menu> cantEatMenus = new ArrayList<>();
             getEachCoachesCantEatMenus(cantEatMenus, coach);
         }
     }
