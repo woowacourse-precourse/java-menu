@@ -1,5 +1,6 @@
 package menu.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public enum Category {
@@ -39,6 +40,14 @@ public enum Category {
 
     public List<String> getMenus() {
         return this.menus;
+    }
+
+    static public List<String> getNames() {
+        List<String> names = new ArrayList<>();
+        for (Category cg : values()) {
+            names.add(cg.getName());
+        }
+        return names;
     }
 
     static public boolean checkFoodInMenus(String food) {
