@@ -2,6 +2,8 @@ package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class InputView {
 
@@ -15,16 +17,17 @@ public class InputView {
         inputValidator = new InputValidator();
     }
 
-    public String[] readCrewNames() {
-        final String[] inputValues = splitByRegex(inputBox(ENTER_CREW_NAMES));
-        Arrays.stream(inputValues).forEach(inputValidator::validate);
-        return inputValues;
+    public List<String> readCrewNames() {
+        return Arrays.stream(splitByRegex(inputBox(ENTER_CREW_NAMES)))
+                .map(input -> {
+                    inputValidator.validate(input);
+                    return input;
+                }).collect(Collectors.toList());
     }
 
-    public String[] readBannedFoods(String crewName) {
-        final String[] inputValues = splitByRegex(inputBox(crewName + ENTER_BANNED_FOODS));
-        Arrays.stream(inputValues).forEach(inputValidator::validate);
-        return inputValues;
+    public List<String> readBannedFoods(String crewName) {
+        return Arrays.stream(splitByRegex(inputBox(crewName + ENTER_BANNED_FOODS)))
+                .peek(inputValidator::validate).collect(Collectors.toList());
     }
 
     private String inputBox(String message) {
