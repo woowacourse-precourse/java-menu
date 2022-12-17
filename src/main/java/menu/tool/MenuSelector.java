@@ -13,7 +13,7 @@ import menu.repository.ServiceRepository;
 public class MenuSelector {
 
   /**
-   * 한 코치의 전체 요일에 대한 메뉴를 선택하는 메서드
+   * 요일별로 코치들의 메뉴를 선택하는 메서드
    * @param coachList
    * @param day
    *

@@ -15,6 +15,9 @@ public class ServiceRepository {
     makeMenuList();
   }
 
+  /**
+   * 요일별로 카테고리를 5번 선택하여 저장하는 메서드
+   */
   private void makeCategoryList(){
     List<Category> categoryList=new ArrayList<>();
     List<Integer> categoryIDList=new ArrayList<>();
@@ -28,7 +31,9 @@ public class ServiceRepository {
     this.categoryList=categoryList;
   }
 
-
+  /**
+   * 카테고리별 메뉴 목록을 저장하는 메서드
+   */
   private void makeMenuList() {
     menuList.put(Category.Japan,
         new String[]{"규동", "우동", "미소시루", "스시", "가츠동", "오니기리", "하이라이스", "라멘", "오코노미야끼"});

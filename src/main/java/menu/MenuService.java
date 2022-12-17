@@ -16,7 +16,9 @@ public class MenuService {
   final OutputView output = new OutputView();
   private ServiceRepository serviceRepository;
 
-
+  /**
+   * 전체 서비스를 수행하는 메서드
+   */
   public void startService() {
     serviceRepository = new ServiceRepository();
     output.printServiceStart();
@@ -29,6 +31,10 @@ public class MenuService {
     output.printResult(coachList);
   }
 
+  /**
+   * 코치 별 먹지 못하는 음식 목록을 설정하는 메서드
+   * @param coachList
+   */
   public void setExMenuList(List<Coach> coachList) {
     for (int i = 0; i < coachList.size(); i++) {
       List<String> exMenuList = List.of(input.readExcludedMenu(coachList.get(i)));
@@ -36,6 +42,10 @@ public class MenuService {
     }
   }
 
+  /**
+   * 실제 코치/요일별 메뉴 선택이 일어나는 메서드
+   * @param coachList
+   */
   public void executeService(List<Coach> coachList) {
     for (Day day : Day.values()) {
       MenuSelector.selectAllMenu(coachList,day);

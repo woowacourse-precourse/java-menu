@@ -6,9 +6,9 @@ import menu.repository.ServiceRepository;
 
 public class Coach {
 
-  private String name;
-  private List<String> excludedMenu;
-  private HashMap<Day, String> menuList = new HashMap<>();
+  private String name;  //코치의 이름
+  private List<String> excludedMenu;  //코치가 먹지 못하는 메뉴 리스트
+  private HashMap<Day, String> menuList = new HashMap<>();  //코치의 요일별 추천 메뉴(서비스 결과)
 
   public Coach(String name) {
     this.name = name;

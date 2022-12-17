@@ -8,12 +8,9 @@ import java.util.stream.Collectors;
 import menu.domain.Coach;
 import menu.tool.ValidChecker;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
     /**
-     * 코치의 이름을 입력받는다.
+     * 코치들의 이름을 입력받는 메서드.
      */
     public List<Coach> readCoachName() {
       try {
@@ -32,7 +29,7 @@ public class InputView {
     }
 
     /**
-     * 코치가 못먹는 메뉴를 입력받는다.
+     * 각 코치가 못먹는 메뉴들을 입력받는 메서드
      */
     public String[] readExcludedMenu(Coach coach) {
       try {
