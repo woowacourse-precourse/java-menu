@@ -16,4 +16,8 @@ public class MenuRepository {
         return menus.keySet().stream()
                 .anyMatch(key -> menus.get(key).hasMenu(name));
     }
+
+    public Menus findByCategory(Category category) {
+        return menus.get(category);
+    }
 }
