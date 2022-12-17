@@ -21,4 +21,12 @@ public class MenuRecommendationController {
         }
     }
 
+
+    private void setUnwantedMenus() {
+        for (int i = 0; i < coaches.size(); i++) {
+            Coach coach = coaches.get(i);
+            List<String> unwantedMenus = requestUnwantedMenu(coach.getName());
+            coach.setUnwantedMenus(unwantedMenus);
+        }
+    }
 }
