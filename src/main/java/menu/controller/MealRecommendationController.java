@@ -42,12 +42,11 @@ public class MealRecommendationController {
         }
     }
 
-    private void getEachCoachHateMenu() {
+    private void getAndSaveEachCoachHateMenu() {
         List<Coach> coaches = coachRepository.findALl();
         for (Coach coach : coaches) {
             outputView.printHateMenuInputGuide(coach.getName());
             List<String> hateMenus = inputView.getHateMenus();
-            // List<Menu>로 바꾸는 검증 로직 필요
             coach.setHateMenu(hateMenus);
         }
     }
