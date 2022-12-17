@@ -48,8 +48,4 @@ public class Controller {
     private static void showStart() {
         outputView.printStartMessage();
     }
-
-    public static void main(String[] args) {
-        run();
-    }
 }
