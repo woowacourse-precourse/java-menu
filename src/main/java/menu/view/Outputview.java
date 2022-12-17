@@ -2,9 +2,9 @@ package menu.view;
 
 import java.util.Arrays;
 import java.util.List;
-import menu.model.Category;
+import menu.model.enums.Category;
 import menu.model.Coach;
-import menu.model.Days;
+import menu.model.enums.Days;
 
 public class Outputview {
     private static final String START_MESSAGE = "점심 메뉴 추천을 시작합니다.";

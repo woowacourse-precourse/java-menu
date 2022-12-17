@@ -1,4 +1,4 @@
-package menu.model;
+package menu.model.enums;
 
 import java.util.Arrays;
 

@@ -1,5 +1,7 @@
 package menu.model;
 
+import menu.model.enums.Category;
+
 public class Menu {
     private final String name;
     private final Category category;

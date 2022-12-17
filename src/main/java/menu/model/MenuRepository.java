@@ -3,6 +3,7 @@ package menu.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import menu.model.enums.Category;
 import menu.util.StringParser;
 
 public class MenuRepository {
