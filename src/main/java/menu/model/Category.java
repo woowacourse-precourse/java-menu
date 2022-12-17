@@ -26,4 +26,13 @@ public enum Category {
         }
         return null;
     }
+
+    public static Category getCategory(String category) {
+        for (Category tag : Category.values()) {
+            if (tag.category.equals(category)) {
+                return tag;
+            }
+        }
+        return null;
+    }
 }

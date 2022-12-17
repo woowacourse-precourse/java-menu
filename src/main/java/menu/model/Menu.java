@@ -31,7 +31,7 @@ public class Menu {
     }
 
     public String recommendFood(String category) {
-        return Randoms.shuffle(menu.get(category)).get(0);
+        return Randoms.shuffle(menu.get(Category.getCategory(category))).get(0);
     }
 
     private void validate(List<String> dislikeFood) {
