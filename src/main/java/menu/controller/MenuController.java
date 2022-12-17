@@ -54,6 +54,7 @@ public class MenuController {
     private String shuffleOneMenu(CategoryMenu categoryMenu, List<String> cantEatMenus, List<List<String>> results,
                                   int index) {
         String menu = "";
+        First:
         while (menu.length() == 0) {
             List<String> shuffleMenus = categoryMenu.shuffleMenu();
             String shuffleMenu = shuffleMenus.get(0);
@@ -62,7 +63,7 @@ public class MenuController {
             }
             for (List<String> result : results) {
                 if (result.get(index).equals(menu)) {
-                    continue;
+                    continue First;
                 }
             }
             menu = shuffleMenu;
