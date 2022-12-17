@@ -1,9 +1,9 @@
 # 📝 기능 요구 사항
 
-- [ ] 기능
-    - [ ] 월요일 ~ 금요일까지 음식을 카테고리 별로 추천
-        - [ ] 한 주에 같은 카테고리는 최대 2회까지만 고를 수 있다.
-        - [ ] 각 코치에게 한 주에 중복되지 않는 메뉴를 추천해야 한다.
+- [x] 기능
+    - [x] 월요일 ~ 금요일까지 음식을 카테고리 별로 추천
+        - [x] 한 주에 같은 카테고리는 최대 2회까지만 고를 수 있다. RecommendService#findRecommendMenus()
+        - [x] 각 코치에게 한 주에 중복되지 않는 메뉴를 추천해야 한다. RecommendService#findRecommendMenus()
         - [x] 랜덤으로 카레고리를 뽑아준다 RecommendSystem#pickRandomCategory()
         - [x] 랜덤으로 음식을 뽑아준다 RecommendSystem#pickRandomMenu()
         - [x] 메뉴 저장 기능 MenuRepository

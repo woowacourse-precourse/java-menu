@@ -28,7 +28,7 @@ class CoachTest {
 
         //when
         //then
-        assertThatThrownBy(() -> coach.validateIfTooManyCategory(menuRepository.getMenus(KOREA), KOREA))
+        assertThatThrownBy(() -> coach.isTooManySameCategory(menuRepository.getMenus(KOREA), KOREA))
                 .isInstanceOf(IllegalStateException.class);
     }
 }

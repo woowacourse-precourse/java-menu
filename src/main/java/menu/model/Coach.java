@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Coach {
     private static final long MAX_RECOMMENDED_COUNT = 2L;
-    private static final String CANNOT_EAT_SAMY_CATEGORY = "같은 카테고리는 2번만 먹을 수 있습니다.";
 
     private final String name;
     private final List<String> cannotEatFoods = new ArrayList<>();
@@ -27,19 +26,22 @@ public class Coach {
         return cannotEatFoods.contains(menu) || alreadyEatFoods.contains(menu);
     }
 
-    public void validateIfTooManyCategory(final List<String> categoryMenus, final MenuCategory category) {
-        final long categoryCount = getCategoryCount(categoryMenus);
-
-        if (categoryCount >= MAX_RECOMMENDED_COUNT) {
-            throw new IllegalStateException(CANNOT_EAT_SAMY_CATEGORY);
-        }
+    public boolean isTooManySameCategory(final List<String> categoryMenus, final MenuCategory category) {
+        return getDuplicateCategoryCount(categoryMenus) >= MAX_RECOMMENDED_COUNT;
     }
 
-    private long getCategoryCount(final List<String> categoryMenus) {
-        return categoryMenus.stream()
-                .map(categoryMenu -> alreadyEatFoods.stream()
-                        .filter(food -> food.equals(categoryMenu))
-                )
-                .count();
+    private long getDuplicateCategoryCount(final List<String> categoryMenus) {
+        final List<String> categoryMenusClone = clone(categoryMenus);
+        final List<String> alreadyEatFoodsClone = clone(alreadyEatFoods);
+
+        categoryMenusClone.retainAll(alreadyEatFoodsClone);
+
+        return categoryMenusClone.size();
+    }
+
+    private static List<String> clone(final List<String> categoryMenus) {
+        List<String> clone = new ArrayList<>();
+        clone.addAll(categoryMenus);
+        return clone;
     }
 }
