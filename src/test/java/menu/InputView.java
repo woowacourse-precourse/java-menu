@@ -1,13 +1,18 @@
 package menu;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.regex.Pattern;
+
+import org.assertj.core.util.Arrays;
 
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 	ArrayList<String> coachName;
+	LinkedHashMap<String, ArrayList<String>> notEatingMenuForEachCoach = new LinkedHashMap<>();
+	
 	public void askCoachName() {
 		boolean checkPass = false;
 		while(!checkPass) {
@@ -59,6 +64,38 @@ public class InputView {
 	}
 	
 	public void askNotEatingMenu() {
-		
+		for(int coachIndex = 0; coachIndex < coachName.size(); ) {
+			String notEatingMenu = "";
+			System.out.printf("%s(이)가 못 먹는 메뉴를 입력해 주세요.", coachName.get(i));
+			notEatingMenu = Console.readLine();
+			if(!errorCatchForNotEatingMenu(notEatingMenu)) {
+				continue;
+			}
+			inputNotEatingMenuForEachCoach(coachIndex, notEatingMenu);
+			coachIndex++;
+		}
+	}
+	
+	public boolean errorCatchForNotEatingMenu(String notEatingMenu) {
+		try {
+			checkMenuCount(notEatingMenu);
+		} catch(IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean checkMenuCount(String notEatingMenu) {
+		String[] notEatingMenuStr = notEatingMenu.split(",");
+		if(notEatingMenuStr.length > 2) {
+			throw new IllegalArgumentException("[ERROR] 못 먹는 메뉴의 개수는 2개까지 작성 가능합니다.");
+		}
+		return true;
+	}
+	
+	public void inputNotEatingMenuForEachCoach(int coachIndex, String notEatingMenu) {
+		String[] notEatingMenuStr = notEatingMenu.split(",");
+		notEatingMenuForEachCoach.put(coachName.get(coachIndex), new ArrayList(Arrays.asList(notEatingMenuStr)));
 	}
 }
