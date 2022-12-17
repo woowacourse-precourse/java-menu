@@ -93,7 +93,10 @@ public class MenuController {
     private void selectMenu() {
         for (Coach coach : coaches) {
             for (String recommandCategory : recomandedCategory) {
-                checkToCoach(coach, recommandCategory);
+                boolean flag = true;
+
+                    checkToCoach(coach, recommandCategory);
+
             }
         }
     }
@@ -108,21 +111,23 @@ public class MenuController {
             //메뉴 뽑기
             // 뽑은 추천메뉴와 싫은메뉴 전달해서 코치의 진짜 추천메뉴에 추가
 
-            isCorrect(coach, getRandomMenu(coach, menuPerCategory), recommandMenu);
-            flag = false;
+            if (isCorrect(coach, getRandomMenu(coach, menuPerCategory), recommandMenu)) {
+                flag = false;
+            }
         }
     }
 
-    private void isCorrect(Coach coach, String menu, List<String> recommandMenu) {
+    private boolean isCorrect(Coach coach, String menu, List<String> recommandMenu) {
         if (recommandMenu.contains(menu)) {
-            return ;
+            return false;
         }
         List<String> dislike = coach.getDislikeMenu();
         if (dislike.contains(menu)) {
-            return;
+            return false;
         }
         recommandMenu.add(menu);
         coach.getRecomandedMenu().add(menu);
+        return true;
     }
 
     private String getRandomMenu(Coach coach, List<String> menus) {
