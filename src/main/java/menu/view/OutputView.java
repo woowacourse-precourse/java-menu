@@ -67,7 +67,9 @@ public class OutputView {
 
         // 코치, 코치별 메뉴
         for (Coach coach : coaches) {
-            result.append(RECOMMEND_RESULT_MESSAGE_COACH_MENU_START + RECOMMEND_RESULT_MESSAGE_SEPARATOR);
+            result.append(RECOMMEND_RESULT_MESSAGE_COACH_MENU_START);
+            result.append(coach.getName());
+            result.append(RECOMMEND_RESULT_MESSAGE_SEPARATOR);
             List<String> menusRecommended = coach.getMenusRecommended();
             for (int i = 0; i < menusRecommended.size(); i++) {
                 result.append(menusRecommended.get(i));
@@ -75,6 +77,7 @@ public class OutputView {
                     result.append(RECOMMEND_RESULT_MESSAGE_SEPARATOR);
                 }
             }
+            result.append(RECOMMEND_RESULT_MESSAGE_END);
         }
 
         System.out.println(result);
