@@ -28,10 +28,31 @@ public class RecommendHistory {
     }
 
     private boolean hasRecommendedMenu(String coachName, String menuName) {
-        if (menuByCoach.size() == 0) {
+        if (menuByCoach.isEmpty()) {
             return false;
         }
         List<String> recommendedMenus = menuByCoach.get(coachName);
         return recommendedMenus.contains(menuName);
+    }
+
+    public void recordCategory(Category category) {
+        categories.add(category);
+    }
+
+    public void recordMenuByCoach(String menu, String coach) {
+        List<String> recommendedMenus = addAndGetMenus(menu, coach);
+        menuByCoach.put(coach, recommendedMenus);
+    }
+
+    private List<String> addAndGetMenus(String menu, String coach) {
+        List<String> recommendedMenus;
+        if (menuByCoach.containsKey(coach)) {
+            recommendedMenus = menuByCoach.get(coach);
+            recommendedMenus.add(menu);
+            return recommendedMenus;
+        }
+        recommendedMenus = new ArrayList<>();
+        recommendedMenus.add(menu);
+        return recommendedMenus;
     }
 }
