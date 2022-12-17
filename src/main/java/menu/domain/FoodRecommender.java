@@ -18,7 +18,20 @@ public class FoodRecommender {
     public void recommendByDay() {
         for (Day day : Day.values()) {
             FoodCategory category = generateCategory(day);
+            setMenuByDayAndCategory(day, category);
         }
+    }
+
+    private void setMenuByDayAndCategory(Day day, FoodCategory category) {
+        for (Coach coach : coaches) {
+            String randomMenu = getRandomMenu(category, coach);
+            coach.putDayByMenu(day, randomMenu);
+        }
+    }
+
+    private String getRandomMenu(FoodCategory category, Coach coach) {
+        String menu = Randoms.shuffle(category.getFoods()).get(0);
+        return menu;
     }
 
     private void validateSize(List<Coach> coaches) {

@@ -24,4 +24,8 @@ public enum FoodCategory {
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("해당 번호는 카테고리에 없습니다"));
     }
+
+    public List<String> getFoods() {
+        return foods;
+    }
 }
