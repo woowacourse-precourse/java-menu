@@ -1,10 +1,9 @@
 package controller;
 
-import constant.Category;
 import exception.CoachException;
 import exception.FoodException;
-import menu.Coach;
-import menu.MenuRecommender;
+import menu.domain.Coach;
+import menu.domain.MenuRecommender;
 import repository.CoachRepository;
 import repository.MenuForWeekRepository;
 import view.InputView;
@@ -27,7 +26,7 @@ public class MenuController {
         outputView.printStartMessage();
         List<Coach> coaches = makeCoaches(inputView.readCoachNames());
         for (Coach coach : coaches) {
-            List<String> foodNames = getHateFoodNames(inputView.readNotAvailableFood(coach.getName()), coach.getName());
+            List<String> foodNames = getHateFoodNames(inputView.readHateFood(coach.getName()), coach.getName());
             coach.addHateFoodList(foodNames);
         }
         MenuRecommender.addRecommendMenus(coaches);
@@ -44,7 +43,7 @@ public class MenuController {
             return Collections.emptyList();
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception);
-            return getHateFoodNames(inputView.readNotAvailableFood(coachName), coachName);
+            return getHateFoodNames(inputView.readHateFood(coachName), coachName);
         }
     }
 

@@ -1,11 +1,11 @@
 package menu;
 
+import menu.domain.Coach;
+import menu.domain.MenuRecommender;
 import org.junit.jupiter.api.Test;
 import repository.MenuForWeekRepository;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class MenuRecommenderTest {
     @Test

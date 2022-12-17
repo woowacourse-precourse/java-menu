@@ -2,7 +2,7 @@ package view;
 
 import constant.Category;
 import constant.Week;
-import menu.Coach;
+import menu.domain.Coach;
 import repository.MenuForWeekRepository;
 
 import java.util.LinkedHashMap;

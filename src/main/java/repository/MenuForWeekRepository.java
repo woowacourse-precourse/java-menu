@@ -2,7 +2,7 @@ package repository;
 
 import constant.Category;
 import constant.Week;
-import menu.Coach;
+import menu.domain.Coach;
 
 import java.util.*;
 

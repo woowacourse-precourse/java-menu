@@ -1,6 +1,6 @@
 package repository;
 
-import menu.Coach;
+import menu.domain.Coach;
 
 import java.util.ArrayList;
 import java.util.List;
