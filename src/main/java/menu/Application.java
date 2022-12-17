@@ -91,9 +91,16 @@ public class Application {
     }
 
     private static String[] getValidBannedMenu() {
-        String[] bannedMenu = Console.readLine().split(",");
+        String bannedSentence = Console.readLine();
+        if (bannedSentence.length() == 0) { // 공백 입력시 null리턴
+            return null;
+        }
+        String[] bannedMenu = bannedSentence.split(",");
         if (bannedMenu.length > 2) {
             throw new IllegalArgumentException("[ERROR] 메뉴는 최대 2개까지 입력 가능합니다.");
+        }
+        if (Stream.of(bannedMenu).anyMatch((menu) -> !MenuRecommendService.isValidMenu(menu))) {
+            throw new IllegalArgumentException("[ERROR] 존재하지 않는 메뉴가 있습니다.");
         }
         return bannedMenu;
     }
