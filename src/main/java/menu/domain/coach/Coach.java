@@ -1,5 +1,10 @@
 package menu.domain.coach;
 
+import static menu.ConstantBox.RESULT_END;
+import static menu.ConstantBox.RESULT_SEPARATOR;
+import static menu.ConstantBox.RESULT_START;
+import static menu.ConstantBox.ZERO;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +30,8 @@ public class Coach {
     public String makeResultMessage() {
         StringBuilder stringBuilder = new StringBuilder();
         List<String> tempCoachData = new ArrayList<>(selectedMenu);
-        tempCoachData.add(0, name);
-        stringBuilder.append("[ ").append(String.join(" | ", tempCoachData)).append(" ]");
+        tempCoachData.add(ZERO, name);
+        stringBuilder.append(RESULT_START).append(String.join(RESULT_SEPARATOR, tempCoachData)).append(RESULT_END);
         return stringBuilder.toString();
     }
 }

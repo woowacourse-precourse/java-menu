@@ -1,5 +1,7 @@
 package menu.controller;
 
+import static menu.ConstantBox.MAX_TRY_NUMBER;
+import static menu.ConstantBox.ZERO;
 import static menu.ExceptionHandler.input;
 import static menu.domain.ForbiddenMenu.getForbiddenMenuInstance;
 import static menu.domain.coach.CoachRepository.getCoachRepositoryInstance;
@@ -38,7 +40,7 @@ public class MenuController {
 
     private void setCategoryAndSelectMenu() {
         CategoryDecider categoryDecider = new CategoryDecider();
-        for (int number = 0; number < 5; number++) {
+        for (int number = ZERO; number < MAX_TRY_NUMBER; number++) {
             categoryDecider.setCategory();
             String category = categoryDecider.getDecidedCategory(number);
             List<String> menu = MenuGiver.giveMenu(category);

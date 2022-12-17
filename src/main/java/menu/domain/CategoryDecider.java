@@ -5,6 +5,7 @@ import static menu.ConstantBox.MAX_CATEGORY_DUPLICATE;
 import static menu.ConstantBox.RESULT_END;
 import static menu.ConstantBox.RESULT_SEPARATOR;
 import static menu.ConstantBox.RESULT_START;
+import static menu.ConstantBox.ZERO;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -56,7 +57,7 @@ public class CategoryDecider {
     public String makeResultMessage() {
         StringBuilder stringBuilder = new StringBuilder();
         List<String> tempCategoryData = new ArrayList<>(decidedCategory);
-        tempCategoryData.add(0, CATEGORY);
+        tempCategoryData.add(ZERO, CATEGORY);
         stringBuilder.append(RESULT_START).append(String.join(RESULT_SEPARATOR, tempCategoryData)).append(RESULT_END);
         return stringBuilder.toString();
     }
