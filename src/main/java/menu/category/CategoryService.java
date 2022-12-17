@@ -13,4 +13,17 @@ public class CategoryService {
         // coach.setRecommendedMenu()
     }
 
+    // 존재하는 메뉴인지 확인
+    public static boolean isInMenu(String coachCannotEat) {
+        for (Category.Categories category : Category.Categories.values()) {
+            List<String> menus = category.getMenus();
+            for (String menu : menus) {
+                if (menu.compareTo(coachCannotEat) == 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 }
