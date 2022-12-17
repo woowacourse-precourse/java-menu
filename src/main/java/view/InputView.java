@@ -12,6 +12,12 @@ public class InputView {
         return toStringList(readInput());
     }
     
+    public List<String> readCanNotEatMenu(String coachName) {
+        System.out.println(coachName + "(이)가 못 먹는 메뉴를 입력해 주세요.");
+        return toStringList(readInput());
+    }
+    
+    
     private List<String> toStringList(String input) {
         String[] split = input.split(",");
         return new ArrayList<>(Arrays.asList(split));
@@ -20,4 +26,5 @@ public class InputView {
     private String readInput() {
         return Console.readLine();
     }
+    
 }
