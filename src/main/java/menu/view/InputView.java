@@ -42,6 +42,18 @@ public class InputView {
         }
     }
 
+    public List<String> requestCoachHateFoods(Coach coach) {
+        while (true) {
+            try {
+                System.out.println(format(ANNOUNCE_INPUT_COACH_HATE_FOOD.getMessage(), coach.loadName()));
+                String[] hateFoods = Console.readLine().split(COMMA.getMessage());
+                return List.of(hateFoods);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
     private List<Coach> parseCoaches(String[] names) {
         List<Coach> coaches = new ArrayList<>();
         for (String name : names) {
