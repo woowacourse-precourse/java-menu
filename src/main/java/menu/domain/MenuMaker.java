@@ -1,17 +1,19 @@
 package menu.domain;
 
 import menu.view.InputView;
+import menu.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class MenuMaker {
-
     private final InputView inputView;
+    private final OutputView outputView;
 
-    public MenuMaker(InputView inputView) {
+    public MenuMaker(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public List<String> nameDivision(String coach) {
@@ -26,9 +28,9 @@ public class MenuMaker {
         HashMap<String, String> coachMenu = new HashMap<>();
 
         for (String coach : coachNames) {
-            System.out.println(coach + "(이)가 못 먹는 메뉴를 입력해 주세요.");
-            System.out.println();
+            outputView.printNotMenuMessage(coach);
             String menu = inputView.menuInput();
+            System.out.println();
             coachMenu.put(coach, menu);
         }
         return coachMenu;
