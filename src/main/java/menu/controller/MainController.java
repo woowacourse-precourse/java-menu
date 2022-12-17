@@ -63,4 +63,8 @@ public class MainController {
                 recommendationService.findAllRecommendation()
         );
     }
+
+    public void finish() {
+        outputView.printPhrase(OutputPhrase.FINISH.getPhrase());
+    }
 }
