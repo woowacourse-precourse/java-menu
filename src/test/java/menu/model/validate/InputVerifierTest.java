@@ -28,6 +28,18 @@ class InputVerifierTest {
         });
     }
 
+    @DisplayName("코치의 이름이 한글인가")
+    @Test
+    void 코치이름은_한글만_입력할수있다() {
+        // given
+        String coachName = "totttototot";
+
+        // when, then
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputVerifier.coachNameIsOnlyKorean(coachName);
+        });
+    }
+
     @DisplayName("밥을 함께 먹는 코치의 수가 2~5명인가")
     @Test
     void 같이_밥_먹는_코치_수가_최소2명_최대5명() {
