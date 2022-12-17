@@ -21,4 +21,14 @@ public class InputValidation {
         }
         return true;
     }
+
+    public boolean isValidCoachCanNotEatMenuCount(int canNotEatMenuCount){
+        try {
+            if (canNotEatMenuCount > 2)
+                throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+        return true;
+    }
 }
