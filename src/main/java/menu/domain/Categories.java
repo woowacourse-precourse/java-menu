@@ -47,4 +47,8 @@ public enum Categories {
     public List<String> getMenuNames() {
         return menuNames;
     }
+
+    public String getName() {
+        return name;
+    }
 }

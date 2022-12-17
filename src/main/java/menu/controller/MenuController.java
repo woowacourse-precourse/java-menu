@@ -16,6 +16,8 @@ public class MenuController {
         setUp();
         MenuRecommendationResult menuRecommendationResult = new MenuRecommendationResult();
         recommendCoachMenu(menuRecommendationResult);
+        OutputView.printRecommendationResult(menuRecommendationResult);
+        OutputView.printSuccessMessage();
     }
 
     private void recommendCoachMenu(MenuRecommendationResult menuRecommendationResult) {

@@ -31,4 +31,8 @@ public class MenuRecommendationResult {
         }
         return true;
     }
+
+    public Map<Day, Map<String, String>> getRecommendationResult() {
+        return recommendationResult;
+    }
 }
