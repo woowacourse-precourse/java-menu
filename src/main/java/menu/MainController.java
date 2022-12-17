@@ -36,6 +36,7 @@ public class MainController {
     }
 
     public void readCoachInfo() {
+        outputView.helloMessage();
         while (true) {
             try {
                 List<Coach> coaches = inputView.readCoach();

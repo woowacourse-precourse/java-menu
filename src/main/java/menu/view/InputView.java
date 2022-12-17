@@ -5,8 +5,12 @@ import camp.nextstep.edu.missionutils.Console;
 import menu.Coach;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
+
+import static menu.view.InputValidators.*;
 
 public class InputView {
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
@@ -24,7 +28,7 @@ public class InputView {
         List<Coach> coaches = null;
         while (true) {
             try {
-                System.out.println("점심 메뉴 추천을 시작합니다.\n" +
+                System.out.println(
                         "\n" +
                         "코치의 이름을 입력해 주세요. (, 로 구분)");
                 String input = Console.readLine();
@@ -33,8 +37,8 @@ public class InputView {
                         .map(Coach::new)
                         .collect(Collectors.toList());
 
-//                validateMainOptionLen(input);
-//                mainOption =  MainOption.of(input.charAt(0));
+                validateDuplicateCoachName(coaches);
+                validateCoachesSize(coaches);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(ERROR_MESSAGE_PREFIX + e.getMessage());
@@ -42,6 +46,9 @@ public class InputView {
         }
         return coaches;
     }
+
+
+
 
     public List<String> readHateMenu(Coach coach) {
         List<String> hateMenus = null;
@@ -52,8 +59,9 @@ public class InputView {
                 String[] names = input.split(",");
 
                 hateMenus = Arrays.asList(names);
-//                validateMainOptionLen(input);
-//                mainOption =  MainOption.of(input.charAt(0));
+
+                validateHateMenusSize(hateMenus);
+                validateDuplicateHateMenuName(hateMenus);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(ERROR_MESSAGE_PREFIX + e.getMessage());
@@ -61,5 +69,4 @@ public class InputView {
         }
         return hateMenus;
     }
-
 }

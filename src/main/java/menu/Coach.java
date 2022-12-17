@@ -54,4 +54,10 @@ public class Coach {
     private boolean isDuplicateMenu(Set<String> menuAlreadyPicked, String menu) {
         return menuAlreadyPicked.contains(menu);
     }
+
+    private static Coach nameOf(String name){
+        if(name.length() >= 2 && name.length() <= 4 )
+            return new Coach(name);
+        throw new IllegalArgumentException("코치의 이름은 2글자에서 4글자여야 합니다.");
+    }
 }
