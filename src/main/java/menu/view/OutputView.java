@@ -26,8 +26,10 @@ public class OutputView {
     public static void printServiceResult(MenuResult menuResult) {
         System.out.println("메뉴 추천 결과입니다.");
         System.out.println("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
+
         printCategory(menuResult);
         printMenu(menuResult.getCoaches());
+
         System.out.println();
         System.out.println("추천을 완료했습니다.");
     }
@@ -37,7 +39,7 @@ public class OutputView {
                 .stream()
                 .map(category -> category.getName())
                 .collect(Collectors.toList());
-        System.out.println("[ 카테고리 |" + String.join(" | ", categoryNames) + " ]");
+        System.out.println("[ 카테고리 | " + String.join(" | ", categoryNames) + " ]");
     }
 
     private static void printMenu(Coaches coaches) {

@@ -9,7 +9,7 @@ public class MenuResult {
     private final Coaches coaches;
 
     public MenuResult(List<Category> categorys, Coaches coaches) {
-        this.categorys = new ArrayList<>();
+        this.categorys = categorys;
         this.coaches = coaches;
     }
 
