@@ -1,4 +1,4 @@
-package menu.domain;
+package menu.domain.coach;
 
 import menu.util.Validator;
 

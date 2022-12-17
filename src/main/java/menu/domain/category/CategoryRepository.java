@@ -1,10 +1,9 @@
-package menu.domain;
+package menu.domain.category;
 
 import java.util.*;
 
 public class CategoryRepository { // 인터페이스 만들어도 될듯
     private static Map<Integer, Category> categories = new HashMap<>();
-    private static Integer sequence = 1;
 
     private static final CategoryRepository instance = new CategoryRepository();
 
@@ -14,9 +13,8 @@ public class CategoryRepository { // 인터페이스 만들어도 될듯
         return instance;
     }
 
-    public Category save(Category category){
-        category.setId(sequence++);
-        categories.put(category.getId(),category);
+    public Category save(int id, Category category){
+        categories.put(id,category);
         return category;
     }
 

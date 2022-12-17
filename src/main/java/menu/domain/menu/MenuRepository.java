@@ -1,4 +1,6 @@
-package menu.domain;
+package menu.domain.menu;
+
+import menu.domain.category.Category;
 
 import java.util.ArrayList;
 import java.util.HashMap;

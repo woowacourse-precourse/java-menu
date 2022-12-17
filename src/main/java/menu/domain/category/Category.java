@@ -1,4 +1,4 @@
-package menu.domain;
+package menu.domain.category;
 
 public class Category {
     private int id;

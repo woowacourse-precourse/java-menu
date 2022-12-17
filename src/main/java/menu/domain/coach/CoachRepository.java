@@ -1,4 +1,4 @@
-package menu.domain;
+package menu.domain.coach;
 
 import java.util.ArrayList;
 import java.util.HashMap;

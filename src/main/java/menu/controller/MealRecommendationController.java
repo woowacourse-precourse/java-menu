@@ -1,7 +1,11 @@
 package menu.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import menu.domain.*;
+import menu.domain.category.Category;
+import menu.domain.category.CategoryRepository;
+import menu.domain.coach.Coach;
+import menu.domain.coach.CoachRepository;
+import menu.domain.menu.MenuRepository;
 import menu.view.InputView;
 import menu.view.OutputView;
 
