@@ -1,5 +1,6 @@
 package menu;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -18,12 +19,19 @@ import org.junit.jupiter.api.function.Executable;
 import org.mockito.MockedStatic;
 
 public class ApplicationTest extends NsTest {
-
+    private static final String ERROR_DIFFERENT_LENGTHS = "[ERROR] 코치의 이름은 최소 2글자, 최대 4글자이다.";
     private static final Duration RANDOM_TEST_TIMEOUT = Duration.ofSeconds(10L);
 
     @DisplayName("전체 기능 테스트")
     @Nested
     class AllFeatureTest {
+        @Test
+        void 코치_이름_예외_테스트() {
+            assertSimpleTest(() -> {
+                runException("토미,제임스,포코모코코");
+                assertThat(output()).contains(ERROR_DIFFERENT_LENGTHS);
+            });
+        }
 
         @Test
         void 기능_테스트() {
