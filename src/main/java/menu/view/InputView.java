@@ -16,7 +16,7 @@ public class InputView {
         System.out.println("점심 메뉴 추천을 시작합니다. \n\n코치의 이름을 입력해 주세요. (, 로 구분)");
         List<String> nameInput = splitInput(Console.readLine());
         coachNameLengthValidation(nameInput);
-        
+
         return trimEachInput(splitInput(Console.readLine()));
     }
 
@@ -44,13 +44,21 @@ public class InputView {
         return returnWords;
     }
 
-    // 코치의 이름은 최소 2글자, 최대 4글자(Validation.1)
+    // 코치의 이름은 최소 2글자, 최대 4글자 (Validation.1)
     private void coachNameLengthValidation(List<String> coachNames) {
         for (String name : coachNames) {
             if (name.length() < 2 || name.length() > 4) {
                 throw new IllegalArgumentException(
                         ExceptionMessage.INVALID_COACH_NAME_LEN.getMessage());
             }
+        }
+    }
+
+    // 코치는 최소 2명, 최대 5명까지 식사를 함께 해야 함 (Validation.2)
+    private void coachSizeValidation(List<String> coachNames) {
+        if (coachNames.size() < 2 || coachNames.size() > 5) {
+            throw new IllegalArgumentException(
+                    ExceptionMessage.INVALID_COACH_SIZE.getMessage());
         }
     }
 
