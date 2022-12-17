@@ -18,16 +18,27 @@ public class MenuController {
     public void run() {
         printStartMessage();
         saveCoachNames();
-        saveHatingMenus();
+        saveHatingMenus(); // 못 먹는 메뉴 입력
         printResult();
-
     }
 
-    private void printResult() {
-        ResultDto resultDto = menuManager.activateRecommendation();
-        output.printResultGuideMessage();
-        output.printResult(resultDto);
-        output.printResultCompleteMessage();
+    private void printStartMessage() {
+        output.printStartMessage();
+    }
+
+    private void saveCoachNames() {
+        List<String> coachNames = getCoachNames();
+        menuManager.saveCoach(coachNames);
+    }
+
+    private List<String> getCoachNames() {
+        output.printCoachNamesMessage();
+        try {
+            return input.readCoachNames();
+        } catch (IllegalArgumentException e) {
+            output.printErrorMessage(e);
+            return getCoachNames();
+        }
     }
 
     private void saveHatingMenus() {
@@ -48,23 +59,10 @@ public class MenuController {
         }
     }
 
-    private void saveCoachNames() {
-        List<String> coachNames = getCoachNames();
-        menuManager.saveCoach(coachNames);
-
-    }
-
-    private List<String> getCoachNames() {
-        output.printCoachNamesMessage();
-        try {
-            return input.readCoachNames();
-        } catch (IllegalArgumentException e) {
-            output.printErrorMessage(e);
-            return getCoachNames();
-        }
-    }
-
-    private void printStartMessage() {
-        output.printStartMessage();
+    private void printResult() {
+        ResultDto resultDto = menuManager.activateRecommendation();
+        output.printResultGuideMessage();
+        output.printResult(resultDto);
+        output.printResultCompleteMessage();
     }
 }
