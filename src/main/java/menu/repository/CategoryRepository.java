@@ -4,6 +4,7 @@ import menu.domain.Category;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CategoryRepository {
     private static class InstanceHolder {
@@ -22,5 +23,10 @@ public class CategoryRepository {
 
     public boolean isValidCategory(String categoryName) {
         return categories.stream().anyMatch(category -> categoryName.equals(category.getName()));
+    }
+
+    public List<String> findAllCategories() {
+        return categories.stream().map(Category::getName)
+                .collect(Collectors.toUnmodifiableList());
     }
 }
