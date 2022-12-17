@@ -33,15 +33,8 @@ public enum FoodCategory {
         return menus;
     }
 
-    private static final Map<String, FoodCategory> BY_LABEL=
-            Stream.of(values()).collect(Collectors.toMap(FoodCategory::label, Function.identity()));
-
     private static final Map<Integer, FoodCategory> BY_NUMBER=
             Stream.of(values()).collect(Collectors.toMap(FoodCategory::number, Function.identity()));
-
-    public static FoodCategory valueOfLabel(String label) {
-        return BY_LABEL.get(label);
-    }
 
     public static FoodCategory valueOfNumber(int number) {
         return BY_NUMBER.get(number);
