@@ -5,7 +5,9 @@ public enum ErrorMessage {
     COUCH_NAME_DUPLICATE("코치의 이름은 중복될 수 없습니다."),
     COUCH_GROUP_OUT_OF_RANGE("코치는 최소 2명, 최대 5명까지만 식사를 함께 합니다."),
     FOOD_NOT_EXIST("해당 음식이 존재하지 않습니다."),
-    COUCH_ALREADY_DENY_FOOD("이미 못먹는 메뉴를 지정했습니다.");
+    COUCH_ALREADY_DENY_FOOD("이미 못먹는 메뉴를 지정했습니다."),
+    TOO_MANY_CATEGORIES("카테고리는 최대 5개까지만 설정할 수 있습니다."),
+    CATEGORY_NOT_FOUND("해당 카테고리를 찾을 수 없습니다.");
 
     private final String message;
     private static final String PREFIX = "[ERROR]";

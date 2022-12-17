@@ -32,7 +32,7 @@ public enum Category {
                 return value;
             }
         }
-        return null;
+        throw new IllegalArgumentException(ErrorMessage.CATEGORY_NOT_FOUND.getMessage());
     }
 
     public static String toMessage(List<Category> categories) {
