@@ -4,6 +4,7 @@ import menu.error.CoachErrorCode;
 import menu.view.OutputView;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import static menu.error.CoachErrorCode.*;
 
@@ -44,6 +45,31 @@ public class InputVerifier {
     private static void coachesCountMin2Max5(int size) {
         if (size < 2 || 5 < size) {
             throw new IllegalArgumentException(COACH_COUNT_MIN_2_MAX_5.getMessage());
+        }
+    }
+
+    public static boolean tryCoachesHateMenu(List<String> hateMenus) {
+        try {
+            for (String hateMenu : hateMenus) {
+                coachHateMenuIsKorean(hateMenu);
+//                coachHateMenusCount0To2(hateMenus.size());
+            }
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    private static void coachHateMenuIsKorean(String hateMenu) {
+        if (!Pattern.matches("^[가-힣]*$", hateMenu)) {
+            throw new IllegalArgumentException(HATE_MENU_INPUT_ONLY_KOREAN.getMessage());
+        }
+    }
+
+    private static void coachHateMenusCount0To2(int hateMenuSize) {
+        if (2 < hateMenuSize) {
+            throw new IllegalArgumentException(HATE_MENU_SIZE_0_TO_2.getMessage());
         }
     }
 }

@@ -10,7 +10,7 @@ public class OutputView {
     private static final String ERROR_TITLE = "[ERROR] ";
     private static final String START_RECOMMEND_LAUNCH_MENU = "점심 메뉴 추천을 시작합니다.";
     private static final String INPUT_COACH_NAME = "\n코치의 이름을 입력해 주세요. (, 로 구분)";
-    private static final String INPUT_COACH_HATE_MENUS = "\n%s가 못 먹는 메뉴를 입력해 주세요.";
+    private static final String INPUT_COACH_HATE_MENUS = "\n%s(이)가 못 먹는 메뉴를 입력해 주세요.";
 
     public static void printError(String errorMessage) {
         System.out.println(ERROR_TITLE + errorMessage);

@@ -37,6 +37,7 @@ public class CoachService {
         for (String coachName : coachesName) {
             String hateMenu = InputView.getCoachHateMenus(coachName);
             List<String> hateMenus = Separator.separateCoachInfo(hateMenu);
+            InputVerifier.tryCoachesHateMenu(hateMenus);
             result.add(applyHateMenus(coachName, hateMenus));
         }
         return result;

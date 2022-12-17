@@ -1,7 +1,6 @@
 package menu;
 
 import menu.controller.CoachController;
-import menu.model.domain.Coach;
 import menu.model.service.CoachService;
 import menu.view.OutputView;
 
