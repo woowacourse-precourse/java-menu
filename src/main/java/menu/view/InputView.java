@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputView {
+    private static final int INEDIBLE_MAX = 2;
     public static List<String> readCoachName() {
         try{
             List<String> coaches = Arrays.stream(Console.readLine().split(","))
@@ -30,7 +31,21 @@ public class InputView {
     }
 
     public static List<String> readInedibleFoods() {
-        return Arrays.stream(Console.readLine().split(","))
+        try {
+        List<String> InedibleFoods = Arrays.stream(Console.readLine().split(","))
                 .collect(Collectors.toList());
+            validateInedible(InedibleFoods);
+            return InedibleFoods;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readInedibleFoods();
+        }
+
+    }
+
+    private static void validateInedible(List<String> foods) {
+        if (foods.size() > INEDIBLE_MAX) {
+            throw new IllegalArgumentException(ErrorMessages.NUMBER_OF_INEDIBLE.getMessage());
+        }
     }
 }
