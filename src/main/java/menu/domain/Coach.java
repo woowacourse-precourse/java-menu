@@ -13,4 +13,8 @@ public class Coach {
     public boolean isEdible(String menu) {
         return inedibleMenu.isEdible(menu) && eatenMenu.isEdible(menu);
     }
+
+    public void eat(String menu) {
+        eatenMenu.eat(menu);
+    }
 }
