@@ -17,7 +17,7 @@ public class MenuRepository {
 	}
 
 	// 카테고리 반환
-	public Category getRandomCategory() throws Exception {
+	public Category getRandomCategory() {
 		int pickNumber = Randoms.pickNumberInRange(1, 5);
 		return Category.getCategory(pickNumber);
 	}

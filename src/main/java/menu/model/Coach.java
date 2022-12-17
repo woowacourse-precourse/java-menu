@@ -13,6 +13,10 @@ public class Coach {
 	private List<String> recommendFoodList;
 	private List<Category> categoryList;
 
+	public void setCategoryList(List<Category> categoryList) {
+		this.categoryList = categoryList;
+	}
+
 	public Coach(String name) {
 		this.name = name;
 		this.categoryList = new ArrayList<>();
@@ -35,31 +39,22 @@ public class Coach {
 		return this.categoryList.size() < 5;
 	}
 
-	public void setCategory(Category category) {
-		for (Category getCategory : this.categoryList) {
-			if (getCategory.equals(category)) {
-				return;
-			}
-		}
-		this.categoryList.add(category);
-	}
-
 	public boolean isRecommendFoodListSizeFull() {
 		return this.recommendFoodList.size() < 5;
 	}
 
-	public void setRecommendFood(String menu) {
+	public boolean setRecommendFood(String menu) {
 		if (this.notEatFoodList.contains(menu)) {
-			return;
+			return false;
 		}
 		if (this.recommendFoodList.contains(menu)) {
-			return;
+			return false;
 		}
 		this.recommendFoodList.add(menu);
+		return true;
 	}
 
-	@Override
-	public String toString() {
+	public String getRecommendFoodList() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("[ ").append(this.name).append(" | ");
 		for (int day = MONDAY; day < FRIDAY; day++) {

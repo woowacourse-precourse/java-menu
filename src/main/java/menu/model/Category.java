@@ -20,7 +20,7 @@ public enum Category {
 		this.menus = menus;
 	}
 
-	public static Category getCategory(int menuNumber) throws Exception {
+	public static Category getCategory(int menuNumber) {
 
 		for (Category category : Category.values()) {
 			if (category.menuNumber == menuNumber) {
@@ -29,11 +29,7 @@ public enum Category {
 		}
 
 		//TODO : 잘못된 번호가 입력됬을 경우 에러 발생
-		throw new Exception("예외");
-	}
-
-	public int getMenuNumber() {
-		return menuNumber;
+		return null;
 	}
 
 	public List<String> getMenus() {
