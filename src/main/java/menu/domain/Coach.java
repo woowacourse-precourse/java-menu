@@ -9,4 +9,8 @@ public class Coach {
         this.inedibleMenu = new InedibleMenu(inedibleMenu);
         this.name = name;
     }
+
+    public boolean isEdible(String menu) {
+        return inedibleMenu.isEdible(menu) && eatenMenu.isEdible(menu);
+    }
 }
