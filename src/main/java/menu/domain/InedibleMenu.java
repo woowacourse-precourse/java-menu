@@ -1,5 +1,6 @@
 package menu.domain;
 
+import menu.constant.ExceptionConstants;
 import menu.constant.MenuConstants;
 import menu.util.Validator;
 
@@ -10,9 +11,15 @@ public class InedibleMenu {
 
     public InedibleMenu(String inedibleMenu) {
         List<String> splittedInedibleMenu = List.of(inedibleMenu.split(MenuConstants.INPUT_DELIMITER));
-        Validator.validateDuplication(splittedInedibleMenu);
-        Validator.validateNumberOfInedibleMenus(splittedInedibleMenu.size());
+        validateInedibleMenu(splittedInedibleMenu);
         this.inedibleMenu = splittedInedibleMenu;
+    }
+
+    private void validateInedibleMenu(List<String> splittedInedibleMenu) {
+        Validator.validateDuplication(splittedInedibleMenu);
+        Validator.validateUpperBound(splittedInedibleMenu.size(),
+                MenuConstants.MAXIMUM_NUMBER_OF_INEDIBLE_MENUS,
+                ExceptionConstants.TOO_MANY_MENUS);
     }
 
     public boolean isEdible(String menu) {
