@@ -1,6 +1,7 @@
 package menu.controller;
 
 import menu.domain.Coach;
+import menu.domain.MenuRecommender;
 import menu.repository.CoachRepository;
 import menu.view.InputView;
 import menu.view.OutputView;
@@ -29,8 +30,9 @@ public class MainController {
             coachRepository.save(coach);
         }
 
-
         /* 메뉴 추천 */
+        MenuRecommender menuRecommender = new MenuRecommender(coachRepository);
+        menuRecommender.run();
 
         /* 서비스 종료 문구 출력 */
         outputView.printEndMessage();

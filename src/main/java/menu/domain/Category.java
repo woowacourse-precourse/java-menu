@@ -7,5 +7,6 @@ public class Category {
 
     public void addRecommendedCategory(String category) { recommendedCategory.add(category);}
     public boolean hasCategory(String category) {
+        return true;
     }
 }

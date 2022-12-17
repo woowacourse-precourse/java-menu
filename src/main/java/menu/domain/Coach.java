@@ -17,5 +17,6 @@ public class Coach {
     }
 
     public boolean hasMenu(String menu) {
+        return true;
     }
 }
