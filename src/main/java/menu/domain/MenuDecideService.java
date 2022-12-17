@@ -28,6 +28,12 @@ public class MenuDecideService {
         coach.setMenus(new CantEatMenus(menus));
     }
 
+    public void makeMenuResult() {
+        for (Category category : categoryResult.getCategoryResults()) {
+            List<Menu> manusByCategory = MenuRepository.findByCategory(category);
+        }
+    }
+
     public void makeCategoryResult() {
         while (categoryResult.getSize() < 5) {
             Category category = decideCategory();
