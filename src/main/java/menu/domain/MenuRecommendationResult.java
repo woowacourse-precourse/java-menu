@@ -11,11 +11,24 @@ public class MenuRecommendationResult {
         numberGenerator randomNumberGenerator = new RandomNumberGenerator();
         int index = randomNumberGenerator.generate();
         Categories category = Categories.getCategoryBYIndex(index);
-        String shuffledMenu = Categories.getShuffledMenu(index);
+
+        String shuffledMenu;
+        while (true) {
+            shuffledMenu = Categories.getShuffledMenu(index);
+            if (validateHateMenu(coachName, shuffledMenu)) break;
+        }
 
         HashMap<String, String> result = new HashMap<>();
         result.put(coachName, shuffledMenu);
 
         recommendationResult.put(day, result);
+    }
+
+    private boolean validateHateMenu(String coachName, String shuffledMenu) {
+        Map<String, List<String>> coachHateMenu = CoachRepository.getCoachHateMenu();
+        if (coachHateMenu.get(coachName).contains(shuffledMenu)) {
+            return false;
+        }
+        return true;
     }
 }

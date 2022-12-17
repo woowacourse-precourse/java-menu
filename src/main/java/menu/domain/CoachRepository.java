@@ -19,4 +19,8 @@ public class CoachRepository {
     public static List<String> getCoachNames() {
         return coachNames;
     }
+
+    public static Map<String, List<String>> getCoachHateMenu() {
+        return coachHateMenu;
+    }
 }

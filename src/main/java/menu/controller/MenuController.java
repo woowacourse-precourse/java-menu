@@ -21,9 +21,9 @@ public class MenuController {
 
     }
 
-    private void recommendationMenu(MenuRecommendationResult menuRecommendationResult) {
+    private void recommendationMenu(MenuRecommendationResult menuRecommendationResult, String coachName) {
         for (Day day : Day.values()) {
-
+            menuRecommendationResult.menuRecommend(day, coachName);
         }
     }
 
