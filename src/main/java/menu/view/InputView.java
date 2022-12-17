@@ -2,6 +2,7 @@ package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import menu.util.ExceptionMessage;
 import menu.util.Util;
 
 public class InputView {
@@ -20,8 +21,15 @@ public class InputView {
     public List<String> readCoachNames() {
         System.out.println(Message.INPUT_COACH_NAMES.message);
         List<String> coaches = Util.splitByComma(Console.readLine());
-        // validate
+        System.out.println(coaches.size());
+        validateCoachNumber(coaches);
         return coaches;
+    }
+
+    private static void validateCoachNumber(List<String> coaches) {
+        if (coaches.size() <= 1 || coaches.size() >= 6) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_COACH_NUMBER.getMessage());
+        }
     }
 
 

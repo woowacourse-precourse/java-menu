@@ -3,7 +3,8 @@ package menu.util;
 public enum ExceptionMessage {
 
     INVALID_NOT_NUMERIC("자연수만 입력 가능합니다."),
-    INVALID_OUT_OF_INT_RANGE("입력 범위를 초과하였습니다.");
+    INVALID_OUT_OF_INT_RANGE("입력 범위를 초과하였습니다."),
+    INVALID_COACH_NUMBER("코치는 최소 2명, 최대 5명이어야 합니다.");
 
     public static final String BASE_MESSAGE = "[ERROR] %s";
     private final String message;

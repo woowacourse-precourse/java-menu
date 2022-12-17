@@ -34,7 +34,7 @@ public class MainController {
     public ApplicationStatus process(ApplicationStatus applicationStatus) {
         try {
             return gameGuide.get(applicationStatus).get();
-        } catch (Exception exception) {
+        } catch (NullPointerException exception) {
             return ApplicationStatus.APPLICATION_EXIT;
         }
     }
