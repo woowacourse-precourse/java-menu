@@ -43,10 +43,12 @@ class MenuServiceTest {
         menuService.setCoachesName("하나,두울");
 
         ArrayList<String> inputs = new ArrayList<>();
-        inputs.add("음식1,음식2");
+        inputs.add("비빔밥");
         inputs.add("");
 
         //when
+        for(String input:inputs)
+            menuService.validateAvoidanceInput(input);
         menuService.setAvoidance(inputs);
 
         //then
