@@ -1,4 +1,6 @@
-package menu.domain;
+package menu.domain.menu;
+
+import menu.domain.menu.Menu;
 
 import java.util.List;
 

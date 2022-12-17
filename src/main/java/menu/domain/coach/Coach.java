@@ -1,7 +1,10 @@
-package menu.domain;
+package menu.domain.coach;
+
+import java.util.List;
 
 public class Coach {
     private String name;
+    private List<String> foods;
 
     Coach(String name) {
         this.name = name;
@@ -13,4 +16,14 @@ public class Coach {
     public String getName() {
         return name;
     }
+
+    public List<String> getFoods() {
+        return foods;
+    }
+
+    public void initFoods(List<String> foods) {
+        this.foods = foods;
+    }
+
+
 }

@@ -1,6 +1,6 @@
 package menu.controller;
 
-import menu.domain.Coach;
+import menu.domain.coach.Coach;
 import menu.domain.MenuDomain;
 import menu.util.PrintMsg;
 import menu.view.InputView;
@@ -21,13 +21,14 @@ public class MenuController {
 
     public void initMenu() {
         menuDomain.initMenu();
-
+        menuDomain.initDays();
         outputView.printMsg(PrintMsg.START.getMsg());
     }
 
     public void start() {
         readCoachNames();
         readCoachsCannotEat();
+        doRecommand();
     }
 
     public void readCoachNames() {
@@ -49,6 +50,7 @@ public class MenuController {
         List<Coach> coaches = menuDomain.getCoachs();
         for (Coach coach : coaches) {
             List<String> foods = getFoods(coach.getName());
+            menuDomain.initFoods(coach, foods);
         }
     }
     public List<String> getFoods(String coachName) {
@@ -61,5 +63,12 @@ public class MenuController {
                 outputView.printMsg(exception.getMessage());
             }
         }
+    }
+
+    /**
+     * 메뉴 추천을 하기위한 동작 함수
+     */
+    public void doRecommand() {
+        menuDomain.doRecommand();
     }
 }

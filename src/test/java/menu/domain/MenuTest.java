@@ -1,5 +1,6 @@
 package menu.domain;
 
+import menu.domain.menu.Menu;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
