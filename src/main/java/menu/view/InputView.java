@@ -2,8 +2,8 @@ package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
-import menu.Coach;
-import menu.Menu;
+import menu.domain.Coach;
+import menu.domain.Menu;
 import menu.Service;
 import menu.validator.Validate;
 

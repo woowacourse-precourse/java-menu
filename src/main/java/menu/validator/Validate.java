@@ -1,6 +1,6 @@
 package menu.validator;
 
-import menu.ValidMenus;
+import menu.domain.ValidMenus;
 
 public class Validate {
 

@@ -1,6 +1,6 @@
 package menu.view;
 
-import menu.Coach;
+import menu.domain.Coach;
 
 public enum PrintMessages {
     SERVICE_START("점심 메뉴 추천을 시작합니다."),

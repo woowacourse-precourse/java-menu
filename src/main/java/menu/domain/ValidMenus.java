@@ -1,4 +1,4 @@
-package menu;
+package menu.domain;
 
 import menu.validator.ErrorMessages;
 

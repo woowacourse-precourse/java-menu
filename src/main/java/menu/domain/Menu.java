@@ -1,4 +1,6 @@
-package menu;
+package menu.domain;
+
+import menu.Service;
 
 public class Menu {
 

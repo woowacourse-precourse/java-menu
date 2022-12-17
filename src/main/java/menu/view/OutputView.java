@@ -1,9 +1,9 @@
 package menu.view;
 
-import menu.Coach;
-import menu.Day;
-import menu.DaysName;
-import menu.Menu;
+import menu.domain.Coach;
+import menu.domain.Day;
+import menu.domain.DaysName;
+import menu.domain.Menu;
 import menu.Service;
 
 public class OutputView {
