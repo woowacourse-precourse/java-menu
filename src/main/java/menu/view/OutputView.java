@@ -32,7 +32,7 @@ public class OutputView {
     public static void printRecommendationResult(MenuRecommendationResult menuRecommendationResult) {
         System.out.println(RESULT);
         printDays();
-        printCategories();
+        printCategories(menuRecommendationResult);
         printResult(menuRecommendationResult);
     }
 
@@ -49,11 +49,13 @@ public class OutputView {
         System.out.println(sj.toString());
     }
 
-    private static void printCategories() {
+    private static void printCategories(MenuRecommendationResult menuRecommendationResult) {
+        Map<Day, Categories> result = menuRecommendationResult.getCategoriesResult();
         StringJoiner sj = new StringJoiner(" | ", "[ ", " ]");
+
         sj.add("카테고리");
-        for (Categories category : Categories.values()) {
-            sj.add(category.getName());
+        for (Day day : Day.values()) {
+            sj.add(result.get(day).getName());
         }
         System.out.println(sj.toString());
     }
@@ -61,11 +63,11 @@ public class OutputView {
     private static void printResult(MenuRecommendationResult menuRecommendationResult) {
         List<String> coachNames = CoachRepository.getCoachNames();
         StringJoiner sj = new StringJoiner(" | ", "[ ", " ]");
-        Map<Day, Map<String, String>> result = menuRecommendationResult.getRecommendationResult();
+        Map<String, Map<Day, String>> result = menuRecommendationResult.getRecommendationResult();
         for (int i = 0; i < coachNames.size(); i++) {
             sj.add(coachNames.get(i));
             for (Day day : Day.values()) {
-                sj.add(result.get(day).get(coachNames.get(i)));
+                sj.add(result.get(coachNames.get(i)).get(day));
             }
             System.out.println(sj.toString());
             sj = new StringJoiner(" | ", "[ ", " ]");

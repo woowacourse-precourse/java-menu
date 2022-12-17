@@ -23,4 +23,11 @@ public class CoachRepository {
     public static Map<String, List<String>> getCoachHateMenu() {
         return coachHateMenu;
     }
+
+    @Override
+    public String toString() {
+        return "CoachRepository{" +
+                "CoachRepository=" + coachHateMenu +
+                '}';
+    }
 }

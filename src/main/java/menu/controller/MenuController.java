@@ -15,9 +15,22 @@ public class MenuController {
     public void run() {
         setUp();
         MenuRecommendationResult menuRecommendationResult = new MenuRecommendationResult();
+        selectCategory(menuRecommendationResult);
+
         recommendCoachMenu(menuRecommendationResult);
+
+        System.out.println(menuRecommendationResult.toString());
+        System.out.println(CoachRepository.getCoachHateMenu().toString());
+
         OutputView.printRecommendationResult(menuRecommendationResult);
         OutputView.printSuccessMessage();
+    }
+
+    // 요일별 카테고리 선정
+    private void selectCategory(MenuRecommendationResult menuRecommendationResult) {
+        for (Day day : Day.values()) {
+            menuRecommendationResult.selectDayCategory(day);
+        }
     }
 
     private void recommendCoachMenu(MenuRecommendationResult menuRecommendationResult) {

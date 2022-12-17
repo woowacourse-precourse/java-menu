@@ -5,7 +5,30 @@ import java.util.List;
 import java.util.Map;
 
 public class MenuRecommendationResult {
-    private Map<Day, Map<String, String>> recommendationResult = new HashMap();
+    //    private Map<Day, Map<String, String>> recommendationResult = new HashMap();
+    private Map<String, Map<Day, String>> recommendationResult = new HashMap();
+    private Map<Day, Categories> categoriesResult = new HashMap<>();
+
+    public void selectDayCategory(Day day) {
+        numberGenerator randomNumberGenerator = new RandomNumberGenerator();
+
+        Categories category;
+        while (true) {
+            int index = randomNumberGenerator.generate();
+            category = Categories.getCategoryBYIndex(index);
+
+            if (!validateDuplicateCategory(category)) break;
+        }
+        categoriesResult.put(day, category);
+    }
+
+    private boolean validateDuplicateCategory(Categories category) {
+        int count = 0;
+        for (Categories categories : categoriesResult.values()) {
+            if (categories.equals(category)) count++;
+        }
+        return count > 2;
+    }
 
     public void menuRecommend(Day day, String coachName) {
         numberGenerator randomNumberGenerator = new RandomNumberGenerator();
@@ -18,10 +41,10 @@ public class MenuRecommendationResult {
             if (validateHateMenu(coachName, shuffledMenu)) break;
         }
 
-        HashMap<String, String> result = new HashMap<>();
-        result.put(coachName, shuffledMenu);
+        HashMap<Day, String> result = new HashMap<>();
+        result.put(day, shuffledMenu);
 
-        recommendationResult.put(day, result);
+        recommendationResult.put(coachName, result);
     }
 
     private boolean validateHateMenu(String coachName, String shuffledMenu) {
@@ -32,7 +55,22 @@ public class MenuRecommendationResult {
         return true;
     }
 
-    public Map<Day, Map<String, String>> getRecommendationResult() {
+    public Map<String, Map<Day, String>> getRecommendationResult() {
         return recommendationResult;
+    }
+
+    public Map<Day, Categories> getCategoriesResult() {
+        return categoriesResult;
+    }
+
+    @Override
+    public String toString() {
+        return "MenuRecommendationResult{" +
+                "recommendationResult=" + recommendationResult +
+                '}' +
+                "MenuRecommendationResult{" +
+                "categoriesResult=" + categoriesResult +
+                '}'
+                ;
     }
 }
