@@ -1,16 +1,13 @@
-package menu;
+package menu.controller;
 
-import menu.domain.CategoryRepository;
 import menu.service.CategoryService;
 import menu.service.CoachService;
-import menu.service.FoodService;
 import menu.service.MenuService;
 
 public class MenuController {
     private final MenuService menuService = new MenuService();
     private final CoachService coachService = new CoachService();
     private final CategoryService categoryService = new CategoryService();
-    private final FoodService foodService = new FoodService();
 
     public void run() {
         initRoutine();
@@ -33,7 +30,7 @@ public class MenuController {
     }
 
     private void mainRoutine() {
-        foodService.initialize();
+        menuService.recommend();
     }
 
     private void exitRoutine() {

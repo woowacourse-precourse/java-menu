@@ -1,4 +1,4 @@
-package menu;
+package menu.view;
 
 import menu.domain.Category;
 import menu.domain.CategoryRepository;
