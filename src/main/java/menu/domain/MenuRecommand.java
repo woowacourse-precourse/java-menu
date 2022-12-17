@@ -13,19 +13,28 @@ public class MenuRecommand {
     public MenuRecommand(){}
 
     public void play() {
+        OutputView.printStartMsg();
+
         List<String> coaches = InputView.inputCoaches();
-        List<String[]> coachesMenu = new ArrayList<>();
-        for (int i = 0; i < coaches.size(); i++)
-            coachSet.put(coaches.get(i),InputView.inputInEdibleMenu(coaches.get(i)));
-        List<Integer> category = Category.recommandCategory();
+        HashMap<String,List<String>> coachesHs = new HashMap<>();
+        for (int i = 0; i < coaches.size(); i++) {
+            List<String> l = new ArrayList<>();
+            coachSet.put(coaches.get(i), InputView.inputInEdibleMenu(coaches.get(i)));
+            coachesHs.put(coaches.get(i),l);
+        }
+        Category category = new Category();
 
-        Menu menu = new Menu(category);
-        for (int i = 0; i < coaches.size(); i++)
-            coachesMenu.add(menu.recommandMenu(coachSet.get(coaches.get(i))));
+        for (int i = 0; i < 5; i ++) {
+            Integer now_category = category.recommandDayCategory();
+            for (int j = 0; j < coaches.size(); j++)
+                coachesHs.get(coaches.get(j)).add(recommandMenuByCategory(coachSet.get(coaches.get(j)),now_category));
+        }
 
-        OutputView.printResult(coaches,coachesMenu,category);
+        OutputView.printResult(coaches,coachesHs,category.getCategory());
     }
 
-    public void recommandMenu() {
+    public String recommandMenuByCategory(List<String> inEdibleMenu, Integer category) {
+        Menu menu = new Menu(category);
+        return menu.recommandMenu(inEdibleMenu);
     }
 }
