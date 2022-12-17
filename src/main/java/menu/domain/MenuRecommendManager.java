@@ -71,11 +71,21 @@ public class MenuRecommendManager {
     private void getRecommendFood(Coach coach, Day day, Category category) {
         List<String> categoryFoods = foodRepository.loadAllFoodNamesByCategory(category);
         while (true) {
-            String recommendedFoodName = RandomFoodRecommend.randomRecommendFood(categoryFoods);
-            Food recommendedFood = foodRepository.findFoodBy(category, recommendedFoodName);
+            Food recommendedFood = findCategoryFood(category, categoryFoods);
             if (coach.isFoodOk(recommendedFood)) {
                 coach.addRecommendedFood(day, recommendedFood);
-                return;
+                break;
+            }
+        }
+    }
+
+    private Food findCategoryFood(Category category, List<String> categoryFoods) {
+        while (true) {
+            try {
+                String recommendedFoodName = RandomFoodRecommend.randomRecommendFood(categoryFoods);
+                return foodRepository.findFoodBy(category, recommendedFoodName);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }

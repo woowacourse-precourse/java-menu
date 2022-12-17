@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static menu.global.GlobalUnitMessage.*;
-
 public class Coach {
     private final String name;
     private final List<Food> hateFoods = new ArrayList<>();
@@ -26,12 +24,8 @@ public class Coach {
         }
     }
 
-    public boolean addRecommendedFood(Day day, Food food) {
-        boolean foodOk = isFoodOk(food);
-        if (foodOk) {
-            recommendFoods.put(day, food);
-        }
-        return foodOk;
+    public void addRecommendedFood(Day day, Food food) {
+        recommendFoods.put(day, food);
     }
 
     public void clearHateFood() {
@@ -69,16 +63,5 @@ public class Coach {
                 .filter(recommendedFood -> recommendedFood.isSameCategory(food))
                 .count();
         return count >= 3;
-    }
-
-    @Override
-    public String toString() {
-        return SQUARE_BRACKET_LEFT.getMessage() +
-                recommendFoods.get(Day.MONDAY).loadName() + STICK_SEPARATOR.getMessage() +
-                recommendFoods.get(Day.TUESDAY).loadName() + STICK_SEPARATOR.getMessage() +
-                recommendFoods.get(Day.WEDNESDAY).loadName() + STICK_SEPARATOR.getMessage() +
-                recommendFoods.get(Day.THURSDAY).loadName() + STICK_SEPARATOR.getMessage() +
-                recommendFoods.get(Day.FRIDAY).loadName() +
-                SQUARE_BRACKET_RIGHT.getMessage();
     }
 }

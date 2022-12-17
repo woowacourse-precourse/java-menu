@@ -29,7 +29,7 @@ public class FoodRepository {
     public Food findFoodBy(Category category, String lastFoodName) {
         return foods.get(category)
                 .stream()
-                .filter(food -> food.loadName().equals(lastFoodName))
+                .filter(food -> food.loadName().equals(lastFoodName.trim()))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(WRONG_FOOD_NAME_EXCEPTION.getMessage()));
     }

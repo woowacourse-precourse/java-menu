@@ -42,12 +42,4 @@ public class Food {
     public boolean isSameCategory(Food food) {
         return this.category.isSame(food.category);
     }
-
-    @Override
-    public String toString() {
-        return "Food{" +
-                "category=" + category +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }

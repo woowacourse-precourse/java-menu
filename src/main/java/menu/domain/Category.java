@@ -1,8 +1,6 @@
 package menu.domain;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static menu.exception.GlobalExceptionMessage.WRONG_CATEGORY_TYPE_EXCEPTION;
 
