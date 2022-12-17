@@ -12,8 +12,9 @@ public class InputView {
         return Console.readLine();
     }
     
-    public void inputUneatableMenu(OutputView outputView, String coachName) {
+    public String inputUneatableMenu(OutputView outputView, String coachName) {
         outputView.printInputUneatableMenuGuide(coachName);
+        return Console.readLine();
     }
     
     public <T> T repeatInput(Supplier<T> inputProcess, OutputView outputView) {
