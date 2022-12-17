@@ -17,9 +17,16 @@ public class HateMenu {
     }
 
     private void validateMenu(String menu) {
+        if (isNull(menu)) {
+            return;
+        }
         if (!Category.isExistMenu(menu)) {
             ExceptionMessage.NOT_EXIST_MENU.throwException();
         }
+    }
+
+    private boolean isNull(String menu) {
+        return menu.isEmpty();
     }
 
     public boolean isHateMenu(String menu) {
