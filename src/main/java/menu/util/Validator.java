@@ -1,5 +1,6 @@
 package menu.util;
 
+import java.util.Arrays;
 import menu.message.ErrorMessage;
 
 public class Validator {
@@ -15,6 +16,9 @@ public class Validator {
 
         String[] coaches = input.split(Constant.INPUT_DELIMITER);
 
+        if (isAnyWordEnteredTwice(coaches)) {
+            throw new IllegalArgumentException(ErrorMessage.SAME_WORD_ENTERED_TWICE);
+        }
         if (isLessThanMinimumNumberOfCoach(coaches)) {
             throw new IllegalArgumentException(ErrorMessage.LESS_THAN_MINIMUM_NUMBER_OF_COACH);
         }
@@ -30,6 +34,9 @@ public class Validator {
 
         String[] foods = input.split(Constant.INPUT_DELIMITER);
 
+        if (isAnyWordEnteredTwice(foods)) {
+            throw new IllegalArgumentException(ErrorMessage.SAME_WORD_ENTERED_TWICE);
+        }
         if (isOverMaximumNumberOfDislikeFood(foods)) {
             throw new IllegalArgumentException(ErrorMessage.OVER_MAXIMUM_NUMBER_OF_DISLIKE_FOOD);
         }
@@ -49,5 +56,18 @@ public class Validator {
 
     private static boolean isOverMaximumNumberOfDislikeFood(String[] foods) {
         return foods.length > MAXIMUM_NUMBER_OF_DISLIKE_FOOD;
+    }
+
+    private static boolean isAnyWordEnteredTwice(String[] inputs) {
+        for (String input : inputs) {
+            long count = Arrays.stream(inputs)
+                    .filter(i -> i.equals(input))
+                    .count();
+
+            if (count > 1) {
+                return true;
+            }
+        }
+        return false;
     }
 }
