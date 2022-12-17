@@ -1,6 +1,6 @@
 package view;
 
-import domain.Menu;
+import domain.Coach;
 
 public final class OutputView {
     private static final String START_RECOMMEND = "점심 메뉴 추천을 시작합니다.";
@@ -19,8 +19,8 @@ public final class OutputView {
         System.out.println(INPUT_COACH_NAME);
     }
 
-    public static void printInputCoachHateMenu(Menu menu) {
-        System.out.printf(INPUT_COACH_HATE_MENU, menu);
+    public static void printInputCoachHateMenu(Coach coach) {
+        System.out.printf(INPUT_COACH_HATE_MENU, coach.getName());
     }
 
 
