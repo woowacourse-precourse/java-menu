@@ -10,6 +10,8 @@ public class Application {
         // TODO: 프로그램 구현
         MenuController menuController = new MenuController(new CoachService(), new BanService(), new ResultService());
         menuController.start();
-        menuController.select();
+        for (int i = 0; i < 5; i++) {
+            menuController.select();
+        }
     }
 }
