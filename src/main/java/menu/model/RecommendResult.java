@@ -1,12 +1,13 @@
 package menu.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RecommendResult {
     private final Coach coach;
-    private final Menus menus;
+    private final List<Menu> menus;
 
-    public RecommendResult(final Coach coach, final Menus menus) {
+    public RecommendResult(final Coach coach, final List<Menu> menus) {
         this.coach = coach;
         this.menus = menus;
     }
@@ -15,7 +16,9 @@ public class RecommendResult {
         return coach.getName();
     }
 
-    public List<String> getMenus() {
-        return menus.getMenus();
+    public List<String> getMenuNames() {
+        return menus.stream()
+                .map(Menu::getName)
+                .collect(Collectors.toList());
     }
 }

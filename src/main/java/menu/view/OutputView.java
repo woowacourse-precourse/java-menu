@@ -35,6 +35,6 @@ public class OutputView extends DefaultMessage {
 
     private static String createResultView(final RecommendResult result) {
         return OPEN_BRACKET + result.getCoachName() + DELIMITER +
-                String.join(DELIMITER, result.getMenus()) + CLOSE_BRACKET;
+                String.join(DELIMITER, result.getMenuNames()) + CLOSE_BRACKET;
     }
 }
