@@ -31,18 +31,18 @@ class CategoryRepositoryTest {
         assertThat(byId).isEqualTo(category);
     }
 
-    @ParameterizedTest(name = "{0}의 카테고리을 save한 후, findAll 한 결과는 {0}과 일치")
-    @MethodSource("getData")
-    @DisplayName("find All 로직")
-    void find_all(List<Category> categories){
-        int sequence = 1;
-        for (Category category : categories) {
-            categoryRepository.save(sequence++, category);
-        }
-
-        List<Category> result = categoryRepository.findAll();
-        assertThat(result).isEqualTo(categories);
-    }
+//    @ParameterizedTest(name = "{0}의 카테고리을 save한 후, findAll 한 결과는 {0}과 일치")
+//    @MethodSource("getData")
+//    @DisplayName("find All 로직")
+//    void find_all(List<Category> categories){
+//        int sequence = 1;
+//        for (Category category : categories) {
+//            categoryRepository.save(sequence++, category);
+//        }
+//
+//        List<Category> result = categoryRepository.findAll();
+//        assertThat(result).isEqualTo(categories);
+//    }
 
 
 }
