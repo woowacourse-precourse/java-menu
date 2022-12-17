@@ -46,8 +46,7 @@ public class MenuRecommendSystem {
      * 코치 이름 입력받기*
      */
     private void makeCoaches() {
-        OutputView.printPromptForCoachNameInput();
-        coaches = createCoachesByNames();
+        coaches = read(this::createCoachesByNames, InputView::readCoachNameList);
     }
 
     /**
@@ -55,8 +54,8 @@ public class MenuRecommendSystem {
      * @param coach: 이름으로 생성한 코치 한 명
      */
     private void addMenuCannotToEat(Coach coach) {
-        OutputView.printPromptForMenuCannotToEatInput(coach.getName());
-        List<String> menuCannotEat = read(this::getMenuCannotEat, InputView::readMenuCoachCannotEat);
+        List<String> menuCannotEat = readMenuUntilValidValue(coach);
+
         for (String menu : menuCannotEat) {
             coach.addMenuCannotEat(menu);
         }
@@ -65,7 +64,21 @@ public class MenuRecommendSystem {
         }
     }
 
+    private List<String> readMenuUntilValidValue(Coach coach) {
+        while(true) {
+            try{
+                return getMenuCannotEat(InputView.readMenuCoachCannotEat(coach.getName()));
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
     private List<String> getMenuCannotEat(List<String> menuInput) {
+        if (menuInput.isEmpty()) {
+            return menuInput;
+        }
         for(String menu: menuInput) {
             validateMenu(menu);
         }
@@ -76,8 +89,7 @@ public class MenuRecommendSystem {
         Category.existsHaving(menu);
     }
 
-    private List<Coach> createCoachesByNames() {
-        List<String> coachNameList = InputView.readCoachNameList();
+    private List<Coach> createCoachesByNames(List<String> coachNameList) {
         if (coachNameList.size() < 2) {
             throw new IllegalArgumentException(LESS_THAN_MIN_VALUE);
         }
