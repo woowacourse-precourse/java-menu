@@ -29,6 +29,7 @@ public class MenuService {
     }
 
     public void setCoachesName(String input) {
+        coaches.clear();
         validateCountOfCoaches(input);
 
         StringTokenizer st = new StringTokenizer(input, ",");
@@ -62,13 +63,17 @@ public class MenuService {
     }
 
     private void addNewCategory(Category newCategory) {
+        if (countDuplicated(newCategory) < 2)
+            categories.add(newCategory);
+    }
+
+    private int countDuplicated(Category newCategory) {
         int count = 0;
         for (Category category : categories)
             if (category.equals(newCategory))
                 count++;
 
-        if (count < 2)
-            categories.add(newCategory);
+        return count;
     }
 
     private void validateCountOfCoaches(String input) {
