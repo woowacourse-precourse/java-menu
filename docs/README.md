@@ -153,6 +153,11 @@
 > 카테고리 및 메뉴에 대한 상수들을 모아둔 enum 클래스
 >
 
+### DayOfWeek
+
+> 요일에 대한 상수들을 모아둔 enum 클래스
+>
+
 ## util
 
 ### RandomCategoryGenerator
