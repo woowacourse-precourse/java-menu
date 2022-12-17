@@ -6,11 +6,12 @@ import java.util.List;
 public class Coach {
     private String name;
     private List<String> cantEats;
-    private List<String> menu = new ArrayList<>();
+    private List<String> menu;
 
     public Coach(String name, List<String> cantEats) {
         this.name = name;
         this.cantEats = cantEats;
+        this.menu = new ArrayList<>();
     }
 
     public List<String> getMenu() {
