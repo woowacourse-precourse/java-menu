@@ -3,13 +3,13 @@ package menu.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Couch {
+public class Coach {
 
     private String name;
     private List<String> cannotEatFoods = new ArrayList<>();
     private List<String> recommendedFoods = new ArrayList<>();
 
-    public Couch(String name) {
+    public Coach(String name) {
         this.name = name;
     }
 

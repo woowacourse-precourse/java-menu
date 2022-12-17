@@ -2,9 +2,6 @@ package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 
 public class MenuRecommendService {
@@ -27,13 +24,13 @@ public class MenuRecommendService {
     }
 
     private void recommendMenuEachPeople(Category category) {
-        for (int i = 0; i < CouchRepository.couches().size(); i++) {
+        for (int i = 0; i < CoachRepository.coaches().size(); i++) {
             String menu = Randoms.shuffle(category.getFoods()).get(0);
-            if (CouchRepository.couches().get(i).getCannotEatFoods().contains(menu) || CouchRepository.couches().get(i).getRecommendedFoods().contains(menu)) {
+            if (CoachRepository.coaches().get(i).getCannotEatFoods().contains(menu) || CoachRepository.coaches().get(i).getRecommendedFoods().contains(menu)) {
                 i--;
                 continue;
             }
-            CouchRepository.couches().get(i).addRecommendedFood(menu);
+            CoachRepository.coaches().get(i).addRecommendedFood(menu);
         }
     }
 

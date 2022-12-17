@@ -1,7 +1,7 @@
 package menu.controller;
 
-import menu.domain.Couch;
-import menu.domain.CouchService;
+import menu.domain.Coach;
+import menu.domain.CoachService;
 import menu.domain.MenuRecommendService;
 import menu.ui.InputView;
 import menu.ui.OutputView;
@@ -13,25 +13,25 @@ public class MenuController {
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
     private final String START = "점심 메뉴 추천을 시작합니다.";
-    private CouchService couchService = new CouchService();
+    private CoachService coachService = new CoachService();
     private MenuRecommendService menuRecommendService = new MenuRecommendService();
 
     public void doRecommendMenu() {
         System.out.println(START);
-        registerCouches();
+        registercoaches();
         registerCannotEat();
         recommendMenu();
-        outputView.resultOfRecommend(menuRecommendService.getRecommendedCategories(), couchService.getCouches());
+        outputView.resultOfRecommend(menuRecommendService.getRecommendedCategories(), coachService.getcoaches());
     }
 
     private void recommendMenu() {
         menuRecommendService.recommendMenu();
     }
 
-    private void registerCouches() {
+    private void registercoaches() {
         while (true) {
             try {
-                couchService.registerCouches(inputView.inputCouchNames());
+                coachService.registercoaches(inputView.inputcoachNames());
                 break;
             } catch (IllegalArgumentException ex) {
                 System.out.println(ex.getMessage());
@@ -40,10 +40,10 @@ public class MenuController {
     }
 
     private void registerCannotEat() {
-        List<Couch> couches = couchService.getCouches();
-        for (int i = 0; i < couches.size(); i++) {
+        List<Coach> coaches = coachService.getcoaches();
+        for (int i = 0; i < coaches.size(); i++) {
             try {
-                couches.get(i).setCannotEatFoods(Arrays.asList(inputView.inputCannotEat(couches.get(i).getName()).split(",")));
+                coaches.get(i).setCannotEatFoods(Arrays.asList(inputView.inputCannotEat(coaches.get(i).getName()).split(",")));
             } catch (IllegalArgumentException ex) {
                 System.out.println(ex.getMessage());
                 i--;

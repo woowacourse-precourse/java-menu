@@ -3,24 +3,24 @@ package menu.ui;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-    private final String INPUT_COUCH_NAMES = "코치의 이름을 입력해 주세요. (, 로 구분)";
+    private final String INPUT_coach_NAMES = "코치의 이름을 입력해 주세요. (, 로 구분)";
     private final String INPUT_CANNOT_EAT = "(이)가 못 먹는 메뉴를 입력해 주세요.";
 
     InputViewValidation validation = new InputViewValidation();
 
-    public String inputCouchNames() {
-        System.out.println(INPUT_COUCH_NAMES);
+    public String inputcoachNames() {
+        System.out.println(INPUT_coach_NAMES);
         String input = Console.readLine();
-        validation.couchNameValidate(input);
-        validation.couchNumValidate(input);
+        validation.coachNameValidate(input);
+        validation.coachNumValidate(input);
         return input;
     }
 
-    public String inputCannotEat(String couchName) {
-        System.out.println(couchName + INPUT_CANNOT_EAT);
+    public String inputCannotEat(String coachName) {
+        System.out.println(coachName + INPUT_CANNOT_EAT);
         String input = Console.readLine();
-        validation.couchCannotEatNumValidate(input);
-        validation.couchCannotEatFoodValidate(input);
+        validation.coachCannotEatNumValidate(input);
+        validation.coachCannotEatFoodValidate(input);
         return input;
     }
 }

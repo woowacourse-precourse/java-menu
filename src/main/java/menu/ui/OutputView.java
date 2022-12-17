@@ -1,7 +1,7 @@
 package menu.ui;
 
 import menu.domain.Category;
-import menu.domain.Couch;
+import menu.domain.Coach;
 
 import java.util.List;
 
@@ -14,12 +14,12 @@ public class OutputView {
     private final String RESULT_MENU_RECOMMEND = "메뉴 추천 결과입니다.";
     private final String WEEK_SECTION = "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]";
 
-    public void resultOfRecommend(List<Category> recommendedCategories, List<Couch> couches) {
+    public void resultOfRecommend(List<Category> recommendedCategories, List<Coach> coaches) {
         System.out.println(RESULT_MENU_RECOMMEND);
         System.out.println(WEEK_SECTION);
         System.out.println(makeCategorySection(recommendedCategories));
-        for (Couch couch : couches) {
-            System.out.println(makeCouchSection(couch));
+        for (Coach coach : coaches) {
+            System.out.println(makecoachSection(coach));
         }
         System.out.println("\n" + "추천을 완료했습니다.\n");
     }
@@ -34,10 +34,10 @@ public class OutputView {
         return output.toString();
     }
 
-    private String makeCouchSection(Couch couch) {
-        StringBuilder output = new StringBuilder(START + couch.getName() + SECTION);
+    private String makecoachSection(Coach coach) {
+        StringBuilder output = new StringBuilder(START + coach.getName() + SECTION);
         for (String food :
-                couch.getRecommendedFoods()) {
+                coach.getRecommendedFoods()) {
             output.append(food).append(SECTION);
         }
         output.replace(output.length() - 3, output.length(), "").append(END);
