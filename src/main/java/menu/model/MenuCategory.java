@@ -2,14 +2,14 @@ package menu.model;
 
 import java.util.Arrays;
 
+import static menu.utils.Errors.NOT_EXIST_CATEGORY;
+
 public enum MenuCategory {
     JAPAN("일식", 1),
     KOREA("한식", 2),
     CHINA("중식", 3),
     ASIAN("아시안", 4),
     WESTERN("양식", 5);
-
-    private static final String NOT_EXIST_CATEGORY = "존재하지 않는 카테고리 입니다.";
 
     private final String category;
     private final int number;
@@ -23,7 +23,7 @@ public enum MenuCategory {
         return Arrays.stream(values())
                 .filter(category -> category.equalsNumber(number))
                 .findFirst()
-                .orElseThrow(() -> new IllegalStateException(NOT_EXIST_CATEGORY));
+                .orElseThrow(() -> new IllegalStateException(NOT_EXIST_CATEGORY.getMessage()));
     }
 
     private boolean equalsNumber(final int number) {

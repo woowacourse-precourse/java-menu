@@ -5,6 +5,7 @@ import menu.model.Coaches;
 import menu.model.Menus;
 import menu.model.RecommendResult;
 import menu.service.RecommendService;
+import menu.utils.Errors;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -37,7 +38,7 @@ public class RecommendController {
             final String cannotEatMenu = InputView.inputCannotEatMenu(coach.getName());
             return Menus.create(cannotEatMenu);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            Errors.printLog(e.getMessage());
             return inputCannotEatFoods(coach);
         }
     }
@@ -47,7 +48,7 @@ public class RecommendController {
             final String input = InputView.inputCoachName();
             return Coaches.create(input);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            Errors.printLog(e.getMessage());
             return inputCoachName();
         }
     }
