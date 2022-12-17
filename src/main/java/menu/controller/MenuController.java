@@ -21,6 +21,7 @@ public class MenuController {
         outputView.guideStart();
         readCoaches();
         readPickyAboutFood();
+        recommend();
     }
 
     private void readCoaches() {
@@ -49,7 +50,11 @@ public class MenuController {
     }
 
     private void recommend() {
-        MenuRecommendRepository.recommend();
+        for (int day = 0; day < 5; day++) {
+            MenuRecommendRepository.selectCategory();
+            CoachRepository.selectMenu(MenuRecommendRepository.recommendedCategories().get(day));
+            
+        }
     }
 
 }
