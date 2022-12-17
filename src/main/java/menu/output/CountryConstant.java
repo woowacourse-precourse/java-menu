@@ -1,6 +1,6 @@
 package menu.output;
 
-public class MenuConstant {
+public class CountryConstant {
     public static final String JAPAN_FOOD = "일식";
     public static final String KOREA_FOOD = "한식";
     public static final String CHINA_FOOD = "중식";
