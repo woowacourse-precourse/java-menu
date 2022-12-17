@@ -20,15 +20,20 @@ public class CategoryRepository {
         categories.add(category);
     }
 
-    public static void addCategoryCount(Category category) {
+    public static void updateCategoriesAlreadyEaten(Category category) {
         categoriesAlreadyEaten.add(category);
     }
 
-    public static Category finCategoryByName(String name) {
+    public static Category findCategoryByName(String name) {
         return categories.stream()
                 .filter(element -> element.getName().equals(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.NO_SUCH_CATEGORY.getMessage()));
+    }
+
+    public static void removeAll() {
+        categories.clear();
+        categoriesAlreadyEaten.clear();
     }
 
     public static boolean isAvailableCategory(Category category) {

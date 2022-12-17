@@ -28,7 +28,7 @@ public class MenuRecommendationController implements Controllable {
                 Menu menu = pickAvailableMenu(coach, category);
                 coach.addMenuAlreadyEaten(day, menu);
             }
-            CategoryRepository.addCategoryCount(category);
+            CategoryRepository.updateCategoriesAlreadyEaten(category);
         }
         outputView.printResult(CategoryRepository.getCategoriesAlreadyEaten(), CoachRepository.coaches());
         return ApplicationStatus.APPLICATION_EXIT;

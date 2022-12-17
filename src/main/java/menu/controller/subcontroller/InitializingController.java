@@ -54,7 +54,7 @@ public class InitializingController implements Controllable {
             CategoryRepository.add(new Category(element.getKey()));
             List<Menu> menusInCategory = getMenus(element.getValue());
             addMenus(menusInCategory);
-            CategoryRepository.finCategoryByName(element.getKey()).addMenusToCategory(menusInCategory);
+            CategoryRepository.findCategoryByName(element.getKey()).addMenusToCategory(menusInCategory);
         }
     }
 
