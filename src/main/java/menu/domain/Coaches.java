@@ -66,4 +66,8 @@ public class Coaches {
                 .filter(c -> c == ch)
                 .count();
     }
+
+    public List<Coach> getCoaches() {
+        return coachList;
+    }
 }

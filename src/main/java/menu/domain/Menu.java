@@ -7,4 +7,8 @@ public class Menu {
     public Menu(String menu){
         this.menu = menu;
     }
+
+    public String getMenu() {
+        return menu;
+    }
 }
