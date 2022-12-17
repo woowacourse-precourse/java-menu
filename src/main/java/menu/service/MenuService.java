@@ -60,6 +60,40 @@ public class MenuService implements Menu {
         }
     }
 
+    @Override
+    public RecommendResultDto recommend(final List<String> names, final List<List<String>> notEatMenus) {
+        final List<Coach> coaches = initCoaches(names, notEatMenus);
+        final List<Category> categories = new ArrayList<>();
+        getRecommand(coaches, categories);
+        final List<String> categoriesDto = getCategoriesDto(categories);
+        final List<List<String>> coachesDto = getCoachesDto(coaches);
+        return RecommendResultDto.of(categoriesDto, coachesDto);
+    }
+
+    private List<List<String>> getCoachesDto(List<Coach> coaches) {
+        final List<List<String>> coachesDto = new ArrayList<>();
+        for (Coach coach : coaches) {
+            List<String> coachToDto = coach.coachToDto();
+            coachesDto.add(coachToDto);
+        }
+        return coachesDto;
+    }
+
+    private List<String> getCategoriesDto(List<Category> categories) {
+        final List<String> categoriesDto = new ArrayList<>();
+        for (Category category : categories) {
+            String categoryKeyToDto = category.categoryKeyToDto();
+            categoriesDto.add(categoryKeyToDto);
+        }
+        return categoriesDto;
+    }
+
+    private void getRecommand(List<Coach> coaches, List<Category> categories) {
+        for (int i = 0; i < 5; i++) {
+            recommendDay(coaches, categories);
+        }
+    }
+
     private List<Coach> initCoaches(final List<String> names, final List<List<String>> notAteMenus) {
         final List<Coach> coaches = new ArrayList<>();
         generateCoaches(names, notAteMenus, coaches);
