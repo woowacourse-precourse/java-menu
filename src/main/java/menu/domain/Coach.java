@@ -13,4 +13,13 @@ public class Coach {
             this.cannotEatMenus.add(new Menu(menu));
         }
     }
+
+    public boolean existsCannotEatMenus(Menu menu) {
+        for(Menu cannotEatMenu : cannotEatMenus) {
+            if(cannotEatMenu == menu) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
