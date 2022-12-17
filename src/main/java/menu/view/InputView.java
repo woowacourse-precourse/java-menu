@@ -20,6 +20,7 @@ public class InputView {
     public CoachNameDto readCoachNames() {
         System.out.println(READ_COACH_NAMES_MESSAGE);
         String names = Console.readLine();
+        InputValidator.validateCoachName(names);
         return toCoachName(names);
     }
 
@@ -31,6 +32,7 @@ public class InputView {
     public InvalidMenusDto readMenuNames(String name) {
         System.out.println(MessageFormat.format(READ_MENU_NAMES_MESSAGE, name));
         String names = Console.readLine();
+        InputValidator.validateMenuNames(names);
         return toMenuNames(names);
     }
 
