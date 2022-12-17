@@ -76,4 +76,4 @@ List<String> menu에다가 다 넣어놓기.
 
 ## ExceptionConstants (constant)
 
-- [ ] 예외 처리 시에 사용되는 상수를 관리한다.
+- [x] 예외 처리 시에 사용되는 상수를 관리한다.
