@@ -2,6 +2,7 @@ package menu.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import menu.domain.menucategory.MenuCategory;
+import menu.exception.NoSuchMenuException;
 import menu.repository.MenuRepository;
 import menu.repository.RecommendCategoryRepository;
 
@@ -12,7 +13,7 @@ public class MenuService {
 
     private void validateMenuExist(String name) {
         if (!MenuRepository.menuExist(name)) {
-            throw new IllegalArgumentException("존재하지 않는 메뉴입니다. :" + name);
+            throw new NoSuchMenuException(name);
         }
     }
 
