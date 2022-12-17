@@ -31,9 +31,8 @@ public class Validator {
         }
     }
 
-    public static void validateDuplication(String input) {
-        List<String> splittedInput = List.of(input.split(MenuConstants.DELIMITER));
-        if (splittedInput.size() != splittedInput.stream()
+    public static void validateDuplication(List<String> input) {
+        if (input.size() != input.stream()
                 .distinct()
                 .count()) {
             throw new IllegalArgumentException(ExceptionConstants.DUPLICATION.getMessage());
