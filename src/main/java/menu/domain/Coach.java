@@ -80,8 +80,6 @@ public class Coach {
 
     public CoachMenu getCoachMenu() {
         List<String> existFoods = new ArrayList<>(weeklyFoods.values());
-        System.out.println(weeklyFoods.keySet());
-        System.out.println(weeklyFoods.values());
         return new CoachMenu(name, existFoods);
     }
 }
