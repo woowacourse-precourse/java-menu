@@ -10,8 +10,8 @@ import java.util.List;
 
 public class RecommendingController {
 
-    private InputView inputView = new InputView();
-    private OutputView outputView = new OutputView();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
 
     public void play() {
         outputView.printStartMessage();
