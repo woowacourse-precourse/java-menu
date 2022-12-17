@@ -12,12 +12,10 @@ import menu.domain.exception.MenuException;
 public class MenuMaker {
     private final Coach coach;
     private final List<Category> categories;
-    private final List<Menu> result;
 
     public MenuMaker(Coach coach, List<Category> categories) {
         this.coach = coach;
         this.categories = categories;
-        this.result = new ArrayList<>();
     }
 
     public List<Menu> makeRandomMenus() {
@@ -27,18 +25,19 @@ public class MenuMaker {
                     .stream()
                     .map(Menu::getMenuName)
                     .collect(Collectors.toList());
-            makeRandomMenu(menus);
+            Menu menu = makeRandomMenu(menus, coachMenu);
+            coachMenu.add(menu);
         }
         return coachMenu;
     }
 
-    private Menu makeRandomMenu(List<String> menus) {
+    private Menu makeRandomMenu(List<String> menus, List<Menu> coachMenu) {
         try {
             Menu menu = generateRandomMenu(menus);
-            validateMenu(menu);
+            validateMenu(menu, coachMenu);
             return menu;
         } catch (IllegalStateException e) {
-            return makeRandomMenu(menus);
+            return makeRandomMenu(menus, coachMenu);
         }
     }
 
@@ -47,13 +46,13 @@ public class MenuMaker {
         return new Menu(menu);
     }
 
-    private void validateMenu(Menu uncheckedMenu) {
-        validateDuplicateRandomMenu(uncheckedMenu);
+    private void validateMenu(Menu uncheckedMenu, List<Menu> menus) {
+        validateDuplicateRandomMenu(uncheckedMenu, menus);
         validateCannotEatRandomMenu(uncheckedMenu);
     }
 
-    private void validateDuplicateRandomMenu(Menu uncheckedMenu) {
-        if(result.contains(uncheckedMenu)) {
+    private void validateDuplicateRandomMenu(Menu uncheckedMenu, List<Menu> menus) {
+        if(menus.contains(uncheckedMenu)) {
             throw new IllegalStateException(MenuException.DUPLICATE_MENU.getExceptionMessage());
         }
     }
