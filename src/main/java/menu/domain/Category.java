@@ -22,4 +22,8 @@ public class Category {
     public List<String> getMenu() {
         return Collections.unmodifiableList(menu);
     }
+
+    public boolean isExistMenu(String menu) {
+        return this.menu.contains(menu);
+    }
 }
