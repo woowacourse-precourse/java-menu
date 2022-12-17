@@ -10,16 +10,16 @@ public enum Menu {
     ASIAN("아시안", Arrays.asList("팟타이", "카오 팟", "나시고렝", "파인애플 볶음밥", "쌀국수", "똠얌꿍", "반미", "월남쌈", "분짜")),
     WESTERN("양식", Arrays.asList("라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니"));
 
-    private final String name;
+    private final String category;
     private final List<String> menus;
 
-    Menu(String name, List<String> menus) {
-        this.name = name;
+    Menu(String category, List<String> menus) {
+        this.category = category;
         this.menus = menus;
     }
 
-    public String getName() {
-        return name;
+    public String getCategory() {
+        return category;
     }
 
     public List<String> getMenus() {
