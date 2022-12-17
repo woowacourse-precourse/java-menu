@@ -14,4 +14,8 @@ public class Coaches {
     public List<Coach> getCoaches() {
         return Collections.unmodifiableList(coaches);
     }
+
+    public int getCachesSize() {
+        return coaches.size();
+    }
 }

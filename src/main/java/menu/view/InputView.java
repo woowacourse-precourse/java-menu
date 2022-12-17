@@ -12,6 +12,7 @@ import java.util.List;
 public class InputView {
 
     private final String FIRST_RUN_MESSAGE = "점심 메뉴 추천을 시작합니다.\n";
+    private final String GET_NOT_EATABLE_MENU = "(이)가 못 먹는 메뉴를 입력해 주세요.";
 
     public void startMessage() {
         System.out.println(FIRST_RUN_MESSAGE);
@@ -21,6 +22,14 @@ public class InputView {
         String[] input = Console.readLine().split(",");
         checkValidCoaches(input);
         return convertStringToCoaches(input);
+    }
+    public void getNotEatableMenu(Coaches coaches) {
+        for (Coach coach : coaches.getCoaches()) {
+            System.out.println("\n" +coach.getName() + GET_NOT_EATABLE_MENU);
+            String[] input = Console.readLine().split(",");
+            System.out.println();
+            coach.addNotEatableMenus(input);
+        }
     }
 
     public Coaches convertStringToCoaches(String[] names) {

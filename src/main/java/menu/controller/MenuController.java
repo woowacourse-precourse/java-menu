@@ -20,11 +20,16 @@ public class MenuController {
     public void run() {
         outputView.startMessage();
         coaches = getCoachesName();
+        getNotEatableName(coaches);
     }
 
     public Coaches getCoachesName() {
         outputView.getCoachesName();
         return repeat(inputView::getCoachesName);
+    }
+
+    public void getNotEatableName(Coaches coaches) {
+        inputView.getNotEatableMenu(coaches);
     }
 
     private <T> T repeat(Supplier<T> inputReader) {
