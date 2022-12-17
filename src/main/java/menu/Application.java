@@ -7,24 +7,25 @@ import java.util.Map;
 public class Application {
     public static void main(String[] args) {
         Category category = new Category();
-        for (String item : category.choose()) {
+        List<String> categories = category.choose();
+        for (String item : categories) {
             System.out.print(item + " ");
         }
         System.out.println();
 
         Coach coach = new Coach();
         Map<String, List<String>> coaches = new HashMap<>();
-        while (true) {
-            try {
-                List<String> names = coach.getNames();
-                for (String name : names) {
-                    coaches.put(name, coach.getHates(name));
-                }
-                break;
-            } catch (IllegalArgumentException exception) {
-                System.out.println(exception);
-            }
+        List<String> names = coach.getNames();
+        for (String name : names) {
+            coaches.put(name, coach.getHates(name));
         }
-        System.out.println();
+
+        Menu menu = new Menu();
+        for (String name : names) {
+            for (String item : menu.recommend(categories, coaches.get(name))) {
+                System.out.print(item + " ");
+            }
+            System.out.println();
+        }
     }
 }
