@@ -1,5 +1,7 @@
 package menu.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public class Coach {
@@ -17,5 +19,10 @@ public class Coach {
 
   public void insertHateFood(String hateFoodName) {
     hateFood.add(hateFoodName);
+  }
+
+  public List<String> getHateFood() {
+    List<String> hateFoods = new ArrayList<>(hateFood);
+    return hateFoods;
   }
 }
