@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import menu.domain.Coach;
 import menu.domain.Coaches;
 import menu.utils.ErrorMessage;
+import menu.utils.Menu;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,6 +47,7 @@ public class InputView {
     public void checkValidNotEatable(String[] input) {
         validNotEatableSize(input);
         validElementDuplicate(input, CHECK_MENU_NUMBER);
+        validMenuIsExist(input);
     }
 
     public void checkValidCoaches(String[] input) {
@@ -85,6 +87,13 @@ public class InputView {
     public void validNotEatableSize(String[] input) {
         if (input.length > 2) {
             throw new IllegalArgumentException(ErrorMessage.NOT_EATABLE_MENU_SIZE_IS_LESS_THAN_TWO);
+        }
+    }
+
+    public void validMenuIsExist(String[] input) {
+        for (String name : input) {
+            if (Menu.valueOfMenu(name) == null && !name.trim().isBlank())
+                throw new IllegalArgumentException(ErrorMessage.MENU_IS_NOT_EXIST_IS_LIST);
         }
     }
 

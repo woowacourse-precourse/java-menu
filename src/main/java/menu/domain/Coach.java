@@ -22,7 +22,9 @@ public class Coach {
     public void addNotEatableMenus(String[] menus) {
         notEatableMenu.clear();
         for (String menu : menus) {
-            notEatableMenu.add(Menu.valueOfMenu(menu));
+            if(!menu.trim().isBlank()) {
+                notEatableMenu.add(Menu.valueOfMenu(menu));
+            }
         }
     }
 }

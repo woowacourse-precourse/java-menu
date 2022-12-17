@@ -6,4 +6,5 @@ public class ErrorMessage {
     public static final String COACH_NAME_IS_NOT_DUPLICATE = "[ERROR] 코치의 이름은 중복되서는 안됩니다.";
     public static final String NOT_EATABLE_MENU_SIZE_IS_LESS_THAN_TWO = "[ERROR] 못 먹는 메뉴의 최대 입력개수는 2개입니다.";
     public static final String NOT_MENU_NAME_DUPLICATE = "[ERROR] 못먹는 메뉴의 이름은 중복되어서는 안됩니다.";
+    public static final String MENU_IS_NOT_EXIST_IS_LIST = "[ERROR] 정해진 메뉴에 없는 메뉴는 입력하실 수 없습니다.";
 }
