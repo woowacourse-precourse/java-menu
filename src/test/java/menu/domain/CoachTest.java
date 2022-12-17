@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 public class CoachTest {
-    private final Coach woowa = new Coach("우테코");
+    private final Coach woowa = Coach.from("우테코");
 
     @DisplayName("싫어하는 음식 추천 불가")
     @Test

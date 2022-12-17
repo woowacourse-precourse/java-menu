@@ -7,8 +7,12 @@ public class Coach {
     private final Menus recommendedMenus = Menus.generate();
     private final Menus hateMenus = Menus.generate();
 
-    public Coach(String name) {
+    private Coach(String name) {
         this.name = name;
+    }
+
+    public static Coach from(String name) {
+        return new Coach(name);
     }
 
     public String getName() {

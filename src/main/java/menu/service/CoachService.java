@@ -12,7 +12,7 @@ import java.util.List;
 public class CoachService {
     public void addCoaches(List<String> coachNames) {
         coachNames.stream()
-                .map(Coach::new)
+                .map(Coach::from)
                 .forEach(CoachRepository::addCoach);
     }
 
