@@ -10,4 +10,7 @@ public class Crews {
         this.crews = crews;
     }
 
+    public List<Crew> getCrews() {
+        return crews;
+    }
 }

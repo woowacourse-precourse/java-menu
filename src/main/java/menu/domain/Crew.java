@@ -11,4 +11,8 @@ public class Crew {
         this.name = name;
         foods = new ArrayList<>();
     }
+
+    public String getName() {
+        return name;
+    }
 }
