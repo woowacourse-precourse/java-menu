@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import menu.domain.coach.entity.Coach;
 import menu.domain.coach.repository.CoachRepository;
 import menu.domain.menu.Category;
@@ -19,6 +20,8 @@ public class MenuService {
     private static final int SELECT_MENU_INDEX = 0;
     private static final int LUNCH_COUNT = 5;
     private static final long MAX_DUPLICATE_LUNCH_CATEGORY = 2;
+
+    private static final String NOT_FOUND_MENU_EXCEPTION_MESSAGE = "지정한 이름의 메뉴를 찾을 수 없습니다.";
 
     private final CoachRepository coachRepository;
     private final MenuRepository menuRepository;
@@ -42,14 +45,15 @@ public class MenuService {
 
         while (count++ < LUNCH_COUNT) {
             Category recommendCategory = findValidCategory(categories);
-            List<Menu> menus = menuRepository.findAllByCategory(recommendCategory);
-            processAddRecommendMenus(recommendMenus, menus, coaches);
+            List<String> menusName = menuRepository.findAllByCategory(recommendCategory).stream()
+                    .map(Menu::getName).collect(Collectors.toList());
+            processAddRecommendMenus(recommendMenus, menusName, coaches);
         }
         return recommendMenus;
     }
 
     private void processAddRecommendMenus(final Map<Coach, List<Menu>> recommendMenus,
-        final List<Menu> menus, final List<Coach> coaches) {
+        final List<String> menus, final List<Coach> coaches) {
         coaches.forEach(coach -> {
             List<Menu> previousRecommendMenus = recommendMenus.getOrDefault(coach, new ArrayList<>());
             Menu recommendEatableMenu = findUniqueRecommendEatableMenu(menus, coach, previousRecommendMenus);
@@ -59,7 +63,7 @@ public class MenuService {
         });
     }
 
-    private Menu findUniqueRecommendEatableMenu(final List<Menu> menus, final Coach coach,
+    private Menu findUniqueRecommendEatableMenu(final List<String> menus, final Coach coach,
         final List<Menu> previousRecommendMenus) {
         Menu recommendEatableMenu = findRecommendEatableMenu(menus, coach);
 
@@ -69,13 +73,14 @@ public class MenuService {
         return recommendEatableMenu;
     }
 
-    private Menu findRecommendEatableMenu(final List<Menu> menus, Coach coach) {
-        Menu randomMenu = Randoms.shuffle(menus).get(SELECT_MENU_INDEX);
+    private Menu findRecommendEatableMenu(final List<String> menus, Coach coach) {
+        String randomMenuName = Randoms.shuffle(menus).get(SELECT_MENU_INDEX);
 
-        while (coach.matchesByInedibleMenu(randomMenu)) {
-            randomMenu = Randoms.shuffle(menus).get(SELECT_MENU_INDEX);
+        while (coach.matchesByInedibleMenuByName(randomMenuName)) {
+            randomMenuName = Randoms.shuffle(menus).get(SELECT_MENU_INDEX);
         }
-        return randomMenu;
+        return menuRepository.findByName(randomMenuName)
+                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_MENU_EXCEPTION_MESSAGE));
     }
 
     private Category findValidCategory(final List<Category> categories) {

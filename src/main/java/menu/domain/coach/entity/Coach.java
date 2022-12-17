@@ -36,8 +36,8 @@ public class Coach {
         return this.name.equals(name);
     }
 
-    public boolean matchesByInedibleMenu(Menu menu) {
-        return inedibleMenus.contains(menu);
+    public boolean matchesByInedibleMenuByName(String menuName) {
+        return inedibleMenus.stream().anyMatch(menu -> menu.matchesByName(menuName));
     }
 
     public String getName() {
