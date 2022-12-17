@@ -7,14 +7,17 @@ import java.util.stream.Collectors;
 import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.Menu;
+import menu.domain.exception.MenuException;
 
 public class MenuMaker {
     private final Coach coach;
     private final List<Category> categories;
+    private final List<Menu> result;
 
     public MenuMaker(Coach coach, List<Category> categories) {
         this.coach = coach;
         this.categories = categories;
+        this.result = new ArrayList<>();
     }
 
     public List<Menu> makeRandomMenus() {
@@ -24,13 +27,33 @@ public class MenuMaker {
                     .stream()
                     .map(Menu::getMenuName)
                     .collect(Collectors.toList());
-            Menu randomMenu = makeRandomMenu(menus);
+            makeRandomMenu(menus);
         }
         return coachMenu;
     }
 
-    public Menu makeRandomMenu(List<String> menus) {
+    private Menu makeRandomMenu(List<String> menus) {
+        try {
+            Menu menu = generateRandomMenu(menus);
+            validateMenu(menu);
+            return menu;
+        } catch (IllegalStateException e) {
+            return makeRandomMenu(menus);
+        }
+    }
+
+    private Menu generateRandomMenu(List<String> menus) {
         String menu = Randoms.shuffle(menus).get(0);
         return new Menu(menu);
+    }
+
+    public void validateMenu(Menu uncheckedMenu) {
+        validateDuplicateRandomMenu(uncheckedMenu);
+    }
+
+    public void validateDuplicateRandomMenu(Menu uncheckedMenu) {
+        if(result.contains(uncheckedMenu)) {
+            throw new IllegalStateException(MenuException.DUPLICATE_MENU.getExceptionMessage());
+        }
     }
 }
