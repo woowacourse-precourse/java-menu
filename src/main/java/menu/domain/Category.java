@@ -1,6 +1,7 @@
 package menu.domain;
 
 import java.util.Arrays;
+import java.util.List;
 
 public enum Category {
 
@@ -18,11 +19,19 @@ public enum Category {
 		this.name = name;
 	}
 
+	public String getName() {
+		return name;
+	}
+
 	public static Category from(int num) {
 		String numString = Integer.toString(num);
 		return Arrays.stream(Category.values())
 			.filter(category -> category.num.equals(numString))
 			.findFirst()
 			.orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 카테고리입니다."));
+	}
+
+	public static List<Category> getAllCategories() {
+		return List.of(JAPAN, KOREAN, CHINESE, ASIAN, WESTERN);
 	}
 }

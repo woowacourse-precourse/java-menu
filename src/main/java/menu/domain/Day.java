@@ -18,6 +18,10 @@ public enum Day {
 		this.day = day;
 	}
 
+	public String getDay() {
+		return day;
+	}
+
 	public static Day from(int num) {
 		String numString = Integer.toString(num);
 		return Arrays.stream(Day.values())

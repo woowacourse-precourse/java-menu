@@ -1,7 +1,9 @@
 package menu.repository;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -68,5 +70,14 @@ public class MenuRecommendRepository {
 		if (coachMenuByDay.get(day) == null) {
 			coachMenuByDay.put(day, new HashMap<>());
 		}
+	}
+
+	public static List<Menu> getMenusByCoach(Coach coach) {
+		List<Day> days = Day.getAllDays();
+		List<Menu> menus = new ArrayList<>();
+		for (Day day : days) {
+			menus.add(coachMenuByDay.get(day).get(coach));
+		}
+		return menus;
 	}
 }
