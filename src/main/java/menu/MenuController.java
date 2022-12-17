@@ -11,15 +11,9 @@ public class MenuController {
 
     public void run() {
         OutputView.start();
-        List<Coach> coaches = readCoachName();
-        foodRecommendation = new FoodRecommendation(coaches);
-        for (Coach coach : coaches) {
-            OutputView.inputInedibleFood(coach);
-            coach.addInedibleFoods(InputView.readInedibleFoods());
-        }
-
-        foodRecommendation.recommend();
-        OutputView.result(foodRecommendation.getCoaches(), foodRecommendation.getCategoryByWeek());
+        setCoachesAndInedibles();
+        recommendFood();
+        result();
     }
 
     private List<Coach> readCoachName() {
@@ -27,5 +21,22 @@ public class MenuController {
         return InputView.readCoachName().stream()
                 .map(Coach::new)
                 .collect(Collectors.toList());
+    }
+
+    private void setCoachesAndInedibles() {
+        List<Coach> coaches = readCoachName();
+        foodRecommendation = new FoodRecommendation(coaches);
+        for (Coach coach : coaches) {
+            OutputView.inputInedibleFood(coach);
+            coach.addInedibleFoods(InputView.readInedibleFoods());
+        }
+    }
+
+    private void recommendFood() {
+        foodRecommendation.recommend();
+    }
+
+    private void result() {
+        OutputView.result(foodRecommendation.getCoaches(), foodRecommendation.getCategoryByWeek());
     }
 }
