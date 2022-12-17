@@ -56,15 +56,6 @@ public enum Category {
                                 format(NO_EXIST_CATEGORY_INDEX_FORMAT, number)));
     }
 
-    private boolean isContainMenu(String name) {
-        for (Menu menu : this.menus) {
-            if (menu.name().equals(name)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public static Menu mapMenuByName(final String menuName) {
         for (Category category : values()) {
             Menu menu = findMenu(menuName, category);
