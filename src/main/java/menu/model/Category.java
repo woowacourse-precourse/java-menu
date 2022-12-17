@@ -4,6 +4,7 @@ import menu.ErrorConstants;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public enum Category {
     JAPANESE_FOOD(1, "일식", List.of("규동", "우동", "미소시루", "스시", "가츠동", "오니기리", "하이라이스", "라멘", "오코노미야끼")),
@@ -46,5 +47,11 @@ public enum Category {
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(
                         ErrorConstants.ERROR_PREFIX + "일치하는 카테고리가 없습니다."));
+    }
+
+    public static List<String> getCategoriesName() {
+        return Arrays.stream(values())
+                .map(value -> value.name)
+                .collect(Collectors.toList());
     }
 }
