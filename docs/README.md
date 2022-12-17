@@ -52,7 +52,37 @@
 
 ### 폴더 구조
 ```
-
+├─main
+│  └─java
+│      └─menu
+│          │  Application.java   -  애플리케이션 실행 
+│          │
+│          ├─controller
+│          │      MenuController.java   -  domain-view를 연결
+│          │
+│          ├─domain
+│          │      Categories.java   -  카테고리별 식사 메뉴
+│          │      CoachRepository.java  - 코치 정보와 코치가 싫어하는 메뉴를 저장하는 객체
+│          │      Day.java   -  요일 (ex.월요일)
+│          │      MenuRecommendationResult.java  - 추천 결과를 저장하는 객체
+│          │      numberGenerator.java   - 랜덤 숫자를 만드는 객체의 인터페이스
+│          │      RandomNumberGenerator.java - 랜덤 숫자를 만드는 객체의 구현체
+│          │      ShuffleGenerator.java  - 리스트를 섞는 객체의 인터페이스
+│          │      ShuffleGeneratorImpl.java  - 리스트를 섞는 객체의 구현체
+│          │
+│          ├─util
+│          │      InputValidator.java   -  input 들어오는 값에 대한 예외처리 기능
+│          │      TransformInput.java   -  input을 전처리하는 기능
+│          │
+│          └─view
+│                  InputView.java       - Console에서 Player의 input을 받기
+│                  OutputView.java      - Console에서 Player에게 output 보여주기
+│
+└─test
+    └─java
+        └─menu
+                ApplicationTest.java
+                InputTest.java
 ```
 
 ### 프로그램 요구사항 체크리스트
