@@ -11,6 +11,10 @@ public class RecommendResult {
         this.menuResults = menuResults;
     }
 
+    public CategoryResult getCategoryResult() {
+        return categoryResult;
+    }
+
     public List<MenuResult> getMenuResults() {
         return menuResults;
     }
