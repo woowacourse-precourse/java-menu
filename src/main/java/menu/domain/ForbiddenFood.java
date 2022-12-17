@@ -22,4 +22,9 @@ public class ForbiddenFood {
         forbiddenFoods.add(food);
     }
 
+    public List<String> removeForbiddenFoodsInMenu(List<String> menus) {
+        menus.removeIf(forbiddenFoods::contains);
+        return menus;
+    }
+
 }
