@@ -21,19 +21,30 @@
 
 ## MenuRecommender 클래스 
  - 메뉴를 추천해서 결과를 유지한다.
-1. 멤버변수 recommends (List<Member>) - 멤버 별로 추천 음식 저장
+1. 멤버변수 memebers (List<Member>) - 멤버 정보 저장
 2. 멤버변수 categories - 요일 별 카테고리 저장
-3. 
+3. chooseCategory() - 요일의 카테고리를 선택해 저장하는 메서드
+4. chooseMenus() - 멤버 별로 요일의 추천 음식을 선택해 저장하는 메서드
+5. manageMealsDayOfTheWeek() - 3, 4를 이용해 요일의 음식 선택과정을 처리하는 메서드
+6. validateMenuDuplication() - private. 해당 메뉴가 중복되었는지 확인하는 메서드
+7. validateCategoryDuplication() - private. 해당 카테고리가 2회 이상 나왔는지 확인하는 메서드
+8. validatePickyEating() - private. 해당 음식이 못먹는 음식인지 확인하는 메서드 (인자로 음식 이름, 멤버 객체를 받아야하나?)
 
 ## MenuRandomGenerator 클래스 
  - 랜덤한 숫자를 생성한다. (카테고리, 메뉴 각각에 대해서) 
 1. categoryRandomSelector() - 1~5 사이의 카테고리 번호를 생성한다.
 2. menuRandomSelector() - 리스트를 셔플해서 반환한다.
+
 ## InputView 클래스
  - 입력을 관리
 
 ## OutputView 클래스
  - 출력을 관리
+
+
+---
+코치는 최소 2명, 최대 5명까지 식사를 함께 한다. -> 입력되는 코치 수에 대한 설명? 이거인듯
+아니면 같은요일에 같은 메뉴를 먹는 사람이 최소 2명이어야된다는 뜻?? 아닌듯
 
 
 
