@@ -49,10 +49,14 @@ public class MenuService implements Menu {
         }
     }
 
+
     @Override
-    public void validateMenus(final MenuDto menuDto) {
-        menuDto.getMenus()
-                .forEach(this::validateMenu);
+    public void validateMenus(final MenuDto coachNameDto) {
+        final List<String> notAteMemu = coachNameDto.getMenus();
+        if (notAteMemu.size() > COACH_CANNOT_EAT_COUNT_END) {
+            throw new IllegalArgumentException(COACH_CANNOT_EAT_ERROR_MSG);
+        }
+        notAteMemu.forEach(this::validateMenu);
     }
 
     private void validateMenu(final String menu) {
