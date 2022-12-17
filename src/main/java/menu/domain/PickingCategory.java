@@ -6,10 +6,10 @@ public class PickingCategory {
 
     public Category getCategoryByPickingNumber() {
         Category[] categories = Category.values();
-        return categories[getPickingNumber()];
+        return categories[getPickingNumber() - 1];
     }
 
-    public int getPickingNumber() {
+    private int getPickingNumber() {
         return Randoms.pickNumberInRange(1, 5);
     }
 }
