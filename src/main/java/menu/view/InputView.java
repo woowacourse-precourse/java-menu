@@ -28,6 +28,8 @@ public class InputView {
 
     private static List<String> parseBanMenu(String banMenu) {
         List<String> parsedBanMenu = List.of(banMenu.split(","));
+
+        Validator.checkBanSize(parsedBanMenu);
         return parsedBanMenu;
     }
 }

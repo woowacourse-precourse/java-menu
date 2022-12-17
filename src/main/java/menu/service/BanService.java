@@ -19,7 +19,13 @@ public class BanService {
     }
 
     private List<String> getBanMenu(String coachName) {
-        OutputView.messageBanInput(coachName);
-        return InputView.readBanMenu();
+        while (true) {
+            try {
+                OutputView.messageBanInput(coachName);
+                return InputView.readBanMenu();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

@@ -16,4 +16,11 @@ public class Validator {
             throw new IllegalArgumentException("[ERROR] 코치 이름은 최소 2글자에서 최대 4글자여야 합니다.");
         }
     }
+
+    public static void checkBanSize(List<String> banMenu) {
+        int banSize = banMenu.size();
+        if (banSize < 0 || banSize > 2) {
+            throw new IllegalArgumentException("[ERROR] 못 먹는 메뉴는 최소 0개 이상, 최대 2개 이하여야 합니다.");
+        }
+    }
 }
