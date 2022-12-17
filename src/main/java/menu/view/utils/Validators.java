@@ -22,4 +22,10 @@ public class Validators {
             throw new IllegalArgumentException(ERROR_MESSAGE + COACH_INVALID_RANGE_ERROR_MESSAGE_UNDER_FIVE);
         }
     }
+
+    public static void validateForOverCountEatingMenu(int size) {
+        if(size > 2) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + CANT_EATING_COUNT_MESSAGE_OVER_TWO);
+        }
+    }
 }
