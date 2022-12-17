@@ -1,6 +1,5 @@
 package menu.domain.factory;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import menu.domain.category.Category;
 import menu.domain.menu.Menu;

@@ -9,6 +9,10 @@ public class MenuName {
         this.menuName = menuName;
     }
     
+    public String name() {
+        return menuName;
+    }
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

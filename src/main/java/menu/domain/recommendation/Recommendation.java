@@ -19,4 +19,8 @@ public class Recommendation {
     public boolean isSameCategory(Menu menu) {
         return this.menu.isSameCategory(menu);
     }
+    
+    public String menuName() {
+        return menu.name();
+    }
 }

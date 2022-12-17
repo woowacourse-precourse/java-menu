@@ -17,4 +17,11 @@ public class UneatableMenus {
     public boolean contains(Menu menu) {
         return menus.contains(menu);
     }
+    
+    @Override
+    public String toString() {
+        return "UneatableMenus{" +
+                "menus=" + menus +
+                '}';
+    }
 }

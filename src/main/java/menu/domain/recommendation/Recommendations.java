@@ -4,6 +4,7 @@ import menu.domain.menu.Menu;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Recommendations {
     private final List<Recommendation> recommendations;
@@ -25,5 +26,15 @@ public class Recommendations {
         return (int) recommendations.stream()
                 .filter(oldRecommendation -> oldRecommendation.isSameCategory(menu))
                 .count();
+    }
+    
+    public void addRecommendation(Recommendation recommendation) {
+        recommendations.add(recommendation);
+    }
+    
+    public List<String> menuNames() {
+        return recommendations.stream()
+                .map(Recommendation::menuName)
+                .collect(Collectors.toUnmodifiableList());
     }
 }

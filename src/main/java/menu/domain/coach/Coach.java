@@ -2,7 +2,9 @@ package menu.domain.coach;
 
 import menu.domain.menu.Menu;
 import menu.domain.menu.UneatableMenus;
+import menu.domain.recommendation.Recommendation;
 import menu.domain.recommendation.Recommendations;
+import menu.domain.week.Week;
 
 import java.util.List;
 
@@ -35,5 +37,22 @@ public class Coach {
     
     public String name() {
         return coachName.name();
+    }
+    
+    public void addMenu(Week week, Menu menu) {
+        recommendations.addRecommendation(new Recommendation(week, menu));
+    }
+    
+    public List<String> menuNames() {
+        return recommendations.menuNames();
+    }
+    
+    @Override
+    public String toString() {
+        return "Coach{" +
+                "coachName=" + coachName +
+                ", recommendations=" + recommendations +
+                ", uneatableMenus=" + uneatableMenus +
+                '}';
     }
 }

@@ -21,6 +21,10 @@ public class Menu {
         return this.menuName.equals(new MenuName(menuName));
     }
     
+    public String name() {
+        return menuName.name();
+    }
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
