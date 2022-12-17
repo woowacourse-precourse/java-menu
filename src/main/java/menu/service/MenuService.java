@@ -41,20 +41,6 @@ public class MenuService {
             todayEat.put(menu, todayEat.getOrDefault(menu, 0) + 1);
             weekEat.add(menu);
         }
-//        do {
-//            todayEat = new HashMap<>();
-//            weekEat = new ArrayList<>();
-//            for (Member member : members) {
-//                String menu;
-//                do {
-//                    menu = Randoms.shuffle(menus).get(0);
-//                    System.out.println(menu);
-//                } while (!isValidMenu(member, menu));
-//                todayEat.put(menu, todayEat.getOrDefault(menu, 0) + 1);
-//                weekEat.add(menu);
-//            }
-//        } while (todayEat.values().contains(1));
-
         for (int i = 0; i < members.size(); i++) {
             members.get(i).addWeekEat(weekEat.get(i));
         }
