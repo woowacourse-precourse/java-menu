@@ -27,7 +27,7 @@ public class MenuController {
     }
 
     private void printStartMessage() {
-        OutputView.printStartMessage();
+        OutputView.printStart();
     }
 
     private List<String> getNames() {
