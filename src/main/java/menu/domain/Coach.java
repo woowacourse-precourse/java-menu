@@ -13,23 +13,28 @@ public class Coach {
 	private final String name;
 	private List<String> avoidMenu;
 
-	public Coach(String name, String menu) {
+	public Coach(String name) {
 		validateNameLength(name);
 		this.name = name;
-		this.avoidMenu = validateNumberOfAvoidMenu(menu);
+		this.avoidMenu = new ArrayList<>();
 	}
 
 	public String getName() {
 		return name;
 	}
 
+	public void addAvoidMenu(List<String> avoidMenu) {
+		this.avoidMenu.addAll(avoidMenu);
+	}
+
 	public String getWeeklyMenu(List<Category> recommendation) {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(String.format(" %s ", getName()));
+		System.out.println(recommendation);
 		for (Category category : recommendation) {
 			Set<String> intersections = new HashSet<>(category.getMenu());
 			intersections.removeAll(new HashSet<>(avoidMenu));
-			stringBuilder.append(Randoms.shuffle(List.copyOf(intersections)).get(0));
+			stringBuilder.append(String.format("|  %s  ", Randoms.shuffle(List.copyOf(intersections)).get(0)));
 		}
 		return stringBuilder.toString();
 
@@ -41,11 +46,4 @@ public class Coach {
 		}
 	}
 
-	private List<String> validateNumberOfAvoidMenu(String menu) {
-		String[] avoidMenus = menu.split(",");
-		if (avoidMenus.length > 2) {
-			throw new IllegalArgumentException(ErrorMessage.AVOID_MENU.getMessage());
-		}
-		return new ArrayList<>(List.of(avoidMenus));
-	}
 }

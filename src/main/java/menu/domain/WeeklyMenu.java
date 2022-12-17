@@ -15,7 +15,7 @@ public class WeeklyMenu {
 	private static final List<Category> categories = List.of(Category.JAPANESE, Category.KOREAN, Category.CHINESE,
 		Category.ASIAN, Category.WESTERN);
 
-	private List<Category> recommendation;
+	private final List<Category> recommendation;
 
 	public WeeklyMenu() {
 		recommendation = setRecommendMenu();
@@ -27,6 +27,7 @@ public class WeeklyMenu {
 
 	public String getWeeklyMenuResult() {
 		StringBuilder stringBuilder = new StringBuilder();
+		System.out.println(recommendation);
 		recommendation.forEach(category -> stringBuilder.append(String.format("| %s ", category.getName())));
 		return stringBuilder.toString();
 	}
