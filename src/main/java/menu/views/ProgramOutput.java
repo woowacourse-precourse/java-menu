@@ -36,7 +36,7 @@ public class ProgramOutput {
     }
 
     public void printSuggestingEnd(){
-        System.out.println("\n추천을 완료했습니다");
+        System.out.print("\n추천을 완료했습니다.");
     }
 
     public static void printStatement(String errorMessage){
