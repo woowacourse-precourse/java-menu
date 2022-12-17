@@ -15,12 +15,13 @@ public class MenuController {
     }
 
     public void run() {
-        getInputs();
+        List<Coach> coaches = getInputs();
     }
 
-    public void getInputs() {
+    public List<Coach> getInputs() {
         List<String> coachNames = getCoachName();
         List<Coach> coaches = getCoachCannotEatMenus(coachNames);
+        return coaches;
     }
 
     public List<String> getCoachName() {
