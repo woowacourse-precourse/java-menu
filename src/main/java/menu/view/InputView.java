@@ -11,6 +11,7 @@ public class InputView {
     public static final String INPUT_FOOD_NAME = "%s(이)가 못 먹는 메뉴를 입력해 주세요.";
 
     public List<String> inputCoach(){
+        System.out.println(INPUT_COACH_NAME);
         String coach = Console.readLine();
         List<String> coaches = Arrays.asList(coach.split(","));
         return coaches;
