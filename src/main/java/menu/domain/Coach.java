@@ -48,4 +48,8 @@ public class Coach {
     public List<String> getMenus() {
         return Collections.unmodifiableList(eatMenus);
     }
+
+    public String getName() {
+        return name;
+    }
 }
