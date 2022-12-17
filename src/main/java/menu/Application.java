@@ -8,7 +8,7 @@ public class Application {
         try{
             menuContoller.initRecommand();
             menuContoller.startRecommand();
-//            menuContoller.endRecommand();
+            menuContoller.endRecommand();
         }catch (IllegalArgumentException e){
 
         }

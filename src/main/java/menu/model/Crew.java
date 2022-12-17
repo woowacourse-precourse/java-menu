@@ -31,5 +31,12 @@ public class Crew {
             crews.get(number).add(menu.get(i));
         });
     }
+    public int getsize()
+    {
+        return names.size();
+    }
 
+    public List<String> getnames(){
+        return names ;
+    } ;
 }

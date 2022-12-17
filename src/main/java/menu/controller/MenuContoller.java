@@ -24,7 +24,7 @@ public class MenuContoller {
         outputController = new OutputController();
         outputView = new OutputView();
         pickCategory = new PickCategory();
-        menu = new Menu();
+        menus = new Menus();
     }
 
     public void initRecommand() {
@@ -34,18 +34,6 @@ public class MenuContoller {
         crews = crew.getCrews();
         crewsnumber = crews.size();
     }
-//        System.out.println(crews.get(0));
-//        crews.get(0).add("dd");
-//        crews.get(0).add("pp");
-//        crews.get(1).add("dd");
-//        System.out.println(crews.get(0).get(0));
-//        System.out.println(crews.get(0).get(1));
-//        System.out.println(crews.get(0).get(2));
-//        System.out.println(crews.get(1).get(1));
-//        for(int i =0 ;i<crewsnumber ;i++)
-//        {
-//            System.out.println(crews.get(i));
-//        }
 
     public void startRecommand() {
         setNotEat();
@@ -72,11 +60,19 @@ public class MenuContoller {
         List<String> cat = pickCategory.getRecommandCategory();
         for (int i = 0; i < 5; i++) {
             String daily = cat.get(i);
-            menus.getMenu(daily);
+            // check function for delete dislike and put in
+            insertMenu(daily);
         }
     }
-    public void endRecommand() {
+    public void insertMenu(String daily) {
+        for (int i =0;i<crewsnumber ; i++) {
+            String tmpMenu = menus.getMenu(daily);
+            resultBoard.setCrewmenu(i,tmpMenu);
+        }
+    }
 
+    public void endRecommand() {
+        System.out.println(resultBoard.getCrewmenu());
     }
 
 }

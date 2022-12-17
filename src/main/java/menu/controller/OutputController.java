@@ -12,6 +12,6 @@ public class OutputController {
 
     public void printResult(ResultBoard resultBoard){
         outputView.printResult();
-
+        // reslutBoard name to sting and output view
     }
 }
