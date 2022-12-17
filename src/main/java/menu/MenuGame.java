@@ -2,12 +2,15 @@ package menu;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 import menu.ui.InputView;
 import menu.ui.OutputView;
 
 public class MenuGame {
 
     private List<Coach> coaches;
+    private Queue<String> menusForEachDay;
+
 
     public void start() {
         OutputView.printMenuGameStart();
@@ -15,13 +18,15 @@ public class MenuGame {
     }
 
     private void play() {
-        try {
-            createCoaches();
-            enterCoachesAllergicMenus();
+        createCoaches();
+        enterCoachesAllergicMenus();
+        createMenuCategory();
 
-        }catch(IllegalArgumentException illegalArgumentException){
-            OutputView.printErrorMessage(illegalArgumentException.getMessage());
-        }
+    }
+
+    private void createMenuCategory() {
+        MenuCategory menuCategory = new MenuCategory();
+        this.menusForEachDay = menuCategory.createMenuForEachDay();
     }
 
     private void enterCoachesAllergicMenus() {
