@@ -10,8 +10,8 @@ public class MenuRandomGenerator {
         return category;
     }
 
-    public static String menuRandomSelector(int menuNumber) {
-        List<String> menus = Category.findByNumber(menuNumber).getMenus();
+    public static String menuRandomSelector(String categoryName) {
+        List<String> menus = Category.findByName(categoryName).getMenus();
         String menu = Randoms.shuffle(menus).get(0);
         return menu;
     }
