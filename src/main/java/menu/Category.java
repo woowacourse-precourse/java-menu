@@ -6,12 +6,13 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Category {
-    final static List<String> categories = Arrays.asList("한식", "일식", "중식", "아시안", "양식");
+    final static List<String> categories = Arrays.asList("일식", "한식", "중식", "아시안", "양식");
 
     public List<String> choose() {
         List<String> result = new ArrayList<>();
         while (result.size() < 5) {
-            String category = categories.get(Randoms.pickNumberInRange(0, 4));
+            int num = Randoms.pickNumberInRange(1, 5) - 1;
+            String category = categories.get(num);
             if (containCount(result, category) < 2) {
                 result.add(category);
             }

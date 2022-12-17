@@ -15,8 +15,7 @@ public class Coach {
         return names;
     }
 
-    public List<String> getHates(String name) {
-        System.out.println(name + "(이)가 못 먹는 메뉴를 입력해 주세요.");
+    public List<String> getHates() {
         String line = Console.readLine();
         List<String> hates = parseComma(line);
         return hates;
