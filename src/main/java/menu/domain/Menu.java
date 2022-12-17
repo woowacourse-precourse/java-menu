@@ -1,15 +1,18 @@
 package menu.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import menu.constant.MenuConstants;
 import menu.util.Validator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Menu {
     private final List<String> coachNames;
     private final List<Coach> coaches = new ArrayList<>();
-    private final List<String> categories = new ArrayList<>();
+    private final List<String> previousCategories = new ArrayList<>();
 
     public Menu(String coachNames) {
         List<String> splittedCoaches = List.of(coachNames.split(MenuConstants.DELIMITER));
@@ -25,6 +28,21 @@ public class Menu {
 
     public void addCoach(String name, String inedibleMenu) {
         coaches.add(new Coach(name, inedibleMenu));
+    }
+
+    private Category pickCategory() {
+        int categoryIndex = Randoms.pickNumberInRange(MenuConstants.FIRST_CATEGORY, MenuConstants.LAST_CATEGORY);
+        Category category = Arrays.stream(Category.values())
+                .collect(Collectors.toList())
+                .get(categoryIndex - 1);
+
+        if (previousCategories.stream()
+                .filter(previousCategory -> previousCategory.equals(category.getCategory()))
+                .count() == MenuConstants.MAXIMUM_NUMBER_OF_CATEGORIES) {
+            return pickCategory();
+        }
+        previousCategories.add(category.getCategory());
+        return category;
     }
 
     public List<String> getCoachNames() {
