@@ -26,15 +26,18 @@ public class Validators {
     }
 
     public static void validateForOverCountEatingMenu(int size) {
-        if(size > 2) {
+        if (size > 2) {
             throw new IllegalArgumentException(ERROR_MESSAGE + CANT_EATING_COUNT_MESSAGE_OVER_TWO);
         }
     }
 
-    public static void validateForFoodName(String foodName) {
-        if(Menu.getCategoryNum(foodName) == -1 ) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + INVALID_FOOD_NAME_ERROR_MESSAGE);
+    public static void validateForFoodName(List<String> foodNames) {
+        for (int i = 0; i < foodNames.size(); i++) {
+            if (Menu.getCategoryNum(foodNames.get(i)) == -1) {
+                throw new IllegalArgumentException(ERROR_MESSAGE + INVALID_FOOD_NAME_ERROR_MESSAGE);
+            }
         }
+
     }
 
 }

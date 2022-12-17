@@ -60,19 +60,18 @@ class ValidatorsTest {
     }
 
     @DisplayName("존재하는 음식이름 인 경우")
-    @ParameterizedTest
-    @ValueSource(strings = {"규동", "김밥", "동파육", "프렌치 토스트"})
-    void test6(String input) {
-        Throwable t = catchThrowable(() -> Validators.validateForFoodName(input));
+    @Test
+    void test6() {
+        List<String> list = List.of("규동", "김밥", "동파육", "프렌치 토스트");
+        Throwable t = catchThrowable(() -> Validators.validateForFoodName(list));
 
         assertThat(t).doesNotThrowAnyException();
     }
 
     @DisplayName("존재하지 않는 음식이름 인 경우")
-    @ParameterizedTest
-    @ValueSource(strings = {"김치", "초밥", "오징어", "감자"})
-    void test7(String input) {
-        Throwable t = catchThrowable(() -> Validators.validateForFoodName(input));
+    void test7() {
+        List<String> list = List.of("김치", "초밥", "오징어", "감자");
+        Throwable t = catchThrowable(() -> Validators.validateForFoodName(list));
 
         assertThat(t).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ERROR_MESSAGE + INVALID_FOOD_NAME_ERROR_MESSAGE);
