@@ -4,6 +4,7 @@ import menu.service.MainService;
 import menu.view.InputView;
 import menu.view.OutputView;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class MainController {
@@ -16,10 +17,15 @@ public class MainController {
         List<String> coachNames = repeat(inputView::readNames);
         mainService.generateCoaches(coachNames);
 
-        for (String name : coachNames) {
-            outputView.printCoachCantEat(name);
-            List<String> cantEatMenus = repeat(inputView::readCantEatMenu);
+        for (String coachName : coachNames) {
+            process(this::setCantEatMenus, coachName);
         }
+    }
+
+    private void setCantEatMenus(String coachName) {
+            outputView.printCoachCantEat(coachName);
+            List<String> cantEatMenus = repeat(inputView::readCantEatMenu);
+            mainService.setCantEatMenus(cantEatMenus);
     }
 
     private <T> T repeat(Supplier<T> reader) {
@@ -28,6 +34,15 @@ public class MainController {
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return repeat(reader);
+        }
+    }
+
+    private <T> void process(Consumer<T> consumer, T t) {
+        try {
+            consumer.accept(t);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            process(consumer, t);
         }
     }
 }
