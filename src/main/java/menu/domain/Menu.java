@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Menu {
-    private final List<String> coachNames;
+    private final List<String> coachNames = new ArrayList<>();
     private final List<Coach> coaches = new ArrayList<>();
     private final List<String> previousCategories = new ArrayList<>();
 
-    public Menu(String coachNames) {
+    public void addCoaches(String coachNames) {
         List<String> splittedCoaches = List.of(coachNames.split(MenuConstants.DELIMITER));
 
         Validator.validateNumberOfCoaches(splittedCoaches.size());
@@ -23,7 +23,7 @@ public class Menu {
                 .map(String::length)
                 .forEach(Validator::validateCoachNameLength);
 
-        this.coachNames = splittedCoaches;
+        this.coachNames.addAll(splittedCoaches);
     }
 
     public void addCoach(String name, String inedibleMenu) {
