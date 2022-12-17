@@ -7,9 +7,9 @@ import menu.domain.Categories;
 import menu.domain.enums.Category;
 
 public class CategoriesRepository {
+    public static final int CATEGORIES_INDEX = 0;
     private static final CategoriesRepository instance = new CategoriesRepository();
     private static final List<Categories> store = new ArrayList<>();
-    public static final int CATEGORIES_INDEX = 0;
 
     private CategoriesRepository() {
     }
@@ -34,7 +34,7 @@ public class CategoriesRepository {
         return find();
     }
 
-    private static Categories find() {
+    public static Categories find() {
         return store.get(CATEGORIES_INDEX);
     }
 

@@ -1,6 +1,7 @@
 package menu.repository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import menu.domain.CoachExcludeMenu;
 
@@ -14,16 +15,15 @@ public class ExcludeMenuRepository {
 
 
     public static CoachExcludeMenu save(final CoachExcludeMenu coachExcludeMenu) {
-        delete();
         store.add(coachExcludeMenu);
         return find();
     }
 
-    private static CoachExcludeMenu find() {
+    public static CoachExcludeMenu find() {
         return store.get(MENU_INDEX);
     }
 
-    private static void delete() {
-        store.clear();
+    public static List<CoachExcludeMenu> findAll() {
+        return Collections.unmodifiableList(store);
     }
 }

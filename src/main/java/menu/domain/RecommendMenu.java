@@ -1,6 +1,7 @@
 package menu.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.enums.Menu;
@@ -12,5 +13,9 @@ public class RecommendMenu {
         this.menus.addAll(menus.stream()
                 .map(Menu::getMenu)
                 .collect(Collectors.toList()));
+    }
+
+    public List<Menu> getMenus() {
+        return Collections.unmodifiableList(menus);
     }
 }

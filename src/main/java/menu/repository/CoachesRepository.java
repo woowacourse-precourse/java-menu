@@ -38,4 +38,8 @@ public class CoachesRepository {
                 .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_EXISTS_COACH_NAME));
 
     }
+
+    public static Coaches findAll() {
+        return store.get(COACHES_INDEX);
+    }
 }
