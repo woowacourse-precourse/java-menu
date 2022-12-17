@@ -17,14 +17,18 @@ public class View {
 	}
 
 	public static void showRecommendResult(List<List<String>> menuList) {
-		System.out.println("메뉴 추천 결과입니다.");
+		System.out.println("\n메뉴 추천 결과입니다.");
 
 		for(List<String> menus: menuList){
 			System.out.print("[ ");
 			for(String menu : menus){
 				System.out.print(menu+" | ");
 			}
-			System.out.print(" ]");
+			System.out.println(" ]");
 		}
+	}
+
+	public static void showRecommendClearGuideMessage() {
+		System.out.println("\n추천을 완료했습니다.");
 	}
 }
