@@ -1,4 +1,4 @@
-package menu;
+package menu.coach;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,6 +21,7 @@ public class Coaches {
         for (String name : inputs) {
             addCoach(new Coach(name));
         }
+        coaches.stream().forEachOrdered(it -> System.out.println(it.getName()));
     }
 
     private static void validCoaches(List<String> coaches) {
@@ -29,9 +30,11 @@ public class Coaches {
         }
     }
 
-    public void inputHateFood(List<String> inputs) {
+    public static void inputHateFood(String name, List<String> inputs) {
         for (Coach coach : coaches) {
-            coach.inputHateFoods(inputs);
+            if (coach.getName().equals(name)) {
+                coach.inputHateFoods(inputs);
+            }
         }
     }
 }

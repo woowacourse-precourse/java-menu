@@ -1,4 +1,4 @@
-package menu;
+package menu.coach;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +15,10 @@ public class Coach {
 
     public String getName() {
         return this.name;
+    }
+
+    public List<String> getHateFood() {
+        return hateFood;
     }
 
     private void validName(String input) {
