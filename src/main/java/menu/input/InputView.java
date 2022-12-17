@@ -19,6 +19,16 @@ public class InputView {
         return Arrays.stream(coaches).collect(Collectors.toList());
     }
 
+    public List<String> readMenuNotEat() {
+        String input = Console.readLine();
+        String[] menus = input.split(",");
+        validate(ValidationType.CHECK_MENUS_COUNT, String.valueOf(menus.length));
+        for (String menu: menus) {
+            validate(ValidationType.CHECK_MENUS, menu);
+        }
+        return Arrays.stream(menus).collect(Collectors.toList());
+    }
+
     public void validate(ValidationType validationType, String input) {
         if (!ValidationType.validate(validationType, input)) {
             String errorMessage = validationType.getErrorMessage();
