@@ -23,12 +23,21 @@ class CoachNameValidatorTest {
     class invalidInputTest {
 
         @ParameterizedTest
-        @ValueSource(strings = {"은기는천재", "우테코바보", "", "나"})
-        @DisplayName("코치의 이름은 최소 2글자, 최대 4글자이다.")
-        void 코치_이름_길이_테스트(String input) {
+        @ValueSource(strings = {"은기는천재", "우테코바보"})
+        @DisplayName("코치의 이름은 최대 4글자이다.")
+        void 코치_이름_긴_길이_테스트(String input) {
             assertThatIllegalArgumentException()
                     .isThrownBy(() -> validator.validate(input))
-                    .withMessageStartingWith(ExceptionMessage.INVALID_COACH_NAME_LENGTH.getMessage());
+                    .withMessageStartingWith(ExceptionMessage.INVALID_LONG_COACH_NAME_LENGTH.getMessage());
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"", "나"})
+        @DisplayName("코치의 이름은 최소 2글자이다.")
+        void 코치_이름_짧은_길이_테스트(String input) {
+            assertThatIllegalArgumentException()
+                    .isThrownBy(() -> validator.validate(input))
+                    .withMessageStartingWith(ExceptionMessage.INVALID_SHORT_COACH_NAME_LENGTH.getMessage());
         }
     }
 

@@ -10,10 +10,22 @@ public class CoachNameValidator extends Validator {
 
     void validateNameLength(String input) {
         int nameLength = input.length();
-        if (nameLength <= Range.MIN_RANGE.value || nameLength >= Range.MAX_RANGE.value) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_COACH_NAME_LENGTH.getMessage());
+        validateShortName(nameLength);
+        validateLongName(nameLength);
+    }
+
+    private static void validateShortName(int nameLength) {
+        if (nameLength <= Range.MIN_RANGE.value) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_SHORT_COACH_NAME_LENGTH.getMessage());
         }
     }
+
+    private static void validateLongName(int nameLength) {
+        if (nameLength >= Range.MAX_RANGE.value) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_LONG_COACH_NAME_LENGTH.getMessage());
+        }
+    }
+
 
     private enum Range {
         MIN_RANGE(1), MAX_RANGE(5);
