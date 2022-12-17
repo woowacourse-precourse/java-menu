@@ -25,6 +25,10 @@ public class Coach {
         inedibleFoods.add(foodName);
     }
 
+    public void addRecommendation(Day day, String food) {
+        recommendation.put(day, food);
+    }
+
     public boolean isEdible(String foodName) {
         return inedibleFoods.stream().noneMatch(foodName::equals);
     }
