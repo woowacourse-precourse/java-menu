@@ -11,11 +11,12 @@ import domain.Coach;
 import domain.CoachNames;
 import domain.Coaches;
 import domain.Menus;
+import domain.SelectedCategories;
 
 public class Service {
     private final Coaches coaches = new Coaches();
     private boolean onInitializing = true;
-    private List<String> categories;
+    private SelectedCategories selectedCategories;
 
     public Service() {
     }
@@ -50,33 +51,42 @@ public class Service {
     }
 
     public void chooseCategories() {
-        categories = Categories.generateCategories();
+        selectedCategories = new SelectedCategories(Categories.generateCategories());
     }
 
     public void chooseMenus() {
-        for (String category : categories) {
-            List<String> menu = Arrays.stream(Menus.values())
-                .filter(menus -> menus.getCategory().equals(category))
-                .collect(Collectors.toList())
-                .get(0)
-                .getMenus();
-            coaches.getCoaches().forEach(coach -> {
-                while (true) {
-                    String recommendedMenu = Randoms.shuffle(menu).get(0);
-                    if (coach.getInedibleMenus().contains(recommendedMenu) && coach.getMenus()
-                        .contains(recommendedMenu)) {
-                        continue;
-                    }
-                    coach.addMenu(recommendedMenu);
-                    break;
-                }
-            });
+        for (String category : selectedCategories.getSelectedCategories()) {
+            getRecommendedMenu(getMenuOfCategory(category));
         }
+    }
+
+    private List<String> getMenuOfCategory(String category) {
+        return Arrays.stream(Menus.values())
+            .filter(menus -> menus.getCategory().equals(category))
+            .collect(Collectors.toList())
+            .get(0)
+            .getMenus();
+    }
+
+    private void getRecommendedMenu(List<String> menuOfCategory) {
+        coaches.getCoaches().forEach(coach -> {
+            while (true) {
+                String recommendedMenu = Randoms.shuffle(menuOfCategory).get(0);
+                if (coach.getInedibleMenus().contains(recommendedMenu) && coach.getMenus()
+                    .contains(recommendedMenu)) {
+                    continue;
+                }
+                coach.addMenu(recommendedMenu);
+                break;
+            }
+        });
     }
 
     public List<List<String>> getRecommendation() {
         List<List<String>> recommendation = new ArrayList<>();
-        categories.add(0, "카테고리");
+        List<String> categories = new ArrayList<>();
+        categories.add("카테고리");
+        categories.addAll(selectedCategories.getSelectedCategories());
         recommendation.add(categories);
         coaches.getCoaches().forEach(coach -> {
             List<String> coachAndMenu = new ArrayList<>();

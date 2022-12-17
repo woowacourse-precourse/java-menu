@@ -10,7 +10,8 @@ public enum ErrorLog {
     INVALID_COACH_NUMBER("코치님들의 수는 2명 이상 5명 이하입니다."),
     DUPLICATION("코치님들의 이름은 중복되면 안됩니다."),
     INVALID_MENU_SIZE("못 먹는 메뉴는 2개 이하로 입력해주세요."),
-    NO_MENU("기존 목록에 없는 메뉴입니다.");
+    NO_MENU("기존 목록에 없는 메뉴입니다."),
+    INVALID_CATEGORY_SELECTION("일주일에 같은 카테고리는 두번 까지만 가능합니다.");
 
     private final String log;
 

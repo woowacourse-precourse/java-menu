@@ -54,4 +54,12 @@ public class Validator {
                 }
             });
     }
+
+    public static void validateCategories(List<String> selectedCategories) {
+        for (String category : selectedCategories) {
+            if (selectedCategories.stream().filter(x -> x.equals(category)).count() > 2) {
+                throw new IllegalArgumentException(ErrorLog.INVALID_CATEGORY_SELECTION.getLog());
+            }
+        }
+    }
 }
