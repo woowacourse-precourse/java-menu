@@ -5,7 +5,7 @@ public class Coach {
 
     public Coach(String name) {
         validateNameLength(name);
-        this.name = name;
+        this.name = name.trim();
     }
 
     private void validateNameLength(String name) {
