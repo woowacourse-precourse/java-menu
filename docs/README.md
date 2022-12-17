@@ -9,7 +9,7 @@
         - [x] 메뉴 저장 기능 MenuRepository
 
 - [ ] 입력
-    - [ ] 코치 이름
+    - [x] 코치 이름 InputView#inputCoachName()
     - [ ] 못먹는 음식(없으면 빈 값)
 
 - [ ] 출력
@@ -18,8 +18,8 @@
     - [x] 시작 메시지 OutputView#printStartMessage()
 
 - [ ] 예외
-    - [ ] 코치의 이름은 최소 2글자, 최대 4글자이다.
-    - [ ] 코치는 최소 2명, 최대 5명까지 식사를 함께 한다.
+    - [x] 코치의 이름은 최소 2글자, 최대 4글자이다. Coaches#validateCoachName()
+    - [x] 코치는 최소 2명, 최대 5명까지 식사를 함께 한다. Coaches#validateCoachName()
       - [ ]각 코치는 최소 0개, 최대 2개의 못 먹는 메뉴가 있다. (, 로 구분해서 입력한다.)
       먹지 못하는 메뉴가 없으면 빈 값을 입력한다.
     - [x] 3번이상 같은 카테고리를 못먹게 한다. Coach#validateIfTooManyCategory()
