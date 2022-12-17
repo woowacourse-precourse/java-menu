@@ -15,7 +15,7 @@ public class InputView {
         printMessage(COACH_NAME_INPUT_MESSAGE);
         String names = Console.readLine();
         List<String> coachNames = Parser.getNames(names);
-        InputValidator.checkNames(coachNames);
+        InputValidator.checkCoachNames(coachNames);
         return coachNames;
     }
 
@@ -23,7 +23,7 @@ public class InputView {
         printMessage(name + FOOD_NAME_INPUT_MESSAGE);
         String names = Console.readLine();
         List<String> foodNames = Parser.getNames(names);
-        InputValidator.checkNames(foodNames);
+        InputValidator.checkFoodNames(foodNames);
         return foodNames;
     }
 
