@@ -45,3 +45,7 @@ List<String> menu에다가 다 넣어놓기.
 - [x] 랜덤으로 추천할 카테고리 5개를 반환한다.
   - [x] Randoms API 를 사용해야 한다.
   - [x] 같은 카테고리는 최대 2번까지만 고를 수 있다.
+
+## MenuController (controller)
+
+- [ ] 카테고리에 대한 정보들을 초기 설정한다.
