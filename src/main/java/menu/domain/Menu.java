@@ -67,11 +67,6 @@ public enum Menu {
         return name;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-
     public static List<String> getMenuNamesByCategory(Category category) {
         List<String> menuNames = new ArrayList<>();
 

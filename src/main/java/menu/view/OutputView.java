@@ -3,7 +3,6 @@ package menu.view;
 import java.util.List;
 import menu.domain.Category;
 import menu.domain.Coach;
-import menu.domain.Menu;
 import menu.message.NoticeMessage;
 
 public class OutputView {
