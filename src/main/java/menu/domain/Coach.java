@@ -1,5 +1,7 @@
 package menu.domain;
 
+import static menu.view.ErrorMessage.COACH_NAME_SIZE_ERROR;
+
 import java.util.Arrays;
 
 public class Coach {
@@ -17,7 +19,7 @@ public class Coach {
 
   private void validate(String name) {
     if (name.length() < 2 || name.length() > 4) {
-      throw new IllegalArgumentException("코치의 이름은 최소 2글자, 최대 4글자 이어야 합니다.");
+      throw new IllegalArgumentException(COACH_NAME_SIZE_ERROR.getMessage());
     }
   }
 }

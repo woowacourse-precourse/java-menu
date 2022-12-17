@@ -1,9 +1,10 @@
 package menu.repository;
 
+import static menu.view.OutputView.CATEGORY;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 import menu.domain.Category;
 
 public class CategoryRepository {
@@ -16,7 +17,7 @@ public class CategoryRepository {
 
   public static List<String> findAllCategoryNames() {
     List<String> result = new ArrayList<>();
-    result.add("카테고리");  // 리팩토링 필요
+    result.add(CATEGORY);  // 리팩토링 필요
     categories.forEach(category -> result.add(category.getName()));
     return result;
   }

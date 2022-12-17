@@ -15,7 +15,7 @@ public class OutputView {
   private static final String ERROR_PREFIX = "[ERROR] ";
   private static final String RECOMMEND_RESULT_MESSAGE = "\n메뉴 추천 결과입니다.";
   private static final String RECOMMEND_SUCCESS_MESSAGE = "\n추천을 완료했습니다.";
-  private static final String CATEGORY = "카테고리";
+  public static final String CATEGORY = "카테고리";
   public static void printErrorMessage(String message) {
     System.out.println(ERROR_PREFIX + message);
   }
