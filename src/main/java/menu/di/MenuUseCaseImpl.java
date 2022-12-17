@@ -13,6 +13,9 @@ import menu.domain.Picker;
 public class MenuUseCaseImpl implements MenuUseCase {
 
     private static final String MENU_NOT_FOUND_MESSAGE = "없는 메뉴입니다";
+    private static final String NUMBER_OVER_RANGE_MESSAGE = "사람 수가 범위를 벗어났습니다";
+    private static final int MINIMUM_COACH_COUNT = 2;
+    private static final int MAXIMUM_COACH_COUNT = 5;
     private final Map<Category, List<String>> menus;
     private final Picker picker;
 
@@ -31,8 +34,12 @@ public class MenuUseCaseImpl implements MenuUseCase {
     @Override
     public void validateNames(ValidateNameCommand validateNameCommand) {
         List<String> names = validateNameCommand.getNames();
+        if (names.size() < MINIMUM_COACH_COUNT || names.size() > MAXIMUM_COACH_COUNT) {
+            throw new IllegalArgumentException(NUMBER_OVER_RANGE_MESSAGE);
+        }
         names.forEach(CoachName::new);
     }
+
 
     @Override
     public void validateMenus(ValidateMenuCommand validateMenuCommand) {
