@@ -1,15 +1,21 @@
 package menu.domain;
 
+import menu.constant.Day;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Coach {
     private String name;
     private List<String> inedibleFoods;
+    private Map<Day, String> recommendation;
 
     public Coach(String name) {
         this.name = name;
         inedibleFoods = new ArrayList<>();
+        recommendation = new HashMap<>();
     }
 
     public void addInedibleFood(String foodName) {
