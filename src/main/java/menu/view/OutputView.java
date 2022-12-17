@@ -1,5 +1,9 @@
 package menu.view;
 
+import menu.domain.CategoryEnum;
+
+import java.util.List;
+
 public class OutputView {
     public OutputView() {};
 
@@ -17,5 +21,18 @@ public class OutputView {
 
     public static void printInputInEdible(String coach) {
         System.out.println("\n" + coach + "(이)가 못 먹는 메뉴를 입력해 주세요.");
+    }
+
+    public static void printResult(List<String> coachesName, List<String[]> menu, List<Integer> category) {
+        System.out.println("\n메뉴 추천 결과입니다.");
+        System.out.println("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
+        printCategory(category);
+    }
+
+    public static void printCategory(List<Integer> category) {
+        System.out.print("[ 카테고리 ");
+        for (int i = 0; i < category.size(); i++)
+            System.out.print("| "+CategoryEnum.getMessageByValue(category.get(i)));
+        System.out.println(" ]");
     }
 }
