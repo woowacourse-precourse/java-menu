@@ -1,13 +1,17 @@
 package menu.domain;
 
-import java.util.List;
+import menu.domain.enums.Category;
 
-import static java.util.Collections.unmodifiableList;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Coach {
 
+    private static final int MAX_DUPLICATED_COUNT = 2;
+
     private final String name;
     private final List<Food> inedibleFoods;
+    private final List<Recommend> recommends = new ArrayList<>();
 
     public Coach(String name, List<Food> inedibleFoods) {
         this.name = name;
@@ -18,7 +22,14 @@ public class Coach {
         return name;
     }
 
-    public List<Food> inedibleFoods() {
-        return unmodifiableList(inedibleFoods);
+    public boolean isDuplicatedCategory(Category category) {
+        long count = inedibleFoods.stream()
+                .filter(it -> it.category().equals(category))
+                .count();
+        return MAX_DUPLICATED_COUNT <= count;
+    }
+
+    public boolean isEdible(Food food) {
+        return !inedibleFoods.contains(food);
     }
 }

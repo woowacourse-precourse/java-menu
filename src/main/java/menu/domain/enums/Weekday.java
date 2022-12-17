@@ -1,5 +1,10 @@
 package menu.domain.enums;
 
+import java.util.List;
+
+import static java.util.Arrays.stream;
+import static java.util.stream.Collectors.toUnmodifiableList;
+
 public enum Weekday {
 
     MONDAY("월요일"),
@@ -13,6 +18,11 @@ public enum Weekday {
 
     Weekday(String dayName) {
         this.dayName = dayName;
+    }
+
+    public static List<Weekday> weekdays() {
+        return stream(values())
+                .collect(toUnmodifiableList());
     }
 
     public String dayName() {
