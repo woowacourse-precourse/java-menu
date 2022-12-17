@@ -27,6 +27,7 @@ public class Output {
         System.out.println("[ 카테고리 | "+categories.get(0).getName()+" | "+categories.get(1).getName()+" | "+categories.get(2).getName()+" | "+categories.get(3).getName()+" | "+categories.get(4).getName()+" ]");
         for (Coach coach : coaches) {
             System.out.printf("[ %s | %s | %s | %s | %s | %s ]\n",coach.getName(),coach.getRecommendFood().get(0),coach.getRecommendFood().get(1),coach.getRecommendFood().get(2),coach.getRecommendFood().get(3),coach.getRecommendFood().get(4));
+
         }
 
     }
