@@ -12,7 +12,7 @@ public class OutputView {
     private static final String DELIMITER = " | ";
     private static final String END = " ]";
     private static final String DAY_MESSAGE = "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]";
-    private static final String FINISH_MESSAGE = "추천을 완료했습니다";
+    private static final String FINISH_MESSAGE = "추천을 완료했습니다.";
     private static final String RESULT_START_MESSAGE = "메뉴 추천 결과입니다.";
 
     private OutputView() {
