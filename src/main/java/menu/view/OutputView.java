@@ -40,15 +40,13 @@ public class OutputView {
         System.out.println(" ]");
     }
 
-    public void printCategory(RecommendRepository recommendRepository) {
+    public void printCategory(List<String> categories) {
         System.out.print("[ 카테고리" + SEPARATOR);
-        System.out.print(String.join(SEPARATOR, recommendRepository.getCategories()));
+        System.out.print(String.join(SEPARATOR, categories));
         System.out.println(" ]");
     }
 
-    public void printCoach(CoachRepository coachRepository) {
-        List<Coach> coaches = coachRepository.getCoaches();
-
+    public void printCoach(List<Coach> coaches) {
         for (Coach coach : coaches) {
             System.out.print("[ " + coach.toString() + SEPARATOR);
             System.out.print(String.join(SEPARATOR, coach.getRecommendedFoods()));

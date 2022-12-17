@@ -40,8 +40,8 @@ public class MainController {
     private void finish() {
         outputView.printResult();
         outputView.printWeek();
-        outputView.printCategory(recommendRepository);
-        outputView.printCoach(coachRepository);
+        outputView.printCategory(recommendRepository.getCategories());
+        outputView.printCoach(coachRepository.getCoaches());
         outputView.printEnd();
     }
 
