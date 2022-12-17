@@ -48,6 +48,13 @@ public class OutputView {
         printMessage(formattedCategoriesName);
     }
 
+    public void printRecommendMenuByCoach(List<String> recommendMenus, String coachName) {
+        recommendMenus.add(0, coachName);
+        String formattedRecommendMenus = MessageFormat.format(
+                RESULT_MESSAGE_FORMAT, String.join(JOIN_DELIMITER, recommendMenus));
+        printMessage(formattedRecommendMenus);
+    }
+
     private void printBlankLine() {
         System.out.println();
     }
