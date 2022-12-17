@@ -43,7 +43,7 @@ public class Application {
 		int categoryNumber = Randoms.pickNumberInRange(1, 5);
 
 		//한 주에 같은 카테고리는 최대 2회까지만 고를 수 있다.
-		while (categoryCount.get(categoryNumber) < 2) {
+		while (categoryCount.get(categoryNumber) >= 2) {
 			categoryNumber = Randoms.pickNumberInRange(1, 5);
 		}
 
