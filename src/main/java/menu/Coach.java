@@ -16,8 +16,16 @@ public class Coach {
         unwantedMenus.addAll(menus);
     }
 
-    public void setRecommendedMenus(List<String> menus) {
-        this.menus.addAll(menus);
+    public void addRecommendedMenus(String menus) {
+        this.menus.add(menus);
+    }
+
+    public boolean availableMenu(String menu){
+        return !hasMenu(menu) && isUnwantedMenu(menu);
+    }
+
+    public boolean hasMenu(String menu){
+        return menus.contains(menu);
     }
 
     public boolean isUnwantedMenu(String menu) {

@@ -31,9 +31,12 @@ public class MenuRecommendationController {
     }
 
     private void recommendMenus() {
-        for (int i = 0; i < coaches.size(); i++) {
-            Coach coach = coaches.get(i);
-            coach.setRecommendedMenus(recommendation.getRandomMenus(coach));
+        for (int i = 0; i < categories.size(); i++) {
+            Category category = categories.get(i);
+            for (int j = 0; j < coaches.size(); j++) {
+                Coach coach = coaches.get(j);
+                coach.addRecommendedMenus(recommendation.getRandomMenu(coach, category));
+            }
         }
     }
 

@@ -24,28 +24,18 @@ public class MenuRecommendation {
         return randomCategories;
     }
 
-    public List<String> getRandomMenus(Coach coach) {
-        clearMenus();
-
-        while (randomMenus.size() < RECOMMEND_SIZE) {
-            Category category = randomCategories.get(randomMenus.size());
-
-            List<String> menus = category.getMenu().getMenus();
-            int index = Randoms.pickNumberInRange(0, menus.size() - 1);
-            String randomMenu = menus.get(index);
-            if (!hasMenu(randomMenu) && !coach.isUnwantedMenu(randomMenu))
-                randomMenus.add(randomMenu);
+    public String getRandomMenu(Coach coach, Category category) {
+        List<String> menus = category.getMenu().getMenus();
+        String randomMenu;
+        while (true) {
+            randomMenu = Randoms.shuffle(menus).get(0);
+            if (!coach.availableMenu(randomMenu))
+                break;
         }
-        return randomMenus;
+
+        return randomMenu;
     }
 
-    private boolean hasMenu(String randomMenu) {
-        return randomMenus.contains(randomMenu);
-    }
-
-    private void clearMenus() {
-        randomMenus.clear();
-    }
 
     private boolean isValidCategory(Category category) {
         long numberOfCategory = randomCategories.stream()
