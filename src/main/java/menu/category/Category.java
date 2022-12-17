@@ -35,4 +35,27 @@ public class Category {
         }
     }
 
+    // 존재하는 메뉴인지 확인
+    public static boolean isInMenu(String menuToFind) {
+        for (Category.Categories category : Category.Categories.values()) {
+            List<String> menus = category.getMenus();
+            for (String menu : menus) {
+                if (menu.compareTo(menuToFind) == 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    // number로 name 찾기
+    public static String getCategoryNameByNumber(int categoryNumber) {
+        for (Categories category : Category.Categories.values()) {
+            if (category.getNumber() == categoryNumber) {
+                return category.getName();
+            }
+        }
+        return "";
+    }
+
 }

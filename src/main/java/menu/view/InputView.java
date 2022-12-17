@@ -1,8 +1,7 @@
 package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import menu.category.CategoryService;
-import menu.coach.Coach;
+import menu.category.Category;
 
 import java.util.NoSuchElementException;
 
@@ -43,7 +42,7 @@ public class InputView {
 
     /**
      * 코치가 못 먹는 메뉴 입력받기
-     * @param coach
+     *
      * @return
      */
     public static String[] setCoachesCannotEats() {
@@ -63,7 +62,7 @@ public class InputView {
     // 없는 메뉴일 경우
     private static boolean checkCoachCannotEats_value(String[] coachCannotEats) {
         for (String coachCannotEat : coachCannotEats) {
-            if (CategoryService.isInMenu(coachCannotEat)) {
+            if (Category.isInMenu(coachCannotEat)) {
                 return true;
             }
         }
