@@ -1,7 +1,15 @@
 package menu;
 
+import menu.controller.Controller;
+import menu.controller.InputController;
+import menu.domain.CategoryRepository;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+
+
+        CategoryRepository.initCategories();
+        Controller.run();
+
     }
 }
