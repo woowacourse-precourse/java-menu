@@ -8,8 +8,10 @@ import menu.repository.CoachRepository;
 
 public class Application {
     public static void main(String[] args) {
-        CoachRepository coachRepository = new CoachRepository();
-        MenuRecommender menuRecommender = new MenuRecommender(coachRepository);
-        menuRecommender.run();
+//        CoachRepository coachRepository = new CoachRepository();
+//        MenuRecommender menuRecommender = new MenuRecommender(coachRepository);
+//        menuRecommender.run();
+
+        System.out.println(Category.ASIAN.getMenus());
     }
 }
