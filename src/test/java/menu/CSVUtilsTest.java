@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 public class CSVUtilsTest {
 
-    @DisplayName("다음칸이 이동할 수 있는 칸인 경우 true 반환")
+    @DisplayName("아시안 요리인 팟타이가 포함되어 있는지 테스트")
     @Test
     void caseGetMenuFromCSV(){
         assertThat(CSVUtils.getCsvLine("아시안")).containsAnyOf("팟타이");

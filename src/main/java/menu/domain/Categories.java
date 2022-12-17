@@ -1,5 +1,6 @@
 package menu.domain;
 
+import java.util.Arrays;
 import java.util.List;
 import menu.utils.CSVUtils;
 
@@ -22,5 +23,19 @@ public enum Categories {
 
     private void initMenu(String categoryName){
         this.menu = CSVUtils.getCsvLine(this.categoryName);
+    }
+
+    public static Categories get(int categoryCode){
+        return Arrays.stream(Categories.values())
+                .filter(category -> category.getCategoryCode() == categoryCode)
+                .findAny().get();
+    }
+
+    private int getCategoryCode(){
+        return this.categoryCode;
+    }
+
+    public List<String> getMenu(){
+        return this.menu;
     }
 }
