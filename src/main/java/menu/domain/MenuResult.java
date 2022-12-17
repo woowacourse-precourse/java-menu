@@ -5,11 +5,11 @@ import java.util.Map;
 
 public class MenuResult {
     private final Coaches coaches;
-    private final Map<Day, FoodCategory> foodCategories;
+    private final FoodCategoriesOfDay foodFoodCategoriesOfDay;
 
-    public MenuResult(Coaches coaches, Map<Day, FoodCategory> foodCategories) {
+    public MenuResult(Coaches coaches, FoodCategoriesOfDay foodFoodCategoriesOfDay) {
         this.coaches = coaches;
-        this.foodCategories = foodCategories;
+        this.foodFoodCategoriesOfDay = foodFoodCategoriesOfDay;
     }
 
     public List<Coach> getCoaches() {
@@ -17,6 +17,6 @@ public class MenuResult {
     }
 
     public Map<Day, FoodCategory> getFoodCategories() {
-        return foodCategories;
+        return foodFoodCategoriesOfDay.get();
     }
 }
