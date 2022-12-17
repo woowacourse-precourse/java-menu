@@ -1,5 +1,6 @@
 package menu;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -7,7 +8,10 @@ public class Application {
         InputView inputView = new InputView();
         OutputView.printStart();
         List<String> coachName = inputView.readCoachName();
-        List<Coach> coach = inputView.readDislikeFood(coachName);
+        List<Coach> coach = new ArrayList<>();
+        for (String each : coachName) {
+            coach.add(inputView.readDislikeFood(each));
+        }
         Controller controller = new Controller(coachName, coach);
         controller.start();
         OutputView.printEnd();
