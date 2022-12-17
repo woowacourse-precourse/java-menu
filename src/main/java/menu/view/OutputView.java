@@ -16,10 +16,10 @@ public class OutputView {
         System.out.println(RECOMMEND_START);
     }
 
-    public static void printResult(List<Coach> coaches){
+    public static void printResult(List<Coach> coaches, List<Category> categories){
         System.out.println(PRINT_MENU);
         printWeek();
-        printCategory();
+        printCategory(categories);
         printCoachRecommendMenu(coaches);
     }
 
@@ -32,9 +32,9 @@ public class OutputView {
         }
     }
 
-    private static void printCategory() {
-        String category = Arrays.stream(Category.values())
-                .map(Category::getName)
+    private static void printCategory(List<Category> categories) {
+        String category = categories
+                .stream().map(Category::getName)
                 .collect(Collectors.joining(" | ", "[ ", " ]"));
         System.out.println(category);
     }
