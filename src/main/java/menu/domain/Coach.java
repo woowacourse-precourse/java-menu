@@ -9,7 +9,6 @@ public class Coach {
 
     private String name;
     private List<String> canNotEatFoods = new ArrayList<>();
-    private List<String> recommendedCategory = new ArrayList<>();
     private List<String> recommendedMenu = new ArrayList<>();
 
     public Coach(String name) {
@@ -22,10 +21,6 @@ public class Coach {
         for(String canNotEatFood : foods) {
             canNotEatFoods.add(canNotEatFood);
         }
-    }
-
-    public List<String> getRecommendedCategory() {
-        return recommendedCategory;
     }
 
     public List<String> getRecommendedMenu() {

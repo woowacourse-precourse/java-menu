@@ -1,6 +1,7 @@
 package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecommendSystem {
@@ -9,26 +10,28 @@ public class RecommendSystem {
     private static final int RECOMMAND_MAX_NUM = 5;
     private static final int CHECK_OVERLAP = 2;
 
+    List<String> recommendCategories = new ArrayList<>();
+
     public void addCoachCategory(Coach coach) {
-        List<String> categories = coach.getRecommendedCategory();
-        while(!(categories.size() == RECOMMAND_MAX_NUM)) {
+        while(!(recommendCategories.size() == RECOMMAND_MAX_NUM)) {
             int num = randomCategory();
             String category = Category.getCategory(num);
-            if(checkCategoryCount(categories, category)) {
+            if(checkCategoryCount(category)) {
                 continue;
             }
-            categories.add(category);
+            recommendCategories.add(category);
         }
     }
 
     // 음식을 추천하는 기능
     public void addRecommendMenu(Coach coach) {
-        List<String> categories = coach.getRecommendedCategory();
         List<String> recommedMenus = coach.getRecommendedMenu();
+        int index = 0;
         while(!(recommedMenus.size() == RECOMMAND_MAX_NUM)) {
-            String category = categories.get(Randoms.pickNumberInRange(0, categories.size()-1));
+            String category = recommendCategories.get(index++);
             String menu = recommendMenu(category);
             if(checkCanNotEatMenu(coach, menu)) {
+                index--;
                 continue;
             }
             recommedMenus.add(menu);
@@ -52,9 +55,9 @@ public class RecommendSystem {
         return Randoms.pickNumberInRange(RECOMMAND_MIN_NUM,RECOMMAND_MAX_NUM);
     }
 
-    private boolean checkCategoryCount(List<String> coachRecommendCategory, String category) {
+    private boolean checkCategoryCount(String category) {
         int count  = 0;
-        for(String coachCategory : coachRecommendCategory) {
+        for(String coachCategory : recommendCategories) {
             if (coachCategory.equals(category)) {
                 count++;
             }
