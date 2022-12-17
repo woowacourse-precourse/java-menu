@@ -3,6 +3,7 @@ package menu.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import menu.model.Recommender;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -16,20 +17,23 @@ public class MenuController {
     public void run() {
         outputView.printServiceStart();
         outputView.printInputCoachName();
-        coaches = inputView.readCoachName();
+        // coaches = inputView.readCoachName();
         
-        for (String coach : coaches) {
-            outputView.printInputCoachNotEat(coach);
-            coachNotEat = inputView.readCoachNotEat();
-            System.out.println(coachNotEat);
-        }
+        // for (String coach : coaches) {
+        //     outputView.printInputCoachNotEat(coach);
+        //     coachNotEat = inputView.readCoachNotEat();
+        //     System.out.println(coachNotEat);
+        // }
         outputView.printServiceResult();
         recommend();
         outputView.printServiceEnd();
     }
 
     public void recommend() {
-
+        Recommender recommender = new Recommender();
+        for (int i = 0; i < 5; i ++) {
+            recommender.recommendCategory();
+        }
     }
 
 }
