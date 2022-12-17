@@ -34,6 +34,9 @@ public class Menus {
     }
 
     public Menu findMenu(String menuName) {
+        if (menuName.isEmpty()) {
+            return new Menu(Category.KOREA, "");
+        }
         return menus.stream()
                 .filter(menu -> menu.isNameOf(menuName))
                 .findAny()
