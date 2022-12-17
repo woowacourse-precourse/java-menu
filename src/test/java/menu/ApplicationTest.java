@@ -14,10 +14,7 @@ import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 
-import menu.controller.MainController;
 import menu.util.Validate;
-import menu.view.InputView;
-import menu.view.OutputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -29,7 +26,7 @@ public class ApplicationTest extends NsTest {
     private static final String ERROR_DIFFERENT_COACH_LENGTHS = "[ERROR] 코치는 최소 2명, 최대 5명까지 식사를 함께 한다.";
     private static final String ERROR_DIFFERENT_CANT_EAT_LENGTHS = "[ERROR] 각 코치는 최소 0개, 최대 2개의 못 먹는 메뉴가 있다.";
     private static final String ERROR_DUPLICATE_VALUE = "[ERROR] 중복 값이 포함되어 있습니다.";
-    private static final String ERROR_NUMBER = "[ERROR] 숫자 값이 포함되어 있습니다.";
+    private static final String ERROR_NUMBER = "[ERROR] 이름이 아닙니다.";
 
     private static final Duration RANDOM_TEST_TIMEOUT = Duration.ofSeconds(10L);
 
@@ -37,10 +34,58 @@ public class ApplicationTest extends NsTest {
     @Nested
     class AllFeatureTest {
         @Test
+        void Validate_이름_길이_테스트_1() {
+            assertSimpleTest(() -> {
+                try {
+                    Validate.nameLength(Arrays.asList("엘리스", "바이", "퀸"), 2, 4);
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+                assertThat(output()).contains(ERROR_DIFFERENT_LENGTHS);
+            });
+        }
+
+        @Test
+        void Validate_이름_길이_테스트_2() {
+            assertSimpleTest(() -> {
+                try {
+                    Validate.nameLength(Arrays.asList("엘리스", "바이", "이즈리얼", "모데카이저"), 2, 4);
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+                assertThat(output()).contains(ERROR_DIFFERENT_LENGTHS);
+            });
+        }
+
+        @Test
+        void Validate_한글_이름_공백_테스트() {
+            assertSimpleTest(() -> {
+                try {
+                    Validate.isName("가나 다");
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+                assertThat(output()).contains(ERROR_NUMBER);
+            });
+        }
+
+        @Test
+        void Validate_영문_한글_혼합_포함_에러_테스트() {
+            assertSimpleTest(() -> {
+                try {
+                    Validate.isName("안녕a");
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+                assertThat(output()).contains(ERROR_NUMBER);
+            });
+        }
+
+        @Test
         void Validate_숫자_값_포함_에러_테스트_1() {
             assertSimpleTest(() -> {
                 try {
-                    Validate.inNumber("안녕3");
+                    Validate.isName("안녕3");
                 } catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }
@@ -52,7 +97,7 @@ public class ApplicationTest extends NsTest {
         void Validate_숫자_값_포함_에러_테스트_2() {
             assertSimpleTest(() -> {
                 try {
-                    Validate.inNumber("7안녕하세요");
+                    Validate.isName("7안녕하세요");
                 } catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }
@@ -64,7 +109,7 @@ public class ApplicationTest extends NsTest {
         void Validate_숫자_값_포함_에러_테스트_3() {
             assertSimpleTest(() -> {
                 try {
-                    Validate.inNumber("abc0");
+                    Validate.isName("abc0");
                 } catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }
