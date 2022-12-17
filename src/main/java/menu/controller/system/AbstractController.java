@@ -1,4 +1,4 @@
-package menu.controller;
+package menu.controller.system;
 
 import menu.outputview.ErrorHandlingOutputView;
 

@@ -1,5 +1,6 @@
 package menu.controller;
 
+import menu.controller.system.AbstractController;
 import menu.domain.Coach;
 import menu.domain.CoachRepository;
 import menu.domain.Menu;

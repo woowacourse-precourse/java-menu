@@ -1,4 +1,8 @@
-package menu.controller;
+package menu.controller.system;
+
+import menu.controller.CoachInfoController;
+import menu.controller.RecommendingController;
+import menu.controller.SetupController;
 
 import java.util.HashMap;
 import java.util.Map;

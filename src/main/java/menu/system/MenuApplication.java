@@ -1,7 +1,7 @@
 package menu.system;
 
-import menu.controller.ControllerHolder;
-import menu.controller.ControllerName;
+import menu.controller.system.ControllerHolder;
+import menu.controller.system.ControllerName;
 
 public class MenuApplication {
 

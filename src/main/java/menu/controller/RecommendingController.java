@@ -1,5 +1,6 @@
 package menu.controller;
 
+import menu.controller.system.AbstractController;
 import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.Menu;
@@ -15,7 +16,7 @@ public class RecommendingController extends AbstractController {
     public void doProcess() {
         RecommendingService.doRecommending();
         List<String> categoryNames = getRecommendedCategoryNames();
-        Map<Coach, List<Menu>> recommendedMenus = RecommendingService.getMenusArraysPerCoach();
+        Map<Coach, List<Menu>> recommendedMenus = RecommendingService.getMenusPerCoach();
         RecommendingOutputView.printRecommendingResult(categoryNames, recommendedMenus);
     }
 

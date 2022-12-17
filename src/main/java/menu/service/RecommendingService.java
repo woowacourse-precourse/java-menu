@@ -49,7 +49,7 @@ public class RecommendingService {
         return Collections.unmodifiableList(categories);
     }
 
-    public static Map<Coach, List<Menu>> getMenusArraysPerCoach() {
+    public static Map<Coach, List<Menu>> getMenusPerCoach() {
         HashMap<Coach, List<Menu>> recommendedMenusByCoach = new HashMap<>();
         for (Coach coach : CoachRepository.findAll()) {
             List<Menu> recommendedMenus = RecommendingRepository.findAllMenusByCoach(coach);
