@@ -2,6 +2,7 @@ package menu.util;
 
 import java.util.Arrays;
 import java.util.List;
+import menu.domain.Categories;
 
 public class InputValidator {
 
@@ -29,8 +30,9 @@ public class InputValidator {
         return true;
     }
 
-    public static String validateCantEatMenu(String input) {
+    public static String validateCantEatMenu(Categories categories, String input) {
         List<String> cantEatMenu = Arrays.asList(input.split(","));
+        cantEatMenu.stream().forEach(categories::validateExistMenu);
         if (cantEatMenu.size() > 2) {
             throw new IllegalArgumentException(CANT_EAT_MENU_ERROR);
         }
