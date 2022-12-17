@@ -20,6 +20,7 @@ public class OutputView {
     }
 
     public void printRecommendResult(List<Coach> coaches, List<Category> categories) {
+        System.out.println(MENU_RECOMMEND_RESULT);
         System.out.println(RECOMMEND_RESULT_DAY_WEEK);
         printCategories(categories);
         printCoachesMenu(coaches);
@@ -41,7 +42,6 @@ public class OutputView {
     }
 
     public void printCoachesMenu(List<Coach> coaches) {
-        System.out.println(MENU_RECOMMEND_RESULT);
         for (Coach coach : coaches) {
             printCoachMenu(coach);
         }
