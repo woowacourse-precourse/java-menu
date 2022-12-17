@@ -1,6 +1,7 @@
 package menu;
 
 import java.util.List;
+import menu.domain.CategoryRecommendation;
 import menu.domain.Coach;
 import menu.initializer.FoodInitializer;
 import menu.input.InputView;
@@ -15,5 +16,6 @@ public class Application {
     private static void run() {
         List<Coach> coaches = InputView.readCoachNames();
         InputView.readInedibleFoodsOfCoaches(coaches);
+        CategoryRecommendation.recommendCategories();
     }
 }
