@@ -20,9 +20,13 @@ public class Coach {
         }
     }
 
+    public boolean isSame(Coach otherCoach){
+        return this.name == otherCoach.name;
+    }
+
     public boolean canEat(Menu menu){
         for(Menu hateFood : hateMenu){
-            if(hateFood.getMenuName().equals(menu.getMenuName())){
+            if(hateFood.isSame(menu)){
                 return false;
             }
         }

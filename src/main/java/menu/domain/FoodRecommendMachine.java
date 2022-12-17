@@ -20,9 +20,10 @@ public class FoodRecommendMachine {
         makeRecommendOf("월요일");
     }
 
-    public void makeRecommendOf(String dayName) {
+    private void makeRecommendOf(String dayName) {
         DayRecommend dayRecommend = new DayRecommend(dayName);
         FoodCategory foodCategory = selectCategory();
+        makeTodayRecommend(dayRecommend, foodCategory);
     }
 
     private FoodCategory selectCategory() {
@@ -38,5 +39,37 @@ public class FoodRecommendMachine {
             return false;
         }
         return true;
+    }
+
+    private void makeTodayRecommend(DayRecommend dayRecommend, FoodCategory foodCategory) {
+        List<Coach> coachesList = coaches.getCoaches();
+        for (Coach coach : coachesList) {
+            makeTodayMenuOf(coach, foodCategory);
+        }
+    }
+
+    private Menu makeTodayMenuOf(Coach coach, FoodCategory foodCategory) {
+        Menu randomMenu = getRandomMenuOf(foodCategory);
+        while (!coach.canEat(randomMenu)) {
+            randomMenu = getRandomMenuOf(foodCategory);
+        }
+        while (checkMenuDuplication(coach, randomMenu)) {
+            randomMenu = getRandomMenuOf(foodCategory);
+        }
+        return randomMenu;
+    }
+
+    private Menu getRandomMenuOf(FoodCategory category) {
+        return Randoms.shuffle(category.getMenus()).get(0);
+    }
+
+    private boolean checkMenuDuplication(Coach coach, Menu menu) {
+        long count = foodRecommends.keySet().stream()
+                .filter(dayRecommend -> dayRecommend.isCoachMenu(coach, menu))
+                .count();
+        if (count == 0) {
+            return true;
+        }
+        return false;
     }
 }

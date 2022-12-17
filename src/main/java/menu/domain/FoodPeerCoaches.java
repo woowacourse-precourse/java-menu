@@ -14,6 +14,10 @@ public class FoodPeerCoaches {
         this.coaches = coaches;
     }
 
+    public List<Coach> getCoaches() {
+        return coaches;
+    }
+
     private void checkCouchCount(List<Coach> couchData) {
         if (couchData.size() < MIN_MEMBER) {
             throw new IllegalArgumentException("[ERROR] 같이 밥을 먹는 코치는 최소 2명이상 입니다.");

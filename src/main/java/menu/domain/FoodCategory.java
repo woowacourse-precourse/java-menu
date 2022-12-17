@@ -19,6 +19,10 @@ public enum FoodCategory {
         this.menus = getMenuListData(menuData);
     }
 
+    public List<Menu> getMenus() {
+        return menus;
+    }
+
     public static FoodCategory of(int categoryNumber) {
         return Arrays.stream(FoodCategory.values())
                 .filter(foodCategory -> foodCategory.categoryNum == categoryNumber)
