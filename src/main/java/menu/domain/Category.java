@@ -1,6 +1,7 @@
 package menu.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public enum Category {
@@ -18,5 +19,20 @@ public enum Category {
         this.name = name;
         this.index = index;
         this.menus = menus;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public static Category getCategory(int index) {
+        return Arrays.stream(values())
+                .filter(category -> category.getIndex() == index)
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("카테고리 번호는 1 ~ 5 사이의 숫자여야합니다."));
     }
 }
