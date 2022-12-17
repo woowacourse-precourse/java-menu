@@ -46,6 +46,7 @@ public class MenuRecommendService {
             while (!findCoach.validateRecommendMenu(recommendMenu)) {
                 retry(recommendedCategory);
             }
+            findCoach.updateAlreadyEatFood(recommendMenu);
         }
     }
 

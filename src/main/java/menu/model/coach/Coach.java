@@ -21,6 +21,10 @@ public class Coach {
         this.cannotEatFoods = cannotEatFoods;
     }
 
+    public void updateAlreadyEatFood(String menu) {
+        alreadyEatenFoods.add(menu);
+    }
+
     public boolean validateRecommendMenu(String recommendMenu) {
         boolean canRecommendMenuEat = true;
        if (isCannotEatFood(recommendMenu)) {
