@@ -12,4 +12,11 @@ public class InputView {
 		splitCoachs.addAll(List.of(inputCoachs.split(",")));
 		return splitCoachs;
 	}
+
+	public List<String> readNotEatFood() {
+		List<String> splitFoods = new ArrayList<>();
+		String inputFoods = Console.readLine();
+		splitFoods.addAll(List.of(inputFoods.split(",")));
+		return splitFoods;
+	}
 }
