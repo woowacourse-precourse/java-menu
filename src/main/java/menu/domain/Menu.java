@@ -1,6 +1,9 @@
 package menu.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public enum Menu {
 
@@ -26,5 +29,12 @@ public enum Menu {
                 .filter(menu -> menu.name.equals(input))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 메뉴입니다. 입력값 : " + input));
+    }
+
+    public static Menu createRandomMenuByCategory(Category category) {
+        List<Menu> menusBySpecificCategory = Arrays.stream(values())
+                .filter(menu -> menu.category.equals(category))
+                .collect(Collectors.toList());
+        return Randoms.shuffle(menusBySpecificCategory).get(0);
     }
 }
