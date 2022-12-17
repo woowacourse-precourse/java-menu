@@ -10,7 +10,7 @@ public class OutputView {
     private static final String START_MESSAGE = "점심 메뉴 추천을 시작합니다.";
     private static final String BAR = " | ";
     private static final String RESULT_MESSAGE = "\n메뉴 추천 결과입니다.";
-    private static final String FINAL_MESSAGE = "추천을 완료했습니다.";
+    private static final String FINAL_MESSAGE = "\n추천을 완료했습니다.";
     private static final String DAYS_START = "구분";
     private static final String CATEGORY_START = "카테고리";
     private static final String EACH_LINE_OPEN = "[ ";
