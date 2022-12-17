@@ -8,19 +8,19 @@ import java.util.Map;
 public class RecommendMenuRepository {
     private final List<Coach> coaches;
     private final Map<Coach, List<String>> dislikeMenus;
-    private final Map<Coach, List<String>> recommendMenus = new LinkedHashMap();
+    private final Map<Coach, List<String>> recommendMenus;
     List<Category> categories = new ArrayList<>();
 
     public RecommendMenuRepository(CoachRepository coachRepository, DislikeMenuRepository dislikeMenus) {
         this.coaches = coachRepository.coaches();
         this.dislikeMenus = dislikeMenus.menus();
+        this.recommendMenus = new LinkedHashMap();
         getRandomCategory();
         getRecommendMenu();
     }
 
     private void getRandomCategory() {
         while(categories.size()<5){
-            System.out.println("반복문");
             Category randomCategory = Category.getRandomCategory();
             if(validateCategoryRange(randomCategory)) categories.add(randomCategory);
         }
@@ -47,8 +47,17 @@ public class RecommendMenuRepository {
     private String getRandomMenu(List<String> recommendMenus, Category category, Coach coach) {
         String randomMenu = category.getRandomMenu();
         if(recommendMenus.contains(randomMenu)) return getRandomMenu(recommendMenus, category, coach);
-        if(dislikeMenus.get(coach).contains(randomMenu)) return getRandomMenu(recommendMenus, category, coach);
+        if(dislikeMenus.containsKey(coach) && dislikeMenus.get(coach).contains(randomMenu)){
+            return getRandomMenu(recommendMenus, category, coach);
+        }
         return randomMenu;
     }
 
+    public List<Category> categories() {
+        return categories;
+    }
+
+    public Map<Coach, List<String>> recommendMenus() {
+        return recommendMenus;
+    }
 }

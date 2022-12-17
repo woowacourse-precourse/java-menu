@@ -20,5 +20,7 @@ public class RecommendMenuController {
         CoachRepository coachRepository = input.getCoach();
         DislikeMenuRepository dislikeMenus = input.getDislikeFood(coachRepository);
         RecommendMenuRepository recommendMenuRepository = new RecommendMenuRepository(coachRepository, dislikeMenus);
+        output.printMenu(recommendMenuRepository);
+        output.printEnd();
     }
 }
