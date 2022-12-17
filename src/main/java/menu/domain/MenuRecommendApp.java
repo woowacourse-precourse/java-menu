@@ -30,6 +30,10 @@ public class MenuRecommendApp {
         }
     }
 
+    public void addCategoryByDayOfTheWeek(String categoryName){
+        categoryByDayOfTheWeek.add(categoryName);
+    }
+
     public List<Coach> getCoaches() {
         return coaches;
     }
