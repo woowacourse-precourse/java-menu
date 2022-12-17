@@ -22,12 +22,11 @@ public class Coaches {
     public void takeRecommendByCategories(List<Category> categories) {
         for (Category category : categories) {
             for (Coach coach : coaches) {
-                while (coach.isAllRecommended()) {
-                    List<String> menuNames = MenuRepository.getMenuNamesByCategory(category);
-                    String menuName = Recommender.getRandomMenuName(menuNames);
-                    Menu menu = MenuRepository.getMenuByName(menuName);
-                    coach.addRecommendedMenu(menu);
+                Menu randomMenu = Recommender.getRandomMenu(category);
+                while (coach.unAcceptable(randomMenu)) {
+                    randomMenu = Recommender.getRandomMenu(category);
                 }
+                coach.addRecommendedMenu(randomMenu);
             }
         }
     }
