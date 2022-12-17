@@ -23,7 +23,7 @@ public class Coach {
 
     public void selectMenu(List<String> menus) {
         menus.removeIf(selectedMenu::contains);
-        String menu = Randoms.shuffle(menus).get(0);
+        String menu = Randoms.shuffle(menus).get(ZERO);
         selectedMenu.add(menu);
     }
 
