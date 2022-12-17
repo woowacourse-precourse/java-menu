@@ -17,6 +17,7 @@ import menu.view.OutputView;
 public class MenuRecommendSystem {
     public static final String LESS_THAN_MIN_VALUE = "코치는 최소 2명 이상 입력해야 합니다.";
     public static final String INVALID_MENU_SIZE = "코치는 최소 0개, 최대 2개의 못 먹는 메뉴를 가집니다.";
+    public static final int LAST_DAY = 5;
     private List<Coach> coaches;
     private Recommendation recommendation;
 
@@ -42,8 +43,7 @@ public class MenuRecommendSystem {
     }
 
     /**
-     * 반복해야할 메서드 *
-     * 코치 이름 입력받기*
+     * 반복해야할 메서드 * 코치 이름 입력받기*
      */
     private void makeCoaches() {
         coaches = read(this::createCoachesByNames, InputView::readCoachNameList);
@@ -51,6 +51,7 @@ public class MenuRecommendSystem {
 
     /**
      * 반복해야할 메서드 *
+     *
      * @param coach: 이름으로 생성한 코치 한 명
      */
     private void addMenuCannotToEat(Coach coach) {
@@ -65,11 +66,10 @@ public class MenuRecommendSystem {
     }
 
     private List<String> readMenuUntilValidValue(Coach coach) {
-        while(true) {
-            try{
+        while (true) {
+            try {
                 return getMenuCannotEat(InputView.readMenuCoachCannotEat(coach.getName()));
             } catch (IllegalArgumentException e) {
-                e.printStackTrace();
                 OutputView.printErrorMessage(e.getMessage());
             }
         }
@@ -79,7 +79,7 @@ public class MenuRecommendSystem {
         if (menuInput.isEmpty()) {
             return menuInput;
         }
-        for(String menu: menuInput) {
+        for (String menu : menuInput) {
             validateMenu(menu);
         }
         return menuInput;
@@ -103,21 +103,21 @@ public class MenuRecommendSystem {
         recommendation = new Recommendation();
         Set<String> cannotToEat = getTotalMenuCoachCannotToEat();
 
-        for(int i = 0; i < 5; i++) {
+        for (int dayCount = 0; dayCount < LAST_DAY; dayCount++) {
             recommendForADay(recommendation, cannotToEat);
         }
     }
 
     private void recommendForADay(Recommendation recommendation, Set<String> cannotToEat) {
         Category recommendedCategory = recommendation.addCategory();
-        for(Coach coach: coaches) {
+        for (Coach coach : coaches) {
             coach.recommendMenu(recommendedCategory, cannotToEat);
         }
     }
 
     private Set<String> getTotalMenuCoachCannotToEat() {
         Set<String> result = new HashSet<>();
-        for (Coach coach: coaches) {
+        for (Coach coach : coaches) {
             result.addAll(coach.getMenuCannotToEat());
         }
         return result;
@@ -127,9 +127,10 @@ public class MenuRecommendSystem {
      * 메뉴 추천 결과 출력 메서드*
      */
     private void showRecommendationResult() {
-        List<String> recommendationResult = coaches.stream().map(
-                this::recommendationToString
-        ).collect(Collectors.toList());
+        List<String> recommendationResult = coaches.stream()
+                .map(this::recommendationToString)
+                .collect(Collectors.toList());
+
         OutputView.printRecommendationResult(recommendation.toString(), recommendationResult);
     }
 
@@ -148,7 +149,7 @@ public class MenuRecommendSystem {
     }
 
     private <T, R> R read(Function<T, R> object, Supplier<T> input) {
-        while(true) {
+        while (true) {
             try {
                 return object.apply(input.get());
             } catch (IllegalArgumentException e) {
