@@ -1,6 +1,6 @@
 package menu.view;
 
-import menu.WeekMenusDto;
+import menu.dto.WeekMenusDto;
 
 import java.util.List;
 
@@ -29,6 +29,4 @@ public class OutputView {
     public void printFinishMessage() {
         System.out.println(MESSAGE_FINISH);
     }
-
-
 }

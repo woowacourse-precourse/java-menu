@@ -1,6 +1,6 @@
 package menu.domain;
 
-import menu.WeekMenusDto;
+import menu.dto.WeekMenusDto;
 
 import java.util.List;
 import java.util.stream.Collectors;

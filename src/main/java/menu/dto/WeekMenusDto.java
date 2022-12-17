@@ -1,4 +1,4 @@
-package menu;
+package menu.dto;
 
 import java.util.List;
 
