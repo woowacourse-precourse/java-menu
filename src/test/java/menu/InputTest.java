@@ -21,4 +21,10 @@ class InputTest {
         assertThatThrownBy(() -> Input.validateHate("자장면"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("싫어하는 메뉴 빈 입력")
+    void blank() {
+        Input.validateHate("  ");
+    }
 }

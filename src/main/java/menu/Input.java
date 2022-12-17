@@ -41,6 +41,9 @@ public class Input {
     }
 
     public static void validateHate(String input) {
+        if (input.trim().equals("")) {
+            return;
+        }
         String[] split = input.split(DELiMITER);
         validateDuplicate(split);
         if (split.length > HATE_MAX_AMOUNT) {
