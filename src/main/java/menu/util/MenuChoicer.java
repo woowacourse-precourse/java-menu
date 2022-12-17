@@ -20,7 +20,7 @@ public class MenuChoicer {
          for(FoodCategory foodCategory : weekFoodCategories){
              String pickedMenu = Randoms.shuffle(new ArrayList<>(foodCategory.getMenus())).get(0);
              menus.add(pickedMenu);
-        }
+         }
 
         return menus;
     }
