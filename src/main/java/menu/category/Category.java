@@ -58,4 +58,14 @@ public class Category {
         return List.of(""); // 여기로 올 경우는 없음
     }
 
+    // number로 name 찾기
+    public static String getCategoryNameByNumber(int categoryNumber) {
+        for (Categories category : Category.Categories.values()) {
+            if (category.getNumber() == categoryNumber) {
+                return category.getName();
+            }
+        }
+        return ""; // 여기로 올 경우는 없음
+    }
+
 }
