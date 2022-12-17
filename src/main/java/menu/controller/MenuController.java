@@ -4,6 +4,7 @@ import menu.domain.Coach;
 import menu.domain.MenuList;
 import menu.service.MenuService;
 import menu.view.InputView;
+import menu.view.OutputView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,6 +17,17 @@ public class MenuController {
     public MenuController() {
         List<Coach> coachInfo = getCoachInfo();
         menuService = new MenuService(coachInfo);
+    }
+
+    public void start(){
+        OutputView.recommendStart();
+        getRecommendMenu();
+    }
+
+    public void getRecommendMenu(){
+        for(int i=0; i<5; i++){
+            menuService.recommend();
+        }
     }
 
     public List<Coach> getCoachInfo(){
