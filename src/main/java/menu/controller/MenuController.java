@@ -1,9 +1,11 @@
 package menu.controller;
 
+import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.Menu;
 import menu.service.CategoryService;
 import menu.service.CoachService;
+import menu.service.MenuService;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -13,6 +15,7 @@ public class MenuController extends Controller{
 
     private final CoachService coachService = new CoachService();
     private final CategoryService categoryService = new CategoryService();
+    private final MenuService menuService = new MenuService();
 
     public MenuController(InputView inputView, OutputView outputView) {
         super(inputView, outputView);
@@ -24,6 +27,8 @@ public class MenuController extends Controller{
         start();
         generateCoachList();
         inputHateMenus();
+        recommendMenus();
+
     }
 
     public void start() {
@@ -44,6 +49,12 @@ public class MenuController extends Controller{
         }
 
         return coaches;
+    }
+
+    public void recommendMenus() {
+        List<Category> categories = categoryService.getFiveCategories();
+        List<Coach> coaches = coachService.findAll();
+        menuService.recommendMenus(categories, coaches);
     }
 
 

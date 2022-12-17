@@ -21,6 +21,11 @@ public class CoachService {
         coachRepository.updateCoach(coach);
     }
 
+    public void inputRecommendedMenus(Coach coach, List<Menu> recommendedMenus) {
+        coach.addRecommendMenus(recommendedMenus);
+        coachRepository.updateCoach(coach);
+    }
+
     public List<Coach> findAll() {
         return coachRepository.findAll();
     }

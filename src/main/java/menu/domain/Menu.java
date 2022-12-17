@@ -2,6 +2,7 @@ package menu.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static menu.domain.Category.*;
 import static menu.util.Constants.ERROR_PREFIX;
@@ -26,5 +27,11 @@ public enum Menu {
                 .filter(menu -> menu.name.equals(inputMenuName))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_PREFIX + "존재하지 않는 메뉴입니다."));
+    }
+
+    public static List<Menu> getAllMenuOfCategory(Category category) {
+        return Arrays.stream(values())
+                .filter(menu -> menu.category == category)
+                .collect(Collectors.toList());
     }
 }

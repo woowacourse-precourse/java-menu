@@ -6,6 +6,7 @@ public class Coach {
 
     private String name;
     private List<Menu> hateMenus;
+    private List<Menu> recommendMenus;
 
     public Coach(String name) {
         this.name = name;
@@ -21,6 +22,9 @@ public class Coach {
 
     public void addHateMenus(List<Menu> hateMenus) {
         this.hateMenus = hateMenus;
+    }
+    public void addRecommendMenus(List<Menu> recommendMenus) {
+        this.recommendMenus = recommendMenus;
     }
 
     public List<Menu> getHateMenu() {
