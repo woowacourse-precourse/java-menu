@@ -41,12 +41,16 @@ public class Coaches {
     }
 
     private void validateCoachesLength(List<String> coachNames) {
-        if (MINIMUM_COACH_COUNT <= coachNames.size() && coachNames.size() <= MAXIMUM_COACH_COUNT) {
-            return;
+        if (MINIMUM_COACH_COUNT > coachNames.size()) {
+            throw new IllegalArgumentException(String.format(
+                    "[ERROR] 코치는 최소 %d명 이상 입력해야 합니다.", MINIMUM_COACH_COUNT
+            ));
         }
-        throw new IllegalArgumentException(String.format(
-                "[ERROR] %d명 이상 %d명 이하의 코치들이 밥을 함께 먹어야 합니다.", MINIMUM_COACH_COUNT, MAXIMUM_COACH_COUNT
-        ));
+        if (coachNames.size() > MAXIMUM_COACH_COUNT) {
+            throw new IllegalArgumentException(String.format(
+                    "[ERROR] 코치는 최대 %d명 이하로 입력해야 합니다.", MAXIMUM_COACH_COUNT
+            ));
+        }
     }
 
     public List<String> getCoachNames() {
