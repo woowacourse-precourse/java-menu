@@ -1,0 +1,50 @@
+package menu.util;
+
+import menu.model.Menu;
+import menu.model.MenuCategory;
+import menu.service.MenuService;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+/**
+ * @Author : jeeseob
+ * @CreateAt : 2022/12/17
+ */
+
+public class SaveMenu {
+    private final String japaneseFood = "규동, 우동, 미소시루, 스시, 가츠동, 오니기리, 하이라이스, 라멘, 오코노미야끼";
+    private final String koreanFood = "김밥, 김치찌개, 쌈밥, 된장찌개, 비빔밥, 칼국수, 불고기, 떡볶이, 제육볶음";
+    private final String chineseFood = "깐풍기, 볶음면, 동파육, 짜장면, 짬뽕, 마파두부, 탕수육, 토마토 달걀볶음, 고추잡채";
+    private final String asianFood = "팟타이, 카오 팟, 나시고렝, 파인애플 볶음밥, 쌀국수, 똠얌꿍, 반미, 월남쌈, 분짜";
+    private final String westonFood = "라자냐, 그라탱, 뇨끼, 끼슈, 프렌치 토스트, 바게트, 스파게티, 피자, 파니니";
+    private final Map<MenuCategory, String> menus = new HashMap<>();
+
+    private final MenuService menuService;
+
+    public SaveMenu() {
+        this.menuService = new MenuService();
+        init();
+    }
+
+    public void init() {
+        menus.put(MenuCategory.JAPANESE_FOOD, japaneseFood);
+        menus.put(MenuCategory.KOREAN_FOOD, koreanFood);
+        menus.put(MenuCategory.CHINESE_FOOD, chineseFood);
+        menus.put(MenuCategory.ASIAN_FOOD, asianFood);
+        menus.put(MenuCategory.WESTON_FOOD, westonFood);
+        saveMenu();
+    }
+    public void saveMenu() {
+        List<MenuCategory> menuCategories = Arrays.stream(MenuCategory.values()).collect(Collectors.toList());
+        for (MenuCategory menuCategory : menuCategories) {
+            List<String> menuNames = Arrays.stream(menus.get(menuCategory).split(", ")).collect(Collectors.toList());
+            for (String menuName : menuNames) {
+                menuService.save(new Menu(menuCategory, menuName));
+            }
+        }
+    }
+}
