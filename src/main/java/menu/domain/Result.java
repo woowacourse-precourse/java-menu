@@ -30,4 +30,10 @@ public class Result {
     public List<String> checkSelectedMenu(String coachName) {
         return selectedMenu.get(coachName);
     }
+
+    public void addMenu(String coachName, String menuName) {
+        ArrayList<String> menus = selectedMenu.get(coachName);
+        menus.add(menuName);
+        this.selectedMenu.put(coachName, menus);
+    }
 }

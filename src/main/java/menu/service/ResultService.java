@@ -40,6 +40,7 @@ public class ResultService {
         do {
             menu = Randoms.shuffle(Menus.parseMenuNames(categoryName)).get(0);
         } while (isSelectedMenu(result, coach, menu) || ban.isBanMenu(coach, menu));
+        result.addMenu(coach, menu);
     }
 
     public boolean isSelectedMenu(Result result, String coach, String menuName) {
