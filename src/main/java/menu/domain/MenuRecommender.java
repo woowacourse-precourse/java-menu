@@ -68,7 +68,7 @@ public class MenuRecommender {
     }
 
     private boolean validCategory(Category category) {
-        return Collections.frequency(categoryHistory, category) < 3;
+        return Collections.frequency(categoryHistory, category) < 2;
     }
 
     private String recommendMenu(Category category, Coach coach) {
