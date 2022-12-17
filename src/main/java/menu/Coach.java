@@ -23,6 +23,9 @@ public class Coach {
     }
 
     public boolean isValidMenu(Menu menu){
+        if (!dislikeFood.isEmpty() && dislikeFood.stream().anyMatch(foodName -> foodName.equals(menu.getMenuName()))){
+            return false;
+        }
         if (!recommendedFood.isEmpty() && recommendedFood.stream().anyMatch(foodName -> foodName.equals(menu.getMenuName()))){
             return false;
         }
