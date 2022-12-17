@@ -19,4 +19,13 @@ public class CategoryRepository {
     public int countByCategory(Category category) {
         return Collections.frequency(categories, category);
     }
+
+    public List<String> categoryRecommendationResult() {
+        List<String> result = new ArrayList<>();
+        result.add("카테고리");
+        for (Category category : categories) {
+            result.add(category.getLabel());
+        }
+        return result;
+    }
 }

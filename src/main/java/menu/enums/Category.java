@@ -42,4 +42,8 @@ public enum Category {
     public List<String> getMenus() {
         return menus;
     }
+
+    public String getLabel() {
+        return label;
+    }
 }

@@ -30,4 +30,13 @@ public class Coach {
         }
         return false;
     }
+
+    public List<String> getNameAndMenus() {
+        List<String> results = new ArrayList<>();
+        results.add(name);
+        for (String menu : recommendedMenu) {
+            results.add(menu);
+        }
+        return results;
+    }
 }

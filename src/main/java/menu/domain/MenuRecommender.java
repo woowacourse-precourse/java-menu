@@ -3,6 +3,7 @@ package menu.domain;
 import menu.enums.Category;
 import menu.repository.CategoryRepository;
 import menu.repository.CoachRepository;
+import menu.view.OutputView;
 
 import java.util.List;
 
@@ -12,6 +13,8 @@ public class MenuRecommender {
     private final RandomCategoryGenerator randomCategoryGenerator = new RandomCategoryGenerator();
 
     private final RandomMenuGenerator randomMenuGenerator = new RandomMenuGenerator();
+    private final OutputView outputView = new OutputView();
+
     public MenuRecommender(CoachRepository coachRepository) {
         this.coachRepository = coachRepository;
     }
@@ -21,7 +24,7 @@ public class MenuRecommender {
         while (cnt < 5) {
             // 카테고리 정하기
             Category category = selectCategory();
-            
+
             // 각 코치가 먹을 메뉴 추천
             List<Coach> coaches = coachRepository.getCoaches();
             for (Coach coach : coaches) {
@@ -29,11 +32,12 @@ public class MenuRecommender {
             }
             cnt++;
         }
+        outputView.printResult(categoryRepository.categoryRecommendationResult(), coachRepository.menuRecommendationResult());
     }
 
     public String selectMenu(Coach coach, Category category) {
         String menu = randomMenuGenerator.create(category);
-        if(!validateMenu(menu, coach)) {
+        if (!validateMenu(menu, coach)) {
             return selectMenu(coach, category);
         }
         coach.addRecommendedMenu(menu);
@@ -55,7 +59,7 @@ public class MenuRecommender {
 
     public Category selectCategory() {
         Category category = randomCategoryGenerator.create();
-        if(!validateCategory(category)){
+        if (!validateCategory(category)) {
             return selectCategory();
         }
         categoryRepository.save(category);

@@ -14,4 +14,12 @@ public class CoachRepository {
     public List<Coach> getCoaches() {
         return coaches;
     }
+
+    public List<List<String>> menuRecommendationResult() {
+        List<List<String>> result = new ArrayList<>();
+        for (Coach coach : coaches) {
+            result.add(coach.getNameAndMenus());
+        }
+        return result;
+    }
 }
