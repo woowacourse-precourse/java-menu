@@ -28,12 +28,19 @@ public class InputValidation {
     }
 
     private static void isSizeBetween2And5(int size) {
-        if (!isBetween2And5(size)) {
-            ExceptionMessage.NOT_INPUT_NAMES_BETWEEN_2AND5.throwException();
+        if (isLessThanTwo(size)) {
+            ExceptionMessage.NOT_INPUT_NAMES_LESS_THAN_TWO.throwException();
+        }
+        if (isMoreThanFive(size)) {
+            ExceptionMessage.NOT_INPUT_NAMES_OVER_FIVE.throwException();
         }
     }
 
-    private static boolean isBetween2And5(int size) {
-        return MINIMUM_NAME_SIZE <= size && size < MAXIMUM_NAME_SIZE;
+    private static boolean isLessThanTwo(int size) {
+        return size < MINIMUM_NAME_SIZE;
+    }
+
+    private static boolean isMoreThanFive(int size) {
+        return size > MAXIMUM_NAME_SIZE;
     }
 }
