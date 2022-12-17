@@ -27,7 +27,7 @@ public class PickMenu {
             for (Category category : pickCategory.getCategories()) {
                 makeMenu.add(Menu.getRandomFood(category));
             }
-            isDuplicate = validDuplicate();
+            isDuplicate = validDuplicate(makeMenu);
             isNotEatable = validNotEatable(notEatableMenu, makeMenu);
         }
         return makeMenu;
