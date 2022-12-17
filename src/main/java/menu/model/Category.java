@@ -1,4 +1,4 @@
-package menu;
+package menu.model;
 
 public enum Category {
     JAPANESE("일식", Menu.JAPANESE),

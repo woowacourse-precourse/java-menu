@@ -1,9 +1,13 @@
-package menu;
+package menu.controller;
+
+import menu.model.Category;
+import menu.model.Coach;
+import menu.model.MenuRecommendation;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static menu.View.*;
+import static menu.view.View.*;
 
 public class MenuRecommendationController {
     MenuRecommendation recommendation;

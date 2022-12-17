@@ -1,6 +1,8 @@
-package menu;
+package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import menu.model.Category;
+import menu.model.Coach;
 
 import java.util.Arrays;
 import java.util.List;
