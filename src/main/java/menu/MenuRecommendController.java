@@ -1,6 +1,8 @@
 package menu;
 
+import menu.domain.coach.Coaches;
 import menu.domain.menu.MenuRecommendService;
+import menu.ui.dto.CoachesRequest;
 import menu.ui.view.InputView;
 import menu.ui.view.OutputView;
 
@@ -19,7 +21,8 @@ public class MenuRecommendController {
         outputView.onBoardingPage();
     }
     public void run() {
-        inputView.requestCoachNames();
+        CoachesRequest coachesRequest = inputView.requestCoachNames();
+        Coaches coaches = coachesRequest.toCoaches();
     }
 
 

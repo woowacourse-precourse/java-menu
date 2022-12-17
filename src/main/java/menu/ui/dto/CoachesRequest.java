@@ -1,12 +1,13 @@
 package menu.ui.dto;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import menu.domain.coach.Coach;
+import menu.domain.coach.Coaches;
 
 public class CoachesRequest {
-    private List<String> coaches = new ArrayList<>();
+    private final List<String> coaches;
 
     private CoachesRequest(List<String> coaches) {
         this.coaches = coaches;
@@ -49,5 +50,13 @@ public class CoachesRequest {
 
     public List<String> getCoaches() {
         return coaches;
+    }
+
+    public Coaches toCoaches() {
+        List<Coach> coaches = this.coaches.stream()
+                .map(Coach::fromName)
+                .collect(Collectors.toList());
+
+        return Coaches.of(coaches);
     }
 }
