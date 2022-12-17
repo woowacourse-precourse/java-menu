@@ -1,7 +1,6 @@
 package menu.domain;
 
 import java.util.Arrays;
-import java.util.concurrent.Callable;
 import java.util.function.Predicate;
 
 public enum Category {
@@ -19,7 +18,11 @@ public enum Category {
         return name;
     }
 
-    public static Category getMatchCategory(Predicate<Category> predicate) {
-        return Arrays.stream(values()).filter(predicate).findAny().get();
+    public int getCode() {
+        return code;
+    }
+
+    public static Category getMatchCategory(int code) {
+        return Arrays.stream(values()).filter((category) -> code == category.code).findAny().get();
     }
 }
