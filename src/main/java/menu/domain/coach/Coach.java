@@ -1,19 +1,19 @@
 package menu.domain.coach;
 
 import menu.domain.menu.Menu;
-import menu.domain.menu.Menus;
 import menu.domain.menu.UneatableMenus;
+import menu.domain.recommendation.Recommendations;
 
 import java.util.List;
 
 public class Coach {
     private final CoachName coachName;
-    private final Menus menus;
+    private final Recommendations recommendations;
     private final UneatableMenus uneatableMenus;
     
     public Coach(String coachName) {
         this.coachName = new CoachName(coachName);
-        this.menus = new Menus();
+        this.recommendations = new Recommendations();
         this.uneatableMenus = new UneatableMenus();
     }
     
@@ -26,10 +26,10 @@ public class Coach {
     }
     
     public boolean isExistSameCategoryOverTwo(Menu menu) {
-        return menus.isExistSameCategoryOverTwo(menu);
+        return recommendations.isExistSameCategoryOverTwo(menu);
     }
     
     public boolean isExistSameMenu(Menu menu) {
-        return menus.isExistSameMenu(menu);
+        return recommendations.isExistSameMenu(menu);
     }
 }
