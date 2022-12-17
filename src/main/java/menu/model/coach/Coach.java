@@ -8,7 +8,6 @@ public class Coach {
 
     private String name;
     private List<String> cannotEatFoods;
-    private List<Category> alreadyEatenCategories;
     private List<String> alreadyEatenFoods;
 
     public Coach(String name) {
@@ -20,9 +19,5 @@ public class Coach {
 
     public void updateCannotEatFoods(List<String> cannotEatFoods) {
         this.cannotEatFoods = cannotEatFoods;
-    }
-
-    public void updateRecommendCategory(Category recommendedCategory) {
-        alreadyEatenCategories.add(recommendedCategory);
     }
 }
