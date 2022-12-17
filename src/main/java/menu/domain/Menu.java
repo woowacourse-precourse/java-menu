@@ -1,9 +1,7 @@
 package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import menu.constant.ExceptionConstants;
 import menu.constant.MenuConstants;
-import menu.util.Validator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,7 +10,6 @@ import java.util.stream.Collectors;
 
 public class Menu {
     private CoachList coachList;
-    private final List<Coach> coaches = new ArrayList<>();
     private final List<String> previousCategories = new ArrayList<>();
 
     public void addCoachNames(String coachNames) {
@@ -31,7 +28,7 @@ public class Menu {
 
     private void recommendForDay() {
         Category category = pickCategory();
-        coaches.forEach(coach -> pickMenu(coach, category));
+        coachList.getCoachList().forEach(coach -> pickMenu(coach, category));
     }
 
     private Category pickCategory() {
