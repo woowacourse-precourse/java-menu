@@ -14,9 +14,10 @@ public enum Category {
     WESTERN(5, "양식", "라자냐, 그라탱, 뇨끼, 끼슈, 프렌치 토스트, 바게트, 스파게티, 피자, 파니니");
 
     public static final String INVALID_NUMBER = "올바르지 않은 숫자입니다.";
-    private int number;
-    private String name;
-    private List<String> menu;
+    public static final String DELIMITER_FOR_MENU = ", ";
+    private final int number;
+    private final String name;
+    private final List<String> menu;
 
     private static final Map<Integer, Category> numberToCategory = new HashMap<>();
 
@@ -40,7 +41,7 @@ public enum Category {
     Category(int number, String name, String menuJoinWithDelimiter) {
         this.number = number;
         this.name = name;
-        this.menu = Arrays.asList(menuJoinWithDelimiter.split(", "));
+        this.menu = Arrays.asList(menuJoinWithDelimiter.split(DELIMITER_FOR_MENU));
     }
 
     public static Category getCategoryByNumber(int number) {
