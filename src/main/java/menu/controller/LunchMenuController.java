@@ -16,56 +16,65 @@ public class LunchMenuController {
     private final LunchMenuService lunchMenuService;
     private List<String> names;
     private List<List<String>> results;
+    private List<List<String>> menus;
 
-    public LunchMenuController(){
+    public LunchMenuController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
         this.lunchMenuService = new LunchMenuService();
 
         this.names = new ArrayList<>();
         this.results = new ArrayList<>();
+        this.menus = new ArrayList<>();
     }
 
     public void start() {
         String inputNames = inputNames();
         int countPeople = countNames(inputNames);
+        storageMenus(countPeople);
 
-        for(int i=0;i<countPeople;i++){
-            recommendMenu(i);
+        for (int i = 0; i < 5; i++) {
+            recommendMenu(i, countPeople);
         }
-        outputView.printResult(lunchMenuService.changeCategoryToString(),names, results);
+        outputView.printResult(lunchMenuService.changeCategoryToString(), names, results);
     }
 
-    public void recommendMenu(int index){
-        String inputMenus = inputMenus(index);
-        List<String> recommendMenus = new ArrayList<>();
-        List<String> cannotEatMenus = splitMenus(inputMenus);
-        while(recommendMenus.size()<5){
-            int size = recommendMenus.size();
-            String randomRecommendMenu = lunchMenuService.randomRecommendMenu(size);
-            if(lunchMenuService.checkDuplicate(cannotEatMenus,recommendMenus,randomRecommendMenu)){
-                recommendMenus.add(randomRecommendMenu);
+    public void storageMenus(int people) {
+        for (int i = 0; i < people; i++) {
+            menus.add(splitMenus(inputMenus(i)));
+            results.add(new ArrayList<>());
+        }
+    }
+
+    public void recommendMenu(int index, int people) {
+        for (int i = 0; i < people; i++) {
+            while (true) {
+                String randomRecommendMenu = lunchMenuService.randomRecommendMenu(index);
+                if (lunchMenuService.checkDuplicate(menus.get(i), results.get(i), randomRecommendMenu)) {
+                    results.get(i).add(randomRecommendMenu);
+                    break;
+                }
             }
         }
-        results.add(recommendMenus);
     }
 
-    public List<String> splitMenus(String input){
+    public List<String> splitMenus(String input) {
         String[] values = input.split(",");
         List<String> cannotEatMenus = new ArrayList<>();
-        for(String value : values){
+        for (String value : values) {
             cannotEatMenus.add(value);
         }
         return cannotEatMenus;
     }
-    public int countNames(String input){
+
+    public int countNames(String input) {
         String[] values = input.split(",");
         addNames(values);
         return values.length;
     }
 
-    public void addNames(String[] values){
-        for(String value : values){
+    public void addNames(String[] values) {
+        for (String value : values) {
             names.add(value);
         }
     }

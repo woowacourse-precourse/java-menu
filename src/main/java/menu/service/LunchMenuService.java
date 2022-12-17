@@ -25,7 +25,7 @@ public class LunchMenuService {
     public String randomRecommendMenu(int index){
         int food = category.getCategory().get(index);
         //System.out.println(food);
-        return Randoms.shuffle(menus.get(food-1)).get(0);
+        return Randoms.shuffle(menus.get(food)).get(0);
     }
 
     public List<String> changeCategoryToString(){

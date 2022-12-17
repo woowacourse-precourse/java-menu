@@ -18,6 +18,7 @@ public class OutputView {
     }
 
     public void printMenus(List<String> names, List<List<String>> results) {
+
         for(int i=0;i<results.size();i++){
             results.get(i).add(0,names.get(i));
             System.out.println(makeResultString(results.get(i)));
