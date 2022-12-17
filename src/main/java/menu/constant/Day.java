@@ -21,7 +21,7 @@ public enum Day {
     }
 
     public int getOrder(){
-
+        return order;
     }
 
     public static Day get(int index){
