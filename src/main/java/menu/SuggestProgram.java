@@ -12,7 +12,7 @@ public class SuggestProgram {
 
     private final UserInput userInput = new UserInput();
     private final ProgramOutput output = new ProgramOutput();
-    private final MenuSuggester suggester = new MenuSuggester();
+    private final CategorySuggester suggester = new CategorySuggester();
 
     public void startProgram(){
         output.suggestProgramStart();

@@ -6,7 +6,7 @@ import menu.domains.Categories;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuSuggester {
+public class CategorySuggester {
 
     public List<Categories> categorySuggest(){
         List<Categories> suggestedCategory = new ArrayList<>();
