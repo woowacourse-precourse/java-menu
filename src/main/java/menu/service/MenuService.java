@@ -45,4 +45,8 @@ public class MenuService {
                 "바게트", "스파게티", "피자", "파니니"));
         menuRepository.addMenus(Category.WESTERN, westernMenus);
     }
+
+    public boolean isExistsMenu(String name) {
+        return menuRepository.isExistsMenu(name);
+    }
 }

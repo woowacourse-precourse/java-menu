@@ -13,4 +13,8 @@ public class Menus {
     public static Menus from(List<String> menus) {
         return new Menus(menus);
     }
+
+    public boolean hasMenu(String name) {
+        return menus.contains(name);
+    }
 }
