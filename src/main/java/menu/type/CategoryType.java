@@ -19,7 +19,7 @@ public enum CategoryType {
         return this.category;
     }
 
-    private int getNumber() {
+    public int getNumber() {
         return this.number;
     }
 }
