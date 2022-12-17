@@ -110,10 +110,18 @@ public class Coaches {
         for(Category category : selectedCategories){
             selectedMenus.add(category.getRandomMenu());
         }
-        if(new HashSet<>(selectedMenus).size()!=5){
+        if(countMenus(selectedMenus)!=5){
             return makeSelectedMenus(selectedCategories);
         }
         return selectedMenus;
+    }
+
+    private int countMenus(List<Menu> selectedMenus) {
+        List<String>menus = new ArrayList<>();
+        for(Menu menu : selectedMenus){
+            menus.add(menu.getMenu());
+        }
+        return menus.size();
     }
 
     public List<Day> getDays() {
@@ -127,7 +135,7 @@ public class Coaches {
         }
         return "[ 구분 | "
                 + String.join(" | ", allDays)
-                +  "]";
+                +  " ]";
     }
 
     public List<List<Menu>> makeDailyMenus(List<Category> selectedCategories) {

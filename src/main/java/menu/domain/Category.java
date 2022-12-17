@@ -1,6 +1,7 @@
 package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Category {
@@ -36,6 +37,16 @@ public class Category {
     }
 
     public Menu getRandomMenu() {
-        return Randoms.shuffle(menus).get(0);
+        List<String>randomMenus = new ArrayList<>();
+        for(Menu menu : menus){
+            randomMenus.add(menu.getMenu());
+        }
+        String index = Randoms.shuffle(randomMenus).get(0);
+        for (Menu menu : menus) {
+            if (menu.getMenu().equals(index)) {
+                return menu;
+            }
+        }
+        return null;
     }
 }

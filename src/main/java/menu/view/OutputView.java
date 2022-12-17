@@ -44,6 +44,12 @@ public class OutputView {
             Coach coach = coaches.getCoach(i);
             printMenus(coach, selectedMenus.get(i));
         }
+        printBlankLine();
+        printQuit();
+    }
+
+    private void printQuit() {
+        System.out.println("추천을 완료했습니다.");
     }
 
     private void printMenus(Coach coach, List<Menu> menus) {
