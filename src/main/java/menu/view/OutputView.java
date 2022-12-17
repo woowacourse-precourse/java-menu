@@ -43,4 +43,8 @@ public class OutputView {
     public void printEndMessage() {
         System.out.println(END_MESSAGE);
     }
+
+    public void printError(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }
