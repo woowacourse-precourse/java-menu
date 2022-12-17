@@ -13,6 +13,7 @@ public class OutputView {
     private static final String START_BRACKET = "[ ";
     private static final String END_BRACKET = "]";
     private static final String START_PHRASE = "점심 메뉴 추천을 시작합니다.\n";
+    private static final String END_PHRASE = "\n추천을 완료했습니다.";
 
     public static void printPhrase(String phrase) {
         System.out.println(phrase);
@@ -53,5 +54,9 @@ public class OutputView {
             String menuResult = stringBuilder.toString();
             System.out.println(menuResult);
         }
+    }
+
+    public static  void printEndPhrase() {
+        System.out.println(END_PHRASE);
     }
 }
