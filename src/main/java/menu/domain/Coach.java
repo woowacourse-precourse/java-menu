@@ -10,6 +10,7 @@ public class Coach {
     private static final int COACH_NAME_MAXIMUM_SIZE = 4;
     private static final String NAME_LENGTH_ERROR = "코치 이름은 2~4글자 이내여야 합니다.";
     private static final String NAME_ALPHABETIC_ERROR = "코치 이름은 문자로만 이루어져야 합니다.";
+
     private final String name;
     private final List<String> selectedMenus = new ArrayList<>();
     private final List<String> inedibleMenus = new ArrayList<>();
