@@ -1,18 +1,18 @@
 package menu.repository;
 
-import menu.domain.Menu;
+import menu.domain.Category;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicLong;
 
 public class MenuRepository {
-    private final AtomicLong sequence = new AtomicLong(0L);
 
-    private final Map<Long, Menu> menuStorage = new ConcurrentHashMap<>();
+    private Map<Category, List<String>> menuStorages = new HashMap<>();
 
-
-    public void saveMenu(Menu menu) {
-        menuStorage.put(sequence.addAndGet(1), menu);
+    public void saveCategoryAndMenu(Category category, List<String> menuNames) {
+        menuStorages.put(category, menuNames);
     }
+
+
 }

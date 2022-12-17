@@ -1,7 +1,7 @@
 package menu.controller;
 
 import menu.domain.Category;
-import menu.domain.Menu;
+import menu.service.CategoryService;
 import menu.service.MenuService;
 import menu.util.ResourceReader;
 
@@ -19,7 +19,7 @@ public class MenuController implements Controller{
     public void process() {
         for (Category category : Category.values()) {
             List<String> menuNames = Category.getCategoryWithMenus(category, resourceReader);
-            menuService.saveMenuInfo(category, menuNames);
+            menuService.saveCategoryAndMenus(category, menuNames);
         }
     }
 }
