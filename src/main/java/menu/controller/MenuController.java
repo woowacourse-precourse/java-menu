@@ -36,7 +36,7 @@ public class MenuController {
 
     private void readCoaches() {
         CoachRepository.init();
-        
+
         for (String coach : inputView.readCoachNames()) {
             CoachRepository.addCoaches(new Coach(coach.trim()));
         }
@@ -51,10 +51,16 @@ public class MenuController {
     }
 
     private void readPickyAboutFood(Coach coach) {
-
-        for (String input : inputView.readPicky()) {
-            coach.addCantEat(Food.filterNotInMenu(input));
+        try {
+            for (String input : inputView.readPicky()) {
+                Food.validateInMenu(input.trim());
+                coach.addCantEat(input);
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            readPickyAboutFood(coach);
         }
+
     }
 
     private void recommend() {

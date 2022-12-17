@@ -1,5 +1,7 @@
 package menu.domain;
 
+import menu.utils.ExceptionMessage;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -7,7 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum Food {
-    CATEGORY("카테고리", Collections.EMPTY_LIST),
+    CATEGORY("카테고리", List.of("")),
     JAPANESE("일식", List.of("규동", "우동", "미소시루", "스시", "가츠동", "오니기리", "하이라이스", "라멘", "오코노미야끼")),
     KOREAN("한식", List.of("김밥", "김치찌개", "쌈밥", "된장찌개", "비빔밥", "칼국수", "불고기", "떡볶이", "제육볶음")),
     CHINESE("중식", List.of("깐풍기", "볶음면", "동파육", "짜장면", "짬뽕", "마파두부", "탕수육", "토마토 달걀볶음", "고추잡채")),
@@ -36,13 +38,11 @@ public enum Food {
                 .menus;
     }
 
-    public static String filterNotInMenu(String menu) {
-        for (Food food : Food.values()) {
-            if (food.menus.contains(menu)) {
-                return menu;
-            }
-        }
-        return "";
+    public static void validateInMenu(String menu) {
+        Stream.of(Food.values())
+                .filter(food -> food.menus.contains(menu))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.NOT_FIND_MENU.get()));
     }
 
     public String getCategory() {
