@@ -16,5 +16,11 @@ public class InputValidator {
         }
     }
 
+    public static void validateBanFoodsNumber(String[] banFoods){
+        if(banFoods.length > 2){
+            throw new IllegalArgumentException(Message.FOOD_NUMBER_ERROR);
+        }
+    }
+
 
 }
