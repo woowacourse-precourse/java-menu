@@ -12,7 +12,12 @@ public class ConsoleInputView {
     }
 
     public List<String> readStringList() {
-        String[] stringList = Console.readLine().split(",");
+        String inputStr = Console.readLine().trim();
+        if(inputStr.equals("")) {
+            return new ArrayList<>();
+        }
+
+        String[] stringList = inputStr.split(",");
 
         List<String> output = new ArrayList<>();
         Collections.addAll(output, stringList);
