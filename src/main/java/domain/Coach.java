@@ -5,17 +5,21 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import util.Validator;
+
 public class Coach {
+    private final String name;
+    private final List<String> menus = new ArrayList<>();
     private List<String> inedibleMenus = null;
-    private String name;
-    private List<String> menus = new ArrayList<>();
 
     public Coach(String name) {
         this.name = name;
     }
 
     public void addInedibleMenu(String inedibleMenu) {
-        inedibleMenus = Arrays.stream(inedibleMenu.split(",")).collect(Collectors.toList());
+        List<String> menuCandidate = Arrays.stream(inedibleMenu.split(",")).collect(Collectors.toList());
+        Validator.validateMenus(menuCandidate);
+        inedibleMenus = menuCandidate;
     }
 
     public List<String> getInedibleMenus() {

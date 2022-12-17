@@ -11,9 +11,7 @@ public class CoachNames {
 
     public CoachNames(String names) {
         coachNames = Arrays.stream(names.split(",")).collect(Collectors.toList());
-        Validator.validateCoachName(coachNames);
-        Validator.validateNoDuplication(coachNames);
-        Validator.validateCoachNumber(coachNames);
+        Validator.validateCoach(coachNames);
     }
 
     public List<String> getCoachNames() {

@@ -19,6 +19,13 @@ public class Controller {
 
     private void init() {
         outputView.printStartMessage();
+        readNames();
+        while (service.isOnInitializing()) {
+            readInedibleMenus();
+        }
+    }
+
+    private void readNames() {
         while (true) {
             try {
                 service.saveCoachNames(inputView.readCoachNames());
@@ -27,11 +34,18 @@ public class Controller {
                 outputView.printErrorMessage(e);
             }
         }
-        while (service.isOnInitializing()) {
-            service.saveInedibleMenu(service.getCoachName(), inputView.readInedibleMenu(service.getCoachName()));
-        }
     }
 
+    private void readInedibleMenus() {
+        while (true) {
+            try {
+                service.saveInedibleMenu(service.getCoachName(), inputView.readInedibleMenu(service.getCoachName()));
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e);
+            }
+        }
+    }
     private void recommend() {
         service.chooseCategories();
         service.chooseMenus();
