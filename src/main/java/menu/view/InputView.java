@@ -4,9 +4,12 @@ import java.util.Scanner;
 import menu.DTO.CoachNameDTO;
 import menu.DTO.FoodCanNotEatDTO;
 
+import camp.nextstep.edu.missionutils.Console;
+
 public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
+    private static final CoachNameDTO coachNameDTO = CoachNameDTO.getInstnace();
     private static final String COACH_NAME_INPUT_REQUEST
             = "코치의 이름을 입력해 주세요. (, 로 구분)";
     private static final String FOOD_CAN_NOT_EAT_INPUT_REQUEST
@@ -16,7 +19,8 @@ public class InputView {
     public static CoachNameDTO readCoachName() {
         System.out.println();
         printCoachNameInputRequest();
-        return new CoachNameDTO(scanner.nextLine());
+        coachNameDTO.setCoaches(Console.readLine());
+        return coachNameDTO;
     }
 
     public static FoodCanNotEatDTO readFoodCanNotEat(String name) {
