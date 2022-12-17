@@ -35,6 +35,6 @@ public class MenuController {
     }
 
     public void finish() {
-        resultService.printResult(result);
+        resultService.printResult(result, coach);
     }
 }

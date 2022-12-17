@@ -53,8 +53,11 @@ public class ResultService {
         return false;
     }
 
-    public void printResult(Result result) {
+    public void printResult(Result result, Coach coach) {
         OutputView.printResultMessage();
         OutputView.printCategoryResult(result);
+        for (String coachName : coach.getCoachNames()) {
+            OutputView.printMenuResult(result, coachName);
+        }
     }
 }

@@ -26,4 +26,9 @@ public class OutputView {
         List<String> categoryResult = result.getSelectedCategory();
         System.out.println("[ 카테고리 | " + String.join(" | ", categoryResult) + " ]");
     }
+
+    public static void printMenuResult(Result result, String coachName) {
+        List<String> menuResult = result.checkSelectedMenu(coachName);
+        System.out.println("[ " + coachName + " | " + String.join(" | ", menuResult) + " ]");
+    }
 }
