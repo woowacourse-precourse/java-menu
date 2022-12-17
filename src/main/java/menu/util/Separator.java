@@ -5,7 +5,8 @@ import java.util.List;
 
 public class Separator {
 
-    public List<String> separateCoachNames(String coachNames) {
-        return Arrays.asList(coachNames.split(coachNames));
+    public List<String> separateNames(String names) {
+        return Arrays.asList(names.split(names));
     }
+
 }
