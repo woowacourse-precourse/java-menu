@@ -1,11 +1,14 @@
-package menu.utils;
+package menu.utills;
 
+import java.util.Arrays;
 import java.util.List;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
 public class Converter {
-    public static List<String> shuffle(List<String> list) {
-        return Randoms.shuffle(list);
+    public static List<String> toListByDelimiter(String input) {
+        return Arrays.asList(input.split(","));
+    }
+
+    public static String toStringByDelimiter(List<String> strings) {
+        return String.join(" | ", strings);
     }
 }
