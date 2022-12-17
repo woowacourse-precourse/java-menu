@@ -1,5 +1,6 @@
 package menu.controller;
 
+import menu.service.MenuService;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -7,6 +8,7 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class MenuController {
+    private final MenuService menuService = new MenuService();
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
 
@@ -22,5 +24,4 @@ public class MenuController {
             return repeat(function);
         }
     }
-
 }
