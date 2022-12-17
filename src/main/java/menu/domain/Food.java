@@ -10,11 +10,15 @@ public class Food {
         this.category = category;
     }
 
+    public boolean hasSameName(String name) {
+        return this.name.equals(name);
+    }
+
     public String getName() {
         return name;
     }
 
-    public Category getCategory() {
-        return category;
+    public String getCategory() {
+        return category.getName();
     }
 }
