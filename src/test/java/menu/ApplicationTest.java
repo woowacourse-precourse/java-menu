@@ -1,5 +1,6 @@
 package menu;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -15,6 +16,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.MockedStatic;
 
 public class ApplicationTest extends NsTest {
@@ -24,6 +27,15 @@ public class ApplicationTest extends NsTest {
     @DisplayName("전체 기능 테스트")
     @Nested
     class AllFeatureTest {
+
+        @ParameterizedTest
+        @ValueSource(strings = {"구,제임스","구구,구구","구구,일이삼사오육"})
+        void 예외_테스트(String input) {
+            assertSimpleTest(() -> {
+                runException(input);
+                assertThat(output()).contains("[ERROR]");
+            });
+        }
 
         @Test
         void 기능_테스트() {
