@@ -2,9 +2,7 @@ package menu.domain;
 
 import menu.utils.ErrorMessage;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.StringJoiner;
 
 public class CouchGroup {
@@ -34,8 +32,11 @@ public class CouchGroup {
     }
 
     private boolean isDuplicateName(List<Couch> couches) {
-        Set<Couch> distinct = new HashSet<>(couches);
-        return couches.size() != distinct.size();
+        long distinct = couches.stream()
+                .map(Couch::getName)
+                .distinct().count();
+
+        return couches.size() != distinct;
     }
 
     public int size() {
