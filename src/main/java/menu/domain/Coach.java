@@ -1,11 +1,12 @@
 package menu.domain;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Coach {
   private String name;
   private String[] excludedMenu;
-  private List<String> menuList;
+  private HashMap<Day,List<String>> menuList=new HashMap<>();
 
   public Coach(String name){
     this.name=name;
@@ -15,8 +16,8 @@ public class Coach {
     this.excludedMenu = excludedMenu;
   }
 
-  public void setMenuList(List<String> menuList) {
-    this.menuList = menuList;
+  public void addMenuList(Day key,List<String> menuList) {
+    this.menuList.put(key,menuList);
   }
 
   public String getName(){

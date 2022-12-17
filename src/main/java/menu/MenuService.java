@@ -4,18 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import menu.domain.Category;
 import menu.domain.Coach;
-import menu.repository.MenuRepository;
 import menu.repository.ServiceRepository;
+import menu.tool.MenuSelector;
 import menu.ui.InputView;
 import menu.ui.OutputView;
 
 public class MenuService {
-
-  List<Category> categoryList = new ArrayList<>();
   final InputView input = new InputView();
   final OutputView output = new OutputView();
   final ServiceRepository serviceRepository=new ServiceRepository();
-  final MenuRepository menuRepository=new MenuRepository();
+
 
   public void startService() {
     output.printServiceStart();
@@ -26,14 +24,14 @@ public class MenuService {
       String[] exMenuList = input.readExcludedMenu(coachList.get(i));
       coachList.get(i).setExcludedMenu(exMenuList);
     }
+    for(Coach coach:coachList){
+      MenuSelector.selectAllMenu(coach);
+    }
+
+    output.printResult(coachList);
 
 
 
-
-  }
-
-  public void setCategoryList(List<Category> categoryList) {
-    this.categoryList = categoryList;
   }
 }
 
