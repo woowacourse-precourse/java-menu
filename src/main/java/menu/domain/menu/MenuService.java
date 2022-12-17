@@ -2,7 +2,6 @@ package menu.domain.menu;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import menu.domain.coach.Coach;
 import menu.domain.coach.Coaches;
 import menu.domain.results.RecommendCategories;
 import menu.domain.results.RecommendCoachMenu;
@@ -16,11 +15,6 @@ public class MenuService {
     }
     public List<Menu> getAllMenusByMenuNames(List<String> menuNames) {
         return menuRepository.findAllByMenuNames(menuNames);
-    }
-
-
-    private boolean isNotAvoidMenu(List<String> menuNames) {
-        return menuNames.get(0).isBlank();
     }
 
     public RecommendResult recommendMenus(Coaches coaches) {

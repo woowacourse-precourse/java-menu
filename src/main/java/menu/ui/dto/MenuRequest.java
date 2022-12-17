@@ -22,24 +22,24 @@ public class MenuRequest {
     }
 
     private static void validate(String userInput) {
-        String[] coaches = userInput.split(LIST_DIAMETER);
-        validateSize(coaches);
-        validateDuplication(coaches);
+        String[] menus = userInput.split(LIST_DIAMETER);
+        validateSize(menus);
+        validateDuplication(menus);
     }
 
-    private static void validateSize(String[] coaches) {
-        if (coaches.length > 2) {
+    private static void validateSize(String[] menus) {
+        if (menus.length > 2) {
             throw new IllegalArgumentException(ErrorMessage.AVOID_MENU_OVER_MAX_SIZE);
         }
     }
 
-    private static void validateDuplication(String[] coaches) {
-        long distinctSize = Arrays.stream(coaches)
+    private static void validateDuplication(String[] menus) {
+        long distinctSize = Arrays.stream(menus)
                 .map(String::trim)
                 .distinct()
                 .count();
 
-        if (distinctSize != coaches.length) {
+        if (distinctSize != menus.length) {
             throw new IllegalArgumentException(ErrorMessage.MENU_NAME_DUPLICATED);
         }
     }
