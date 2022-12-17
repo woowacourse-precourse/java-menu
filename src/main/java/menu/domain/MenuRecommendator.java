@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 public class MenuRecommendator {
     private static final int START_MENU_NUMBER = 1;
     private static final int END_MENU_NUMBER = 5;
+    private static final int FIRST_ELEMENT_INDEX = 0;
     private static final long ALLOWED_DUPLICATED_CATEGORY_NUMBER = 2L;
 
     private List<Category> categories = new ArrayList<>();
@@ -42,7 +43,7 @@ public class MenuRecommendator {
 
     private void selectMenu(Coach coach, Category category) {
         while (true) {
-            String menu = Randoms.shuffle(Menu.fromInput(category).getMenus()).get(0);
+            String menu = Randoms.shuffle(Menu.fromInput(category).getMenus()).get(FIRST_ELEMENT_INDEX);
             if (coach.addSelectedMenu(menu)) {
                 break;
             }
