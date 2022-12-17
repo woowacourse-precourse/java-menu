@@ -2,8 +2,7 @@ package menu;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-
-import org.assertj.core.util.Arrays;
+import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -93,14 +92,8 @@ public class RecommendMenu {
 		return category;
 	}
 	
-	public void pickRandomFood() {		
-		for(int person = 0; person < coachName.size(); person++) {
-			pickRandomFoodForEachCategoryForPerson(person);
-			result.put(coachName.get(person), recommendedMenu);
-		}
-	}
 	
-	public void pickRandomFoodForEachCategoryForPerson(int person) {
+	public void pickRandomFood() {
 		recommendedMenu = new ArrayList<>();
 		String category = "";
 		int indexOfCategory = 0;
@@ -108,7 +101,7 @@ public class RecommendMenu {
 		for(int i = 0; i < categoryForWeek.size(); i++) {
 			category = categoryForWeek.get(i);
 			indexOfCategory = findCategoryIndex(category);
-			food = checkIfNotEatingFood(person, indexOfCategory);
+			pickRandomFoodForEachCategoryForPerson(indexOfCategory);
 			recommendedMenu.add(food);
 		}
 	}
@@ -123,12 +116,24 @@ public class RecommendMenu {
 		return categoryindex;
 	}
 	
+	public void pickRandomFoodForEachCategoryForPerson(int indexOfCategory) {	
+		String food = "";
+		for(int person = 0; person < coachName.size(); person++) {
+			food = checkIfNotEatingFood(person, indexOfCategory);
+			ArrayList<String> thisMenu = result.getOrDefault(coachName.get(person), new ArrayList<>());
+			thisMenu.add(food);
+			result.put(coachName.get(person), thisMenu);
+		}	
+	}
+	
+	
+	
 	public String checkIfNotEatingFood(int person, int indexOfCategory) {
 		String food = "";
 		ArrayList<String> notEatingMenu = notEatingMenuForEachCoach.get(coachName.get(person));
 		ArrayList<String> thisMenu = changeStringArrToList(menu.get(indexOfCategory));
 		while(true) {
-			thisMenu = (ArrayList<String>) Randoms.shuffle(thisMenu);
+			thisMenu = new ArrayList<>(Randoms.shuffle(thisMenu));
 			food = thisMenu.get(0);
 			if(!notEatingMenu.contains(food) && !checkIfDuplicatedFood(food)) {
 				return food;
