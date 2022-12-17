@@ -18,12 +18,16 @@ public class MenuRecommenderController {
     public void run() {
         MenuRecommender menuRecommender = initMenus();
         List<Coach> coaches = initCoaches();
-        inputBannedMenusOfCoaches(coaches, menuRecommender);
+
+        postBannedMenusOfCoach(coaches, menuRecommender);
+        
+
     }
 
-    private void inputBannedMenusOfCoaches(List<Coach> coaches, MenuRecommender menuRecommender) {
+    private void postBannedMenusOfCoach(List<Coach> coaches, MenuRecommender menuRecommender) {
         for (Coach coach : coaches) {
-            InputView.inputBannedMenus(coach.getName(), menuRecommender);
+            List<String> bannedMenus = InputView.inputBannedMenus(coach.getName(), menuRecommender);
+            coach.postBannedMenus(bannedMenus);
         }
     }
 

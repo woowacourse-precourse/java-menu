@@ -17,11 +17,11 @@ public class InputView {
         return coaches;
     }
 
-    public static String inputBannedMenus(String name, MenuRecommender menuRecommender) {
+    public static List<String> inputBannedMenus(String name, MenuRecommender menuRecommender) {
         System.out.println("\n" + name + "(이)가 못 먹는 메뉴를 입력해 주세요.");
         String input = Console.readLine();
         List<String> bannedMenus = Converter.stringToBannedMenus(input);
         Validator.validateBannedMenus(bannedMenus, menuRecommender);
-        return input;
+        return bannedMenus;
     }
 }
