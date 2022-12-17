@@ -24,6 +24,7 @@ public class MessageView {
         for(int i=0; i<Menu.size(); i++){
             System.out.println("[ "+Menu.get(i).name+" | "+Menu.get(i).food.get(0)+" | "+Menu.get(i).food.get(1)+" | "+Menu.get(i).food.get(2)+" | "+Menu.get(i).food.get(3)+" | "+Menu.get(i).food.get(4)+" ]");
         }
+        System.out.println("추천을 완료했습니다.");
     }
 
 }

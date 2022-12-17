@@ -32,14 +32,17 @@ public class Recommend {
 
     public List<Result> recommendFood(List<String> category, List<Coach> coachInfo, List<Menu> menu){
         List<Result> result = new ArrayList<>();
-        for (int j = 0; j < coachInfo.size(); j++) {
+        for(int i=0; i<coachInfo.size();i++){
             List<String> menuList = new ArrayList<>();
-            for(int i=0; i<5; i++) {
+            result.add(new Result(coachInfo.get(i).name,menuList));
+        }
+        for(int i=0; i<5; i++) {
+            for (int j = 0; j < coachInfo.size(); j++) {
+                List<String> menuList = new ArrayList<>();
                 String categoryName = category.get(i);
                 String Menu = randomMenu(menu, categoryName,coachInfo.get(j).nonfood);
-                menuList.add(Menu);
+                result.get(j).food.add(Menu);
             }
-            result.add(new Result(coachInfo.get(j).name,menuList));
         }
         return result;
     }
@@ -51,7 +54,7 @@ public class Recommend {
                 dup++;
             }
         }
-        if(dup>2){
+        if(dup>=2){
             return true;
         }
         return false;
