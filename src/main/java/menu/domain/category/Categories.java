@@ -17,10 +17,8 @@ public class Categories {
 
     @Override
     public String toString() {
-
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[ 카테고리 | ");
-
         for (int i = 0; i < categories.size(); i++) {
             stringBuilder.append(categories.get(i).getCategory());
             if (i != categories.size() - 1) {

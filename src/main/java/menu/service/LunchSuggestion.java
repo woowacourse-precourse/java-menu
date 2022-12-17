@@ -31,22 +31,24 @@ public class LunchSuggestion {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-
         for (Coach coach : lunchSuggestion.keySet()) {
             stringBuilder.append("[ ");
             stringBuilder.append(coach.getName());
             stringBuilder.append(" | ");
-
-            List<String> foods = lunchSuggestion.get(coach);
-            for (int i = 0; i < foods.size(); i++) {
-                stringBuilder.append(foods.get(i));
-                if (i != foods.size() - 1) {
-                    stringBuilder.append(" | ");
-                }
-            }
-            stringBuilder.append(" ]\n");
+            foodAppend(stringBuilder, coach);
         }
         return stringBuilder.toString();
+    }
+
+    private void foodAppend(StringBuilder stringBuilder, Coach coach) {
+        List<String> foods = lunchSuggestion.get(coach);
+        for (int i = 0; i < foods.size(); i++) {
+            stringBuilder.append(foods.get(i));
+            if (i != foods.size() - 1) {
+                stringBuilder.append(" | ");
+            }
+        }
+        stringBuilder.append(" ]\n");
     }
 
     public boolean sameFoodInWeek(Coach coach, String food) {

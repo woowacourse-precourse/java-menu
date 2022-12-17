@@ -74,9 +74,12 @@ public class MenuController {
 
     private Category pickRandomCategory() {
         int categoryNumber = Randoms.pickNumberInRange(1, 5);
-
         String category = null;
+        category = categoryChooseByNumber(categoryNumber, category);
+        return Category.findBy(category);
+    }
 
+    private static String categoryChooseByNumber(int categoryNumber, String category) {
         if (categoryNumber == 1) {
             category = "일식";
         }
@@ -92,10 +95,8 @@ public class MenuController {
         if (categoryNumber == 5) {
             category = "양식";
         }
-
-        return Category.findBy(category);
+        return category;
     }
-
 
     private void pickRandomMenu(Coaches coaches, FoodMenu foodMenu, Category category) {
         List<Coach> coachNames = coaches.getCoaches();
@@ -105,8 +106,7 @@ public class MenuController {
             lunchSuggestion.addSuggestion(coach, food);
         }
     }
-
-
+    
     private String readUnEatables() {
         return inputView.inputBasicLine();
     }

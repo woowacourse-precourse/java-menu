@@ -49,8 +49,4 @@ public class Coach {
     }
 }
 
-//    public static Station from(final String name) {  // 정적 팩토리 메소드
-//        return new Station(name);
-//    }
-
 
