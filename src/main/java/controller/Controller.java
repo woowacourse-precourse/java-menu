@@ -26,18 +26,18 @@ public class Controller {
 	public static void programStart() {
 		init();
 		View.showMenuRecommendGuideMessage();
+		recommendProgram();
+
+		View.showRecommendResult(weeklyCategory, menuRecommendResult);
+		View.showRecommendClearGuideMessage();
+	}
+
+	private static void recommendProgram() {
 		selectCoachName();
 		createMenuRecommendResult();
 		selectHateFoods();
 		selectCategories();
 		selectMenus();
-
-		showResult();
-	}
-
-	private static void showResult() {
-		View.showRecommendResult(weeklyCategory, menuRecommendResult);
-		View.showRecommendClearGuideMessage();
 	}
 
 	private static void selectMenus() {
