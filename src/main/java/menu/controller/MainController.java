@@ -11,14 +11,15 @@ import java.util.List;
 public class MainController {
     private final InputView inputView;
     private final OutputView outputView;
+    private final List<Coach> coachs;
 
     public MainController(InputView inputView, OutputView outputview) {
         this.inputView = inputView;
         this.outputView = outputview;
+        this.coachs = new ArrayList<>();
     }
 
     public void service() {
-        List<Coach> coachs = new ArrayList<>();
         outputView.startMessage();
         inputView.readCoachName().stream()
                 .forEach(e -> coachs.add(new Coach(e, inputView.readCantEats(e))));
