@@ -9,7 +9,8 @@ public enum Category {
     KOREAN_FOOD(2, "한식", List.of("김밥", "김치찌개", "쌈밥", "된장찌개", "비빔밥", "칼국수", "불고기", "떡볶이", "제육볶음")),
     CHINESE_FOOD(3, "중식", List.of("깐풍기", "볶음면", "동파육", "짜장면", "짬뽕", "마파두부", "탕수육", "토마토 달걀볶음", "고추잡채")),
     ASIAN_FOOD(4, "아시안", List.of("팟타이", "카오 팟", "나시고렝", "파인애플 볶음밥", "쌀국수", "똠얌꿍", "반미", "월남쌈", "분짜")),
-    WESTERN_FOOD(5, "양식", List.of("라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니"));
+    WESTERN_FOOD(5, "양식", List.of("라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니")),
+    NOTHING(0, "미지정", List.of(""));
 
     private static final String MENU_NAME_ERROR_MESSAGE = "[ERROR] %s 메뉴는 존재하지 않습니다.";
     private final int categoryNumber;
@@ -54,5 +55,14 @@ public enum Category {
 
     public List<String> getMenus() {
         return menus;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "categoryNumber=" + categoryNumber +
+                ", categoryName='" + categoryName + '\'' +
+                ", menus=" + menus +
+                '}';
     }
 }
