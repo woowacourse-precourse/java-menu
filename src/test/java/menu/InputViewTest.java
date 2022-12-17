@@ -34,4 +34,20 @@ public class InputViewTest {
 		.isInstanceOf(IllegalArgumentException.class)
 		.hasMessageContaining(ERROR_MESSAGE);
 	}
+	
+	@ParameterizedTest
+	@ValueSource(strings = {"자장면,탕수육,우동", "스파게티,탕수육,우동,자장면"})
+	public void checkMenuCount(String menu) {
+		assertThatThrownBy(() -> iv.checkMenuCount(menu))
+		.isInstanceOf(IllegalArgumentException.class)
+		.hasMessageContaining(ERROR_MESSAGE);
+	}
+	
+	@ParameterizedTest
+	@ValueSource(strings = {"자장면,자장면", "스파게티,스파게티"})
+	public void checkMenuDuplicated(String menu) {
+		assertThatThrownBy(() -> iv.checkMenuDuplicated(menu))
+		.isInstanceOf(IllegalArgumentException.class)
+		.hasMessageContaining(ERROR_MESSAGE);
+	}
 }

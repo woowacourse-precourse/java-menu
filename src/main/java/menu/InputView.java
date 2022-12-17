@@ -45,13 +45,13 @@ public class InputView {
 		if(Pattern.matches(pattern, coachNames)) {		
 			return true;
 		}
-		throw new IllegalArgumentException("[ERROaR] 2명 이상 5명 이하의 이름을 ,로 구분지어 입력하세요.");
+		throw new IllegalArgumentException("[ERROR] 2명 이상 5명 이하의 이름을 ,로 구분지어 입력하세요.");
 	}
 	
 	public String[] checkEachCoachNameLength(String coachNames) {
 		String[] coachStr = coachNames.split(",");
 		for(String coachName : coachStr) {
-			if(coachName.length() < 2 && coachName.length() > 4) {
+			if(coachName.length() < 2 || coachName.length() > 4) {
 				throw new IllegalArgumentException("[ERROR] 이름이 2-4글자가 아닙니다.");
 			}
 		}
