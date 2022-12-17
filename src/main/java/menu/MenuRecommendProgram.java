@@ -10,6 +10,7 @@ import java.util.List;
 public class MenuRecommendProgram {
     private HashMap<String, Integer> countOfCategorySelected;
     private List<Coach> coaches;
+    private MenuRecommend menuRecommend;
 
     public MenuRecommendProgram() {
         countOfCategorySelected = new HashMap<>() {{
@@ -19,6 +20,7 @@ public class MenuRecommendProgram {
             }
         }};
         coaches = new ArrayList<>();
+        menuRecommend = new MenuRecommend();
     }
 
 }
