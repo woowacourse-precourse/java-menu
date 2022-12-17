@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import menu.domain.constant.Category;
 import menu.domain.constant.Day;
 
 public class Coach {
@@ -27,5 +28,24 @@ public class Coach {
 
     public void registerInedibleFoods(List<String> inedibleFoods) {
         this.inedibleFoods.addAll(inedibleFoods);
+    }
+
+    public void recommendMenuOfDay(Day day, Category categoryOfDay) {
+        String recommendMenu;
+        do {
+            recommendMenu = categoryOfDay.getRandomMenu();
+        } while (canAddMenu(recommendMenu));
+        weeklyFoods.put(day, recommendMenu);
+    }
+
+    private boolean canAddMenu(String menu) {
+        if (inedibleFoods.contains(menu)) {
+            return false;
+        }
+        List<String> existFoods = new ArrayList<>(weeklyFoods.values());
+        if (existFoods.contains(menu)) {
+            return false;
+        }
+        return true;
     }
 }
