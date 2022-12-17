@@ -1,13 +1,26 @@
 package menu;
 
 import menu.domain.Coach;
+import menu.domain.MenuRecommender;
+import menu.ui.input.Input;
+import menu.ui.output.Output;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
+    private static Output output = new Output();
+    private static Input input = new Input();
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        output.notifyInitializing();
+        List<String> coachNames = input.receiveCoaches();
+        List<List<String>> bannedMenus = input.receiveUnavailableMenu(coachNames);
+        List<Coach> coachList = createCoachList(coachNames, bannedMenus);
+        MenuRecommender menuRecommender = new MenuRecommender(coachList);
+        List<Map<Coach, List<String>>> RecommendationResult = menuRecommender.getRecommendationResult();
+        output.notifyEnding();
     }
 
     private static List<Coach> createCoachList(List<String> coaches, List<List<String>> unavailableMenus) {
