@@ -59,4 +59,7 @@ public class OutputView {
         System.out.println(FRONT_BRACKET + name + PATH_DELIMITER + String.join(PATH_DELIMITER, foods) + BACK_BRACKET);
     }
     
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println("[ERROR] " + errorMessage);
+    }
 }

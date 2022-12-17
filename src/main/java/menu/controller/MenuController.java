@@ -22,7 +22,6 @@ public class MenuController {
     private static final int recommendDays = 5;
 
     public void run() {
-
         init();
         outputView.printServiceResult();
         for (int day = 0; day < recommendDays; day ++) {
@@ -31,24 +30,29 @@ public class MenuController {
                 recommendMenu(category, coach);
             }
         }
-
-        // for (Coach coach : coaches) {
-        //     coach.printCoach();
-        // }
         outputView.printRecommendMenuResult(recommender.getCategoryCheckList());
         for (Coach coach : coaches) {
             outputView.printRecommendMenuResultByCoach(coach.getName(), coach.getAlreadyRecommended());
         }
-
         outputView.printServiceEnd();
     }
 
     public void init() {
         outputView.printServiceStart();
         outputView.printInputCoachName();
-        for (String coachName : inputView.readCoachName()) {
-            outputView.printInputCoachNotEat(coachName);
-            coaches.add(new Coach(coachName ,inputView.readCoachNotEat()));
+        while (true) {
+            try {
+                List<String> inputCoachName = inputView.readCoachName();
+                validateCoachCount(inputCoachName);
+                validateCoachNameLength(inputCoachName);
+                for (String coachName : inputCoachName) {
+                    outputView.printInputCoachNotEat(coachName);
+                    coaches.add(new Coach(coachName ,inputView.readCoachNotEat()));
+                }
+                return ;
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
         }
     }
 
@@ -59,5 +63,23 @@ public class MenuController {
             recommendedFood = recommender.recommendFood(food.getFoods());
         } while (coach.isAlreadyRecommended(recommendedFood) || coach.isNotEat(recommendedFood));
         coach.addFood(recommendedFood);
+    }
+
+    private void validateCoachCount(List<String> inputCoachName) {
+        if (inputCoachName.size() < 2) {
+            throw new IllegalArgumentException("코치는 최소 2명 이상 입력해야 합니다.");
+        } else if (inputCoachName.size() > 5) {
+            throw new IllegalArgumentException("코치는 최대 5명까지 입력할 수 있습니다.");
+        }
+    }
+    
+    private void validateCoachNameLength(List<String> inputCoachName) {
+        for (String coachName : inputCoachName) {
+            if (coachName.length() < 2) {
+                throw new IllegalArgumentException("코치의 이름은 최소 2글자 이상 입력해야 합니다.");
+            } else if (coachName.length() > 4) {
+                throw new IllegalArgumentException("코치의 이름은 최대 4글자까지 입력할 수 있습니다.");
+            }
+        }
     }
 }
