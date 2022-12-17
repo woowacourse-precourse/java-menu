@@ -85,7 +85,7 @@ public class MainController {
 
     private void setMenuOfDay(Day day, Category category, Coach coach){
         String recommendedMenu = recommender.recommendMenuOfCategory(category);
-        if(isDuplicatedMenu(coach, recommendedMenu)){
+        if(isDuplicatedMenu(coach, recommendedMenu) || isBanMenu(coach, recommendedMenu)){
             setMenuOfDay(day, category, coach);
             return;
         }
@@ -97,6 +97,16 @@ public class MainController {
         List<Menu> menusOfCoach = coach.getMenusOfWeek().getMenus();
         for(Menu menu : menusOfCoach){
             if(menu.getMenuName().equals(recommendedMenu)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isBanMenu(Coach coach, String recommendedMenu){
+        String[] banFoods = coach.getBanFoods();
+        for(String banFood : banFoods){
+            if(banFood.equals(recommendedMenu)){
                 return true;
             }
         }

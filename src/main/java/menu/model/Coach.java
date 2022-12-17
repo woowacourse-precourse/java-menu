@@ -20,6 +20,10 @@ public class Coach {
     public String getName(){
         return name;
     }
+
+    public String[] getBanFoods(){
+        return banFoods;
+    }
     public void addMenu(Menu menu){
         menusOfWeek.add(menu);
     }
