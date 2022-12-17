@@ -24,9 +24,13 @@ class CoachTest {
     }
 
     @Test
-    void coach_클래스는_생성시_null_이_들어오면_IEA_예외를_발생시킨다() {
+    void coach_클래스는_생성시_coachName_에_null_이_들어오면_IEA_예외를_발생시킨다() {
         assertThatThrownBy(() -> new Coach(null, List.of("안녕")))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void coach_클래스는_생성시_notEat_에_null_이_들어오면_IEA_예외를_발생시킨다() {
         assertThatThrownBy(() -> new Coach(new CoachName("안녕"), null))
                 .isInstanceOf(IllegalArgumentException.class);
     }
