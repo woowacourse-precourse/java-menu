@@ -8,19 +8,21 @@ public class Group {
     private final List<String> categoryHistory = new ArrayList<>();
     private final List<Coach> coaches = new ArrayList<>();
 
+    private final int COACH_SIZE_LOWERBOUND = 2;
+    private final int COACH_SIZE_UPPERBOUND = 5;
+
     public void addCoach(CoachName name, List<String> cannotEatMenus) {
         coaches.add(new Coach(name, cannotEatMenus));
     }
-//
-//    private void validateCoachSize() {
-//        // TODO: 입력 validator로 이동
-//        if (coaches.size() < 2 || coaches.size() > 5) {
-//            throw new IllegalArgumentException("[ERROR] 코치 수는 2명에서 5명 사이여야 합니다.");
-//        }
-//    }
+
+    private void validateCoachSize() {
+        if (coaches.size() < COACH_SIZE_LOWERBOUND || coaches.size() > COACH_SIZE_UPPERBOUND) {
+            throw new IllegalArgumentException("[ERROR] 코치 수는 2명에서 5명 사이여야 합니다.");
+        }
+    }
 
     private void makeCategory() {
-//        validateCoachSize();
+        validateCoachSize();
         Category category = new Category();
         String categoryName;
         do {
