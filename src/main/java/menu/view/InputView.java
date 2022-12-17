@@ -26,13 +26,11 @@ public class InputView {
     /**
      * 못먹는 메뉴를 입력받는다.
      */
-    public List<String> readDislikeFoods(List<String> coachNames) {
+    public List<String> readDislikeFoods(String coachName) {
         String dislikeFood = "";
-        for (String coachName : coachNames) {
-            System.out.printf(MESSAGE_INPUT_DISLIKE_FOOD,coachName);
-            System.out.println();
-            dislikeFood = Console.readLine();
-        }
+        System.out.printf(MESSAGE_INPUT_DISLIKE_FOOD,coachName);
+        System.out.println();
+        dislikeFood = Console.readLine();
         return InputViewValidation.checkDislikeFoodValid(dislikeFood);
     }
 }

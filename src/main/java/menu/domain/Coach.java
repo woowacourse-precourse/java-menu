@@ -1,16 +1,14 @@
 package menu.domain;
 
 import java.util.List;
+import java.util.Map;
 
 public class Coach {
 
-    private List<String> coaches;
+    private List<String> coach;
+    private Map<String, List<String>> coaches;
 
-    public Coach(List<String> coaches) {
+    public Coach(Map<String, List<String>> coaches) {
         this.coaches = coaches;
-    }
-
-    public List<String> getCoaches() {
-        return coaches;
     }
 }
