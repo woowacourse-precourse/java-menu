@@ -16,10 +16,6 @@ public class Crew {
         return name;
     }
 
-    public List<String> getFoods() {
-        return foods;
-    }
-
     public void addFood(String name) {
         this.foods.add(name);
     }
@@ -28,13 +24,9 @@ public class Crew {
         return foods.contains(foodName);
     }
 
-    public boolean isDoneFillingFoods() {
-        return foods.size() == 5;
-    }
-
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for(String food : foods) {
+        for (String food : foods) {
             sb.append("| " + food + " ");
         }
         return sb.toString();
