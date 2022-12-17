@@ -73,7 +73,7 @@ public enum Menu {
     public static List<Menu> convert(final List<String> menus) {
         return menus.stream()
                 .filter(menu -> !menu.equals(""))
-                .map(menu -> Menu.getMenu(menu))
+                .map(Menu::getMenu)
                 .collect(Collectors.toList());
     }
 
