@@ -3,6 +3,8 @@ package menu.domain;
 import java.util.Objects;
 
 public class Coach {
+    public static final int minSize = 2;
+    public static final int maxSize = 5;
     private final String name;
 
     public Coach(String name) {
