@@ -1,12 +1,10 @@
 package menu;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import menu.type.CategoryType;
 import menu.util.InputExceptionHandler;
-import menu.view.InputView;
 import menu.view.OutputView;
 
 
@@ -30,7 +28,8 @@ public class MenuController {
             chosenCategoryList.add(chosenCategoryType);
             for (int j = 0; j < coachLists.size(); j++) {
                 List<String> menus = categoryMap.getFoodList(chosenCategoryType);
-                String menu = menuChoices.chooseRandomMenuUntilDoesntExists(menuChoices.getCoachMenus(coachLists.get(j)), menus);
+                String menu = menuChoices.chooseRandomMenuUntilDoesntExists(
+                        menuChoices.getCoachMenus(coachLists.get(j)), menus);
                 menuChoices.updateChosenMenu(coachLists.get(j), menu);
             }
         }

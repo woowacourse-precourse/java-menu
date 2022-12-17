@@ -16,7 +16,7 @@ public class CoachHates {
         coachHateMap.put(coachName, foods);
     }
 
-    public Map<String, List<String>> getCoachHateMap(){
+    public Map<String, List<String>> getCoachHateMap() {
         return this.coachHateMap;
     }
 

@@ -44,7 +44,7 @@ public class MenuChoicer {
         String menu = null;
         while (true) {
             menu = Randoms.shuffle(menus).get(0);
-            if ((userMenus.contains(menu))){
+            if ((userMenus.contains(menu))) {
                 return chooseRandomMenuUntilDoesntExists(userMenus, menus);
             }
             break;
