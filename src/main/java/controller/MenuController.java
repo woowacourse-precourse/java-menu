@@ -4,7 +4,6 @@ import exception.CoachException;
 import exception.FoodException;
 import menu.domain.Coach;
 import menu.domain.MenuRecommender;
-import repository.CoachRepository;
 import repository.MenuForWeekRepository;
 import view.InputView;
 import view.OutputView;
@@ -52,7 +51,6 @@ public class MenuController {
             List<String> names = splitNames(coachNames);
             CoachException.validate(names);
             List<Coach> coaches = makeCoaches(names);
-            CoachRepository.initializeCoaches(coaches);
             MenuForWeekRepository.initializeCoaches(coaches);
             return coaches;
         } catch (IllegalArgumentException exception) {
