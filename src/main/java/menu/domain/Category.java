@@ -6,25 +6,35 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Category {
-    public Category(){};
+    private static List<Integer> categoryCnt;
+    private static List<Integer> dayCategory = new ArrayList<>();
+    public Category(){
+        this.categoryCnt = new ArrayList<>();
+    };
 
-    public static List<Integer> recommandCategory() {
-        List<Integer> category = new ArrayList<>();
-        while (category.size() < 5 ) {
-            Integer value = Randoms.pickNumberInRange(1,5);
-            if (getCategoryFrequency(category,value) >= 2)
+    public static Integer recommandDayCategory() {
+        while (true) {
+            Integer value = Randoms.pickNumberInRange(1, 5);
+            if (frequencyCnt(value))
                 continue;
-            category.add(value);
+            categoryCnt.add(value);
+            dayCategory.add(value);
+            return value;
         }
-        return category;
     }
 
-    public static Integer getCategoryFrequency(List<Integer> category, Integer value) {
-        int count = 0;
-        for (int i = 0; i < category.size(); i++) {
-            if (category.get(i) == value)
-                count += 1;
+    public static boolean frequencyCnt(Integer value) {
+        int tmp = 0;
+        for (int i = 0; i  < categoryCnt.size(); i++) {
+            if (categoryCnt.get(i) == value)
+                tmp++;
         }
-        return count;
+        if (tmp >= 2)
+            return true;
+        return false;
+    }
+
+    public static List<Integer> getCategory() {
+        return dayCategory;
     }
 }
