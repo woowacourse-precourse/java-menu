@@ -36,19 +36,17 @@ public class MenuService {
             List<String> menus = MenuList.getFiled(category);
             List<String> eatenMenu = coach.getEatenMenu();
             List<String> hateMenu = coach.getHateMenu();
-
-            for(String menu : eatenMenu){
-                if(menus.contains(menu)){
-                    menus.remove(menu);
-                }
-
-            }
-            for(String menu : hateMenu){
-                if(menus.contains(menu)){
-                    menus.remove(menu);
-                }
-            }
+            remove(eatenMenu, menus);
+            remove(hateMenu, menus);
             coach.addEatenMenu(getRecommendMenu(menus));
+        }
+    }
+
+    private void remove(List<String> eatenMenu, List<String> menus) {
+        for(String menu : eatenMenu){
+            if(menus.contains(menu)){
+                menus.remove(menu);
+            }
         }
     }
 
