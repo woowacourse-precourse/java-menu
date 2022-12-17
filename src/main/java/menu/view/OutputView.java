@@ -1,39 +1,33 @@
 package menu.view;
 
+import menu.utills.constants.ResultFormat;
+
+import java.util.List;
+
 public class OutputView {
-    public static final String START_DINNER_MENU_RECOMMEND = "점심 메뉴 추천을 시작합니다.";
-    public static final String RESULT_MENU_RECOMMEND = "메뉴 추천 결과입니다.";
-    public static final String FINISH_MENU_RECOMMEND = "추천을 완료했습니다.";
-    public static final String DAYS = "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]";
+    private final static String ERROR_HEADER = "[ERROR] ";
 
-    //메뉴 추천 시작 메세지 출력
-    public static void printStart() {
-        System.out.println(START_DINNER_MENU_RECOMMEND);
-        printBreak();
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(ERROR_HEADER + errorMessage + "\n");
     }
 
-    //메뉴 추천 결과
-    public static void printResult() {
-        System.out.println(RESULT_MENU_RECOMMEND);
-        System.out.println(DAYS);
-        //.out.println(a);
-        //printBreak();
+    public static void printStartMessage() {
+        System.out.println("점심 메뉴 추천을 시작합니다.");
     }
 
-    //추천 완료 메세지 출력
-    public static void printFinish() {
-        System.out.println(FINISH_MENU_RECOMMEND);
-        //시스템 종료
+    public static void printFinalMessage() {
+        System.out.println("\n메뉴 추천 결과입니다.\n" +
+                "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
     }
 
-    //에러 메세지 출력
-    public static void printError(String message) {
-        System.out.println("[ERROR] " + message);
-        printBreak();
+    public static void printCategoryResult(String message) {
+        System.out.println(ResultFormat.getCategoryMessage(message));
     }
 
-    //줄 바꿈 출력
-    public static void printBreak() {
-        System.out.println();
+    public static void printRecommendResult(List<String> recommendedMenus) {
+        recommendedMenus.forEach(recommendedMenu -> {
+            System.out.println(ResultFormat.getRecommendedMenuMessage(recommendedMenu));
+        });
+        System.out.println("\n추천을 완료했습니다.");
     }
 }
