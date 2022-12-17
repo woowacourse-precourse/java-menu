@@ -18,7 +18,8 @@ public class MenuController {
         OutputView.start();
         List<Coach> coaches = askCoach();
         askNoEat(coaches);
-        menuSuggester.run();
+        int[] suggestedCategory = menuSuggester.run();
+        OutputView.showResult(suggestedCategory);
     }
 
     private List<Coach> askCoach() {
@@ -33,8 +34,7 @@ public class MenuController {
             OutputView.askNoEat(coach.getName());
             List<String> noEatFood = InputView.inputNoEat();
             coach.setNoEatFood(noEatFood);
-            System.out.println(noEatFood);
         }
-
     }
+
 }

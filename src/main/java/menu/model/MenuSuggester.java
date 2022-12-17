@@ -10,7 +10,6 @@ public class MenuSuggester {
     private List<Coach> coaches;
     private List<List<String>> categories;
     private int[] suggestedCategory;
-    private final String[] days = {"월요일", "화요일", "수요일", "목요일", "금요일"};
 
     public MenuSuggester() {
         MenuGenerator menuGenerator = new MenuGenerator();
@@ -22,10 +21,11 @@ public class MenuSuggester {
         this.coaches = coaches;
     }
 
-    public void run() {
-        for (int i = 0; i < days.length; i++) {
+    public int[] run() {
+        for (int i = 0; i < suggestedCategory.length; i++) {
             suggest(i);
         }
+        return suggestedCategory;
     }
 
     private void suggest(int day) {
@@ -36,6 +36,7 @@ public class MenuSuggester {
             String menu = pickMenu(category);
             coach.addFood(menu);
         }
+
     }
 
     private String pickMenu(int category) {
