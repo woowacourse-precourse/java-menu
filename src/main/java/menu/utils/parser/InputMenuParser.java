@@ -8,7 +8,7 @@ import menu.service.Init;
 
 public class InputMenuParser {
 
-    public static  final String NAME_DELIMITER = ",";
+    public static final String NAME_DELIMITER = ",";
 
     private InputMenuParser() {
     }
@@ -26,11 +26,11 @@ public class InputMenuParser {
     }
 
     private static List<String> parse(final String input, final List<List<String>> manuList) {
-//        for (List<String> manu : manuList) {
-//            if (!ContainedChecker.isValidateManu(input, manu)) {
-//                throw new IllegalArgumentException("없는 메뉴 입니다.");
-//            }
-//        }
+        for (List<String> manu : manuList) {
+            if (!ContainedChecker.isValidateManu(input, manu)) {
+                throw new IllegalArgumentException("없는 메뉴 입니다.");
+            }
+        }
         return Arrays.stream(input.split(NAME_DELIMITER))
             .collect(Collectors.toList());
     }
