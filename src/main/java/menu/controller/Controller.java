@@ -29,7 +29,7 @@ public class Controller {
             List<Name> coachNames = readNames();
             List<Coach> coaches = new ArrayList<>();
             for (Name coachName : coachNames) {
-                List<Food> inedibles = readInedibles(coachName.getName());
+                List<Food> inedibles = readInediblesOf(coachName.getName());
                 coaches.add(new Coach(coachName, inedibles));
             }
             return coaches;
@@ -42,8 +42,8 @@ public class Controller {
                 .collect(Collectors.toList()));
     }
 
-    private List<Food> readInedibles(String coachName) {
-        return repeat(() -> INPUT_VIEW.readInedibleOf(coachName).stream()
+    private List<Food> readInediblesOf(String coachName) {
+        return repeat(() -> INPUT_VIEW.readInediblesOf(coachName).stream()
                 .filter(String::isBlank)
                 .map(Food::from)
                 .collect(Collectors.toList()));

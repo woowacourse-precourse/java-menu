@@ -13,7 +13,7 @@ public class InputView {
         return List.of(names);
     }
 
-    public List<String> readInedibleOf(String name) {
+    public List<String> readInediblesOf(String name) {
         System.out.println(name + "(이)가 못 먹는 메뉴를 입력해 주세요.");
         String input = Console.readLine();
         String[] inedibles = input.split(",");
