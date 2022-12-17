@@ -9,14 +9,17 @@ import java.util.Map;
 
 public class MenuByCategoryData {
 
-    private Map<Category, List<Menu>> menuData;
+    private static Map<Category, List<Menu>> menuData;
 
-    public MenuByCategoryData() throws IOException {
-        menuData = FileResolver.resolveFileToMenuByCategoryData("src/main/resources/categories.md");
+    static {
+        try {
+            menuData = FileResolver.resolveFileToMenuByCategoryData("src/main/resources/categories.md");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-
-    public boolean hasMenu(String name) {
+    public boolean hasMenu(String name) throws IOException {
         boolean isEqual = false;
         for (Category category : menuData.keySet()) {
             List<Menu> menus = menuData.get(category);
