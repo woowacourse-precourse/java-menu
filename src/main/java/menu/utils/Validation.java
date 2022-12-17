@@ -1,11 +1,16 @@
 package menu.utils;
 
+import java.util.List;
+import menu.domain.repository.MenuRepository;
+
 public class Validation {
 
     private static final int COACH_MIN_SIZE = 2;
     private static final int COACH_MAX_SIZE = 5;
     private static final int CANT_EAT_MENU_MIN_SIZE = 0;
     private static final int CANT_EAT_MENU_MAX_SIZE = 2;
+    private static final int COACH_NAME_MIN_SIZE = 2;
+    private static final int COACH_NAME_MAX_SIZE = 4;
 
     public static void isCoachNames(String target) {
         isInCoachSize(target);
@@ -13,6 +18,23 @@ public class Validation {
 
     public static void isCantEatMenus(String target) {
         isInCantEatMenuSize(target);
+    }
+
+    public static void isCoachName(String target) {
+        String[] name = target.split("");
+        isNotSmallerThanMinSize(name, COACH_NAME_MIN_SIZE);
+        isNotBiggerThanMaxSize(name, COACH_NAME_MAX_SIZE);
+    }
+
+    public static void isMenus(List<String> menuNames) {
+        for (String menuName : menuNames) {
+            isKorean(menuName);
+            isExistedMenu(menuName);
+        }
+    }
+
+    private static void isExistedMenu(String menuName) {
+        MenuRepository.isExistMenuByName(menuName);
     }
 
     private static void isInCoachSize(String target) {
