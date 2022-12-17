@@ -9,7 +9,7 @@ public class RecommendSystem implements RandomPicker {
 
     private static final int FIRST_CATEGORY_NUMBER = 1;
     private static final int LAST_CATEGORY_NUMBER = 5;
-    private static final String INITIAL_MENU = "";
+    private static final String INITIAL_MENU_NAME = "";
     private static final int MAX_CATEGORY_SIZE = 5;
     private static final int MAX_DUPLICATE_CATEGORY = 2;
 
@@ -42,7 +42,7 @@ public class RecommendSystem implements RandomPicker {
 
     @Override
     public String pickRandomMenu(final List<String> menus, final Coach coach) {
-        String menu = INITIAL_MENU;
+        String menu = INITIAL_MENU_NAME;
         boolean cannotEat = false;
 
         do {

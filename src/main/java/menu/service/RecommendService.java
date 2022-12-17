@@ -13,6 +13,7 @@ import java.util.List;
 
 public class RecommendService {
     private static final int FIRST = 1;
+    private static final String INITIAL_MENU_NAME = "";
 
     private final MenuRepository menuRepository;
     private final RecommendSystem recommendSystem;
@@ -92,7 +93,7 @@ public class RecommendService {
 
     private String recommendUntilSuccess(final Coach coach, final List<String> menus) {
         boolean canNotRecommend = false;
-        String menuName = "";
+        String menuName = INITIAL_MENU_NAME;
         do {
             menuName = recommendSystem.pickRandomMenu(menus, coach);
             canNotRecommend = coach.validateMenu(menuName);
