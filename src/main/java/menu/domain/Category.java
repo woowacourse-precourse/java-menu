@@ -42,10 +42,6 @@ public enum Category {
         return name;
     }
 
-    public int getNumber() {
-        return number;
-    }
-
     public Menus getMenus() {
         return menus;
     }
