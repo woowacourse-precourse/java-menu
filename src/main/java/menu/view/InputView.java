@@ -4,6 +4,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 import static menu.view.OutputView.printErrorMessage;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.Coach;
@@ -56,6 +57,9 @@ public class InputView {
   }
 
   private List<String> getList(String input) {
+    if (input.length() == 0) {
+      return Collections.emptyList();
+    }
     return Arrays.asList(input.split(","));
   }
 
