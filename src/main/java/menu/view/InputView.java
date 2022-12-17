@@ -8,6 +8,9 @@ import java.util.List;
 public class InputView {
     private static final String PROMPT_FOR_COACH_NAME_INPUT = "코치의 이름을 입력해 주세요. (, 로 구분)";
     private static final String PROMPT_FOR_MENU_INPUT_FORMAT = "%s(이)가 못 먹는 메뉴를 입력해 주세요.\n";
+    public static final String DELIMITER_FOR_COACH_NAMES = ",";
+    public static final String DELIMITER_FOR_MENUS = ",";
+
     public static void printPromptForCoachNameInput() {
         System.out.println(PROMPT_FOR_COACH_NAME_INPUT);
     }
@@ -17,10 +20,8 @@ public class InputView {
     }
     public static List<String> readCoachNameList() {
         printPromptForCoachNameInput();
-        return Arrays.asList(Console.readLine().split(","));
+        return Arrays.asList(Console.readLine().split(DELIMITER_FOR_COACH_NAMES));
     }
-
-
 
     public static List<String> readMenuCoachCannotEat(String coachName) {
         printPromptForMenuCannotToEatInput(coachName);
@@ -28,7 +29,7 @@ public class InputView {
         if (isEmptyString(input)) {
             return Collections.emptyList();
         }
-        return Arrays.asList(input.split(","));
+        return Arrays.asList(input.split(DELIMITER_FOR_MENUS));
     }
 
     private static boolean isEmptyString(String input) {
