@@ -18,12 +18,12 @@ public class PickMenu {
         menus = new ArrayList<>();
     }
 
-    public void addPickMenu(Category category, List<Menu> notEatableMenu, int weekend) {
+    public void addPickMenu(PickCategory category, List<Menu> notEatableMenu, int weekend) {
         boolean isDuplicate = true;
         boolean isNotEatable = true;
         Menu pickMenu = null;
         while(isDuplicate || isNotEatable) {
-            pickMenu = Menu.getRandomFood(category);
+            pickMenu = Menu.getRandomFood(category.getCategories().get(weekend));
             isDuplicate = validDuplicate();
             isNotEatable = validNotEatable(notEatableMenu);
         }

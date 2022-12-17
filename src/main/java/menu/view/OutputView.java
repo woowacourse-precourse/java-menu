@@ -56,7 +56,7 @@ public class OutputView {
     public void printCoach(Coach coach) {
         System.out.print(START_OF_MENU_DELIMITER);
         System.out.print(" " + coach.getName() + " ");
-        for (Menu menu : coach.getPickMenu()) {
+        for (Menu menu : coach.getRecommendMenus()) {
             System.out.print(CENTER_OF_MENU_DELIMITER);
             System.out.print(" " + menu.getMenu() + " ");
         }

@@ -14,12 +14,5 @@ public class Coaches {
     public List<Coach> getCoaches() {
         return Collections.unmodifiableList(coaches);
     }
-
-    public void pickMenus(PickCategory pickCategory) {
-        for (int i = 0 ; i < 5 ; i++) {
-            for (Coach coach : coaches) {
-                coach.makePickMenu(pickCategory, i);
-            }
-        }
-    }
+    
 }

@@ -3,6 +3,7 @@ package menu.domain;
 import menu.utils.Menu;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Coach {
@@ -30,11 +31,15 @@ public class Coach {
         }
     }
 
-    public void makePickMenu(PickCategory pickCategory, int weekend) {
-        pickMenu.addPickMenu(pickCategory.getCategories().get(weekend), notEatableMenu, weekend);
+    public List<Menu> getRecommendMenus() {
+        return pickMenu.getMenus();
     }
 
-    public List<Menu> getPickMenu() {
-        return pickMenu.getMenus();
+    public PickMenu getPickMenu() {
+        return pickMenu;
+    }
+
+    public List<Menu> getNotEatableMenu() {
+        return Collections.unmodifiableList(notEatableMenu);
     }
 }

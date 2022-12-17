@@ -2,7 +2,7 @@ package menu.controller;
 
 import menu.domain.Coaches;
 import menu.domain.PickCategory;
-import menu.domain.PickMenu;
+import menu.service.MenuService;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -12,18 +12,20 @@ public class MenuController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final MenuService menuService;
 
-    public MenuController() {
+    public MenuController(MenuService menuService) {
         this.inputView = new InputView();
         this.outputView = new OutputView();
+        this.menuService = menuService;
     }
 
     public void run() {
         outputView.startMessage();
         Coaches coaches = getCoachesName();
         getNotEatableName(coaches);
-        PickCategory pickCategory = new PickCategory();
-        coaches.pickMenus(pickCategory);
+        PickCategory pickCategory = menuService.recommendCategory();
+        menuService.pickRecommendMenu(coaches, pickCategory);
         outputView.printMenu(coaches, pickCategory);
     }
 

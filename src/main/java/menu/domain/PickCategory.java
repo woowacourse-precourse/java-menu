@@ -9,42 +9,13 @@ import java.util.List;
 
 public class PickCategory {
     private final List<Category> categories;
-    private static final int MIN_CATEGORY_NUMBER = 1;
-    private static final int MAX_CATEGORY_NUMBER = 5;
 
-    public PickCategory() {
-        this.categories = getRandomCategory();
+    public PickCategory(List<Category> categories) {
+        this.categories = categories;
     }
 
     public List<Category> getCategories() {
         return Collections.unmodifiableList(categories);
     }
 
-    private List<Category> getRandomCategory() {
-        boolean isDuplicate = true;
-        List<Category> makeCategory = new ArrayList<>();
-        while(isDuplicate) {
-            makeCategory.clear();
-            for (int i = 0; i < MAX_CATEGORY_NUMBER; i++) {
-                Category category = Category.valueOfPickNumber(Randoms.pickNumberInRange(MIN_CATEGORY_NUMBER,MAX_CATEGORY_NUMBER));
-                makeCategory.add(category);
-            }
-            isDuplicate = checkDuplicateFrequency(makeCategory);
-        }
-        return makeCategory;
-    }
-
-    private boolean checkDuplicateFrequency(List<Category> makeCategory) {
-        if (Collections.frequency(makeCategory, Category.KOREA) > 2)
-            return true;
-        if (Collections.frequency(makeCategory, Category.JAPAN) > 2)
-            return true;
-        if (Collections.frequency(makeCategory, Category.CHINA) > 2)
-            return true;
-        if (Collections.frequency(makeCategory, Category.ASIA) > 2)
-            return true;
-        if (Collections.frequency(makeCategory, Category.WESTERN) > 2)
-            return true;
-        return false;
-    }
 }
