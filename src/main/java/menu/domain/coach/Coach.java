@@ -21,4 +21,12 @@ public class Coach {
         String menu = Randoms.shuffle(menus).get(0);
         selectedMenu.add(menu);
     }
+
+    public String makeResultMessage() {
+        StringBuilder stringBuilder = new StringBuilder();
+        List<String> tempCoachData = new ArrayList<>(selectedMenu);
+        tempCoachData.add(0, name);
+        stringBuilder.append("[ ").append(String.join(" | ", tempCoachData)).append(" ]");
+        return stringBuilder.toString();
+    }
 }
