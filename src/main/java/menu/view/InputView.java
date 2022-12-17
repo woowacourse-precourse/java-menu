@@ -26,7 +26,7 @@ public class InputView {
     public Coaches convertStringToCoaches(String[] names) {
         List<Coach> coaches = new ArrayList<>();
         for (String name : names) {
-            coaches.add(new Coach(name));
+            coaches.add(new Coach(name.trim()));
         }
         return new Coaches(coaches);
     }
@@ -35,7 +35,7 @@ public class InputView {
         validCoachesNameSize(input);
         validCoachesNameDuplicate(input);
         for (String name : input) {
-            validCoachNameSize(name);
+            validCoachNameSize(name.trim());
         }
     }
 
