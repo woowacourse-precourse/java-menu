@@ -67,5 +67,4 @@ public class OutputView {
         return categoriesPerWeek.values().stream()
                 .map(category -> category.getName()).collect(Collectors.joining(RESULT_DELIMITER));
     }
-
 }

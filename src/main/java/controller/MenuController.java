@@ -1,6 +1,8 @@
 package controller;
 
 import constant.Category;
+import exception.CoachException;
+import exception.FoodException;
 import menu.Coach;
 import menu.MenuRecommender;
 import repository.CoachRepository;
@@ -13,9 +15,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MenuController {
-    private static final int MINIMUM_COACHES = 2;
-    private static final int MAXIMUM_MENU_SIZE = 2;
-    private static final int MAXIMUM_COACH_SIZE = 5;
     private final OutputView outputView;
     private final InputView inputView;
 
@@ -39,8 +38,7 @@ public class MenuController {
         try {
             if (!hateFoodNames.isEmpty()) {
                 List<String> foodNames = splitNames(hateFoodNames);
-                validateFoodSize(foodNames);
-                validateFoodNames(foodNames);
+                FoodException.validate(foodNames);
                 return foodNames;
             }
             return Collections.emptyList();
@@ -50,24 +48,10 @@ public class MenuController {
         }
     }
 
-    private void validateFoodNames(List<String> foodNames) {
-        for (String name : foodNames) {
-            if (!Category.hasMenu(name)) {
-                throw new IllegalArgumentException("잘못된 메뉴입니다.");
-            }
-        }
-    }
-
-    private void validateFoodSize(List<String> splitFoodNames) {
-        if (splitFoodNames.size() > MAXIMUM_MENU_SIZE) {
-            throw new IllegalArgumentException("메뉴는 최대 두 개 이상 입력할 수 없습니다.");
-        }
-    }
-
     private List<Coach> makeCoaches(String coachNames) {
         try {
             List<String> names = splitNames(coachNames);
-            validateCoachSize(names);
+            CoachException.validate(names);
             List<Coach> coaches = makeCoaches(names);
             CoachRepository.initializeCoaches(coaches);
             MenuForWeekRepository.initializeCoaches(coaches);
@@ -75,23 +59,6 @@ public class MenuController {
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception);
             return makeCoaches(inputView.readCoachNames());
-        }
-    }
-
-    private void validateCoachSize(List<String> names) {
-        validateMinimumSize(names);
-        validateMaximumSize(names);
-    }
-
-    private void validateMaximumSize(List<String> names) {
-        if (names.size() > MAXIMUM_COACH_SIZE) {
-            throw new IllegalArgumentException("코치는 최소 5명 이하로 입력해야 합니다.");
-        }
-    }
-
-    private void validateMinimumSize(List<String> names) {
-        if (names.size() < MINIMUM_COACHES) {
-            throw new IllegalArgumentException("코치는 최소 2명 이상 입력해야 합니다.");
         }
     }
 
