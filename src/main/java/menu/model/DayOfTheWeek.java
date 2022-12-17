@@ -18,7 +18,7 @@ public enum DayOfTheWeek {
         this.date = date;
     }
 
-    public String getMenuCategory() {
+    public String getDayOfTheWeek() {
         return date;
     }
 }
