@@ -15,6 +15,11 @@ public class MainController {
         outputView.printStart();
         List<String> coachNames = repeat(inputView::readNames);
         mainService.generateCoaches(coachNames);
+
+        for (String name : coachNames) {
+            outputView.printCoachCantEat(name);
+            List<String> cantEatMenus = repeat(inputView::readCantEatMenu);
+        }
     }
 
     private <T> T repeat(Supplier<T> reader) {
