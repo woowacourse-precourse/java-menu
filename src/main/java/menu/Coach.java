@@ -31,4 +31,8 @@ public class Coach {
         eatenFood.add(picked);
         return picked;
     }
+
+    public List<String> getEatenFood() {
+        return eatenFood;
+    }
 }

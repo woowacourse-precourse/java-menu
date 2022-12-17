@@ -29,4 +29,8 @@ public class MenuSelector {
         }
         return result >= 2;
     }
+
+    public List<String> getCategoryRepository() {
+        return categoryRepository;
+    }
 }
