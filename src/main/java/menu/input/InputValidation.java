@@ -12,6 +12,9 @@ public class InputValidation {
     public static final int COACH_MAX_NUMBER = 5;
     public static final int COACH_MIN_NUMBER = 2;
 
+    public static final int NOT_EAT_MENU_MAX_NUMBER = 2;
+    public static final int NOT_EAT_MENU_MIN_NUMBER = 0;
+
     public static void validateReadCoaches(String coaches) {
         List<String> coach = new ArrayList<>(Arrays.asList(coaches.split(InputView.splitString)));
 
@@ -32,6 +35,19 @@ public class InputValidation {
         int coachSize = coaches.size();
         if(coachSize > COACH_MAX_NUMBER || coachSize < COACH_MIN_NUMBER) {
             ErrorMessage.printCoachNumberError();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void validateReadNotEatMenus(String menus) {
+        List<String> menu = new ArrayList<>(Arrays.asList(menus.split(InputView.splitString)));
+        validateNumberOfNotEatMenus(menu);
+    }
+
+    private static void validateNumberOfNotEatMenus(List<String> menus) {
+        int menuSize = menus.size();
+        if(menuSize > NOT_EAT_MENU_MAX_NUMBER || menuSize < NOT_EAT_MENU_MIN_NUMBER) {
+            ErrorMessage.printNotEatMenusError();
             throw new IllegalArgumentException();
         }
     }

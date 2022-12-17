@@ -15,5 +15,9 @@ public class InputView {
         return new ArrayList<>(Arrays.asList(coaches.split(splitString)));
     }
 
-
+    public List<String> readNotEatMenus() {
+        String menus = Console.readLine();
+        InputValidation.validateReadNotEatMenus(menus);
+        return new ArrayList<>(Arrays.asList(menus.split(InputView.splitString)));
+    }
 }
