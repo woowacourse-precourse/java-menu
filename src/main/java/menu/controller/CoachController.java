@@ -28,7 +28,14 @@ public class CoachController {
     public void makeCantEat(String coach,String cantEat){
         this.coaches.get(coach).makeCantEatList(cantEat);
     }
-    private void recommendFood(String coach){
+    public void recommendFood(String coach){
+        String category = recommendCategory(coach);
+        String food =  Randoms.shuffle(Foods.getFoodsList().get(category)).get(0);
+        if(!coaches.get(coach).getFoodList().contains(food)){
+            coaches.get(coach).addFoodList(food);
+            return;
+        }
+        recommendFood(coach);
 
     }
 

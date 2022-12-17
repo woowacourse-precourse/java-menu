@@ -11,23 +11,17 @@ import static menu.option.Option.WEEK;
 public class Coach {
     private String name;
     private List<String> cantEatList;
-    private HashMap<String,String> foodList;
+    private List<String> foodList;
     private HashMap<String,Integer> categoryCnt;
     public Coach(String name){
         this.name = name;
+        this.foodList = new ArrayList<>();
         makeCategoryCnt();
-        makeFoodList();
     }
     public void makeCantEatList(String cantEat){
         cantEatList = new ArrayList<>();
         for(String food:cantEat.split(",")){
             this.cantEatList.add(food);
-        }
-    }
-    private void makeFoodList(){
-        this.foodList = new HashMap<String,String>();
-        for(String day: WEEK){
-            foodList.put(day,null);
         }
     }
     private void makeCategoryCnt(){
@@ -36,6 +30,8 @@ public class Coach {
             categoryCnt.put(category,0);
         }
     }
+    public List<String> getFoodList(){return foodList;}
+    public void addFoodList(String food){this.foodList.add(food);}
     public HashMap<String,Integer> getCategoryCnt(){return this.categoryCnt;}
     public void addCategoryCnt(String category){this.categoryCnt.put(category,categoryCnt.get(category) + 1);}
 }
