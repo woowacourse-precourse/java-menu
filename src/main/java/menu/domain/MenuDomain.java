@@ -27,6 +27,7 @@ public class MenuDomain {
 
     public void initCoachs(List<String> userList) {
         coachs = Coachs.of(userList);
+        daysRecommand.initCoachNames(coachs);
     }
 
     public List<Coach> getCoachs() {
@@ -51,7 +52,9 @@ public class MenuDomain {
      * 메뉴 추천을 위한 동작 함수
      */
     public void doRecommand() {
-        // 월 화 수 목 금 순서대로
+        for (Day day : daysRecommand.getDays()) {
+            eachDay();
+        }
         // 5일 동안 같은 카테고리가 3회 이상 중복시 다시
         // 각 사람은 같은 메뉴 안된다.
     }
@@ -60,7 +63,22 @@ public class MenuDomain {
      * 각 요일
      */
     public void eachDay() {
-        // 추천할 카테고리 무작위 설정
+        daysRecommand.setDayCategori(getCategoriName());
+
         // 각 코치가 먹을 메뉴 추천
+    }
+
+    /**
+     * 카테고리가 2개 이하일 때까지 Random값 입력받는 함수
+     * @return
+     */
+    public String getCategoriName() {
+        boolean canUesName = false;
+        String name = null;
+        while (!canUesName) {
+            name = Menu.getRandomCategoriName();
+            canUesName = daysRecommand.isCategoriMax(name);
+        }
+        return name;
     }
 }
