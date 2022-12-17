@@ -30,7 +30,7 @@ public class InputView {
     }
 
     private static void validateCoachNumber(List<String> coaches) {
-        if (coaches.size() <= Range.MIN_RANGE.value || coaches.size() >= Range.MAX_RANGE.value) {
+        if (coaches.size() <= Range.MIN_NAME_LENGTH.value || coaches.size() >= Range.MAX_NAME_LENGTH.value) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_COACH_NUMBER.getMessage());
         }
     }
@@ -44,7 +44,14 @@ public class InputView {
         List<Menu> menus = Util.splitByComma(Console.readLine())
                 .stream().map(MenuRepository::findByName)
                 .collect(Collectors.toList());
+        validateMenuNotToEatSize(menus);
         return menus;
+    }
+
+    private static void validateMenuNotToEatSize(List<Menu> menus) {
+        if (menus.size() >= Range.MAX_MENU_NOT_TO_EAT_SIZE.value) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_MENU_NOT_TO_EAT_SIZE.getMessage());
+        }
     }
 
     private enum Message {
@@ -59,7 +66,8 @@ public class InputView {
     }
 
     private enum Range {
-        MIN_RANGE(1), MAX_RANGE(6);
+        MIN_NAME_LENGTH(1), MAX_NAME_LENGTH(6),
+        MAX_MENU_NOT_TO_EAT_SIZE(3);
 
         private final int value;
 
