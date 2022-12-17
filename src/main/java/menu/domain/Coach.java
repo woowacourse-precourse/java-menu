@@ -39,7 +39,6 @@ public class Coach {
 
     public boolean unAcceptable(Menu menu) {
         return hateMenus.contains(menu)
-                || recommended.contains(menu)
-                || recommended.duplicatedCategory(menu);
+                || recommended.contains(menu);
     }
 }

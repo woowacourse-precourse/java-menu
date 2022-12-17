@@ -19,13 +19,6 @@ public class Menus {
         return menus.size() == 5;
     }
 
-    public boolean duplicatedCategory(Menu menu) {
-        int count = (int) menus.stream()
-                .filter(comparedMenu -> comparedMenu.isEqualCategory(menu.getCategory()))
-                .count();
-        return count >= 2;
-    }
-
     @Override
     public String toString() {
         List<String> menuNames = menus.stream()
