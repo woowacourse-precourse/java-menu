@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import static menu.option.Option.*;
+
 public class Foods {
     private static HashMap<String,List<String>> foodsList;
     private final String[] japan = {"규동", "우동", "미소시루", "스시", "가츠동", "오니기리", "하이라이스", "라멘", "오코노미야끼"};
@@ -13,11 +15,11 @@ public class Foods {
     private final String[] western = {"라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니"};
     public Foods(){
         foodsList = new HashMap<>();
-        makeFood("일식",japan);
-        makeFood("한식",korean);
-        makeFood("중식",chinese);
-        makeFood("아시안",asian);
-        makeFood("양식", western);
+        makeFood("일식",JAPAN_FOOD);
+        makeFood("한식",KOREAN_FOOD);
+        makeFood("중식",CHINESE_FOOD);
+        makeFood("아시안",ASIAN_FOOD);
+        makeFood("양식", WESTERN_FOOD);
     }
     private void makeFood(String category,String[] foods){
         this.foodsList.put(category, Arrays.asList(foods));
