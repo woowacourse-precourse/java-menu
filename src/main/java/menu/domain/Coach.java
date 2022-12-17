@@ -3,7 +3,6 @@ package menu.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import menu.constans.Error;
 
 public class Coach {
     private String name;
@@ -22,11 +21,17 @@ public class Coach {
     }
 
     public void addRecommendFood(List<String> foods) {
+        for (String food : foods) {
+            isAlreadyRecommend(food);
+        }
         recommendFood = foods;
     }
 
     public void isAlreadyRecommend(String food) {
-        this.recommendFood.add(food);
+        if (recommendFood.contains(food)) {
+            throw new IllegalStateException("[ERROR] 이미 추천음식에 있는 메뉴입니다.");
+        }
+
     }
 
     public String getName() {

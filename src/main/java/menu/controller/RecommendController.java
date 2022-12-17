@@ -30,7 +30,15 @@ public class RecommendController {
         setCantEatFood(coachNamesInput);
         weekCategory = categoryController.weekCategory();
         for (Coach coach : coaches) {
-            coach.addRecommendFood(makeRecommendFoods(weekCategory));
+            while (true) {
+                try {
+                    coach.addRecommendFood(makeRecommendFoods(weekCategory));
+                    break;
+                } catch (IllegalStateException e) {
+
+                }
+            }
+
         }
 
         output.printRecommendResult(coaches, weekCategory);

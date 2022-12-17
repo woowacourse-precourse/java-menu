@@ -15,6 +15,7 @@ public class Output {
     }
 
     public void printRequestCoachCantEatFood(String coachName) {
+        System.out.println();
         System.out.println(coachName+Message.REQUEST_FOODS_CANT_EAT.getMessage());
     }
 
