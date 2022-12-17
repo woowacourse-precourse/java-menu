@@ -1,6 +1,8 @@
 package menu.controller;
 
 import menu.domain.CoachRepository;
+import menu.domain.Day;
+import menu.domain.MenuRecommendationResult;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -12,6 +14,17 @@ import static menu.util.TransformInput.splitInput;
 public class MenuController {
     public void run() {
         setUp();
+        MenuRecommendationResult menuRecommendationResult = new MenuRecommendationResult();
+    }
+
+    private void recommendCoachMenu(MenuRecommendationResult menuRecommendationResult) {
+
+    }
+
+    private void recommendationMenu(MenuRecommendationResult menuRecommendationResult) {
+        for (Day day : Day.values()) {
+
+        }
     }
 
     private void setUp() {
