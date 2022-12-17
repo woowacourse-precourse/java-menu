@@ -26,7 +26,9 @@ public class StudyTest {
         String text = "[cc한국]";
         text = text.replaceAll("\\]", "");
         text = text.replaceAll("\\[", "");
-
+        List<String> test  = new ArrayList<>();
+        test.add(text);
+        test.toString();
         System.out.println(text);
 
     }

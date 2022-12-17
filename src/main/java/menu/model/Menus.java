@@ -21,16 +21,16 @@ public class Menus {
         freMenus = new ArrayList<>(Arrays.asList("라자냐","그라탱","뇨끼","끼슈","프렌치 토스트","바게트","스파게티","피자","파니니"));
     }
 
-    public String getMenu(int number){
-        if(number == 1 )
+    public String getMenu(String cat){
+        if(cat == "일식" )
             return Randoms.shuffle(japMenus).get(0);
-        if(number == 2 )
+        if(cat == "한식" )
             return Randoms.shuffle(korMenus).get(0);
-        if(number == 3 )
+        if(cat == "중식" )
             return Randoms.shuffle(chiMenus).get(0);
-        if(number == 4 )
+        if(cat == "아시안" )
             return Randoms.shuffle(asiMenus).get(0);
-        if(number == 5 )
+        if(cat == "양식" )
             return Randoms.shuffle(freMenus).get(0);
         return null;
     }
