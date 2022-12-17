@@ -1,6 +1,7 @@
 package menu.controller;
 
 import java.util.List;
+import menu.domain.Coach;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -19,6 +20,7 @@ public class MenuController {
 
     public void getInputs() {
         List<String> coachNames = getCoachName();
+        List<Coach> coaches = getCoachCannotEatMenus(coachNames);
     }
 
     public List<String> getCoachName() {
@@ -27,6 +29,15 @@ public class MenuController {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getCoachName();
+        }
+    }
+
+    public List<Coach> getCoachCannotEatMenus(List<String> coachNames) {
+        try {
+            return inputView.getCoachCannotEatMenus(coachNames);
+        }  catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getCoachCannotEatMenus(coachNames);
         }
     }
 }
