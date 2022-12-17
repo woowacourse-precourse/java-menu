@@ -1,0 +1,37 @@
+- refactor(CategoryService): add comment
+- docs(README): fix lists of functional requirements
+- refactor: fix code structure, add Javadoc
+- refactor: InputView, OutputView(put enum Week)
+- add(ProgramController): enum Week
+- fix(InputView): fix setCoachesCannotEats to not throw NoSuchElementException
+- add(InputViewTest): tests for method setCoachesCannotEats
+- fix(InputView): only throw IllegalArgumentException
+- add(InputViewTest): tests for method setCoachesName
+- refactor: CategoryService, CoachController, OuputView
+- docs(README): fix lists of package & class structure
+- refactor: fix file structure
+- docs(README): fix lists of package & class structure
+- fix(CategoryService): fix methods using Randoms
+- fix(OutputView): methods to print recommend result
+- fix(InputView): , regex
+- feat: methods to print recommend result
+- feat(Category): add method to get category name by number
+- add(Coach): add getter, setter
+- fix(CategoryService): add field recommendCategoryNumbers and fix methods
+- feat(CategoryService): methods to set recommend menus to coach
+- feat(Category): add method to get category menus by number & delete the other method
+- fix(Coach): change field names
+- feat(CategoryService): methods to set recommed categories to coach
+- fix: move method isInMenu to Category
+- feat(CoachService): catch exceptions in set coaches cannot eats
+- add(Category): add number field
+- feat: methods to set coaches cannot eats
+- feat(CategoryService): method to check if the menu is in Category menus
+- add(Category): initiate categories & menus
+- feat(CoachService): methods to ask coaches name
+- feat(OutputView): methods to print start, end message
+- add: set entire flow of the program
+- fix: file structure
+- docs(README): add lists of package & class structure
+- docs(README): add lists of functional requirements
+- feat: setup precourse menu project
