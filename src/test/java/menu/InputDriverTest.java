@@ -15,7 +15,7 @@ class InputDriverTest {
                 .checkIfValidStringForMenuList(",토미,제임스,포코"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-    
+
     @Test
     void 이름_중복_테스트() {
         assertThatThrownBy(() -> new InputDriver()
@@ -44,4 +44,6 @@ class InputDriverTest {
                 .checkIfValidStringForMenuList("우동,뇨끼,그라탕,스파게티"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+
 }
