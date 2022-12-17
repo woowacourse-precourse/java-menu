@@ -18,7 +18,7 @@
 ### 카테고리
 - [x] 1이면 일식, 2면 한식, 3이면 중식, 4면 아시안, 5면 양식
 - 한 주에 같은 카테고리는 최대 2회까지만 고를 수 있다.
-- `Randoms.pickNumberInRange()`에서 생성해 준 값을 이용하여 정해야 한다.
+- [x] `Randoms.pickNumberInRange()`에서 생성해 준 값을 이용하여 정해야 한다.
 ```java
 // 예시 코드. 사용하는 자료 구조에 따라 난수를 적절하게 가공해도 된다.
 String category = categories.get(Randoms.pickNumberInRange(1, 5));
