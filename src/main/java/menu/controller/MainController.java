@@ -22,11 +22,15 @@ public class MainController extends RepeatModule {
     }
 
     public void setCoachInfo() {
+
         //TODO: 입력받아야 함
+        //List<String> coachesName = repeat(inputView::readCoachesName);
         List<String> coachesName = List.of("종헌", "상현");
 
         for (String coachName : coachesName) {
-            //TODO: 입력받아야 함
+            //TODO: 입력받아야 함, 입력 과정 수정
+            //outputView.printMessage(coachName);
+            //List<String> hateFoods = repeat(inputView::readHateFoods);
             List<String> hateFoods = List.of("김밥", "라면");
             new Coach(coachName, hateFoods);
         }
