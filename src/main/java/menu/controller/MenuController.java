@@ -1,6 +1,6 @@
 package menu.controller;
 
-import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 import menu.domain.Coach;
 import menu.util.MenuCategory;
 import menu.view.InputView;
@@ -9,10 +9,11 @@ import menu.view.OutputView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static menu.domain.CategoryRepository.addToWeekCategory;
+import static menu.domain.CategoryRepository.weekCategories;
 import static menu.domain.CoachRepository.addCoach;
 import static menu.domain.CoachRepository.coaches;
 import static menu.util.MenuCategory.ASIAN;
@@ -20,22 +21,19 @@ import static menu.util.MenuCategory.CHINESE;
 import static menu.util.MenuCategory.ITALIAN;
 import static menu.util.MenuCategory.JAPANESE;
 import static menu.util.MenuCategory.KOREAN;
-import static menu.util.message.InputMessage.INPUT_CANNOT_EAT_MENU;
-import static menu.valid.InputValidator.validateCannotEatMenu;
 
 public class MenuController {
 
-    InputView inputView;
-    OutputView outputView;
-
-    Map<MenuCategory, List<String>> categories = new EnumMap<>(MenuCategory.class);
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final Map<MenuCategory, List<String>> categories = new EnumMap<>(MenuCategory.class);
 
     public MenuController() {
         inputView = new InputView();
         outputView = new OutputView();
         initCategory();
     }
-    
+
     private void initCategory() {
         categories.put(JAPANESE, new ArrayList<>(
                 Arrays.asList("규동", "우동", "미소시루", "스시", "가츠동", "오니기리", "하이라이스", "라멘", "오코노미야끼")));
@@ -52,9 +50,10 @@ public class MenuController {
     public void run() {
         outputView.printStartMessage();
         initCoach(inputView.readCoachName());
-        for (int i = 0; i < coaches().size(); i++) {
-            coaches().get(i).initCannotEatMenu(inputView.readCannotEatMenu(i));
-        }
+        initCannotEatMenuForEachCoach();
+        decideRecommendMenu();
+        outputView.printRecommendMenu();
+        outputView.printFinishMessage();
     }
 
     private void initCoach(List<String> names) {
@@ -62,4 +61,29 @@ public class MenuController {
             addCoach(new Coach(name));
         }
     }
+
+    private void initCannotEatMenuForEachCoach() {
+        for (int i = 0; i < coaches().size(); i++) {
+            coaches().get(i).initCannotEatMenu(inputView.readCannotEatMenu(i));
+        }
+    }
+
+    private void decideRecommendMenu() {
+        int day = 1;
+        do {
+            decideCategory();
+            decideMenuForEachCoach(day);
+            day++;
+        } while (day != 6);
+    }
+
+    private void decideCategory() {
+        try {
+            MenuCategory category = MenuCategory.findCategory(Randoms.pickNumberInRange(1, 5));
+            addToWeekCategory(category);
+        } catch (IllegalArgumentException e) {
+            decideCategory();
+        }
+    }
+
 }
