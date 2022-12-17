@@ -23,14 +23,7 @@ public class Menu {
     public void init() {
         addCategoryNames();
         addCategoryValues();
-    }
-
-    public Map<Category, List<String>> getCategoryValues() {
-        return categoryValues;
-    }
-
-    public List<Category> getWeekCategories() {
-        return weekCategories;
+        makeWeekCategoryNames();
     }
 
     private void addCategoryNames() {

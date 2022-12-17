@@ -44,7 +44,7 @@ public class InputViewValidation {
         return Arrays.asList(dislikeFoodInfo);
     }
 
-    private static void checkDislikeFoodInfoCount(String[] dislikeFoodInfo) {
+    private static void checkDislikeFoodInfoCount(String[] dislikeFoodInfo){
         if (dislikeFoodInfo.length >2) {
             throw new IllegalArgumentException(ERROR_NOT_VALID_DISLIKE_FOOD_COUNT);
         }
