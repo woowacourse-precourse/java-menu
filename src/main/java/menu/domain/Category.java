@@ -4,6 +4,7 @@ import menu.util.ResourceReader;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public enum Category {
     JAPAN("일식", "src/main/resources/japan-menu.md", 1),
@@ -28,6 +29,12 @@ public enum Category {
                 .findFirst()
                 .orElseThrow();
     }
+
+    public static String getCategoryNames(List<Category> categories) {
+        List<String> categoryNames = categories.stream().map(category -> category.name).collect(Collectors.toList());
+        return "[ 카테고리 | " + String.join(" | ", categoryNames) + " ]\n";
+    }
+
 
     Category(String name, String filePath, Integer index) {
         this.name = name;
