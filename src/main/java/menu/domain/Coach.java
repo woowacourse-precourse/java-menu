@@ -8,7 +8,7 @@ public class Coach {
 
     private String name;
     private List<String> dislikeFood;
-    private List<Menu> recommendedMenus;
+    private List<String> recommendedMenus;
 
     public Coach(String name) {
         this.name = name;
@@ -24,7 +24,7 @@ public class Coach {
         return dislikeFood;
     }
 
-    public List<Menu> getRecommendedMenus() {
+    public List<String> getRecommendedMenus() {
         return recommendedMenus;
     }
 
@@ -34,7 +34,7 @@ public class Coach {
         dislikeFood.addAll(Arrays.asList(foods));
     }
 
-    public void addRecommendedMenu(Menu menu) {
+    public void addRecommendedMenu(String menu) {
         recommendedMenus.add(menu);
     }
 }

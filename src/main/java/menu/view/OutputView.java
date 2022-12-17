@@ -58,10 +58,10 @@ public class OutputView {
 
         result.append(coach.getName());
 
-        List<Menu> recommendedMenus = coach.getRecommendedMenus();
+        List<String> recommendedMenus = coach.getRecommendedMenus();
         for (int day = 0; day < 5; day++) {
             result.append(END_NOTICE_MIDFIX);
-            result.append(recommendedMenus.get(day).getName());
+            result.append(recommendedMenus.get(day));
         }
 
         result.append(END_NOTICE_SUFFIX);

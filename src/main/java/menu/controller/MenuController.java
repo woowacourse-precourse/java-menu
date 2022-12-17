@@ -64,7 +64,7 @@ public class MenuController {
         categoryHistory.addCategory(category);
 
         for (Coach coach : coaches) {
-            Menu menu = menuService.selectMenu(coach, category);
+            String menu = menuService.selectMenu(coach, category);
             coach.addRecommendedMenu(menu);
         }
     }

@@ -1,5 +1,6 @@
 package menu.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -70,9 +71,18 @@ public enum Menu {
         return category;
     }
 
-    public static List<Menu> getMenusByCategory(Category category) {
-        return Arrays.stream(values())
+
+    public static List<String> getMenuNamesByCategory(Category category) {
+        List<String> menuNames = new ArrayList<>();
+
+        List<Menu> menusByCategory = Arrays.stream(values())
                 .filter(menu -> menu.category.equals(category))
                 .collect(Collectors.toList());
+
+        for (Menu menu : menusByCategory) {
+            menuNames.add(menu.getName());
+        }
+
+        return menuNames;
     }
 }
