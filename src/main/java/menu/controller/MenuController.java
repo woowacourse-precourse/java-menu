@@ -23,9 +23,16 @@ public class MenuController {
     }
 
     private List<Coach> askCoach() {
-        OutputView.askCoach();
-        List<Coach> coaches = InputView.inputCoach();
-        menuSuggester.setCoaches(coaches);
+        List<Coach> coaches = null;
+        do {
+            try {
+                OutputView.askCoach();
+                coaches = InputView.inputCoach();
+                menuSuggester.setCoaches(coaches);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (coaches == null);
         return coaches;
     }
 
