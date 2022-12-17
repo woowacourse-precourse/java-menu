@@ -44,6 +44,6 @@ public class Coach {
                 .map(Menu::getName)
                 .collect(Collectors.toList());
         menuNames.removeAll(cantEatMenuNames);
-        return cantEatMenuNames;
+        return menuNames;
     }
 }

@@ -26,4 +26,8 @@ public enum Category {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_CATEGORY_VALUE_MESSAGE));
     }
+
+    public String getName() {
+        return name;
+    }
 }

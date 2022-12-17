@@ -1,11 +1,11 @@
 package menu.domain;
 
-import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class MenuRecommender {
-    private final Map<Coach, RecommendResult> result = new EnumMap<>(Coach.class);
+    private final Map<Coach, RecommendResult> result = new HashMap<>();
     private final Shuffler shuffler;
 
     public MenuRecommender(Shuffler shuffler) {
