@@ -28,6 +28,8 @@ public class MenuRecommenderController {
     public void run() {
         postBannedMenusOfCoach();
         List<RecommendMenus> recommendMenus = recommendMenus();
+
+        OutputView.printRecommendMenusResult(recommendMenus);
     }
 
     private List<RecommendMenus> recommendMenus() {
