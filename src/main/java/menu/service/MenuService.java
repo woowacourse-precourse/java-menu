@@ -19,6 +19,7 @@ public class MenuService {
         inputCoachNameAndCheckValidation(true,"");
 
         inputCanNotEatMenuAndCheckValidation();
+        menuRecommendAndPrintResult();
     }
 
     private void inputCoachNameAndCheckValidation(boolean doRetryInputCoachName , String coachNameWithComma){
@@ -76,6 +77,24 @@ public class MenuService {
         }
         outputView.printInValidCoachCanNotEatMenuCountErrorMessage();
         return true;
+    }
+
+    private void menuRecommendAndPrintResult(){
+        outputView.printMenuRecommendResultMessage();
+        outputView.printDayOfTheWeekMessage();
+        menuRecommend();
+        outputView.printCategoryByDayOfTheWeek(menuRecommendApp.getCategoryByDayOfTheWeek());
+        outputView.printRecommendedMenuByCoach(menuRecommendApp.getCoaches());
+        outputView.printMenuRecommendFinishMessage();
+    }
+
+    public void menuRecommend(){
+        for (DayOfTheWeek dayOfTheWeek : DayOfTheWeek.values()) {
+            choiceCategory();
+            for (Coach coach : menuRecommendApp.getCoaches()) {
+                choiceMenu(coach , dayOfTheWeek.getNum());
+            }
+        }
     }
 
     private void choiceCategory(){
