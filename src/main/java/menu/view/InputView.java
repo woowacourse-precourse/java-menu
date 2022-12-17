@@ -1,6 +1,5 @@
 package menu.view;
 
-
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import menu.domain.coach.Coaches;

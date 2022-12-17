@@ -82,6 +82,11 @@ public class MenuController {
         if (categoryNumber == 2) {
             category = "한식";
         }
+        category = checkOther(categoryNumber, category);
+        return category;
+    }
+
+    private static String checkOther(int categoryNumber, String category) {
         if (categoryNumber == 3) {
             category = "중식";
         }
