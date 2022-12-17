@@ -5,6 +5,10 @@ public class Coach {
     private ExcludeMenu excludeMenu;
 
     public Coach(final String name) {
-        this.name = name;
+        this.name = name.trim();
+    }
+
+    public String getName() {
+        return name;
     }
 }

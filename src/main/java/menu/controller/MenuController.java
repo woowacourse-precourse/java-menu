@@ -1,7 +1,9 @@
 package menu.controller;
 
+import static menu.util.InputValidator.validateCoach;
+
+import menu.domain.Coaches;
 import menu.service.MenuService;
-import menu.util.InputValidator;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -12,13 +14,18 @@ public class MenuController {
 
     public void run() {
         try {
-            requestInputCoach();
+            Coaches coaches = requestInputCoach();
+            requestInputExcludeMenu(coaches);
         } catch (IllegalArgumentException exception) {
             outputView.printMessage(exception.getMessage());
         }
     }
 
-    private void requestInputCoach() {
-        menuService.saveCoach(InputValidator.validateCoach(inputView.inputCoach()));
+    private void requestInputExcludeMenu(final Coaches coaches) {
+        inputView.inputExcludeMenu(coaches);
+    }
+
+    private Coaches requestInputCoach() {
+        return menuService.saveCoach(validateCoach(inputView.inputCoach()));
     }
 }
