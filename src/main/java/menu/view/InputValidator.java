@@ -26,8 +26,8 @@ public class InputValidator {
 
     private boolean isWrongCoachNameLength(List<String> coachNames) {
         long wrongCoachCount = coachNames.stream()
-                .map(Integer::parseInt)
-                .filter(coachName -> coachName < MIN_COACH_NAME_LENGTH || coachName > MAX_COACH_NAME_LENGTH)
+                .filter(coachName -> coachName.length() < MIN_COACH_NAME_LENGTH ||
+                        coachName.length() > MAX_COACH_NAME_LENGTH)
                 .count();
         return wrongCoachCount != 0;
     }
