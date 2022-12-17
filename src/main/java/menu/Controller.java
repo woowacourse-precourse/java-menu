@@ -18,7 +18,7 @@ public class Controller {
         setMenus();
         OutputView.printStartMessage();
         setCoach();
-
+        recommend();
     }
 
     private void setMenus() {
@@ -29,6 +29,10 @@ public class Controller {
         List<String> coachNames = getCoachNames();
         List<List<String>> hateMenus = getHateMenu(coachNames);
         service.setCoach(coachNames, hateMenus);
+    }
+
+    private void recommend() {
+        service.recommend();
     }
 
     private List<String> getCoachNames() {

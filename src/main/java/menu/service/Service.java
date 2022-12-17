@@ -22,6 +22,10 @@ public class Service {
         }
     }
 
+    public void recommend() {
+       coaches.takeRecommend();
+    }
+
     private void addHateMenu(Coach coach, List<String> hateMenuNames) {
         for (String menuName : hateMenuNames) {
             Menu menu = MenuRepository.getMenuByName(menuName);
