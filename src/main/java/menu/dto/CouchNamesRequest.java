@@ -27,8 +27,10 @@ public class CouchNamesRequest {
                 throw new IllegalArgumentException("[ERROR] 코치의 이름은 2글자에서 4글자 사이어야 합니다.");
             }
         }
-        Set<String> set = Set.of(names);
-        if (set.size() != names.length) {
+        long notDuplicateCount = Arrays.stream(names)
+                .distinct()
+                .count();
+        if (notDuplicateCount != names.length) {
             throw new IllegalArgumentException("[ERROR] 중복된 코치의 이름이 있으면 안됩니다.");
         }
     }

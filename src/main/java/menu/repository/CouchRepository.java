@@ -10,4 +10,8 @@ public class CouchRepository {
     public void saveAll(List<Couch> couches) {
         this.couches.addAll(couches);
     }
+
+    public List<Couch> findAll() {
+        return List.copyOf(couches);
+    }
 }

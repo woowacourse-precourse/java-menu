@@ -1,5 +1,7 @@
 package menu.controller;
 
+import java.util.List;
+import menu.domain.Couch;
 import menu.dto.CouchNamesRequest;
 import menu.service.MenuService;
 import menu.view.MenuView;
@@ -15,6 +17,11 @@ public class MenuController {
 
     public void start() {
         menuView.printStartMessage();
-        menuView.receiveCouches();
+        CouchNamesRequest couchNamesRequest = menuView.receiveCouches();
+        menuService.saveCouches(couchNamesRequest);
+        List<Couch> couches = menuService.getAllCouches();
+        for (Couch couch : couches) {
+            menuView.receiveCouchHateMenus(couch.getName());
+        }
     }
 }

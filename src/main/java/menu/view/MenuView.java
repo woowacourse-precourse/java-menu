@@ -1,5 +1,6 @@
 package menu.view;
 
+import menu.dto.CouchHateMenusRequest;
 import menu.dto.CouchNamesRequest;
 
 public class MenuView {
@@ -21,6 +22,18 @@ public class MenuView {
                 String input = inputView.inputCouchName();
                 System.out.println();
                 return CouchNamesRequest.of(input);
+            } catch (IllegalArgumentException e) {
+                outputView.printException(e);
+            }
+        }
+    }
+
+    public CouchHateMenusRequest receiveCouchHateMenus(String couchName) {
+        while (true) {
+            try {
+                String input = inputView.inputCouchHateMenu(couchName);
+                System.out.println();
+                return CouchHateMenusRequest.of(input);
             } catch (IllegalArgumentException e) {
                 outputView.printException(e);
             }
