@@ -7,8 +7,17 @@ public class InputView {
     private final String INPUT_CANNOT_EAT = "가 못 먹는 메뉴를 입력해 주세요.";
 
     InputViewValidation validation = new InputViewValidation();
+
     public String inputCouchNames() {
         System.out.println(INPUT_COUCH_NAMES);
+        String input = Console.readLine();
+        validation.couchNameValidate(input);
+        validation.couchNumValidate(input);
+        return input;
+    }
+
+    public String inputCannotEat(String couchName) {
+        System.out.println(couchName + INPUT_CANNOT_EAT);
         String input = Console.readLine();
         validation.couchNameValidate(input);
         validation.couchNumValidate(input);
