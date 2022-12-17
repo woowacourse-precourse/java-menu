@@ -58,6 +58,18 @@ public class ApplicationTest extends NsTest {
         }
 
         @Test
+        void Validate_못_먹는_음식_중복_테스트() {
+            assertSimpleTest(() -> {
+                try {
+                    Validate.duplication(Arrays.asList("치킨","피자","치킨"));
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+                assertThat(output()).contains(ERROR_DUPLICATE_VALUE);
+            });
+        }
+
+        @Test
         void Validate_한글_이름_공백_테스트() {
             assertSimpleTest(() -> {
                 try {
