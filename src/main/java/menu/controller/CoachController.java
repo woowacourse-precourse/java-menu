@@ -16,6 +16,7 @@ public class CoachController {
     HashMap<String,Integer> categoryCnt;
     Coach coach;
     HashMap<String,Coach> coaches;
+    List<String> coachList;
     Foods foods;
     Food food;
     public CoachController(){
@@ -28,8 +29,10 @@ public class CoachController {
     }
     public void makeCoachList(String coaches){
         this.coaches = new HashMap<>();
+        this.coachList = new ArrayList<>();
         for(String coach:coaches.split(",")){
             this.coaches.put(coach,new Coach(coach));
+            this.coachList.add(coach);
         }
     }
     public void makeCantEat(String coach,String cantEat){
@@ -61,4 +64,5 @@ public class CoachController {
     }
     public HashMap<String, Coach> getCoaches(){return this.coaches;}
     public List<String> getCategoryList(){return this.categoryList;}
+    public List<String> getCoachList(){return this.coachList;}
 }

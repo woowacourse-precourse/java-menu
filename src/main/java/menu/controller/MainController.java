@@ -26,7 +26,7 @@ public class MainController {
         resultView();
         weekView();
         categoryView(coachController.getCategoryList());
-        for(String coach: coachController.getCoaches().keySet()){
+        for(String coach: coachController.getCoachList()){
             printCoachMenu(coach);
         }
     }
@@ -34,12 +34,12 @@ public class MainController {
         coachMenuView(coach,coachController.getCoaches().get(coach).getFoodList());
     }
     private void inputCantEat(){
-        for(String coach:coachController.getCoaches().keySet()){
+        for(String coach:coachController.getCoachList()){
             coachController.makeCantEat(coach,inputCantView(coach));
         }
     }
     private void recommendMenu(){
-        for(String coach:coachController.getCoaches().keySet()){
+        for(String coach:coachController.getCoachList()){
             coachController.recommendFood(coach);
         }
     }
