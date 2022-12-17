@@ -1,6 +1,7 @@
 package menu.domain;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import menu.dto.CoachDto;
 import menu.dto.CoachNamesDto;
@@ -22,5 +23,12 @@ public class MenuService {
 
     public CoachNamesDto getCoachesNames() {
         return group.toCoachNamesDto();
+    }
+
+    //TODO:구현 해야함
+    public Map<Coach, RecommendResult> recommendMenu() {
+        MenuRecommender menuRecommender = new MenuRecommender(new RandomShuffler());
+        menuRecommender.recommend(new RandomNumberGenerator(), group);
+        return menuRecommender.getResult();
     }
 }

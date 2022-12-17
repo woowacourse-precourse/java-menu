@@ -1,9 +1,12 @@
 package menu.controller;
 
+import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import menu.domain.Coach;
 import menu.domain.MenuService;
+import menu.domain.RecommendResult;
 import menu.dto.CoachDto;
 import menu.dto.CoachNameDto;
 import menu.dto.CoachNamesDto;
@@ -14,8 +17,15 @@ public class Controller {
     private final MenuService menuService = new MenuService();
 
     public void run() {
+        OutputView.printProgramStartMessage();
         readCoachNames();
         readCoachCantEatMenu();
+        recommendMenus();
+    }
+
+    private void recommendMenus() {
+        Map<Coach, RecommendResult> result = menuService.recommendMenu();
+        OutputView.printRecommendedMenus(result);
     }
 
     private void readCoachCantEatMenu() {

@@ -39,11 +39,11 @@ public class Coach {
         return this.name.equals(name);
     }
 
-    public List<Menu> exceptCantEatMenus(List<String> menuNames) {
-        List<Menu> menus = menuNames.stream()
-                .map(Menu::from)
+    public List<String> exceptCantEatMenus(List<String> menuNames) {
+        List<String> cantEatMenuNames = cantEatMenus.stream()
+                .map(Menu::getName)
                 .collect(Collectors.toList());
-        menus.removeAll(cantEatMenus);
-        return menus;
+        menuNames.removeAll(cantEatMenuNames);
+        return cantEatMenuNames;
     }
 }
