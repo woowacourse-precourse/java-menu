@@ -11,6 +11,11 @@ public class CommonException implements InputException{
         if (count > max || count < min) {
             throw new IllegalArgumentException(ExceptionCode.NOT_SEPERATED_BY_COMMA.getMessage());
         }
+    }
 
+    protected void checkEmpty(String input) {
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException(ExceptionCode.IS_EMPTY.getMessage());
+        }
     }
 }
