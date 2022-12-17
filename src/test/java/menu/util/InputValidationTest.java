@@ -6,8 +6,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static menu.constant.ExceptionMessage.WRONG_COACH_COUNT;
-import static menu.domain.DomainCondition.MAX_COACH_COUNT;
-import static menu.domain.DomainCondition.MIN_COACH_COUNT;
+import static menu.constant.ExceptionMessage.WRONG_COACH_NAME_LENGTH;
+import static menu.domain.DomainCondition.*;
+import static menu.domain.DomainCondition.NAX_COACH_NAME_LENGTH;
 
 class InputValidationTest {
 
@@ -21,6 +22,18 @@ class InputValidationTest {
                 inputValidation.validateCoach(userInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(WRONG_COACH_COUNT.getValue(), MIN_COACH_COUNT.getValue(), MAX_COACH_COUNT.getValue());
+    }
+
+    @DisplayName("입력받은 코치의 이름이 2~4글자가 아니라면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"우, 우아", "우테코짱짱, 짱이다"} )
+    void 코치_이름_검증_테스트(String userInput) throws Exception {
+        InputValidation inputValidation = new InputValidation();
+
+        Assertions.assertThatThrownBy(() ->
+                        inputValidation.validateCoach(userInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(String.format(WRONG_COACH_NAME_LENGTH.getValue(), MIN_COACH_NAME_LENGTH.getValue(), NAX_COACH_NAME_LENGTH.getValue()));
     }
 
 }
