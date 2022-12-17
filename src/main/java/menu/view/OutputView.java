@@ -1,5 +1,6 @@
 package menu.view;
 
+import menu.model.Category;
 import menu.model.Coach;
 import menu.model.Table;
 
@@ -32,6 +33,7 @@ public class OutputView {
 
     private static void printMenu(int[] suggestedCategory, List<Coach> coaches) {
         printDay();
+        printCategory(suggestedCategory);
         for (Coach coach : coaches) {
             printEachMenu(coach);
         }
@@ -44,6 +46,18 @@ public class OutputView {
         for (int i = 0; i < days.length; i++) {
             sb.append(Table.DELIMITER.getSign())
                     .append(days[i]);
+        }
+        sb.append(Table.END.getSign());
+        System.out.println(sb);
+    }
+
+    private static void printCategory(int[] suggestedCategory) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(Table.START.getSign())
+                .append(Table.CATEGORY.getSign());
+        for (int i = 0; i < suggestedCategory.length; i++) {
+            sb.append(Table.DELIMITER.getSign())
+                    .append(Category.getName(suggestedCategory[i]));
         }
         sb.append(Table.END.getSign());
         System.out.println(sb);
