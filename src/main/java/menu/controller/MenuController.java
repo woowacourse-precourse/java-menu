@@ -27,6 +27,15 @@ public class MenuController {
         // 추천 카테고리는 만듦
         Recommend recommend = new Recommend();
         // 코치별로 메뉴 만들어줌
+        coaches = makeTotalMenus(coaches, recommend);
+        coachRepository.setCoaches(coaches);
+        // 출력
+        List<String> categories = recommend.getCategories();
+        OutputView.printResultComment();
+        OutputView.printTotalRecommendResult(categories, coachRepository);
+    }
+
+    private List<Coach> makeTotalMenus(List<Coach> coaches, Recommend recommend) {
         List<Coach> newCoaches = new ArrayList<>();
         for (int i = 0; i < coaches.size(); i++) {
             Coach nowCoach = coaches.get(i);
@@ -34,12 +43,8 @@ public class MenuController {
             nowCoach.setRecommendFoods(recommendFoods);
             newCoaches.add(nowCoach);
         }
-        coachRepository.setCoaches(newCoaches);
-        // 출력
-        List<String> categories = recommend.getCategories();
-        OutputView.printResultComment();
-        OutputView.printTotalRecommendResult(categories, coachRepository);
 
+        return newCoaches;
     }
 
     private List<Coach> inputForbiddenFoodsOfCoaches(List<String> names) {
