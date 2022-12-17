@@ -44,4 +44,13 @@ public class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.NAME_MAX.getMessage());
     }
+
+    @DisplayName("못 먹는 메뉴 개수가 2개 초과일 때 예외 발생")
+    @ValueSource(strings = {"감자,고구마,옥수수", "1,2,3,4"})
+    @ParameterizedTest
+    void moreFood(String input) {
+        assertThatThrownBy(() -> Validator.validateFood(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.FOOD_MAX.getMessage());
+    }
 }
