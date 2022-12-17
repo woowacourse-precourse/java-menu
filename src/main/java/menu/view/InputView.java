@@ -17,7 +17,14 @@ public class InputView {
         return input;
     }
     public static String inputCantView(String coach){
-        System.out.println(coach+"(이)가 못 먹는 메뉴를 입력해 주세요.");
-        return inputCantConsole();
+        String input ="";
+        try{
+            System.out.println(coach+"(이)가 못 먹는 메뉴를 입력해 주세요.");
+            input = inputCantConsole();
+        }catch(IllegalArgumentException e){
+            System.out.println(e);
+            input = inputCantView(coach);
+        }
+        return input;
     }
 }
