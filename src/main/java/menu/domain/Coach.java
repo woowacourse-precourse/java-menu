@@ -12,11 +12,15 @@ public class Coach {
     private final List<Menu> banFoods;
 
     private List<Menu> recommendMenu = new ArrayList<>();
-    private List<Category> categories = new ArrayList<>();
+    private List<Category> recommendCategory = new ArrayList<>();
 
     public Coach(String name, List<Menu> banFoods) {
         this.name = name;
         this.banFoods = banFoods;
+    }
+
+    public void addCategory(Category category) {
+        recommendCategory.add(category);
     }
 
     public boolean canNotEat(Menu menu) {
@@ -24,7 +28,7 @@ public class Coach {
     }
 
     public boolean hasMaxCategoryCount(Category inputCategory) {
-        return categories.stream()
+        return recommendCategory.stream()
                 .filter(category -> category.getName().equals(inputCategory.getName()))
                 .count() >= CATEGORY_MAX_COUNT;
     }
