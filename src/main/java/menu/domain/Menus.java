@@ -17,10 +17,6 @@ public class Menus {
         return menus.contains(menu);
     }
 
-    public boolean containFiveMenus() {
-        return menus.size() == 5;
-    }
-
     @Override
     public String toString() {
         List<String> menuNames = menus.stream()

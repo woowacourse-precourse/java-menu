@@ -28,10 +28,6 @@ public class Coach {
         recommended.addMenu(menu);
     }
 
-    public boolean isAllRecommended() {
-        return recommended.containFiveMenus();
-    }
-
     public String getRecommendedMenuNames() {
         List<String> messages = new ArrayList<>();
         messages.add(this.name);
