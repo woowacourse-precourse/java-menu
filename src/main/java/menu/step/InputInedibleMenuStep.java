@@ -24,8 +24,8 @@ public class InputInedibleMenuStep extends MenuRecommendApplicationStep {
     @Override
     protected Step pureAction() {
         for (Coach coach : group.coaches()) {
-            String s = InputView.inputInedibleMenuForCoach(coach);
-            List<Menu> menus = MenuMapper.toMenus(s);
+            String input = InputView.inputInedibleMenuForCoach(coach);
+            List<Menu> menus = MenuMapper.toMenus(input);
             coach.addInedibleMenus(menus);
         }
         return new MenuRecommendStep(group, controller, logger);
