@@ -29,15 +29,20 @@ public class MenuRecommendationResult {
         return count >= 2;
     }
 
-    // 코치 1명의 한 요일 메뉴 추천 - 정해진 카테고리 내에서 추천
-    public String menuRecommend(Day day, String coachName) {
+    public void menuRecommend(Day day, String coachName) {
 
         String shuffledMenu;
         while (true) {
             shuffledMenu = Categories.getShuffledMenu(categoriesResult.get(day));
             if (validateHateMenu(coachName, shuffledMenu) || !validateDuplicateMenu(coachName, shuffledMenu)) break;
         }
-        return shuffledMenu;
+        if (recommendationResult.containsKey(coachName)) {
+            recommendationResult.get(coachName).put(day, shuffledMenu);
+            return;
+        }
+        HashMap<Day, String> result = new HashMap<>();
+        result.put(day, shuffledMenu);
+        recommendationResult.put(coachName, result);
     }
 
     private boolean validateHateMenu(String coachName, String shuffledMenu) {
