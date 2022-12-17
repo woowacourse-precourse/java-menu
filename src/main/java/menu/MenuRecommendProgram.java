@@ -28,6 +28,19 @@ public class MenuRecommendProgram {
         selectedCategory = new ArrayList<>();
     }
 
+    public void run() {
+        // start 부분
+
+        for (int i = 0; i < 5; i++) {
+            String category = selectCategory();
+            // 코치들에게 메뉴를 선정하도록 하는 메서드
+        }
+
+        // 결과 출력
+    }
+
+
+
     public String selectCategory() {
         String category;
         boolean isSelect;
