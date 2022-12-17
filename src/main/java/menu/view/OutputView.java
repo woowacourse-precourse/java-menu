@@ -12,6 +12,10 @@ public class OutputView {
         print(Message.COACH_NAME_GUIDE.getMessage());
     }
 
+    public void printHateMenuGuide(String name) {
+        print(Message.HATE_MENU_GUIDE.getFormattedMessage(name));
+    }
+
     public void printErrorMessage(String message) {
         print(message);
     }

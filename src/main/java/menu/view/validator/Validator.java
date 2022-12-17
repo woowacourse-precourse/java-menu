@@ -1,7 +1,8 @@
 package menu.view.validator;
 
 public enum Validator {
-    COACH_NAME(",", "[ERROR] 코치 이름 입력이 잘못되었습니다.\n");
+    COACH_NAME(",", "[ERROR] 코치 이름 입력 형식이 잘못되었습니다.\n"),
+    MENU_NAME(",", "[ERROR] 메뉴 이름 입력 형식이 잘못되었습니다.");
 
     private final String validDelimiter;
     private final String errorMessage;

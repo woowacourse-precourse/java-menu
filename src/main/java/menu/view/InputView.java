@@ -3,6 +3,7 @@ package menu.view;
 import camp.nextstep.edu.missionutils.Console;
 import menu.view.validator.Validator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class InputView {
         List<String> names = Arrays.asList(input.split(Validator.COACH_NAME.getValidDelimiter()));
         validateCoachSize(names);
         validateCoachName(names);
-        validateCoachNameDuplication(names);
+        validateDuplication(names);
         return names;
     }
 
@@ -33,9 +34,29 @@ public class InputView {
         }
     }
 
-    private void validateCoachNameDuplication(List<String> names) {
+    public List<String> readHateMenus() {
+        String input = Console.readLine();
+        List<String> menus = new ArrayList<>();
+        if (input.contains(Validator.MENU_NAME.getValidDelimiter())) {
+            menus = Arrays.asList(input.split(Validator.MENU_NAME.getValidDelimiter()));
+            validateMenuSize(menus);
+            validateDuplication(menus);
+            return menus;
+        }
+        menus.add(input);
+        return menus;
+    }
+
+    private void validateMenuSize(List<String> names) {
+        int size = names.size();
+        if (size > 2) {
+            throw new IllegalArgumentException("[ERROR] 못 먹는 메뉴는 최대 2개 입력이 가능합니다.");
+        }
+    }
+
+    private void validateDuplication(List<String> names) {
         if (hasDuplication(names)) {
-            throw new IllegalArgumentException("[ERROR] 코치 이름이 중복되었습니다.");
+            throw new IllegalArgumentException("[ERROR] 입력이 중복되었습니다.");
         }
     }
 

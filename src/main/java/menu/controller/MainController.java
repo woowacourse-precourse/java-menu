@@ -3,6 +3,8 @@ package menu.controller;
 import menu.view.InputView;
 import menu.view.OutputView;
 
+import java.util.List;
+
 public class MainController {
 
     private final InputView inputView;
@@ -17,6 +19,7 @@ public class MainController {
 
     public void runMain() {
         outputView.printStart();
-        System.out.println(inputController.readValidCoachNames());
+        List<String> coachNames = inputController.readValidCoachNames();
+        System.out.println(inputController.readValidHateMenusByCoach(coachNames));
     }
 }
