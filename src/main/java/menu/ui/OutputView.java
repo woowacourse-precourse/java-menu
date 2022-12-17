@@ -7,6 +7,11 @@ public class OutputView {
         addEmptyLine();
     }
 
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+        addEmptyLine();
+    }
+
     private void addEmptyLine() {
         System.out.println();
     }
