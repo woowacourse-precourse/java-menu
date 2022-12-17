@@ -8,8 +8,9 @@ public class Member {
     private List<String> notEat = new ArrayList<>();
     private List<String> weekEat = new ArrayList<>();
 
-    public Member(String name) {
+    public Member(String name, List<String> notEat) {
         this.name = name;
+        this.notEat = notEat;
     }
 
     public String getName() {
