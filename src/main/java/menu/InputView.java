@@ -3,7 +3,9 @@ package menu;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 //똑같은 이름 입력 검증하기
@@ -13,11 +15,13 @@ public class InputView {
     private static final String MENU_NUMBER_ERROR_MESSAGE = "못 먹는 메뉴 개수는 최소 0, 최대 2여야 합니다.";
     private static final String MENU_NAME_ERROR_MESSAGE = "존재하지 않는 메뉴입니다.";
     private static final String INPUT_FORMAT_ERROR_MESSAGE = "입력 형식이 올바르지 않습니다.";
+    private static final String DUPLICATED_ELEMENT_ERROR_MESSAGE = "중복된 요소가 존재합니다.";
 
     public List<String> readCoachNames() {
         String coachNameInput = Console.readLine();
         validateInputFormat(coachNameInput);
         List<String> coaches = Arrays.asList(coachNameInput.split(","));
+        validateDuplication(coaches);
         validateCoachNumber(coaches);
         for (String name : coaches) {
             validateCoachNameLength(name);
@@ -30,8 +34,8 @@ public class InputView {
         String pickyEatingsInput = Console.readLine();
         validateInputFormat(pickyEatingsInput);
         List<String> pickEatings = Arrays.asList(pickyEatingsInput.split(","));
+        validateDuplication(pickEatings);
         validatePickyEatingsNumber(pickEatings);
-
         for (String pickyEating : pickEatings) {
             validatePickyEatingsName(pickyEating);
         }
@@ -77,13 +81,11 @@ public class InputView {
         throw new IllegalArgumentException(MENU_NAME_ERROR_MESSAGE);
     }
 
-    private boolean contains(List<String> menus, String myMenu) {
-        for (String menu : menus) {
-            if (menu.equals(myMenu)) {
-                return true;
-            }
+    private void validateDuplication(List<String> contents) {
+        Set<String> set = new HashSet<>(contents);
+        if (set.size() != contents.size()) {
+            throw new IllegalArgumentException(DUPLICATED_ELEMENT_ERROR_MESSAGE);
         }
-        return false;
     }
 
 
