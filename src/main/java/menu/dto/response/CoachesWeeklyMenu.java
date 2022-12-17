@@ -1,4 +1,4 @@
-package menu.dto;
+package menu.dto.response;
 
 import java.util.HashMap;
 import java.util.List;

@@ -1,7 +1,9 @@
 package menu.domain;
 
 import java.util.List;
-import menu.dto.CoachesWeeklyMenu;
+import java.util.stream.Collectors;
+import menu.dto.response.CoachesWeeklyMenu;
+import menu.dto.request.CoachNameDto;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -22,19 +24,19 @@ public class MenuApplication {
     public void run() {
         outputView.printAppRunMessage();
 
-        Coaches coaches = inputView.sendCoachNames();
-        addEachCoachesHateMenu(coaches);
+        List<CoachNameDto> coachNameDtos = inputView.sendCoachNames();
+        Coaches coaches = addEachCoachesHateMenu(coachNameDtos);
         List<Category> categories = recommendCategoryMaker.make();
         addCoachesLunchMenu(coaches, categories);
         outputView.printWeeklyRecommendMenu(CoachesWeeklyMenu.from(categories, coaches));
     }
 
-    private void addEachCoachesHateMenu(Coaches coaches) {
-        coaches.getCoaches()
-                .forEach(coach -> {
-                    List<Menu> menus = inputView.sendHateMenuBySpecificCoach(coach);
-                    coach.addHateMenus(menus);
-                });
+    private Coaches addEachCoachesHateMenu(List<CoachNameDto> coachNameDtos) {
+        return coachNameDtos.stream().map(coachNameDto -> {
+                    List<Menu> menus = inputView.sendHateMenuBySpecificCoach(coachNameDto);
+                    return new Coach(coachNameDto.getName(), menus);
+                })
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Coaches::new));
     }
 
     private void addCoachesLunchMenu(Coaches coaches, List<Category> categories) {

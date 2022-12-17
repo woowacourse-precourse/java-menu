@@ -4,10 +4,11 @@ import java.util.List;
 import menu.domain.Coach;
 import menu.domain.Coaches;
 import menu.domain.Menu;
+import menu.dto.request.CoachNameDto;
 
 public interface InputView {
 
-    Coaches sendCoachNames();
+    List<CoachNameDto> sendCoachNames();
 
-    List<Menu> sendHateMenuBySpecificCoach(Coach coach);
+    List<Menu> sendHateMenuBySpecificCoach(CoachNameDto coachNameDto);
 }
