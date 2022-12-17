@@ -1,9 +1,7 @@
 package menu.view;
 
-import menu.domain.Coach;
 import menu.domain.MenuDTO;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -14,18 +12,23 @@ public class OutputView {
     public void renderResult(MenuDTO menu) {
         System.out.println(RESULT_MESSAGE);
         System.out.println(WEEK_EXPRESSION);
+        printCategories(menu);
+        printCoachMenus(menu);
+        System.out.println(SYSTEM_OVER_MESSAGE);
+    }
 
+    private void printCategories(MenuDTO menu) {
         System.out.println(menu.getCategories().stream()
                 .collect(Collectors.joining(" | ", "[ 카테고리 | ", " ]")));
+    }
 
+    private void printCoachMenus(MenuDTO menu) {
         menu.getCoaches()
                 .forEach(coach -> {
                     System.out.print("[ " + coach.getName() + " | ");
                     System.out.println(coach.getMenus().stream()
                             .collect(Collectors.joining(" | ", "", " ]")));
                 });
-
-        System.out.println(SYSTEM_OVER_MESSAGE);
     }
 
     public void printExceptionMessage(String message) {
