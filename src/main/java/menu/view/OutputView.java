@@ -26,7 +26,7 @@ public class OutputView {
 
     private void printWeeklyMenuCategories(CoachesWeeklyMenu coachesWeeklyMenu) {
         String categories = String.join(DELIMITER, coachesWeeklyMenu.getCategoriesNames());
-        System.out.println(MESSAGE_PREFIX + "카테고리 " + DELIMITER + categories + MESSAGE_SUFFIX);
+        System.out.println(MESSAGE_PREFIX + "카테고리" + DELIMITER + categories + MESSAGE_SUFFIX);
     }
 
     private void printEachCoachesWeeklyMenu(Entry<String, List<String>> entry) {
