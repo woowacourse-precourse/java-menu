@@ -1,11 +1,12 @@
 package menu;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class View {
-    static Scanner scanner = new Scanner(System.in);
 
     public void printStartMessage() {
         System.out.println("점심 메뉴 추천을 시작합니다.");
@@ -27,7 +28,7 @@ public class View {
     }
 
     private String receiveInput() {
-        String str = scanner.nextLine();
+        String str = Console.readLine();
         return str;
     }
 
