@@ -1,9 +1,12 @@
 package menu.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import menu.cofig.InitMenu;
 import menu.domain.Category;
 import menu.domain.Coach;
 import menu.service.CoachFactory;
+import menu.service.MenuFactory;
 import menu.ui.InputView;
 import menu.ui.OutputView;
 
@@ -18,17 +21,26 @@ public class MenuController {
         OutputView.start();
         OutputView.enterCoach();
         List<Coach> coaches = getCoaches();
-        getCantEatMenus(coaches);
+        List<List<String>> cantEatMenus = getCantEatMenus(coaches);
     }
 
-    private void getCantEatMenus(List<Coach> coaches) {
+    private List<List<String>> getCantEatMenus(List<Coach> coaches) {
+        List<List<String>> cantEatMenus = new ArrayList<>();
         for (Coach coach : coaches) {
-            findCantEatMenu(coach);
+            cantEatMenus.add(findCantEatMenu(coach));
         }
+        return cantEatMenus;
     }
 
-    private void findCantEatMenu(Coach coach) {
-        OutputView.cantEatMenu(coach);
+    private List<String> findCantEatMenu(Coach coach) {
+        try {
+            OutputView.cantEatMenu(coach);
+            String[] inputMenus = InputView.cantEatMenus();
+            return MenuFactory.makeCantEatMenus(inputMenus);
+        } catch (IllegalArgumentException e) {
+            OutputView.error(e.getMessage());
+            return findCantEatMenu(coach);
+        }
     }
 
     private static List<Coach> getCoaches() {
