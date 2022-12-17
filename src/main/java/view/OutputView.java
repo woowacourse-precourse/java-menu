@@ -11,8 +11,10 @@ public class OutputView {
     }
 
     public void printRecommendResult(String menu) {
+        System.out.println();
         System.out.println(MENU_RESULT_START_COMMENT);
         System.out.print(menu);
+        System.out.println();
         System.out.println(MENU_RESULT_END_COMMENT);
     }
 }
