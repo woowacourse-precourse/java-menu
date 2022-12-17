@@ -23,7 +23,11 @@ public enum Category {
         return name;
     }
 
-    public List<Category> getCategories() {
+    public List<String> getFoods() {
+        return this.foods;
+    }
+
+    public static List<Category> getCategories() {
         return Arrays.asList(Category.values());
     }
 }

@@ -19,8 +19,8 @@ public class InputView {
     public String inputCannotEat(String couchName) {
         System.out.println(couchName + INPUT_CANNOT_EAT);
         String input = Console.readLine();
-        validation.couchNameValidate(input);
-        validation.couchNumValidate(input);
+        validation.couchCannotEatNumValidate(input);
+        validation.couchCannotEatFoodValidate(input);
         return input;
     }
 }
