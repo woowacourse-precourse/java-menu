@@ -1,6 +1,6 @@
 package menu.view;
 
-import menu.Constants;
+import menu.global.Constants;
 import menu.model.Category;
 
 import java.util.ArrayList;

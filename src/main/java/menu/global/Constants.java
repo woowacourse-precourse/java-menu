@@ -1,9 +1,9 @@
-package menu;
+package menu.global;
 
 import java.util.List;
 import java.util.Map;
 
-public class Constants {
+public abstract class Constants {
 
     public static final Map<Integer, String> MENU_NAME = Map.of(1, "일식",
                                                                 2, "한식",

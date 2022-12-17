@@ -1,14 +1,12 @@
 package menu.model;
 
-import menu.Constants;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-import static menu.Constants.MENU_NAME;
+import static menu.global.Constants.MENU_NAME;
 
 public class MenuCandidate {
 

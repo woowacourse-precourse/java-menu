@@ -1,7 +1,7 @@
 package menu.maker;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import menu.Constants;
+import menu.global.Constants;
 import menu.model.Category;
 
 import java.util.HashMap;
