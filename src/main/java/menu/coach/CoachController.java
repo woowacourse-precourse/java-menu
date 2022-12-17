@@ -40,7 +40,7 @@ public class CoachController {
     }
 
     /**
-     * 못 먹는 메뉴 초기화
+     * 코치별 못 먹는 메뉴 초기화
      */
     private static void setCoachesCannotEat() {
         for (Coach coach : coaches) {
