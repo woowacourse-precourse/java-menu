@@ -18,7 +18,10 @@ public class MenuEngine {
         Map<String, List<String>> exceptedFoods = inputView.readExceptedFood(coachNames);
 
         Category category = new Category();
-        category.addCategoryCandidate();
+
+        CategoryMaker categoryMaker = new CategoryMaker();
+
+        categoryMaker.addCategory(category);
 
 
     }
