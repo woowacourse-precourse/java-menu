@@ -1,4 +1,4 @@
-package menu.utils;
+package menu.utills;
 
 public class Recommender {
 }
