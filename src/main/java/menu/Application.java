@@ -1,11 +1,12 @@
 package menu;
 
-import menu.model.Menu;
-
-import java.util.Arrays;
+import menu.controller.MainController;
+import menu.view.InputView;
+import menu.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-//        System.out.println(Menu.selectMenu(Arrays.asList("중식", "양식", "일식", "중식", "일식"),Arrays.asList()));
+        MainController mainController = new MainController(InputView.getInstance(), OutputView.getInstance());
+        mainController.service();
     }
 }
