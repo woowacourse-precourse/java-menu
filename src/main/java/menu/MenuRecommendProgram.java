@@ -33,7 +33,7 @@ public class MenuRecommendProgram {
             isSelect = validateCategory(category);
         } while (!isSelect);
         Integer countOfSelect = countOfCategorySelected.get(category);
-        countOfCategorySelected.put(category, countOfSelect);
+        countOfCategorySelected.put(category, countOfSelect+1);
         selectedCategory.add(category);
         return category;
     }

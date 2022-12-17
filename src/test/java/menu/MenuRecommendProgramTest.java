@@ -24,11 +24,12 @@ public class MenuRecommendProgramTest {
             String category = menuRecommendProgram.selectCategory();
             Integer countOfSelect = countOfCategorySelected.get(category);
             countOfCategorySelected.put(category, countOfSelect + 1);
-            System.out.println("category = " + category);
         }
 
         for (String category: countOfCategorySelected.keySet()) {
-
+            if (category.equals("카테고리 해당 없음")) {
+                continue;
+            }
             assertThat(countOfCategorySelected.get(category)).isEqualTo(2);
         }
     }
