@@ -1,7 +1,6 @@
 package menu.ui;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.List;
 
 public class InputView {
     private static final String SEPARATOR = ",";
