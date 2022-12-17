@@ -69,6 +69,10 @@ public class CoachController {
         }
         return recommendCategory();
     }
+    public void reset(){
+        this.categoryList = new ArrayList<>();
+        this.categoryCnt = new HashMap<>();
+    }
     public Boolean checkCnt(){
         for(int cnt:categoryCnt.values()){
             if(cnt>2) return Boolean.TRUE;

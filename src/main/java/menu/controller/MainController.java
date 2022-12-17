@@ -37,5 +37,9 @@ public class MainController {
     }
     private void recommendMenu(){
         coachController.recommendCategory();
+        if(coachController.checkCnt()){
+            coachController.reset();
+            recommendMenu();
+        }
     }
 }
