@@ -33,11 +33,11 @@ public class MenuController {
     private void setCoachesAndInedibles() {
         List<Coach> coaches = readCoachName();
         OutputView.newLine();
-        foodRecommendation = new FoodRecommendation(coaches);
-        foodRecommendation.selectRandomCategory();
         for (Coach coach : coaches) {
             setInedible(coach);
         }
+        foodRecommendation = new FoodRecommendation(coaches);
+        foodRecommendation.selectRandomCategory();
     }
 
     private void setInedible(Coach coach) {
