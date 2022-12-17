@@ -54,7 +54,7 @@ public class Application {
                 cnt++;
             }
         }
-        return cnt <= 2;
+        return cnt < 2;
     }
 
     static void setCoachHate(Managecoach coachList, View view) {
