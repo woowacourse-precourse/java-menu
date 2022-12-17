@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.Category;
 import menu.domain.Couch;
-import menu.domain.Day;
 import menu.domain.Menu;
 import menu.dto.CouchHateMenusRequest;
 import menu.dto.CouchMenu;
@@ -45,11 +44,32 @@ public class MenuService {
         }
     }
 
-    public RecommendMenusResponse createRecommendMenus() {
+    public List<String> createRecommendCategories() {
+        List<String> categories = Arrays.stream(Category.values())
+                .map(Category::getName)
+                .collect(Collectors.toList());
+        List<String> recommendsCategory = new ArrayList<>();
+        while (recommendsCategory.size() != 5) {
+            String category = categories.get(Randoms.pickNumberInRange(0, 4));
+            addCategory(recommendsCategory, category);
+        }
+        return recommendsCategory;
+    }
+
+    private void addCategory(List<String> recommendsCategory, String newCategory) {
+        long duplicateCount = recommendsCategory.stream()
+                .filter(category -> category.equals(newCategory))
+                .count();
+        if (duplicateCount >= 2) {
+            return;
+        }
+        recommendsCategory.add(newCategory);
+    }
+
+    public RecommendMenusResponse createRecommendMenus(List<String> recommendCategories) {
         List<Couch> couches = couchRepository.findAll();
         List<RecommendMenu> recommendMenus = new ArrayList<>();
-        for (Day day : Day.values()) {
-            String category = pickRandomCategory();
+        for (String category : recommendCategories) {
             RecommendMenu recommendMenu = new RecommendMenu(category);
             for (Couch couch : couches) {
                 String menu = pickRandomMenu(category);
@@ -58,13 +78,6 @@ public class MenuService {
             recommendMenus.add(recommendMenu);
         }
         return RecommendMenusResponse.of(recommendMenus);
-    }
-
-    private String pickRandomCategory() {
-        List<String> categories = Arrays.stream(Category.values())
-                .map(Category::getName)
-                .collect(Collectors.toList());
-        return categories.get(Randoms.pickNumberInRange(0, 4));
     }
 
     private String pickRandomMenu(String category) {

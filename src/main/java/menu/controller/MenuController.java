@@ -26,7 +26,9 @@ public class MenuController {
             CouchHateMenusRequest couchHateMenusRequest = menuView.receiveCouchHateMenus(couch.getName());
             menuService.addHateMenusForCouch(couch, couchHateMenusRequest);
         }
-        RecommendMenusResponse recommendMenus = menuService.createRecommendMenus();
+        List<String> recommendCategories = menuService.createRecommendCategories();
+        menuView.printResultCategories(recommendCategories);
+        RecommendMenusResponse recommendMenus = menuService.createRecommendMenus(recommendCategories);
         menuView.printResultMessage(recommendMenus);
     }
 }

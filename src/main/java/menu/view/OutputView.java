@@ -15,11 +15,13 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printResultMessage(RecommendMenusResponse responses) {
+    public void printResultCategories(List<String> categories) {
         System.out.println("메뉴 추천 결과입니다.");
         System.out.println("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
-        List<String> categories = responses.getCategories();
         System.out.printf("[ 카테고리 | %s ]%n",String.join(" | ", categories));
+    }
+
+    public void printResultMessage(RecommendMenusResponse responses) {
         responses.getMenus().forEach((couch, menus) -> {
             System.out.printf("[ %s | %s ]%n", couch, String.join(" | ", menus));
         });
