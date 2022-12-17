@@ -5,8 +5,13 @@ import menu.utils.ErrorMessage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.StringJoiner;
 
 public class Couch {
+
+    private static final String MESSAGE_DELIMITER = " | ";
+    private static final String MESSAGE_PREFIX = "[ ";
+    private static final String MESSAGE_SUFFIX = " ]";
 
     private final String name;
     private final List<Food> denied = new ArrayList<>();
@@ -51,5 +56,18 @@ public class Couch {
 
     public List<Food> getRecommend() {
         return Collections.unmodifiableList(recommend);
+    }
+
+    public String toMessage() {
+        StringBuilder result = new StringBuilder();
+        StringJoiner contents = new StringJoiner(MESSAGE_DELIMITER);
+        contents.add(name);
+        recommend.stream()
+                .map(Enum::name)
+                .forEach(contents::add);
+
+        return result.append(MESSAGE_PREFIX)
+                .append(contents)
+                .append(MESSAGE_SUFFIX).toString();
     }
 }

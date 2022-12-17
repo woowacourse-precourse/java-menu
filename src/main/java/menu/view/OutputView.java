@@ -1,6 +1,6 @@
 package menu.view;
 
-import menu.domain.Couch;
+import menu.domain.CouchGroup;
 import menu.utils.Category;
 import menu.utils.OutputMessage;
 
@@ -21,11 +21,11 @@ public class OutputView {
         System.out.printf(OutputMessage.INPUT_COUCH_CANNOT_EAT.getMessage(), name);
     }
 
-    public void printResult(List<Couch> couches, List<Category> categories) {
+    public void printResult(CouchGroup couchGroup, List<Category> categories) {
         System.out.println(OutputMessage.RECOMMEND_RESULT.getMessage());
 
         StringJoiner categoryMessage = getCategoryMessage(categories);
-        String couchMessage = getCouchMessage(couches);
+        String couchMessage = couchGroup.toMessage();
 
         System.out.println(
                 "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]\n" +
@@ -35,18 +35,6 @@ public class OutputView {
         System.out.println("추천을 완료했습니다.");
     }
 
-    private String getCouchMessage(List<Couch> couches) {
-        StringJoiner joiner = new StringJoiner(System.lineSeparator());
-        couches.forEach(couch -> {
-            StringJoiner couchMessage = new StringJoiner(" | ");
-            couchMessage.add(couch.getName());
-            couch.getRecommend().forEach(food -> {
-                couchMessage.add(food.name());
-            });
-            joiner.add("[ " + couchMessage.toString() + " ]");
-        });
-        return joiner.toString();
-    }
 
     private StringJoiner getCategoryMessage(List<Category> categories) {
         StringJoiner categoryMessage = new StringJoiner(" | ");

@@ -1,6 +1,6 @@
 package menu.controller;
 
-import menu.domain.Couch;
+import menu.domain.CouchGroup;
 import menu.domain.Food;
 import menu.service.RecommendService;
 import menu.utils.Category;
@@ -10,6 +10,7 @@ import menu.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
+import java.util.stream.IntStream;
 
 public class RecommendController {
 
@@ -25,24 +26,35 @@ public class RecommendController {
 
     public void run() {
         outputView.printInitRecommend();
-        List<Couch> couches = repeat(inputView::readCouchName);
+        CouchGroup couchGroup = repeat(inputView::readCouchName);
+
         List<Category> categories = new ArrayList<>();
-        couches.forEach(couch -> {
-            List<Food> foods = repeat(() -> inputView.readCannotFood(couch));
-            foods.forEach(couch::denyFood);
-        });
+
+        couchDenyFood(couchGroup);
 
         for (int i = 0; i < 5; i++) {
             Category category = recommendService.getCategory();
             categories.add(category);
-            couches.forEach(couch -> {
-                Food food = recommendService.getFood(category, couch);
-                couch.eatFood(food);
-            });
+            couchRecommendedFood(couchGroup, category);
         }
 
-        outputView.printResult(couches, categories);
+        outputView.printResult(couchGroup, categories);
+    }
 
+    private void couchRecommendedFood(CouchGroup couchGroup, Category category) {
+        IntStream.range(0, couchGroup.size()).mapToObj(couchGroup::get)
+                .forEach(couch -> {
+                    Food food = recommendService.getFood(category, couch);
+                    couch.eatFood(food);
+                });
+    }
+
+    private void couchDenyFood(CouchGroup couchGroup) {
+        IntStream.range(0, couchGroup.size()).mapToObj(couchGroup::get)
+                .forEach(couch -> {
+                    List<Food> foods = repeat(() -> inputView.readCannotFood(couch));
+                    foods.forEach(couch::denyFood);
+                });
     }
 
     private <T> T repeat(Supplier<T> read) {
