@@ -63,7 +63,7 @@ public class MenuUseCaseImpl implements MenuUseCase {
 
     @Override
     public RecommendResultDto recommend(List<String> names, List<List<String>> notEatMenus) {
-        List<Coach> coaches = new CoachMapper(names, notEatMenus).toCoach();
+        List<Coach> coaches = new CoachMapper(names, notEatMenus).toCoaches();
         List<Category> categories = new ArrayList<>();
         new Recommender(categories, menus, picker).recommend(coaches);
         List<String> categoriesDto = categories.stream()

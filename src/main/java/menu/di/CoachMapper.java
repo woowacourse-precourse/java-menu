@@ -5,7 +5,7 @@ import java.util.List;
 import menu.domain.Coach;
 import menu.domain.CoachName;
 
-public class CoachMapper {
+class CoachMapper {
 
     private final List<Coach> coaches = new ArrayList<>();
 
@@ -17,7 +17,7 @@ public class CoachMapper {
         }
     }
 
-    public List<Coach> toCoach() {
+    List<Coach> toCoaches() {
         return coaches;
     }
 }
