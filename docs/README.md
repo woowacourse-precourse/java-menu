@@ -152,9 +152,9 @@
 
 ## util
 
-### RandomGenerator
+### RandomCategoryGenerator
 
-### RandomCategoryNumbersGenerator
+### RandomCategoryValueGenerator
 
 > 랜덤으로 카테고리를 선택하는 클래스
 >
@@ -167,6 +167,8 @@
 
 
 ### RandomMenuGenerator
+
+### RandomMenuValueGenerator
 
 > 랜덤으로 메뉴를 선택하는 클래스
 >
