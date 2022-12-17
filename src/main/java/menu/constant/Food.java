@@ -35,16 +35,15 @@ public enum Food {
                 .collect(Collectors.toList());
     }
 
-    public static Food from(String foodNameWithSpace) {
+    public static Food from(String foodNameWithBlank) {
         return Arrays.stream(values())
-                .filter(foodName -> foodName.isEqualConsideringSpaceTo(foodNameWithSpace))
+                .filter(foodName -> foodName.isEqualConsideringBlankTo(foodNameWithBlank))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("음식을 찾지 못했습니다"));
     }
 
-    private boolean isEqualConsideringSpaceTo(String foodNameWithSpace) {
-        String foodNameWithoutSpace = foodNameWithSpace.replaceAll(" ", "_");
-        return name().equals(foodNameWithoutSpace);
+    private boolean isEqualConsideringBlankTo(String foodNameWithBlank) {
+        return getNameWithBlank().equals(foodNameWithBlank);
     }
 
     public Category getCategory() {
