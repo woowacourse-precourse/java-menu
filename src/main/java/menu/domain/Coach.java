@@ -20,4 +20,17 @@ public class Coach {
             throw new IllegalArgumentException("이름은 널일 수 없습니다.");
         }
     }
+    public boolean canEat(final String menu) {
+        if (coachNotAteMenu.contains(menu)) {
+            return false;
+        }
+        return !coachAteMenu.contains(menu);
+    }
+
+    public void eat(final String menu) {
+        if (!canEat(menu)) {
+            throw new IllegalArgumentException("코치는 이 음식을 먹을 수 없습니다.");
+        }
+        coachAteMenu.add(menu);
+    }
 }
