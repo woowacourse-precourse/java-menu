@@ -73,4 +73,11 @@ public class MenuRepository {
         menus.add(new Menu(Category.WESTERN, "피자"));
         menus.add(new Menu(Category.WESTERN, "파니니"));
     }
+
+    public static Menu getMenuByName(String name) {
+        return menus.stream()
+                .filter(menu -> menu.isEqualName(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 메뉴입니다."));
+    }
 }
