@@ -29,14 +29,16 @@ public enum Category {
     }
 
     public static void validateMenu(String menu) {
-        List<List<String>> allMenus = Arrays.stream(Category.values())
+        List<String> allMenus = new ArrayList<String>();
+                Arrays.stream(Category.values())
                 .map(category -> category.menu)
-                .collect(Collectors.toList());
-        for(List<String> menus : allMenus) {
-            if(menus.contains(menus)) {
-                throw new IllegalArgumentException(INVALID_MENU);
-            }
-        }
+                .forEach(categoryMenu -> allMenus.addAll(categoryMenu));
+
+
+       if(!(allMenus.contains(menu))) {
+           throw new IllegalArgumentException(INVALID_MENU);
+
+       }
     }
     public static String getFormat(List<Week> weeks) {
         return OutputView.CATEGORY_LINE_START
