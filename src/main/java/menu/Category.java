@@ -8,14 +8,9 @@ public enum Category {
     WESTERN("양식", "라자냐,그라탱,뇨끼,끼슈,프렌치토스트,바게트,스파게티,피자,파니니");
 
     private final String name;
-    private final String menus;
 
     Category(String name, String menus) {
         this.name = name;
-        this.menus = menus;
     }
 
-    public String getMenus() {
-        return menus;
-    }
 }
