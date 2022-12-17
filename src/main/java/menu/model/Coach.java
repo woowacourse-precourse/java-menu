@@ -8,9 +8,8 @@ public class Coach {
     private List<String> dislikeMenu;
     private List<String> recommendedMenus = new ArrayList<>();
 
-    public Coach(String name, List<String> dislikeMenu) {
+    public Coach(String name) {
         this.name = name;
-        this.dislikeMenu = dislikeMenu;
     }
 
     public boolean isDuplicateMenu(String recommendedMenu) {

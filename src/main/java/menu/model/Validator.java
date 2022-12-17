@@ -35,13 +35,13 @@ public class Validator {
         }
     }
 
-    public List<String> isValidDislikeMenus(String userInput) {
+    public static List<String> isValidDislikeMenus(String userInput) {
         List<String> dislikeMenus = new ArrayList<>(Arrays.asList(userInput.split(",")));
         isValidMenuSize(dislikeMenus);
         return dislikeMenus;
     }
 
-    private void isValidMenuSize(List<String> menus) {
+    private static void isValidMenuSize(List<String> menus) {
         if (menus.size() > MAX_DISLIKE_MENU) {
             throw new IllegalArgumentException(error + "못 먹는 메뉴는 최대 2개까지만 입력해주세요.");
         }
