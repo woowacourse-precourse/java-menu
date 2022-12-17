@@ -25,13 +25,4 @@ public class Retry {
             return execute(function, input);
         }
     }
-
-    public static void execute(Runnable runnable) {
-        try {
-            runnable.run();
-        } catch (IllegalArgumentException e) {
-            outputView.printExceptionMessage(e.getMessage());
-            execute(runnable);
-        }
-    }
 }
