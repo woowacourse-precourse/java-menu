@@ -33,4 +33,8 @@ public class Coach {
     public void addRecommendation(String recommendation) {
         this.recommendation.add(recommendation);
     }
+
+    public boolean checkExistedMenu(String menuName) {
+        return recommendation.stream().anyMatch(menu -> menu.equals(menuName));
+    }
 }

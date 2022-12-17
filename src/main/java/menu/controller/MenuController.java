@@ -58,36 +58,25 @@ public class MenuController {
     }
 
     private void recommendMenu(List<Coach> coaches, List<Category> categories) {
-        for (Coach coach : coaches) {
-            List<String> menus = getRecommendMenus(categories, coach);
-            addMenu(coach, menus);
-        }
-    }
-
-    private List<String> getRecommendMenus(List<Category> categories, Coach coach) {
-        HashSet<String> exist = new HashSet<>();
-        List<String> menus = new ArrayList<>();
         for (int day = 0; day < 5; day++) {
-            while (true) {
-                String menuName = getFirstMenu(categories.get(day));
-                if (!exist.contains(menuName) && !coach.checkAllegeMenu(menuName)) {
-                    addExist(exist, menus, menuName);
-                    break;
-                }
+            for (Coach coach : coaches) {
+                addRecommendation(categories, day, coach);
             }
         }
-        return menus;
     }
 
-    private void addExist(HashSet<String> exist, List<String> menus, String menuName) {
-        menus.add(menuName);
-        exist.add(menuName);
-    }
-
-    private void addMenu(Coach coach, List<String> menus) {
-        for (String menu : menus) {
-            coach.addRecommendation(menu);
+    private void addRecommendation(List<Category> categories, int day, Coach coach) {
+        while (true) {
+            String menuName = getFirstMenu(categories.get(day));
+            if (canRecommend(coach, menuName)) {
+                coach.addRecommendation(menuName);
+                break;
+            }
         }
+    }
+
+    private boolean canRecommend(Coach coach, String menuName) {
+        return !coach.checkExistedMenu(menuName) && !coach.checkAllegeMenu(menuName);
     }
 
     private String getFirstMenu(Category category) {
@@ -116,24 +105,23 @@ public class MenuController {
     }
 
     private void addAllegeMenu(List<Coach> coaches) {
-        for (int index = 0; index < coaches.size(); index++) {
-            Coach coach = coaches.get(index);
+        for (Coach coach : coaches) {
             String name = coach.getName();
-            String[] allegeMenus = inputAllegeMenu(name, index).split(DELIMITER);
+            String[] allegeMenus = inputAllegeMenu(name).split(DELIMITER);
             for (String allegeMenu : allegeMenus) {
                 coach.addAllergy(allegeMenu);
             }
         }
     }
 
-    private String inputAllegeMenu(String name, int index) {
+    private String inputAllegeMenu(String name) {
         try {
             String input = inputView.inputAllegeMenu(name);
             validator.validateAllegeMenu(input);
             return input;
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
-            return inputAllegeMenu(name, index);
+            return inputAllegeMenu(name);
         }
     }
 
