@@ -8,4 +8,12 @@ public enum DayOfWeek {
     DayOfWeek(String dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
     }
+
+    public boolean isLastDayOfWeek(DayOfWeek dayOfWeek) {
+        return dayOfWeek == DayOfWeek.FRI;
+    }
+
+    public String getDayOfWeek() {
+        return dayOfWeek;
+    }
 }
