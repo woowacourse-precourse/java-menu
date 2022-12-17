@@ -15,9 +15,9 @@ class CoachTest {
     @ParameterizedTest
     @MethodSource("parameterProvider")
     void 못먹는_음식이_2개_이상이면_예외를_발생시키는지_테스트(List<String> inedible) {
-        CoachName defaultName = new CoachName("우성");
+        Coach dummyCoach = new Coach(new CoachName("우성"));
 
-        assertThatThrownBy(() -> new Coach(defaultName, inedible))
+        assertThatThrownBy(() -> dummyCoach.addInedibleMenus(inedible))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
