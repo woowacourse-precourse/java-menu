@@ -1,7 +1,5 @@
 package menu.service;
 
-import menu.domain.*;
-import menu.utills.Recommender;
 import menu.utills.constants.Category;
 
 import java.util.List;
