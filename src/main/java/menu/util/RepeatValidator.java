@@ -23,7 +23,7 @@ public class RepeatValidator {
     }
 
     public static void runUntilValidate(Runnable expression) {
-        while(true) {
+        while (true) {
             try {
                 expression.run();
                 break;
