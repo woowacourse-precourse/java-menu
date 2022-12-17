@@ -18,10 +18,10 @@ public class InputView {
         return coachesName;
     }
 
-    public List<String> readHateFoods() {
-        System.out.println(INPUT_MSG_HATE_FOODS.get());
+    public List<String> readHateFoods(String name) {
+        System.out.println("\n" + name + INPUT_MSG_HATE_FOODS.get());
         List<String> hateFoods = inputValidator.toStrList(Console.readLine());
-        // TODO: 검증하기
+        inputValidator.validateHateFoods(hateFoods);
 
         return hateFoods;
     }

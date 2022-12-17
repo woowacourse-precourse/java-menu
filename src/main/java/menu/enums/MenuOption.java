@@ -31,6 +31,10 @@ public enum MenuOption {
         return this.menus.contains(menu);
     }
 
+    public static boolean isExistFood(String menu) {
+        return getAllMenus().contains(menu);
+    }
+
     public static String getCategoryFromNumber(int number) {
         return Stream.of(values())
                 .filter(option -> option.number == number)

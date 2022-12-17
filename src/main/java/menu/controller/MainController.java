@@ -26,7 +26,6 @@ public class MainController {
 
         for (String coachName : coachesName) {
             List<String> hateFoods = inputController.inputHateFoods(coachName);
-            System.out.println(hateFoods);
             new Coach(coachName, hateFoods);
         }
 
