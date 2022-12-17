@@ -1,15 +1,18 @@
 package menu;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import menu.type.CategoryType;
 import menu.view.InputView;
+import menu.view.OutputView;
 
 
 public class MenuController {
 
     InputView inputView = new InputView();
+    OutputView outputView = new OutputView();
     CategoryMap categoryMap = new CategoryMap(new HashMap<>());
 
     public void run() {
@@ -30,6 +33,13 @@ public class MenuController {
                 menuChoices.updateChosenMenu(coachLists.get(j), menu);
             }
         }
+        System.out.println(menuChoices.getChosenMenuMap());
+        outputView.printResultInit();
+        outputView.printCategory(chosenCategoryList);
+        for (int i = 0; i < coachLists.size(); i++) {
+            outputView.printCoachMenu(coachLists.get(i), menuChoices.getChosenMenuMap().get(coachLists.get(i)));
+        }
+        outputView.printEnd();
     }
 
 }
