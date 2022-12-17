@@ -6,7 +6,9 @@ import java.util.stream.Collectors;
 
 public class MenuRepository {
 
-    private final List<Menu> menus = new ArrayList<>();
+    private final static List<Menu> menus = new ArrayList<>();
+
+    private MenuRepository(){}
 
     private static final MenuRepository instance = new MenuRepository();
 

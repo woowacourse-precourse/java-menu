@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class CoachRepository {
     // 맵 구조를 가져가야할까?
-    private List<Coach> coaches = new ArrayList<>();
+    private static List<Coach> coaches = new ArrayList<>();
 
     private static final CoachRepository instance = new CoachRepository();
 

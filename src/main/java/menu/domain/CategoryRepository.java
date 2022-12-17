@@ -3,10 +3,12 @@ package menu.domain;
 import java.util.*;
 
 public class CategoryRepository { // 인터페이스 만들어도 될듯
-    private Map<Integer, Category> categories = new HashMap<>();
-    private Integer sequence = 1;
+    private static Map<Integer, Category> categories = new HashMap<>();
+    private static Integer sequence = 1;
 
     private static final CategoryRepository instance = new CategoryRepository();
+
+    private CategoryRepository(){}
 
     public static CategoryRepository getInstance() {
         return instance;
