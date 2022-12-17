@@ -11,6 +11,7 @@ public class Coach {
 
     private final String name;
     private final List<String> menus = new ArrayList<>();
+    private final List<String> cantEat = new ArrayList<>();
 
     public Coach(String name) {
         validate(name);
@@ -27,7 +28,20 @@ public class Coach {
         menus.add(menu);
     }
 
+    public void addCantEat(String menu) {
+        cantEat.add(menu);
+        cantEat.remove("");
+    }
+
     public boolean hasSameMenuRecommend(String menu) {
         return menus.contains(menu);
+    }
+
+    public boolean isCantEatMenu(String menu) {
+        return cantEat.contains(menu);
+    }
+
+    public String getName() {
+        return name;
     }
 }

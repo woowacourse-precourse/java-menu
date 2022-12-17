@@ -32,7 +32,7 @@ public class CoachRepository {
 
             do {
                 menu = RandomGenerator.forMenu(Food.getMenuByCategory(recommendedCategory));
-            } while (coach.hasSameMenuRecommend(menu));
+            } while (coach.hasSameMenuRecommend(menu) || coach.isCantEatMenu(menu));
             coach.addMenu(menu);
         }
     }

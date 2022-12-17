@@ -2,6 +2,7 @@ package menu.controller;
 
 import menu.domain.Coach;
 import menu.domain.CoachRepository;
+import menu.domain.Food;
 import menu.domain.MenuRecommendRepository;
 import menu.view.InputView;
 import menu.view.OutputView;
@@ -19,7 +20,7 @@ public class MenuController {
     public void run() {
         outputView.guideStart();
         readCoaches();
-        recommend();
+        readPickyAboutFood();
     }
 
     private void readCoaches() {
@@ -33,6 +34,17 @@ public class MenuController {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             readCoaches();
+        }
+    }
+
+    private void readPickyAboutFood() {
+
+        for (Coach coach : CoachRepository.coaches()) {
+            outputView.guideInputCantEat(coach.getName());
+
+            for (String input : inputView.readPicky()) {
+                coach.addCantEat(Food.isInFoodMenu(input));
+            }
         }
     }
 

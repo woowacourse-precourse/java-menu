@@ -9,4 +9,8 @@ public class InputView {
         return Console.readLine().split(SEPARATOR);
     }
 
+    public String[] readPicky() {
+        return Console.readLine().split(SEPARATOR);
+    }
+
 }
