@@ -32,34 +32,54 @@ public class MenuService {
 	}
 
 	public List<Coach> makeCoachList() {
-		return inputView.readCoachNames();
+		List<Coach> coachList = null;
+		try {
+			coachList = inputView.readCoachNames();
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			while (coachList != null) {
+				coachList = inputView.readCoachNames();
+			}
+		}
+		return coachList;
 	}
 
 	public void setNotEatFood(List<Coach> coachList) {
-		for (Coach coach : coachList) {
-			inputView.readNotEatFood(coach);
+		for (int i = 0; i < coachList.size(); i++) {
+			try {
+				inputView.readNotEatFood(coachList.get(i));
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+				i--;
+			}
 		}
 	}
 
 	public void recommendFoodByCategory(List<Coach> coachList) {
-		//TODO : 역할 분리
 		for (int day = 0; day < 5; day++) {
-			Category randomCategory = menuRepository.getRandomCategory();
-			for (int i = 0; i < coachList.size(); i++) {
-				if (!coachList.get(i).addCategoryList(randomCategory)) {
-					i--;
-					randomCategory = menuRepository.getRandomCategory();
-				}
-			}
-
-			for (int i = 0; i < coachList.size(); i++) {
-				String randomMenuInCategory = menuRepository.getRandomMenuInCategory(randomCategory);
-				if (!coachList.get(i).addRecommendList(randomMenuInCategory)) {
-					i--;
-				}
-			}
-
+			Category randomCategory = getRandomCategory(coachList);
+			setRecommendFood(coachList, randomCategory);
 		}
 
+	}
+
+	private void setRecommendFood(List<Coach> coachList, Category randomCategory) {
+		for (int i = 0; i < coachList.size(); i++) {
+			String randomMenuInCategory = menuRepository.getRandomMenuInCategory(randomCategory);
+			if (!coachList.get(i).addRecommendList(randomMenuInCategory)) {
+				i--;
+			}
+		}
+	}
+
+	private Category getRandomCategory(List<Coach> coachList) {
+		Category randomCategory = menuRepository.getRandomCategory();
+		for (int i = 0; i < coachList.size(); i++) {
+			if (!coachList.get(i).addCategoryList(randomCategory)) {
+				i--;
+				randomCategory = menuRepository.getRandomCategory();
+			}
+		}
+		return randomCategory;
 	}
 }
