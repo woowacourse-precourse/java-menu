@@ -31,10 +31,7 @@ public final class OutputView {
         System.out.printf(INPUT_COACH_HATE_MENU, coach.getName());
     }
 
-    public static void printRecommendResult(Result result, Coaches coaches) {
-        System.out.println(MENU_RECOMMEND_RESULT);
-
-        StringBuilder sb = new StringBuilder();
+    private static void printWhatDay(StringBuilder sb) {
         sb.append(OPEN_SQUARE_BRACKET)
           .append(WHAT_DAY)
           .append(SEPERATOR);
@@ -50,8 +47,9 @@ public final class OutputView {
               .append(SEPERATOR);
         }
         sb.append("\n");
+    }
 
-        // 카테고리 줄 출력
+    private static void printCategories(StringBuilder sb, Result result) {
         sb.append(OPEN_SQUARE_BRACKET)
           .append(CATEGORY)
           .append(SEPERATOR);
@@ -69,7 +67,9 @@ public final class OutputView {
         }
         sb.append("\n");
 
-        //한 사람씩 출력
+    }
+
+    private static void printCoachFood(StringBuilder sb, Result result, Coaches coaches) {
         Map<DayOfWeek, DayCategoryMenu> resultMap = result.getResults();
 
         List<Coach> coachesName = coaches.getCoachesName();
@@ -96,9 +96,20 @@ public final class OutputView {
             lineCount++;
             sb.append("\n");
         }
+    }
+    public static void printRecommendResult(Result result, Coaches coaches) {
+        System.out.println(MENU_RECOMMEND_RESULT);
+
+        StringBuilder sb = new StringBuilder();
+        printWhatDay(sb);
+
+        // 카테고리 줄 출력
+        printCategories(sb, result);
+
+        //한 사람씩 출력
+        printCoachFood(sb, result, coaches);
 
         System.out.println(sb);
-
         System.out.println(FINISH_RECOMMEND);
     }
 
