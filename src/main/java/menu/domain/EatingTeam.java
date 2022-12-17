@@ -1,5 +1,6 @@
 package menu.domain;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,14 @@ public class EatingTeam {
         this.members = members;
         this.members.forEach(coach ->
                 recommendedMenuToCoach.put(coach, new FoodRepository(List.of())));
+    }
+
+    public List<Coach> getMembers() {
+        return Collections.unmodifiableList(members);
+    }
+
+    public Map<Coach, FoodRepository> getRecommendedMenuToCoach() {
+        return recommendedMenuToCoach;
     }
 
     public void isRecommendedMenu() {

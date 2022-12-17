@@ -28,6 +28,10 @@ public class Coach {
         return !foodsCanNotEat.contains(menu);
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public boolean equals(final Object other) {
         if (this == other) {
