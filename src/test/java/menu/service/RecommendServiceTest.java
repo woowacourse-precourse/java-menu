@@ -5,7 +5,6 @@ import java.util.List;
 import menu.domain.FoodCategory;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 class RecommendServiceTest {
