@@ -12,7 +12,7 @@ public class CategoryHistory {
     }
 
     public List<Category> getCategoryHistory() {
-        return Collections.unmodifiableList(categoryHistory);
+        return categoryHistory;
     }
 
     public Category selectCategory() {
