@@ -7,6 +7,9 @@ public class Controller {
     List<Coach> coaches = new ArrayList<>();
     MenuSelector menuSelector = new MenuSelector();
 
+    private static final int DAYS = 5;
+    private static final int EXIT = 0;
+
     public void initGame() {
         System.out.println(Output.INIT);
         System.out.println(Output.INPUT_COACH);
@@ -16,5 +19,17 @@ public class Controller {
             List<String> hates = Input.inputHate();
             coaches.add(new Coach(name, hates));
         }
+    }
+
+    public int calculateMenu(int count) {
+        if (count == DAYS) {
+            return EXIT;
+        }
+        int category = menuSelector.pickCategory();
+        List<String> menus = Dish.pickCategory(category);
+        for (Coach coach : coaches) {
+            coach.pickFood(menus);
+        }
+        return calculateMenu(count + 1);
     }
 }
