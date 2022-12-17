@@ -3,12 +3,15 @@ package menu.view;
 import static menu.view.OutputView.printError;
 
 import camp.nextstep.edu.missionutils.Console;
+import menu.exception.InputException;
 
 public class InputView {
+    private final InputException inputException = new InputException();
+
     public String readCrewsName() {
         try {
             String input = Console.readLine();
-            // todo : 예외
+            inputException.validateCrews(input);
             return input;
         } catch (IllegalArgumentException exception) {
             printError(exception.getMessage());
@@ -19,7 +22,6 @@ public class InputView {
     public String readBannedFoods() {
         try {
             String input = Console.readLine();
-            // todo : 예외
             return input;
         } catch (IllegalArgumentException exception) {
             printError(exception.getMessage());
