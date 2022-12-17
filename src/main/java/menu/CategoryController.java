@@ -25,5 +25,48 @@ public class CategoryController {
         }
     }
 
+    public Category pickDayCategory() {
+        Category category = pickCategory();
+        List<Coach> coaches = CoachRepository.findAllCoach();
 
+        for (Coach coach : coaches) {
+            boolean flag = true;
+
+            while (flag) {
+                String randomFood = pickFood(category);
+                flag = validateCoachFoods(coach, flag, randomFood);
+            }
+        }
+
+        return category;
+    }
+
+    private static boolean validateCoachFoods(Coach coach, boolean flag, String randomFood) {
+        if (!coach.isSameMenu(randomFood) && !coach.isHateMenu(randomFood)) {
+            coach.addFood(randomFood); // 코치 정보에 저장
+            flag = false;
+        }
+        return flag;
+    }
+
+    private static String pickFood(Category category) {
+        List<String> menus = FoodRepository.getMenus(category); //한식의 메뉴들 리스트
+        String randomFood = Random.pickRandomFood(menus); // 메뉴들에서 하나 뽑음
+        return randomFood;
+    }
+
+    private static Category pickCategory() {
+        boolean flag = true;
+
+        while (flag) {
+            Category category = Random.pickRandomCategory(); // 카테고리 고름 한식
+
+            if (!CategoryRepository.hasSameCategoryMoreThanTwo(category)) { // 한주에 두개 이상인지 확인
+                CategoryRepository.save(category);
+                return category;
+            }
+        }
+
+        throw new IllegalArgumentException("카테고리 고르는 것이 불가능합니다.");
+    }
 }
