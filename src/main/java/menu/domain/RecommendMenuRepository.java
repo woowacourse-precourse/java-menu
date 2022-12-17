@@ -7,8 +7,8 @@ import java.util.Map;
 
 public class RecommendMenuRepository {
     private final List<Coach> coaches;
-    private final Map<Coach, List<Menu>> dislikeMenus;
-    private final Map<Coach, List<Menu>> RecommendMenus = new LinkedHashMap();
+    private final Map<Coach, List<String>> dislikeMenus;
+    private final Map<Coach, List<String>> recommendMenus = new LinkedHashMap();
     List<Category> categories = new ArrayList<>();
 
     public RecommendMenuRepository(CoachRepository coachRepository, DislikeMenuRepository dislikeMenus) {
@@ -36,10 +36,19 @@ public class RecommendMenuRepository {
 
     private void getRecommendMenu() {
         for(Coach coach: coaches){
+            List<String> recommendMenus = new ArrayList<>();
             for(Category category : categories){
-
+                recommendMenus.add(getRandomMenu(recommendMenus, category, coach));
             }
+            this.recommendMenus.put(coach, recommendMenus);
         }
+    }
+
+    private String getRandomMenu(List<String> recommendMenus, Category category, Coach coach) {
+        String randomMenu = category.getRandomMenu();
+        if(recommendMenus.contains(randomMenu)) return getRandomMenu(recommendMenus, category, coach);
+        if(dislikeMenus.get(coach).contains(randomMenu)) return getRandomMenu(recommendMenus, category, coach);
+        return randomMenu;
     }
 
 }

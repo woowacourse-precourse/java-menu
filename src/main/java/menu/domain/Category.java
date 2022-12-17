@@ -32,20 +32,15 @@ public enum Category {
         throw new IllegalArgumentException("[ERROR] 존재하지 않는 메뉴를 입력하셨습니다.");
     }
 
-    public static Category getCategory(String userInput) {
-        for (Category category : Category.values()){
-            for(String menu :category.menus){
-                if(menu.equals(userInput)) return category;
-            }
-        }
-        throw new IllegalArgumentException("[ERROR] 존재하지 않는 메뉴를 입력하셨습니다.");
-    }
-
     public static Category getRandomCategory() {
         int randomNumber = Randoms.pickNumberInRange(1, 5);
         for (Category category : Category.values()){
             if(category.key == randomNumber) return category;
         }
         return getRandomCategory();
+    }
+
+    public String getRandomMenu() {
+        return Randoms.shuffle(menus).get(0);
     }
 }
