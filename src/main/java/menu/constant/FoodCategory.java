@@ -17,7 +17,7 @@ public enum FoodCategory {
         this.foodCategory = foodCategory;
     }
 
-    public static String findSthByKey(int key) {
+    public static String findFoodByKey(int key) {
         return Arrays.stream(FoodCategory.values())
                 .filter(elem -> key == elem.key)
                 .findAny()
