@@ -17,10 +17,14 @@ public class MenuController {
     private final String START_MESSAGE = "점심 메뉴 추천을 시작합니다.";
 
     public void run() {
-        System.out.println(START_MESSAGE);
-        makeGroup();
-        makeMenus();
-        outputView.renderResult(group.getMenu());
+        try {
+            System.out.println(START_MESSAGE);
+            makeGroup();
+            makeMenus();
+            outputView.renderResult(group.getMenu());
+        } catch (IllegalStateException e) {
+            outputView.printExceptionMessage(e.getMessage());
+        }
     }
 
     private void makeGroup() {
