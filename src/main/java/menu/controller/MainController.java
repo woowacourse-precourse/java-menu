@@ -38,5 +38,6 @@ public class MainController {
             Map<String, String> menuByCoach = menuRecommender.recommendByCoach(category);
             recorder.recordMenuByCoach(menuByCoach, coachNames);
         }
+        outputView.printRecommendedResult(Day.valuesAsList(), recommendHistory.getMenuByCoach(), recommendHistory.getCategories());
     }
 }

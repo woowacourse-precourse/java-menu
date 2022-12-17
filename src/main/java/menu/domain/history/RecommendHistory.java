@@ -55,4 +55,12 @@ public class RecommendHistory {
         recommendedMenus.add(menu);
         return recommendedMenus;
     }
+
+    public Map<String, List<String>> getMenuByCoach() {
+        return menuByCoach;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
 }
