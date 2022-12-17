@@ -7,11 +7,11 @@ import menu.coach.Coaches;
 
 public class InputView {
 
-    public void inputCoaches() {
+    public List<String> inputCoaches() {
         System.out.println();
         System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
 
-        Coaches.listToCoaches(checkComma(Console.readLine()));
+        return (getList(Console.readLine()));
     }
 
     public void inputCoachesHateFoods() {
@@ -19,11 +19,11 @@ public class InputView {
             System.out.println();
             System.out.println(coach.getName() + "(이)가 못 먹는 메뉴를 입력해 주세요.");
             String input = Console.readLine();
-            Coaches.inputHateFood(coach.getName(), checkComma(input));
+            Coaches.inputHateFood(coach.getName(), getList(input));
         }
     }
 
-    public List<String> checkComma(String input) {
+    public List<String> getList(String input) {
         return List.of(input.split(","));
     }
 }

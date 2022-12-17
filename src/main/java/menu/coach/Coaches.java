@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Coaches {
 
-    private static final List<Coach> coaches = new ArrayList<>();
+    private static List<Coach> coaches = new ArrayList<>();
 
     public static List<Coach> getCoaches() {
         return Collections.unmodifiableList(coaches);
@@ -21,6 +21,10 @@ public class Coaches {
         for (String name : inputs) {
             addCoach(new Coach(name));
         }
+    }
+
+    public static void init() {
+        coaches = new ArrayList<>();
     }
 
     private static void validCoaches(List<String> coaches) {
