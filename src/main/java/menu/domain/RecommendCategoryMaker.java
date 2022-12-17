@@ -10,16 +10,16 @@ public class RecommendCategoryMaker {
     private final static int CATEGORY_COUNT = 5;
     private final static int MAX_DUPLICATE_CATEGORY_COUNT = 2;
 
-    private final CategoryGenerator categoryGenerator;
+    private final NumberGenerator numberGenerator;
 
-    public RecommendCategoryMaker(CategoryGenerator categoryGenerator) {
-        this.categoryGenerator = categoryGenerator;
+    public RecommendCategoryMaker(NumberGenerator numberGenerator) {
+        this.numberGenerator = numberGenerator;
     }
 
     public List<Category> make() {
         List<Category> categories = new ArrayList<>();
         while (categories.size() < CATEGORY_COUNT) {
-            Category category = categoryGenerator.generate();
+            Category category = Category.of(numberGenerator.generate());
             if (Collections.frequency(categories, category) < MAX_DUPLICATE_CATEGORY_COUNT) {
                 categories.add(category);
             }

@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.Coaches;
-import menu.domain.Menu;
 
 public class CoachesWeeklyMenu {
 
@@ -27,10 +26,7 @@ public class CoachesWeeklyMenu {
         Map<String, List<String>> eachCoachesMenu = new HashMap<>();
         for (Coach coach : coaches.getCoaches()) {
             String name = coach.getName();
-            List<String> menuNames = coach.getLunchMenus()
-                    .stream()
-                    .map(Menu::getName)
-                    .collect(Collectors.toList());
+            List<String> menuNames = coach.getLunchMenus();
             eachCoachesMenu.put(name, menuNames);
         }
         return eachCoachesMenu;

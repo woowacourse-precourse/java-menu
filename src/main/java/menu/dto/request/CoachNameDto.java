@@ -1,5 +1,7 @@
 package menu.dto.request;
 
+import org.mockito.stubbing.ValidableAnswer;
+
 public class CoachNameDto {
 
     private final static int NAME_MAX_LENGTH = 4;
@@ -8,6 +10,7 @@ public class CoachNameDto {
     private final String name;
 
     public CoachNameDto(String name) {
+        validate(name);
         this.name = name;
     }
 
