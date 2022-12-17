@@ -26,7 +26,11 @@ public class Menu {
         dislikeFoods.put(coach, dislikeFood);
     }
 
-    public String recommendMenu(String category) {
+    public boolean isDislike(String coach, String food) {
+        return dislikeFoods.get(coach).contains(food);
+    }
+
+    public String recommendFood(String category) {
         return Randoms.shuffle(menu.get(category)).get(0);
     }
 
