@@ -4,7 +4,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -36,5 +41,18 @@ class CoachTest {
         coach.recommendMenu(Category.getCategoryByNumber(Randoms.pickNumberInRange(1, 5)), notToEat);
 
         assertThat(coach.getRecommendationForWeek()).doesNotContain(notToEat.toArray(new String[notToEat.size()]));
+    }
+
+    @Test
+    @DisplayName("코치 멤버 테스트")
+    public void testMember() {
+        Coach coach = new Coach("헤헤");
+        for(int i = 0; i < 5; i++) {
+            coach.recommendMenu(Category.KOREAN, Set.of());
+        }
+        String result = Stream.of(List.of(coach.getName()), coach.getRecommendationForWeek()).flatMap(
+                Collection::stream).collect(
+                Collectors.joining(" |"));
+        System.out.println(result);
     }
 }

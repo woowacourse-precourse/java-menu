@@ -60,19 +60,16 @@ public class Coach {
         String recommendMenu = null;
         while (true) {
             recommendMenu = category.getRandomMenu();
-            if (!totalMenuCoachCannotToEat.contains(recommendMenu)) {
-                addMenu(recommendMenu);
+            if (!totalMenuCoachCannotToEat.contains(recommendMenu) && !recommendationForWeek.contains(recommendMenu)) {
                 break;
             }
         }
+        addMenu(recommendMenu);
     }
 
     private void addMenu(String menu) {
         if (recommendationForWeek.size() >= 5) {
             throw new IllegalStateException(INVALID_EXECUTION_FOR_RECOMMENDATION);
-        }
-        if (recommendationForWeek.contains(menu)) {
-            throw new IllegalStateException(CANNOT_REGISTER_DUPLICATE_MENU_FOR_WEEK);
         }
         recommendationForWeek.add(menu);
     }
