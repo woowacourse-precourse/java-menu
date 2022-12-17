@@ -51,4 +51,9 @@ public class MainController {
             coachService.registerInedibleFoodByCoach(coach, inEdibleFoods);
         }
     }
+
+    public void recommend() {
+        List<String> coaches = coachService.findAllCoaches();
+        coaches.forEach(recommendationService::recommend);
+    }
 }
