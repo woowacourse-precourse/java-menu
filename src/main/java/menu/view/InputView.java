@@ -11,11 +11,15 @@ public class InputView {
 
     public static String getCoachInfo(){
         System.out.print(GET_COACH_NAME);
-        return Console.readLine();
+        String info = Console.readLine();
+        System.out.println();
+        return info;
     }
 
     public static String getHateMenu(Coach coach){
         System.out.print(coach.getName()+GET_HATE_MENU);
-        return Console.readLine();
+        String hateMenu = Console.readLine();
+        System.out.println();
+        return hateMenu;
     }
 }
