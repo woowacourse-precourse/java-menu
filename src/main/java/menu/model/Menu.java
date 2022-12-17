@@ -43,7 +43,6 @@ public enum Menu {
         List<String> categorys = new ArrayList<>();
         while (categorys.size() < 5) {
             String category = getCodeToMenu(Randoms.pickNumberInRange(1, 5)).category;
-            System.out.println(category);
             int count = Collections.frequency(categorys, category);
             if (count < 2) {
                 categorys.add(category);
