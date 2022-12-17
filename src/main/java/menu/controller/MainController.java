@@ -46,6 +46,7 @@ public class MainController {
 
     private ApplicationStatus receiveCoachData() {
         outputView.printStart();
+        System.out.println(inputView.readCoachNames());
         return ApplicationStatus.APPLICATION_EXIT;
     }
 

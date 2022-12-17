@@ -1,6 +1,8 @@
 package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
+import menu.util.Util;
 
 public class InputView {
 
@@ -15,15 +17,16 @@ public class InputView {
 
     // static이면 이 위에 지우고 아래를 static으로 만들면됨
 
-    public String readMainOption() {
-        System.out.println(Message.INPUT_MAIN_OPTION.message);
-        String input = Console.readLine();
-        return input;
+    public List<String> readCoachNames() {
+        System.out.println(Message.INPUT_COACH_NAMES.message);
+        List<String> coaches = Util.splitByComma(Console.readLine());
+        // validate
+        return coaches;
     }
 
 
     private enum Message {
-        INPUT_MAIN_OPTION("메인 옵션");
+        INPUT_COACH_NAMES("\n코치의 이름을 입력해 주세요. (, 로 구분)");
 
         private final String message;
 
