@@ -23,7 +23,7 @@ public class MenuRecommendationController {
         printStartMessage();
         requestCoachNames();
         makeCoaches(receiveCoachNames());
-        setUnwantedMenus();
+        initUnwantedMenus();
         categories = recommendation.getRandomCategories();
         recommendMenus();
         printResult(coaches, categories);
@@ -46,7 +46,7 @@ public class MenuRecommendationController {
         }
     }
 
-    private void setUnwantedMenus() {
+    private void initUnwantedMenus() {
         for (int i = 0; i < coaches.size(); i++) {
             Coach coach = coaches.get(i);
             requestUnwantedMenu(coach.getName());

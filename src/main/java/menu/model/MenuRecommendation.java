@@ -26,9 +26,10 @@ public class MenuRecommendation {
     public String getRandomMenu(Coach coach, Category category) {
         List<String> menus = category.getMenu().getMenus();
         String randomMenu;
+
         while (true) {
             randomMenu = Randoms.shuffle(menus).get(0);
-            if (coach.availableMenu(randomMenu))
+            if (coach.isAvailableMenu(randomMenu))
                 break;
         }
 
@@ -39,6 +40,7 @@ public class MenuRecommendation {
         long numberOfCategory = randomCategories.stream()
                 .filter(s -> s.equals(category))
                 .count();
+
         if (numberOfCategory >= 2)
             return false;
 

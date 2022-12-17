@@ -20,7 +20,7 @@ public class Coach {
         this.menus.add(menu);
     }
 
-    public boolean availableMenu(String menu) {
+    public boolean isAvailableMenu(String menu) {
         return !hasMenu(menu) && !isUnwantedMenu(menu);
     }
 

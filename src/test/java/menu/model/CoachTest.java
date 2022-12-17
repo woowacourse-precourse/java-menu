@@ -17,7 +17,7 @@ class CoachTest {
         Coach coach = new Coach("test1");
         coach.addRecommendedMenu("김치찌개");
 
-        Assertions.assertThat(coach.availableMenu("김치찌개"))
+        Assertions.assertThat(coach.isAvailableMenu("김치찌개"))
                 .isEqualTo(false);
     }
 
@@ -28,11 +28,11 @@ class CoachTest {
         List<String> unwantedMenus = Arrays.asList("김밥", "떡볶이");
         coach.setUnwantedMenus(unwantedMenus);
 
-        Assertions.assertThat(coach.availableMenu("김밥"))
+        Assertions.assertThat(coach.isAvailableMenu("김밥"))
                 .isEqualTo(false);
-        Assertions.assertThat(coach.availableMenu("떡볶이"))
+        Assertions.assertThat(coach.isAvailableMenu("떡볶이"))
                 .isEqualTo(false);
-        Assertions.assertThat(coach.availableMenu("김치찌개"))
+        Assertions.assertThat(coach.isAvailableMenu("김치찌개"))
                 .isEqualTo(true);
     }
 
@@ -44,7 +44,7 @@ class CoachTest {
         coach.setUnwantedMenus(unwantedMenus);
         coach.addRecommendedMenu("김치찌개");
 
-        Assertions.assertThat(coach.availableMenu("불고기"))
+        Assertions.assertThat(coach.isAvailableMenu("불고기"))
                 .isEqualTo(true);
     }
 }
