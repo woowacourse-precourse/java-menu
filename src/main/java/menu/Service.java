@@ -62,6 +62,16 @@ public class Service {
 		return count;
 	}
 
+
+	public void notEatFoodsRemove(String coachName, List<String> categoryMenu) {
+		for (int index = 0; index <  coachRepository.getCoachsSize(); index++) {
+			String menu = Randoms.shuffle(categoryMenu).get(0);
+			if (coachRepository.discriminationEat(menu, coachName)) {
+				perCoachRecommendMenu.put(coachName, new ArrayList<>());
+			}
+		}
+	}
+
 	public void printSelectMenu() {
 		for (int index = 0; index < perCoachRecommendMenu.size(); index++) {
 			outputView.resultMenu(coach.getCoachsName(index), perCoachRecommendMenu.get(coach.getCoachsName(index)));
