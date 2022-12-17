@@ -1,7 +1,7 @@
 package menu.model;
 
 import menu.constants.ExceptionMessage;
-import menu.constants.Menu;
+import menu.constants.Category;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class HateMenu {
     }
 
     private void validateMenu(String menu) {
-        if (!Menu.isExistMenu(menu)) {
+        if (!Category.isExistMenu(menu)) {
             ExceptionMessage.NOT_EXIST_MENU.throwException();
         }
     }
