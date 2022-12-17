@@ -33,10 +33,6 @@ public class MenuRepository {
                 .anyMatch((category) -> menuByCategories.get(category).contains(menu));
     }
 
-    public static List<String> categoryList() {
-        return List.copyOf(menuByCategories.keySet());
-    }
-
     public static List<String> findMenuListByCategory(String category) {
         return new ArrayList<>(menuByCategories.get(category));
     }
