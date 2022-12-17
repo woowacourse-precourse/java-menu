@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
-import menu.MenuInitiator;
 import menu.domain.Coach;
 import menu.domain.Menu;
 import menu.service.RecommendService;
+import menu.utils.MenuInitiator;
 import menu.view.InputView;
 import menu.view.OutputView;
 
