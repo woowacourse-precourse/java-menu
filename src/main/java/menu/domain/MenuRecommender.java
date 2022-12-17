@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import menu.exception.CannotRecommendCategoryException;
+import menu.exception.CannotRecommendMenuException;
 import menu.util.Validator;
 
 public class MenuRecommender {
@@ -34,7 +35,7 @@ public class MenuRecommender {
             Menus candidateMenus = menus.get(category);
             recommendMenus.add(candidateMenus.pickRandomMenu());
         }
-
+        Validator.validateRecommendMenus(recommendMenus);
         return recommendMenus;
     }
 

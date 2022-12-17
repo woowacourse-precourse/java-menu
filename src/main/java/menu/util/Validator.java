@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.Category;
 import menu.domain.Coach;
+import menu.domain.Menu;
 import menu.domain.MenuRecommender;
 import menu.exception.CannotRecommendCategoryException;
+import menu.exception.CannotRecommendMenuException;
 
 public class Validator {
 
@@ -87,6 +89,22 @@ public class Validator {
         }
         if (duplicatedCount >= MAX_CATEGORY_SIZE) {
             throw new CannotRecommendCategoryException();
+        }
+    }
+
+    public static void validateRecommendMenus(List<Menu> recommendMenus) {
+        validateDuplicatedMenus(recommendMenus);
+    }
+
+    private static void validateDuplicatedMenus(List<Menu> recommendMenus) {
+        int originMenuSize = recommendMenus.size();
+        int menuSize = recommendMenus.stream()
+            .map(Menu::getName)
+            .collect(Collectors.toSet())
+            .size();
+
+        if (originMenuSize != menuSize) {
+            throw new CannotRecommendMenuException();
         }
     }
 }
