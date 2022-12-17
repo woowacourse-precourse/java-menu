@@ -1,5 +1,7 @@
 package menu.output;
 
+import menu.coach.Coach;
+
 import java.util.List;
 
 public class OutputView {
@@ -32,6 +34,17 @@ public class OutputView {
     
     private void printCategory(List<String> category) {
         String message = "[ " + String.join(" | ", category) + " ]";
+        System.out.println(message);
+    }
+
+    private void printAllCoachsEatenMenu(List<Coach> coaches) {
+
+    }
+
+    private void printOneCoachEatenMenu(Coach coach) {
+        List<String> foodsEaten = coach.getFoodEaten();
+        String coachName = coach.getName();
+        String message = "[ " + coachName + " | " + String.join(" | ", foodsEaten) + " ]";
         System.out.println(message);
     }
 }

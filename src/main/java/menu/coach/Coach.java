@@ -18,6 +18,10 @@ public class Coach {
         return foodEaten;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void addFoodNotEat(String food) {
         foodNotEat.add(food);
     }
