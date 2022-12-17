@@ -1,7 +1,6 @@
 package menu.controller;
 
 import java.util.List;
-import menu.repository.FoodRepository;
 import menu.service.CoachService;
 import menu.service.MenuRecommendService;
 import menu.service.NotEatFoodService;
@@ -12,7 +11,7 @@ public class MenuRecommendController {
 
     public void run() {
         OutputView.printRun();
-        List<String> coachNames = InputView.readCoach();
+        List<String> coachNames = keepReadCoach();
         addCoach(coachNames);
         addNotEatFoods(coachNames);
         OutputView.printResult(MenuRecommendService.run(), CoachService.findAllCoaches());
@@ -24,7 +23,26 @@ public class MenuRecommendController {
 
     public void addNotEatFoods(List<String> coachNames) {
         coachNames.stream()
-                .forEach(coachName -> NotEatFoodService.addNotEatFoods(InputView.readNotEatFoodByCoach(coachName)));
+                .forEach(coachName -> keepAddNotEatFood(coachName));
+    }
+
+    private List<String> keepReadCoach() {
+        try {
+            List<String> coachNames = InputView.readCoach();
+            return coachNames;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return keepReadCoach();
+        }
+    }
+
+    private void keepAddNotEatFood(String coachName) {
+        try {
+            NotEatFoodService.addNotEatFoods(InputView.readNotEatFoodByCoach(coachName));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            keepAddNotEatFood(coachName);
+        }
     }
 
 }
