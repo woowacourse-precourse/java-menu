@@ -3,7 +3,6 @@ package menu.view;
 import camp.nextstep.edu.missionutils.Console;
 import menu.category.Category;
 
-import java.lang.reflect.Array;
 import java.util.NoSuchElementException;
 
 public class InputView {
