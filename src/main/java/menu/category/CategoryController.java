@@ -8,6 +8,9 @@ import java.util.List;
 
 public class CategoryController {
 
+    /**
+     * 카테고리 & 메뉴 추천 실행
+     */
     public static void recommendMenu() {
         CategoryService.recommendCategories();
 

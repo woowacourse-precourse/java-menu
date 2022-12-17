@@ -40,18 +40,24 @@ public class OutputView {
         System.out.println(SET_COACHES_NAME);
     }
 
-    public static void printErrorMessage_setCoachesName() {
-        System.out.println(ERROR_MESSAGE_START + ERROR_MESSAGE_SET_COACHES_NAME + NEXT_LINE);
-    }
-
     public static void printSetCoachesCannotEat(Coach coach) {
         System.out.println(NEXT_LINE + coach.getName() + SET_COACHES_CANNOT_EAT);
+    }
+
+    /**
+     * Error Messages
+     */
+    public static void printErrorMessage_setCoachesName() {
+        System.out.println(ERROR_MESSAGE_START + ERROR_MESSAGE_SET_COACHES_NAME + NEXT_LINE);
     }
 
     public static void printErrorMessage_setCoachesCannotEats() {
         System.out.println(ERROR_MESSAGE_START + ERROR_MESSAGE_SET_COACHES_CANNOT_EATS + NEXT_LINE);
     }
 
+    /**
+     * Recommend Results
+     */
     public static void printRecommendResult(List<Coach> coaches) {
         StringBuilder result = new StringBuilder(NEXT_LINE + RECOMMEND_RESULT_MESSAGE_HEADER + NEXT_LINE);
         result.append(printWeek()); // 구분 (요일 출력)
@@ -61,6 +67,7 @@ public class OutputView {
         System.out.println(result);
     }
 
+    // 구분
     private static String printWeek() {
         StringBuilder result = new StringBuilder();
         result.append(RECOMMEND_RESULT_MESSAGE_START + RECOMMEND_RESULT_MESSAGE_WEEK + RECOMMEND_RESULT_MESSAGE_SEPARATOR);
@@ -74,28 +81,7 @@ public class OutputView {
         return result.toString();
     }
 
-    private static String printRecommendResult_coaches(List<Coach> coaches) {
-        StringBuilder result = new StringBuilder();
-        for (Coach coach : coaches) {
-            result.append(printCoachName(coach));
-            List<String> menusRecommended = coach.getMenusRecommended();
-            for (int i = 0; i < menusRecommended.size(); i++) {
-                result.append(menusRecommended.get(i));
-                if (i != menusRecommended.size() - 1) result.append(RECOMMEND_RESULT_MESSAGE_SEPARATOR);
-            }
-            result.append(RECOMMEND_RESULT_MESSAGE_END + NEXT_LINE);
-        }
-        return result.toString();
-    }
-
-    private static String printCoachName(Coach coach) {
-        StringBuilder result = new StringBuilder();
-        result.append(RECOMMEND_RESULT_MESSAGE_START);
-        result.append(coach.getName());
-        result.append(RECOMMEND_RESULT_MESSAGE_SEPARATOR);
-        return result.toString();
-    }
-
+    // 카테고리
     private static String printRecommendResult_categories() {
         StringBuilder result = new StringBuilder();
         result.append(RECOMMEND_RESULT_MESSAGE_START + RECOMMEND_RESULT_MESSAGE_CATEGORY + RECOMMEND_RESULT_MESSAGE_SEPARATOR);
@@ -105,6 +91,37 @@ public class OutputView {
             if (i != recommendCategoryNumbers.size() - 1) result.append(RECOMMEND_RESULT_MESSAGE_SEPARATOR);
         }
         result.append(RECOMMEND_RESULT_MESSAGE_END + NEXT_LINE);
+        return result.toString();
+    }
+
+    // 코치 정보들
+    private static String printRecommendResult_coaches(List<Coach> coaches) {
+        StringBuilder result = new StringBuilder();
+        for (Coach coach : coaches) {
+            result.append(printCoachName(coach));
+            result.append(printMenusRecommended(coach));
+            result.append(RECOMMEND_RESULT_MESSAGE_END + NEXT_LINE);
+        }
+        return result.toString();
+    }
+
+    // 코치 이름
+    private static String printCoachName(Coach coach) {
+        StringBuilder result = new StringBuilder();
+        result.append(RECOMMEND_RESULT_MESSAGE_START);
+        result.append(coach.getName());
+        result.append(RECOMMEND_RESULT_MESSAGE_SEPARATOR);
+        return result.toString();
+    }
+
+    // 코치별 추천 메뉴
+    private static String printMenusRecommended(Coach coach) {
+        StringBuilder result = new StringBuilder();
+        List<String> menusRecommended = coach.getMenusRecommended();
+        for (int i = 0; i < menusRecommended.size(); i++) {
+            result.append(menusRecommended.get(i));
+            if (i != menusRecommended.size() - 1) result.append(RECOMMEND_RESULT_MESSAGE_SEPARATOR);
+        }
         return result.toString();
     }
 
