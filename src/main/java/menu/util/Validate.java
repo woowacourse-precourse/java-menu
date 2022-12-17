@@ -35,9 +35,9 @@ public class Validate {
         }
     }
 
-    public static void duplication(List<String> numbers) {
-        Set<String> sameNumber = new HashSet<>(numbers);
-        if (numbers.size() != sameNumber.size()) {
+    public static void duplication(List<String> names) {
+        Set<String> sameNumber = new HashSet<>(names);
+        if (names.size() != sameNumber.size()) {
             throw new IllegalArgumentException(Message.ERROR_DUPLICATE_VALUE.message);
         }
     }
