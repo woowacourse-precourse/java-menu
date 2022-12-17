@@ -36,7 +36,7 @@ public class CoachInputView extends DefaultInputView {
         }
     }
 
-    public String readCoachesNotEatMenusName(String coachName) {
+    public String readCoachesInedibleMenusName(String coachName) {
         return processInput(String.format(COACH_NOT_EAT_MENU_MESSAGE, coachName));
     }
 

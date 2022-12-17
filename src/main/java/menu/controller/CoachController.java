@@ -3,7 +3,6 @@ package menu.controller;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
-import java.util.function.Supplier;
 import menu.controller.exception.NotFoundCoachControllerLogicException;
 import menu.controller.status.CoachControllerStatus;
 import menu.service.coach.CoachService;
@@ -71,7 +70,7 @@ public class CoachController {
 
     private void repeatInedibleMenusLogic(String coachName) {
         try {
-            String inedibleMenusName = inputView.readCoachesNotEatMenusName(coachName);
+            String inedibleMenusName = inputView.readCoachesInedibleMenusName(coachName);
             coachService.addInedibleMenuByCoachName(coachName, inedibleMenusName);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
