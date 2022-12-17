@@ -12,7 +12,6 @@ public class RecommendationController {
 
     public RecommendationController(){
         CategoryRegister.MenuListSave();
-        startRecommendation();
     }
 
     public void startRecommendation(){
@@ -22,13 +21,14 @@ public class RecommendationController {
             List<String> dislikeMenus = new ArrayList<>();
             dislikeMenus = InputView.readDislikeMenu();
             Coach coach = new Coach(coachName, dislikeMenus);
-            startmatching();
+            startMatching();
         }
     }
 
-    private void startmatching(){
+    private void startMatching(){
         CategoryNumberGenerator categoryNumberGenerator = new CategoryRandomNumberGenerator();
         MatchingCategory matchingCategory = new MatchingCategory(categoryNumberGenerator.generate());
         String Category = matchingCategory.getCategory();
+        System.out.println(Category);
     }
 }
