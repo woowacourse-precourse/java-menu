@@ -3,6 +3,7 @@ package menu;
 import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.Menu;
+import menu.domain.WeekDay;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -33,7 +34,7 @@ public class MenuRecommendProgram {
         outputView.printInputCoachName();
         makeCoach(inputView.readCoachName());
         checkHateMenu(this.coaches);
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < WeekDay.values().length; i++) {
             categories.add(categoryRandomRecommender.recommend(categories));
             recommendMenuEachCoach(i, this.coaches);
         }
