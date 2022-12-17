@@ -26,6 +26,7 @@ public class Coach {
         this.nonMenus = nonMenus;
     }
 
+
     /**
      * 메뉴 제한 확인 메서드
      */

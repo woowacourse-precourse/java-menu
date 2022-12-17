@@ -29,6 +29,8 @@ public class MenuController {
             List<Menu> menus = input(Menu::makeMenus, () -> inputView.inputMenu(coach.getName()));
             coach.setNonMenus(menus);
         }
+
+
     }
 
     public <T, R> R input(Function<T, R> function, Supplier<T> supplier) {
