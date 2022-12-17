@@ -1,18 +1,16 @@
 package menu.output;
 
-public class InputGuideView {
-    private static final String startMessage = "점심 메뉴 추천을 시작합니다.";
-    private static final String coachNameInputMessage = "코치의 이름을 입력해 주세요. (, 로 구분)";
-    private static final String inedibleFoodsInputMessage = "(이)가 못 먹는 메뉴를 입력해 주세요.";
+import menu.message.InputGuideMessage;
 
+public class InputGuideView {
     public static void printStartMessage() {
-        System.out.println(startMessage);
+        System.out.println(InputGuideMessage.START_MESSAGE.getMessage());
         System.out.println();
-        System.out.println(coachNameInputMessage);
+        System.out.println(InputGuideMessage.COACH_NAME_INPUT_MESSAGE.getMessage());
     }
 
     public static void printInputInedibleFoodsMessage(String name) {
         System.out.println();
-        System.out.println(name + inedibleFoodsInputMessage);
+        System.out.println(name + InputGuideMessage.INEDIBLE_FOODS_INPUT_MESSAGE.getMessage());
     }
 }
