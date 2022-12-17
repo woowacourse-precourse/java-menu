@@ -29,10 +29,7 @@ public class MainController {
         RecommendHistory recommendHistory = new RecommendHistory();
         CategoryRecommender categoryRecommender = new CategoryRecommender(recommendHistory);
         Category category = categoryRecommender.recommend();
-        MenuRecommender menuRecommender = new MenuRecommender(hateMenusByCoach);
-        for (int i = 0; i < hateMenusByCoach.size(); i++) {
-            String menu = menuRecommender.recommend(category);
-            System.out.println(menu);
-        }
+        MenuRecommender menuRecommender = new MenuRecommender(hateMenusByCoach, recommendHistory);
+        System.out.println(menuRecommender.recommendByCoach(category));
     }
 }
