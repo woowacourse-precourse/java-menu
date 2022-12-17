@@ -1,4 +1,8 @@
-package menu;
+package menu.controller;
+
+import menu.service.LunchMenuService;
+import menu.view.InputView;
+import menu.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;

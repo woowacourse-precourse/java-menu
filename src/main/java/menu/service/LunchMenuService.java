@@ -1,6 +1,10 @@
-package menu;
+package menu.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import menu.Categories;
+import menu.Category;
+import menu.CategoryMaker;
+import menu.CategoryRandomGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
