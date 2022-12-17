@@ -6,18 +6,22 @@ import java.util.List;
 import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.Coaches;
+import menu.domain.Day;
+import menu.domain.Days;
 import menu.domain.Menu;
 import menu.view.InputView;
 import menu.view.OutputView;
 
 public class MainController {
 
-    private final Category japanese = new Category(makeJapanese());
-    private final Category korean = new Category(makeKorean());
-    private final Category chinese = new Category(makeChinese());
-    private final Category asian = new Category(makeAsian());
-    private final Category western = new Category(makeWestern());
+    private final List<Menu> japanese = makeJapanese();
+    private final List<Menu> korean = makeKorean();
+    private final List<Menu> chinese = makeChinese();
+    private final List<Menu> asian = makeAsian();
+    private final List<Menu> western = makeWestern();
 
+    private final List<Category> categories = makeCategories();
+    private final Days days = new Days(makeDays());
 
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
@@ -82,5 +86,21 @@ public class MainController {
             menus.add(new Menu(menu));
         }
         return menus;
+    }
+
+    private List<Category> makeCategories() {
+        return Arrays.asList(new Category("일식", japanese)
+                , new Category("한식", korean)
+                , new Category("중식", japanese)
+                , new Category("아시안", asian)
+                , new Category("양식", western));
+    }
+
+    private List<Day> makeDays() {
+        return Arrays.asList(new Day("월요일", categories)
+                , new Day("화요일", categories)
+                , new Day("수요일", categories)
+                , new Day("목요일", categories)
+                , new Day("금요일", categories));
     }
 }
