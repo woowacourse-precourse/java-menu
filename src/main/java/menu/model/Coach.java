@@ -6,7 +6,7 @@ import java.util.List;
 public class Coach {
     private final String name;
     private final List<String> myMenu = new ArrayList<>();
-    private final List<String> noMenu = new ArrayList<>();
+    private List<String> noMenu;
 
     public Coach(String name) {
         this.name = name;
@@ -22,5 +22,9 @@ public class Coach {
 
     public List<String> getNoMenu() {
         return noMenu;
+    }
+
+    public void setNoMenu(List<String> noMenu) {
+        this.noMenu = noMenu;
     }
 }
