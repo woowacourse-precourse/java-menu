@@ -48,4 +48,8 @@ public class Coach {
         clone.addAll(categoryMenus);
         return clone;
     }
+
+    public boolean validateMenu(final String menuName) {
+        return alreadyEatFoods.contains(menuName);
+    }
 }

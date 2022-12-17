@@ -22,40 +22,31 @@ public class RecommendService {
     }
 
     public List<RecommendResult> findRecommendMenus(final Coaches coaches) {
+        RecommendSystem recommendSystem = new RecommendSystem();
+        final List<MenuCategory> categories = recommendSystem.pickRandomCategory();
+
         return coaches.getCoaches().stream()
-                .map(coach -> new RecommendResult(coach, findRecommendMenus(coach)))
+                .map(coach -> new RecommendResult(coach, findRecommendMenus(categories, coach)))
                 .collect(Collectors.toList());
     }
 
-    public List<Menu> findRecommendMenus(final Coach coach) {
+    public List<Menu> findRecommendMenus(final List<MenuCategory> categories, final Coach coach) {
         RecommendSystem recommendSystem = new RecommendSystem();
 
-        return findRecommendMenus(coach, recommendSystem);
-    }
 
-    private List<Menu> findRecommendMenus(final Coach coach, final RecommendSystem recommendSystem) {
-        List<Menu> recommendMenus = new ArrayList<>();
-        while (recommendMenus.size() < MAX_RECOMMEND_SIZE) {
-            final Menu recommendMenu = doRecommend(coach, recommendSystem);
-            recommendMenus.add(recommendMenu);
+        final List<Menu> recommendMenus = new ArrayList<>();
+        for (MenuCategory category : categories) {
+            final List<String> menus = menuRepository.getMenus(category);
+            boolean canNotRecommend = false;
+            String menuName = "";
+            do {
+                menuName = recommendSystem.pickRandomMenu(menus, coach);
+                canNotRecommend = coach.validateMenu(menuName);
+            } while (canNotRecommend);
+
+            recommendMenus.add(new Menu(category, menuName));
         }
 
         return recommendMenus;
-    }
-
-    private Menu doRecommend(final Coach coach, final RecommendSystem recommendSystem) {
-
-        boolean isTwoManyCategory = false;
-        List<String> chosenMenus = new ArrayList<>();
-        MenuCategory category;
-        do {
-            category = recommendSystem.pickRandomCategory();
-            chosenMenus = menuRepository.getMenus(category);
-            isTwoManyCategory = coach.isTooManySameCategory(chosenMenus);
-        } while (isTwoManyCategory);
-
-
-        final String menuName = recommendSystem.pickRandomMenu(chosenMenus, coach);
-        return new Menu(category, menuName);
     }
 }

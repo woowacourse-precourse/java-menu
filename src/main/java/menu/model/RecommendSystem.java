@@ -2,6 +2,7 @@ package menu.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecommendSystem implements RandomPicker {
@@ -9,15 +10,19 @@ public class RecommendSystem implements RandomPicker {
     private static final int FIRST_CATEGORY_NUMBER = 1;
     private static final int LAST_CATEGORY_NUMBER = 5;
     private static final String INITIAL_MENU = "";
+    private static final int MAX_CATEGORY_SIZE = 5;
 
     @Override
-    public MenuCategory pickRandomCategory() {
-        try {
-            return pickCategory();
-        } catch (IllegalStateException e) {
-            System.out.println(e.getMessage());
-            return pickRandomCategory();
+    public List<MenuCategory> pickRandomCategory() {
+        List<MenuCategory> categories = new ArrayList<>();
+
+        while (categories.size() < MAX_CATEGORY_SIZE) {
+            final int categoryNumber = Randoms.pickNumberInRange(FIRST_CATEGORY_NUMBER, LAST_CATEGORY_NUMBER);
+            //TODO 중복검증
+            categories.add(MenuCategory.pickCategory(categoryNumber));
         }
+
+        return categories;
     }
 
     private static MenuCategory pickCategory() {
