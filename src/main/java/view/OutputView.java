@@ -52,11 +52,13 @@ public class OutputView {
     }
 
     public void printReadingHateFood(String coachName) {
+        printNewLine();
         printFormat(READ_HATE_FOOD, coachName);
         printNewLine();
     }
 
     public void printMenuResult(HashMap<Coach, List<String>> menuResult) {
+        printNewLine();
         println(MENU_RECOMMENDATION_RESULT_TITLE);
         println(WEEKDAYS);
         LinkedHashMap<Week, Category> categoriesPerWeek = MenuForWeekRepository.getCategoriesPerWeek();
