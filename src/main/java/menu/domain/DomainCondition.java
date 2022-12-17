@@ -5,13 +5,7 @@ import menu.util.EnumUtil;
 import java.util.List;
 
 public enum DomainCondition implements EnumUtil {
-    MIN_COACH_COUNT(2)
-    , MAX_COACH_COUNT(5)
-    , MIN_COACH_NAME_LENGTH(2)
-    , NAX_COACH_NAME_LENGTH(4)
-    , MIN_FOOD_COUNT(0)
-    , MAX_FOOD_COUNT(2)
-    ;
+    MIN_COACH_COUNT(2), MAX_COACH_COUNT(5), MIN_COACH_NAME_LENGTH(2), NAX_COACH_NAME_LENGTH(4), MIN_FOOD_COUNT(0), MAX_FOOD_COUNT(2);
 
     private final int number;
 
@@ -31,7 +25,7 @@ public enum DomainCondition implements EnumUtil {
 
     public static boolean validFoodCount(List<String> foodName) {
         return (MIN_FOOD_COUNT.number <= foodName.size())
-                 && (foodName.size() <= MAX_FOOD_COUNT.number);
+                && (foodName.size() <= MAX_FOOD_COUNT.number);
     }
 
 

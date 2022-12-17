@@ -4,12 +4,11 @@ import menu.view.InputView;
 import menu.view.OutputView;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import static menu.constant.InputMessage.GET_NOT_EAT_MENU;
 import static menu.constant.InputMessage.GET_COACH_NAME;
+import static menu.constant.InputMessage.GET_NOT_EAT_MENU;
 
 public class InputService {
 

@@ -8,6 +8,7 @@ import java.util.List;
 
 public class RecommendService {
     private final MenuService menuService;
+
     private final CategoryService categoryService = new CategoryService();
 
     private final RecommendResultService recommendResultService = new RecommendResultService();
@@ -19,7 +20,7 @@ public class RecommendService {
     public void recommend(DayWeek dayWeek, List<Coach> coaches) {
         Category findCategory = categoryService.getRecommendCategory();
         boolean isSave = categoryService.isSaveCategoryInfo(findCategory);
-        while(!isSave) {
+        while (!isSave) {
             findCategory = categoryService.getRecommendCategory();
             isSave = categoryService.isSaveCategoryInfo(findCategory);
         }
@@ -28,12 +29,12 @@ public class RecommendService {
             recommendResultService.saveCategoryResult(dayWeek, findCategory);
             String recommendMenu = menuService.getRecommendMenu(findCategory);
             boolean isAlreadyRecommend = menuService.isAlreadyRecommend(coach, recommendMenu);
-            while(isAlreadyRecommend) {
+            while (isAlreadyRecommend) {
                 recommendMenu = menuService.getRecommendMenu(findCategory);
                 isAlreadyRecommend = menuService.isAlreadyRecommend(coach, recommendMenu);
             }
             boolean isNotEatFood = coach.isNotEatFood(recommendMenu);
-            while(isNotEatFood) {
+            while (isNotEatFood) {
                 recommendMenu = menuService.getRecommendMenu(findCategory);
                 isNotEatFood = coach.isNotEatFood(recommendMenu);
             }

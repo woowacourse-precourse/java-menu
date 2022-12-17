@@ -15,6 +15,4 @@ public class CategoryService {
         int pickIdx = Randoms.pickNumberInRange(1, 5);
         return Category.getCategoryByIdx(pickIdx);
     }
-
-
 }

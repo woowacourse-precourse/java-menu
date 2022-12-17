@@ -4,12 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public enum DayWeek{
-    MON("월요일")
-    , TUE("화요일")
-    , WED("수요일")
-    , THU("목요일")
-    , FRI("금요일");
+public enum DayWeek {
+    MON("월요일"), TUE("화요일"), WED("수요일"), THU("목요일"), FRI("금요일");
 
     private final String value;
 
