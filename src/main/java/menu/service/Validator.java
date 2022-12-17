@@ -31,7 +31,9 @@ public class Validator {
             throw new IllegalArgumentException(ErrorFormat.DUPLICATED_NAME.getMessage());
         }
 
-        menuNames.forEach((menuName) -> MenuRepository.getMenusByName(menuName));
+        if (menuNames.size() != 0) {
+            menuNames.forEach((menuName) -> MenuRepository.getMenusByName(menuName));
+        }
         return menuNames;
     }
 }
