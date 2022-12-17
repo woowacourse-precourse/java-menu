@@ -44,12 +44,16 @@ public class OutputView {
 
     private void printRecommendedMenuByCoach(Map<String, List<String>> menusByCoach) {
         for (String coachName : menusByCoach.keySet()) {
-            List<String> words = new ArrayList<>();
-            words.add(coachName);
-            words.addAll(menusByCoach.get(coachName));
-            String recommendationMessage = Message.PRINT_FORM.getFormattedMessage(String.join(Message.DELIMITER.getMessage(), words));
+            String recommendationMessage = makeRecommendationMessage(menusByCoach, coachName);
             print(recommendationMessage);
         }
+    }
+
+    private static String makeRecommendationMessage(Map<String, List<String>> menusByCoach, String coachName) {
+        List<String> words = new ArrayList<>();
+        words.add(coachName);
+        words.addAll(menusByCoach.get(coachName));
+        return Message.PRINT_FORM.getFormattedMessage(String.join(Message.DELIMITER.getMessage(), words));
     }
 
     private static String makeTitleMessage(List<Day> rowTitles) {
