@@ -11,5 +11,4 @@ public class Coach {
         this.name = name;
     }
 
-
 }

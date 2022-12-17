@@ -12,16 +12,13 @@ public class CoachRepo {
             Coach coach = new Coach(coachNameList[i]);
             coachList.add(coach);
         }
-
     }
-
     public void setCoachCannotEatMenu(String coachName, String scanCannotEatMenu) {
         String cannotEatMenuList[] = scanCannotEatMenu.split(",");
         Coach targetCoach = getTargetCoach(coachName);
         for (int i=0; i<cannotEatMenuList.length; i++){
             targetCoach.cannotEatMenuList.add(cannotEatMenuList[i]);
         }
-
     }
 
     private Coach getTargetCoach(String coachName) {

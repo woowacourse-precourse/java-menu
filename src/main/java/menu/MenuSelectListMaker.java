@@ -10,7 +10,6 @@ import java.util.List;
 
 public class MenuSelectListMaker {
     CoachRepo coachRepo;
-
     List<String> categoriesForTheWeek;
     List<String> categories = List.of("일식", "한식", "중식", "아시안", "양식");
     public MenuSelectListMaker(CoachRepo coachRepo){
@@ -94,7 +93,5 @@ public class MenuSelectListMaker {
         }
         return returningList;
     }
-
-
 }
 

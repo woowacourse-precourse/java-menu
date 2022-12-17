@@ -38,6 +38,5 @@ public class MenuSelectController {
         catch (IllegalArgumentException e){
             setCoachCannotEatMenuForOneCoach(coach);
         }
-
     }
 }
