@@ -22,11 +22,22 @@ public class MenuController {
         this.outputView = outputView;
     }
 
+    public List<Category> getCategories() {
+        List<Category> categories = new ArrayList<Category>();
+        while (categories.size() < 5) {
+            Category category = RandomCategory.getRandomCategory();
+            if (Collections.frequency(categories, category) < 2) {
+                categories.add(category);
+            }
+        }
+        return categories;
+    }
+
     public void init() {
         outputView.startProgram();
         List<Coach> coaches = getCoaches();
         List<Week> weeks = Week.getWeeks();
-        List<Category> categories = new ArrayList<Category>();
+        List<Category> categories = getCategories();
 
         while (categories.size() < 5) {
             Category category = RandomCategory.getRandomCategory();
