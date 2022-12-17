@@ -5,7 +5,7 @@ import java.util.List;
 
 public class MenuRecommender {
     private List<Member> members;
-    private List<String> categories;
+    private List<String> categories; //카테고리 이름으로 저장
 
     public MenuRecommender() {
         members = new ArrayList<>();
@@ -26,5 +26,18 @@ public class MenuRecommender {
         }
         return true;
     }
-    
+
+    private boolean validateCategoryDuplication(String newCategory) {
+        int duplicationCounter = 0;
+        for (String category : categories) {
+            if (category.equals(newCategory)) {
+                duplicationCounter++;
+            }
+        }
+        if (duplicationCounter == 2) {
+            return false;
+        }
+        return true;
+    }
+
 }
