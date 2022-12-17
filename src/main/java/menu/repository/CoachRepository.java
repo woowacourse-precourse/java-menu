@@ -25,4 +25,8 @@ public class CoachRepository {
         return size >= SizeLimit.COACH_MIN_SIZE.getSize()
                 && size <= SizeLimit.COACH_MAX_SIZE.getSize();
     }
+
+    public boolean isValidCoach(String coachName) {
+        return coaches.stream().anyMatch(coach -> coachName.equals(coach.getName()));
+    }
 }
