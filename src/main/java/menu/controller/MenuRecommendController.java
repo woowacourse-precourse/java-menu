@@ -9,9 +9,6 @@ import java.util.List;
 
 public class MenuRecommendController {
 
-    private static final int MIN_COACH_NUMBER = 2;
-    private static final int MAX_COACH_NUMBER = 5;
-
     private final OutputView outputView;
     private final InputView inputView;
 
@@ -37,6 +34,6 @@ public class MenuRecommendController {
     }
 
     private List<String> readCoachNames() {
-        return inputView.readCoachNames(MIN_COACH_NUMBER, MAX_COACH_NUMBER);
+        return inputView.readCoachNames(menuRecommender.getMinCoachNumber(), menuRecommender.getMaxCoachNumber());
     }
 }

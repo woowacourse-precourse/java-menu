@@ -7,6 +7,9 @@ public class MenuRecommender {
 
     private static final String COACH_NAME_DUPLICATE_EXCEPTION_MESSAGE = "[ERROR] 중복되는 코치의 이름이 입력되었습니다.";
 
+    private static final int MIN_COACH_NUMBER = 2;
+    private static final int MAX_COACH_NUMBER = 5;
+
     private List<Coach> coaches;
 
     public MenuRecommender() {
@@ -25,5 +28,13 @@ public class MenuRecommender {
         if (coaches.contains(coach)) {
             throw new IllegalArgumentException(COACH_NAME_DUPLICATE_EXCEPTION_MESSAGE);
         }
+    }
+
+    public int getMinCoachNumber() {
+        return MIN_COACH_NUMBER;
+    }
+
+    public int getMaxCoachNumber() {
+        return MAX_COACH_NUMBER;
     }
 }
