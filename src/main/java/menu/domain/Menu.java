@@ -33,9 +33,18 @@ public enum Menu {
                 .orElseThrow(()->new IllegalArgumentException(DOES_NOT_EXIST_CATEGORY_ERROR));
     }
 
+    public static void validateExistedMenus(List<String> menus){
+        if(menus.isEmpty()){
+            return;
+        }
+        for(String menu : menus){
+            validateExistedMenu(menu);
+        }
+    }
+
     public static void validateExistedMenu(String inputMenu){
         Arrays.stream(values())
-                .filter(menu -> menu.menus.contains(inputMenu))
+                .filter(menu -> menu.menus.contains(inputMenu.trim()))
                 .findFirst()
                 .orElseThrow(()->new IllegalArgumentException(DOES_NOT_EXIST_MENU_ERROR));
     }

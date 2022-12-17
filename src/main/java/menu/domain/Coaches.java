@@ -1,6 +1,7 @@
 package menu.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Coaches {
@@ -29,5 +30,9 @@ public class Coaches {
         for(String name : coachNames){
             coaches.add(new Coach(name));
         }
+    }
+
+    public List<Coach> getCoaches(){
+        return Collections.unmodifiableList(coaches);
     }
 }

@@ -11,8 +11,8 @@ public class Coach {
     private final List<String> inedibleMenus = new ArrayList<>();
 
     public Coach(String name){
-        validateCoachName(name);
-        this.name = name;
+        validateCoachName(name.trim());
+        this.name = name.trim();
     }
 
     private void validateCoachName(String name){
@@ -21,16 +21,24 @@ public class Coach {
         }
     }
 
-    public void addSelectedMenus(String menu){
-        selectedMenus.add(menu);
+    public void addSelectedMenus(List<String> menus){
+        selectedMenus.addAll(menus);
     }
 
-    public boolean containsSelectedMenu(String menu){
+    public void addInedibleMenus(List<String> menus){
+        inedibleMenus.addAll(menus);
+    }
+
+    public boolean isSelectedMenu(String menu){
         return selectedMenus.contains(menu);
     }
 
     public boolean isInedibleMenu(String menu){
         return inedibleMenus.contains(menu);
+    }
+
+    public String getName(){
+        return name;
     }
 
 }
