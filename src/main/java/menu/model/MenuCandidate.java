@@ -1,14 +1,18 @@
 package menu.model;
 
+import menu.Constants;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+import static menu.Constants.MENU_NAME;
+
 public class MenuCandidate {
 
-    public static final Map<Integer, List<String>> MENU = new HashMap<>();
+    public static final Map<String, List<String>> MENU = new HashMap<>();
 
     static {
         List<String> menu = new ArrayList<>();
@@ -24,8 +28,8 @@ public class MenuCandidate {
             List<String> m = new ArrayList<>();
 
             while (st.hasMoreTokens()) {
-                MENU.computeIfAbsent(i + 1, k -> new ArrayList<>());
-                MENU.get(i + 1).add(st.nextToken());
+                MENU.computeIfAbsent(MENU_NAME.get(i + 1), k -> new ArrayList<>());
+                MENU.get(MENU_NAME.get(i + 1)).add(st.nextToken());
             }
         }
     }
