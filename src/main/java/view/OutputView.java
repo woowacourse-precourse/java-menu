@@ -10,4 +10,8 @@ public class OutputView {
         System.out.println(ViewConstants.RECOMMEND_RESULT);
         System.out.println(render);
     }
+
+    public void printEndMessage() {
+        System.out.println(ViewConstants.END);
+    }
 }

@@ -14,6 +14,7 @@ public class Controller {
     public void control() {
         init();
         recommend();
+        end();
     }
 
     private void init() {
@@ -28,5 +29,9 @@ public class Controller {
         service.chooseCategories();
         service.chooseMenus();
         outputView.printRecommendation(viewRenderer.render(service.getRecommendation()));
+    }
+
+    private void end() {
+        outputView.printEndMessage();
     }
 }
