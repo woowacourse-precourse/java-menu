@@ -44,8 +44,7 @@ public class Coaches {
 
     public List<CoachMenu> getCoachMenus() {
         List<CoachMenu> coachMenus = new ArrayList<>();
-        coaches.forEach(coach -> {
-            coachMenus.add(coach.getCoachMenu());
-        });
+        coaches.forEach(coach -> coachMenus.add(coach.getCoachMenu()));
+        return coachMenus;
     }
 }

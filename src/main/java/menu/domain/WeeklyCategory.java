@@ -25,11 +25,9 @@ public class WeeklyCategory {
     }
 
     private void addRandomCategoryOfDay(Day day) {
-        System.out.println(day.getDayInKorean());
         Category category;
         do {
             category = Category.getRandomCategory();
-            System.out.println(category.getName());
         } while (!canAddCategory(category));
         dayCategories.put(day, category);
     }
@@ -37,7 +35,6 @@ public class WeeklyCategory {
     private boolean canAddCategory(Category category) {
         List<Category> existCategories = new ArrayList<>(dayCategories.values());
         int countOfCategory = Collections.frequency(existCategories, category);
-        System.out.println(countOfCategory);
         if (countOfCategory >= MAXIMUM_CATEGORY_FREQUENCY) {
             return false;
         }
