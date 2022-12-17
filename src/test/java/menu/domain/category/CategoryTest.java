@@ -11,5 +11,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CategoryTest {
     
-
+    @DisplayName("예외 처리 : 존재하는 카테고리가 아닐 시")
+    @ParameterizedTest(name = "{displayName} : categoryNumber => {0}")
+    @ValueSource(ints = {0, 6})
+    void findByCategoryNumberException(int categoryNumber) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> Category.findByCategoryNumber(categoryNumber))
+                .withMessageStartingWith("[ERROR]");
+    }
 }
