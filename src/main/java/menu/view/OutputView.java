@@ -8,6 +8,7 @@ import menu.domain.WeekCategory;
 import menu.service.MenuService;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -19,6 +20,8 @@ public class OutputView {
     private static final String FORMAT = "[ %s | %s ]";
     private static final String QUIT_MESSAGE = "추천을 완료했습니다.";
 
+
+    private static final String ERROR = "[ERROR] ";
     private OutputView() {
     }
 
@@ -48,13 +51,16 @@ public class OutputView {
         System.out.println(String.format(FORMAT, "카테고리", categories));
     }
 
-    public void printMenus(MenuService menuService) {
-        String coach = menuService.getCoachName();
-        String menus = String.join(SEPARATOR, menuService.getMenus());
-        System.out.println(String.format(FORMAT, coach, menus));
+    public void printMenus(List<String> menus, String name) {
+        String history = String.join(SEPARATOR, menus);
+        System.out.println(String.format(FORMAT, name, history));
     }
 
     public void printQuit() {
         System.out.println(QUIT_MESSAGE);
+    }
+
+    public void printError(String error) {
+        System.out.println(ERROR + error);
     }
 }
