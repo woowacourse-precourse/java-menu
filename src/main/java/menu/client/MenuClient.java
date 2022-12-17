@@ -8,8 +8,8 @@ public class MenuClient {
 
     public void run() {
         printStartMessage();
-        ValidateNameCommand validateNameCommand = askNames();
-        ValidateMenuCommand validateMenuCommand = askMenus();
+        ValidateNameCommand validateNameCommand = handleError(this::askNames);
+        ValidateMenuCommand validateMenuCommand = handleError(this::askMenus);
         printResult(validateNameCommand, validateMenuCommand);
     }
 
