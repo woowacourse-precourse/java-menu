@@ -10,4 +10,12 @@ public class Coach {
         this.name = name;
         this.menu = menu;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<String> getMenu() {
+        return menu;
+    }
 }

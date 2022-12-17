@@ -3,7 +3,6 @@ package menu.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import menu.enums.FoodCategory;
 import menu.vo.Coach;
-import menu.vo.Menu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.Map;
 
 public class Recommend {
     private Map<FoodCategory, Integer>  weekCategoryChoose;
-    private Map<Coach,List<Menu>> coachEatenMenu;
+    private Map<Coach,List<String>> coachEatenMenu;
 
     public Recommend(List<Coach> coaches) {
         initWeekCategoryChoose();
@@ -19,6 +18,9 @@ public class Recommend {
     }
 
     public void chooseMenu() {
+        FoodCategory foodCategory = recommendFoodCategory();
+
+
     }
 
     private FoodCategory recommendFoodCategory() {
