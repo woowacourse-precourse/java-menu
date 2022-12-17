@@ -89,5 +89,13 @@ public class MenuService {
         }
     }
 
-
+    private void choiceMenu(Coach coach , int dayOfTheWeekNum){
+        while(true){
+            String menu = Randoms.shuffle(menuRecommendApp.getCategories().get(dayOfTheWeekNum).getMenus()).get(0);
+            if(coach.canEatMenu(menu)) {
+                coach.addRecommendedMenu(menu);
+                return;
+            }
+        }
+    }
 }
