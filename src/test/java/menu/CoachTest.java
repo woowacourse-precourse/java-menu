@@ -13,7 +13,7 @@ public class CoachTest {
     @DisplayName("음식 고르기")
     void pickFood() {
         Coach coach = new Coach("name", List.of("규동", "우동", "미소시루", "스시", "가츠동", "오니기리", "하이라이스", "라멘"));
-        String s = coach.pickFood(Dish.pickCategory("일식"));
+        String s = coach.pickMenu(Dish.pickCategory("일식"));
 
         assertThat(s).isEqualTo("오코노미야끼");
     }
@@ -22,7 +22,7 @@ public class CoachTest {
     @DisplayName("음식 고르기2")
     void pickFood2() {
         Coach coach = new Coach("name", List.of("aa", "bb"));
-        String food = coach.pickFood(List.of("aa", "bb", "cc"));
+        String food = coach.pickMenu(List.of("aa", "bb", "cc"));
 
         assertThat(food).isEqualTo("cc");
 

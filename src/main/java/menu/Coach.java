@@ -15,21 +15,21 @@ public class Coach {
         this.hateFood = hateFood;
     }
 
-    public String pickFood(List<String> menus) {
-        List<String> foods = new ArrayList<>(menus);
-        String picked = Randoms.shuffle(foods).get(0);
+    public String pickMenu(List<String> menus) {
+        List<String> menusToShuffle = new ArrayList<>(menus);
+        String pickedMenu = Randoms.shuffle(menusToShuffle).get(0);
         for (String hate : hateFood) {
-            if (hate.equals(picked)) {
-                return pickFood(menus);
+            if (hate.equals(pickedMenu)) {
+                return pickMenu(menus);
             }
         }
         for (String eaten : eatenFood) {
-            if (eaten.equals(picked)) {
-                return pickFood(menus);
+            if (eaten.equals(pickedMenu)) {
+                return pickMenu(menus);
             }
         }
-        eatenFood.add(picked);
-        return picked;
+        eatenFood.add(pickedMenu);
+        return pickedMenu;
     }
 
     public List<String> getEatenFood() {

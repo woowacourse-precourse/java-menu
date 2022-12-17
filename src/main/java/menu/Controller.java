@@ -28,7 +28,7 @@ public class Controller {
         String category = categorySelector.pickCategory();
         List<String> menus = Dish.pickCategory(category);
         for (Coach coach : coaches) {
-            coach.pickFood(menus);
+            coach.pickMenu(menus);
         }
         return calculateMenu(count + 1);
     }
