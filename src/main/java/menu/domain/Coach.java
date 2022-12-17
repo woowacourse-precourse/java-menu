@@ -44,4 +44,10 @@ public class Coach {
     public boolean isBlacklist(String menu) {
         return blacklist.contains(menu);
     }
+
+    public boolean isDuplicate(String menu) {
+        return menus.values()
+                .stream()
+                .anyMatch(coachMenu -> coachMenu.equals(menu));
+    }
 }

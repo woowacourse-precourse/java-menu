@@ -1,9 +1,9 @@
 package menu.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -28,7 +28,7 @@ class CoachTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("못 먹는 음식으면 True를 반환한다.")
+    @DisplayName("못 먹는 음식이면 True를 반환한다.")
     @ParameterizedTest
     @CsvSource({"쌈밥","쌀국수"})
     void blacklistTest(String name) {
@@ -36,6 +36,17 @@ class CoachTest {
 
         coach.setBlacklist(List.of("쌈밥", "쌀국수"));
 
-        Assertions.assertThat(coach.isBlacklist(name)).isTrue();
+        assertThat(coach.isBlacklist(name)).isTrue();
+    }
+
+    @DisplayName("이미 추천했던 메뉴면 True를 반환한다.")
+    @ParameterizedTest
+    @CsvSource({"쌈밥,true","쌀국수,false"})
+    void duplicateTest(String name,boolean result) {
+        Coach coach = new Coach("포비");
+
+        coach.putDayByMenu(Day.MONDAY, "쌈밥");
+
+        assertThat(coach.isDuplicate(name)).isEqualTo(result);
     }
 }

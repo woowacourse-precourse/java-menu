@@ -31,7 +31,7 @@ public class FoodRecommender {
 
     private String getRandomMenu(FoodCategory category, Coach coach) {
         String menu = Randoms.shuffle(category.getFoods()).get(0);
-        if (coach.isBlacklist(menu)) {
+        if (coach.isBlacklist(menu) || coach.isDuplicate(menu)) {
             return getRandomMenu(category, coach);
         }
         return menu;
