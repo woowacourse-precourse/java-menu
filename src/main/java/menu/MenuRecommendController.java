@@ -27,12 +27,21 @@ public class MenuRecommendController {
     }
 
     public void run() {
-        CoachesRequest coachesRequest = inputView.requestCoachNames();
-        Coaches coaches = coachesRequest.toCoaches();
+        Coaches coaches = requestCoachNames();
         updateCoachesAvoidMenu(coaches);
 
         RecommendResult recommendResult = menuService.recommendMenus(coaches);
         outputView.resultView(recommendResult);
+    }
+
+    private Coaches requestCoachNames() {
+        try {
+            CoachesRequest coachesRequest = inputView.requestCoachNames();
+            return coachesRequest.toCoaches();
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception.getMessage());
+            return requestCoachNames();
+        }
     }
 
     private void updateCoachesAvoidMenu(Coaches coaches) {
@@ -47,7 +56,7 @@ public class MenuRecommendController {
             List<String> menuNames = coachAvoidMenu.getMenus();
             menuService.addCoachAvoidMenu(coach, menuNames);
         } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
+            outputView.printErrorMessage(exception.getMessage());
             requestAvoidMenu(coach);
         }
     }
