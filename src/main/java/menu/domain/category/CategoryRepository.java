@@ -4,7 +4,7 @@ import java.util.*;
 
 import static menu.util.Constants.CANNOT_FOUND_CATEGORY;
 
-public class CategoryRepository { // 인터페이스 만들어도 될듯
+public class CategoryRepository {
     private static Map<Integer, Category> categories = new HashMap<>();
 
     private static final CategoryRepository instance = new CategoryRepository();
