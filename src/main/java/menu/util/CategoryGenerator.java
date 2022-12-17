@@ -10,7 +10,6 @@ public class CategoryGenerator {
     public Categories generateCategories() {
         categories = new Categories();
         makeCategory();
-        System.out.println(categories.getCategories());
         return categories;
     }
 
