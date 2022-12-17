@@ -13,9 +13,14 @@ public class InputView {
     public List<String> readCoachNames() {
         System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
         String input = Console.readLine();
+        printNewLine();
         List<String> names = toList(input);
         validateCoachNames(names);
         return names;
+    }
+
+    private void printNewLine() {
+        System.out.println();
     }
 
     private List<String> toList(String input) {
@@ -41,6 +46,7 @@ public class InputView {
     public List<String> readNotEatFoods(String coachName) {
         System.out.printf("%s(이)가 못 먹는 메뉴를 입력해 주세요.\n", coachName);
         String input = Console.readLine();
+        printNewLine();
         List<String> foods = toList(input);
         validateNotEatFoods(foods);
         return foods;
