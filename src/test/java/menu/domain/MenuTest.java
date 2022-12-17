@@ -21,4 +21,13 @@ public class MenuTest {
         assertThat(Menu.isInEdibleMenu(inEdibleMenu, menu_2,nowMenu)).isEqualTo(false);
         assertThat(Menu.isInEdibleMenu(inEdibleMenu, menu_3,nowMenu)).isEqualTo(true);
     }
+
+    @Test
+    @DisplayName("먹지 못하는 음식을 제외한 메뉴가 추천되었는지 확인하는 함수 테스트")
+    void checkIsIncludeInEdibleMenuTest() {
+        List<String> inEdibleMenu = List.of("깐풍기", "볶음면", "동파육", "짜장면", "짬뽕", "마파두부", "탕수육", "토마토 달걀볶음");
+        Integer category = 3;
+        for (int i = 0; i < inEdibleMenu.size(); i ++)
+            assertThat(MenuRecommand.recommandMenuByCategory(inEdibleMenu,category)).isNotEqualTo(inEdibleMenu.get(i));
+    }
 }
