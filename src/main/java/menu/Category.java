@@ -19,4 +19,27 @@ public enum Category {
         this.number = number;
         this.menus = menus;
     }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+
+    public int getNumber() {
+        return number;
+    }
+
+    public List<String> getMenus() {
+        return menus;
+    }
+
+    //해당 번호 및, 카테고리 이름으로 검색하는 메서드 작성 필요
+    public static Category findByNumber(int number) {
+        for (Category category : Category.values()) {
+            if (category.getNumber() == number) {
+                return category;
+            }
+        }
+        return null;
+    }
 }
