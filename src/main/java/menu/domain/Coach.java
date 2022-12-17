@@ -11,6 +11,7 @@ import menu.domain.vo.Name;
 
 public class Coach {
     private static final int INEDIBLE_MAXIMUM_SIZE = 2;
+    private static final int FIRST = 0;
 
     private final Name name;
     private final List<Food> inedibles;
@@ -34,23 +35,24 @@ public class Coach {
     }
 
     public void pickFrom(Category category) {
-        String foodName = pickFoodNameFrom(category);
-        while (wasRecommended(foodName) || isInedible(foodName)) {
-            foodName = pickFoodNameFrom(category);
+        Food food = pickFoodFrom(category);
+        while (wasRecommended(food) || isInedible(food)) {
+            food = pickFoodFrom(category);
         }
-        recommendedFoods.add(Food.from(foodName));
+        recommendedFoods.add(food);
     }
 
-    private String pickFoodNameFrom(Category category) {
-        return Randoms.shuffle(Food.foodNamesFromCategory(category)).get(0);
+    private Food pickFoodFrom(Category category) {
+        String foodName = Randoms.shuffle(Food.foodNamesFromCategory(category)).get(FIRST);
+        return Food.from(foodName);
     }
 
-    private boolean isInedible(String foodName) {
-        return inedibles.contains(Food.from(foodName));
+    private boolean isInedible(Food food) {
+        return inedibles.contains(food);
     }
 
-    private boolean wasRecommended(String foodName) {
-        return recommendedFoods.contains(Food.from(foodName));
+    private boolean wasRecommended(Food food) {
+        return recommendedFoods.contains(food);
     }
 
     public List<Food> getRecommendedFoods() {
