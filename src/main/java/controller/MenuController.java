@@ -25,7 +25,7 @@ public class MenuController {
     public MenuController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.weeklyMenuMaker = new WeeklyMenuMaker(new WeeklyRandomMenuMakerGenerator());
+        weeklyMenuMaker = new WeeklyMenuMaker(new WeeklyRandomMenuMakerGenerator());
     }
     
     public void run() {
@@ -93,7 +93,8 @@ public class MenuController {
         weeklyMenus.putWeeklyMenu(coach, weeklyMenu);
     }
     
-    private boolean putMenu(DayOfTheWeek dayOfTheWeek, Category category, Coach coach, WeeklyMenu weeklyMenu) {
+    private boolean putMenu(
+            DayOfTheWeek dayOfTheWeek, Category category, Coach coach, WeeklyMenu weeklyMenu) {
         String menuRecommendation = weeklyMenuMaker.makeMenuRecommendation(category.getMenus());
         return weeklyMenu.putMenu(dayOfTheWeek, coach, menuRecommendation);
     }

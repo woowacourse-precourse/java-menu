@@ -12,8 +12,8 @@ public class WeeklyMenus {
     private final List<Category> categories;
     
     public WeeklyMenus() {
-        this.weeklyMenus = new LinkedHashMap<>();
-        this.categories = new ArrayList<>();
+        weeklyMenus = new LinkedHashMap<>();
+        categories = new ArrayList<>();
     }
     
     public List<String> getCategories() {
