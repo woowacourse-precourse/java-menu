@@ -37,11 +37,11 @@ public class Coach {
         return recommendation.values().stream().anyMatch(foodName::equals);
     }
 
-    public Map.Entry<String, List<String>> findRecommendations() {
-        return new AbstractMap.SimpleEntry<>(
-                name,
-                findRecommendationFoodInOrder()
-        );
+    public List<String> findRecommendations() {
+        List<String> recommendations = new ArrayList<>();
+        recommendations.add(name);
+        recommendations.addAll(findRecommendationFoodInOrder());
+        return recommendations;
     }
 
     private List<String> findRecommendationFoodInOrder() {
