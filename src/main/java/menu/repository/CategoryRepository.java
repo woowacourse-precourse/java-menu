@@ -19,4 +19,8 @@ public class CategoryRepository {
     public static CategoryRepository getInstance() {
         return CategoryRepository.InstanceHolder.INSTANCE;
     }
+
+    public boolean isValidCategory(String categoryName) {
+        return categories.stream().anyMatch(category -> categoryName.equals(category.getName()));
+    }
 }
