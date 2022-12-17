@@ -19,6 +19,8 @@ public class MenuDecideController {
             output.askCantEatMenu(coach);
             makeCatEatMenus(coach);
         }
+
+        service.makeCategoryResult();
     }
 
     private void makeCatEatMenus(Coach coach) {

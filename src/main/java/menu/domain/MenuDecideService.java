@@ -6,6 +6,8 @@ import java.util.List;
 import menu.repository.MenuRepository;
 
 public class MenuDecideService {
+    private final CategoryResult categoryResult = new CategoryResult();
+
     public Coaches makeCoaches(String names) {
         List<Coach> coaches = new ArrayList<>();
         for (String name : names.split(",")) {
@@ -24,6 +26,14 @@ public class MenuDecideService {
             menus.add(MenuRepository.findMenu(menuName));
         }
         coach.setMenus(new CantEatMenus(menus));
+    }
+
+    public void makeCategoryResult() {
+        Category category = decideCategory();
+        while (!categoryResult.isPossible(category)) {
+            category = decideCategory();
+        }
+        categoryResult.add(category);
     }
 
     private Category decideCategory() {
