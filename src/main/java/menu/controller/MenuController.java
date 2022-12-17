@@ -28,17 +28,20 @@ public class MenuController {
     public void run() {
         start();
         readCoachInfo();
-        recommendMenu();
+        recommend();
         printResult();
         end();
     }
 
-    public void recommendMenu() {
-        recommendResult = menuService.recommend(coachList);
-    }
-
     public void start() {
         outputView.printStart();
+    }
+
+    public void readCoachInfo() {
+        List<String> coachNames = readCoachNames();
+        for (String coachName : coachNames) {
+            readImpossibleMenus(coachName);
+        }
     }
 
     public List<String> readCoachNames() {
@@ -61,12 +64,10 @@ public class MenuController {
         coachList.add(new Coach(coachName, impossibleMenuList));
     }
 
-    public void readCoachInfo() {
-        List<String> coachNames = readCoachNames();
-        for (String coachName : coachNames) {
-            readImpossibleMenus(coachName);
-        }
+    public void recommend() {
+        recommendResult = menuService.recommend(coachList);
     }
+
 
     public void printResult() {
         outputView.printResultHead();
