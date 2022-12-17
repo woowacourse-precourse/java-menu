@@ -1,4 +1,4 @@
-package menu.domain;
+package menu.domain.source;
 
 public enum CATEGORY {
     JAPANESE(0, "일식"),
