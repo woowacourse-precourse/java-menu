@@ -9,8 +9,12 @@ import java.util.List;
 
 public class MenuRecommender {
     private List<Category> categoryHistory = new ArrayList<>();
-    private List<Coach> coaches = new ArrayList<>();
+    private List<Coach> coaches;
     private static final List<Category> CATEGORIES = Arrays.asList(Category.values());
+
+    public MenuRecommender(List<Coach> coaches) {
+        this.coaches = coaches;
+    }
 
     private Category pickupCategory() {
         return CATEGORIES.get(Randoms.pickNumberInRange(1, 5));
