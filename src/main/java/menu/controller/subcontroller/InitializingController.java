@@ -1,6 +1,8 @@
 package menu.controller.subcontroller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import menu.domain.Category;
 import menu.domain.Menu;
@@ -11,8 +13,8 @@ import menu.view.InputView;
 import menu.view.OutputView;
 
 public class InitializingController implements Controllable {
-
     public static final List<String> CATEGORIES = List.of("일식", "한식", "중식", "아시안", "양식");
+    public static Map<String, List<String>> ALL_MENUS_IN_CATEGORIES = new HashMap<>();
     public static final List<String> JAPANESE_MENUS = List.of("규동", "우동", "미소시루", "스시", "가츠동", "오니기리",
             "하이라이스", "라멘", "오코노미야끼");
     public static final List<String> KOREAN_MENUS = List.of("김밥", "김치찌개", "쌈밥", "된장찌개", "비빔밥", "칼국수",
@@ -23,6 +25,16 @@ public class InitializingController implements Controllable {
             "쌀국수", "똠얌꿍", "반미", "월남쌈", "분짜");
     public static final List<String> WESTERN_MENUS = List.of("라자냐", "그라탱", "뇨끼", "끼슈", " 프렌치 토스트",
             "바게트", "스파게티", "피자", "파니니");
+
+    static {
+        ALL_MENUS_IN_CATEGORIES.put("일식", JAPANESE_MENUS);
+        ALL_MENUS_IN_CATEGORIES.put("한식", KOREAN_MENUS);
+        ALL_MENUS_IN_CATEGORIES.put("중식", CHINESE_MENUS);
+        ALL_MENUS_IN_CATEGORIES.put("아시안", ASIAN_MENUS);
+        ALL_MENUS_IN_CATEGORIES.put("양식", WESTERN_MENUS);
+    }
+
+
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -38,35 +50,24 @@ public class InitializingController implements Controllable {
         return ApplicationStatus.RECEIVE_COACH_DATA;
     }
 
+    private static void initializeMenus() {
+        for (Map.Entry<String, List<String>> element : ALL_MENUS_IN_CATEGORIES.entrySet()) {
+            CategoryRepository.add(new Category(element.getKey()));
+            List<Menu> menusInCategory = getMenus(element.getValue());
+            addMenus(menusInCategory);
+            CategoryRepository.findByName(element.getKey()).addMenusToCategory(menusInCategory);
+        }
+    }
+
     private static void initializeCategories() {
         CATEGORIES.stream().map(Category::new).forEach(CategoryRepository::add);
     }
 
-    private static void initializeMenus() {
-        List<Menu> japaneseMenus = getMenus(JAPANESE_MENUS);
-        List<Menu> koreanMenus = getMenus(KOREAN_MENUS);
-        List<Menu> chineseMenus = getMenus(CHINESE_MENUS);
-        List<Menu> asianMenus = getMenus(ASIAN_MENUS);
-        List<Menu> westernMenus = getMenus(WESTERN_MENUS);
-
-        addMenus(japaneseMenus);
-        addMenus(koreanMenus);
-        addMenus(chineseMenus);
-        addMenus(asianMenus);
-        addMenus(westernMenus);
-
-        CategoryRepository.findByName("일식").addMenusToCategory(japaneseMenus);
-        CategoryRepository.findByName("한식").addMenusToCategory(koreanMenus);
-        CategoryRepository.findByName("중식").addMenusToCategory(chineseMenus);
-        CategoryRepository.findByName("아시안").addMenusToCategory(asianMenus);
-        CategoryRepository.findByName("양식").addMenusToCategory(westernMenus);
+    private static void addMenus(List<Menu> menus) {
+        menus.forEach(MenuRepository::add);
     }
 
-    private static void addMenus(List<Menu> japaneseMenus) {
-        japaneseMenus.forEach(MenuRepository::add);
-    }
-
-    private static List<Menu> getMenus(List<String> japaneseMenus) {
-        return japaneseMenus.stream().map(Menu::new).collect(Collectors.toList());
+    private static List<Menu> getMenus(List<String> menus) {
+        return menus.stream().map(Menu::new).collect(Collectors.toList());
     }
 }
