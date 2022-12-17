@@ -50,20 +50,20 @@ public class Coach {
         return eatingFoodLog.values().contains(food);
     }
 
-    public int getMinUneatableFoodCount() {
-        return MIN_UNEATABLE_FOOD_COUNT;
-    }
-
-    public int getMaxUneatableFoodCount() {
-        return MAX_UNEATABLE_FOOD_COUNT;
-    }
-
     public String getName() {
         return name;
     }
 
     public String getFoodAt(Day day) {
         return eatingFoodLog.get(day);
+    }
+
+    public int getMinUneatableFoodCount() {
+        return MIN_UNEATABLE_FOOD_COUNT;
+    }
+
+    public int getMaxUneatableFoodCount() {
+        return MAX_UNEATABLE_FOOD_COUNT;
     }
 
     @Override
