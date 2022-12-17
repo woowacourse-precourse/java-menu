@@ -37,5 +37,21 @@ public class Application {
                         .add(MenuRecommendService.recommendMenu(coachName, recommendedCategories.get(i)));
             }
         }
+
+        System.out.println("메뉴 추천 결과입니다.");
+        printFormattedResultLine("구분", totalDay);
+        printFormattedResultLine("카테고리", recommendedCategories);
+        for (String coachName : coachNames) {
+            printFormattedResultLine(coachName, recommendMenusByCoach.get(coachName));
+        }
+        System.out.println();
+        System.out.println("추천을 완료했습니다.");
+    }
+
+    private static void printFormattedResultLine(String group, List<String> contents) {
+        StringJoiner result = new StringJoiner(" | ", "[ ", " ]");
+        result.add(group);
+        contents.forEach((content) -> result.add(content));
+        System.out.println(result.toString());
     }
 }
