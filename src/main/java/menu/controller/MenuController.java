@@ -18,6 +18,17 @@ public class MenuController {
         OutputView.start();
         OutputView.enterCoach();
         List<Coach> coaches = getCoaches();
+        getCantEatMenus(coaches);
+    }
+
+    private void getCantEatMenus(List<Coach> coaches) {
+        for (Coach coach : coaches) {
+            findCantEatMenu(coach);
+        }
+    }
+
+    private void findCantEatMenu(Coach coach) {
+        OutputView.cantEatMenu(coach);
     }
 
     private static List<Coach> getCoaches() {
