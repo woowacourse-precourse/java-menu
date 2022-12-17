@@ -28,4 +28,8 @@ public class OutputView {
     public static String insertLine(List<String> categorys){
         return String.join(" | ", categorys);
     }
+
+    public static void endMessage(){
+        System.out.println("추천을 완료했습니다.");
+    }
 }
