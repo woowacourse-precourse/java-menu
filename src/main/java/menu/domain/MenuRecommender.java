@@ -72,10 +72,7 @@ public class MenuRecommender {
         int prevCount = (int) weekCategoryLog.values().stream()
                 .filter(prevCategory -> prevCategory.equals(menu))
                 .count();
-        if (prevCount < MAX_DUPLICATE_CATEGORY_COUNT) {
-            return true;
-        }
-        return false;
+        return prevCount < MAX_DUPLICATE_CATEGORY_COUNT;
     }
 
     private void selectMenu(Day day, Coach coach) {
@@ -84,6 +81,7 @@ public class MenuRecommender {
             List<String> foods = weekCategoryLog.get(day).getFoods();
             menu = Randoms.shuffle(foods).get(0);
         } while (!isAvailableFood(coach, menu));
+
         coach.addFood(day, menu);
     }
 
