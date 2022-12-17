@@ -5,7 +5,8 @@ import menu.controller.MenuRecommendController;
 
 public class Exit extends MenuRecommendApplicationStep {
 
-    public Exit(MenuRecommendController controller, Logger logger) {
+    public Exit(final MenuRecommendController controller,
+                final Logger logger) {
         super(controller, logger);
     }
 

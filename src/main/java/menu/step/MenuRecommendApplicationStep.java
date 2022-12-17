@@ -8,7 +8,8 @@ public abstract class MenuRecommendApplicationStep implements Step {
     protected final MenuRecommendController controller;
     protected final Logger logger;
 
-    public MenuRecommendApplicationStep(MenuRecommendController controller, Logger logger) {
+    public MenuRecommendApplicationStep(final MenuRecommendController controller,
+                                        final Logger logger) {
         this.controller = controller;
         this.logger = logger;
     }

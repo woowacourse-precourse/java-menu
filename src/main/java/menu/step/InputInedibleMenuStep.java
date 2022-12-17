@@ -5,29 +5,30 @@ import menu.controller.MenuRecommendController;
 import menu.controller.mapper.MenuMapper;
 import menu.domain.Coach;
 import menu.domain.Food;
+import menu.domain.Group;
 import menu.view.InputView;
 
 import java.util.List;
 
 public class InputInedibleMenuStep extends MenuRecommendApplicationStep {
 
-    private final List<Coach> coaches;
+    private final Group group;
     
-    public InputInedibleMenuStep(List<Coach> coaches,
-                                 MenuRecommendController controller,
-                                 Logger logger) {
+    public InputInedibleMenuStep(final Group group,
+                                 final MenuRecommendController controller,
+                                 final Logger logger) {
         super(controller, logger);
-        this.coaches = coaches;    
+        this.group = group;
     }
 
     @Override
     protected Step pureAction() {
-        for (Coach coach : coaches) {
+        for (Coach coach : group.coaches()) {
             String s = InputView.inputInedibleFoodForCoach(coach);
             List<Food> foods = MenuMapper.toMenus(s);
             coach.addInedibleFoods(foods);
         }
-        return new MenuRecommendStep(coaches, controller, logger);
+        return new MenuRecommendStep(group, controller, logger);
     }
 
     @Override

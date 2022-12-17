@@ -2,26 +2,23 @@ package menu.step;
 
 import menu.common.Logger;
 import menu.controller.MenuRecommendController;
-import menu.domain.Coach;
 import menu.domain.Group;
 import menu.view.OutputView;
 
-import java.util.List;
-
 public class MenuRecommendStep extends MenuRecommendApplicationStep {
 
-    private final List<Coach> coaches;
+    private final Group group;
 
-    public MenuRecommendStep(List<Coach> coaches,
-                             MenuRecommendController controller,
-                             Logger logger) {
+    public MenuRecommendStep(final Group group,
+                             final MenuRecommendController controller,
+                             final Logger logger) {
         super(controller, logger);
-        this.coaches = coaches;
+        this.group = group;
     }
 
     @Override
     protected Step pureAction() {
-        Group group = controller.recommend(coaches);
+        controller.recommend(group);
         OutputView.printRecommendResult(group);
         return new Exit(controller, logger);
     }

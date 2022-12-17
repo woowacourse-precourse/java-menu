@@ -3,23 +3,22 @@ package menu.step;
 import menu.common.Logger;
 import menu.controller.MenuRecommendController;
 import menu.controller.mapper.CoachMapper;
-import menu.domain.Coach;
+import menu.domain.Group;
 import menu.view.InputView;
-
-import java.util.List;
 
 public class InputCoachNameStep extends MenuRecommendApplicationStep {
 
-    public InputCoachNameStep(MenuRecommendController controller, Logger logger) {
+    public InputCoachNameStep(final MenuRecommendController controller,
+                              final Logger logger) {
         super(controller, logger);
     }
 
     @Override
     protected Step pureAction() {
         String names = InputView.inputCoachName();
-        List<Coach> coaches = CoachMapper.toCoaches(names);
+        Group group = CoachMapper.toGroup(names);
 
-        return new InputInedibleMenuStep(coaches, controller, logger);
+        return new InputInedibleMenuStep(group, controller, logger);
     }
 
     @Override

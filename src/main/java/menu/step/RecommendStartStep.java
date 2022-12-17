@@ -6,7 +6,8 @@ import menu.view.OutputView;
 
 public class RecommendStartStep extends MenuRecommendApplicationStep{
 
-    public RecommendStartStep(MenuRecommendController controller, Logger logger) {
+    public RecommendStartStep(final MenuRecommendController controller,
+                              final Logger logger) {
         super(controller, logger);
     }
 
