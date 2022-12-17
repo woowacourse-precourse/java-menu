@@ -1,5 +1,6 @@
 package menu.service;
 
+import menu.domain.Category;
 import menu.domain.Coach;
 import menu.exception.InputException;
 
@@ -11,18 +12,22 @@ public class MenuService {
     private final List<Coach> coaches = new ArrayList<>();
 
     public void getCoachesName(String input) {
-        int count = validateCountOfCoaches(input);
+        validateCountOfCoaches(input);
 
         StringTokenizer st = new StringTokenizer(input, ",");
         while (st.hasMoreTokens())
             coaches.add(new Coach(st.nextToken()));
     }
 
-    public int validateCountOfCoaches(String input) {
+    public void getAvoidance(List<String> inputs) {
+        for (int i = 0; i < inputs.size(); i++)
+            coaches.get(i).addAvoidance(inputs.get(i));
+    }
+
+
+    private void validateCountOfCoaches(String input) {
         StringTokenizer st = new StringTokenizer(input, ",");
         if(st.countTokens()<2 || 5<st.countTokens())
             throw new IllegalArgumentException(InputException.INVALID_COUNT_OF_COACHES.getMessage());
-
-        return st.countTokens();
     }
 }
