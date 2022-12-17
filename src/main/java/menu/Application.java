@@ -12,14 +12,14 @@ public class Application {
         return new Managecoach(coachNameList);
     }
 
-    static void recommend(Managecoach managecoach, FoodList foodList) {
+    static List<Integer> recommend(Managecoach managecoach, FoodList foodList) {
         List<Integer> category = new ArrayList<>(List.of(0, 0, 0, 0, 0));
         for (int day = 0; day < 5; day++) {
             int todayCategory = categoryRecommend(category);
             category.set(day, todayCategory);
             foodRecommend(managecoach, todayCategory, foodList);
         }
-        System.out.println(category);
+        return category;
     }
 
     static void foodRecommend(Managecoach managecoach, int category, FoodList foodList){
@@ -71,8 +71,10 @@ public class Application {
                 List<String> hateList = view.inputCoachHateFood(coachList.getCoachList().get(cCnt).getName());
                 coachList.getCoachList().get(cCnt).updateHateFood(hateList);
             }
-            recommend(coachList, foodList);
+            List<Integer> weekCategory = recommend(coachList, foodList);
 //            System.out.println(coachList.getCoachList().get(0).getAteFood());
+
+            view.printRecommendResult(coachList, weekCategory);
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
         }

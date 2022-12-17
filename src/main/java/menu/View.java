@@ -1,6 +1,8 @@
 package menu;
 
 import camp.nextstep.edu.missionutils.Console;
+import coach.Coach;
+import coach.Managecoach;
 
 import java.util.List;
 
@@ -39,5 +41,51 @@ public class View {
         return hateList;
     }
 
+    public void printRecommendResult(Managecoach managecoach, List<Integer> category) {
+        System.out.println("메뉴 추천 결과입니다.");
+        System.out.println("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
+        printCategory(category);
+        for (Coach coach : managecoach.getCoachList()) {
+            printCoachMenu(coach);
+        }
+        System.out.println();
+        System.out.println("추천을 완료했습니다.");
+    }
 
+    public void printCoachMenu(Coach coach) {
+        System.out.print("[ " + coach.getName() + " | ");
+        for (int day = 0; day < 5; day++) {
+            System.out.print(coach.getAteFood().get(day));
+            if (day < 4) {
+                System.out.print(" | ");
+            }
+        }
+        System.out.println(" ]");
+    }
+
+
+    public void printCategory(List<Integer> category) {
+        System.out.print("[ 카테고리 | ");
+        for (int day = 0; day < 5; day++) {
+            System.out.print(numToStr(category.get(day)));
+            if (day < 4) {
+                System.out.print(" | ");
+            }
+        }
+        System.out.println(" ]");
+    }
+
+    public String numToStr(int category) {
+        if (category == 1)
+            return "일식";
+        if (category == 2)
+            return "한식";
+        if (category == 3)
+            return "중식";
+        if (category == 4)
+            return "아시안";
+        if (category == 5)
+            return "양식";
+        throw new IllegalArgumentException();
+    }
 }
