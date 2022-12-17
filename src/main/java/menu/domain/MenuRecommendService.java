@@ -9,9 +9,7 @@ import java.util.List;
 
 public class MenuRecommendService {
     private final Categories categories = new Categories();
-    private final List<Week> weeks = Week.getWeeks();
     List<Category> recommendCategories;
-    private final List<Category> recommendedCategories = new ArrayList<>();
 
     public MenuRecommendService() {
         recommendCategory();
@@ -23,7 +21,7 @@ public class MenuRecommendService {
 
     public void recommendMenu() {
         for (Category category :
-                recommendedCategories) {
+                recommendCategories) {
             recommendMenuEachPeople(category);
         }
     }
@@ -37,5 +35,9 @@ public class MenuRecommendService {
             }
             CouchRepository.couches().get(i).addRecommendedFood(menu);
         }
+    }
+
+    public List<Category> getRecommendedCategories() {
+        return recommendCategories;
     }
 }

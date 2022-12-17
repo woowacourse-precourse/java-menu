@@ -4,12 +4,14 @@ import menu.domain.Couch;
 import menu.domain.CouchService;
 import menu.domain.MenuRecommendService;
 import menu.ui.InputView;
+import menu.ui.OutputView;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class MenuController {
     private InputView inputView = new InputView();
+    private OutputView outputView = new OutputView();
     private final String START = "점심 메뉴 추천을 시작합니다.";
     private CouchService couchService = new CouchService();
     private MenuRecommendService menuRecommendService = new MenuRecommendService();
@@ -19,10 +21,11 @@ public class MenuController {
         registerCouches();
         registerCannotEat();
         recommendMenu();
+        outputView.resultOfRecommend(menuRecommendService.getRecommendedCategories(), couchService.getCouches());
     }
 
     private void recommendMenu() {
-        menuRecommendService.recommendCategory();
+        menuRecommendService.recommendMenu();
     }
 
     private void registerCouches() {
