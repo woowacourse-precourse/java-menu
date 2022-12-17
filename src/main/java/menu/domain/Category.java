@@ -14,6 +14,7 @@ public enum Category {
     private static final String INVALID_CATEGORY_VALUE_MESSAGE = "유효하지 않은 값입니다.";
     private final String name;
     private final int code;
+    private int count = 0;
 
     Category(String name, int code) {
         this.name = name;
@@ -29,5 +30,13 @@ public enum Category {
 
     public String getName() {
         return name;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void plusCount() {
+        count += 1;
     }
 }

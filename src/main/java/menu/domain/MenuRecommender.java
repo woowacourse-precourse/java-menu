@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 public class MenuRecommender {
+    private static final int CAN_DUPLICATED_CATEGORY_COUNT = 2;
     private final Map<Coach, RecommendResult> result = new HashMap<>();
     private final Shuffler shuffler;
 
@@ -15,9 +16,18 @@ public class MenuRecommender {
     public void recommend(NumberGenerator numberGenerator, Group group) {
         initialRecommender(group);
         for (DayOfWeek dayOfWeek : DayOfWeek.values()) {
-            int code = numberGenerator.generate(Category.MIN_CATEGORY_CODE, Category.MAX_CATEGORY_CODE);
-            recommendMenu(group, dayOfWeek, Category.from(code));
+            Category category = selectCategory(numberGenerator);
+            recommendMenu(group, dayOfWeek, category);
         }
+    }
+
+    private static Category selectCategory(NumberGenerator numberGenerator) {
+        Category category;
+        do {
+            int generate = numberGenerator.generate(Category.MIN_CATEGORY_CODE, Category.MAX_CATEGORY_CODE);
+            category = Category.from(generate);
+        } while (category.getCount() > CAN_DUPLICATED_CATEGORY_COUNT);
+        return category;
     }
 
     private void initialRecommender(Group group) {
