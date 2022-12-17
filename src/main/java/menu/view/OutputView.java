@@ -1,6 +1,7 @@
 package menu.view;
 
 import java.util.List;
+import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.Menu;
 import menu.message.NoticeMessage;
@@ -11,27 +12,29 @@ public class OutputView {
     private static final String END_NOTICE_MIDFIX = " | ";
 
     public void printServiceStartNotice() {
-        System.out.println(NoticeMessage.SERVICE_START_NOTICE + '\n');
+        System.out.println(NoticeMessage.SERVICE_START_NOTICE);
     }
 
     public void printCoachNameInputNotice() {
-        System.out.println(NoticeMessage.COACH_NAME_INPUT_NOTICE);
+        System.out.println('\n' + NoticeMessage.COACH_NAME_INPUT_NOTICE);
     }
 
     public void printDislikeFoodInputNotice(String coachName) {
-        System.out.println(coachName + NoticeMessage.DISLIKE_FOOD_INPUT_NOTICE);
+        System.out.println('\n' + coachName + NoticeMessage.DISLIKE_FOOD_INPUT_NOTICE);
     }
 
-    public void printServiceEndNotice(List<Coach> coaches) {
+    public void printServiceEndNotice(List<Category> categoryHistory , List<Coach> coaches) {
         StringBuilder endNotice = new StringBuilder(NoticeMessage.SERVICE_END_NOTICE_TOP).append('\n');
 
+        endNotice.append(makeCategoryRecommendResult(categoryHistory)).append('\n');
+
         for (Coach coach : coaches) {
-            endNotice.append(makeRecommendResult(coach)).append('\n');
+            endNotice.append(makeMenuRecommendResult(coach)).append('\n');
         }
 
-        endNotice.append(NoticeMessage.SERVICE_END_NOTICE_BOTTOM);
+        endNotice.append('\n').append(NoticeMessage.SERVICE_END_NOTICE_BOTTOM);
 
-        System.out.println(endNotice);
+        System.out.println('\n' + endNotice.toString());
     }
 
     private String makeCategoryRecommendResult(List<Category> categoryHistory) {
@@ -58,7 +61,7 @@ public class OutputView {
         List<Menu> recommendedMenus = coach.getRecommendedMenus();
         for (int day = 0; day < 5; day++) {
             result.append(END_NOTICE_MIDFIX);
-            result.append(recommendedMenus.get(day));
+            result.append(recommendedMenus.get(day).getName());
         }
 
         result.append(END_NOTICE_SUFFIX);
