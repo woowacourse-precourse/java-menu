@@ -22,4 +22,9 @@ public class Coaches {
                 .map(Coach::getName)
                 .collect(Collectors.toList());
     }
+
+    public void registerInedibleFoodsToCoach(String coachName, List<String> inedibleFoods) {
+        Coach coachToAddInedibleFoods = getCoachByName(coachName);
+        coachToAddInedibleFoods.registerInedibleFoods(inedibleFoods);
+    }
 }

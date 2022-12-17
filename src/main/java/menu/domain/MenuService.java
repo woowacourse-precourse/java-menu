@@ -18,4 +18,8 @@ public class MenuService {
     public List<String> getCoachNames() {
         return coaches.getCoachNames();
     }
+
+    public void registerInedibleFoodsToCoach(String coachName, List<String> inedibleFoods) {
+        coaches.registerInedibleFoodsToCoach(coachName, inedibleFoods);
+    }
 }
