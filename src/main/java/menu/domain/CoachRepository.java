@@ -15,8 +15,6 @@ public class CoachRepository {
     public static void addCoach(Coach coach) {
         coaches.add(coach);
     }
-
-
 }
 
 

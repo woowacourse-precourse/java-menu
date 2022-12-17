@@ -47,8 +47,8 @@ public class InputValidator {
         }
     }
 
-    public static List<String> validateCannotEatMenu(String input){
-        if(isEmpty(input)){
+    public static List<String> validateCannotEatMenu(String input) {
+        if (isEmpty(input)) {
             return new ArrayList<>();
         }
         List<String> cannotEatMenu = new ArrayList<>(Arrays.asList(input.split(",")));
@@ -63,9 +63,6 @@ public class InputValidator {
     }
 
     private static boolean isEmpty(String input) {
-        if(input.equals("")){
-            return true;
-        }
-        return false;
+        return input.equals("");
     }
 }
