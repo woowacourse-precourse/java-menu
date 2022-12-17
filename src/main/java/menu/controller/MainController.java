@@ -10,6 +10,7 @@ public class MainController {
 
     public void run() {
         /* 서비스 시작 문구 출력 */
+        outputView.printStartMessage();
 
         /* 사전 준비
         * - 코치 이름 입력 받기
@@ -19,5 +20,6 @@ public class MainController {
         /* 메뉴 추천 */
 
         /* 서비스 종료 문구 출력 */
+        outputView.printEndMessage();
     }
 }
