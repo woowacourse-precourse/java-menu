@@ -1,6 +1,5 @@
 package menu.domain;
 
-import java.net.PortUnreachableException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +40,10 @@ public class Coach {
 
     public void addLunchMenu(Menu menu) {
         lunchMenus.add(menu);
+    }
+
+    public List<Menu> getLunchMenus() {
+        return lunchMenus;
     }
 
     public String getName() {

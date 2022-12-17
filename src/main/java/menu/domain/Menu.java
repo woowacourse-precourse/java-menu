@@ -37,4 +37,8 @@ public enum Menu {
                 .collect(Collectors.toList());
         return Randoms.shuffle(menusBySpecificCategory).get(0);
     }
+
+    public String getName() {
+        return name;
+    }
 }

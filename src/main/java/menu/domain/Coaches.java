@@ -19,7 +19,7 @@ public class Coaches {
         if (coaches.size() < MIN_SIZE) {
             throw new IllegalArgumentException("코치는 최소 2명 이상 입력해야 합니다.");
         }
-        
+
         if (coaches.size() > MAX_SIZE) {
             throw new IllegalArgumentException("코치는 최대 5명 입니다.");
         }
