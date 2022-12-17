@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 
 public class CategoryController {
 
+    public static final int WEEK = 5;
+
     public void makeCoach(String name, List<String> cantEat) {
         validateFood(cantEat);
 
@@ -28,7 +30,7 @@ public class CategoryController {
     public List<Category> makeRecommendMenu() {
         List<Category> categories = new ArrayList<>();
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < WEEK; i++) {
             categories.add(pickDayCategory());
         }
 
