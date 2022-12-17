@@ -3,6 +3,7 @@ package menu;
 import menu.domain.Menu;
 import menu.dto.CoachWeekMenu;
 import menu.enums.FoodCategory;
+import menu.utils.Constant;
 import menu.vo.Coach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,7 +33,7 @@ public class MenuTest {
 
         // when
         List<CoachWeekMenu> coachWeekMenus = new ArrayList<>();
-        for (int i = 0 ; i < Constant.weekNum; i++) {
+        for (int i = 0; i < Constant.weekNum; i++) {
             menu = new Menu(FoodCategory.KOR);
             coachWeekMenus = menu.chooseShuffleMenu(Arrays.asList(coachWeekMenu1, coachWeekMenu2));
         }

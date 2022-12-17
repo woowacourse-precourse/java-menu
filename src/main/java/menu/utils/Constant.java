@@ -1,4 +1,4 @@
-package menu;
+package menu.utils;
 
 public class Constant {
 

@@ -1,4 +1,4 @@
-package menu;
+package menu.utils;
 
 public enum ExceptionMessage {
     INVALID_COACH_NAME_LEN("코치의 이름은 최소 2글자, 최대 4글자입니다."),

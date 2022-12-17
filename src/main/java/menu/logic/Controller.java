@@ -1,9 +1,10 @@
-package menu;
+package menu.logic;
 
 import menu.domain.Menu;
 import menu.domain.Recommend;
 import menu.dto.CoachWeekMenu;
 import menu.enums.FoodCategory;
+import menu.utils.Constant;
 import menu.view.InputView;
 import menu.view.OutputView;
 import menu.vo.Coach;
@@ -28,7 +29,7 @@ public class Controller {
         List<CoachWeekMenu> coachWeekMenus = makeCoachWeekMenu(coaches);
         Menu menu;
 
-        for (int i = 0 ; i < Constant.weekNum; i++) {
+        for (int i = 0; i < Constant.weekNum; i++) {
             FoodCategory foodCategory = recommend.recommendCategory();
             menu = new Menu(foodCategory);
             coachWeekMenus = menu.chooseShuffleMenu(coachWeekMenus);

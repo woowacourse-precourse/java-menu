@@ -3,6 +3,7 @@ package menu;
 
 import menu.domain.Recommend;
 import menu.enums.FoodCategory;
+import menu.utils.Constant;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

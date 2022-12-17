@@ -1,6 +1,6 @@
 package menu.view;
 
-import menu.Constant;
+import menu.utils.Constant;
 import menu.dto.CoachWeekMenu;
 import menu.enums.FoodCategory;
 

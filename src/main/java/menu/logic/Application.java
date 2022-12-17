@@ -1,4 +1,4 @@
-package menu;
+package menu.logic;
 
 import menu.domain.Recommend;
 

@@ -1,7 +1,7 @@
 package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import menu.Constant;
+import menu.utils.Constant;
 import menu.enums.FoodCategory;
 
 import java.util.ArrayList;

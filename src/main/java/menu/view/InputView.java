@@ -2,8 +2,8 @@ package menu.view;
 
 
 import camp.nextstep.edu.missionutils.Console;
-import menu.Constant;
-import menu.ExceptionMessage;
+import menu.utils.Constant;
+import menu.utils.ExceptionMessage;
 import menu.vo.Coach;
 
 import java.util.ArrayList;
