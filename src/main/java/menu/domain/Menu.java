@@ -27,7 +27,7 @@ public class Menu {
         }
 
         Menu target = (Menu) obj;
-        if(this.category == target.category && this.name == target.name) {
+        if(this.category == target.category && this.name.equals(target.name)) {
             return true;
         }
 
