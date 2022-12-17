@@ -12,10 +12,11 @@ public class FoodPool {
     public static final String[] asia = {"팟타이", "카오 팟", "나시고렝", "파인애플 볶음밥", "쌀국수", "똠얌꿍", "반미", "월남쌈", "분짜"};
     public static final String[] west = {"라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니"};
     public static final String[][] categoryWithFood = {japan, korea, china, asia, west};
-    public static final Map<String, String[]> foods = new HashMap<>();
+    public static final String[] category = {"일식", "한식", "중식", "아시안", "양식"};
+    public static final Map<String, String[]> foods;
 
-    FoodPool() {
-        String[] category = {"일식", "한식", "중식", "아시안", "양식"};
+    static {
+        foods = new HashMap<>();
         for (int i = 0; i < 5; i++) {
             foods.put(category[i], categoryWithFood[i]);
         }
