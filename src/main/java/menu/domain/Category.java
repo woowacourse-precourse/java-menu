@@ -2,6 +2,7 @@ package menu.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,7 +37,7 @@ public enum Category {
     }
 
     public List<String> getMenus() {
-        return menus;
+        return Collections.unmodifiableList(menus);
     }
 
     public static Category getCategory(int index) {
