@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MenuController {
-    FoodRecommendation foodRecommendation;
+    private FoodRecommendation foodRecommendation;
 
     public void run() {
         start();
