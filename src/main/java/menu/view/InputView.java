@@ -16,10 +16,9 @@ public class InputView {
      */
     public List<String> readCoachNames() {
         String userInput = getUserInput();
-        checkCoachNames(userInput);
-        return null;
+        return checkGetCoachNames(userInput);
     }
-    public List<String> checkCoachNames(String userInput) {
+    public List<String> checkGetCoachNames(String userInput) {
         InputException.nullException(userInput);
         InputException.notEndFormatException(userInput);
 
