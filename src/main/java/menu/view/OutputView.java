@@ -7,6 +7,14 @@ public class OutputView {
 
 
 
+    //메뉴 추천 시작 문구
+    public static void printStart() {
+        System.out.println(START_DINNER_MENU_RECOMMEND);
+        printBreak();
+    }
+
+
+
     public static void printBreak() {
         System.out.println();
     }
