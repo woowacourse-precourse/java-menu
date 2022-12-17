@@ -53,39 +53,12 @@ public class Recommend {
 
         List<String> forbiddenFoods = coach.getForbiddenFoods();
 
-        int index = 0;
-        while (true) {
-            if(recommendMenus.size() > 5) break;
-
-            int categoryNumber = randoms.get(index);
+        for (int i = 0; i < categories.size(); i++) {
+            int categoryNumber = randoms.get(i);
             List<String> menus = Category.getMenus(categoryNumber);
             String menu = Randoms.shuffle(menus).get(0);
-
-            if(forbiddenFoods.contains(menu)) {
-                continue;
-            }
-
-            if(isDuplicatedMenu(recommendMenus)) {
-                index = 0;
-                recommendMenus = new ArrayList<>();
-            }
-
             recommendMenus.add(menu);
-            index++;
         }
-
-
-
-//        do{
-//            for (int i = 0; i < categories.size(); i++) {
-//                int categoryNumber = randoms.get(i);
-//                List<String> menus = Category.getMenus(categoryNumber);
-//                String menu = Randoms.shuffle(menus).get(0);
-//
-//
-//                recommendMenus.add(menu);
-//            }
-//        } while (isDuplicatedMenu(recommendMenus));
 
         return recommendMenus;
     }
@@ -97,5 +70,9 @@ public class Recommend {
             }
         }
         return false;
+    }
+
+    public List<String> getCategories() {
+        return categories;
     }
 }

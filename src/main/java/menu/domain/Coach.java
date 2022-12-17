@@ -24,4 +24,8 @@ public class Coach {
     public void setRecommendFoods(List<String> recommendFoods) {
         this.recommendFoods = recommendFoods;
     }
+
+    public List<String> getRecommendFoods() {
+        return recommendFoods;
+    }
 }

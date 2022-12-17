@@ -32,8 +32,6 @@ public class MenuController {
 
             coaches.add(new Coach(name, foods));
         }
-//        coachRepository.setCoaches(coaches);
-
         // 추천 카테고리는 만듦
         Recommend recommend = new Recommend();
         // 코치별로 메뉴 만들어줌
@@ -44,8 +42,14 @@ public class MenuController {
             nowCoach.setRecommendFoods(recommendFoods);
             newCoaches.add(nowCoach);
         }
-        
+        coachRepository.setCoaches(newCoaches);
+
+        System.out.println("코치별로 메뉴 만들어주기 완료");
+
         // 출력
+        List<String> categories = recommend.getCategories();
+        OutputView.printResultComment();
+        OutputView.printTotalRecommendResult(categories, coachRepository);
 
     }
 
