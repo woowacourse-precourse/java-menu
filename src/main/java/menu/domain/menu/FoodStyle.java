@@ -7,7 +7,7 @@ public enum FoodStyle {
     KOREAN(2, "한식"),
     CHINESE(3, "중식"),
     ASIAN(4, "아시안"),
-    ITALIAN(5, "중식");
+    ITALIAN(5, "양식");
 
     private final int index;
     private final String style;
@@ -28,6 +28,13 @@ public enum FoodStyle {
     public static FoodStyle getFoodStyle(int code) {
         return Arrays.stream(values())
                 .filter(foodStyle -> foodStyle.getIndex() == code)
+                .findAny()
+                .orElseGet(null);
+    }
+
+    public static FoodStyle getFoodStyleFromCategoryName(String category) {
+        return Arrays.stream(values())
+                .filter(foodStyle -> foodStyle.getStyle().equals(category))
                 .findAny()
                 .orElseGet(null);
     }
