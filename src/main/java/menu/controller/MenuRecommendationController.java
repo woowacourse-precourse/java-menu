@@ -2,12 +2,14 @@ package menu.controller;
 
 import menu.IO.InputView;
 import menu.IO.OutputView;
+import menu.exception.CustomIllegalArgumentException;
 import menu.model.Category;
 import menu.recommendation.MenuGenerator;
 import menu.recommendation.RecommendationGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MenuRecommendationController {
     final InputView inputView = new InputView();
@@ -17,13 +19,15 @@ public class MenuRecommendationController {
     public void run(){
         outputView.startMsg();
         outputView.promptReadCoachName();
-        List<String> coaches = inputView.readCoachNames();
+
+        List<String> coaches = this.readCoachNamesNotError();
         List<Category> categories = recommendationGenerator.recommendCategory();
         List<List<String>> recommendedMenus = new ArrayList<>();
         List<List<String>> donEatMenus =new ArrayList<>();
         for (String coach: coaches){
             outputView.promptDontEatMenuCoach(coach);
-            donEatMenus.add(inputView.readCoachDontEatMenus());
+            List<String> dontEats = this.readCoachDontEatsNotError();
+            donEatMenus.add(dontEats);
             recommendedMenus.add(new ArrayList<>());
         }
 
@@ -36,5 +40,31 @@ public class MenuRecommendationController {
         }
         outputView.printResult(coaches, categories, recommendedMenus);
         outputView.endingMsg();
+    }
+
+    public List<String> readCoachNamesNotError(){
+        List<String> coachNames = null;
+        do {
+            try {
+                coachNames = inputView.readCoachNames();
+            }catch (CustomIllegalArgumentException e) {
+                outputView.printError(e);
+            }
+        }while (Objects.isNull(coachNames));
+
+        return coachNames;
+    }
+
+    public List<String> readCoachDontEatsNotError(){
+        List<String> coachDontEats = null;
+        do {
+            try {
+                coachDontEats = inputView.readCoachDontEatMenus();
+            }catch (CustomIllegalArgumentException e) {
+                outputView.printError(e);
+            }
+        }while (Objects.isNull(coachDontEats));
+
+        return coachDontEats;
     }
 }

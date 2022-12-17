@@ -49,6 +49,21 @@ class InputViewTest {
                 .hasMessageStartingWith("[ERROR]");
     }
 
+    @DisplayName("코치 이름 3명 이름 길이 오류입력후 정상 입력")
+    @Test
+    void 코치_이름_3명_오류입력후_정상입력() {
+        final String input = "토미,제임스제임스,포코";
+        inputStreamInit(input);
+
+        assertThatThrownBy(() -> inputView.readCoachNames())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageStartingWith("[ERROR]");
+
+        final String inputCorrect = "토미,제임스,포코";
+        inputStreamInit(inputCorrect);
+        assertThat(inputView.readCoachNames().size()).isEqualTo(3);
+    }
+
     @DisplayName("메뉴 이름 정상입력")
     @Test
     void 메뉴_이름_정상입력() {
@@ -68,5 +83,19 @@ class InputViewTest {
         assertThatThrownBy(() -> inputView.readCoachDontEatMenus())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith("[ERROR]");
+    }
+
+    @DisplayName("메뉴 이름 3개입력으로 오류입력")
+    @Test
+    void 메뉴_3개입력으로_오류후정상입력() {
+        final String input = "뇨끼,월남쌈,마파두부";
+        inputStreamInit(input);
+        assertThatThrownBy(() -> inputView.readCoachDontEatMenus())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageStartingWith("[ERROR]");
+
+        String inputCorrect = "뇨끼,월남쌈";
+        inputStreamInit(inputCorrect);
+        assertThat(inputView.readCoachDontEatMenus().size()).isEqualTo(2);
     }
 }

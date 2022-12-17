@@ -54,4 +54,8 @@ public class OutputView {
             return "양식";
         return null;
     }
+
+    public void printError(Exception e){
+        System.out.println(e.getMessage());
+    }
 }
