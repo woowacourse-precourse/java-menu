@@ -33,10 +33,7 @@ public class Inputview {
                 System.out.println(name + CANT_EAT_MESSAGE);
                 String input = Console.readLine();
                 Validator.validateMenuNum(input, PARSE_COMMAND);
-                return StringParser.parseByCommand(input, PARSE_COMMAND)
-                        .stream()
-                        .map(menus::getMenuByName).collect(
-                                Collectors.toList());
+                return StringParser.makeMenuListByCommand(input, PARSE_COMMAND, menus);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
