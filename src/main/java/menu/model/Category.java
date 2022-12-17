@@ -38,4 +38,13 @@ public enum Category {
                 .orElseThrow(() -> new IllegalArgumentException(
                         ErrorConstants.ERROR_PREFIX + "카테고리 숫자가 올바르지 않습니다."));
     }
+
+    public static List<String> getMenusByCategory(Category recommendedCategory) {
+        return Arrays.stream(values())
+                .filter(value -> value.number == recommendedCategory.number)
+                .map(category -> category.menus)
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(
+                        ErrorConstants.ERROR_PREFIX + "일치하는 카테고리가 없습니다."));
+    }
 }
