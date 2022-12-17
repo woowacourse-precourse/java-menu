@@ -54,12 +54,12 @@ public class OutputView {
     }
 
     private static void printFood(Coach coach) {
-        StringBuilder sb = new StringBuilder("[ " + coach.getName() + " | ");
+        StringBuilder coachAndFoods = new StringBuilder("[ " + coach.getName() + " | ");
         for (String food : coach.getFoods()) {
-            sb.append(food).append(" | ");
+            coachAndFoods.append(food).append(" | ");
         }
-        sb.replace(sb.length() - 2, sb.length() - 1, "]");
-        System.out.println(sb);
+        coachAndFoods.replace(coachAndFoods.length() - 2, coachAndFoods.length() - 1, "]");
+        System.out.println(coachAndFoods);
     }
 
     public static void newLine() {
