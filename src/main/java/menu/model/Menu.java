@@ -98,7 +98,7 @@ public enum Menu {
         if(isCorrectSize(menus)){
             return;
         }
-        throw new IllegalArgumentException("[ERROR] : 못먹는 메뉴는 0~2개만 가능합니다.");
+        throw new IllegalArgumentException(ErrorMessage.MENU_SIZE_ERROR_MESSAGE.getMessage());
     }
 
     private static boolean isCorrectSize(List<String> menus) {

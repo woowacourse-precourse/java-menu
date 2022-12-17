@@ -2,26 +2,28 @@ package menu.model;
 
 import menu.util.ErrorMessage;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Coach {
 
     private String name;
+    private List<Menu> nonMenus;
 
-    private List<Menu> menus;
+    private Map<Category,Integer> eatCategory;
+    private List<Menu> eatMenu;
 
     public Coach(String name) {
         validateNameSize(name);
         this.name = name;
+        eatCategory = new HashMap<>();
     }
 
     public String getName() {
         return name;
     }
 
-    public void setMenus(List<Menu> menus) {
-        this.menus = menus;
+    public void setNonMenus(List<Menu> nonMenus) {
+        this.nonMenus = nonMenus;
     }
 
     public void validateNameSize(String name){
