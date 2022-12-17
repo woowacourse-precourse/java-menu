@@ -8,12 +8,13 @@ public class MenuSuggester {
     private List<Coach> coaches;
     private List<List<String>> categories;
     private int[] suggestedCategory;
+    private final int SUGGEST_DAY = 5;
     private final int CATEGORY_MAX = 2;
 
     public MenuSuggester() {
         MenuGenerator menuGenerator = new MenuGenerator();
         categories = menuGenerator.generate();
-        suggestedCategory = new int[5];
+        suggestedCategory = new int[SUGGEST_DAY];
     }
 
     public void setCoaches(List<Coach> coaches) {
