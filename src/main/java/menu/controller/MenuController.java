@@ -14,6 +14,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class MenuController {
     private Map<String, List<String>> categoriesAndMenu;
+    private List<String> allCategory;
     private List<String> coachName;
     private Map<String, List<String>> coachDislikeFood;
     private Map<String, List<String>> foodRecommendedByCoaches = new HashMap<>();
@@ -28,6 +29,7 @@ public class MenuController {
         this.outputView = new OutputView();
         this.menu = new Menu();
         this.categoriesAndMenu = menu.getMenu();
+        this.allCategory = menu.getCategory();
     }
 
     private void setCoachName() {
@@ -40,8 +42,7 @@ public class MenuController {
     }
 
     public String pickTodayRandomCategory() {
-        List<String> categories = categoriesAndMenu.keySet().stream().collect(Collectors.toList());
-        String category = categories.get(Randoms.pickNumberInRange(1, 5) - 1);
+        String category = allCategory.get(Randoms.pickNumberInRange(1, 5));
         try {
             checkDuplicateCategories(category);
         } catch (IllegalArgumentException exception) {
@@ -67,7 +68,7 @@ public class MenuController {
 
     public String recommendRandomMenu(String name, String category) {
         List<String> selectableMenu = categoriesAndMenu.get(category);
-        String selectedMenu = Randoms.shuffle(selectableMenu).get(0);
+        String selectedMenu = Randoms.shuffle(allCategory).get(0);
         try {
             validateRecommendationMenu(name, selectedMenu);
         } catch (IllegalArgumentException exception) {
@@ -94,6 +95,7 @@ public class MenuController {
         for (int i = 0; i < 5; i++) {
             // i는 요일 월(0), 화(1), 수(2), 목(3), 금(4)
             String pickedCategory = pickTodayRandomCategory();
+            pickedCategories.add(i, pickedCategory);
             for (String name : coachName) {
                 String pickedMenu = recommendRandomMenu(name, pickedCategory);
                 foodRecommendedByCoaches.get(name).add(i, pickedMenu);
@@ -102,10 +104,18 @@ public class MenuController {
     }
 
     public void startProgram() {
-        MenuController menuController = new MenuController();
-        menuController.setCoachName();
-        menuController.setCoachDislikeFood();
-        menuController.startRandomRecommendation();
-        outputView.printFinalResult(foodRecommendedByCoaches);
+        outputView.printStartMessage();
+        setCoachName();
+        setCoachDislikeFood();
+        startRandomRecommendation();
+        outputView.printFinalResult(foodRecommendedByCoaches, pickedCategories);
+    }
+
+    public static void main(String[] args) {
+        MenuController m = new MenuController();
+        m.setCoachName();
+        m.setCoachDislikeFood();
+        m.startRandomRecommendation();
+        m.outputView.printFinalResult(m.foodRecommendedByCoaches, m.pickedCategories);
     }
 }
