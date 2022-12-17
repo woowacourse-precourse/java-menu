@@ -26,6 +26,8 @@ public class MenuRecommendController {
         outputView.printProgramStartInfo();
         addCoaches();
         addUneatableFoodToCoaches();
+        menuRecommender.selectRecommendedMenus();
+        System.out.println("dd");
     }
 
     private void addCoaches() {

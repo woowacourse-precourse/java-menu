@@ -1,7 +1,9 @@
 package menu.domain;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
@@ -16,11 +18,13 @@ public class Coach {
 
     private final String name;
     private Set<String> uneatableFoods;
+    private Map<Day, String> eatingFoodLog;
 
     public Coach(String name) {
         validateName(name);
         this.name = name;
         uneatableFoods = new HashSet<>();
+        eatingFoodLog = new HashMap<>();
     }
 
     private void validateName(String name) {
@@ -32,6 +36,18 @@ public class Coach {
 
     public void addUneatableFoods(List<String> foods) {
         uneatableFoods.addAll(foods);
+    }
+
+    public void addFood(Day day, String food) {
+        eatingFoodLog.put(day, food);
+    }
+
+    public boolean isEatable(String food) {
+        return !uneatableFoods.contains(food);
+    }
+
+    public boolean isEatBefore(String food) {
+        return eatingFoodLog.values().contains(food);
     }
 
     public int getMinUneatableFoodCount() {

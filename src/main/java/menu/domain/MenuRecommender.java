@@ -54,6 +54,9 @@ public class MenuRecommender {
     public void selectRecommendedMenus() {
         for (Day day : Day.values()) {
             selectCategory(day);
+            for (Coach coach : coaches) {
+                selectMenu(day, coach);
+            }
         }
     }
 
@@ -74,6 +77,20 @@ public class MenuRecommender {
         }
         return false;
     }
+
+    private void selectMenu(Day day, Coach coach) {
+        String menu;
+        do {
+            List<String> foods = weekCategoryLog.get(day).getFoods();
+            menu = Randoms.shuffle(foods).get(0);
+        } while (isAvailableFood(coach, menu));
+        coach.addFood(day, menu);
+    }
+
+    private boolean isAvailableFood(Coach coach, String menu) {
+        return coach.isEatable(menu) && !coach.isEatBefore(menu);
+    }
+
 
     public List<Coach> getCoaches() {
         return coaches;

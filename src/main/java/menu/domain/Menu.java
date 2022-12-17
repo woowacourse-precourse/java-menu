@@ -31,4 +31,8 @@ public enum Menu {
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(CODE_EXCEPTION_MESSAGE));
     }
+
+    public List<String> getFoods() {
+        return foods;
+    }
 }
