@@ -1,6 +1,8 @@
 package menu.domain;
 
 import java.util.List;
+import menu.domain.condition.DislikeFoodCondition;
+import menu.domain.initialdata.InitialMenu;
 
 public class DislikeFood {
     private final List<String> foods;

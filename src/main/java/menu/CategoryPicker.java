@@ -1,6 +1,6 @@
 package menu;
 
-import menu.domain.InitialMenu;
+import menu.domain.initialdata.InitialMenu;
 
 public class CategoryPicker {
     private CategoryPicker() {

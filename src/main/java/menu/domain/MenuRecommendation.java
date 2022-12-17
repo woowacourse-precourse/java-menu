@@ -4,6 +4,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import menu.domain.condition.CoachCondition;
+import menu.domain.initialdata.InitialMenu;
 import menu.dto.RecommendationResultDto;
 
 public class MenuRecommendation {
@@ -11,7 +13,7 @@ public class MenuRecommendation {
     private Map<Coach, CoachFood> coachFoods;
 
     public MenuRecommendation() {
-        this.recommendedCategory = new RecommendedCategory(); //생성하면서 카테고리 추천 완료
+        this.recommendedCategory = new RecommendedCategory();
         this.coachFoods = new LinkedHashMap<>();
     }
 

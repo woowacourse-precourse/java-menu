@@ -1,4 +1,4 @@
-package menu.domain;
+package menu.domain.condition;
 
 public enum CoachCondition {
     NAME_MIN(2),

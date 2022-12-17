@@ -1,4 +1,4 @@
-package menu.domain;
+package menu.domain.condition;
 
 public enum DislikeFoodCondition {
     MIN_COUNT(0),

@@ -3,7 +3,7 @@ package menu.controller;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import menu.domain.Day;
+import menu.domain.initialdata.Day;
 import menu.domain.MenuRecommendation;
 import menu.view.InputView;
 import menu.view.OutputView;

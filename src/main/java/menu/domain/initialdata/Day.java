@@ -1,4 +1,4 @@
-package menu.domain;
+package menu.domain.initialdata;
 
 import java.util.Arrays;
 import java.util.List;

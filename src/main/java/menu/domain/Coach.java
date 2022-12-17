@@ -1,5 +1,7 @@
 package menu.domain;
 
+import menu.domain.condition.CoachCondition;
+
 public class Coach {
     private final String name;
 
