@@ -17,6 +17,7 @@ public class Application {
         List<String> week = Arrays.asList("월요일", "화요일", "수요일", "목요일", "금요일");
         HashMap<String, Set<String>> coachesHateFood = new HashMap<>();
 
+        // 코치의 이름과 못 먹는 메뉴 입력
         while (true) {
             System.out.println("점심 메뉴 추천을 시작합니다.");
             List<String> coaches = InputView.inputNames();
@@ -28,6 +29,7 @@ public class Application {
                 System.out.println(coachesHateFood.get(name).size());
             }
 
+            // 요일별 카테고리 적용
             while (true) {
                 Map<String, Integer> pickedCategoryCount = new HashMap<>();
                 for (int i = 0; i < 5; i++) {
@@ -50,19 +52,19 @@ public class Application {
             System.out.print(categoryNameOfWeek.keySet() + " ");
             System.out.print(categoryNameOfWeek.values());
 
+            // 코치마다 못 먹는 메뉴 제외한 식단 구하기
             for (int i = 0; i < coachesHateFood.size(); ) {
                 for (Map.Entry<String, Set<String>> entry : coachesHateFood.entrySet()) {
-                    System.out.println("오류원인 : " + categoryNameOfWeek.get(week.get(i)));
                     String categoryName = categoryNameOfWeek.get(week.get(i));
                     List<String> menus = Category.getMenusByCategoryName(categoryName);
                     String menu = Randoms.shuffle(menus).get(0);
-
+                    System.out.println(menu);
                     if (!entry.getValue().contains(menu)) {
-                        int mealPlanSize = coachesMealPlan.get(entry.getKey()).size();
+//                        int mealPlanSize = coachesMealPlan.get(entry.getKey()).size();
                         coachesMealPlan.get(entry.getKey()).add(menu);
-                        if (coachesMealPlan.get(entry.getKey()).size() != mealPlanSize) {
-                            i++;
-                        }
+//                        if (coachesMealPlan.get(entry.getKey()).size() != mealPlanSize) {
+//                            i++;
+//                        }
                     }
                 }
             }

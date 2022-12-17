@@ -31,7 +31,7 @@ public enum Category {
 
     public static List<String> getMenusByCategoryName(String name) {
         for (Category category : values()) {
-            if (category.getName().equals(name)) {
+            if (name.equals(category.getName())) {
                 return category.getMenus();
             }
         }
