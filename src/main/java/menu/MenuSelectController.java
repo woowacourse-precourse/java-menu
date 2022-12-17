@@ -4,12 +4,13 @@ public class MenuSelectController {
     InputDriver inputDriver = new InputDriver();
     OutputDriver outputDriver = new OutputDriver();
     CoachRepo coachRepo = new CoachRepo();
+
     public void start() {
         outputDriver.printStartMessage();
         coachRepo.setCoachList(inputDriver.scanCoachName());
         setCoachCannotEatMenu();
-
-
+        MenuSelectListMaker menuSelectListMaker = new MenuSelectListMaker(coachRepo);
+        menuSelectListMaker.menuListStringReturn();
     }
 
     private void setCoachCannotEatMenu() {
@@ -17,6 +18,5 @@ public class MenuSelectController {
             outputDriver.printScanCannotEatMenuMessage(coach.name);
             coachRepo.setCoachCannotEatMenu(coach.name,inputDriver.scanCannotEatMenu());
         }
-
     }
 }
