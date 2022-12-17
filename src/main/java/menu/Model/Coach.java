@@ -42,6 +42,10 @@ public class Coach {
         }
     }
 
+    public List<String> getRecommends() {
+        return this.recommends;
+    }
+
     public String getName() {
         return this.name;
     }
