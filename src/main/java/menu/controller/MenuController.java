@@ -68,6 +68,10 @@ public class MenuController {
         int categoryNumber = Randoms.pickNumberInRange(1, 5);
         String category = null;
         category = categoryChooseByNumber(categoryNumber, category);
+        Category.countUp(category);
+        if (Category.findBy(category).getCount() == 2){
+            return pickRandomCategory();
+        }
         return Category.findBy(category);
     }
 
