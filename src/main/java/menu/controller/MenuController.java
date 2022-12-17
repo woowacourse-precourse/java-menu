@@ -43,9 +43,6 @@ public class MenuController {
             newCoaches.add(nowCoach);
         }
         coachRepository.setCoaches(newCoaches);
-
-        System.out.println("코치별로 메뉴 만들어주기 완료");
-
         // 출력
         List<String> categories = recommend.getCategories();
         OutputView.printResultComment();
@@ -56,6 +53,7 @@ public class MenuController {
     private List<String> inputCoachNames() {
         OutputView.printCoachNameComment();
         List<String> names = InputView.readNames();
+        System.out.println();
 
         return names;
     }

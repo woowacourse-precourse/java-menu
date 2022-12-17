@@ -21,6 +21,7 @@ public class OutputView {
 
     public static void printStartComment() {
         System.out.println(START_COMMENT);
+        System.out.println();
     }
 
     public static void printCoachNameComment() {
@@ -29,6 +30,7 @@ public class OutputView {
 
     public static void printCoachForbiddenFoodComment(String name) {
         System.out.printf("%s" + COACH_FORBIDDEN_FOOD_COMMENT, name);
+        System.out.println();
     }
 
     public static void printResultComment() {
