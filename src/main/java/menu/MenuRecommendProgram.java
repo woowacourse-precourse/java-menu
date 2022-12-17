@@ -13,17 +13,20 @@ public class MenuRecommendProgram {
     private final InputView inputView;
     private final OutputView outputView;
     private Coaches coaches;
+    private List<String> categories;
 
     public MenuRecommendProgram() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        coaches = new Coaches();
+        this.coaches = new Coaches();
+        this.categories = new ArrayList<>();
     }
 
     public void start() {
         outputView.printStartMessage();
         outputView.printInputCoachName();
         makeCoach(inputView.readCoachName());
+        checkHateMenu(this.coaches.getCoaches());
     }
 
     private void makeCoach(String[] coachNames) {
@@ -33,5 +36,11 @@ public class MenuRecommendProgram {
         }
 
         this.coaches.setCoaches(coaches);
+    }
+
+    private void checkHateMenu(List<Coach> coaches) {
+        for (Coach coach: coaches) {
+           coach.checkHateMenu();
+        }
     }
 }
