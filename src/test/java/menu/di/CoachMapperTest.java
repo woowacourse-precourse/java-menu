@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 @DisplayName("CoachMapper 클래스")
 @DisplayNameGeneration(ReplaceUnderscores.class)
-public class CoachMapperTest {
+class CoachMapperTest {
 
     @Test
     void toCoach_메서드는_주어진_값을_바탕으로_coach_리스트를_반환한다() {
