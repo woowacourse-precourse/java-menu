@@ -8,6 +8,7 @@ public enum Category {
     CHINESE("중식", 3),
     ASIAN("아시안", 4),
     WESTERN("양식", 5);
+    private static final String CATEGORY_NOT_FOUND_MESSAGE = "카테고리가 존재하지 않습니다";
 
     private final String keyword;
     private final int key;
@@ -21,14 +22,14 @@ public enum Category {
         return Arrays.stream(Category.values())
                 .filter(it -> it.keyword.equals(keyword))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("카테고리가 존재하지 않습니다"));
+                .orElseThrow(() -> new IllegalArgumentException(CATEGORY_NOT_FOUND_MESSAGE));
     }
 
     public static Category from(int key) {
         return Arrays.stream(Category.values())
                 .filter(it -> it.key == key)
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("카테고리가 존재하지 않습니다"));
+                .orElseThrow(() -> new IllegalArgumentException(CATEGORY_NOT_FOUND_MESSAGE));
     }
 
     public String toDto() {

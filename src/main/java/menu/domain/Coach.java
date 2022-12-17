@@ -6,6 +6,7 @@ import menu.util.NullValidator;
 
 public class Coach {
 
+    private static final String CANNOT_EAT_MESSAGE = "먹을 수 없습니다";
     private final CoachName coachName;
     private final List<String> notEatMenus;
     private final List<String> ateMenu = new ArrayList<>();
@@ -34,7 +35,7 @@ public class Coach {
 
     public void eat(String menu) {
         if (!canEat(menu)) {
-            throw new IllegalArgumentException("먹을 수 없습니다");
+            throw new IllegalArgumentException(CANNOT_EAT_MESSAGE);
         }
         ateMenu.add(menu);
     }
