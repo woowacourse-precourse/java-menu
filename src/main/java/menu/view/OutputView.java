@@ -1,5 +1,10 @@
 package menu.view;
 
+import menu.model.CategoryResult;
+import menu.model.MenuResult;
+
+import java.util.List;
+
 public class OutputView {
 
     public static final String START_MESSAGE = "점심 메뉴 추천을 시작합니다.";
@@ -8,6 +13,16 @@ public class OutputView {
     public static final String RESULT_INTRODUCTION_MESSAGE = "메뉴 추천 결과입니다.";
     public static final String TABLE_HEAD_MESSAGE = "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]";
     public static final String END_MESSAGE = "추천을 완료했습니다.";
+    public static final String OPEN_EMBRACE = "[";
+    public static final String CLOSE_EMBRACE = "]";
+    public static final String SPACE = " ";
+    public static final String CATEGORY_MESSAGE = "카테고리";
+    public static final String DELIMITER = "|";
+    public static final String JAPANESE = "일식";
+    public static final String KOREAN = "한식";
+    public static final String CHINESE = "중식";
+    public static final String ASIAN = "아시안";
+    public static final String WESTERN = "양식";
 
     private void printlnMessage(String message) {
         System.out.println(message);
@@ -37,6 +52,23 @@ public class OutputView {
     public void printResultHead() {
         printlnMessage(RESULT_INTRODUCTION_MESSAGE);
         printlnMessage(TABLE_HEAD_MESSAGE);
+    }
+
+    public void printCategoryResult(CategoryResult categoryResult) {
+        List<String> categoryResultList = categoryResult.getCategoryResult();
+        printMessage(OPEN_EMBRACE);
+        printMessage(SPACE + CATEGORY_MESSAGE + SPACE);
+        for (int i = 0; i < categoryResultList.size(); i++) {
+            printMessage(SPACE + categoryResultList.get(i) + SPACE);
+            if (i != categoryResultList.size() - 1) {
+                printMessage(DELIMITER);
+            }
+        }
+        printlnMessage(CLOSE_EMBRACE);
+    }
+
+    public void printMenuResult(MenuResult menuResult) {
+
     }
 
     public void printResultBody() {
