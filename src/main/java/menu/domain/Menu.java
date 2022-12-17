@@ -3,6 +3,8 @@ package menu.domain;
 import java.util.Objects;
 
 public class Menu {
+    public static final int MAX_BANNED_MENU = 2;
+    public static final int MIN_BANNED_MENU = 0;
     private final String name;
 
     public Menu(String name) {

@@ -17,11 +17,8 @@ public class MenuRepository {
     }
 
     public static void saveBannedMenu(Coach coach, List<Menu> bannedMenusToSave) {
+        Validator.validateOnSavingBannedMenu(bannedMenusToSave);
         bannedMenus.put(coach, bannedMenusToSave);
-    }
-
-    public static List<Menu> findAllByCategory(Category category) {
-        return menus.get(category);
     }
 
     public static Menu findRandomOneByCategoryAndCoach(Category category, Coach coach) {
@@ -35,5 +32,16 @@ public class MenuRepository {
                 .stream().filter(menu -> !bannedMenus.get(coach).contains(menu))
                 .map(Menu::getName)
                 .collect(Collectors.toList());
+    }
+
+    private static class Validator {
+
+        public static final String INVALID_BANNED_MENU_SIZE = "각 코치는 최소 0개, 최대 2개의 못 먹는 메뉴가 있다.";
+
+        public static void validateOnSavingBannedMenu(List<Menu> bannedMenusToSave) {
+            if (bannedMenusToSave.size() < Menu.MIN_BANNED_MENU || Menu.MAX_BANNED_MENU < bannedMenusToSave.size()) {
+                throw new IllegalArgumentException(INVALID_BANNED_MENU_SIZE);
+            }
+        }
     }
 }
