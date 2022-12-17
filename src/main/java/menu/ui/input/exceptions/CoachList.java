@@ -2,7 +2,7 @@ package menu.ui.input.exceptions;
 
 import menu.ui.input.Repetitor;
 
-public class CoachName extends Repetitor {
+public class CoachList extends Repetitor {
     private static final String NAME_LENGTH_ERROR_MESSAGE = "[ERROR] 코치의 이름 길이는 2 ~ 4글자여야 합니다";
     private static final String COACH_NUMBER_ERROR_MESSAGE = "[ERROR] 코치의 수는 2 ~ 5명이어야 합니다";
     private static final String COMMA = ",";
