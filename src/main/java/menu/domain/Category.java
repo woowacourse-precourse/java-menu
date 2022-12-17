@@ -35,13 +35,17 @@ public enum Category {
     }
 
     public static void isValidMenu(String menu) {
-        Set<String> allMenus = Arrays.stream(Category.values())
-                .map(Category::getCategory)
-                .flatMap(o -> o.menus.stream())
-                .collect(Collectors.toSet());
-        allMenus.add("");
+        if(menu.equals(""))
+            return;
 
-        if(!allMenus.contains(menu))
+        if(!allMenus().contains(menu))
             throw new IllegalArgumentException(InputException.INVALID_AVOIDANCE.getMessage());
+    }
+
+    private static Set<String> allMenus() {
+        return Arrays.stream(Category.values())
+                .map(Category::getCategory)
+                .flatMap(AbstractCategory::getMenus)
+                .collect(Collectors.toSet());
     }
 }
