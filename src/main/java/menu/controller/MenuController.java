@@ -58,6 +58,15 @@ public class MenuController {
         if(2 < hateMenus.size()){
             throw new IllegalArgumentException("싫어하는 메뉴의 수는 2개를 넘을 수 없습니다.");
         }
+        if(hateMenus.size() != hateMenus.stream().distinct().count()){
+            throw new IllegalArgumentException("중복되는 싫어하는 메뉴가 들어가있습니다.");
+        }
+        List<String> hateMenus1 = existValidation(hateMenus);
+        if (hateMenus1 != null) return hateMenus1;
+        return hateMenus;
+    }
+
+    private List<String> existValidation(List<String> hateMenus) {
         for(String menu : hateMenus){
             if(Objects.equals(menu, "")){
                 return hateMenus;
@@ -66,13 +75,20 @@ public class MenuController {
                 throw new IllegalArgumentException("존재하지 않는 메뉴입니다.");
             }
         }
-        return hateMenus;
+        return null;
     }
 
     private void nameValidation(List<String> name) {
         if(name.size() < 2 || 5 < name.size()){
             throw new IllegalArgumentException("코치의 수는 2~5명 사이에 존재해야 합니다.");
         }
+        if(name.size() != name.stream().distinct().count()){
+            throw new IllegalArgumentException("중복된 코치 이름이 존재합니다.");
+        }
+        nameInfoValidation(name);
+    }
+
+    private void nameInfoValidation(List<String> name) {
         for(String coach : name){
             if(coach.length() < 2 || 5 < coach.length()){
                 throw new IllegalArgumentException("코치의 이름은 최소 2자리에서 4자리까지 가능합니다.");
