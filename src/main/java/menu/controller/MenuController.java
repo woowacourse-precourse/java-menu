@@ -59,7 +59,7 @@ public class MenuController {
     }
 
     private void checkMenu(List<String> menus) {
-        if (menus.stream().noneMatch(menu -> menuService.isExistsMenu(menu))) {
+        if (!menus.stream().allMatch(menu -> menuService.isExistsMenu(menu))) {
             throw new IllegalArgumentException("존재하지 않는 메뉴입니다.");
         }
     }
