@@ -15,6 +15,7 @@ public class MenuController {
         OutputView.printWeekDiet(
                 WeekDietDto.from(recommandMenus(coachs))
         );
+        OutputView.printOver();
     }
 
     private Coachs inputCoachNames(){
