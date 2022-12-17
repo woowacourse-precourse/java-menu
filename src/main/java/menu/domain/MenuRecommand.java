@@ -14,6 +14,10 @@ public class MenuRecommand {
         List<String> coaches = InputView.inputCoaches();
         for (int i = 0; i < coaches.size(); i++)
             coachSet.put(coaches.get(i),InputView.inputInEdibleMenu(coaches.get(i)));
+        recommandMenu();
+    }
 
+    public void recommandMenu() {
+        List<Integer> category = Category.recommandCategory();
     }
 }
