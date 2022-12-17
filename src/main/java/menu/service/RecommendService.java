@@ -20,6 +20,8 @@ public class RecommendService {
         while(!categoryService.isSaveCategoryInfo(findCategory)) {
             findCategory = categoryService.getRecommendCategory();
         }
+        String recommendMenu = menuService.getRecommendMenu(findCategory);
+        
 
     }
 

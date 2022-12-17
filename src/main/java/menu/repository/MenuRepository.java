@@ -14,5 +14,7 @@ public class MenuRepository {
         menuStorages.put(category, menuNames);
     }
 
-
+    public List<String> findMenusByCategory(Category findCategory) {
+        return menuStorages.get(findCategory);
+    }
 }

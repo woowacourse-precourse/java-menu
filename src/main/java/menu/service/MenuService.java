@@ -14,5 +14,8 @@ public class MenuService {
         menuRepository.saveCategoryAndMenu(category, menuNames);
     }
 
-
+    public String getRecommendMenu(Category findCategory) {
+        List<String> menus = menuRepository.findMenusByCategory(findCategory);
+        return Randoms.shuffle(menus).get(0);
+    }
 }
