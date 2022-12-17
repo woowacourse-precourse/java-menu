@@ -1,7 +1,6 @@
 package menu.service;
 
 import menu.domain.*;
-import menu.domain.WeeklyMenus;
 import menu.repository.CoachRepository;
 import menu.repository.MenuRepository;
 import menu.repository.WeeklyMenuRepository;
@@ -9,7 +8,6 @@ import menu.repository.WeeklyMenuRepository;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RecommendService {
     private WeeklyMenuRepository weeklyMenuRepository = new WeeklyMenuRepository();

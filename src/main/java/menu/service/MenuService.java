@@ -1,7 +1,6 @@
 package menu.service;
 
 import menu.domain.Category;
-import menu.domain.Coach;
 import menu.domain.Menus;
 import menu.repository.MenuRepository;
 

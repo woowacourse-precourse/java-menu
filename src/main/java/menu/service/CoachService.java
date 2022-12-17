@@ -7,6 +7,7 @@ import java.util.List;
 
 public class CoachService {
     private CoachRepository coachRepository = new CoachRepository();
+
     public void saveCoaches(List<Coach> coaches) {
         coachRepository.saveCoaches(coaches);
     }

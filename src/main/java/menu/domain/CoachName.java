@@ -19,7 +19,7 @@ public class CoachName {
     }
 
     private void validateNameLength(String name) {
-        if (name.length()<NAME_LENGTH_MIN || name.length()>NAME_LENGTH_MAX) {
+        if (name.length() < NAME_LENGTH_MIN || name.length() > NAME_LENGTH_MAX) {
             throw new IllegalArgumentException("코치의 이름은 최소 2글자, 최대 4글자입니다.");
         }
     }

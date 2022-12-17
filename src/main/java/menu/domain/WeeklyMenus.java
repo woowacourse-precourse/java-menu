@@ -8,21 +8,18 @@ public class WeeklyMenus {
     private Map<Coach, StringJoiner> coachesMenu = new HashMap<>();
 
     public WeeklyMenus(List<Coach> coaches) {
-        coaches.stream()
-                .forEach(coach -> coachesMenu.put(coach,
-                        new StringJoiner(" | ", "[ "+coach.getName()+" | ", " ]")));
+        coaches.stream().forEach(coach -> coachesMenu.put(coach, new StringJoiner(" | ", "[ " + coach.getName() + " | ", " ]")));
 
     }
 
     public void addWeeklyMenu(Day day, WeeklyMenu weeklyMenu) {
         this.days.add(day.getDay());
         this.categories.add(weeklyMenu.getCategory().getName());
-        weeklyMenu.getCoachesMenu().stream()
-                .forEach(coachMenu -> {
-                    Coach coach = coachMenu.getCoach();
-                    String menu = coachMenu.getMenu();
-                    this.coachesMenu.get(coach).add(menu);
-                });
+        weeklyMenu.getCoachesMenu().stream().forEach(coachMenu -> {
+            Coach coach = coachMenu.getCoach();
+            String menu = coachMenu.getMenu();
+            this.coachesMenu.get(coach).add(menu);
+        });
     }
 
     public String getDays() {
@@ -35,8 +32,7 @@ public class WeeklyMenus {
 
     public List<String> getCoachesMenus() {
         List<String> menus = new ArrayList<>();
-        coachesMenu.keySet().stream()
-                .forEach(coach -> menus.add(coachesMenu.get(coach).toString()));
+        coachesMenu.keySet().stream().forEach(coach -> menus.add(coachesMenu.get(coach).toString()));
         return menus;
     }
 }

@@ -31,7 +31,7 @@ public class Coach {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof Coach)) {
+        if (!(obj instanceof Coach)) {
             return false;
         }
         if (((Coach) obj).name.equals(this.name)) {

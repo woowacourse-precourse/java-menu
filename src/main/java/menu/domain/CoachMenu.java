@@ -34,7 +34,7 @@ public class CoachMenu {
             return false;
         }
         if (((CoachMenu) obj).coach.equals(this.coach)
-        && ((CoachMenu) obj).menu.equals(this.menu)) {
+                && ((CoachMenu) obj).menu.equals(this.menu)) {
             return true;
         }
         return false;
