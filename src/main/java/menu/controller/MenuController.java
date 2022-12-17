@@ -6,8 +6,6 @@ import menu.domain.Couch;
 import menu.dto.CouchHateMenusRequest;
 import menu.dto.CouchNamesRequest;
 import menu.dto.RecommendCouchMenu;
-import menu.dto.RecommendMenu;
-import menu.dto.RecommendMenusResponse;
 import menu.service.MenuService;
 import menu.view.MenuView;
 
@@ -31,9 +29,9 @@ public class MenuController {
         }
         List<String> recommendCategories = menuService.createRecommendCategories();
         menuView.printResultCategories(recommendCategories);
-        List<RecommendCouchMenu> collect = couches.stream()
+        List<RecommendCouchMenu> recommendMenus = couches.stream()
                 .map(couch -> menuService.createRecommendCouchMenu(recommendCategories, couch))
                 .collect(Collectors.toList());
-        menuView.printResultMessage(collect);
+        menuView.printResultMessage(recommendMenus);
     }
 }

@@ -28,11 +28,4 @@ public enum Category {
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 카테고리를 찾을 수 없습니다."));
     }
-
-    public static Category of(int number) {
-        return Arrays.stream(Category.values())
-                .filter(category -> category.number == number)
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 카테고리를 찾을 수 없습니다."));
-    }
 }

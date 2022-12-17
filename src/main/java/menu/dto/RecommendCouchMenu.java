@@ -11,14 +11,6 @@ public class RecommendCouchMenu {
         this.menus = menus;
     }
 
-    public String getCouchName() {
-        return couchName;
-    }
-
-    public List<String> getMenus() {
-        return menus;
-    }
-
     @Override
     public String toString() {
         return String.format("[ %s | %s ]", couchName, String.join(" | ", menus));

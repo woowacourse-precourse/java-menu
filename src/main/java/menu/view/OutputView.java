@@ -2,7 +2,6 @@ package menu.view;
 
 import java.util.List;
 import menu.dto.RecommendCouchMenu;
-import menu.dto.RecommendMenusResponse;
 
 public class OutputView {
 

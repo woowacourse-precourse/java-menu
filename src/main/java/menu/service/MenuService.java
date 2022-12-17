@@ -9,10 +9,8 @@ import menu.domain.Category;
 import menu.domain.Couch;
 import menu.domain.Menu;
 import menu.dto.CouchHateMenusRequest;
-import menu.dto.CouchMenu;
 import menu.dto.CouchNamesRequest;
 import menu.dto.RecommendCouchMenu;
-import menu.dto.RecommendMenu;
 import menu.repository.CouchRepository;
 import menu.repository.MenuRepository;
 
@@ -71,7 +69,7 @@ public class MenuService {
                 .collect(Collectors.toList());
         List<String> recommendsCategory = new ArrayList<>();
         while (recommendsCategory.size() != 5) {
-            String category = categories.get(Randoms.pickNumberInRange(0, 4));
+            String category = categories.get(Randoms.pickNumberInRange(1, 5));
             addCategory(recommendsCategory, category);
         }
         return recommendsCategory;
@@ -87,49 +85,6 @@ public class MenuService {
         recommendsCategory.add(newCategory);
     }
 
-    public List<RecommendMenu> createRecommendMenus(List<String> recommendCategories) {
-        List<Couch> couches = couchRepository.findAll();
-        List<RecommendMenu> recommendMenus = new ArrayList<>();
-        for (String category : recommendCategories) {
-            RecommendMenu recommendMenu = new RecommendMenu(category);
-            for (Couch couch : couches) {
-                String menu = pickRandomMenu(category);
-                recommendMenu.addCouchMenu(new CouchMenu(couch.getName(), menu));
-            }
-            recommendMenus.add(recommendMenu);
-        }
-        return recommendMenus;
-    }
-
-    public boolean validateRecommendMenus(List<RecommendMenu> recommendMenus) {
-        if (validateDuplicateMenus(recommendMenus)) {
-            return false;
-        }
-        return true;
-    }
-
-    private boolean validateDuplicateMenus(List<RecommendMenu> recommendMenus) {
-        List<Couch> couches = couchRepository.findAll();
-        for (Couch couch : couches) {
-            for (RecommendMenu recommendMenu : recommendMenus) {
-                List<CouchMenu> couchMenus = getCouchMenus(couch, recommendMenu);
-                long noDuplicateCount = couchMenus.stream()
-                        .map(CouchMenu::getMenuName)
-                        .distinct()
-                        .count();
-                if (noDuplicateCount == 5) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private List<CouchMenu> getCouchMenus(Couch couch, RecommendMenu recommendMenu) {
-        return recommendMenu.getCouchMenus().stream()
-                .filter(couchMenu -> couchMenu.isCouchNameMatch(couch.getName()))
-                .collect(Collectors.toList());
-    }
 
     private String pickRandomMenu(String category) {
         List<String> menus = menuRepository.findByCategory(Category.of(category))
