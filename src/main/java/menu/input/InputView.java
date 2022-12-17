@@ -25,16 +25,13 @@ public class InputView {
     public String[] CANNOT_EAT_FOOD(String name) {
         System.out.println(name + InputString.CANNOT_EAT_FOOD);
         try {
-            try {
-                String m = Console.readLine();
-                return m.split(",");
-            } catch (Exception e) {
-                throw new IllegalArgumentException("[ERROR]");
-            }
+            String m = Console.readLine();
+            String[] menus = m.split(",");
+            if (menus.length > 2) throw new IllegalArgumentException("[ERROR] 못 먹는 음식은 0 ~ 2개 입니다.");
+            return menus;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return CANNOT_EAT_FOOD(name);
         }
     }
-
 }
