@@ -13,7 +13,12 @@ public class InputView {
 
     public List<String> readCoachNames() {
         List<String> coachNameInput = Arrays.asList(Console.readLine().split(","));
+        validateCoachNumber(coachNameInput);
+        for (String name : coachNameInput) {
+            validateCoachNameLength(name);
+        }
 
+        return coachNameInput;
     }
 
     private void validateCoachNameLength(String name) {
