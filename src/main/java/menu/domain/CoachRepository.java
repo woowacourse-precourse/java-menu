@@ -28,15 +28,15 @@ public class CoachRepository {
     }
 
     public static void pickMenus(List<String> categoryList) {
-        for (Coach coach : coachs) {
-            pickMenusForEachCoach(coach, categoryList);
+        for (String category : categoryList) {
+            pickMenuForEachCategory(category);
         }
     }
 
-    private static void pickMenusForEachCoach(Coach coach, List<String> categoryList) {
-        for (int i=0; i<5; i++) {
-            List<String> menus = CategoryList.getMenusByCategory(categoryList.get(i));
-            pickMenu(menus, coach);
+    private static void pickMenuForEachCategory(String category) {
+        for (Coach coach : coachs) {
+            pickMenu(CategoryList.getMenusByCategory(category), coach);
+
         }
     }
 
