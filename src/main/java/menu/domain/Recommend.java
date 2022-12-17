@@ -41,6 +41,7 @@ public class Recommend {
         for (int i = 1; i <= 5; i++) {
             if (checkCategoryCount[i] > CATEGORY_COUNT_MAX) {
                 generateRandomNumbers();
+                break;
             }
         }
 
