@@ -1,9 +1,11 @@
 package menu.controller;
 
+import menu.domain.coach.Coach;
 import menu.domain.factory.CoachCreator;
-import menu.validator.domain.InputCoachNamesValidator;
 import menu.view.InputView;
 import menu.view.OutputView;
+
+import java.util.List;
 
 public class MenuController {
     private final InputView inputView;
@@ -16,7 +18,7 @@ public class MenuController {
     
     public void run() {
         outputView.printApplicationStartGuide();
-        String coachNames = inputView.inputCoachNames(outputView);
-        System.out.println(CoachCreator.from(coachNames));
+        List<Coach> coaches = inputView.repeatInput(() -> CoachCreator.from(inputView.inputCoachNames(outputView)), outputView);
+        System.out.println(coaches);
     }
 }

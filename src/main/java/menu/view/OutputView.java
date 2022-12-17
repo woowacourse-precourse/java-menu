@@ -9,6 +9,10 @@ public class OutputView {
         println("\n코치의 이름을 입력해 주세요. (, 로 구분)");
     }
     
+    public void printErrorMessage(IllegalArgumentException raisedException) {
+        println(raisedException.getMessage());
+    }
+    
     private void println(String message) {
         System.out.println(message);
     }
