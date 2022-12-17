@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import menu.domain.Coach;
 
 public class InputVIew {
@@ -28,7 +29,7 @@ public class InputVIew {
     public static List<String> readCoachNames() throws IllegalArgumentException {
         System.out.println(Message.REQUEST_COACH_NAME.explanation);
         String input = readInputAddOneLineBreak(Console::readLine);
-        List<String> coaches = Arrays.asList(input.split(DELIMITER));
+        List<String> coaches = Arrays.stream(input.split(DELIMITER)).map(String::trim).collect(Collectors.toList());
         validateCoachSize(coaches);
         return coaches;
     }
@@ -37,7 +38,7 @@ public class InputVIew {
         System.out.printf(Message.REQUEST_CANNOT_EAT_MENUS.explanation, coach.getName());
         System.out.println();
         String input = readInputAddOneLineBreak(Console::readLine);
-        List<String> menus = Arrays.asList(input.split(DELIMITER));
+        List<String> menus = Arrays.stream(input.split(DELIMITER)).map(String::trim).collect(Collectors.toList());
         validateCannotEatMenusSize(menus);
         return menus;
     }
