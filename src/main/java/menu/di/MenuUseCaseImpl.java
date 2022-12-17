@@ -41,6 +41,9 @@ public class MenuUseCaseImpl implements MenuUseCase {
     }
 
     private void validateMenu(String menu) {
+        if (menu.length() == 0) {
+            return;
+        }
         boolean menuIsValid = menus.values().stream().anyMatch(it -> it.contains(menu));
         if (!menuIsValid) {
             throw new IllegalArgumentException(MENU_NOT_FOUND_MESSAGE);
