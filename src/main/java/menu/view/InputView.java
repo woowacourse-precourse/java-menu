@@ -17,5 +17,5 @@ public class InputView {
         List<String> coaches = Arrays.asList(coach.split(","));
         return coaches;
     }
-    
+
 }
