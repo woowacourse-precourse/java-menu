@@ -21,7 +21,6 @@ public class Application {
     private static void addBannedMenu(String[] coachNames) {
         for (String coachName : coachNames) {
             String[] bannedMenus = inputBannedMenu(coachName);
-            System.out.println();
             if (bannedMenus == null) {
                 continue;
             }
