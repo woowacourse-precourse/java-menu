@@ -19,7 +19,7 @@ public class InputView {
         }
     }
 
-    public List<String> readImpossilbeToEat() {
+    public List<String> readHardToEat() {
         while (true) {
             try {
                 String input = Console.readLine();

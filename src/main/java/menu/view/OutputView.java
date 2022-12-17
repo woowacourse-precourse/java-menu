@@ -12,7 +12,7 @@ public class OutputView {
         System.out.println(Message.INPUT_COACH.getMessage());
     }
 
-    public void printImpossibleToEat(Coach coach) {
+    public void printHardToEat(Coach coach) {
         System.out.println(String.format(Message.IMPOSSIBLE_TO_EAT.getMessage(), coach.getName()));
     }
 
