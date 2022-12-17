@@ -27,13 +27,8 @@ public class CategorySelector {
     }
 
     private boolean checkAmount(Dish dish) {
-        int result = ZERO;
-        for (String menu : categoryRepository) {
-            if (dish.name.equals(menu)) {
-                result++;
-            }
-        }
-        return result >= WEEK_MAX;
+        long count = categoryRepository.stream().filter(s -> s.equals(dish.name)).count();
+        return count >= WEEK_MAX;
     }
 
     public List<String> getCategoryRepository() {
