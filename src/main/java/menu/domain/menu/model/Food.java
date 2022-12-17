@@ -1,6 +1,6 @@
-package menu.domain.model;
+package menu.domain.menu.model;
 
-import menu.domain.type.Category;
+import menu.domain.menu.type.Category;
 
 public class Food {
 

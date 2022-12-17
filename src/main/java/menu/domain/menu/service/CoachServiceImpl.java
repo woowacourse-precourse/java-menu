@@ -1,7 +1,7 @@
-package menu.domain.service;
+package menu.domain.menu.service;
 
-import menu.domain.model.Coach;
-import menu.domain.repository.CoachRepository;
+import menu.domain.menu.model.Coach;
+import menu.domain.menu.repository.CoachRepository;
 
 public class CoachServiceImpl implements CoachService {
 

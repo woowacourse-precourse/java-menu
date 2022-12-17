@@ -1,4 +1,4 @@
-package menu.domain.model;
+package menu.domain.menu.model;
 
 import java.util.List;
 

@@ -1,9 +1,10 @@
-package menu.domain.repository;
+package menu.domain.menu.repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import menu.domain.model.Food;
-import menu.domain.type.Category;
+import java.util.stream.Collectors;
+import menu.domain.menu.type.Category;
+import menu.domain.menu.model.Food;
 
 public class FoodRepositoryImpl implements FoodRepository {
 
@@ -59,5 +60,11 @@ public class FoodRepositoryImpl implements FoodRepository {
         foods.add(new Food("스파게티", Category.WESTERN));
         foods.add(new Food("피자", Category.WESTERN));
         foods.add(new Food("파니니", Category.WESTERN));
+    }
+
+    @Override
+    public List<Food> findByCategory(Category category) {
+        return foods.stream().filter(food -> food.getCategory().equals(category))
+            .collect(Collectors.toList());
     }
 }

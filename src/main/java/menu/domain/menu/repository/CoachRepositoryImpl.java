@@ -1,8 +1,8 @@
-package menu.domain.repository;
+package menu.domain.menu.repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import menu.domain.model.Coach;
+import menu.domain.menu.model.Coach;
 
 public class CoachRepositoryImpl implements CoachRepository {
 
