@@ -36,6 +36,16 @@ public class Service {
 
 
 
+
+	public void judgmentCotegotyAdd(String selectCategory) {
+		if (countCotegory.get(selectCategory) < 2)
+			byDayOfTheWeekSelectCategoryRepository.add(selectCategory);
+	}
+
+
+
+
+
 	public int countSelect() {
 		int count = 0;
 		for (int countValue : countCotegory.values())
