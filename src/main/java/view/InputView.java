@@ -23,7 +23,7 @@ public class InputView {
     
     
     private List<String> toStringList(String input) {
-        String[] split = input.split(REGEX);
+        String[] split = input.replace(" ", "").split(REGEX);
         return new ArrayList<>(Arrays.asList(split));
     }
     
