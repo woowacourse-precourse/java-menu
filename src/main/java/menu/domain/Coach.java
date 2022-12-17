@@ -17,8 +17,4 @@ public class Coach {
     public void eat(String menu) {
         eatenMenu.eat(menu);
     }
-
-    public String getName() {
-        return name;
-    }
 }
