@@ -67,7 +67,11 @@ public class Menu {
         pickMenu(coach, category);
     }
 
-    public List<String> getCoachNames() {
-        return coachNames;
+    public List<Coach> getCoaches() {
+        return coaches;
+    }
+
+    public List<String> getPreviousCategories() {
+        return previousCategories;
     }
 }
