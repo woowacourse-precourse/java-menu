@@ -9,6 +9,10 @@ public class CategoryService {
 
     private CategoryHistory categoryHistory;
 
+    public CategoryService(CategoryHistory categoryHistory) {
+        this.categoryHistory = categoryHistory;
+    }
+
     public Category selectCategory() {
         List<Category> selectedCategory = categoryHistory.getCategoryHistory();
         while (true) {

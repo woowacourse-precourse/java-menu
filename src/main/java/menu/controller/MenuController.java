@@ -25,7 +25,7 @@ public class MenuController {
         this.inputView = new InputView();
         this.outputView = new OutputView();
         this.categoryHistory = new CategoryHistory();
-        this.categoryService = new CategoryService();
+        this.categoryService = new CategoryService(categoryHistory);
         this.menuService = new MenuService();
         this.coaches = new ArrayList<>();
     }
