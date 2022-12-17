@@ -1,4 +1,4 @@
-package menu.Domain;
+package menu.domain;
 
 @FunctionalInterface
 public interface CategoryNumberGenerator {

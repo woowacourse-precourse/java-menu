@@ -1,4 +1,4 @@
-package menu.Domain;
+package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -10,5 +10,4 @@ public class CategoryRandomNumberGenerator implements CategoryNumberGenerator{
     public int generate() {
         return Randoms.pickNumberInRange(RANDOM_LOWER_INCLUSIVE, RANDOM_UPPER_INCLUSIVE);
     }
-
 }
