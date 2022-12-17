@@ -23,4 +23,13 @@ public class MenuRecommendProgram {
         menuRecommend = new MenuRecommend();
     }
 
+    public void selectCategory() {
+        boolean isSelect;
+        do {
+            String category = menuRecommend.selectCategory();
+            isSelect = validateCategory(category);
+        } while (isSelect);
+    }
+
+
 }
