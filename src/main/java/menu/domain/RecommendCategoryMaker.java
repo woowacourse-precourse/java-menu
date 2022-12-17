@@ -18,7 +18,7 @@ public class RecommendCategoryMaker {
 
     public List<Category> make() {
         List<Category> categories = new ArrayList<>();
-        while (categories.size() > CATEGORY_COUNT) {
+        while (categories.size() < CATEGORY_COUNT) {
             Category category = categoryGenerator.generate();
             if (Collections.frequency(categories, category) < MAX_DUPLICATE_CATEGORY_COUNT) {
                 categories.add(category);
