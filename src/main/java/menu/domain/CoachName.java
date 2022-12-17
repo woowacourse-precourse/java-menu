@@ -21,4 +21,8 @@ public class CoachName {
             throw new IllegalArgumentException("코치의 이름은 최소 2글자, 최대 4글자입니다.");
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }

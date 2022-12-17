@@ -14,4 +14,8 @@ public class Coach {
     public void addCanNotEatMenus(List<String> menus) {
         canNotEatMenus.addAll(menus);
     }
+
+    public String getName() {
+        return name.getName();
+    }
 }

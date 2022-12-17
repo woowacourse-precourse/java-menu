@@ -19,6 +19,7 @@ public class MenuController {
     }
 
     public void run() {
+        OutputView.printStartMessage();
         List<Coach> coaches = readCoachNames();
         coaches.stream().forEach(coach -> readConNotEatMenus(coach));
         coachService.saveCoaches(coaches);
