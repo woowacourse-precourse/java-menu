@@ -19,7 +19,7 @@ public class MenuClient {
     public void run() {
         printStartMessage();
         List<String> names = handleError(this::askNames);
-        List<List<String>> menus = handleError(() -> askMenus(names));
+        List<List<String>> menus = askMenus(names);
         printResult(names, menus);
     }
 
@@ -37,7 +37,7 @@ public class MenuClient {
     private List<List<String>> askMenus(List<String> names) {
         List<List<String>> menus = new ArrayList<>();
         for (String name : names) {
-            menus.add(askOneCoachMenu(name));
+            menus.add(handleError(() -> askOneCoachMenu(name)));
         }
         return menus;
     }
