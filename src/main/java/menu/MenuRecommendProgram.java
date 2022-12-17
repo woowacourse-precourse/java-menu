@@ -3,6 +3,7 @@ package menu;
 import menu.coach.Coach;
 import menu.input.InputView;
 import menu.menu.Category;
+import menu.output.OutputView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,6 +12,7 @@ import java.util.List;
 public class MenuRecommendProgram {
 
     private static final InputView inputView = new InputView();
+    private static final OutputView outputView = new OutputView();
 
     private HashMap<String, Integer> countOfCategorySelected;
     private List<Coach> coaches;
@@ -46,11 +48,15 @@ public class MenuRecommendProgram {
     }
 
     private void start() {
-        // 메뉴 추천 문구 출력
+        printStartMessage();
         inputCoach();
         for (Coach coach: coaches) {
             inputMenus(coach);
         }
+    }
+
+    private void printStartMessage() {
+        outputView.printStart();
     }
 
     private void inputCoach() {
