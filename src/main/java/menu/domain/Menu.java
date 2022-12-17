@@ -14,10 +14,6 @@ public class Menu {
         this.name = name;
     }
 
-    public static Menu ofName(final String name) {
-        return new Menu(Category.mapByName(name), name);
-    }
-
     public Category category() {
         return category;
     }

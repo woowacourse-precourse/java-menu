@@ -1,6 +1,7 @@
 package menu.controller.mapper;
 
 import menu.domain.Menu;
+import menu.domain.enums.Category;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class MenuMapper {
         String[] menus = input.split(COMMA);
         validateSize(menus);
         return stream(menus)
-                .map(Menu::ofName)
+                .map(Category::mapMenuByName)
                 .collect(toUnmodifiableList());
     }
 

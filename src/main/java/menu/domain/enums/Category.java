@@ -33,7 +33,6 @@ public enum Category {
     ;
 
     private static final String NO_EXIST_CATEGORY_INDEX_FORMAT = "번호[%d]에 해당하는 카테고리가 없습니다.";
-    private static final String NO_EXIST_CATEGORY_CONTAIN_MENU_FORMAT = "음식[%s]을(를) 포함한 카테고리가 존재하지 않습니다.";
     private static final String NO_EXIST_MENU_FORMAT = "음식[%s]이(가) 존재하지 않습니다.";
 
     private final int number;
@@ -55,16 +54,6 @@ public enum Category {
                 .orElseThrow(() ->
                         new IllegalArgumentException(
                                 format(NO_EXIST_CATEGORY_INDEX_FORMAT, number)));
-    }
-
-    public static Category mapByName(final String name) {
-        for (Category category : values()) {
-            if (category.isContainMenu(name)) {
-                return category;
-            }
-        }
-        throw new IllegalArgumentException(
-                format(NO_EXIST_CATEGORY_CONTAIN_MENU_FORMAT, name));
     }
 
     private boolean isContainMenu(String name) {
