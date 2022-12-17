@@ -13,4 +13,8 @@ public class BannedFoods {
     public void addBannedFood(String food) {
         this.bannedFoods.add(food);
     }
+
+    public List<String> getBannedFoods() {
+        return bannedFoods;
+    }
 }
