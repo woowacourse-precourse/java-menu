@@ -12,7 +12,7 @@ public class Coach {
     private static final int BLACKLIST_MAX_SIZE = 2;
 
     private final String name;
-    private List<Menu> blacklist;
+    private Blacklist blacklist;
     private final Map<Day, Menu> menus;
 
     public Coach(String name) {
@@ -31,9 +31,9 @@ public class Coach {
         return Collections.unmodifiableMap(menus);
     }
 
-    public void setBlacklist(List<Menu> blacklist) {
-        validateBlacklist(blacklist);
-        this.blacklist = blacklist;
+    public void setBlacklist(List<Menu> menus) {
+        validateBlacklist(menus);
+        this.blacklist = new Blacklist(menus);
     }
 
     private void validateBlacklist(List<Menu> blacklist) {
@@ -51,7 +51,7 @@ public class Coach {
     }
 
     public boolean isBlacklist(Menu menu) {
-        return blacklist.contains(menu);
+        return blacklist.isExist(menu);
     }
 
     public boolean isDuplicate(Menu menu) {
