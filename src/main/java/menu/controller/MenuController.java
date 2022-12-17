@@ -70,5 +70,13 @@ public class MenuController {
         if(name.size() < 2 || 5 < name.size()){
             throw new IllegalArgumentException("코치의 수는 2~5명 사이에 존재해야 합니다.");
         }
+        for(String coach : name){
+            if(coach.length() < 2 || 5 < coach.length()){
+                throw new IllegalArgumentException("코치의 이름은 최소 2자리에서 4자리까지 가능합니다.");
+            }
+            if(!coach.matches("^[a-zA-Zㄱ-ㅎ가-힣 ]*$")){
+                throw new IllegalArgumentException("이름에는 영어 또는 한글만 가능합니다.");
+            }
+        }
     }
 }
