@@ -1,7 +1,6 @@
 package menu.repository;
 
 import menu.domain.Category;
-import menu.domain.Coaches;
 import menu.domain.Menu;
 import menu.domain.Menus;
 
@@ -13,7 +12,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class MenuRepository {
+    private static final String FILE_PATH = "src/main/resources/Menus.md";
     private static final Map<Category, Menus> menus = new EnumMap<>(Category.class);
+    private static final String CATEGORY_MENUS_DELIMITER = ": ";
 
     static {
         load();
@@ -21,18 +22,24 @@ public class MenuRepository {
 
     private static void load() {
         try {
-            BufferedReader reader
-                    = Files.newBufferedReader(Paths.get("src/main/resources/Menus.md"));
-            reader.lines()
-                    .map(menuByCategory -> menuByCategory.split(": "))
-                    .forEach(menuByCategory -> menus.put(
-                            Category.fromName(menuByCategory[0]),
-                            Menus.from(menuByCategory[0], menuByCategory[1])
-                            )
-                    );
+            BufferedReader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
+            load(reader);
         } catch (IOException e) {
             throw new IllegalArgumentException("파일 에러");
         }
+    }
+
+    private static void load(BufferedReader reader) {
+        reader.lines()
+                .map(menuByCategory -> menuByCategory.split(CATEGORY_MENUS_DELIMITER))
+                .forEach(menuByCategory -> saveMenus(menuByCategory[0], menuByCategory[1]));
+    }
+
+    private static Menus saveMenus(String category, String menus) {
+        return MenuRepository.menus.put(
+                Category.fromName(category),
+                Menus.from(category, menus)
+        );
     }
 
     public static Menus findMenus(List<String> menuNames) {
