@@ -22,7 +22,7 @@ public class MenuRecommendationController implements Controllable {
 
     @Override
     public ApplicationStatus process() {
-        for (Day day : Day.values()) {
+        for (int repeat = 0; repeat < Day.values().length; repeat++) {
             Category category = pickAvailableCategory();
             for (Coach coach : CoachRepository.coaches()) {
                 Menu menu = pickAvailableMenu(coach, category);
