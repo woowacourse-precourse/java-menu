@@ -17,6 +17,8 @@ public class MenuService {
 
         outputView.printRequestCoachNameMessage();
         inputCoachNameAndCheckValidation(true,"");
+
+        inputCanNotEatMenuAndCheckValidation();
     }
 
     private void inputCoachNameAndCheckValidation(boolean doRetryInputCoachName , String coachNameWithComma){
@@ -49,6 +51,17 @@ public class MenuService {
             return false;
         }
         return true;
+    }
+
+    private void inputCanNotEatMenuAndCheckValidation(){
+        for (Coach coach : menuRecommendApp.getCoaches()) {
+            outputView.printRequestCoachCanNotEatMenuMessage(coach.name);
+            boolean doRetryInputCanNotEatMenu = true;
+            while(doRetryInputCanNotEatMenu){
+                String inputResultCanNotEatMenuWithComma = inputView.inputCoachCanNotEatMenu();
+                doRetryInputCanNotEatMenu = isNotValidCanNotEatMenuInput(inputResultCanNotEatMenuWithComma , coach);
+            }
+        }
     }
 
     private boolean isNotValidCanNotEatMenuInput(String inputResultCanNotEatMenuWithComma , Coach coach){
