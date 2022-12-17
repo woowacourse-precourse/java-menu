@@ -21,7 +21,6 @@ public class Coaches {
         for (String name : inputs) {
             addCoach(new Coach(name));
         }
-        coaches.stream().forEachOrdered(it -> System.out.println(it.getName()));
     }
 
     private static void validCoaches(List<String> coaches) {

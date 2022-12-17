@@ -16,6 +16,7 @@ public class InputView {
 
     public void inputCoachesHateFoods() {
         for (Coach coach : Coaches.getCoaches()) {
+            System.out.println();
             System.out.println(coach.getName() + "(이)가 못 먹는 메뉴를 입력해 주세요.");
             String input = Console.readLine();
             Coaches.inputHateFood(coach.getName(), checkComma(input));
