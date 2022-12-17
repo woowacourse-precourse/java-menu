@@ -26,6 +26,16 @@ public class Coach {
         this.nonMenus = nonMenus;
     }
 
+    /**
+     * 메뉴 제한 확인 메서드
+     */
+    public boolean isFineEatMenu(String menu){
+        return eatMenu.contains(menu);
+    }
+
+    /**
+     * 카테고리 제한 확인 메서드
+     */
     public void countCategory(Category category){
         int count = eatCategory.get(category);
         eatCategory.put(category, count + 1);
@@ -36,6 +46,9 @@ public class Coach {
     }
 
 
+    /**
+     * Coach 이름 예외사항 체크
+     */
     public void validateNameSize(String name){
         if(isCorrectNameSize(name)){
             return;
