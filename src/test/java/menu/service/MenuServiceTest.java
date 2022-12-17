@@ -52,20 +52,17 @@ class MenuServiceTest {
         //then
     }
 
-    @Test
-    void 잘못된_기피_음식() throws Exception{
+    @ValueSource(strings = {"음식1", "비빔밥,음식2", "비빔밥,비빔밥"})
+    @ParameterizedTest
+    void 잘못된_기피_음식(String input) throws Exception{
         //given
         MenuService menuService = new MenuService();
         menuService.setCoachesName("하나,두울");
 
-        ArrayList<String> inputs = new ArrayList<>();
-        inputs.add("음식1,음식2,음식3");
-        inputs.add("음식1,음식2,음식3");
-
         //when
 
         //then
-        assertThatThrownBy(() -> menuService.setAvoidance(inputs))
+        assertThatThrownBy(() -> menuService.validateAvoidanceInput(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

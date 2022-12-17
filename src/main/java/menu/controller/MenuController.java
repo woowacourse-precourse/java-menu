@@ -1,14 +1,11 @@
 package menu.controller;
 
-import menu.domain.Category;
-import menu.domain.Coach;
 import menu.service.MenuService;
 import menu.view.InputView;
 import menu.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class MenuController {
     private final MenuService menuService;
@@ -35,14 +32,11 @@ public class MenuController {
     }
 
     public void setAvoidance() {
-        while (true) {
-            try {
-                menuService.setAvoidance(getInputs());
-                break;
-            } catch (IllegalArgumentException i) {
-                System.out.println(i.getMessage());
-            }
-        }
+        List<String> inputs = new ArrayList<>();
+        for (String coach : menuService.getCoachesName())
+            inputs.add(getAvoidanceInput(coach));
+
+        menuService.setAvoidance(inputs);
     }
 
     public void recommend() {
@@ -50,33 +44,22 @@ public class MenuController {
         menuService.setMenus();
 
         outputView.printResult(
-                getCategories(),
-                getMenus(),
+                menuService.getCategories(),
+                menuService.getCoachesMenus(),
                 menuService.getCoachesName()
         );
     }
 
-    private List<String> getCategories() {
-        return menuService.getCategories().stream()
-                .map(Category::getCategoryName)
-                .collect(Collectors.toList());
-    }
+    private String getAvoidanceInput(String coach) {
+        while(true){
+            try {
+                String avoidance = inputView.readCoachesAvoidance(coach);
+                menuService.validateAvoidanceInput(avoidance);
 
-    private List<List<String>> getMenus() {
-        return menuService.getCoaches().stream()
-                .map(Coach::getRecommended)
-                .collect(Collectors.toList());
-    }
-
-    private List<String> getInputs() {
-        List<String> inputs = new ArrayList<>();
-        for (String coach : menuService.getCoachesName()) {
-            String menu = inputView.readCoachesAvoidance(coach);
-            Category.isValidMenu(menu);
-
-            inputs.add(menu);
+                return avoidance;
+            } catch (IllegalArgumentException i) {
+                System.out.println(i.getMessage());
+            }
         }
-
-        return inputs;
     }
 }

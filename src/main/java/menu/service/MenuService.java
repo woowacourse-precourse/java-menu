@@ -14,8 +14,16 @@ public class MenuService {
     private final List<Coach> coaches = new ArrayList<>();
     private final List<Category> categories = new ArrayList<>();
 
-    public List<Category> getCategories() {
-        return categories;
+    public List<String> getCategories() {
+        return categories.stream()
+                .map(Category::getCategoryName)
+                .collect(Collectors.toList());
+    }
+
+    public List<List<String>> getCoachesMenus() {
+        return coaches.stream()
+                .map(Coach::getRecommended)
+                .collect(Collectors.toList());
     }
 
     public List<Coach> getCoaches() {
@@ -30,7 +38,7 @@ public class MenuService {
 
     public void setCoachesName(String input) {
         coaches.clear();
-        validateCountOfCoaches(input);
+        validateCoachesInput(input);
 
         StringTokenizer st = new StringTokenizer(input, ",");
         while (st.hasMoreTokens())
@@ -55,6 +63,21 @@ public class MenuService {
         }
     }
 
+    public void validateAvoidanceInput(String input) {
+        StringTokenizer st = new StringTokenizer(input, ",");
+        List<String> avoidances = new ArrayList<>();
+        while (st.hasMoreTokens())
+            avoidances.add(st.nextToken());
+
+        if(avoidances.stream().distinct().count()!=avoidances.size())
+            throw new IllegalArgumentException(InputException.DUPLICATED_INPUT.getMessage());
+
+        if(2<avoidances.size())
+            throw new IllegalArgumentException(InputException.INVALID_COUNT_OF_AVOIDANCE.getMessage());
+
+        avoidances.forEach(Category::isValidMenu);
+    }
+
     private void addMenu(Category category) {
         for (Coach coach : coaches) {
             while (!coach.addRecommended(category.pickMenu())) {
@@ -76,9 +99,16 @@ public class MenuService {
         return count;
     }
 
-    private void validateCountOfCoaches(String input) {
+    private void validateCoachesInput(String input) {
+        List<String> coachesName = new ArrayList<>();
         StringTokenizer st = new StringTokenizer(input, ",");
-        if (st.countTokens() < 2 || 5 < st.countTokens())
+        while (st.hasMoreTokens())
+            coachesName.add(st.nextToken());
+
+        if(coachesName.stream().distinct().count()!=coachesName.size())
+            throw new IllegalArgumentException(InputException.DUPLICATED_INPUT.getMessage());
+
+        if (coachesName.size() < 2 || 5 < coachesName.size())
             throw new IllegalArgumentException(InputException.INVALID_COUNT_OF_COACHES.getMessage());
     }
 }

@@ -27,7 +27,6 @@ public class Coach {
      */
     public void addAvoidance(String input) {
         avoidList.clear();
-        validateCountOfAvoidance(input);
 
         StringTokenizer st = new StringTokenizer(input, ",");
         while (st.hasMoreTokens())
@@ -40,13 +39,6 @@ public class Coach {
 
         recommended.add(menu);
         return true;
-    }
-
-    private void validateCountOfAvoidance(String input) {
-        int count = new StringTokenizer(input, ",").countTokens();
-
-        if(count<0 || 2<count)
-            throw new IllegalArgumentException(InputException.INVALID_COUNT_OF_AVOIDANCE.getMessage());
     }
 
     private void validateNickname(String name) {
