@@ -16,7 +16,11 @@ public class ThisWeekRecommendedCategory {
     }
 
     public boolean isRecommendCategoryCountOverTwo(Category recommendedCategory) {
-        int categoryCount = Collections.frequency(categories, recommendedCategory);
+        String recommendCategoryName = recommendedCategory.getName();
+        long categoryCount = categories.stream()
+                .map(Category::getName)
+                .filter(categoryName -> categoryName.equals(recommendCategoryName))
+                .count();
         return categoryCount > MAX_RECOMMEND_CATEGORY_COUNT;
     }
 
