@@ -7,5 +7,6 @@ public class Controller {
     }
 
     private static void registerCouch() {
+        InputController.registerCouch();
     }
 }
