@@ -59,6 +59,13 @@ public class MenuRecommendProgram {
         }
     }
 
+    private void inputMenus(Coach coach) {
+        List<String> menusNotEaten = inputView.readMenuNotEat();
+        for (String menuNotEaten: menusNotEaten) {
+            coach.addFoodNotEat(menuNotEaten);
+        }
+    }
+
     public void selectMenus(String category) {
         for (Coach coach: coaches) {
             selectMenu(coach, category);

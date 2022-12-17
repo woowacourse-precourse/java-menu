@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class InputView {
 
-    public List<String> readCoaches() {
+    public static List<String> readCoaches() {
         String input = Console.readLine();
         String[] coaches = input.split(",");
         validate(ValidationType.CHECK_COACH_SIZE, String.valueOf(coaches.length));
@@ -19,7 +19,7 @@ public class InputView {
         return Arrays.stream(coaches).collect(Collectors.toList());
     }
 
-    public List<String> readMenuNotEat() {
+    public static List<String> readMenuNotEat() {
         String input = Console.readLine();
         String[] menus = input.split(",");
         validate(ValidationType.CHECK_MENUS_COUNT, String.valueOf(menus.length));
@@ -29,7 +29,7 @@ public class InputView {
         return Arrays.stream(menus).collect(Collectors.toList());
     }
 
-    public void validate(ValidationType validationType, String input) {
+    public static void validate(ValidationType validationType, String input) {
         if (!ValidationType.validate(validationType, input)) {
             String errorMessage = validationType.getErrorMessage();
             throw new IllegalArgumentException(errorMessage);
