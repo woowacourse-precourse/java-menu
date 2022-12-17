@@ -13,6 +13,8 @@ public class Validator {
     private static final int MIN_COACH_NAME_SIZE = 2;
     private static final int MAX_COACH_NAME_SIZE = 4;
 
+    private static final int MAX_BANNED_MENU_SIZE = 2;
+
     public static void validateCoaches(List<Coach> coaches) {
         validateCoachSize(coaches.size());
         validateCoachNameSize(coaches);
@@ -49,13 +51,20 @@ public class Validator {
 
     public static void validateBannedMenus(List<String> bannedMenus, MenuRecommender menuRecommender) {
         validateExistedMenus(bannedMenus, menuRecommender);
+        validateMenuOverTwo(bannedMenus.size());
     }
 
     private static void validateExistedMenus(List<String> bannedMenus, MenuRecommender menuRecommender) {
         for (String bannedMenu : bannedMenus) {
             if (!menuRecommender.isExistedMenu(bannedMenu)) {
-                throw new IllegalArgumentException("[ERROR] 존ㄱ하지 않는 메뉴입니다.");
+                throw new IllegalArgumentException("[ERROR] 존재하지 않는 메뉴입니다.");
             }
+        }
+    }
+
+    private static void validateMenuOverTwo(int menuSize) {
+        if (menuSize > MAX_BANNED_MENU_SIZE) {
+            throw new IllegalArgumentException("[ERROR] 먹지 못하는 음식은 두 개까지 등록 가능힙니다.");
         }
     }
 }
