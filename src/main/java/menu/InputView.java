@@ -5,6 +5,8 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 
+
+//똑같은 이름 입력 검증하기
 public class InputView {
     private static final String COACH_NAME_LENGTH_ERROR_MESSAGE = "코치의 이름 길이는 최소 2, 최대 4여야 합니다.";
     private static final String COACH_NUMBER_ERROR_MESSAGE = "코치는 최소 2명, 최대 5명 입력해야 합니다.";
@@ -27,8 +29,9 @@ public class InputView {
     public List<String> readPickyEatings() {
         String pickyEatingsInput = Console.readLine();
         validateInputFormat(pickyEatingsInput);
-        List<String> pickEatings = Arrays.asList(Console.readLine().split(","));
+        List<String> pickEatings = Arrays.asList(pickyEatingsInput.split(","));
         validatePickyEatingsNumber(pickEatings);
+        System.out.println("pickEatings = " + pickEatings);
 
         for (String pickyEating : pickEatings) {
             validatePickyEatingsName(pickyEating);
@@ -68,11 +71,21 @@ public class InputView {
 
     private void validatePickyEatingsName(String pickEating) {
         for (Category category : Category.values()) {
+            //pickEating에 안들어감
             if (category.getMenus().contains(pickEating)) {
                 return;
             }
         }
         throw new IllegalArgumentException(MENU_NAME_ERROR_MESSAGE);
+    }
+
+    private boolean contains(List<String> menus, String myMenu) {
+        for (String menu : menus) {
+            if (menu.equals(myMenu)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 
