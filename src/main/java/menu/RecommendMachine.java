@@ -14,7 +14,6 @@ public class RecommendMachine {
             String selectFood = categoryToFoods.get(0);
 
             if (!coach.isHateFood(selectFood) && coach.isPossibleRecommendFood(selectFood)) {
-                coach.recommendCategory(category.toString());
                 coach.recommendFood(selectFood);
                 decideNotYet = false;
             }
