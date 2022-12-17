@@ -11,6 +11,6 @@
   - [X] 일식,한식,중식,아시안,양식 추가 AddCategory#addJapan,addKorean,addChinese,addAsian,addAmerican
 - [ ] 카테고리 추천
   - [X] 카테고리 메뉴 랜덤으로 가져오기 Random#RandomCategory , Random#RandomMenu
-  - [ ] 한주에 같은 카테고리 최대 2회
+  - [X] 한주에 같은 카테고리 최대 2회
 - [ ] 메뉴 추천
   - [ ] 한주에 중복되지 않는 메뉴를 추천해야한다.

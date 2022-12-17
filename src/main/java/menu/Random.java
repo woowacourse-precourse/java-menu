@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Random {
     public String RandomCategory(List<Menu> menu){
-        String menuCategory = menu.get(Randoms.pickNumberInRange(1,5)).category;
+        String menuCategory = menu.get(Randoms.pickNumberInRange(1,5)-1).category;
         return menuCategory;
     }
     public String RandomMenu(List<Menu> menu,String Category){
