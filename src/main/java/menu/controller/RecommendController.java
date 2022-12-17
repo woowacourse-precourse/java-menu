@@ -13,7 +13,7 @@ import java.util.List;
 
 import static menu.constant.InputMessage.START_RECOMMEND;
 
-public class RecommendController implements Controller{
+public class RecommendController implements Controller {
 
     private final OutputView outputView = new OutputView();
 
@@ -34,16 +34,29 @@ public class RecommendController implements Controller{
     public void process() {
         outputView.printMessage(START_RECOMMEND.getValue());
         List<String> coachNames = inputService.getUserInput(inputService::getCoachNames);
+        List<Coach> coaches = getCoachNotEatFoods(coachNames);
+        recommendByDayWeek(coaches);
+        getRecommendResult(coaches);
+    }
+
+    private void getRecommendResult(List<Coach> coaches) {
+        String recommendResult = recommendService.getRecommendResult(coaches);
+        outputView.printRecommendResult(recommendResult);
+    }
+
+    private void recommendByDayWeek(List<Coach> coaches) {
+        for (DayWeek dayWeek : DayWeek.values()) {
+            recommendService.recommend(dayWeek, coaches);
+        }
+    }
+
+    private List<Coach> getCoachNotEatFoods(List<String> coachNames) {
         List<Coach> coaches = new ArrayList<>();
         for (String coachName : coachNames) {
             List<String> notEatFoodNames = inputService.getUserInputWithParam(inputService::getNotEatFoods, coachName);
             Coach createdCoach = coachService.createCoachInfo(coachName, notEatFoodNames);
             coaches.add(createdCoach);
         }
-        for (DayWeek dayWeek : DayWeek.values()) {
-            recommendService.recommend(dayWeek, coaches);
-        }
-        String recommendResult = recommendService.getRecommendResult(coaches);
-        outputView.printRecommendResult(recommendResult);
+        return coaches;
     }
 }
