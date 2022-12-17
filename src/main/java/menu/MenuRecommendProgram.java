@@ -36,7 +36,6 @@ public class MenuRecommendProgram {
     }
 
     public void run() {
-        // start 부분
         start();
 
         for (int i = 0; i < 5; i++) {
@@ -44,7 +43,7 @@ public class MenuRecommendProgram {
             selectMenus(category);
         }
 
-        // 결과 출력
+        printResult();
     }
 
     private void start() {
@@ -85,6 +84,10 @@ public class MenuRecommendProgram {
         for (String menuNotEaten: menusNotEaten) {
             coach.addFoodNotEat(menuNotEaten);
         }
+    }
+
+    private void printResult() {
+        outputView.printResult(selectedCategory, coaches);
     }
 
     public void selectMenus(String category) {
