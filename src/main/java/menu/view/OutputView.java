@@ -14,10 +14,10 @@ public class OutputView {
         System.out.println(START);
     }
 
-    public void programResult(List<Coach> coaches) {
+    public void programResult(List<Coach> coaches, List<Week> weeks) {
         System.out.println(RECOMMEND_RESULT);
         System.out.println(Week.getWeekFormat());
-        System.out.println(Category.getFormat());
+        System.out.println(Category.getFormat(weeks));
         for(Coach coach : coaches) {
             System.out.println(coach.getFormat());
         }

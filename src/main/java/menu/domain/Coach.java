@@ -12,7 +12,7 @@ public class Coach {
     private List<String> recommendMenus = new ArrayList<String>();
 
     public Coach(String name) {
-        if(!(2 <= name.length() && name.length() <= 4)) {
+        if (!(2 <= name.length() && name.length() <= 4)) {
             throw new IllegalArgumentException("[ERROR] 코치의 이름은 2글자 이상 4글자 이하입니다.");
         }
         this.name = name;
@@ -30,36 +30,44 @@ public class Coach {
     public boolean isMenuDuplicated() {
         return (new HashSet<String>(recommendMenus)).size() != 5;
     }
+
     public List<String> getRecommendMenus() {
         return recommendMenus;
     }
-    public void setRecommendMenus(List<Week> weeks) {
-        recommendMenus = new ArrayList<String>();
-        weeks.stream()
-                .forEach(week -> {
-                    String recommendMenu = Category.recommendRandomMenu(week.getCategory());
-                    while(prohibitionMenus.contains(recommendMenu)) {
-                        recommendMenu = Category.recommendRandomMenu(week.getCategory());
-                    }
-                    recommendMenus.add(recommendMenu);
-                });
 
+    public void setRecommendMenus(Week week) {
+        String recommendMenu = Category.recommendRandomMenu(week.getCategory());
+        while (prohibitionMenus.contains(recommendMenu)) {
+            recommendMenu = Category.recommendRandomMenu(week.getCategory());
+        }
+        System.out.println(week.getCategory() + " " + recommendMenu);
+        recommendMenus.add(recommendMenu);
+    }
+
+    public boolean isEatable() {
+        int prohibitmenuCount = (int) recommendMenus.stream()
+                .filter(menu -> prohibitionMenus.contains(menu))
+                .count();
+        int duplicatedCount = new HashSet<String>(recommendMenus).size();
+        return prohibitmenuCount == 0 && duplicatedCount == 5;
     }
 
     public void setProhibitionMenus(String menus) {
-        //TODO Category 메뉴에 없는 메뉴일시 올바르게 입력받기
-        String[] inputProhibitionMenus = menus.split(",");
-        if(!(0 <= inputProhibitionMenus.length && inputProhibitionMenus.length == 2)) {
-            //TODO 0개 입력시 오류
-            throw new IllegalArgumentException("못먹는 메뉴는 0개에서 2개 범위를 넘을 수 없습니다.");
-        }
-        if(inputProhibitionMenus.length != (new HashSet<String>(List.of(inputProhibitionMenus))).size()) {
-            throw new IllegalArgumentException("[ERROR] 중복을 제거해주세요");
-        }
-        if(menus.equals("")) {
+        if (menus.equals("")) {
             return;
         }
-        for(String menu : inputProhibitionMenus) {
+        //TODO Category 메뉴에 없는 메뉴일시 올바르게 입력받기
+        String[] inputProhibitionMenus = menus.split(",");
+
+        if (!(0 <= inputProhibitionMenus.length && inputProhibitionMenus.length <= 2)) {
+            //TODO 0개 입력시 오류
+            throw new IllegalArgumentException("[ERROR] 못먹는 메뉴는 0개에서 2개 범위를 넘을 수 없습니다.");
+        }
+        if (inputProhibitionMenus.length != (new HashSet<String>(List.of(inputProhibitionMenus))).size()) {
+            throw new IllegalArgumentException("[ERROR] 중복을 제거해주세요");
+        }
+
+        for (String menu : inputProhibitionMenus) {
             prohibitionMenus.add(menu);
         }
 

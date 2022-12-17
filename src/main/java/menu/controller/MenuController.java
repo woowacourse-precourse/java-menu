@@ -50,13 +50,12 @@ public class MenuController {
             }
         }
 
-        for(Coach coach : coaches) {
-            while(coach.isMenuDuplicated()) {
-                coach.setRecommendMenus(weeks);
+        for(Week week : weeks) {
+            for(Coach coach : coaches) {
+                coach.setRecommendMenus(week);
             }
         }
-
-        outputView.programResult(coaches);
+        outputView.programResult(coaches, weeks);
     }
 
     private List<Coach> getCoaches() {
@@ -68,10 +67,10 @@ public class MenuController {
                 if (!(2 <= coachNames.length && coachNames.length <= 5)) {
                     throw new IllegalArgumentException("코치는 2명에서 5명까지 입력이 가능합니다.");
                 }
-                List<Coach> coachs = Arrays.stream(inputCoachNames.split(","))
+                List<Coach> coaches = Arrays.stream(inputCoachNames.split(","))
                         .map(Coach::new)
                         .collect(Collectors.toList());
-                return coachs;
+                return coaches;
             } catch (IllegalArgumentException e) {
                 System.out.println(e);
             }

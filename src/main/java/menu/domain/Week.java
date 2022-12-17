@@ -34,6 +34,6 @@ public class Week {
     }
 
     public Category getCategory() {
-        return category;
+        return this.category;
     }
 }
