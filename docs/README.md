@@ -48,6 +48,12 @@
 
 ## OutputView 클래스
  - 출력을 관리
+1. printStartMessage() - 시작 안내 메세지 출력
+2. printEndMessage() - 종료 안내 메세지 출력
+3. printCoachNameInformMessage() - 코치 입력 안내 메세지 출력
+4. printPickEatingsInformMessage() - 못 먹는 음식 입력 안내 메세지 출력
+5. printResultInfromMessage() - 메뉴 추천 결과 안내 메세지 출력
+6. printResult() - 전체 결과를 출력
 
 ## Controller 클래스
  - view단과 도메인을 활용해서 프로그램을 돌리는 단계
