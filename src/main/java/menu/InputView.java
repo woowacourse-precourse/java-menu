@@ -6,15 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputView {
+
     public List<String> coachNameInput() {
         List<String> names = new ArrayList<>();
         String[] name = validateNumber();
 
-        for(int i=0; i<name.length;i++){
-                names.add(name[i]);
-        }
+        for (String addName : name)
+            names.add(addName);
         return names;
     }
+
     public String[] validateNumber(){
         while(true) {
             String[] name = Console.readLine().split(",");
@@ -32,8 +33,8 @@ public class InputView {
     }
 
     public boolean validateName(String[] name) throws IllegalArgumentException{
-        for(int i=0; i<name.length; i++){
-            if(name[i].length()<2 || name[i].length()>5){
+        for (String validateName : name) {
+            if (validateName.length() < 2 || validateName.length() > 5) {
                 return true;
             }
         }
@@ -42,13 +43,27 @@ public class InputView {
 
     public List<String> coachCantEatInput(){
         List<String> notEatFood = new ArrayList<>();
-        String[] menu = Console.readLine().split(",");
-        if(menu.length<0 || menu.length>2)
-            throw new IllegalArgumentException("[ERROR] 최소0개 최대 2개 입력");
+        String[] menu=validateCantEat();
 
-        for(int i=0; i<menu.length;i++){
-            notEatFood.add(menu[i]);
+        for (String food : menu) {
+            notEatFood.add(food);
         }
         return notEatFood;
+    }
+
+    public String[] validateCantEat(){
+        String[] menu;
+        while(true) {
+            menu = Console.readLine().split(",");
+            try {
+                if(menu.length>2)
+                    throw new IllegalArgumentException("[ERROR] 최소0개 최대 2개 입력");
+                break;
+            }
+            catch(IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return menu;
     }
 }
