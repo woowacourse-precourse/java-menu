@@ -2,6 +2,7 @@ package menu.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class Couch {
 
@@ -43,7 +44,14 @@ public class Couch {
     }
 
     public void setUneatableMenus(List<String> menus) {
+        validateDuplicateUneatableMenu(menus);
         uneatableMenus = menus;
+    }
+
+    private void validateDuplicateUneatableMenu(List<String> menus) {
+        if (menus.size() != Set.of(menus).size()) {
+            throw new IllegalArgumentException("[ERROR] 못먹는 음식은 중복하여 입력할 수 없습니다.");
+        }
     }
 
     public String getName() {
