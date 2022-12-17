@@ -3,7 +3,6 @@ package menu.controller;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.function.Supplier;
-import menu.domain.Coach;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -41,14 +40,12 @@ public class MainController {
     }
 
     private ApplicationStatus initializeMenus() {
-        // 입력 하나 틀리면 다시 입력 => inputView에서 해결
-        // 입력 검증하다가 틀리면 다시 입력 => ApplicationStatus를 리턴하는 방식
+        new InitializingController().process();
         return ApplicationStatus.RECEIVE_COACH_DATA;
     }
 
     private ApplicationStatus receiveCoachData() {
         outputView.printStart();
-        Coach coach = new Coach("포비");
         return ApplicationStatus.APPLICATION_EXIT;
     }
 

@@ -2,7 +2,7 @@
 
 ### 카테고리 및 메뉴 초기화 `INITIALIZE_MENUS`
 
-- [ ] 카테고리 등록 `Category` `CategoryRepository`
+- [x] 카테고리 등록 `Category` `CategoryRepository`
 - [ ] 메뉴 등록 `Menu` `MenuRepository`
 - [ ] 카테고리 안에 메뉴 등록
 
