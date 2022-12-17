@@ -1,11 +1,12 @@
 package menu.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Coach {
     private String name;
     private List<String> noEatMenu;
-    private List<String> recommendedMenu;
+    private List<String> recommendedMenu = new ArrayList<>();
 
     public Coach(String name, List<String> noEatMenu) {
         this.name = name;

@@ -12,12 +12,19 @@ import java.util.Arrays;
 public class Application {
     public static void main(String[] args) {
         CoachRepository coachRepository = new CoachRepository();
+        Coach coach = new Coach("hanuel", Arrays.asList("규동", "우동", "미소시루", "가츠동", "오니기리", "하이라이스", "스시", "라멘"));
+        coachRepository.save(coach);
         MenuRecommender menuRecommender = new MenuRecommender(coachRepository);
-//        menuRecommender.run();
+        menuRecommender.run();
 
-//        System.out.println(Category.ASIAN.getMenus());
 
-        Coach coach = new Coach("hanuel", Arrays.asList("밥", "빵"));
-        System.out.println(menuRecommender.validateMenu("빵", coach));
+//        String s = menuRecommender.selectMenu(coach, Category.JAPANESE);
+//        System.out.println(s);
+
+
+////        System.out.println(Category.ASIAN.getMenus());
+//
+//
+//        System.out.println(menuRecommender.validateMenu("빵", coach));
     }
 }

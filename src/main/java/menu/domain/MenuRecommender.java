@@ -21,23 +21,23 @@ public class MenuRecommender {
         while (cnt < 5) {
             // 카테고리 정하기
             Category category = selectCategory();
-            System.out.println(category);
+            
             // 각 코치가 먹을 메뉴 추천
             List<Coach> coaches = coachRepository.getCoaches();
             for (Coach coach : coaches) {
                 String menu = selectMenu(coach, category);
-                System.out.println(menu);
             }
             cnt++;
         }
     }
 
-    private String selectMenu(Coach coach, Category category) {
+    public String selectMenu(Coach coach, Category category) {
         String menu = randomMenuGenerator.create(category);
         if(!validateMenu(menu, coach)) {
             return selectMenu(coach, category);
         }
-        return "";
+        coach.addRecommendedMenu(menu);
+        return menu;
     }
 
     public boolean validateMenu(String menu, Coach coach) {
