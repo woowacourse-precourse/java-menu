@@ -12,4 +12,8 @@ public class Validate {
             throw new IllegalArgumentException(IllegalArgumentExceptionMessage.INPUT_COACH_LENGTH.getMessage());
         }
     }
+
+    public static void validateHateMenu(List<String> hateMenus) {
+        // TODO: 이후에 메뉴관련 정보를 처리하는 객체와 함수를 만들면, 구현
+    }
 }

@@ -13,4 +13,12 @@ public class Menu {
         this.menuCategory = menuCategory;
         this.name = name;
     }
+
+    public MenuCategory getMenuCategory() {
+        return menuCategory;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

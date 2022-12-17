@@ -17,19 +17,19 @@ public class OutputView {
         System.out.println(START_RECOMMEND_MESSAGE);
     }
 
-    public void printCoachNameMessage() {
+    public static void printCoachNameMessage() {
         System.out.println(INPUT_COACH_NAME);
     }
 
-    public void printInputHateMenuMessage(String name) {
+    public static void printInputHateMenuMessage(String name) {
         System.out.println(name + INPUT_HATE_MENU);
     }
 
-    public void printResultMessage() {
+    public static void printResultMessage() {
         System.out.println(RESULT_RECOMMEND_MESSAGE);
     }
 
-    public void printFinishMessage() {
+    public static void printFinishMessage() {
         System.out.println(FINISH_RECOMMEND_MESSAGE);
     }
 
