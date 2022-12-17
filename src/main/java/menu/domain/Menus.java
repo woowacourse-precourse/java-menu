@@ -1,6 +1,7 @@
 package menu.domain;
 
-import java.util.ArrayList;
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.List;
 
 public class Menus {
@@ -16,5 +17,9 @@ public class Menus {
 
     public boolean hasMenu(String name) {
         return menus.contains(name);
+    }
+
+    public String getRandomMenu() {
+        return Randoms.shuffle(this.menus).get(0);
     }
 }

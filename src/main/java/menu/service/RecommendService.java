@@ -1,27 +1,36 @@
 package menu.service;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import menu.domain.Category;
-import menu.domain.Coach;
-import menu.domain.Day;
+import menu.domain.*;
 import menu.repository.CoachRepository;
+import menu.repository.MenuRepository;
 import menu.repository.WeeklyMenuRepository;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class RecommendService {
     private WeeklyMenuRepository weeklyMenuRepository = new WeeklyMenuRepository();
     private CoachRepository coachRepository = new CoachRepository();
+    private MenuRepository menuRepository = new MenuRepository();
+
     public void createWeeklyRecommendMenu() {
         Arrays.stream(Day.values())
-                .forEach(day -> recommendMenu(day));
+                .forEach(day -> {
+                    WeeklyMenu weeklyMenu = recommendMenu(day);
+                    weeklyMenuRepository.saveWeeklyMenu(day, weeklyMenu);
+                });
     }
 
-    private void recommendMenu(Day day) {
+    private WeeklyMenu recommendMenu(Day day) {
         Category category = getValidCategory();
         List<Coach> coaches = coachRepository.getCoaches();
-
+        Menus menus = menuRepository.findByCategory(category);
+        List<CoachMenu> coachesMenu = new ArrayList<>();
+        coaches.stream().forEach(coach -> {
+            coachesMenu.add(getValidCoachMenu(coach, menus));
+        });
+        return WeeklyMenu.from(category, coachesMenu);
     }
 
     private Category getValidCategory() {
@@ -33,7 +42,23 @@ public class RecommendService {
         }
     }
 
-    private String getRandomMenu(List<String> menus) {
-        return Randoms.shuffle(menus).get(0);
+    private CoachMenu getValidCoachMenu(Coach coach, Menus menus) {
+        while (true) {
+            String menu = menus.getRandomMenu();
+            if (validCanEatMenu(coach, menu) && validDuplicateMenu(coach, menu)) {
+                return CoachMenu.from(coach, menu);
+            }
+        }
+    }
+
+    private boolean validDuplicateMenu(Coach coach, String menu) {
+        if (weeklyMenuRepository.isDuplicatedCoachMenu(CoachMenu.from(coach, menu))) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validCanEatMenu(Coach coach, String menu) {
+        return coach.canEat(menu);
     }
 }

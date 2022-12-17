@@ -11,4 +11,8 @@ public class CoachRepository {
     public void saveCoaches(List<Coach> coaches) {
         this.coaches.addAll(coaches);
     }
+
+    public List<Coach> getCoaches() {
+        return coaches;
+    }
 }
