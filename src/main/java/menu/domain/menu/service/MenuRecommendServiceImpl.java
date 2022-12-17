@@ -7,19 +7,16 @@ import menu.domain.menu.dto.MenuRecommendResponse;
 import menu.domain.menu.model.Coach;
 import menu.domain.menu.model.Food;
 import menu.domain.menu.repository.CategoryHistoryRepository;
-import menu.domain.menu.repository.CoachRepository;
 import menu.domain.menu.repository.FoodRepository;
 import menu.domain.menu.type.Category;
 
 public class MenuRecommendServiceImpl implements MenuRecommendService {
 
-    private final CoachRepository coachRepository;
     private final FoodRepository foodRepository;
     private final CategoryHistoryRepository categoryHistoryRepository;
 
-    public MenuRecommendServiceImpl(CoachRepository coachRepository, FoodRepository foodRepository,
+    public MenuRecommendServiceImpl(FoodRepository foodRepository,
         CategoryHistoryRepository categoryHistoryRepository) {
-        this.coachRepository = coachRepository;
         this.foodRepository = foodRepository;
         this.categoryHistoryRepository = categoryHistoryRepository;
     }
@@ -39,9 +36,21 @@ public class MenuRecommendServiceImpl implements MenuRecommendService {
     private void menuRecommendOneDay(List<MenuRecommendResponse> recommendResponses) {
         Category category = drawCategory();
         for (MenuRecommendResponse recommendResponse : recommendResponses) {
-            Coach coach = recommendResponse.getCoach();
-            recommendResponse.getFoods().add(foodRecommend(category, coach));
+            Food food = getFood(recommendResponse, category);
+            recommendResponse.getFoods().add(food);
         }
+    }
+
+    private Food getFood(MenuRecommendResponse recommendResponse, Category category) {
+        Food result = null;
+        Coach coach = recommendResponse.getCoach();
+        while (result == null) {
+            Food food = foodRecommend(category, coach);
+            if (!recommendResponse.getFoods().contains(food)) {
+                result = food;
+            }
+        }
+        return result;
     }
 
 
@@ -59,13 +68,22 @@ public class MenuRecommendServiceImpl implements MenuRecommendService {
 
     private Food foodRecommend(Category category, Coach coach) {
         Food result = null;
-        List<Food> foods = foodRepository.findByCategory(category);
+        List<String> foodNames = getFoodNames(category);
         while (result == null) {
-            Food food = Randoms.shuffle(foods).get(0);
+            Food food = foodRepository.findByName(Randoms.shuffle(foodNames).get(0));
             if (!coach.getForbiddenFood().contains(food)) {
                 result = food;
             }
         }
         return result;
+    }
+
+    private List<String> getFoodNames(Category category) {
+        List<Food> foods = foodRepository.findByCategory(category);
+        List<String> foodNames = new ArrayList<>();
+        for (Food food : foods) {
+            foodNames.add(food.getName());
+        }
+        return foodNames;
     }
 }
