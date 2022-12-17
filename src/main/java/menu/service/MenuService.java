@@ -1,9 +1,7 @@
 package menu.service;
 
-import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
 import static camp.nextstep.edu.missionutils.Randoms.shuffle;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.Category;
@@ -15,9 +13,7 @@ import menu.repository.MenuRepository;
 
 public class MenuService {
 
-    private static final int CATEGORY_INDEX_LOWER_BOUND = 1;
-    private static final int CATEGORY_INDEX_UPPER_BOUND = 5;
-    private static final int INVALID_CATEGORY_SIZE = 2;
+    private static final int CATEGORY_SIZE = 5;
 
     private final MenuRepository menuRepository;
 
@@ -26,49 +22,33 @@ public class MenuService {
     }
 
     public MenusDto recommendMenus(List<Coach> coaches) {
-        List<Category> categories = generateCategory();
+        List<Category> categories = Category.generateRandomCategory(CATEGORY_SIZE);
         for (Category category : categories) {
-            for (Coach coach : coaches) {
-                putMenu(category, coach);
-            }
+            recommendMenu(coaches, category);
         }
+        return getRecommendMenus(coaches, categories);
+    }
+
+    private void recommendMenu(List<Coach> coaches, Category category) {
+        for (Coach coach : coaches) {
+            Menu menu = findMenu(category, coach);
+            coach.addEatMenu(menu);
+        }
+    }
+
+    private Menu findMenu(Category category, Coach coach) {
+        List<String> menuNames = menuRepository.findMenuNames(category);
+        Menu menu = new Menu(shuffle(menuNames).get(0));
+        while (coach.isInvalidMenu(menu)) {
+            menu = new Menu(shuffle(menuNames).get(0));
+        }
+        return menu;
+    }
+
+    private static MenusDto getRecommendMenus(List<Coach> coaches, List<Category> categories) {
         List<MenuDto> menuDtos = coaches.stream()
                 .map(coach -> new MenuDto(coach.getName(), coach.getEatMenu()))
                 .collect(Collectors.toList());
         return new MenusDto(categories, menuDtos);
-    }
-
-    private List<Category> generateCategory() {
-        List<Category> categories = new ArrayList<>();
-        for (int i = CATEGORY_INDEX_LOWER_BOUND; i <= CATEGORY_INDEX_UPPER_BOUND; i++) {
-            Category category = getValidCategory(categories);
-            categories.add(category);
-        }
-        return categories;
-    }
-
-    private Category getValidCategory(List<Category> categories) {
-        Category category = Category.of(pickNumberInRange(CATEGORY_INDEX_LOWER_BOUND, CATEGORY_INDEX_UPPER_BOUND));
-        if (getCount(categories, category) >= INVALID_CATEGORY_SIZE) {
-            return getValidCategory(categories);
-        }
-        return category;
-    }
-
-    private static long getCount(List<Category> categories, Category input) {
-        return categories.stream()
-                .filter(category -> category.equals(input))
-                .count();
-    }
-
-    private void putMenu(Category category, Coach coach) {
-        List<String> menuNames = menuRepository.findMenuNames(category);
-        String name = shuffle(menuNames).get(0);
-        Menu menu = new Menu(name);
-        while (coach.isInvalidMenu(menu)) {
-            name = shuffle(menuNames).get(0);
-            menu = new Menu(name);
-        }
-        coach.addEatMenu(menu);
     }
 }

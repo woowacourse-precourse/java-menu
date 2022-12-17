@@ -15,6 +15,8 @@ import menu.service.MenuService;
 
 public class AppConfig {
 
+    private static final String DELIMITER = ", ";
+
     private static final Map<Category, String> inputs = Map.of(
             Category.JAPAN,
             "규동, 우동, 미소시루, 스시, 가츠동, 오니기리, 하이라이스, 라멘, 오코노미야끼",
@@ -39,7 +41,7 @@ public class AppConfig {
     private static MenuRepository menuRepository() {
         MenuRepository menuRepository = new MenuRepository();
         for (Category category : Category.values()) {
-            Menus menus = Arrays.stream(inputs.get(category).split(", "))
+            Menus menus = Arrays.stream(inputs.get(category).split(DELIMITER))
                     .map(Menu::new)
                     .collect(collectingAndThen(toList(), Menus::new));
             menuRepository.save(category, menus);
