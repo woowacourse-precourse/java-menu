@@ -9,9 +9,6 @@ import menu.domain.Categories;
 public class InputValidator {
 
 
-
-
-
     public static String validateCoachNames(String input) {
         List<String> coachNames = Arrays.asList(input.split(","));
         if (coachNames.size() < 2 || coachNames.size() > 5) {

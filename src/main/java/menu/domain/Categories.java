@@ -37,7 +37,7 @@ public class Categories {
         return count;
     }
 
-    public void validateExistMenu (String menu) throws IllegalArgumentException {
+    public void validateExistMenu(String menu) throws IllegalArgumentException {
         boolean flag = true;
         for (Category category : categories) {
             if (category.isExistMenu(menu)) {
