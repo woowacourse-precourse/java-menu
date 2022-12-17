@@ -56,14 +56,13 @@ class MenuRecommendServiceTest {
         );
         Coach tomi = new Coach("토미", menu1);
         TestCategoryStrategy testCategoryStrategy = new TestCategoryStrategy(newArrayList(1, 2, 3, 4, 5));
-        TestMenuStrategy testMenuStrategy = new TestMenuStrategy(newArrayList("오코노미야끼", "김밥", "깐풍기", "분짜", "스파게티"));
+        List<String> menuNames = newArrayList("오코노미야끼", "김밥", "깐풍기", "분짜", "스파게티");
+        TestMenuStrategy testMenuStrategy = new TestMenuStrategy(menuNames);
         List<RecommendResultDto> resultDtos =
                 menuRecommendService.recommendFood(tomi, testCategoryStrategy, testMenuStrategy);
 
-        for (RecommendResultDto resultDto : resultDtos) {
-            System.out.println(resultDto.getDay());
-            System.out.println(resultDto.getCategory());
-            System.out.println(resultDto.getMenu());
+        for (int i = 0; i < menuNames.size(); i++) {
+            assertThat(resultDtos.get(i).getMenu()).isEqualTo(menuNames.get(i));
         }
     }
 }

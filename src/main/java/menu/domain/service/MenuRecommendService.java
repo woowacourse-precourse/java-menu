@@ -10,6 +10,7 @@ import menu.domain.model.RecommendResult;
 import menu.domain.repository.CoachRepository;
 import menu.domain.repository.MenuRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,6 +24,16 @@ public class MenuRecommendService {
 
             CoachRepository.save(new Coach(name, canNotEatFoods));
         }
+    }
+
+    public List<List<RecommendResultDto>> recommendFoods(CategoryStrategy categoryStrategy, MenuStrategy menuStrategy) {
+        List<List<RecommendResultDto>> result = new ArrayList<>();
+
+        List<Coach> coaches = CoachRepository.findAll();
+        for (Coach coach : coaches) {
+            result.add(recommendFood(coach, categoryStrategy, menuStrategy));
+        }
+        return result;
     }
 
     public List<RecommendResultDto> recommendFood(Coach coach, CategoryStrategy categoryStrategy, MenuStrategy menuStrategy) {
@@ -40,7 +51,7 @@ public class MenuRecommendService {
         Category category;
         do {
             List<Integer> numbers = Category.getNumbers();
-            int number = categoryStrategy.generate(numbers);
+            int number = categoryStrategy.generate(numbers.get(0), numbers.get(numbers.size() - 1));
             category = Category.from(number);
         } while (coach.isDuplicateCategory(category));
         return category;

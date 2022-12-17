@@ -11,7 +11,7 @@ public class TestCategoryStrategy implements CategoryStrategy{
     }
 
     @Override
-    public int generate(List<Integer> range) {
+    public int generate(int inclusiveStart, int inclusiveEnd) {
         return list.remove(0);
     }
 }

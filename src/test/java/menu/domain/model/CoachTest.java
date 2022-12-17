@@ -124,7 +124,7 @@ class CoachTest {
 
         Coach tomi = new Coach("토미", menus, newArrayList(recommendResult, recommendResult2));
 
-        boolean result = tomi.canEat(new Menu(Category.EUROPE_FOOD, "우동"));
+        boolean result = tomi.canEat(new Menu(Category.JAPAN_FOOD, "우동"));
         assertThat(result).isFalse();
     }
 }
