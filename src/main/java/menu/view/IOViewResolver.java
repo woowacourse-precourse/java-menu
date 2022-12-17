@@ -24,7 +24,6 @@ public final class IOViewResolver {
     private void initInputViewMappings(InputView inputView) {
         inputViewMap.put(ReadNamesDto.class, inputView::readNames);
         inputViewMap.put(ReadUnavailableMenuDto.class, inputView::readUnavailableMenu);
-
     }
 
     private void initOutputViewMappings(OutputView outputView) {
