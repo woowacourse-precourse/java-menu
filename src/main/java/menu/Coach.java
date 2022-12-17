@@ -46,11 +46,17 @@ public class Coach {
         while(dayCount < 5){
             List<String> menusByCategory = menus.getCategoryMenus(menusForEachDay.get(dayCount));
             String menuName = Randoms.shuffle(menusByCategory).get(0);
-            if(!menusInventory.contains(menuName)){
+            if(!menusInventory.contains(menuName) && canEat(menuName)){
                 menusInventory.add(menuName);
                 menuNameForEachDay.add(menuName);
                 dayCount++;
             }
         }
+    }
+
+    private boolean canEat(String menuName) {
+        if(allergicMenus.contains(menuName))
+            return false;
+        return true;
     }
 }
