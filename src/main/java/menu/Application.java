@@ -4,7 +4,11 @@ import menu.controller.MenuRecommendApplication;
 
 public class Application {
     public static void main(String[] args) {
-        MenuRecommendApplication menuRecommendApplication = new MenuRecommendApplication();
-        menuRecommendApplication.start();
+        try {
+            MenuRecommendApplication menuRecommendApplication = new MenuRecommendApplication();
+            menuRecommendApplication.start();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
