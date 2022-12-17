@@ -1,9 +1,9 @@
 package menu.config;
 
 import java.lang.reflect.Proxy;
-import menu.domain.CategoryGenerator;
+import menu.domain.NumberGenerator;
 import menu.domain.MenuApplication;
-import menu.domain.RandomCategoryGenerator;
+import menu.domain.RandomNumberGenerator;
 import menu.domain.RecommendCategoryMaker;
 import menu.handler.ExceptionHandler;
 import menu.view.InputView;
@@ -32,10 +32,10 @@ public class MenuApplicationFactory {
     }
 
     private RecommendCategoryMaker initRecommendCategoryMaker() {
-        return new RecommendCategoryMaker(initCategoryGenerator());
+        return new RecommendCategoryMaker(initNumberGenerator());
     }
 
-    private CategoryGenerator initCategoryGenerator() {
-        return new RandomCategoryGenerator();
+    private NumberGenerator initNumberGenerator() {
+        return new RandomNumberGenerator();
     }
 }
