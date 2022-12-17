@@ -22,7 +22,7 @@ public enum Category {
         return name;
     }
 
-    public Category getCategoryByNumber(int number) {
+    public static Category getCategoryByNumber(int number) {
         Optional<Category> category = Arrays.stream(Category.values())
                 .filter(c -> c.categoryNumber == number)
                 .findFirst();
