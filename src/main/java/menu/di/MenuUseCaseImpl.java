@@ -17,6 +17,7 @@ public class MenuUseCaseImpl implements MenuUseCase {
     private static final String NUMBER_OVER_RANGE_MESSAGE = "사람 수가 범위를 벗어났습니다";
     private static final int MINIMUM_COACH_COUNT = 2;
     private static final int MAXIMUM_COACH_COUNT = 5;
+    private static final int PICK_DATE_SIZE = 5;
     private final Map<Category, List<String>> menus;
     private final Picker picker;
 
@@ -62,7 +63,7 @@ public class MenuUseCaseImpl implements MenuUseCase {
     public RecommendResultDto recommend(List<String> names, List<List<String>> notEatMenus) {
         List<Coach> coaches = generateCoaches(names, notEatMenus);
         List<Category> categories = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < PICK_DATE_SIZE; i++) {
             recommendOneDay(coaches, categories);
         }
         List<String> categoriesDto = categories.stream()

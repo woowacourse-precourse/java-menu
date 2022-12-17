@@ -10,12 +10,13 @@ public class ValidateNameCommand {
 
     private static final String NOT_RIGHT_FORMAT_MESSAGE = "형식이 잘못되었습니다";
     private static final Pattern FORMAT = Pattern.compile("[가-힣]+(,[가-힣]+)*");
+    private static final String DELIMITER = ",";
 
     private final List<String> names;
 
     public ValidateNameCommand(String input) {
         validate(input);
-        names = Arrays.stream(input.split(",")).collect(Collectors.toList());
+        names = Arrays.stream(input.split(DELIMITER)).collect(Collectors.toList());
     }
 
     private void validate(String input) {
