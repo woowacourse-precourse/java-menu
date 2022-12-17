@@ -21,4 +21,29 @@ class CoachTest {
         assertThatThrownBy(() -> new Coach(name, new ArrayList<>()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("추천하지 않은 메뉴는 추천할 수 있다.")
+    @Test
+    public void createNotRecommendedMenu(){
+        // given
+        Menu menu1 = new Menu("햄버거");
+        Menu menu2 = new Menu("파스타");
+        Coach coach = new Coach("포비", new ArrayList<>());
+        coach.addMenu(menu1);
+
+        // when, then
+        assertThat(coach.hasNotSameMenu(menu2)).isEqualTo(true);
+    }
+
+    @DisplayName("이미 추천한 메뉴는 더 이상 추천할 수 없다.")
+    @Test
+    public void createRecommendedMenu(){
+        // given
+        Menu menu = new Menu("햄버거");
+        Coach coach = new Coach("포비", new ArrayList<>());
+        coach.addMenu(menu);
+
+        // when, then
+        assertThat(coach.hasNotSameMenu(menu)).isEqualTo(false);
+    }
 }
