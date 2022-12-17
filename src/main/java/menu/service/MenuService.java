@@ -51,5 +51,19 @@ public class MenuService {
         return true;
     }
 
+    private boolean isNotValidCanNotEatMenuInput(String inputResultCanNotEatMenuWithComma , Coach coach){
+        if(inputResultCanNotEatMenuWithComma.length() == 0)
+            return false;
+
+        String[] canNotEatMenus = inputResultCanNotEatMenuWithComma.split(",");
+        if(inputValidation.isValidCoachCanNotEatMenuCount(canNotEatMenus.length)){
+            for (String canNotEatMenu : canNotEatMenus)
+                coach.addNotEatMenu(canNotEatMenu);
+            return false;
+        }
+        outputView.printInValidCoachCanNotEatMenuCountErrorMessage();
+        return true;
+    }
+
 
 }
