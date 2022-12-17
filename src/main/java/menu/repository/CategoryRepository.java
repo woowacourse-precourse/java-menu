@@ -1,6 +1,6 @@
 package menu.repository;
 
-import static menu.view.OutputView.CATEGORY;
+import static menu.view.OutputMessage.CATEGORY;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,7 +17,7 @@ public class CategoryRepository {
 
   public static List<String> findAllCategoryNames() {
     List<String> result = new ArrayList<>();
-    result.add(CATEGORY);  // 리팩토링 필요
+    result.add("카테고리");  // 리팩토링 필요
     categories.forEach(category -> result.add(category.getName()));
     return result;
   }
