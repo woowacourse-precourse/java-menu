@@ -1,5 +1,6 @@
 package menu.repository;
 
+import menu.domain.Category;
 import menu.domain.Coach;
 import menu.repository.constant.SizeLimit;
 
@@ -24,6 +25,11 @@ public class CoachRepository {
 
     public void addCoach(String coachName) {
         coaches.add(new Coach(coachName));
+    }
+
+    public void addInedibleFoodToCoach(String coachName, List<String> foods) {
+        Coach category = findCoachByName(coachName);
+        foods.forEach(category::addInedibleFood);
     }
 
     public boolean isValidSize(int size) {
