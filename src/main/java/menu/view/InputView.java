@@ -11,8 +11,10 @@ public class InputView {
         return input;
     }
 
-    public String readInedibleMenu() {
-        System.out.println(ViewConstants.ASKING_INEDIBLE_MENU);
+    public String readInedibleMenu(String coachName) {
+        System.out.printf(ViewConstants.ASKING_INEDIBLE_MENU, coachName);
+        System.out.println();
+
         String input = Console.readLine();
         System.out.println();
         return input;
