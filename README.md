@@ -242,3 +242,11 @@ String menu = Randoms.shuffle(menus).get(0);
      - 각 부분을 입력받아서, Enum 객체의 리스트에 넣는다.
      - 미리 넣어놓고 시작한다.
      
+3. 카테고리 뽑는 기능
+   - camp.nextStep.edu.missionUtils 의 pickNumberInRange 기능을 활용한다 
+   - String category = categories.get(Randoms.pickNumberInRange(1, 5));
+   - 카테고리를 미리 입력받고, 이름으로 Java Enum 으로 찾아도 좋을 것이다.
+   - 단, 이때 한 주에 같은 카테고리를 최대 2회까지만 고르게 해야 한다.
+     - 같은 카테고리가 두개 이상 겹치는지 확인하면서 숫자 하나씩을 뽑는다.
+   - 이때, 1이면 일식, 2면 한식, 3은 중식, 4면 아시안, 5면 양식을 추천해야 한다.
+   - 카테고리를 뽑아 놓고, 그 다음에 한명씩 멤버의 메뉴를 골라야 한다.
