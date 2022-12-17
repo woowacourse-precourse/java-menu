@@ -43,7 +43,7 @@ public class MenuController {
         List<Coach> coaches = coachService.getCoaches();
         for (int i = 0; i < coaches.size(); i++) {
             try {
-                coaches.get(i).setCannotEatFoods(Arrays.asList(inputView.inputCannotEat(coaches.get(i).getName()).split(",")));
+                coachService.registerCannotEatFoods(coaches.get(i),inputView.inputCannotEat(coaches.get(i).getName()));
             } catch (IllegalArgumentException ex) {
                 System.out.println(ex.getMessage());
                 i--;
