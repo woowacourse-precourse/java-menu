@@ -35,7 +35,7 @@ public class MenuController {
     private void initCoach(String coachName) {
         while (true) {
             try {
-                String inedibleMenu = inputView.readInedibleMenu();
+                String inedibleMenu = inputView.readInedibleMenu(coachName);
                 menu.addCoach(coachName, inedibleMenu);
                 return;
             } catch (IllegalArgumentException e) {
