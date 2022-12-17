@@ -5,12 +5,12 @@ import java.util.List;
 
 public class Coach {
     private String name;
-    private List<Integer> category;
+    private List<String> alreadyEatFood;
     private List<String> hateFood;
 
     public Coach(String coachName) {
         this.name = coachName;
-        this.category = List.of(0, 0, 0, 0, 0);
+        this.alreadyEatFood = new ArrayList<>();
         this.hateFood = new ArrayList<>();
     }
 
@@ -18,9 +18,21 @@ public class Coach {
         return this.name;
     }
 
+    public List<String> getAteFood(){
+        return alreadyEatFood;
+    }
+
+    public List<String> getHateFood(){
+        return hateFood;
+    }
+
     public void updateHateFood(List<String> hateFoodList){
         this.hateFood.addAll(hateFoodList);
 //        System.out.println(hateFood);
+    }
+
+    public void updateAteFood(String food){
+        alreadyEatFood.add(food);
     }
 
 }

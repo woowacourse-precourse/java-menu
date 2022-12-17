@@ -1,6 +1,7 @@
 package menu;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import coach.Coach;
 import coach.Managecoach;
 
 import java.util.ArrayList;
@@ -11,14 +12,33 @@ public class Application {
         return new Managecoach(coachNameList);
     }
 
-    static void recommend(Managecoach managecoach) {
+    static void recommend(Managecoach managecoach, FoodList foodList) {
         List<Integer> category = new ArrayList<>(List.of(0, 0, 0, 0, 0));
         for (int day = 0; day < 5; day++) {
             int todayCategory = categoryRecommend(category);
             category.set(day, todayCategory);
+            foodRecommend(managecoach, todayCategory, foodList);
         }
         System.out.println(category);
     }
+
+    static void foodRecommend(Managecoach managecoach, int category, FoodList foodList){
+        for(Coach coach: managecoach.getCoachList()){
+            coach.updateAteFood(pickMenu(coach, foodList, category));
+        }
+    }
+
+    static String pickMenu(Coach coach, FoodList foodList, int category){
+        String menu;
+        while(true){
+            menu = Randoms.shuffle(foodList.foods.get(category-1)).get(0);
+            if(!coach.getAteFood().contains(menu) && !coach.getHateFood().contains(menu))
+                break;
+        }
+        return menu;
+    }
+
+
 
     static int categoryRecommend(List<Integer> category) {
         int todayCate;
@@ -44,12 +64,15 @@ public class Application {
         try {
             View view = new View();
             view.startGame();
+            FoodList foodList = new FoodList();
             List<String> coachNameList = view.inputCoachName();
             Managecoach coachList = makeCoachList(coachNameList);
             for (int cCnt = 0; cCnt < coachList.getCoachList().size(); cCnt++) {
                 List<String> hateList = view.inputCoachHateFood(coachList.getCoachList().get(cCnt).getName());
                 coachList.getCoachList().get(cCnt).updateHateFood(hateList);
             }
+            recommend(coachList, foodList);
+//            System.out.println(coachList.getCoachList().get(0).getAteFood());
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
         }
