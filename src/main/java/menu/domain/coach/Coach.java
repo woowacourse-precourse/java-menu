@@ -32,4 +32,8 @@ public class Coach {
     public void addAvoidMenu(Menu menu) {
         this.avoidMenu.add(menu);
     }
+
+    public boolean isAvoidMenu(Menu menu) {
+        return avoidMenu.contains(menu);
+    }
 }

@@ -1,9 +1,11 @@
 package menu.domain.menu;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import menu.domain.coach.Coach;
 import menu.domain.coach.Coaches;
 import menu.domain.results.RecommendCategories;
+import menu.domain.results.RecommendCoachMenu;
 
 public class MenuService {
     private final MenuRepository menuRepository;
@@ -20,7 +22,14 @@ public class MenuService {
     }
 
     public void recommendMenus(Coaches coaches) {
-        getRandomCategories();
+        RecommendCategories randomCategories = getRandomCategories();
+        List<RecommendCoachMenu> coachMenus = coaches.getCoaches().stream()
+                .map(RecommendCoachMenu::of)
+                .collect(Collectors.toList());
+
+        for (MenuCategory category : randomCategories.getCategories()) {
+            recommendMenuByCategory(category, coachMenus);
+        }
     }
 
     public RecommendCategories getRandomCategories() {
@@ -31,5 +40,20 @@ public class MenuService {
         }
 
         return recommendCategories;
+    }
+
+    private void recommendMenuByCategory(MenuCategory category, List<RecommendCoachMenu> coaches) {
+        for (RecommendCoachMenu coachMenu : coaches) {
+            recommendMenuByCategoryToCoach(category, coachMenu);
+        }
+    }
+
+    private void recommendMenuByCategoryToCoach(MenuCategory category, RecommendCoachMenu coachMenu) {
+        try {
+            Menu menuByCategory = menuRepository.findRandomNameByCategory(category);
+            coachMenu.addRecommendMenu(menuByCategory);
+        } catch (IllegalStateException exception) {
+            recommendMenuByCategoryToCoach(category, coachMenu);
+        }
     }
 }

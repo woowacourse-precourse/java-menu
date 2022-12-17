@@ -19,6 +19,10 @@ public class Menu {
         return name;
     }
 
+    public boolean matchCategory(MenuCategory menuCategory) {
+        return this.menuCategory == menuCategory;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

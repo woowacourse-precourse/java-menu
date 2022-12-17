@@ -1,7 +1,9 @@
 package menu.domain.menu;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MenuRepository {
     private final List<Menu> menus = new ArrayList<>();
@@ -14,6 +16,15 @@ public class MenuRepository {
         return menus.stream().filter(menu -> menu.getName().equals(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 메뉴 입니다."));
+    }
+
+    public Menu findRandomNameByCategory(MenuCategory menuCategory) {
+        List<String> namesByCategory =  menus.stream().filter(menu -> menu.matchCategory(menuCategory))
+                .map(Menu::getName)
+                .collect(Collectors.toList());
+        String pickedMenuName = Randoms.shuffle(namesByCategory).get(0);
+
+        return findByMenuName(pickedMenuName);
     }
 
 
