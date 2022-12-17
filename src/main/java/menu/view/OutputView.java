@@ -21,8 +21,8 @@ public class OutputView {
         System.out.println("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
     }
 
-    public static void categoryMessage(List<String> categorys){
-        System.out.println(String.format("[ 카테고리 | %s ]", insertLine(categorys)));
+    public static void LineMessage(String title,List<String> categorys){
+        System.out.println(String.format("[ %s | %s ]",title, insertLine(categorys)));
     }
 
     public static String insertLine(List<String> categorys){
