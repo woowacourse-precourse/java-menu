@@ -13,6 +13,7 @@ import menu.domain.Menu;
 import menu.repository.MenuRepository;
 
 public class RecommendService {
+
     public static final int MIN_CATEGORY_NUM = 1;
     public static final int MAX_CATEGORY_NUM = 5;
     public static final int RECOMMEND_DAYS = 5;
@@ -65,7 +66,7 @@ public class RecommendService {
     public void recommendMenu(FoodCategory foodCategory, Coach coach) {
         try {
             recommendToCoach(foodCategory, coach);
-        }catch (IllegalStateException e) {
+        } catch (IllegalStateException e) {
             recommendToCoach(foodCategory, coach);
         }
     }
