@@ -1,6 +1,9 @@
 package menu.domain;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class Coach {
 
@@ -8,12 +11,16 @@ public class Coach {
 
     private static final int MIN_COACH_NAME_LENGTH = 2;
     private static final int MAX_COACH_NAME_LENGTH = 5;
+    private static final int MIN_UNEATABLE_FOOD_COUNT = 0;
+    private static final int MAX_UNEATABLE_FOOD_COUNT = 2;
 
     private final String name;
+    private Set<String> uneatableFoods;
 
     public Coach(String name) {
         validateName(name);
         this.name = name;
+        uneatableFoods = new HashSet<>();
     }
 
     private void validateName(String name) {
@@ -21,6 +28,22 @@ public class Coach {
             throw new IllegalArgumentException(String.format(NAME_LENGTH_EXCEPTION_MESSAGE_FORMAT,
                     MIN_COACH_NAME_LENGTH, MAX_COACH_NAME_LENGTH));
         }
+    }
+
+    public void addUneatableFoods(List<String> foods) {
+        uneatableFoods.addAll(foods);
+    }
+
+    public int getMinUneatableFoodCount() {
+        return MIN_UNEATABLE_FOOD_COUNT;
+    }
+
+    public int getMaxUneatableFoodCount() {
+        return MAX_UNEATABLE_FOOD_COUNT;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

@@ -44,6 +44,10 @@ public class MenuRecommender {
         coaches = new ArrayList<>();
     }
 
+    public List<Coach> getCoaches() {
+        return coaches;
+    }
+
     public int getMinCoachNumber() {
         return MIN_COACH_NUMBER;
     }

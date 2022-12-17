@@ -1,5 +1,6 @@
 package menu.controller;
 
+import menu.domain.Coach;
 import menu.domain.MenuRecommender;
 import menu.util.RepeatValidator;
 import menu.view.InputView;
@@ -24,6 +25,7 @@ public class MenuRecommendController {
     public void startSuggestion() {
         outputView.printProgramStartInfo();
         addCoaches();
+        addUneatableFoodToCoaches();
     }
 
     private void addCoaches() {
@@ -35,5 +37,19 @@ public class MenuRecommendController {
 
     private List<String> readCoachNames() {
         return inputView.readCoachNames(menuRecommender.getMinCoachNumber(), menuRecommender.getMaxCoachNumber());
+    }
+
+    private void addUneatableFoodToCoaches() {
+        for (Coach coach : menuRecommender.getCoaches()) {
+            List<String> foods = readUneatableFoods(coach);
+            coach.addUneatableFoods(foods);
+        }
+    }
+
+    private List<String> readUneatableFoods(Coach coach) {
+        return RepeatValidator.readUntilValidate(() -> {
+            return inputView.readUneatableFoodOf(coach.getName(),
+                    coach.getMinUneatableFoodCount(), coach.getMaxUneatableFoodCount());
+        });
     }
 }
