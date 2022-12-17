@@ -18,16 +18,16 @@ public class Menu {
     }
 
     public String categoryToMenu(String category) {
-        if (category == CategoryMenu.JAPAN.getCategory()) {
+        if (category.equals(CategoryMenu.JAPAN.getCategory())) {
             return CategoryMenu.JAPAN.getMenu();
         }
-        if (category == CategoryMenu.KOREA.getCategory()) {
+        if (category.equals(CategoryMenu.KOREA.getCategory())) {
             return CategoryMenu.KOREA.getMenu();
         }
-        if (category == CategoryMenu.CHINA.getCategory()) {
+        if (category.equals(CategoryMenu.CHINA.getCategory())) {
             return CategoryMenu.CHINA.getMenu();
         }
-        if (category == CategoryMenu.ASIAN.getCategory()) {
+        if (category.equals(CategoryMenu.ASIAN.getCategory())) {
             return CategoryMenu.ASIAN.getMenu();
         }
         return CategoryMenu.WESTERN.getMenu();
