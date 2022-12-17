@@ -10,4 +10,10 @@ public class InputView {
         Validator.validateCoachNamesInput(input);
         return input;
     }
+
+    public String readDislikeFoods() {
+        String input = Console.readLine();
+        Validator.validateDislikeFoodsInput(input);
+        return input;
+    }
 }
