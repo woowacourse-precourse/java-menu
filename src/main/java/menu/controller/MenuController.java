@@ -33,24 +33,30 @@ public class MenuController {
 
         for (String category : categories) {
             for (Menu value : Menu.values()) {
-                for (String name : names) {
-                    setRecommendFoods(coach, name, value, category);
-                }
+                setRecommendFoodsForCoach(coach, category, value, names);
             }
+        }
+    }
+
+    private void setRecommendFoodsForCoach(Coach coach, String category, Menu value, List<String> names) {
+        for (String name : names) {
+            setRecommendFoods(coach, name, value, category);
         }
     }
 
     private void setRecommendFoods(Coach coach, String name, Menu value, String category) {
         if (value.getCategory().equals(category)) {
-            List<String> menus = value.getMenus();
+            recommendFoodByCategory(coach, name, value.getMenus());
+        }
+    }
 
-            while (true) {
-                String menu = Randoms.shuffle(menus).get(0);
+    private void recommendFoodByCategory(Coach coach, String name, List<String> menus) {
+        while (true) {
+            String menu = Randoms.shuffle(menus).get(0);
 
-                if (!coach.getCanNotEatFoods(name).contains(menu) && !coach.getRecommendFoods(name).contains(menu)) {
-                    coach.setRecommendFoods(name, menu);
-                    break;
-                }
+            if (!coach.getCanNotEatFoods(name).contains(menu) && !coach.getRecommendFoods(name).contains(menu)) {
+                coach.setRecommendFoods(name, menu);
+                break;
             }
         }
     }

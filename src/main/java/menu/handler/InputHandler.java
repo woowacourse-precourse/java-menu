@@ -33,6 +33,5 @@ public class InputHandler {
             System.out.println(e.getMessage());
             readCoachCanNotEat(coach);
         }
-
     }
 }
