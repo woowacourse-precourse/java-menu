@@ -14,6 +14,7 @@ public class OutputView {
 
     public void printAskingCoachNames() {
         System.out.println(ViewConstants.ASKING_NAME);
+        System.out.println();
     }
 
     public void printAskingInedibleMenus(String coachName) {
