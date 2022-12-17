@@ -50,10 +50,7 @@ public enum Category {
                         ErrorConstants.ERROR_PREFIX + "일치하는 카테고리가 없습니다."));
     }
 
-    public static List<String> getCategoriesName() {
-        List<String> categoriesName = new ArrayList<>();
-        Arrays.stream(values())
-                .forEach(value -> categoriesName.add(value.name));
-        return categoriesName;
+    public String getName() {
+        return name;
     }
 }

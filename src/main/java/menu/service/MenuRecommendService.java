@@ -56,4 +56,8 @@ public class MenuRecommendService {
         Coach findCoach = coachRepository.findByCoachName(coachName);
         return findCoach.getAlreadyEatenFoodsForPrint();
     }
+
+    public List<String> getRecommendCategoryNames() {
+        return thisWeekRecommendedCategory.getRecommendCategoriesForPrint();
+    }
 }

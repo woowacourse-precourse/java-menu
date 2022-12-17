@@ -43,14 +43,12 @@ public class OutputView {
     }
 
     public void printCategory(List<String> categoriesName) {
-        categoriesName.add(0, CATEGORY_MESSAGE);
         String formattedCategoriesName = MessageFormat.format(
                 RESULT_MESSAGE_FORMAT, String.join(JOIN_DELIMITER, categoriesName));
         printMessage(formattedCategoriesName);
     }
 
-    public void printRecommendMenuByCoach(List<String> recommendMenus, String coachName) {
-        recommendMenus.add(0, coachName);
+    public void printRecommendMenuByCoach(List<String> recommendMenus) {
         String formattedRecommendMenus = MessageFormat.format(
                 RESULT_MESSAGE_FORMAT, String.join(JOIN_DELIMITER, recommendMenus));
         printMessage(formattedRecommendMenus);
