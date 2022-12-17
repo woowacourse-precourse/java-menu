@@ -8,11 +8,12 @@ import java.util.stream.Collectors;
 
 public class MenuController {
     FoodRecommendation foodRecommendation;
+
     public void run() {
         OutputView.start();
         List<Coach> coaches = readCoachName();
         foodRecommendation = new FoodRecommendation(coaches);
-        for(Coach coach : coaches) {
+        for (Coach coach : coaches) {
             OutputView.inputInedibleFood(coach);
             coach.addInedibleFoods(InputView.readInedibleFoods());
         }

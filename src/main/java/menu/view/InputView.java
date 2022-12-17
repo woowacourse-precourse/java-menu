@@ -9,13 +9,14 @@ import java.util.stream.Collectors;
 
 public class InputView {
     private static final int INEDIBLE_MAX = 2;
+
     public static List<String> readCoachName() {
-        try{
+        try {
             List<String> coaches = Arrays.stream(Console.readLine().split(","))
                     .collect(Collectors.toList());
             validate(coaches);
             return coaches;
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readCoachName();
         }
@@ -32,15 +33,14 @@ public class InputView {
 
     public static List<String> readInedibleFoods() {
         try {
-        List<String> InedibleFoods = Arrays.stream(Console.readLine().split(","))
-                .collect(Collectors.toList());
+            List<String> InedibleFoods = Arrays.stream(Console.readLine().split(","))
+                    .collect(Collectors.toList());
             validateInedible(InedibleFoods);
             return InedibleFoods;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readInedibleFoods();
         }
-
     }
 
     private static void validateInedible(List<String> foods) {

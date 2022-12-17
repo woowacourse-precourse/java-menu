@@ -48,7 +48,7 @@ public class OutputView {
     }
 
     private static void printFoodsByCoach(List<Coach> coaches) {
-        for(Coach coach : coaches) {
+        for (Coach coach : coaches) {
             printFood(coach);
         }
     }
@@ -58,7 +58,7 @@ public class OutputView {
         for (String food : coach.getFoods()) {
             sb.append(food).append(" | ");
         }
-        sb.replace(sb.length() - 2, sb.length()-1, "]");
+        sb.replace(sb.length() - 2, sb.length() - 1, "]");
         System.out.println(sb);
     }
 }

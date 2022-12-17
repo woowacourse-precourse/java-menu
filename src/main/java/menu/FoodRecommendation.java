@@ -4,7 +4,10 @@ import camp.nextstep.edu.missionutils.Randoms;
 import menu.constants.CoachRules;
 import menu.view.ErrorMessages;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class FoodRecommendation {
     Map<Week, Category> categoryByWeek = new LinkedHashMap<>();
