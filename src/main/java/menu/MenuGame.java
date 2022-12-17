@@ -21,6 +21,7 @@ public class MenuGame {
         enterCoachesAllergicMenus();
         createMenuCategory();
         selectCoachesMenus();
+        OutputView.printMenuGameResult(menuCategoryForEachDay, coaches);
 
     }
 

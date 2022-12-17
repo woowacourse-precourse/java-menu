@@ -59,4 +59,12 @@ public class Coach {
             return false;
         return true;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public Stack<String> getMenuNameForEachDay() {
+        return menuNameForEachDay;
+    }
 }
