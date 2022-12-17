@@ -46,7 +46,7 @@ public class MenuRecommend {
         }
         return category;
     }
-    private List<Food> getSpecificCategoryFood(List<Food> foods, Category category) {
+    public List<Food> getSpecificCategoryFood(List<Food> foods, Category category) {
         Category finalCategory = category;
         List<Food> categoryFood = foods
                 .stream()
@@ -55,7 +55,7 @@ public class MenuRecommend {
         return categoryFood;
     }
 
-    private void addNewDayFood(Day day, Coach coach, List<Food> categoryFood) {
+    public void addNewDayFood(Day day, Coach coach, List<Food> categoryFood) {
         List<String> foodNames = categoryFood.stream()
                 .map(f->f.getName())
                 .collect(Collectors.toList());
@@ -67,7 +67,7 @@ public class MenuRecommend {
         }
     }
 
-    private boolean ifCoachCantEat(Coach coach, String foodName) {
+    public boolean ifCoachCantEat(Coach coach, String foodName) {
         if(!coach.ifNotIncludeInCantEat(foodName)){
             return true;
         }
@@ -77,7 +77,7 @@ public class MenuRecommend {
         return false;
     }
 
-    private void initiateCategoryPerDay() {
+    public void initiateCategoryPerDay() {
         List<Day> days = List.of(Day.values());
         for(int i=0;i<days.size();i++){
             categorys.put(days.get(i),null);
