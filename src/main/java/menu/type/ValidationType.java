@@ -24,13 +24,5 @@ public enum ValidationType {
     }
 
     public static boolean validate(ValidationType validationType, String input) {
-        if (validationType.equals(CHECK_MENUS)) {
-            return validationType.getValidationRange().contains(input);
-        }
-        return validationType
-                .getValidationRange()
-                .stream()
-                .map(Integer::parseInt)
-                .collect(Collectors.toList())
-                .contains(input);
+        return validationType.getValidationRange().contains(input);
     }}
