@@ -3,29 +3,39 @@ package menu;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import menu.coach.Coach;
 import menu.coach.Coaches;
 
 public class RecommendMenu {
 
-    private final Coaches coaches;
     private List<String> categoryOrder = new ArrayList<>();
+    private List<Coach> coaches = Coaches.getCoaches();
 
-    public RecommendMenu(Coaches coaches) {
-        this.coaches = coaches;
+    public RecommendMenu() {
     }
 
     public void makeCategoryList() {
         while (categoryOrder.size() < 5) {
             categoryOrder.add(validAdd());
         }
-        System.out.println(categoryOrder);
     }
 
     private String validAdd() {
         String category = Category.from(String.valueOf(Randoms.pickNumberInRange(1, 5))).name();
-        if (categoryOrder.contains(category)) {
+        if (countContains(category) >= 2) {
             return validAdd();
         }
         return category;
+    }
+
+    private int countContains(String input) {
+        int count = 0;
+        for (String category : categoryOrder) {
+            if (category.equals(input)) {
+                count += 1;
+            }
+        }
+        System.out.println(count);
+        return count;
     }
 }
