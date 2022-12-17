@@ -13,10 +13,10 @@ public class Controller {
     public void initGame() {
         System.out.println(Output.INIT);
         System.out.println(Output.INPUT_COACH);
-        String[] names = Input.inputName();
+        String[] names = ExceptionHandler.input(Input::inputName);
         for (String name : names) {
             System.out.printf((Output.INPUT_HATE) + "%n", name);
-            List<String> hates = Input.inputHate();
+            List<String> hates = ExceptionHandler.input(Input::inputHate);
             coaches.add(new Coach(name, hates));
         }
     }
