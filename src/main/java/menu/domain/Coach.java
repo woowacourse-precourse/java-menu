@@ -69,4 +69,8 @@ public class Coach {
     public List<String> getInedibles() {
         return Collections.unmodifiableList(inedibles);
     }
+
+    public void clearInedibles() {
+        inedibles.clear();
+    }
 }

@@ -56,7 +56,6 @@ public class WeekDiet {
         return createdMenus;
 
     }
-
     @Override
     public String toString() {
         //TODO: 구현
