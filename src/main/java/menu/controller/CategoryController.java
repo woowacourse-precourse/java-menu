@@ -1,0 +1,1 @@
+package menu.controller;import menu.service.CategoryService;public class CategoryController {    private final CategoryService categoryService;    public CategoryController() {        this.categoryService = new CategoryService();    }    public void init() {        categoryService.initCategory();    }}
