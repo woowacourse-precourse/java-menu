@@ -1,6 +1,7 @@
 package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import java.util.List;
 import menu.util.converter.ArrayConverter;
 import menu.util.validator.CoachValidator;
@@ -22,6 +23,9 @@ public class InputView {
     public static NotEatFoodsDTO readNotEatFoodByCoach(String name) {
         System.out.printf(INPUT_NOT_EAT_FOODS, name);
         String notEatFoods = Console.readLine();
+        if (notEatFoods.equals("")) {
+            return new NotEatFoodsDTO(name, new ArrayList<>());
+        }
         NotEatFoodValidator.validateNotEatFoods(notEatFoods);
         return new NotEatFoodsDTO(name, ArrayConverter.restArrayToList(notEatFoods));
     }

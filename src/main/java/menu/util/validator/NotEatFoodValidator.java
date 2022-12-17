@@ -16,13 +16,14 @@ public class NotEatFoodValidator {
     public static void validateNotEatFoods(String notEatFoods) {
         List<String> notEatFoodNames = Arrays.asList(notEatFoods.split(SEPARATOR,-1));
         notEatFoodNames.stream()
-                .forEach(foodName -> validateNotEatFoodName(foodName));
+                .forEach(foodName -> validateNotEatFoodName(foodName, notEatFoodNames));
         validateNotEatFoodNumber(notEatFoodNames);
         validateDuplicateNotEatFoods(notEatFoodNames);
     }
 
-    private static void validateNotEatFoodName(String foodName) {
-        if (foodName.equals("") || foodName == null) {
+    private static void validateNotEatFoodName(String foodName, List<String> notEatFoodNames) {
+
+        if ((foodName.equals("") || foodName == null) && notEatFoodNames.size() >= 2) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_EAT_FOOD_NOT_EMPTY);
         }
     }
