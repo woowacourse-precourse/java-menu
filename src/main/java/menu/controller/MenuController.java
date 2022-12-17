@@ -28,6 +28,7 @@ public class MenuController extends Controller{
         generateCoachList();
         inputHateMenus();
         recommendMenus();
+        printRecommendedMenus();
     }
 
     public void start() {

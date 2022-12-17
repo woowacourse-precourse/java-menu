@@ -36,7 +36,7 @@ public class OutputView {
         StringJoiner joiner = new StringJoiner(" | ","[ "," ]");
 
         joiner.add("카테고리");
-        categories.forEach(category -> joiner.add(category.name()));
+        categories.forEach(category -> joiner.add(category.getName()));
 
         println(joiner.toString());
     }
@@ -46,7 +46,7 @@ public class OutputView {
         List<Menu> recommendMenus = coach.getRecommendMenus();
 
         joiner.add(coach.getName());
-        recommendMenus.forEach(menu -> joiner.add(menu.name()));
+        recommendMenus.forEach(menu -> joiner.add(menu.getName()));
 
         println(joiner.toString());
     }

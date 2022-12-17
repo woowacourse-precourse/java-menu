@@ -15,11 +15,16 @@ public enum Menu {
     WE_1(WESTERN, "라자냐"), WE_2(WESTERN, "그라탱"), WE_3(WESTERN, "뇨끼"), WE_4(WESTERN, "끼슈"), WE_5(WESTERN, "프렌치 토스트"), WE_6(WESTERN, "바게트"), WE_7(WESTERN, "스파게티"), WE_8(WESTERN, "피자"), WE_9(WESTERN, "파니니");
 
     private Category category;
+
     private String name;
 
     Menu(Category category, String name) {
         this.category = category;
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public static Menu checkIsMenuExist(String inputMenuName) {
