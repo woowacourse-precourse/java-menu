@@ -1,24 +1,21 @@
 package menu.ui;
 
 import java.util.List;
+import menu.domain.Category;
 import menu.domain.Coach;
+import menu.repository.ServiceRepository;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
 public class OutputView {
 
   /**
-   * 처음 게임을 시작했을 때 시작 문구를 출력한다.
+   * 서비스를 실행시켰을 때 시작 문구를 출력한다.
    */
   public void printServiceStart() {
     System.out.println("점심 메뉴 추천을 시작합니다.");
   }
 
   /**
-   * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-   * <p>
-   * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+   * 메뉴 추천 결과를 출력한다.
    */
   public void printResult(List<Coach> coachList) {
     System.out.println("메뉴 추천 결과입니다.");
@@ -34,9 +31,13 @@ public class OutputView {
   }
 
   private void printCategory() {
-    System.out.println("[ 카테고리 | 한식 | 한식 | 일식 | 중식 | 아시안 ]");
-  }
+    System.out.print("[ 카테고리");
+    for(Category category:ServiceRepository.getCategoryList()){
+      System.out.print(" | "+category.getCategory());
+    }
+    System.out.println(" ]");
 
+  }
   private void printCoachMenuList(List<Coach> coachList) {
     for (int i = 0; i < coachList.size(); i++) {
       System.out.println(coachList.get(i));

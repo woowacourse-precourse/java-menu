@@ -10,7 +10,7 @@ import menu.domain.Category;
 public class ServiceRepository {
   static List<Category> categoryList=new ArrayList<>();
   static HashMap<Category, String[]> menuList = new HashMap<>();
-  public void ServiceRepository(){
+  public ServiceRepository(){
     makeCategoryList();
     makeMenuList();
   }
@@ -29,7 +29,7 @@ public class ServiceRepository {
   }
 
 
-  public void makeMenuList() {
+  private void makeMenuList() {
     menuList.put(Category.Japan,
         new String[]{"규동", "우동", "미소시루", "스시", "가츠동", "오니기리", "하이라이스", "라멘", "오코노미야끼"});
     menuList.put(Category.Korean,

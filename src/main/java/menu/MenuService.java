@@ -12,10 +12,11 @@ import menu.ui.OutputView;
 public class MenuService {
   final InputView input = new InputView();
   final OutputView output = new OutputView();
-  final ServiceRepository serviceRepository=new ServiceRepository();
+  private ServiceRepository serviceRepository;
 
 
   public void startService() {
+    serviceRepository=new ServiceRepository();
     output.printServiceStart();
 
     List<Coach> coachList = input.readCoachName();
