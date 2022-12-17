@@ -1,5 +1,7 @@
 package menu.model;
 
+import java.util.Arrays;
+
 public enum Category {
   JAPAN(1, "일식"),
   KOREA(2, "한식"),
@@ -13,5 +15,9 @@ public enum Category {
   Category(int categoryId, String categoryName) {
     this.categoryId = categoryId;
     this.categoryName = categoryName;
+  }
+
+  public static Category getCategory(int categoryId) {
+    return Arrays.stream(Category.values()).filter(it -> it.categoryId == categoryId).findFirst().orElseThrow(IllegalArgumentException::new);
   }
 }
