@@ -1,7 +1,10 @@
 package menu;
 
+import menu.Controller.RecommandController;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        RecommandController recommandController = new RecommandController();
+        recommandController.start();
     }
 }
