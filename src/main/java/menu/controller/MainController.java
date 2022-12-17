@@ -1,36 +1,32 @@
 package menu.controller;
 
-import menu.enums.MenuOption;
 import menu.model.ChoiceMachine;
 import menu.model.Coach;
 import menu.model.CoachRepository;
-import menu.module.RepeatModule;
-import menu.view.InputView;
 import menu.view.OutputView;
 
 import java.util.List;
 
-public class MainController extends RepeatModule {
+public class MainController {
 
     private static final int ZERO = 0;
     private static final int DAY_COUNT = 5;
 
+    private final InputController inputController;
     private final ChoiceMachine choiceMachine = new ChoiceMachine();
-    private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 
     public MainController() {
+        inputController = new InputController(outputView);
         outputView.printStart();
     }
 
     public void start() {
-        List<String> coachesName = repeat(inputView::readCoachesName);
+        List<String> coachesName = inputController.inputCoachesName();
 
         for (String coachName : coachesName) {
-            //TODO: 입력받아야 함, 입력 과정 수정
-            //outputView.printMessage(coachName);
-            //List<String> hateFoods = repeat(inputView::readHateFoods);
-            List<String> hateFoods = List.of("김밥", "라면");
+            List<String> hateFoods = inputController.inputHateFoods(coachName);
+            System.out.println(hateFoods);
             new Coach(coachName, hateFoods);
         }
 

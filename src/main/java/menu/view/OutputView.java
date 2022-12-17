@@ -12,6 +12,10 @@ public class OutputView {
 
     private static final int ONE = 1;
 
+    public void printErrorMsg(String message) {
+        System.out.println(ERROR_PREFIX.get() + message);
+    }
+
     public void printStart() {
         System.out.println(OUTPUT_MSG_SERVICE_START.get());
     }
@@ -52,9 +56,5 @@ public class OutputView {
             }
             System.out.println(CLOSE_BRAKET.get());
         }
-    }
-
-    public void printMessage(String message) {
-        System.out.print("\n" + message);
     }
 }
