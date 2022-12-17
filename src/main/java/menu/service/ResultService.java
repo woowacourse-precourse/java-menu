@@ -22,5 +22,6 @@ public class ResultService {
             int randomNumber = Randoms.pickNumberInRange(1, 5);
             categoryName = Category.convertNumberToName(randomNumber);
         } while (result.checkCategoryCount(categoryName) >= 2);
+        result.addCategory(categoryName);
     }
 }

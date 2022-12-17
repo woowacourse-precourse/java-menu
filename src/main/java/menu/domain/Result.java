@@ -15,4 +15,8 @@ public class Result {
     public int checkCategoryCount(String categoryName) {
         return categoryCounts.get(categoryName);
     }
+
+    public void addCategory(String categoryName) {
+        this.selectedCategory.add(categoryName);
+    }
 }
