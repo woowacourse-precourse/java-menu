@@ -9,7 +9,7 @@ public class InputView {
         return inputCoachesConsole();
     }
     public static String inputCantView(String coach){
-        System.out.println(coach+"(이)가 못먹는 메뉴를 입력해 주세요.");
+        System.out.println(coach+"(이)가 못 먹는 메뉴를 입력해 주세요.");
         return inputCantConsole();
     }
 }
