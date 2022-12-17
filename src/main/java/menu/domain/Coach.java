@@ -9,8 +9,8 @@ public class Coach {
     private final List<String> notEatMenus;
     private final List<String> ateMenu = new ArrayList<>();
 
-    public Coach(String name, List<String> notEatMenus) {
-        coachName = new CoachName(name);
+    public Coach(CoachName coachName, List<String> notEatMenus) {
+        this.coachName = coachName;
         this.notEatMenus = notEatMenus;
     }
 

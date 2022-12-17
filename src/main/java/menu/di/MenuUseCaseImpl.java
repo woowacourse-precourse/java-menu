@@ -70,7 +70,7 @@ public class MenuUseCaseImpl implements MenuUseCase {
         for (int i = 0; i < names.size(); i++) {
             String name = names.get(i);
             List<String> notEatMenu = notEatMenus.get(i);
-            coaches.add(new Coach(name, notEatMenu));
+            coaches.add(new Coach(new CoachName(name), notEatMenu));
         }
         return coaches;
     }
