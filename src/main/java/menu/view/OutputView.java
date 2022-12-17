@@ -33,7 +33,7 @@ public class OutputView {
         for (String name : allNames) {
             Coach coach = coachService.findByName(name);
             System.out.print("[ " + coach.getName());
-            for (String foodName : coach.makeLunchMenu()) {
+            for (String foodName : coach.getLunchMenu()) {
                 System.out.print(" | " + foodName);
             }
             System.out.println(" ]");
