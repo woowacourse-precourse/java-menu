@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import menu.domain.Coach;
 import menu.domain.Coaches;
+import menu.message.ErrorMessage;
 
 public class CoachesRepository {
     public static final int COACHES_INDEX = 0;
@@ -26,5 +27,15 @@ public class CoachesRepository {
 
     private static void delete() {
         store.clear();
+    }
+
+    public static Coach findByName(final String coachName) {
+        return find()
+                .getCoachList()
+                .stream()
+                .filter(coach -> coach.containsName(coachName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_EXISTS_COACH_NAME));
+
     }
 }
