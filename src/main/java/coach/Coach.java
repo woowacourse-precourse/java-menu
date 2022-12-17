@@ -14,4 +14,12 @@ public class Coach {
         this.hateFood = new ArrayList<>();
     }
 
+    public String getName(){
+        return this.name;
+    }
+
+    public void updateHateFood(List<String> hateFoodList){
+        this.hateFood.addAll(hateFoodList);
+    }
+
 }

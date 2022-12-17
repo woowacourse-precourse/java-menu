@@ -5,11 +5,9 @@ import coach.Managecoach;
 import java.util.List;
 
 public class Application {
-    static void makeCoachList(List<String> coachNameList) {
-        Managecoach managecoach = new Managecoach(coachNameList);
-        System.out.println(managecoach.getCoachList());
+    static Managecoach makeCoachList(List<String> coachNameList) {
+        return new Managecoach(coachNameList);
     }
-
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -17,7 +15,10 @@ public class Application {
             View view = new View();
             view.startGame();
             List<String> coachNameList = view.inputCoachName();
-            makeCoachList(coachNameList);
+            Managecoach coachList = makeCoachList(coachNameList);
+            for(int coachCnt= 0; coachCnt <coachList.getCoachList().size(); coachCnt++){
+                view.inputCoachHateFood(coachList.getCoachList().get(coachCnt).getName());
+            }
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
         }
