@@ -6,6 +6,10 @@ import menu.dto.response.CoachesWeeklyMenu;
 
 public class OutputView {
 
+    private static final String DELIMITER = " | ";
+    private static final String MESSAGE_PREFIX = "[ ";
+    private static final String MESSAGE_SUFFIX = " ] ";
+
     public void printAppRunMessage() {
         System.out.println("점심 메뉴 추천을 시작합니다.");
     }
@@ -21,12 +25,12 @@ public class OutputView {
     }
 
     private void printWeeklyMenuCategories(CoachesWeeklyMenu coachesWeeklyMenu) {
-        String categories = String.join(" | ", coachesWeeklyMenu.getCategoriesNames());
-        System.out.println("[ 카테고리 | " + categories + " ]");
+        String categories = String.join(DELIMITER, coachesWeeklyMenu.getCategoriesNames());
+        System.out.println(MESSAGE_PREFIX + "카테고리 " + DELIMITER + categories + MESSAGE_SUFFIX);
     }
 
     private void printEachCoachesWeeklyMenu(Entry<String, List<String>> entry) {
-        String menus = String.join(" | ", entry.getValue());
-        System.out.println("[ "+ entry.getKey() +" | " + menus + " ]");
+        String menus = String.join(DELIMITER, entry.getValue());
+        System.out.println(MESSAGE_PREFIX + entry.getKey() + DELIMITER + menus + MESSAGE_SUFFIX);
     }
 }
