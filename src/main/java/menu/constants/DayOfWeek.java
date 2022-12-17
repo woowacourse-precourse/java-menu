@@ -24,7 +24,7 @@ public enum DayOfWeek {
         return weekOfDay;
     }
 
-    public List<String> getWeekOfDayList() {
+    public static List<String> getWeekOfDayList() {
         return dayOfWeek;
     }
 }
