@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import menu.domain.coach.Coach;
+import menu.utils.Constants;
 
 public class LunchSuggestion {
 
@@ -32,9 +33,9 @@ public class LunchSuggestion {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Coach coach : lunchSuggestion.keySet()) {
-            stringBuilder.append("[ ");
+            stringBuilder.append(Constants.PREFIX);
             stringBuilder.append(coach.getName());
-            stringBuilder.append(" | ");
+            stringBuilder.append(Constants.DELIMITER);
             foodAppend(stringBuilder, coach);
         }
         return stringBuilder.toString();
@@ -45,10 +46,10 @@ public class LunchSuggestion {
         for (int i = 0; i < foods.size(); i++) {
             stringBuilder.append(foods.get(i));
             if (i != foods.size() - 1) {
-                stringBuilder.append(" | ");
+                stringBuilder.append(Constants.DELIMITER);
             }
         }
-        stringBuilder.append(" ]\n");
+        stringBuilder.append(Constants.POSTFIX + "\n");
     }
 
     public boolean sameFoodInWeek(Coach coach, String food) {

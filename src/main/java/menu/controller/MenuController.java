@@ -106,7 +106,7 @@ public class MenuController {
             lunchSuggestion.addSuggestion(coach, food);
         }
     }
-    
+
     private String readUnEatables() {
         return inputView.inputBasicLine();
     }
