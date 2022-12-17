@@ -46,8 +46,8 @@ public class MealRecommendationController {
         List<Coach> coaches = coachRepository.findALl();
         for (Coach coach : coaches) {
             outputView.printHateMenuInputGuide(coach.getName());
-            List<String> hateMenus = inputView.getHateMenus();
-            coach.setHateMenu(hateMenus);
+            List<String> hateMenusNames = inputView.getHateMenuNames();
+            coach.setHateMenuNames(hateMenusNames);
         }
     }
 

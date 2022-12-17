@@ -19,7 +19,7 @@ public class InputView {
         return names;
     }
 
-    public List<String> getHateMenus(){
+    public List<String> getHateMenuNames(){
         String userInput = getUserInput();
         List<String> hateMenus = Arrays.asList(userInput.split(","));
         Validator.validateHateMenusSize(hateMenus);

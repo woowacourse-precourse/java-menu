@@ -25,7 +25,7 @@ public class Coach {
         this.ateMenu = ateMenu;
     }
 
-    public void setHateMenu(List<String> hateMenuNames) {
+    public void setHateMenuNames(List<String> hateMenuNames) {
         // 검증 로직 필요
         this.hateMenuNames = hateMenuNames;
     }
