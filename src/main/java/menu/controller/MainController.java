@@ -30,6 +30,11 @@ public class MainController {
         outputView.printStartMessage();
         outputView.printAskNames();
         makeCoaches();
+        makeCantEatMenus();
+        List<Category>selectedCategories = coaches.makeSelectedCategories();
+    }
+
+    private void makeCantEatMenus() {
         List<Menu> cantEatMenus = new ArrayList<>();
         for (Coach coach : coaches.getCoaches()) {
             getEachCoachesCantEatMenus(cantEatMenus, coach);

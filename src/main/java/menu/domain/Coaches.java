@@ -1,7 +1,12 @@
 package menu.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Coaches {
 
@@ -83,5 +88,17 @@ public class Coaches {
             }
         }
         throw new IllegalArgumentException("[ERROR] 없는 메뉴입니다.");
+    }
+
+    public List<Category> makeSelectedCategories() {
+        List<Category>selectedCategories = new ArrayList<>();
+        for(Day day : days){
+            Category category = day.getCategory(Randoms.pickNumberInRange(1, 5));
+            selectedCategories.add(category);
+        }
+        if(new HashSet<>(selectedCategories).size()<4){
+            return makeSelectedCategories();
+        }
+        return selectedCategories;
     }
 }

@@ -27,4 +27,17 @@ public class Day {
         }
         return false;
     }
+
+    public Category getCategory(int number) {
+        for (int index = 1; index < number + 1; index++) {
+            if (index == number) {
+                return categories.get(index);
+            }
+        }
+        return null;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
 }
