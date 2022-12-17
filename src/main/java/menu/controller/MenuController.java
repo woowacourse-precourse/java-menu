@@ -1,5 +1,6 @@
 package menu.controller;
 
+import menu.dto.CoachInputDTO;
 import menu.service.MenuService;
 import menu.view.InputView;
 import menu.view.OutputView;
@@ -23,7 +24,8 @@ public class MenuController {
     }
 
     private void inputCoachName() {
-
+        CoachInputDTO coachInputDTO = inputView.inputCoachName();
+        menuService.createCoaches(coachInputDTO);
     }
 
     private void inputUnavailableMenu() {
