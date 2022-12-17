@@ -67,6 +67,9 @@ public class Controller {
     private List<String> getHateMenuByCoach(String coach) {
         try {
             String hatMenuInput = InputVIew.getHateMenu(coach);
+            if (hatMenuInput.isBlank()) {
+                return null;
+            }
             List<String> hateMenus = Converter.toListByDelimiter(hatMenuInput);
             Validator.containDuplicate(hateMenus);
             Validator.isInSize(hateMenus, 0, 2);

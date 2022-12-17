@@ -36,6 +36,9 @@ public class Service {
     }
 
     private void addHateMenu(Coach coach, List<String> hateMenuNames) {
+        if(hateMenuNames == null){
+            return;
+        }
         for (String menuName : hateMenuNames) {
             Menu menu = MenuRepository.getMenuByName(menuName);
             coach.addHateMenu(menu);
