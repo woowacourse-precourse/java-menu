@@ -1,9 +1,14 @@
 package menu.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryHistory {
     private List<Category> categoryHistory;
+
+    public CategoryHistory() {
+        this.categoryHistory = new ArrayList<>();
+    }
 
     public void addCategory(Category category) {
         categoryHistory.add(category);
