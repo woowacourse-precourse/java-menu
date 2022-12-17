@@ -20,6 +20,16 @@ public class MenuController {
         this.menuService = menuService;
     }
 
+    public void start() {
+        List<String> coachNames = inputView.getCoachName();
+        for (String name : coachNames) {
+            initCoaches(name);
+        }
+
+        List<String> categoryNames = menuService.getCategoryNames();
+        outputView.printMenuResult(categoryNames, coaches);
+    }
+
     private void initCoaches(String name) {
         Coach coach = new Coach(name);
         setCoachNoMenu(coach);
