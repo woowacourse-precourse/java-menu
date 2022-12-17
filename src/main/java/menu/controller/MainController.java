@@ -18,16 +18,23 @@ public class MainController {
     }
 
     public void service() {
-        List<Coach> coachs= new ArrayList<>();
+        List<Coach> coachs = new ArrayList<>();
         outputView.startMessage();
         inputView.readCoachName().stream()
                 .forEach(e -> coachs.add(new Coach(e, inputView.readCantEats(e))));
         outputView.resultMessage();
         List<String> categorys = Menu.selectCategory();
-        outputView.LineMessage("카테고리",categorys);
+        outputView.LineMessage("카테고리", categorys);
+
+        categorys.stream().forEach(i -> {
+                    coachs.stream().forEach(j -> j.addMenu(Menu.selectMenu(i ,j.getCantEats(),j.getMenu())));
+                }
+        );
+
         coachs.stream().forEach(e->{
-            outputView.LineMessage(e.getName(),Menu.selectMenu(categorys,e.getCantEats()));
+            outputView.LineMessage(e.getName(),e.getMenu());
         });
+
         outputView.endMessage();
     }
 }
