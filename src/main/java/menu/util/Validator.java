@@ -1,12 +1,9 @@
 package menu.util;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.MenuRecommender;
-import menu.domain.Menus;
 
 public class Validator {
 
@@ -50,8 +47,10 @@ public class Validator {
         }
     }
 
-    public static void validateBannedMenus(String input, MenuRecommender menuRecommender) {
-        validateExistedMenu(input, menuRecommender);
+    public static void validateBannedMenus(List<String> bannedMenus, MenuRecommender menuRecommender) {
+        for (String bannedMenu : bannedMenus) {
+            validateExistedMenu(bannedMenu, menuRecommender);
+        }
     }
 
     private static void validateExistedMenu(String input, MenuRecommender menuRecommender) {

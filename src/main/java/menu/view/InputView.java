@@ -21,7 +21,7 @@ public class InputView {
         System.out.println(name + "(이)가 못 먹는 메뉴를 입력해 주세요.");
         String input = Console.readLine();
         List<String> bannedMenus = Converter.stringToBannedMenus(input);
-        Validator.validateBannedMenus(input, menuRecommender);
+        Validator.validateBannedMenus(bannedMenus, menuRecommender);
         return input;
     }
 }
