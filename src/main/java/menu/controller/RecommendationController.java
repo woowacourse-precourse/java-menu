@@ -1,30 +1,31 @@
 package menu.controller;
 
 import static menu.controller.CategoryRegister.getMenus;
+import static menu.view.OutputView.printDay;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import menu.domain.CategoryNumberGenerator;
 import menu.domain.CategoryRandomNumberGenerator;
 import menu.domain.Coach;
 import menu.domain.MatchingCategory;
-import menu.domain.RecommendMenus;
 import menu.view.InputView;
 
 public class RecommendationController {
 
 //    private List<Coach> coachs;
 
-    public RecommendationController(){
+    public RecommendationController() {
         CategoryRegister.MenuListSave();
     }
 
-    public void startRecommendation(){
+    public void startRecommendation() {
         List<String> names = new ArrayList<>();
         List<Coach> coaches = new ArrayList<>();
         names = InputView.readCoachName();
-        for (String coachName : names){
+        for (String coachName : names) {
             List<String> dislikeMenus = new ArrayList<>(InputView.readDislikeMenu(coachName));
             Coach coach = new Coach(coachName, dislikeMenus);
             coaches.add(coach);
@@ -33,28 +34,26 @@ public class RecommendationController {
         runRecommendation(coaches);
     }
 
-    private void runRecommendation( List<Coach> coaches){
+    private void runRecommendation(List<Coach> coaches) {
         CategoryNumberGenerator categoryNumberGenerator = new CategoryRandomNumberGenerator();
-        for (int i=0; i<5; i++){
-            MatchingCategory matchingCategory = new MatchingCategory(categoryNumberGenerator.generate());
+        for (int i = 0; i < 5; i++) {
+            MatchingCategory matchingCategory = new MatchingCategory(
+                    categoryNumberGenerator.generate());
             String Category = matchingCategory.getCategory();
             System.out.println(Category);
-            addRecommendResult(coaches, Category);
+            List<String> recommendedResult = new ArrayList<>();
+            recommendedResult.add(matchingMenu(Category));
+            System.out.println(recommendedResult);
+            addRecommendResult(coaches,recommendedResult);
         }
     }
 
-    private void addRecommendResult(List<Coach> coaches,String Category){
-        String recommendMenu = matchingMenu(Category);
+    private void addRecommendResult(List<Coach> coaches, List<String> recommendedResult) {
         for(Coach coach : coaches){
-            coach.setRecommendMenus(recommendMenu);
+            coach.setRecommendMenus(recommendedResult);
         }
     }
-
-    private String matchingMenu(String Category){
-        List<String> menus = getMenus(Category);
-        String menu = Randoms.shuffle(menus).get(0);
-        return menu;
+    private String matchingMenu(String Category) {
+        return Randoms.shuffle(getMenus(Category)).get(0);
     }
-
-
 }

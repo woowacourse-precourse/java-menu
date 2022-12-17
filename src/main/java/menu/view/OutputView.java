@@ -1,6 +1,48 @@
 package menu.view;
 
+import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.StringJoiner;
+import menu.SystemMessage;
+
 public class OutputView {
-//StringJoiner downResult = new StringJoiner(" | ", "[ ", " ]");
-//https://github.com/shyjnnn/java-bridge/blob/shyjnnn/src/main/java/bridge/OutputView.java
+
+    public static final String MONDAY = "월요일";
+    public static final String TUESDAY = "화요일";
+    public static final String WEDNESDAY = "수요일";
+    public static final String THURSDAY = "목요일";
+    public static final String FRIDAY = "금요일";
+
+    public static void printResult(List<String> categories){
+        System.out.println(SystemMessage.RESULT_OUTPUT_MESSAGE);
+        printDay();
+        printCategory(categories);
+    }
+    public static void printDay() {
+        StringJoiner day = new StringJoiner(" | ", "[ ", " ]");
+
+        day.add(MONDAY);
+        day.add(TUESDAY);
+        day.add(WEDNESDAY);
+        day.add(THURSDAY);
+        day.add(FRIDAY);
+
+        String dayMap = day.toString();
+        System.out.println(dayMap);
+    }
+
+
+    public static void printCategory(List<String> categories) {
+        StringJoiner categoryJoiner = new StringJoiner(" | ", "[ ", " ]");
+
+        for(String category : categories){
+            categoryJoiner.add(category);
+        }
+
+        String categoryMap = categoryJoiner.toString();
+        System.out.println(categoryMap);
+    }
+
 }

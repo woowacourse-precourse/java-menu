@@ -18,9 +18,6 @@ public class CategoryRegister {
     private static String menus;
     static Map<String, List<String>> categoryRegister = new HashMap<>();
 
-    CategoryRegister(String category, String menu) {
-    }
-
     public static void MenuListSave() {
 
         categoryRegister.put("일식", Arrays.asList(CategoryRegister.JAPANESE_FOOD.split(",")));
