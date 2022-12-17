@@ -30,11 +30,15 @@ public class Coach {
         return true;
     }
 
-    public void getRecommendedMenu(String menu) {
+    public void setRecommendedMenu(String menu) {
         recommendedMenus.add(menu);
     }
 
     public String getName() {
         return name;
+    }
+
+    public List<String> getRecommendedMenus() {
+        return recommendedMenus;
     }
 }
