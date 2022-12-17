@@ -1,9 +1,11 @@
 package menu.model;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public enum Category {
     JAPANESE(1, "일식", "규동, 우동, 미소시루, 스시, 가츠동, 오니기리, 하이라이스, 라멘, 오코노미야끼"),
@@ -20,12 +22,12 @@ public enum Category {
     private static final Map<Integer, Category> numberToCategory = new HashMap<>();
 
     static {
-        for(Category category: Category.values()) {
+        for (Category category : Category.values()) {
             numberToCategory.put(category.number, category);
         }
     }
 
-    Category(int number, String name, String menuJoinWithDelimiter){
+    Category(int number, String name, String menuJoinWithDelimiter) {
         this.number = number;
         this.name = name;
         this.menu = Arrays.asList(menuJoinWithDelimiter.split(","));
@@ -33,9 +35,12 @@ public enum Category {
 
     public static Category getCategoryByNumber(int number) {
         if (!numberToCategory.containsKey(number)) {
-            throw  new IllegalArgumentException(INVALID_NUMBER);
+            throw new IllegalArgumentException(INVALID_NUMBER);
         }
         return numberToCategory.get(number);
+    }
 
+    public String getRandomMenu() {
+        return Randoms.shuffle(menu).get(0);
     }
 }
