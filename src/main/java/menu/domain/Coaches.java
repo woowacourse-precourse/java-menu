@@ -2,11 +2,8 @@ package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Coaches {
 
@@ -24,6 +21,45 @@ public class Coaches {
     public void setCoaches(String coachesName){
         validate(coachesName);
         makeCoachList(coachesName);
+    }
+
+    public List<Coach> getCoaches() {
+        return coachList;
+    }
+
+    public void findMenu(String menu) {
+        if(menu.equals("")){
+            return;
+        }
+        for(Day day : days){
+            if(day.haveMenu(menu)){
+                return;
+            }
+        }
+        throw new IllegalArgumentException("[ERROR] 없는 메뉴입니다.");
+    }
+
+    public List<Category> makeSelectedCategories() {
+        List<Category>selectedCategories = new ArrayList<>();
+        for(Day day : days){
+            Category category = day.getCategory(Randoms.pickNumberInRange(1, 5));
+            selectedCategories.add(category);
+        }
+        if(new HashSet<>(selectedCategories).size()<4){
+            return makeSelectedCategories();
+        }
+        return selectedCategories;
+    }
+
+    public List<Menu> makeSelectedMenus(List<Category> selectedCategories) {
+        List<Menu>selectedMenus = new ArrayList<>();
+        for(Category category : selectedCategories){
+            selectedMenus.add(category.getRandomMenu());
+        }
+        if(countMenus(selectedMenus)!=5){
+            return makeSelectedMenus(selectedCategories);
+        }
+        return selectedMenus;
     }
 
     private void makeCoachList(String coachesName) {
@@ -77,55 +113,12 @@ public class Coaches {
                 .count();
     }
 
-    public List<Coach> getCoaches() {
-        return coachList;
-    }
-
-    public void findMenu(String menu) {
-        if(menu.equals("")){
-            return;
-        }
-        for(Day day : days){
-            if(day.haveMenu(menu)){
-                return;
-            }
-        }
-        throw new IllegalArgumentException("[ERROR] 없는 메뉴입니다.");
-    }
-
-    public List<Category> makeSelectedCategories() {
-        List<Category>selectedCategories = new ArrayList<>();
-        for(Day day : days){
-            Category category = day.getCategory(Randoms.pickNumberInRange(1, 5));
-            selectedCategories.add(category);
-        }
-        if(new HashSet<>(selectedCategories).size()<4){
-            return makeSelectedCategories();
-        }
-        return selectedCategories;
-    }
-
-    public List<Menu> makeSelectedMenus(List<Category> selectedCategories) {
-        List<Menu>selectedMenus = new ArrayList<>();
-        for(Category category : selectedCategories){
-            selectedMenus.add(category.getRandomMenu());
-        }
-        if(countMenus(selectedMenus)!=5){
-            return makeSelectedMenus(selectedCategories);
-        }
-        return selectedMenus;
-    }
-
     private int countMenus(List<Menu> selectedMenus) {
         List<String>menus = new ArrayList<>();
         for(Menu menu : selectedMenus){
             menus.add(menu.getMenu());
         }
         return menus.size();
-    }
-
-    public List<Day> getDays() {
-        return days;
     }
 
     public String printAllDays() {
