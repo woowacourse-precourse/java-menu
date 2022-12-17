@@ -51,20 +51,13 @@ public enum Menu {
         return categorys;
     }
 
-    public static List<String> selectMenu(List<String> categorys, List<String> cantEats) {
-        List<String> menus = new ArrayList<>();
-
-        categorys.stream().forEach(e -> {
-            while (true) {
-                String name = getCategoryToName(e);
-                if (!menus.contains(name) && !cantEats.contains(name)) {
-                    menus.add(name);
-                    break;
-                }
+    public static String selectMenu(String categorys, List<String> cantEats, List<String> menus) {
+        while (true) {
+            String name = getCategoryToName(categorys);
+            if (!menus.contains(name) && !cantEats.contains(name)) {
+                return name;
             }
-        });
-
-        return menus;
+        }
     }
 
 }
