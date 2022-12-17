@@ -30,7 +30,7 @@ public class RecommenderController {
         registerDislikeMenu();
         makeRecommendedCategories();
         recommendMenuToCoach();
-        
+        showResult();
     }
 
     private void registerCoaches() {
@@ -103,7 +103,25 @@ public class RecommenderController {
                 menu = menuRecommender.recommendMenu(category);
             }
             while (!(coach.canEatMenu(menu) && !coach.isDuplicateMenu(menu)));
-            coach.getRecommendedMenu(menu);
+            coach.setRecommendedMenu(menu);
         }
+    }
+
+    private void showResult() {
+        outputView.showRecommendResults();
+        outputView.showRecommendedCategory(convertCategoryToName(recommendedCategories));
+        for (Coach coach : coaches) {
+            outputView.showRecommendedMenu(coach.getName(), coach.getRecommendedMenus());
+        }
+        System.out.println();
+        outputView.showEndRecommender();
+    }
+
+    private List<String> convertCategoryToName(List<Category> categories) {
+        List<String> categoryNames = new ArrayList<>();
+        for (Category category : categories) {
+            categoryNames.add(category.getCategoryName());
+        }
+        return categoryNames;
     }
 }
