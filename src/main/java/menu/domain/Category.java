@@ -2,7 +2,9 @@ package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Category {
     private static List<String> categoires = List.of("", "일식", "한식", "중식", "아시안", "양식");
@@ -21,8 +23,21 @@ public class Category {
     private List<String> europian = List.of(
             "라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니"
     );
+    private Map<String, List<String>> categoryAll = new LinkedHashMap<>();
+
+    public Category() {
+        categoryAll.put("일식", japan);
+        categoryAll.put("한식", korea);
+        categoryAll.put("중식", china);
+        categoryAll.put("아시안", asian);
+        categoryAll.put("양식", europian);
+    }
 
     public static String getRandomCategory() {
         return categoires.get(Randoms.pickNumberInRange(1, 5));
+    }
+
+    public String getRandomMenu(String category) {
+        return Randoms.shuffle(categoryAll.get(category)).get(0);
     }
 }

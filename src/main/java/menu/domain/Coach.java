@@ -1,6 +1,9 @@
 package menu.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Coach {
@@ -27,5 +30,11 @@ public class Coach {
         }
     }
 
-
+    public void addMenu(String categoryName) {
+        Category category = new Category();
+        String menu;
+        do {
+            menu = category.getRandomMenu(categoryName);
+        } while (Collections.frequency(eatMenus, menu) < 2);
+    }
 }
