@@ -1,4 +1,4 @@
-package menu;
+package menu.View;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 

@@ -1,4 +1,8 @@
-package menu;
+package menu.Util;
+
+import menu.Model.Coach;
+import menu.Model.DayMenu;
+import menu.Model.WeekMenu;
 
 public class Validator {
 

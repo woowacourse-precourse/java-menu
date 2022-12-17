@@ -1,4 +1,8 @@
-package menu;
+package menu.View;
+
+import menu.Model.Coach;
+import menu.Model.Coaches;
+import menu.Model.WeekMenu;
 
 public class OutputView {
     public static void printRecommendStart() {

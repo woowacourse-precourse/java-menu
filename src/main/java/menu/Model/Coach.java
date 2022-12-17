@@ -1,12 +1,12 @@
-package menu;
+package menu.Model;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Coach {
-    private String name;
-    private List<String> notPreferMenu;
-    private List<String> recommendedMenus;
+    private final String name;
+    private final List<String> notPreferMenu;
+    private final List<String> recommendedMenus;
 
     public Coach(String name) {
         this.name = name;

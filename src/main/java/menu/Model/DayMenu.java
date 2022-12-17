@@ -1,4 +1,4 @@
-package menu;
+package menu.Model;
 
 public class DayMenu {
     private String category;

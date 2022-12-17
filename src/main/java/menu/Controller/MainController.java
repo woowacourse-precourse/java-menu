@@ -1,4 +1,9 @@
-package menu;
+package menu.Controller;
+
+import menu.Model.Coach;
+import menu.Model.Coaches;
+import menu.View.InputView;
+import menu.View.OutputView;
 
 import java.util.List;
 
