@@ -10,6 +10,32 @@ import java.util.List;
 
 public class MenuService {
 
+    public static final int MONDAY_TO_FRIDAY_COUNT = 5;
+
+    public List<Category> recommend(List<Coach> coaches) {
+        List<Category> categories = new ArrayList<>();
+
+        setRecommendMenu(coaches, categories);
+        return categories;
+    }
+
+    private void setRecommendMenu(List<Coach> coaches, List<Category> categories) {
+        int trial = 0;
+        while (trial < MONDAY_TO_FRIDAY_COUNT) {
+            Category category = getCategory();
+            category.addCount();
+            categories.add(category);
+            addMenu(coaches, category);
+            trial++;
+        }
+    }
+
+    private void addMenu(List<Coach> coaches, Category category) {
+        coaches.forEach(coach -> {
+            coach.addMenu(getMenu(coach, category));
+        });
+    }
+
     public Category getCategory() {
         Category category;
         while (true) {
