@@ -8,7 +8,7 @@ public class Controller {
     private List<Coach> coach;
     private OutputView outputView;
 
-    public final Category[] categories = Category.values();
+    private static final Category[] categories = Category.values();
 
     public Controller(List<String> coachName, List<Coach> coach){
         this.coachName = coachName;
@@ -22,15 +22,8 @@ public class Controller {
                 int recommendCategory = RandomNumGenerator.makeCategoryNum();
                 if (dailyCategory.stream().filter(num -> num == recommendCategory).count() < 2) {
                     dailyCategory.add(recommendCategory);
+                    recommendMenu(coach, recommendCategory);
                     break;
-                }
-            }
-            for (Coach eachCoach : coach) {
-                while (true) {
-                    Menu menu = new Menu(categories[dailyCategory.get(i) - 1].getMenuList());
-                    if (eachCoach.isValidMenu(menu)) {
-                        break;
-                    }
                 }
             }
         }
@@ -38,6 +31,17 @@ public class Controller {
         outputView.printCategory(categories, dailyCategory);
         for (Coach eachCoach : coach) {
             outputView.printRecommendedFood(eachCoach);
+        }
+    }
+
+    private void recommendMenu(List<Coach> coach, int num){
+        for (Coach eachCoach : coach) {
+            while (true) {
+                Menu menu = new Menu(categories[num - 1].getMenuList());
+                if (eachCoach.isValidMenu(menu)) {
+                    break;
+                }
+            }
         }
     }
 }
