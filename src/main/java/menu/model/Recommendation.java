@@ -7,6 +7,9 @@ import java.util.stream.Collectors;
 
 public class Recommendation {
     public static final String ALREADY_FULLY_RECOMMENDED = "이미 모든 요일의 추천이 완료되었습니다.";
+    public static final int FULL_SIZE_FOR_RECOMMENDATION = 5;
+    public static final int MAX_COUNT_FOR_SAME_CATEGORY = 2;
+    public static final String CATEGORY_FORMAT = "[ 카테고리 | %s ]";
     public List<Category> categories = new ArrayList<>();
 
     public Recommendation() {
@@ -20,7 +23,7 @@ public class Recommendation {
     }
 
     private void preventAddingIfCategoryIsFull() {
-        if (categories.size()>=5) {
+        if (categories.size() >= FULL_SIZE_FOR_RECOMMENDATION) {
             throw new IllegalStateException(ALREADY_FULLY_RECOMMENDED);
         }
     }
@@ -31,7 +34,7 @@ public class Recommendation {
         do {
             category = Category.getCategoryByNumber(Randoms.pickNumberInRange(1, 5));
             alreadyCategoryCount = countAlreadyRecommendedCategory(category);
-        } while (alreadyCategoryCount >= 2);
+        } while (alreadyCategoryCount >= MAX_COUNT_FOR_SAME_CATEGORY);
         return category;
     }
 
@@ -44,6 +47,6 @@ public class Recommendation {
     @Override
     public String toString() {
         String joinWithDelimiter = categories.stream().map(Category::getName).collect(Collectors.joining(" | "));
-        return String.format("[ 카테고리 | %s ]", joinWithDelimiter);
+        return String.format(CATEGORY_FORMAT, joinWithDelimiter);
     }
 }
