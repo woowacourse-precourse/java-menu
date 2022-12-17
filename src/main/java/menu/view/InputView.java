@@ -2,6 +2,10 @@ package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class InputView {
 
     private final InputValidator inputValidator;
@@ -12,9 +16,8 @@ public class InputView {
         this.inputValidator = new InputValidator();
     }
 
-    public String readCoachNames() {
+    public List<String> readCoachNames() {
         String coachNames = Console.readLine();
-        inputValidator.validateReadCoachNames(coachNames.split(SPLIT_DELIMITER));
-        return coachNames;
-    }
+        return Arrays.stream(coachNames.split(SPLIT_DELIMITER))
+                .collect(Collectors.toList());}
 }

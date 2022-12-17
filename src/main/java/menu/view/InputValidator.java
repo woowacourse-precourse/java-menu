@@ -13,7 +13,7 @@ public class InputValidator {
     private static final int MIN_COACH_COUNT = 2;
     private static final int MAX_COACH_COUNT = 5;
 
-    public void validateReadCoachNames(String[] coachNames) {
+    public void validateReadCoachNames(List<String> coachNames) {
         if (isWrongCoachNameLength(coachNames)) {
             throw new IllegalArgumentException(ErrorConstants.ERROR_PREFIX + "코치의 이름은 2글자 이상 4글자 이하여야합니다.");
         }
@@ -22,16 +22,16 @@ public class InputValidator {
         }
     }
 
-    private boolean isWrongCoachNameLength(String[] coachNames) {
-        long wrongCoachCount = Arrays.stream(coachNames)
+    private boolean isWrongCoachNameLength(List<String> coachNames) {
+        long wrongCoachCount = coachNames.stream()
                 .map(Integer::parseInt)
                 .filter(coachName -> coachName < MIN_COACH_NAME_LENGTH || coachName > MAX_COACH_NAME_LENGTH)
                 .count();
         return wrongCoachCount != 0;
     }
 
-    private boolean isWrongCoachCount(String[] coachNames) {
-        int coachCount = coachNames.length;
+    private boolean isWrongCoachCount(List<String> coachNames) {
+        int coachCount = coachNames.size();
         return coachCount < MIN_COACH_COUNT || coachCount > MAX_COACH_COUNT;
     }
 }
