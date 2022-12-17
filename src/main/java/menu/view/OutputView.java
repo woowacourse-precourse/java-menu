@@ -2,6 +2,7 @@ package menu.view;
 
 import menu.domain.CategoryEnum;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class OutputView {
@@ -23,7 +24,7 @@ public class OutputView {
         System.out.println("\n" + coach + "(이)가 못 먹는 메뉴를 입력해 주세요.");
     }
 
-    public static void printResult(List<String> coachesName, List<String[]> menu, List<Integer> category) {
+    public static void printResult(List<String> coachesName, HashMap<String,List<String>> menu, List<Integer> category) {
         System.out.println("\n메뉴 추천 결과입니다.");
         System.out.println("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
         printCategory(category);
@@ -38,16 +39,16 @@ public class OutputView {
         System.out.println(" ]");
     }
 
-    public static void printCoachMenu(List<String> coachesName, List<String[]> menu) {
+    public static void printCoachMenu(List<String> coachesName, HashMap<String,List<String>> menu) {
         for (int i = 0; i < coachesName.size(); i++) {
             System.out.print("[ "+coachesName.get(i));
-            printMenu(menu.get(i));
+            printMenu(menu.get(coachesName.get(i)));
         }
     }
 
-    public static void printMenu(String[] menu) {
-        for (int i = 0 ; i < menu.length; i++)
-            System.out.print(" | " +menu[i]);
+    public static void printMenu(List<String> menu) {
+        for (int i = 0 ; i < menu.size(); i++)
+            System.out.print(" | " +menu.get(i));
         System.out.println(" ]");
     }
 }
