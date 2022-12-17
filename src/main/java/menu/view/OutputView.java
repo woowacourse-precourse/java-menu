@@ -53,7 +53,6 @@ public class OutputView {
 
     private String getRecommendMenu(Coach coach) {
         List<String> dayOfWeek = coach.getSelectMenu();
-        dayOfWeek.add(0, DAY_OF_WEEK_TITLE);
         return setFormat(dayOfWeek);
     }
 
@@ -62,7 +61,6 @@ public class OutputView {
         stringBuilder.append(START_RESULT);
         stringBuilder.append(String.join(SEPARATOR, values));
         stringBuilder.append(END_RESULT);
-        stringBuilder.append(System.lineSeparator());
         return stringBuilder.toString();
     }
 }
