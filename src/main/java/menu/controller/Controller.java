@@ -40,16 +40,18 @@ public class Controller {
 		OutputView.printEndMessage();
 	}
 
+
 	private void logic() {
 		for (int i = 0; i < coaches.getNames().size(); i++) {
-			String result = "[ " + coaches.getNames().get(i);
+			String result = "";
+			resetCounts();
+			result = "[ " + coaches.getNames().get(i);
 			Menu dislikeMenus = menusCantEat.getMenusCantEat().get(i);
 			for (int j = 0; j < 5; j++) {
 				result += " | " + recommendMenu(dislikeMenus, result);
 			}
 			result += " ]";
 			System.out.println(result);
-			resetCounts();
 		}
 	}
 
@@ -108,7 +110,7 @@ public class Controller {
 		if (japanCount > 1) {
 			recommendOtherMenu(menu, result, 1);
 		}
-		List<String> recommendMenus = deleteMenuCantEat(menu, category.getJapaneseMenu());
+		List<String> recommendMenus = new ArrayList<>(deleteMenuCantEat(menu, category.getJapaneseMenu()));
 		String recommendedMenu = Randoms.shuffle(recommendMenus).get(0);
 		if (result.contains(recommendedMenu)) {
 			recommendMenus.remove(recommendedMenu);
@@ -122,7 +124,7 @@ public class Controller {
 		if (koreanCount > 1) {
 			recommendOtherMenu(menu, result, 2);
 		}
-		List<String> recommendMenus = deleteMenuCantEat(menu, category.getKoreanMenu());
+		List<String> recommendMenus = new ArrayList<>(deleteMenuCantEat(menu, category.getKoreanMenu()));
 		String recommendedMenu = Randoms.shuffle(recommendMenus).get(0);
 		if (result.contains(recommendedMenu)) {
 			recommendMenus.remove(recommendedMenu);
@@ -136,7 +138,7 @@ public class Controller {
 		if (chineseCount > 1) {
 			recommendOtherMenu(menu, result, 3);
 		}
-		List<String> recommendMenus = deleteMenuCantEat(menu, category.getChineseMenu());
+		List<String> recommendMenus = new ArrayList<>(deleteMenuCantEat(menu, category.getChineseMenu()));
 		String recommendedMenu = Randoms.shuffle(recommendMenus).get(0);
 		if (result.contains(recommendedMenu)) {
 			recommendMenus.remove(recommendedMenu);
@@ -150,7 +152,7 @@ public class Controller {
 		if (asianCount > 1) {
 			recommendOtherMenu(menu, result, 4);
 		}
-		List<String> recommendMenus = deleteMenuCantEat(menu, category.getAsianMenu());
+		List<String> recommendMenus = new ArrayList<>(deleteMenuCantEat(menu, category.getAsianMenu()));
 		String recommendedMenu = Randoms.shuffle(recommendMenus).get(0);
 		if (result.contains(recommendedMenu)) {
 			recommendMenus.remove(recommendedMenu);
@@ -164,7 +166,7 @@ public class Controller {
 		if (westernCount > 1) {
 			recommendOtherMenu(menu, result, 5);
 		}
-		List<String> recommendMenus = deleteMenuCantEat(menu, category.getWesternMenu());
+		List<String> recommendMenus = new ArrayList<>(deleteMenuCantEat(menu, category.getWesternMenu()));
 		String recommendedMenu = Randoms.shuffle(recommendMenus).get(0);
 		if (result.contains(recommendedMenu)) {
 			recommendMenus.remove(recommendedMenu);
