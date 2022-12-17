@@ -78,7 +78,7 @@ String menu = Randoms.shuffle(menus).get(0);
 점심 메뉴 추천을 시작합니다.
 ```
 
-- 서비스 종료 문구
+- [x] 서비스 종료 문구
 
 ```
 메뉴 추천 결과입니다.
