@@ -21,6 +21,13 @@ public class InputView {
         return coachNameInput;
     }
 
+    public List<String> readPickyEatings() {
+        List<String> pickyEatingsInput = Arrays.asList(Console.readLine().split(","));
+        validatePickyEatingsNumber(pickyEatingsInput);
+
+        return pickyEatingsInput;
+    }
+
     private void validateCoachNameLength(String name) {
         if (name.length() < 2 || name.length() > 4) {
             throw new IllegalArgumentException(COACH_NAME_LENGTH_ERROR_MESSAGE);
