@@ -4,7 +4,9 @@ import camp.nextstep.edu.missionutils.Console;
 import coach.Coach;
 import coach.Managecoach;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class View {
     public void startGame() {
@@ -13,13 +15,19 @@ public class View {
     }
 
     public List<String> inputCoachName() {
-        System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
-        String input = Console.readLine();
-        System.out.println();
-//        System.out.println(input);
-        List<String> coachNameList = List.of(input.split(","));
-        checkCoachName(coachNameList);
-        return coachNameList;
+        while (true) {
+            try {
+                System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
+                String input = Console.readLine();
+                System.out.println();
+                List<String> coachNameList = List.of(input.split(","));
+                checkCoachName(coachNameList);
+                return coachNameList;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println();
+            }
+        }
     }
 
     private void checkCoachName(List<String> coachNameList) {
@@ -29,16 +37,30 @@ public class View {
             if (coachName.length() < 2 || coachName.length() > 4)
                 throw new IllegalArgumentException("코치의 이름은 2~4글자 사이로 입력해야 합니다.");
         }
+        Set<String> setNameList = new HashSet<>(coachNameList);
+        if (setNameList.size() != coachNameList.size())
+            throw new IllegalArgumentException("동일한 코치를 입력했습니다.");
     }
 
     public List<String> inputCoachHateFood(String coachName) {
-        System.out.println(coachName + "(이)가 못 먹는 메뉴를 입력해 주세요.");
-        String input = Console.readLine();
-        System.out.println();
-        List<String> hateList = List.of(input.split(","));
+        while (true) {
+            try {
+                System.out.println(coachName + "(이)가 못 먹는 메뉴를 입력해 주세요.");
+                String input = Console.readLine();
+                System.out.println();
+                List<String> hateList = List.of(input.split(","));
+                checkHateSize(hateList);
+                return hateList;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println();
+            }
+        }
+    }
+
+    private void checkHateSize(List<String> hateList) {
         if (hateList.size() > 2)
             throw new IllegalArgumentException("먹지 못하는 메뉴는 최대 2개 까지 가능합니다.");
-        return hateList;
     }
 
     public void printRecommendResult(Managecoach managecoach, List<Integer> category) {
