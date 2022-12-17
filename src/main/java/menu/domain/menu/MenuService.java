@@ -16,10 +16,17 @@ public class MenuService {
     }
 
     public void addCoachAvoidMenu(Coach coach, List<String> menuNames) {
+        if (isNotAvoidMenu(menuNames)) {
+            return;
+        }
         for (String menuName : menuNames) {
             Menu menu = menuRepository.findByMenuName(menuName);
             coach.addAvoidMenu(menu);
         }
+    }
+
+    private boolean isNotAvoidMenu(List<String> menuNames) {
+        return menuNames.get(0).isBlank();
     }
 
     public RecommendResult recommendMenus(Coaches coaches) {

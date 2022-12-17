@@ -28,7 +28,7 @@ public class MenuRecommendController {
 
     public void run() {
         Coaches coaches = requestCoachNames();
-        updateCoachesAvoidMenu(coaches);
+        requestCoachesAvoidMenu(coaches);
 
         RecommendResult recommendResult = menuService.recommendMenus(coaches);
         outputView.resultView(recommendResult);
@@ -44,7 +44,7 @@ public class MenuRecommendController {
         }
     }
 
-    private void updateCoachesAvoidMenu(Coaches coaches) {
+    private void requestCoachesAvoidMenu(Coaches coaches) {
         for (Coach coach : coaches.getCoaches()) {
             requestAvoidMenu(coach);
         }
