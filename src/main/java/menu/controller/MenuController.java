@@ -1,9 +1,12 @@
 package menu.controller;
 
+import menu.model.Coach;
 import menu.model.CoachGroup;
+import menu.model.Menu;
 import menu.view.InputView;
 import menu.view.OutputView;
 
+import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -19,8 +22,12 @@ public class MenuController {
 
     public void start(){
         outputView.printInit();
-        input(CoachGroup::new, inputView::inputCoachName);
+        CoachGroup coachGroup = input(CoachGroup::new, inputView::inputCoachName);
 
+        List<Coach> coaches = coachGroup.getCoaches();
+        for (Coach coach : coaches) {
+
+        }
     }
 
     public <T, R> R input(Function<T, R> function, Supplier<T> supplier) {

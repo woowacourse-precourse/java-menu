@@ -3,6 +3,8 @@ package menu.model;
 import menu.util.ErrorMessage;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public enum Menu {
 
@@ -61,6 +63,32 @@ public enum Menu {
 
     Menu(String name) {
         this.name = name;
+    }
+
+    public static void validateMenu(List<String> parsedMenu){
+        validateFormat(parsedMenu);
+    }
+
+    private static void validateFormat(List<String> parsedMenu) {
+        if(isPresentBlank(parsedMenu) && parsedMenu.size()>=2){
+            throw new IllegalArgumentException(ErrorMessage.MENU_FORMAT_ERROR_MESSAGE.getMessage());
+        }
+    }
+
+    private static boolean isPresentBlank(List<String> parsedMenu){
+        return parsedMenu.stream().anyMatch(menu -> menu.isBlank());
+    }
+
+
+    public static List<String> parseMenu(String menus){
+        String[] split = menus.split(",");
+        return Arrays.stream(split).distinct().collect(Collectors.toList());
+    }
+
+    public static List<Menu> makeMenus(String menus){
+        List<String> parsedMenu = parseMenu(menus);
+        validateMenu(parsedMenu);
+        return parsedMenu.stream().map(m -> from(m)).collect(Collectors.toList());
     }
 
     public static Menu from(String name){
