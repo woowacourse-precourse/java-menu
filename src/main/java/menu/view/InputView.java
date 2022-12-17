@@ -3,6 +3,7 @@ package menu.view;
 import camp.nextstep.edu.missionutils.Console;
 import menu.category.Category;
 
+import java.lang.reflect.Array;
 import java.util.NoSuchElementException;
 
 public class InputView {
@@ -46,7 +47,12 @@ public class InputView {
      * @return
      */
     public static String[] setCoachesCannotEats() {
-        String coachCannotEats_input = Console.readLine();
+        String coachCannotEats_input;
+        try {
+            coachCannotEats_input = Console.readLine();
+        } catch (NoSuchElementException exception) {  // 입력이 없을 경우 ("")
+            return new String[]{""};
+        }
         String[] coachCannotEats = coachCannotEats_input.split(",");
         if (!checkCoachCannotEats_number(coachCannotEats) || !checkCoachCannotEats_value(coachCannotEats)) {
             throw new IllegalArgumentException();
