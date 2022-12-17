@@ -23,4 +23,16 @@ public class InputView {
             return readCoachName();
         }
     }
+
+    public String[] readHateMenu() {
+        String[] hateMenu = Console.readLine().split(",");
+
+        try {
+            validation.validateNumberOfHateMenu(hateMenu);
+            return hateMenu;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readHateMenu();
+        }
+    }
 }
