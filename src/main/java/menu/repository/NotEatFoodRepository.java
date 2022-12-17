@@ -5,6 +5,7 @@ import java.util.List;
 import menu.domain.Coach;
 import menu.domain.Food;
 import menu.domain.NotEatFoods;
+import menu.util.constants.ExceptionMessage;
 
 public class NotEatFoodRepository {
 
@@ -21,20 +22,11 @@ public class NotEatFoodRepository {
         notEatFoodRepository.add(notEatFoods);
     }
 
-    public static void addNotEatFood(Coach coach, Food food) {
-        NotEatFoods notEatFoods = notEatFoodRepository.stream()
-                .filter(notEatFood -> coach.equals(notEatFood.getCoach()))
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException());
-
-        notEatFoods.addNotEatFood(food);
-    }
-
     public static void addNotEatFoods(Coach coach, List<Food> foods) {
         NotEatFoods notEatFoods = notEatFoodRepository.stream()
                 .filter(notEatFood -> coach.equals(notEatFood.getCoach()))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException());
+                .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.NOT_FOUND_NOT_EAT_FOODS));
 
         notEatFoods.addNotEatFoods(foods);
     }

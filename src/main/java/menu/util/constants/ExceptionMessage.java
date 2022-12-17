@@ -12,16 +12,10 @@ public class ExceptionMessage {
     public static final String NOT_EAT_FOOD_NUMBER = PREFIX + "못 먹는 음식은 최소 0개, 최대 2개여야 합니다.";
     public static final String NOT_EAT_FOOD_DUPLICATE = PREFIX + "못 먹는 음식은 중복될 수 없습니다.";
 
-
     public static final String NOT_MATCHING_FOOD = PREFIX + "일치하는 음식이 없습니다.";
+    public static final String NOT_MATCHING_CATEGORY = PREFIX + "코드와 일치하는 카테고리를 찾을 수 없습니다.";
 
     public static final String NOT_FOUND_COACH = PREFIX + " 코치를 찾을 수 없습니다.";
-    public static final String NOT_MATCHING_CATEGORY = PREFIX + "코드에 맞는 카테고리를 찾을 수 없습니다.";
-
-
-
-
-
-
+    public static final String NOT_FOUND_NOT_EAT_FOODS = PREFIX + "해당 코치의 못 먹는 음식들을 찾을 수 없습니다.";
 
 }

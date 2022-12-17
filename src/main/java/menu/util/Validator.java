@@ -51,7 +51,7 @@ public class Validator {
 
     private static void validateCoachNumber(List<String> coaches) {
         if (!(coaches.size() >= MINIMUM_NUMBER && coaches.size() <= MAXIMUM_NUMBER)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.COACH_NUMBER);
         }
     }
 
