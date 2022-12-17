@@ -1,7 +1,11 @@
 package menu.domain;
 
+import static camp.nextstep.edu.missionutils.Randoms.shuffle;
+
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public enum Menu {
     JAPAN(Category.JAPANESE, Arrays.asList("규동", "우동", "미소시루", "스시", "가츠동", "오니기리", "하이라이스", "라멘", "오코노미야끼")),
@@ -30,5 +34,15 @@ public enum Menu {
         return Arrays.stream(Menu.values())
                 .map(Menu::getMenus)
                 .anyMatch(menus -> menus.contains(menu));
+    }
+
+    public static String getRandomMenuByCategory(Category targetCategory) {
+        List<String> menuNames = Arrays.stream(Menu.values())
+                .filter(menu -> menu.category == targetCategory)
+                .map(Menu::getMenus)
+                .flatMap(menus -> menus.stream())
+                .collect(Collectors.toList());
+
+        return shuffle(menuNames).get(0);
     }
 }

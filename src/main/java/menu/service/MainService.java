@@ -35,5 +35,6 @@ public class MainService {
 
     public void recommend() {
         recommend = new Recommend();
+        List<String> recommendMenus = recommend.recommendMenus();
     }
 }

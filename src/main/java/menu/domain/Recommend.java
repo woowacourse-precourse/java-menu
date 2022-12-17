@@ -41,4 +41,20 @@ public class Recommend {
         }
         return count;
     }
+
+    public List<String> recommendMenus() {
+        List<String> result = new ArrayList<>();
+
+        for (int i = 0; i < categories.size(); i++) {
+            String randomMenu = Menu.getRandomMenuByCategory(categories.get(i));
+
+            if (result.contains(randomMenu)) {
+                i--;
+                continue;
+            }
+
+            result.add(randomMenu);
+        }
+        return result;
+    }
 }
