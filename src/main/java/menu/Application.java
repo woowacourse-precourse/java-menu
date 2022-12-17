@@ -1,7 +1,17 @@
 package menu;
 
+import menu.controller.MenuController;
+import menu.repository.MenuRepository;
+import menu.service.MenuService;
+import menu.view.InputView;
+import menu.view.MenuView;
+import menu.view.OutputView;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        MenuView menuView = new MenuView(new InputView(), new OutputView());
+        MenuService menuService = new MenuService(new MenuRepository());
+        MenuController menuController = new MenuController(menuService, menuView);
+        menuController.start();
     }
 }
