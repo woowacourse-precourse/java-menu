@@ -12,7 +12,4 @@ public enum Week {
     Week(String weekday) {
         this.weekday = weekday;
     }
-
-
-
 }

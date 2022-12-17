@@ -28,7 +28,7 @@ public class MenuController {
             List<String> foodNames = getHateFoodNames(inputView.readHateFood(coach.getName()), coach.getName());
             coach.addHateFoodList(foodNames);
         }
-        MenuRecommender.addRecommendMenus(coaches);
+        MenuRecommender.recommendMenus(coaches);
         outputView.printMenuResult(MenuForWeekRepository.getMenuResult());
     }
 
@@ -60,12 +60,11 @@ public class MenuController {
     }
 
     private List<Coach> makeCoaches(List<String> coachNames) {
-        return coachNames.stream().map(name -> new Coach(name))
+        return coachNames.stream().map(Coach::new)
                 .collect(Collectors.toList());
     }
 
     private List<String> splitNames(String names) {
-        List<String> splitNames = List.of(names.split(","));
-        return splitNames;
+        return List.of(names.split(","));
     }
 }

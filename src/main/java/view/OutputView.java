@@ -48,8 +48,8 @@ public class OutputView {
         println(MENU_RECOMMENDATION_RESULT_TITLE);
         println(WEEKDAYS);
         println(CATEGORY_START_BRACKET
-                        + makeCategoryIntoString(MenuForWeekRepository.getCategoriesPerWeek())
-                        + END_BRACKET
+                + makeCategoryIntoString(MenuForWeekRepository.getCategoriesPerWeek())
+                + END_BRACKET
         );
         printMenusPerCoaches(menuResult);
         printNewLine();

@@ -12,7 +12,3 @@ public class ViewMessage {
     public static final String RESULT_DELIMITER = " | ";
     public static final String START_BRACKET = "[ ";
 }
-
-
-
-

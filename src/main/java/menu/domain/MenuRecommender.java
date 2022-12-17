@@ -8,7 +8,7 @@ import repository.MenuForWeekRepository;
 import java.util.List;
 
 public class MenuRecommender {
-    public static void addRecommendMenus(List<Coach> coaches) {
+    public static void recommendMenus(List<Coach> coaches) {
         for (Week weekday : Week.values()) {
             Category category = getRecommendCategory();
             MenuForWeekRepository.addCategory(weekday, category);
