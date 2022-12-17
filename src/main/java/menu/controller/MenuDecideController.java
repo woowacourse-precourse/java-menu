@@ -17,6 +17,7 @@ public class MenuDecideController {
 
         for (Coach coach : makeCoaches().getCoaches()) {
             output.askCantEatMenu(coach);
+            input.readCantEatMenu();
         }
     }
 

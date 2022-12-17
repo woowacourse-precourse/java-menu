@@ -8,6 +8,10 @@ public class Input {
         return read();
     }
 
+    public String readCantEatMenu() {
+        return read();
+    }
+
     public String read() {
         return Console.readLine();
     }
