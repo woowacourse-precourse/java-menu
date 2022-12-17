@@ -37,14 +37,4 @@ public class CoachRepository {
 
         return categoryCount < MAX_DUPLICATION_ALLOWED_IN_CATEGORY;
     }
-
-    //TODO: 지워야 함
-    public static void print() {
-        for (Coach coach : coaches) {
-            System.out.println(coach.getName() + ": " + coach.getHateFoods());
-        }
-        for (MenuOption menuOption : categories) {
-            System.out.print(menuOption.getCategory() + ", ");
-        }
-    }
 }

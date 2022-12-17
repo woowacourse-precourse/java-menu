@@ -42,10 +42,6 @@ public class MainController extends RepeatModule {
             choiceMachine.choiceCategory();
         }
 
-        //TODO: 삭제해야 함
-        CoachRepository.print();
-        System.out.println();
-
         choiceMenu();
     }
 
