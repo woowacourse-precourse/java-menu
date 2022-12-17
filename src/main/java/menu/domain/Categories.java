@@ -1,7 +1,10 @@
 package menu.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.Arrays;
 import java.util.List;
+
 import menu.utils.CSVUtils;
 
 public enum Categories {
@@ -35,7 +38,7 @@ public enum Categories {
         return this.categoryCode;
     }
 
-    public List<String> getMenu(){
-        return this.menu;
+    public String getRandomMenu(){
+        return Randoms.shuffle(this.menu).get(0);
     }
 }
