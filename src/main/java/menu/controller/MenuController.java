@@ -42,7 +42,7 @@ public class MenuController {
         Coaches coaches = new Coaches();
         coachNames.stream().forEach(name -> coaches.add(new Coach(name)));
         coaches.getCoaches().stream().forEach(coach -> {
-            List<String> cantEatMenu = StringParser.getSplitList(InputView.getCantEatMenu(coach.getName()));
+            List<String> cantEatMenu = StringParser.getSplitList(InputView.getCantEatMenu(categories, coach.getName()));
             coach.setCantEatMenu(cantEatMenu);
         });
         List<Category> recommendedCategories = categories.getRecommendedCategories();

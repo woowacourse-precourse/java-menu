@@ -43,10 +43,14 @@ public class Categories {
     }
 
     public void validateExistMenu (String menu) throws IllegalArgumentException {
+        boolean flag = true;
         for (Category category : categories) {
-            if (!category.isExistMenu(menu)) {
-                throw new IllegalArgumentException(EXIST_ERROR);
+            if (category.isExistMenu(menu)) {
+                flag = false;
             }
+        }
+        if (flag) {
+            throw new IllegalArgumentException(EXIST_ERROR);
         }
     }
 }
