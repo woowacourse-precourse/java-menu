@@ -2,13 +2,12 @@ package menu.service;
 
 import menu.domain.Coach;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CoachServiceTest {
+public class CoachServiceImplTest {
 
     private static final Integer COACH_LIST_LENGTH = 10;
 
@@ -16,24 +15,24 @@ public class CoachServiceTest {
     void 코치목록조회() {
         // given
         List<Coach> coaches = constructorCoaches();
-        final CoachService coachService = new CoachService(coaches);
+        final CoachServiceImpl coachServiceImpl = new CoachServiceImpl(coaches);
 
         // when
 
         // then
-        Assertions.assertThat(coachService.getCoaches().size()).isEqualTo(COACH_LIST_LENGTH);
+        Assertions.assertThat(coachServiceImpl.getCoaches().size()).isEqualTo(COACH_LIST_LENGTH);
     }
 
     @Test
     void 없는코치에거절메뉴추가() {
         // given
         List<Coach> coaches = constructorCoaches();
-        final CoachService coachService = new CoachService(coaches);
+        final CoachServiceImpl coachServiceImpl = new CoachServiceImpl(coaches);
         Coach coach = new Coach("test");
         List<String> refuseMenus = new ArrayList<>();
 
         // when
-        coachService.addRefuseMenuToCoach(coach, refuseMenus);
+        coachServiceImpl.addRefuseMenuToCoach(coach, refuseMenus);
         // then
     }
 

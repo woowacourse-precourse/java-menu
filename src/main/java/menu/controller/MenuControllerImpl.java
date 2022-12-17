@@ -1,10 +1,7 @@
 package menu.controller;
 
 import menu.domain.Coach;
-import menu.service.CategoryService;
-import menu.service.CategoryServiceImpl;
-import menu.service.CoachService;
-import menu.service.RecommendMenuService;
+import menu.service.*;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -24,7 +21,7 @@ public class MenuControllerImpl implements MenuController {
         this.outputView = new OutputView();
         this.categoryService = new CategoryServiceImpl();
         printStart();
-        this.coachService = new CoachService(initCoachList());
+        this.coachService = new CoachServiceImpl(initCoachList());
         this.recommendMenuService = new RecommendMenuService();
     }
 

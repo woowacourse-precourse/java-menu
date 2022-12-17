@@ -4,23 +4,8 @@ import menu.domain.Coach;
 
 import java.util.List;
 
-public class CoachService {
+public interface CoachService {
 
-    private final List<Coach> coaches;
-
-    public CoachService(List<Coach> coaches) {
-        this.coaches = coaches;
-    }
-
-    public List<Coach> getCoaches() {
-        return coaches;
-    }
-
-    public void addRefuseMenuToCoach(Coach coach, List<String> refuseMenus) {
-        for (Coach coach1 : coaches) {
-            if (coach1 == coach) {
-                coach.getRefuseMenus().addAll(refuseMenus);
-            }
-        }
-    }
+    List<Coach> getCoaches();
+    void addRefuseMenuToCoach(Coach coach, List<String> refuseMenus);
 }
