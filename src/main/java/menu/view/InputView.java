@@ -51,7 +51,7 @@ public class InputView {
     public List<String> validateHatesFood(List<String> hates) {
 
         if (COACH_HATE_FOOD_MAX < hates.size()) {
-            throw new IllegalArgumentException(ERROR_COACH_HEATED_FOOD_MANY);
+            throw new IllegalArgumentException(ERROR_COACH_HATE_FOOD_MANY);
         }
         //싫어 하는게 없는 경우
         if (hates.equals(List.of(""))) {
