@@ -61,7 +61,7 @@ public class ApplicationTest extends NsTest {
         void Validate_못_먹는_음식_중복_테스트() {
             assertSimpleTest(() -> {
                 try {
-                    Validate.duplication(Arrays.asList("치킨","피자","치킨"));
+                    Validate.duplication(Arrays.asList("치킨", "피자", "치킨"));
                 } catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }
@@ -129,6 +129,17 @@ public class ApplicationTest extends NsTest {
             });
         }
 
+        @Test
+        void Validate_못_먹는_음식_개수_초과_테스트() {
+            assertSimpleTest(() -> {
+                try {
+                    Validate.cantEatLength(Arrays.asList("치킨", "피자", "치킨"), 0, 2);
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+                assertThat(output()).contains(ERROR_DIFFERENT_CANT_EAT_LENGTHS);
+            });
+        }
 
         @Test
         void 이름에_숫자_포함_예외_테스트() {
