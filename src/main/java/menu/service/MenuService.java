@@ -2,6 +2,7 @@ package menu.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import menu.model.Category;
+import menu.model.Coach;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,19 @@ public class MenuService {
             }
         }
         return count == 2;
+    }
+
+    public void getMenus(Coach coach) {
+        for (int i = 0; i < pickedCategories.size(); i++) {
+            Category category = pickedCategories.get(i);
+            String menu = Randoms.shuffle(category.getMenus()).get(0);
+
+            if (hasMenu(coach.getMyMenu(), menu) || hasMenu(coach.getNoMenu(), menu)) {
+                i--;
+                continue;
+            }
+            coach.getMyMenu().add(menu);
+        }
     }
 
     private boolean hasMenu(List<String> coachMenu, String menu) {
