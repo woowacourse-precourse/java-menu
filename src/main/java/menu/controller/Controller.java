@@ -26,7 +26,23 @@ public class Controller {
 
     private void saveMember() {
         String[] members = InputView.inputMember().split(",");
-        MemberValid.isValidMember(members);
+        try {
+            MemberValid.isValidMember(members);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+            saveMember();
+            return;
+        }
+        try {
+            saveNotEat(members);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+            saveNotEat(members);
+            return;
+        }
+    }
+
+    private void saveNotEat(String[] members) {
         for (String member : members) {
             String[] notEats = InputView.inputNotEat(member).split(",");
             MemberValid.isValidNotEat(notEats);
