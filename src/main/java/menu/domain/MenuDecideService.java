@@ -15,4 +15,12 @@ public class MenuDecideService {
     private Coach makeCoach(String name) {
         return new Coach(name);
     }
+
+    public CantEatMenus makeCantEatMenu(String cantEatMenuNames) {
+        List<String> cantEatMenu = new ArrayList<>();
+        for (String cantEatMenuName : cantEatMenuNames.split(",")) {
+            cantEatMenu.add(cantEatMenuName);
+        }
+        return new CantEatMenus(cantEatMenu);
+    }
 }
