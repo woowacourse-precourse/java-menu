@@ -1,5 +1,6 @@
 package menu.view;
 
+import java.util.List;
 import menu.domain.Category;
 import menu.domain.Days;
 
@@ -33,9 +34,26 @@ public class OutputView {
         System.out.println(MENU_RESULT_INTRO);
         printDays();
         printCategory();
+    }
 
+    public void printEnding() {
         System.out.println();
         System.out.println(MENU_RESULT_ENDING);
+    }
+
+    public void printCoachMenus(String name, List<String> menus) {
+        System.out.print(START_ARRAY);
+
+        System.out.print(name);
+        System.out.print(SEPARATOR);
+
+        for (int i = 0; i < menus.size() - 1; i++) {
+            System.out.print(menus.get(i));
+            System.out.print(SEPARATOR);
+        }
+        System.out.print(menus.get(menus.size() - 1));
+
+        System.out.println(END_ARRAY);
     }
 
     private void printDays() {
@@ -43,11 +61,11 @@ public class OutputView {
 
         System.out.print(SORTAION);
         System.out.print(SEPARATOR);
-        for(Days day : Days.values()) {
-            System.out.print(day);
+        for (int i = 0; i < Days.values().length - 1; i++) {
+            System.out.print(Days.values()[i]);
             System.out.print(SEPARATOR);
         }
-        System.out.print(Days.values()[Days.values().length-1]);
+        System.out.print(Days.values()[Days.values().length - 1]);
 
         System.out.println(END_ARRAY);
     }
@@ -57,11 +75,13 @@ public class OutputView {
 
         System.out.print(CATEGORY);
         System.out.print(SEPARATOR);
-        for(Category category : Category.values()) {
-            System.out.print(category);
+        for (int i = 0; i < Category.values().length - 1; i++) {
+            System.out.print(Category.values()[i]);
             System.out.print(SEPARATOR);
         }
-        System.out.println(Category.values()[Category.values().length-1]);
+        System.out.print(Category.values()[Category.values().length - 1]);
+
+        System.out.println(END_ARRAY);
     }
 
     public void printErrorMessage(String message) {
