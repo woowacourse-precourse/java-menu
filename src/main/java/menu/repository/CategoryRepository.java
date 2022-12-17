@@ -15,9 +15,10 @@ public class CategoryRepository {
   }
 
   public static List<String> findAllCategoryNames() {
-    return categories.stream()
-        .map(Category::getName)
-        .collect(Collectors.toUnmodifiableList());
+    List<String> result = new ArrayList<>();
+    result.add("카테고리");  // 리팩토링 필요
+    categories.forEach(category -> result.add(category.getName()));
+    return result;
   }
   public static void addAllCategory(List<Category> categories) {
     categories.forEach(CategoryRepository::addCategory);
