@@ -8,6 +8,7 @@ public class Coach {
     private static final String LESS_THAN_LENGTH_EXCEPTION = "코치의 이름은 최소 2글자로 입력해야 합니다.";
     private static final String GREATER_THAN_LENGTH_EXCEPTION = "코치의 이름은 최대 4글자로 입력해야 합니다.";
     private static final int MAX_SIZE = 2;
+    
     private final String name;
     private List<String> inedibleMenus;
     

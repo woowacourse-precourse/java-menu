@@ -6,6 +6,7 @@ public class Coaches {
     
     private static final String LESS_THAN_SIZE_EXCEPTION = "코치는 최소 2명 이상 입력해야 합니다.";
     private static final String GREATER_THAN_SIZE_EXCEPTION = "코치는 최대 5명 까지 입력해야 합니다.";
+    
     private final List<Coach> coaches;
     
     public Coaches(List<Coach> coaches) {

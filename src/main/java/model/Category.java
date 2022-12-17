@@ -13,6 +13,7 @@ public enum Category {
     
     private static final String WRONG_NUMBER_EXCEPTION = "잘못된 숫자가 입력되었습니다.";
     private static final String WRONG_MENU_NAME_EXCEPTION = "메뉴 추천 서비스에서 추천할 수 없는 메뉴입니다.";
+    
     private final int number;
     private final String name;
     private final List<String> menus;

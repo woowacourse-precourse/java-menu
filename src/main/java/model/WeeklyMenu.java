@@ -8,7 +8,6 @@ import java.util.Map;
 public class WeeklyMenu {
     
     private final Map<Coach, Menus> menusOfCoach;
-    
     private final Map<DayOfTheWeek, Menus> weeklyMenu;
     
     WeeklyMenu() {
