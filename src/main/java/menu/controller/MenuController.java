@@ -33,6 +33,7 @@ public class MenuController {
         setRecommendMenus(weeks, coaches);
         outputView.programResult(coaches, weeks);
     }
+
     private List<Coach> getCoaches() {
         while (true) {
             try {
@@ -60,13 +61,12 @@ public class MenuController {
         return categories;
     }
 
-
-
     private void setCategoryForEachWeek(List<Week> weeks, List<Category> categories) {
         for (int i = 0; i < 5; i++) {
             weeks.get(i).setCategory(categories.get(i));
         }
     }
+
     private void getUnEatableMenuOfCoaches(List<Coach> coaches, InputView inputView) {
         for (Coach coach : coaches) {
             inputView.cantEat(coach);
