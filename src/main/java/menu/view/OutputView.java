@@ -12,10 +12,6 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printCompletion() {
-        System.out.println(ViewConstants.COMPLETION);
-    }
-
     public void printResult(List<String> previousCategories, List<Coach> coaches) {
         System.out.println(ViewConstants.RESULT);
         System.out.println(ViewConstants.DAYS);
