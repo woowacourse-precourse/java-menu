@@ -2,16 +2,19 @@ package menu;
 
 import java.util.Arrays;
 import java.util.List;
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class Menu {
 
     public Menu() {
     }
 
-    public List<String> getMenu(String category) {
-        String categoryMenu = categoryToMenu(category);
-        List<String> menuAll = Arrays.asList(categoryMenu.split(","));
-        return menuAll;
+    public String getMenu(String category) {
+        String menus = categoryToMenu(category);
+        List<String> menuAll = Arrays.asList(menus.split(","));
+
+        String menu = Randoms.shuffle(menuAll).get(0);
+        return menu;
     }
 
     public String categoryToMenu(String category) {
