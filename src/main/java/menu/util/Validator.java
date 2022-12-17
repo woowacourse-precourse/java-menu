@@ -1,6 +1,7 @@
 package menu.util;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import menu.domain.Coach;
 
 public class Validator {
@@ -14,6 +15,7 @@ public class Validator {
     public static void validateCoaches(List<Coach> coaches) {
         validateCoachSize(coaches.size());
         validateCoachNameSize(coaches);
+        validateDuplicatedCoachesName(coaches);
     }
 
     private static void validateCoachSize(int coachSize) {
@@ -29,6 +31,18 @@ public class Validator {
             if (coachNameSize < MIN_COACH_NAME_SIZE | coachNameSize > MAX_COACH_NAME_SIZE) {
                 throw new IllegalArgumentException("[ERROR] 코치의 이름 길이는 2글자 이상 4글자 이하입니다.");
             }
+        }
+    }
+
+    private static void validateDuplicatedCoachesName(List<Coach> coaches) {
+        int originCoachSize = coaches.size();
+        int coachSize = coaches.stream()
+            .map(Coach::getName)
+            .collect(Collectors.toSet())
+            .size();
+
+        if (originCoachSize != coachSize) {
+            throw new IllegalArgumentException("[ERROR] 코치의 이름은 중복되면 안됩니다.");
         }
     }
 }
