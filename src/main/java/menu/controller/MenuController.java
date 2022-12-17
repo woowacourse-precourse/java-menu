@@ -30,6 +30,7 @@ public class MenuController {
          * 3. 요일별 카테고리 채우기
          * 4. 요일별 코치들의 음식 채우기
          */
+        outputView.printStart();
         // 1. 코치 이름 받기
         crews = new Crews(getCrews());
 
