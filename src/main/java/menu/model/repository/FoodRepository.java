@@ -1,5 +1,6 @@
 package menu.model.repository;
 
+import menu.model.domain.Category;
 import menu.model.domain.Coach;
 import menu.model.domain.Food;
 
@@ -7,10 +8,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class FoodRepository {
     private Long id = 0L;
-    private final Map<Long, Food> foods = new HashMap<>();
+    private final HashMap<Long, Food> foods = new HashMap<>();
 
     public Long save(Food food) {
         foods.put(id, food);
@@ -31,9 +33,9 @@ public class FoodRepository {
 //        return new ArrayList<>(members.values());
 //    }
 //
-//    public Member findByCourse(Course course) {
-//        return members.values().stream()
-//                .filter(x -> x.getCourse().equals(course))
-//                .findFirst().orElse(null);
-//    }
+    public List<Food> findByCategory(Category category) {
+        return foods.values().stream()
+                .filter(x -> x.getCategory().equals(category))
+                .collect(Collectors.toList());
+    }
 }

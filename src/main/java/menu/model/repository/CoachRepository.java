@@ -33,8 +33,4 @@ public class CoachRepository {
                 .filter(x -> x.getCannotEatFoods().contains(Foods))
                 .collect(Collectors.toList());
     }
-
-    public void saveCannotEatFood(Coach coach, List<Food> food) {
-        coach.setCannotEatFoods(food);
-    }
 }

@@ -1,5 +1,6 @@
 package menu.model.service;
 
+import menu.model.domain.Category;
 import menu.model.domain.Food;
 import menu.model.repository.FoodRepository;
 
@@ -17,9 +18,14 @@ public class FoodService {
         return foodRepository.findByName(name);
     }
 
-    public List<String> findAllNames() {
+    public List<String> findAllNamesByCategory(Category category) {
         return foodRepository.findAll().stream()
+                .filter(x -> x.getCategory().equals(category))
                 .map(Food::getName)
                 .collect(Collectors.toList());
+    }
+
+    public List<Food> findByCategory(Category category) {
+        return foodRepository.findByCategory(category);
     }
 }

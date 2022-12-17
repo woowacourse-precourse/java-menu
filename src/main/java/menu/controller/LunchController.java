@@ -9,11 +9,15 @@ import menu.util.*;
 import menu.view.InputView;
 import menu.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LunchController {
+
+    private static final String MONDAY = "월요일";
+    private static final String TUESDAY = "화요일";
+    private static final String WEDNESDAY = "수요일";
+    private static final String THURSDAY = "목요일";
+    private static final String FRIDAY = "금요일";
 
     public void inputLunchAndRun(CoachService coachService, FoodService foodService) {
         OutputView.startLunch();
@@ -26,32 +30,35 @@ public class LunchController {
 
             for (String coachName : coaches) {
                 String inputFoods = InputView.inputCantEatFood(coachName);
-                List<String> cannotEatFoodsForString = Parser.splitInfo(inputFoods);
-//                Coach findCoachByName = coachService.findByName(coach);
-//                System.out.println("findCoachByName: " + findCoachByName.getName());
-                List<Food> cannotEatFoodsForFood = new ArrayList<Food>();
-                for (String foodName : cannotEatFoodsForString) {
-                    Food findFoodByName = foodService.findByName(foodName);
-                    cannotEatFoodsForFood.add(findFoodByName);
+                if (inputFoods.isEmpty()) {
+                    coachService.join(new Coach(coachName, Arrays.asList(new Food("X", null))));
+                } else if (!inputFoods.isEmpty()) {
+                    List<String> cannotEatFoodsForString = Parser.splitInfo(inputFoods);
+                    List<Food> cannotEatFoodsForFood = new ArrayList<Food>();
+                    for (String foodName : cannotEatFoodsForString) {
+                        Food findFoodByName = foodService.findByName(foodName);
+                        cannotEatFoodsForFood.add(findFoodByName);
+                    }
+                    coachService.join(new Coach(coachName, cannotEatFoodsForFood));
                 }
-                coachService.join(new Coach(coachName, cannotEatFoodsForFood));
             }
-            ///
-            List<String> allNames = coachService.findAllNames();
-//            for (String name : allNames) {
-//                Coach byName = coachService.findByName(name);
-//                System.out.println("이름: " + byName.getName());
-//                for(Food food : byName.getCannotEatFoods()) {
-//                    System.out.println("못먹는거 :" + food.getName());
-//                }
-//            }
 
-            Map<String, Category> stringCategoryMap = ParingCategory.initCategoryOrder(foodService, coachService);
-            for(Map.Entry<String, Category> entry : stringCategoryMap.entrySet()) {
-                System.out.println(entry.getKey() + " " + "카테고리: " + entry.getValue());
-            }
+            HashMap<String, Category> stringCategoryMap = ParingCategory.initCategoryOrder();
+//            for(Map.Entry<String, Category> entry : stringCategoryMap.entrySet()) {
+//                System.out.println(entry.getKey() + " " + "카테고리: " + entry.getValue());
+//            }
+            ParingCategory.initFoodOrderForCoach(foodService, coachService, stringCategoryMap);
+
+            OutputView.printResult(coachService, foodService, stringCategoryMap);
+//            System.out.println("확인절차");
         }
-//            return menuController.RunAndReturnCommand(input, pairService, missionService, memberService);
+        /**구구: 비빔밥, 김치찌개, 쌈밥, 규동, 우동 → 한식을 3회 먹으므로 불가능
+         토미: 비빔밥, 비빔밥, 규동, 우동, 볶음면 → 한 코치가 같은 메뉴를 먹으므로 불가능
+         제임스: 비빔밥, 김치찌개, 스시, 가츠동, 짜장면 → 매일 다른 메뉴를 먹으므로 가능
+         포코: 비빔밥, 김치찌개, 스시, 가츠동, 짜장면 → 제임스와 메뉴가 같지만, 포코는 매번 다른 메뉴를 먹으므로 가능
+         **/
+
+
         catch (
                 IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
@@ -59,5 +66,24 @@ public class LunchController {
         }
 
         OutputView.finishRecommend();
+
+
+//                "[ 카테고리 | 한식 | 양식 | 일식 | 중식 | 아시안 ]",
+//                "[ 구구 | 김치찌개 | 스파게티 | 규동 | 짜장면 | 카오 팟 ]",
+//                "[ 제임스 | 제육볶음 | 라자냐 | 가츠동 | 짬뽕 | 파인애플 볶음밥 ]",
+//
+//        "[ 카테고리 | 한식 | 양식 | 일식 | 중식 | 아시안 ]",
+//                "[ 구구 | 김치찌개 | 스파게티 | 규동 | 짜장면 | 카오 팟 ]",
+//                "[ 제임스 | 제육볶음 | 라자냐 | 가츠동 | 짬뽕 | 파인애플 볶음밥 ]
     }
 }
+
+
+
+
+
+
+
+
+
+
