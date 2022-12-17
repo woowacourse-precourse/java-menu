@@ -35,8 +35,11 @@ public class CoachController {
             coaches.get(coach).addFoodList(food);
             return;
         }
+        if(coaches.get(coach).getFoodList().contains(food)){
+            coaches.get(coach).addFoodList(food);
+            return;
+        }
         recommendFood(coach);
-
     }
 
     private String recommendCategory(String coach){

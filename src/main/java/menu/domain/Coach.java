@@ -31,6 +31,7 @@ public class Coach {
         }
     }
     public List<String> getFoodList(){return foodList;}
+    public List<String> getCantEatList(){return cantEatList;}
     public void addFoodList(String food){this.foodList.add(food);}
     public HashMap<String,Integer> getCategoryCnt(){return this.categoryCnt;}
     public void addCategoryCnt(String category){this.categoryCnt.put(category,categoryCnt.get(category) + 1);}
