@@ -22,8 +22,8 @@ public class CoachService {
         String coaches = InputView.getCoaches();
         List<String> coachesName = Separator.separateCoachInfo(coaches);
         for (String coachName : coachesName) {
-            InputVerifier.tryCoachesCountMin2Max5(coachesName);
-            InputVerifier.tryCoachNameIsMin2Max4(coachName);
+            InputVerifier.coachNameIsMin2Max4(coachName);
+            InputVerifier.coachesCountMin2Max5(coachesName.size());
         }
         return coachesName;
     }

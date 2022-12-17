@@ -9,13 +9,17 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        CoachController coachController = new CoachController(new CoachService());
-        OutputView.printStart();
-        List<String> coachesName = coachController.getCoachesName();
+        try {
+            CoachController coachController = new CoachController(new CoachService());
+            OutputView.printStart();
+            List<String> coachesName = coachController.getCoachesName();
 
-        List<Coach> coaches = coachController.getCoachHateMenus(coachesName);
-        coachController.showRecommendMenu(coaches);
+            List<Coach> coaches = coachController.getCoachHateMenus(coachesName);
+            coachController.showRecommendMenu(coaches);
 
-        OutputView.printEnd();
+            OutputView.printEnd();
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+        }
     }
 }
