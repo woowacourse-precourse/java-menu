@@ -21,6 +21,10 @@ public enum Category {
         return number;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public static Category byNumber(int number) {
         return Arrays.stream(values())
                 .filter(v -> v.getNumber() == number)

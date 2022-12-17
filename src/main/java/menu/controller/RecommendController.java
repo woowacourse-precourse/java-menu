@@ -13,6 +13,7 @@ public class RecommendController {
 
     public RecommendController() {
         menuRepository = new MenuRepository();
+        menuRepository.readMenu();
     }
 
     public List<Category> getFiveCategories() {
