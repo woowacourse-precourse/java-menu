@@ -21,7 +21,7 @@ public class LunchMenuController {
         int countPeople = countNames(inputNames);
 
         for(int i=0;i<countPeople;i++){
-            recommendMenu();
+            recommendMenu(i);
         }
         //결과 차례대로 출력
         for(List<String> result : results){
@@ -29,13 +29,13 @@ public class LunchMenuController {
         }
     }
 
-    public void recommendMenu(){
-        String inputMenus = inputView.readMenus();
+    public void recommendMenu(int index){
+        String inputMenus = inputView.readMenus(names.get(index));
         List<String> recommendMenus = new ArrayList<>();
         List<String> cannotEatMenus = splitMenus(inputMenus);
         while(recommendMenus.size()<5){
-            int index = recommendMenus.size();
-            String randomRecommendMenu = lunchMenuService.randomRecommendMenu(index);
+            int size = recommendMenus.size();
+            String randomRecommendMenu = lunchMenuService.randomRecommendMenu(size);
             if(lunchMenuService.checkDuplicate(recommendMenus,randomRecommendMenu)){
                 recommendMenus.add(randomRecommendMenu);
             }
