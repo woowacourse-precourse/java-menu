@@ -1,9 +1,14 @@
 package menu.controller;
 
+import menu.domain.Coach;
+import menu.domain.DayWeek;
 import menu.service.CoachService;
 import menu.service.InputService;
+import menu.service.MenuService;
+import menu.service.RecommendService;
 import menu.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static menu.constant.InputMessage.START_RECOMMEND;
@@ -16,9 +21,12 @@ public class RecommendController implements Controller{
 
     private final CoachService coachService = new CoachService();
 
-    private final MenuController menuController = new MenuController();
+    private final MenuService menuService = new MenuService();
+
+    private final RecommendService recommendService = new RecommendService(menuService);
 
     public RecommendController() {
+        MenuController menuController = new MenuController(menuService);
         menuController.process();
     }
 
@@ -26,9 +34,19 @@ public class RecommendController implements Controller{
     public void process() {
         outputView.printMessage(START_RECOMMEND.getValue());
         List<String> coachNames = inputService.getUserInput(inputService::getCoachNames);
+        List<Coach> coaches = new ArrayList<>();
         for (String coachName : coachNames) {
             List<String> notEatFoodNames = inputService.getUserInputWithParam(inputService::getNotEatFoods, coachName);
-            coachService.createCoachInfo(coachName, notEatFoodNames);
+            Coach createdCoach = coachService.createCoachInfo(coachName, notEatFoodNames);
+            coaches.add(createdCoach);
         }
+
+        for (DayWeek dayWeek : DayWeek.values()) {
+            recommendService.recommend(dayWeek, coaches);
+        }
+
+        recommendService.getRecommendResult(coaches);
+        outputView.printRecommendResult();
+
     }
 }

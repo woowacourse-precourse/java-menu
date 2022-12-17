@@ -9,8 +9,12 @@ import java.util.List;
 
 public class MenuController implements Controller{
 
-    private final MenuService menuService = new MenuService();
+    private final MenuService menuService;
     private final ResourceReader resourceReader = new ResourceReader();
+
+    public MenuController(MenuService menuService) {
+        this.menuService = menuService;
+    }
 
     /**
      * 카테고리별 메뉴에 대해 사전에 정의해둔다.
