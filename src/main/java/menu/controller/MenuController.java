@@ -15,10 +15,13 @@ public class MenuController {
     public void run() {
         setUp();
         MenuRecommendationResult menuRecommendationResult = new MenuRecommendationResult();
+        recommendCoachMenu(menuRecommendationResult);
     }
 
     private void recommendCoachMenu(MenuRecommendationResult menuRecommendationResult) {
-
+        for (String coachName : CoachRepository.getCoachNames()) {
+            recommendationMenu(menuRecommendationResult, coachName);
+        }
     }
 
     private void recommendationMenu(MenuRecommendationResult menuRecommendationResult, String coachName) {
