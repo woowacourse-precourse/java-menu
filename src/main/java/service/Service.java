@@ -12,6 +12,10 @@ import domain.CoachNames;
 import domain.Coaches;
 import domain.Menus;
 import domain.SelectedCategories;
+import dto.CoachNameResponseDto;
+import dto.CoachNamesRequestDto;
+import dto.InedibleMenuRequestDto;
+import dto.RecommendationResponseDto;
 
 public class Service {
     public static final String CATEGORY = "카테고리";
@@ -22,8 +26,8 @@ public class Service {
     public Service() {
     }
 
-    public void saveCoachNames(String readCoachNames) {
-        CoachNames coachNames = new CoachNames(readCoachNames);
+    public void saveCoachNames(CoachNamesRequestDto coachNamesRequestDto) {
+        CoachNames coachNames = new CoachNames(coachNamesRequestDto.getCoachNames());
         coachNames.getCoachNames().forEach(name -> coaches.addCoach(new Coach(name)));
     }
 
@@ -34,19 +38,19 @@ public class Service {
         return onInitializing;
     }
 
-    public String getCoachName() {
+    public CoachNameResponseDto getCoachName() {
         for (Coach coach : coaches.getCoaches()) {
             if (!coach.hasInedibleMenus()) {
-                return coach.getName();
+                return new CoachNameResponseDto(coach.getName());
             }
         }
         return null;
     }
 
-    public void saveInedibleMenu(String coachName, String readInedibleMenu) {
+    public void saveInedibleMenu(CoachNameResponseDto coachNameResponseDto, InedibleMenuRequestDto inedibleMenuRequestDto) {
         coaches.getCoaches().forEach(coach -> {
-            if (coach.getName().equals(coachName)) {
-                coach.addInedibleMenu(readInedibleMenu);
+            if (coach.getName().equals(coachNameResponseDto.getCoachName())) {
+                coach.addInedibleMenu(inedibleMenuRequestDto.getInedibleMenu());
             }
         });
     }
@@ -84,7 +88,7 @@ public class Service {
         }
     }
 
-    public List<List<String>> getRecommendation() {
+    public RecommendationResponseDto getRecommendation() {
         List<List<String>> recommendation = new ArrayList<>();
 
         recommendation.add(makeCategories());
@@ -95,7 +99,7 @@ public class Service {
             coachAndMenu.addAll(coach.getMenus());
             recommendation.add(coachAndMenu);
         });
-        return recommendation;
+        return new RecommendationResponseDto(recommendation);
     }
 
     private List<String> makeCategories() {
