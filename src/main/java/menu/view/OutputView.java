@@ -23,17 +23,23 @@ public class OutputView {
         println("\n메뉴 추천 결과입니다.");
         println("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
         println("[ 카테고리 | 한식 | 양식 | 일식 | 중식 | 아시안 ]");
-        
+        printResultRecommendMenus(coaches);
+        println("\n추천을 완료했습니다.");
+    }
+    
+    private void printResultRecommendMenus(List<Coach> coaches) {
         for (Coach coach : coaches) {
             List<String> results = new ArrayList<>();
             results.add(coach.name());
             results.addAll(coach.menuNames());
             
-            println(results.stream()
-                    .collect(Collectors.joining(" | ", "[ ", " ]")));
+            println(parseResultDisplay(results));
         }
+    }
     
-        System.out.println("\n추천을 완료했습니다.");
+    private String parseResultDisplay(List<String> results) {
+        return results.stream()
+                .collect(Collectors.joining(" | ", "[ ", " ]"));
     }
     
     public void printErrorMessage(IllegalArgumentException raisedException) {
