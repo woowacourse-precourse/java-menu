@@ -7,6 +7,7 @@ import menu.model.MenuCategory;
 import menu.repository.MenuRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @Author : jeeseob
@@ -24,8 +25,8 @@ public class MenuService {
     }
 
     public Menu getRandomMenuByMenuCategory(MenuCategory menuCategory) {
-        List<Menu> menus = menuRepository.findByCategory(menuCategory);
-        return Randoms.shuffle(menus).get(0);
+        List<String> menus = menuRepository.findByCategory(menuCategory).stream().map(Menu::getName).collect(Collectors.toList());
+        return this.findByName(Randoms.shuffle(menus).get(0));
     }
 
     public void save(Menu menu) {

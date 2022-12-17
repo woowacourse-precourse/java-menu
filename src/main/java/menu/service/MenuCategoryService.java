@@ -4,6 +4,7 @@ import menu.model.MenuCategory;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
  */
 public class MenuCategoryService {
     public MenuCategory getRandomMenuCategory() {
-       return Arrays.stream(MenuCategory.values()).collect(Collectors.toList())
-               .get(Randoms.pickNumberInRange(1, MenuCategory.values().length - 1));
+        List<MenuCategory> menuCategories = Arrays.stream(MenuCategory.values()).collect(Collectors.toList());
+        return menuCategories.get(Randoms.pickNumberInRange(1, menuCategories.size()) - 1);
     }
 }

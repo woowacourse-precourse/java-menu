@@ -26,7 +26,7 @@ public class OutputView {
 
 
     public static void printStartMessage() {
-        System.out.println(START_RECOMMEND_MESSAGE);
+        System.out.println(START_RECOMMEND_MESSAGE + '\n');
     }
 
     public static void printCoachNameMessage() {

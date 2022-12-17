@@ -5,11 +5,11 @@ package menu.model;
  * @CreateAt : 2022/12/17
  */
 public enum DayOfTheWeek {
-    MONDAY("월")
-    , TUESDAY("화")
-    , WEDNESDAY("수")
-    , THURSDAY("목")
-    , FRIDAY("금")
+    MONDAY("월요일")
+    , TUESDAY("화요일")
+    , WEDNESDAY("수요일")
+    , THURSDAY("목요일")
+    , FRIDAY("금요일")
     ;
 
     private final String date;
