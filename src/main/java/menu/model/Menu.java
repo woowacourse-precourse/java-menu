@@ -8,7 +8,11 @@ import java.util.List;
 import java.util.Map;
 
 public class Menu {
+    private static final Integer MIN_DISLIKE_FOOD_SIZE = 0;
+    private static final Integer MAX_DISLIKE_FOOD_SIZE = 2;
+
     private Map<Category, List<String>> menu = new HashMap<>();
+    private Map<String, List<String>> dislikeFoods = new HashMap<>();
 
     public Menu() {
         menu.put(Category.JAPANESE_FOOD, makeJapaneseFood());
@@ -17,9 +21,24 @@ public class Menu {
         menu.put(Category.ASIAN_FOOD, makeAsianFood());
         menu.put(Category.WESTON_FOOD, makeWesternFood());
     }
+    public void dislike(String coach, List<String> dislikeFood) {
+        validate(dislikeFood);
+        dislikeFoods.put(coach, dislikeFood);
+    }
 
     public String recommendMenu(String category) {
         return Randoms.shuffle(menu.get(category)).get(0);
+    }
+
+    private void validate(List<String> dislikeFood) {
+        if (!isValidSize(dislikeFood)) {
+            throw new IllegalArgumentException("못먹는 음식의 크기는 최소 0개에서 최대 2개입니다.");
+        }
+        //Todo: 없는 음식에 대한 예외 상황처리
+    }
+
+    private boolean isValidSize(List<String> dislikeFood) {
+        return MIN_DISLIKE_FOOD_SIZE <= dislikeFood.size() && dislikeFood.size() <= MAX_DISLIKE_FOOD_SIZE;
     }
 
     private List<String> makeKoreanFood() {
