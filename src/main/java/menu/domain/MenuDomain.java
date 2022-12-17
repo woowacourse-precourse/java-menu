@@ -64,7 +64,6 @@ public class MenuDomain {
     public void eachDay(String dayName) {
         String categoriName = getCategoriName();
         daysRecommand.setDayCategori(categoriName);
-        daysRecommand.addPrintCategori(categoriName);
         for (Coach coach : coachs.getCoachs()) {
             daysRecommand.setDayMenu(coach, menu, dayName);
         }

@@ -17,12 +17,10 @@ import java.util.Map;
 public class DaysRecommand {
     private Map<String, Day> days;
     private List<String> categoriList;
-    private List<String> printCategori;
 
     DaysRecommand(Map<String, Day> days) {
         this.days = days;
         this.categoriList = new ArrayList<>();
-        this.printCategori = new ArrayList<>();
     }
 
     public static DaysRecommand of() {
@@ -52,10 +50,6 @@ public class DaysRecommand {
 
     public void setDayCategori(String categoriName) {
         categoriList.add(categoriName);
-    }
-
-    public void addPrintCategori(String categoriName) {
-        printCategori.add(categoriName);
     }
 
     public String getCategoriName() {
