@@ -9,23 +9,15 @@ import menu.view.OutputView;
 public class Controller {
 
     public static void run() {
+        CategoryRepository.initCategories();
         registerCouch();
-        pickMenus();
+        selectMenus();
         printMenus();
     }
 
     private static void registerCouch() {
+        OutputView.printStartMessage();
         InputController.registerCouch();
-    }
-
-    private static void pickMenus() {
-        selectMenus();
-
-
-    }
-
-    private static void printMenus() {
-        OutputView.printMenu();
     }
 
     private static void selectMenus() {
@@ -36,24 +28,27 @@ public class Controller {
             }
             CouchRepository.addCategory(selectedCategory);
 //            System.out.println(CouchRepository.getSelectedCategories());
-            addMenus(selectedCategory);
             for (Couch couch : CouchRepository.getCouches()) {
+                addMenus(selectedCategory, couch);
+            }
+//            for (Couch couch : CouchRepository.getCouches()) {
 //                System.out.println(couch.getName()+"못먹는메뉴"+couch.getUneatableMenus());
 //                System.out.println(couch.getName()+"먹은메뉴"+couch.getEatenMenus());
+//            }
+        }
+    }
+
+    private static void addMenus(Category selectedCategory, Couch couch) {
+        while (true) {
+            String selectedMenu = CategoryRepository.pickMenu(selectedCategory);
+            if (couch.validateMenu(selectedMenu)) {
+                couch.addMenu(selectedMenu);
+                break;
             }
         }
-
 
     }
-    private static void addMenus(Category selectedCategory) {
-        for (Couch couch : CouchRepository.getCouches()) {
-            while (true) {
-                String selectedMenu = CategoryRepository.pickMenu(selectedCategory);
-                if (couch.validateMenu(selectedMenu)) {
-                    couch.addMenu(selectedMenu);
-                    break;
-                }
-            }
-        }
+    private static void printMenus() {
+        OutputView.printMenu();
     }
 }
