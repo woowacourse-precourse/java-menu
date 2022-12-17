@@ -1,5 +1,9 @@
 package menu;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public enum Dish {
@@ -17,5 +21,11 @@ public enum Dish {
         this.number = number;
         this.name = name;
         this.menus = menus;
+    }
+
+    public static List<String> pickCategory(int random) {
+        Dish dish = Arrays.stream(Dish.values()).filter(s -> s.number == random)
+                .findFirst().get();
+        return dish.menus;
     }
 }
