@@ -1,5 +1,6 @@
 package menu.model.service;
 
+import menu.model.domain.Coach;
 import menu.model.validate.InputVerifier;
 import menu.util.Separator;
 import menu.view.InputView;
@@ -31,4 +32,11 @@ public class CoachService {
         return coachesName;
     }
 
+    public List<Coach> saveName(List<String> coachesName) {
+        List<Coach> coaches = new ArrayList<>();
+        for (String name : coachesName) {
+            new Coach(name);
+        }
+        return coaches;
+    }
 }

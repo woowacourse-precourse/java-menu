@@ -1,5 +1,6 @@
 package menu.controller;
 
+import menu.model.domain.Coach;
 import menu.model.service.CoachService;
 
 import java.util.List;
@@ -19,5 +20,9 @@ public class CoachController {
 
     public List<String> getCoachesName() {
         return coachService.getCoaches();
+    }
+
+    public List<Coach> saveCoachName(List<String> coachesName) {
+        return coachService.saveName(coachesName);
     }
 }

@@ -1,6 +1,7 @@
 package menu;
 
 import menu.controller.CoachController;
+import menu.model.domain.Coach;
 import menu.model.service.CoachService;
 import menu.view.OutputView;
 
@@ -11,5 +12,8 @@ public class Application {
         CoachController coachController = new CoachController(new CoachService());
         OutputView.printStart();
         List<String> coachesName = coachController.getCoachesName();
+
+        List<Coach> coaches = coachController.saveCoachName(coachesName);
+
     }
 }
