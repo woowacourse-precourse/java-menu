@@ -4,6 +4,8 @@ import menu.domain.menu.Menu;
 import menu.domain.menu.Menus;
 import menu.domain.menu.UneatableMenus;
 
+import java.util.List;
+
 public class Coach {
     private final CoachName coachName;
     private final Menus menus;
@@ -21,5 +23,9 @@ public class Coach {
     
     public boolean isExistSameMenu(Menu menu) {
         return menus.isExistSameMenu(menu);
+    }
+    
+    public void addUneatableMenu(List<Menu> uneatableMenus) {
+        this.uneatableMenus.addAll(uneatableMenus);
     }
 }

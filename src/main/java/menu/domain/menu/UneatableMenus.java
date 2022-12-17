@@ -9,4 +9,8 @@ public class UneatableMenus {
     public UneatableMenus() {
         menus = new ArrayList<>();
     }
+    
+    public void addAll(List<Menu> uneatableMenus) {
+        menus.addAll(uneatableMenus);
+    }
 }
