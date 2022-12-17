@@ -18,8 +18,8 @@ List<String> menu에다가 다 넣어놓기.
 
 ## InputView (view)
 
-- [ ] 코치의 이름을 입력받기
-    - [ ] (예외) 코치는 2~5명, 코치의 이름은 2~4글자
+- [x] 코치의 이름을 입력받기
+    - [x] (예외) 코치는 2~5명, 코치의 이름은 2~4글자
 - [ ] 각 코치마다 못 먹는 메뉴 입력받기
 
 ## OutputView (view)
@@ -40,4 +40,4 @@ List<String> menu에다가 다 넣어놓기.
 
 ## Categories (domain)
 
-- [ ] 카테고리 종류들을 List<Category> 형의 필드로 가진다.
+- [ ] 카테고리 종류들을 List<Categpory> 형의 필드로 가진다.
