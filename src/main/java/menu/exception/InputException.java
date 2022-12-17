@@ -10,4 +10,10 @@ public class InputException {
             }
         }
     }
+
+    public void validateCoachCount(List<String> coachName) {
+        if (coachName.size() < 2 || coachName.size() > 5) {
+            throw new IllegalArgumentException("[ERROR] 코치는 최소 2명, 최대 5명이서 식사를 함께할 수 있습니다.");
+        }
+    }
 }

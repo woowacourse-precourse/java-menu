@@ -13,6 +13,7 @@ public class InputView extends InputException {
         List<String> coachName = Arrays.stream(inputData.split(",")).collect(Collectors.toList());
         try {
             validateCoachName(coachName);
+            validateCoachCount(coachName);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             readCoachName();
