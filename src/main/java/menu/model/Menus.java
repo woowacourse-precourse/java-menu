@@ -13,6 +13,7 @@ import static menu.utils.Errors.NOT_RIGHT_NUMBER_OF_MENU;
 
 public class Menus extends Serializer {
     private static final String REGEX_KOREAN = "^[ㄱ-ㅎ가-힣, ]*$";
+    private static final int MAX_CANNOT_EAT_FOOD_NUMBER = 2;
 
     private List<String> menus = new ArrayList<>();
 
@@ -46,7 +47,7 @@ public class Menus extends Serializer {
     }
 
     private static void validateMenuSize(final String[] menu) {
-        if (menu.length > 2) {
+        if (menu.length > MAX_CANNOT_EAT_FOOD_NUMBER) {
             throw new IllegalArgumentException(NOT_RIGHT_NUMBER_OF_MENU.getMessage());
         }
     }

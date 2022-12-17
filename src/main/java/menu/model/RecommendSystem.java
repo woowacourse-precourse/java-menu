@@ -11,6 +11,7 @@ public class RecommendSystem implements RandomPicker {
     private static final int LAST_CATEGORY_NUMBER = 5;
     private static final String INITIAL_MENU = "";
     private static final int MAX_CATEGORY_SIZE = 5;
+    private static final int MAX_DUPLICATE_CATEGORY = 2;
 
     @Override
     public List<MenuCategory> pickRandomCategory() {
@@ -32,7 +33,7 @@ public class RecommendSystem implements RandomPicker {
                 .filter(c -> c.equals(category))
                 .count();
 
-        if (count >= 2) {
+        if (count >= MAX_DUPLICATE_CATEGORY) {
             return pickCategory(categories);
         }
 
