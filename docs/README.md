@@ -26,7 +26,7 @@ List<String> menu에다가 다 넣어놓기.
 ## OutputView (view)
 
 - [x] 점심 메뉴 추천 시작 출력하기
-- [ ] 메뉴 추천 결과 출력하기
+- [x] 메뉴 추천 결과 출력하기
 - [x] 추천 완료 출력하기
 
 ## Coach (domain)
