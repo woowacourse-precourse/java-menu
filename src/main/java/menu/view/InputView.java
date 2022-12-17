@@ -17,21 +17,17 @@ public class InputView {
         return coachList;
     }
 
-    public Map<String, List<String>> getHateList(String name) {
-        Map<String, List<String>> hateMap = new HashMap<>();
+    public List<String> getHateList(String name) {
         outputView.askCoachHate(name);
         String hateString = Console.readLine();
         if (hateString == null) {
-            hateMap.put(name, new ArrayList<>());
-            return hateMap;
+            return List.of();
         }
         if (!(hateString.contains(","))) {
-            hateMap.put(name, List.of(hateString));
-            return hateMap;
+            return List.of(hateString);
         }
         List<String> hateFoodList = Arrays.asList(hateString.split(","));
-        hateMap.put(name, hateFoodList);
-        return hateMap;
+        return hateFoodList;
     }
 
 }
