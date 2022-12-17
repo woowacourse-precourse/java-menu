@@ -16,8 +16,10 @@ public class Recommendation {
     }
 
     public void run() {
-        Category category = selectCategory();
-        selectMenu(category);
+        for (int i = 0; i < 5; i++) {
+            Category category = selectCategory();
+            selectMenu(category);
+        }
     }
 
     private Category selectCategory() {

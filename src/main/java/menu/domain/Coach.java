@@ -5,6 +5,10 @@ import java.util.List;
 
 public class Coach {
 
+    private static final String BEGIN = "[ ";
+    private static final String END = " ]";
+    private static final String DIVISION = " | ";
+
     private final String name;
     private final List<String> canNotEatMenus;
     private final List<String> recommendedMenu;
@@ -26,6 +30,18 @@ public class Coach {
 
         recommendedMenu.add(menu);
         return true;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+
+        result.append(BEGIN);
+        String history = String.join(DIVISION, recommendedMenu);
+        result.append(history);
+        result.append(END);
+
+        return result.toString();
     }
 
 }
