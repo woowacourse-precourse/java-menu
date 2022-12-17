@@ -38,16 +38,16 @@ public enum Category {
 	}
 
 	public static String getCategoryName(int categoryNumber) {
-		if (categoryNumber == 1) {
+		if (categoryNumber == CategoryIndex.JAPAN_INDEX.getIndex()) {
 			return "일식";
 		}
-		if (categoryNumber == 2) {
+		if (categoryNumber == CategoryIndex.KOREA_INDEX.getIndex()) {
 			return "한식";
 		}
-		if (categoryNumber == 3) {
+		if (categoryNumber == CategoryIndex.CHINA_INDEX.getIndex()) {
 			return "중식";
 		}
-		if (categoryNumber == 4) {
+		if (categoryNumber == CategoryIndex.ASIAN_INDEX.getIndex()) {
 			return "아시안";
 		}
 
@@ -83,6 +83,7 @@ public enum Category {
 
 		return list;
 	}
+
 	public static List<String> createItalian() {
 		List<String> list = new ArrayList<>();
 		list.add("라자냐");
@@ -97,6 +98,7 @@ public enum Category {
 
 		return list;
 	}
+
 	public static List<String> createAsian() {
 		List<String> list = new ArrayList<>();
 		list.add("팟타이");
@@ -111,6 +113,7 @@ public enum Category {
 
 		return list;
 	}
+
 	public static List<String> createKorea() {
 		List<String> list = new ArrayList<>();
 		list.add("김밥");
@@ -125,8 +128,4 @@ public enum Category {
 
 		return list;
 	}
-
-
-
-
 }
