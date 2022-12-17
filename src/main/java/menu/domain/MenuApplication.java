@@ -2,9 +2,9 @@ package menu.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import menu.dto.request.CoachesNameDto;
 import menu.dto.request.HateMenuDto;
 import menu.dto.response.CoachesWeeklyMenu;
-import menu.dto.request.CoachNameDto;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -25,16 +25,17 @@ public class MenuApplication {
     public void run() {
         outputView.printAppRunMessage();
 
-        List<CoachNameDto> coachNameDtos = inputView.sendCoachNames();
-        Coaches coaches = addEachCoachesHateMenu(coachNameDtos);
+        CoachesNameDto coachesNameDto = inputView.sendCoachNames();
+        Coaches coaches = addEachCoachesHateMenu(coachesNameDto);
         List<Category> categories = recommendCategoryMaker.make();
         addCoachesLunchMenu(coaches, categories);
 
         outputView.printWeeklyRecommendMenu(CoachesWeeklyMenu.from(categories, coaches));
     }
 
-    private Coaches addEachCoachesHateMenu(List<CoachNameDto> coachNameDtos) {
-        return coachNameDtos.stream()
+    private Coaches addEachCoachesHateMenu(CoachesNameDto coachNameDtos) {
+        return coachNameDtos.getNames()
+                .stream()
                 .map(coachNameDto -> {
                     HateMenuDto hateMenuDto = inputView.sendHateMenuBySpecificCoach(coachNameDto);
                     return new Coach(coachNameDto.getName(), hateMenuDto.getHateMenus());

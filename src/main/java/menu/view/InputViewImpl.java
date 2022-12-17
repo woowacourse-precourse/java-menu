@@ -6,17 +6,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.Coach;
 import menu.dto.request.CoachNameDto;
+import menu.dto.request.CoachesNameDto;
 import menu.dto.request.HateMenuDto;
 
 public class InputViewImpl implements InputView {
 
     @Override
-    public List<CoachNameDto> sendCoachNames() {
+    public CoachesNameDto sendCoachNames() {
         System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
         List<String> coachNames = Arrays.asList(Console.readLine().split(","));
         return coachNames.stream()
                 .map(CoachNameDto::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.collectingAndThen(Collectors.toList(), CoachesNameDto::new));
     }
 
     @Override
