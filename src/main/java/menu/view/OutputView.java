@@ -14,4 +14,8 @@ public class OutputView {
     public static void printError(String msg) {
         System.out.println("[ERROR] " + msg);
     }
+
+    public static void printInputInEdible(String coach) {
+        System.out.println("\n" + coach + "(이)가 못 먹는 메뉴를 입력해 주세요.");
+    }
 }
