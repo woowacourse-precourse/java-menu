@@ -14,6 +14,7 @@ public class InputView {
         String userCoachName = Console.readLine();
         validateCoachNameCount(userCoachName);
         validateDuplicateCoachName(userCoachName);
+        validateCoachNameLength(userCoachName);
     }
 
     public void validateCoachNameCount(String uncheckedCoachNames) {
@@ -31,6 +32,18 @@ public class InputView {
         Set<String> uniqueCoachNames = new HashSet<>(coachNames);
         if(coachNames.size() != uniqueCoachNames.size()) {
             throw new IllegalArgumentException(InputException.DUPLICATE_COACH_NAME.getExceptionMessage());
+        }
+    }
+
+    private void validateCoachNameLength(String uncheckedCoachNames) {
+        List<String> coachNames = List.of(uncheckedCoachNames.split(","));
+        for(String coachName: coachNames) {
+            if(coachName.length() < 2) {
+                throw new IllegalArgumentException(InputException.OUT_OF_COACH_NAME_COUNT_MINIMUM.getExceptionMessage());
+            }
+            if(coachName.length() > 4) {
+                throw new IllegalArgumentException(InputException.OUT_OF_COACH_NAME_LENGTH_MAXIMUM.getExceptionMessage());
+            }
         }
     }
 }
