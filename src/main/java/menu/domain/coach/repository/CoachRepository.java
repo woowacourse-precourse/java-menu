@@ -8,7 +8,7 @@ import menu.domain.coach.entity.Coach;
 
 public class CoachRepository {
 
-    private List<Coach> coaches = new ArrayList<>();
+    private final List<Coach> coaches = new ArrayList<>();
 
     public void saveAll(List<Coach> coaches) {
         this.coaches.addAll(coaches);

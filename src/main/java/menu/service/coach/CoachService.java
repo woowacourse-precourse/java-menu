@@ -1,7 +1,6 @@
 package menu.service.coach;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.coach.entity.Coach;
