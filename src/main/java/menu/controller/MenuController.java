@@ -1,5 +1,11 @@
 package menu.controller;
 
+import static menu.domain.CoachRepository.saveCoach;
+import static menu.service.RandomCategoriesMaker.findRandomCategory;
+import static menu.view.OutputView.printStartMessage;
+
+import menu.domain.Coach;
+import menu.domain.CoachRepository;
 import menu.service.InitializationService;
 import menu.service.ValidationService;
 import menu.view.InputView;
@@ -8,8 +14,6 @@ import menu.view.OutputView;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static menu.view.OutputView.printStartMessage;
 
 public class MenuController {
     InitializationService initializationService;
@@ -29,12 +33,15 @@ public class MenuController {
         List<String> coachNames = takeCoaches();
         takeMenuFromCoach(coachNames);
 
+        takeRandoms();
     }
 
     public List<String> takeCoaches() {
         String name = ValidationService.takeCoachNames();
 
         String[] splitNames = name.split(",");
+
+        saveCoaches(splitNames);
 
         return Arrays.stream(splitNames)
                 .collect(Collectors.toList());
@@ -45,9 +52,32 @@ public class MenuController {
             String notEatMenu = ValidationService.takeNotEatMenus(coachName);
 
             String[] splitNames = notEatMenu.split(",");
-
             List<String> notEatMenus = Arrays.stream(splitNames)
                     .collect(Collectors.toList());
+
+            saveNotEatFoodEachCoach(notEatMenus, coachName);
         }
+    }
+
+    public void saveCoaches(String[] names) {
+        for (String name : names) {
+            Coach coach = new Coach(name);
+
+            CoachRepository.addCoach(coach);
+        }
+    }
+
+    public void saveNotEatFoodEachCoach(List<String> notEatMenus, String coachName) {
+        Coach coach = CoachRepository.findCoachByName(coachName);
+
+        for (String notEatMenu : notEatMenus) {
+            coach.addNotEatFood(notEatMenu);
+        }
+
+        saveCoach(coach);
+    }
+
+    public void takeRandoms() {
+        List<String> randomCategories = findRandomCategory();
     }
 }
