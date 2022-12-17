@@ -4,6 +4,7 @@ import menu.domain.enumeration.Food;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class NotEatableFood {
 
@@ -24,6 +25,9 @@ public class NotEatableFood {
     }
 
     public void valudateNotEatableFoods(List<String> notEatableFoods) {
+        if (notEatableFoods.size() == 1 && Objects.equals(notEatableFoods.get(0), "")) {
+            return;
+        }
         if (notEatableFoods.size() > MAX_NOT_EATABLE_FOOD_COUNT){
             throw new IllegalArgumentException(NOT_EATABLE_FOOD_OUT_OF_RANGE);
         }
