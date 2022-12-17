@@ -1,4 +1,4 @@
-package menu;
+package menu.domain;
 
 import menu.constants.CoachRules;
 import menu.view.ErrorMessages;

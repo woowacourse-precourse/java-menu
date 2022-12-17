@@ -1,8 +1,8 @@
 package menu.view;
 
-import menu.Category;
-import menu.Coach;
-import menu.Week;
+import menu.domain.Category;
+import menu.domain.Coach;
+import menu.constants.Week;
 
 import java.util.List;
 import java.util.Map;
