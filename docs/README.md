@@ -28,6 +28,7 @@ String category = categories.get(Randoms.pickNumberInRange(1, 5));
 - 추천할 수 없는 카테고리인 경우 다시 `Randoms.pickNumberInRange()`를 통해 임의의 값을 생성해서 추천할 카테고리를 정해야 한다.
 
 ### 메뉴
+- [x] 메뉴 리스트 생성
 - 추천할 메뉴는 정해진 카테고리에 있는 메뉴를 `Randoms.shuffle()`을 통해 임의의 순서로 섞은 후, 첫 번째 값을 사용해야 한다.
     - 카테고리에 포함되는 메뉴 목록을 `List<String>` 형태로 준비한다.
 
