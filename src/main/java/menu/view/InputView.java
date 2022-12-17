@@ -21,4 +21,18 @@ public class InputView {
             return readCoachName();
         }
     }
+
+    // 못먹는 음식이 3개 이상이면 에러
+    public static List<String> readCantEatingMenu() {
+        try {
+            String input = Console.readLine();
+            List<String> inputToList = List.of(input.split(","));
+            Validators.validateForOverCountEatingMenu(inputToList.size());
+            Validators.validateForFoodName(inputToList);
+            return inputToList;
+        }catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return readCantEatingMenu();
+        }
+    }
 }
