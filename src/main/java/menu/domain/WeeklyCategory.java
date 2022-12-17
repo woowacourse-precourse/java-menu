@@ -43,4 +43,8 @@ public class WeeklyCategory {
         }
         return true;
     }
+
+    public Category getCategoryOfDay(Day day) {
+        return dayCategories.get(day);
+    }
 }
