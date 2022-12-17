@@ -31,9 +31,12 @@ public class InputView {
         String inputHateMenusNames = Console.readLine();
 
         List<String> menuNames = separator.separateNames(inputHateMenusNames);
-        validator.validateHateMenuCount(menuNames);
-        List<Menu> hateMenus = validator.validateIsMenuExist(menuNames);
+        int hateMenuCount = validator.validateHateMenuCount(menuNames);
+        if(hateMenuCount == 1 && menuNames.get(0).equals("")) {
+            return null;
+        }
 
+        List<Menu> hateMenus = validator.validateIsMenuExist(menuNames);
         outputView.printEnter();
 
         return hateMenus;
