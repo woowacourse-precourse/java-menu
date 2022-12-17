@@ -14,6 +14,11 @@ public class Coach {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+
+    }
+
     public void validateName(String name) {
         if (name.length() < 2 || name.length() > 4) {
             throw new IllegalArgumentException(INVALID_NAME);
@@ -21,7 +26,7 @@ public class Coach {
     }
 
     public void addMenuCannotEat(String menu) {
-        if(isAlreadyRegistered(menu)) {
+        if (isAlreadyRegistered(menu)) {
             throw new IllegalArgumentException(ALREADY_REGISTERED);
         }
 

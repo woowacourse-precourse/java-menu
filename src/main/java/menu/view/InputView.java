@@ -5,11 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
-    public List<String> readCoachNameList() {
+    public static List<String> readCoachNameList() {
         return Arrays.asList(Console.readLine().split(","));
     }
 
-    public List<String> readMenuCoachCannotEat() {
+    public static List<String> readMenuCoachCannotEat() {
         return Arrays.asList(Console.readLine().split(","));
     }
 }
