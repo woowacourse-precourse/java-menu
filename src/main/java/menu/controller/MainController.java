@@ -8,6 +8,7 @@ import menu.domain.Category;
 import menu.domain.CategoryRepository;
 import menu.domain.Coach;
 import menu.domain.CoachRepository;
+import menu.domain.Day;
 import menu.domain.Menu;
 import menu.domain.MenuRepository;
 import menu.view.InputView;
@@ -28,7 +29,7 @@ public class MainController {
     private void initializeGameGuide() {
         gameGuide.put(ApplicationStatus.INITIALIZE_MENUS, this::initializeMenus);
         gameGuide.put(ApplicationStatus.RECEIVE_COACH_DATA, this::receiveCoachData);
-        gameGuide.put(ApplicationStatus.RECOMMEND_RANDOM_MENU, this::recommendRandomMenu);
+        gameGuide.put(ApplicationStatus.START_RECOMMENDATION, this::startRecommendation);
     }
 
     public void play() {
@@ -59,24 +60,43 @@ public class MainController {
             List<Menu> menuNotToEat = inputView.readMenuNotToEat(coach.getName());
             coach.addMenuNotToEat(menuNotToEat);
         }
-        return ApplicationStatus.RECOMMEND_RANDOM_MENU;
+        return ApplicationStatus.START_RECOMMENDATION;
     }
 
-    private ApplicationStatus recommendRandomMenu() {
-        for (Coach coach : CoachRepository.coaches()) {
-            Category category = CategoryRepository.pickRandomCategory();
-            Menu menu = category.pickRandomMenu();
-            System.out.println(menu);
+    private ApplicationStatus startRecommendation() {
+        for (Day day : Day.values()) {
+            for (Coach coach : CoachRepository.coaches()) {
+                Category category = pickAvailableCategory(coach);
+                Menu menu = pickAvailableMenu(coach, category);
+                coach.addCategoriesAlreadyEaten(category);
+                coach.addMenuAlreadyEaten(day, menu);
+            }
         }
-
+        CoachRepository.coaches()
+                .forEach(coach -> System.out.println(coach.getMenuAlreadyEaten()));
         return ApplicationStatus.APPLICATION_EXIT;
+    }
+
+    private Category pickAvailableCategory(Coach coach) {
+        Category category = CategoryRepository.pickRandomCategory();
+        if (!coach.isAvailableCategory(category)) {
+            return pickAvailableCategory(coach);
+        }
+        return category;
+    }
+
+    private Menu pickAvailableMenu(Coach coach, Category category) {
+        Menu menu = category.pickRandomMenu();
+        if (!coach.isAvailableMenu(menu)) {
+            return pickAvailableMenu(coach, category);
+        }
+        return menu;
     }
 
     private enum ApplicationStatus {
         INITIALIZE_MENUS,
         RECEIVE_COACH_DATA,
-        RECOMMEND_RANDOM_MENU,
-
+        START_RECOMMENDATION,
         APPLICATION_EXIT;
 
         public boolean playable() {
