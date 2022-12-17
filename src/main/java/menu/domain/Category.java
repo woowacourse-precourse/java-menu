@@ -34,7 +34,7 @@ public enum Category {
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_CATEGORY_MESSAGE));
     }
 
-    public static List<Category> generateRandomCategory(int size) {
+    public static List<Category> generateRandomCategories(int size) {
         size = Integer.min(size, CATEGORY_SIZE_UPPER_BOUND);
         List<Category> categories = new ArrayList<>();
         for (int i = 0; i < size; i++) {

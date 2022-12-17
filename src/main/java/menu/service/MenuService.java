@@ -22,7 +22,7 @@ public class MenuService {
     }
 
     public MenusDto recommendMenus(List<Coach> coaches) {
-        List<Category> categories = Category.generateRandomCategory(CATEGORY_SIZE);
+        List<Category> categories = Category.generateRandomCategories(CATEGORY_SIZE);
         for (Category category : categories) {
             recommendMenu(coaches, category);
         }

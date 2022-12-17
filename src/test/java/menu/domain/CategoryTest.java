@@ -34,8 +34,8 @@ class CategoryTest {
     }
 
     @Test
-    void generateRandomCategory_메서드는_입력받은_숫자만큼의_카테고리_리스트를_반환한다() {
-        List<Category> categories = Category.generateRandomCategory(5);
+    void generateRandomCategories_메서드는_입력받은_숫자만큼의_카테고리_리스트를_반환한다() {
+        List<Category> categories = Category.generateRandomCategories(5);
 
         assertThat(categories).hasSize(5);
     }
