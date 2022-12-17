@@ -24,6 +24,14 @@ public class MenuRecommendController {
         this.menuService = new MenuService();
     }
 
+    public void startRecommend() {
+        OutputView.printStartMessage();
+        saveCoaches();
+        OutputView.printResultMessage();
+        // TODO: 추천한 메뉴 출력
+        OutputView.printFinishMessage();
+    }
+
     public void saveCoaches() {
         List<String> coachNames = this.readCoaches();
         for (String coachName : coachNames) {
