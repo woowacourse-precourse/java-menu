@@ -52,10 +52,7 @@ public class MenuSuggester {
                 count++;
             }
         }
-        if (count >= CATEGORY_MAX) {
-            return false;
-        }
-        return true;
+        return count < CATEGORY_MAX;
     }
 
     private String pickMenu(Coach coach, int category) {

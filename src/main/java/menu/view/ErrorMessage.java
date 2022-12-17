@@ -7,7 +7,6 @@ public enum ErrorMessage {
     NAME_MAX("[ERROR] 이름은 최대 4글자 이하 입력해야 합니다."),
     FOOD_MAX("[ERROR] 메뉴는 최대 2개 이하 입력해야 합니다.");
 
-
     private final String message;
 
     ErrorMessage(String message) {
