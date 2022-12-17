@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public enum FoodCategory {
     JAPAN(1, "일식"),
     KOREA(2, "한식"),
-    CHINA(3, "중국"),
+    CHINA(3, "중식"),
     ASIA(4, "아시안"),
     WEST(5, "양식");
 
