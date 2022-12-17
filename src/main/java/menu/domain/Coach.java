@@ -27,14 +27,6 @@ public class Coach {
                 + " ]";
     }
 
-    public boolean isMenuDuplicated() {
-        return (new HashSet<String>(recommendMenus)).size() != 5;
-    }
-
-    public List<String> getRecommendMenus() {
-        return recommendMenus;
-    }
-
     public void setRecommendMenus(Week week) {
         String recommendMenu = Category.recommendRandomMenu(week.getCategory());
         while (isEatable()) {
