@@ -28,7 +28,7 @@ public class Input {
         }
         for (String coachName : split) {
             if (coachName.length() > NAME_MAX_LENGTH || coachName.length() < NAME_MIN_LENGTH) {
-                throw new IllegalArgumentException(ErrorMessage.COACH_AMOUNT_RANGE.toString());
+                throw new IllegalArgumentException(ErrorMessage.COACH_NAME_RANGE.toString());
             }
         }
     }
