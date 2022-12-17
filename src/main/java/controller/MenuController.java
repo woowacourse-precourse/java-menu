@@ -37,6 +37,21 @@ public class MenuController {
         outputView.printEndOfService();
     }
     
+    private Coaches getCoaches() {
+        try {
+            List<String> coachNames = inputView.readCoachNames();
+            
+            List<Coach> coaches = new ArrayList<>();
+            for (String coachName : coachNames) {
+                coaches.add(new Coach(coachName));
+            }
+            return new Coaches(coaches);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e);
+            return getCoaches();
+        }
+    }
+    
     private WeeklyMenus makeMenuRecommendation(Coaches coaches) {
         Map<Category, Integer> categoryCount = new EnumMap<>(Category.class);
         WeeklyMenus weeklyMenus = new WeeklyMenus();
@@ -82,17 +97,12 @@ public class MenuController {
     private void addInedibleMenus(Coaches coaches) {
         for (Coach coach : coaches.getCoaches()) {
             List<String> inedibleMenus = inputView.readInedibleMenus(coach.getName());
-            coach.addInedibleMenus(inedibleMenus);
+            try {
+                coach.addInedibleMenus(inedibleMenus);
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e);
+                addInedibleMenus(coaches);
+            }
         }
-    }
-    
-    private Coaches getCoaches() {
-        List<String> coachNames = inputView.readCoachNames();
-        
-        List<Coach> coaches = new ArrayList<>();
-        for (String coachName : coachNames) {
-            coaches.add(new Coach(coachName));
-        }
-        return new Coaches(coaches);
     }
 }
