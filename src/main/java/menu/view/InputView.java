@@ -9,24 +9,12 @@ import menu.utils.MenusConverter;
 public class InputView {
 
     public List<Coach> readCoaches() {
-        while (true) {
-            try {
-                String input = Console.readLine();
-                return CoachesConverter.convert(input);
-            } catch (IllegalArgumentException e) {
-                OutputView.printErrorMessage(e.getMessage());
-            }
-        }
+        String input = Console.readLine();
+        return CoachesConverter.convert(input);
     }
 
     public List<String> readHardToEat() {
-        while (true) {
-            try {
-                String input = Console.readLine();
-                return MenusConverter.convert(input);
-            } catch (IllegalArgumentException e) {
-                OutputView.printErrorMessage(e.getMessage());
-            }
-        }
+        String input = Console.readLine();
+        return MenusConverter.convert(input);
     }
 }

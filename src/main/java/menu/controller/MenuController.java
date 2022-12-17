@@ -19,6 +19,7 @@ public class MenuController {
 
     public void process() {
         initConfig();
+        outputView.printServiceStart();
         List<Coach> coaches = inputCoaches();
         processHardToEatMenus(coaches);
         processMenuRecommendation(coaches);
@@ -31,17 +32,36 @@ public class MenuController {
     }
 
     private List<Coach> inputCoaches() {
-        outputView.printServiceStart();
-        outputView.printInputCoach();
-        return inputView.readCoaches();
+        try {
+            outputView.printInputCoach();
+            return inputView.readCoaches();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return inputCoaches();
+        }
     }
 
     private void processHardToEatMenus(List<Coach> coaches) {
         for (Coach coach : coaches) {
-            outputView.printHardToEat(coach);
-            List<String> menus = inputView.readHardToEat();
-            storeHardToEatMenus(coach, menus);
+            processPerCoach(coach);
         }
+    }
+
+    private void processPerCoach(Coach coach) {
+        while (true) {
+            try {
+                List<String> menus = inputMenus(coach);
+                storeHardToEatMenus(coach, menus);
+                return;
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private List<String> inputMenus(Coach coach) {
+        outputView.printHardToEat(coach);
+        return inputView.readHardToEat();
     }
 
     private void storeHardToEatMenus(Coach coach, List<String> menus) {
