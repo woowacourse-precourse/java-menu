@@ -1,5 +1,7 @@
 package menu;
 
+import menu.validator.ErrorMessages;
+
 public enum ValidMenus {
     //JAPANESE
     규동("규동"),
@@ -60,12 +62,16 @@ public enum ValidMenus {
         this.name = name;
     }
 
-    boolean isValid(String findMenu) {
-        for (ValidMenus menu : values()) {
-            if (menu.name.equals(findMenu)) {
-                return true;
+    public static ValidMenus findMenuByName(String menuName) {
+        for (ValidMenus validMenu : values()) {
+            if (validMenu.name.equals(menuName)) {
+                return validMenu;
             }
         }
-        return false;
+        throw new IllegalArgumentException(ErrorMessages.ERROR.toString() + ErrorMessages.INVALID_MENU);
+    }
+
+    public String getName() {
+        return name;
     }
 }
