@@ -101,7 +101,7 @@ public class MenuService implements Menu {
         final Category picked = pickCategory(categories);
         final List<String> oneCategoryMenus = menus.get(picked);
         for (final Coach coach : coaches) {
-            recommendDayCoach(coach, oneCategoryMenus);
+            recommendDayAndCoach(coach, oneCategoryMenus);
         }
     }
 
