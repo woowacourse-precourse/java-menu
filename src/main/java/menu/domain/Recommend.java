@@ -3,7 +3,6 @@ package menu.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import menu.Constant;
 import menu.enums.FoodCategory;
-import menu.vo.Coach;
 
 import java.util.ArrayList;
 import java.util.HashMap;
