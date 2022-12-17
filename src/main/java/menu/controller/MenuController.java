@@ -13,6 +13,8 @@ import menu.view.InputView;
 import menu.view.OutputView;
 
 public class MenuController {
+    private final static int DAYS_START = 0;
+    private final static int DAYS_END = 5;
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
     private final CategoryGenerator categoryGenerator = new CategoryGenerator();
@@ -23,14 +25,19 @@ public class MenuController {
 
     public void run() {
         outputView.printStart();
-        crews = new Crews(getCrews());
-        getBannedFoods();
+        crews = makeCrews();
+        processFillingBannedFoods();
         processFillingFoods();
         outputView.printResult(categories, crews);
     }
 
+    private Crews makeCrews() {
+        Crews crewsTemp = new Crews(getCrews());
+        return crewsTemp;
+    }
+
     private void processFillingFoods() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = DAYS_START; i < DAYS_END; i++) {
             fillCategory();
             fillFoods(categories.getCategories().get(i));
         }
@@ -46,7 +53,7 @@ public class MenuController {
         }
     }
 
-    private void getBannedFoods() {
+    private void processFillingBannedFoods() {
         int crewSize = crews.getCrews().size();
         fillBannedFoods(crewSize);
     }
