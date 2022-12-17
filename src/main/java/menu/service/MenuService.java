@@ -40,9 +40,10 @@ public class MenuService {
     }
 
     public RecommendResultDTO recommend() {
+        recommendMenu = RecommendMenu.createRecommendMenu(coaches);
         RecommendResultDTO recommendResultDTO = new RecommendResultDTO(coaches);
         for (int weekdays = 0; weekdays < WEEK_DAY; weekdays++) {
-            Category category = addRecommendCategory();
+            Category category = availableCategory();
             recommendResultDTO.addCategory(category.getCategoryName());
             addRecommendMenu(category);
         }
@@ -50,19 +51,19 @@ public class MenuService {
         return recommendResultDTO;
     }
 
-    private Category addRecommendCategory() {
+    private Category availableCategory() {
         int randomNumber;
         Category category;
         do {
             randomNumber = Randoms.pickNumberInRange(1, 5);
             category = categories.getCategory(randomNumber);
         } while (recommendCategory.hasCategoryTwoMores(category));
+        recommendCategory.addCategory(category);
         return  category;
     }
 
     private void addRecommendMenu(Category category) {
         List<String> coachNames = coaches.getCoachNames();
-        recommendMenu = RecommendMenu.createRecommendMenu(coaches);
         for (String coachName : coachNames) {
             Coach coach;
             String menu;

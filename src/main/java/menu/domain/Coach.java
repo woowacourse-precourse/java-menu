@@ -8,11 +8,9 @@ public class Coach {
 
     private final String name;
     private final UnavailableMenu unavailableMenu;
-    private final RecommendMenu recommendMenu;
 
     private Coach(String name) {
         this.name = name;
-        this.recommendMenu = new RecommendMenu();
         this.unavailableMenu = new UnavailableMenu();
     }
 
@@ -40,12 +38,11 @@ public class Coach {
         if (o == null || getClass() != o.getClass()) return false;
         Coach coach = (Coach) o;
         return Objects.equals(name, coach.name) &&
-                Objects.equals(unavailableMenu, coach.unavailableMenu) &&
-                Objects.equals(recommendMenu, coach.recommendMenu);
+                Objects.equals(unavailableMenu, coach.unavailableMenu);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, unavailableMenu, recommendMenu);
+        return Objects.hash(name, unavailableMenu);
     }
 }

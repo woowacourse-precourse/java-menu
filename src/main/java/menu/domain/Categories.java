@@ -30,6 +30,6 @@ public class Categories {
     }
 
     public Category getCategory(int index) {
-        return categories.get(index);
+        return categories.get(index - 1);
     }
 }

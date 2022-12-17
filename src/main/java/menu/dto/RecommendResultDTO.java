@@ -31,7 +31,16 @@ public class RecommendResultDTO {
         for (String coachesName : allCoachesNames) {
             Coach coach = coaches.findByName(coachesName);
             List<String> menuList = recommendMenu.getMenus(coach);
-            menus.get(coachesName).addAll(menuList);
+            List<String> coachMenu = menus.get(coachesName);
+            coachMenu.addAll(menuList);
         }
+    }
+
+    public List<String> getCategories() {
+        return categories;
+    }
+
+    public Map<String, List<String>> getMenus() {
+        return menus;
     }
 }

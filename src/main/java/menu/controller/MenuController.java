@@ -26,7 +26,6 @@ public class MenuController {
         inputCoachName();
         inputUnavailableMenus();
         recommendMenus();
-        recommendMenus();
     }
 
     private void startService() {
@@ -63,5 +62,6 @@ public class MenuController {
 
     private void recommendMenus() {
         RecommendResultDTO recommendResultDTO = menuService.recommend();
+        outputView.printResult(recommendResultDTO);
     }
 }
