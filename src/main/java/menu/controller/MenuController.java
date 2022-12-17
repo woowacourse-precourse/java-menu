@@ -15,8 +15,13 @@ public class MenuController {
 
     public void run() {
         List<Coach> coaches = inputView.readCoaches()
-                .stream().map(Coach::new)
+                .stream()
+                .map(Coach::new)
                 .collect(Collectors.toList());
         FoodRecommender recommender = new FoodRecommender(coaches);
+
+        for (Coach coach : coaches) {
+            coach.setBlackList(inputView.readBlackList(coach));
+        }
     }
 }

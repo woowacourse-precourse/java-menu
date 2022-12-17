@@ -1,8 +1,11 @@
 package menu.domain;
 
 
+import java.util.List;
+
 public class Coach {
     private final String name;
+    private List<String> blackList;
 
     public Coach(String name) {
         validateName(name);
@@ -13,5 +16,13 @@ public class Coach {
         if (name.length() < 2 || name.length() > 4) {
             throw new IllegalArgumentException("코치의 이름은 2~4글자여야 합니다.");
         }
+    }
+
+    public void setBlackList(List<String> blackList) {
+        this.blackList = blackList;
+    }
+
+    public String getName() {
+        return name;
     }
 }
