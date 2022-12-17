@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static menu.Constant.Constants.DAY_NUM;
 import static menu.Constant.Menu.*;
 
 public class Recommender {
@@ -31,14 +32,13 @@ public class Recommender {
     private void makeRandomCategories(){
         List<Integer> randomCategory = new ArrayList<>();
 
-        while(randomCategory.size() < 5){
+        while(randomCategory.size() < DAY_NUM){
             int category = Randoms.pickNumberInRange(1, 5);
             if(Collections.frequency(randomCategory, category) < 2){
                 randomCategory.add(category);
                 categories.add(matchCategory(category));
             }
         }
-        //System.out.println(""+randomCategory);
     }
 
     private Menu matchCategory(int id){
