@@ -7,7 +7,7 @@ public class Application {
         try {
             Controller controller = new Controller(new Recommend());
             controller.recommendMenu();
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return;
         }
