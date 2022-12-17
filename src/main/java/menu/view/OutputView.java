@@ -19,13 +19,13 @@ public class OutputView {
                 .forEach(this::printEachCoachesWeeklyMenu);
     }
 
-    private void printEachCoachesWeeklyMenu(Entry<String, List<String>> entry) {
-        String menus = String.join(" | ", entry.getValue());
-        System.out.println("[ "+ entry.getKey() +" |" + menus + " ]");
-    }
-
     private void printWeeklyMenuCategories(CoachesWeeklyMenu coachesWeeklyMenu) {
         String categories = String.join(" | ", coachesWeeklyMenu.getCategoriesNames());
-        System.out.println("[ 카테고리" + categories + " ]");
+        System.out.println("[ 카테고리 | " + categories + " ]");
+    }
+
+    private void printEachCoachesWeeklyMenu(Entry<String, List<String>> entry) {
+        String menus = String.join(" | ", entry.getValue());
+        System.out.println("[ "+ entry.getKey() +" | " + menus + " ]");
     }
 }
