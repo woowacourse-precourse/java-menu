@@ -67,10 +67,7 @@ public class RecommendController {
 
     private boolean isMoreThanTwo(List<Category> categories, Category newCategory) {
         int frequency = Collections.frequency(categories, newCategory);
-        if (frequency > NUMBER_OF_MAX_CATEGORY_DUPLICATE) {
-            return true;
-        }
-        return false;
+        return frequency >= NUMBER_OF_MAX_CATEGORY_DUPLICATE;
     }
 
     private Menu recommendMenuByCategory(Category category) {
