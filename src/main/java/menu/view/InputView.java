@@ -13,6 +13,7 @@ public class InputView {
     private static List<String> parseCoachNames(String names) {
         List<String> parsedNames = List.of(names.split(","));
 
+        Validator.checkCoachSize(parsedNames);
         for (String name : parsedNames) {
             Validator.checkNameLength(name);
         }
