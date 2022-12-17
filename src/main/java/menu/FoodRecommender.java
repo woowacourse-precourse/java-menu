@@ -17,6 +17,10 @@ public class FoodRecommender {
         menuCheck = new HashSet<>();
     }
 
+    public String pickMenu() {
+
+    }
+
     public String pickCategory() {
         String newCategory;
         while (true) {
