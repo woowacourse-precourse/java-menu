@@ -46,4 +46,21 @@ public class Recommender {
         return KOREAN;
     }
 
+    public void startRecommend(){
+        for(Menu todayCategory: categories){
+            for(Coach coach: coaches) {
+                recommendOneCoach(coach, todayCategory.getMenus());
+            }
+        }
+    }
+
+    public void recommendOneCoach(Coach coach, List<String> todayMenus){
+        while(true){
+            String curMenu = Randoms.shuffle(todayMenus).get(0);
+            if(coach.isPossible(curMenu)){
+                coach.addRecommend(curMenu);
+                break;
+            }
+        }
+    }
 }

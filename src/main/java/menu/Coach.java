@@ -13,4 +13,18 @@ public class Coach {
         this.hates = hates;
         this.recommended = new ArrayList<>();
     }
+
+    public boolean isPossible(String curMenu){
+        if(hates.contains(curMenu)){
+            return false;
+        }
+        if(recommended.contains(curMenu)){
+            return false;
+        }
+        return true;
+    }
+
+    public void addRecommend(String curMenu){
+        recommended.add(curMenu);
+    }
 }

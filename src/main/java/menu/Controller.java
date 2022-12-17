@@ -17,6 +17,7 @@ public class Controller {
     public void runController(){
         List<Coach> coaches = getCoachData();
         recommender = new Recommender(coaches);
+        recommender.startRecommend();
         endRecommend();
     }
 
