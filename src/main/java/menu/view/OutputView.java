@@ -5,4 +5,8 @@ public class OutputView {
     private void printBlankLine() {
         System.out.println();
     }
+
+    private void printMessage(String message) {
+        System.out.println(message);
+    }
 }
