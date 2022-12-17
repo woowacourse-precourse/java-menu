@@ -1,4 +1,4 @@
-package menu.domain;
+package menu.domain.exception;
 
 public enum InputException {
     DUPLICATE_COACH_NAME("중복된 코치 이름입니다."),
