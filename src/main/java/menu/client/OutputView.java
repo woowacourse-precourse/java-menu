@@ -3,7 +3,7 @@ package menu.client;
 import java.util.List;
 import menu.di.RecommendResultDto;
 
-public class OutputView {
+class OutputView {
 
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String START_MESSAGE = "점심 메뉴 추천을 시작합니다.";
@@ -18,15 +18,15 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printErrorMessage(String errorMessage) {
+    static void printErrorMessage(String errorMessage) {
         println(ERROR_PREFIX + errorMessage);
     }
 
-    public static void printStartMessage() {
+    static void printStartMessage() {
         println(START_MESSAGE);
     }
 
-    public static void printResult(RecommendResultDto resultDto) {
+    static void printResult(RecommendResultDto resultDto) {
         println(RESULT_START_MESSAGE);
         println(DAY_MESSAGE);
         printCategory(resultDto.getCategories());

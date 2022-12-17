@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import menu.di.ValidateMenuCommand;
 import menu.di.ValidateNameCommand;
 
-public class InputView {
+class InputView {
 
     private static final String ASK_MENU_MESSAGE = "(이)가 못 먹는 메뉴를 입력해 주세요.";
     private static final String ASK_COACH_NAME_MESSAGE = "코치의 이름을 입력해 주세요. (, 로 구분)";
@@ -12,14 +12,14 @@ public class InputView {
     private InputView() {
     }
 
-    public static ValidateNameCommand askNames() {
+    static ValidateNameCommand askNames() {
         println();
         println(ASK_COACH_NAME_MESSAGE);
         String input = Console.readLine();
         return new ValidateNameCommand(input);
     }
 
-    public static ValidateMenuCommand askMenus(String name) {
+    static ValidateMenuCommand askMenus(String name) {
         println();
         println(name + ASK_MENU_MESSAGE);
         String input = Console.readLine();

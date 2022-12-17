@@ -31,6 +31,4 @@ public class Application {
         menus.put("양식", List.of("라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니"));
         return menus;
     }
-
-
 }
