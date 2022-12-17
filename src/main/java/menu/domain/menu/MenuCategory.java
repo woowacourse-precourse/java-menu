@@ -22,6 +22,10 @@ public enum MenuCategory {
         return categoryCode;
     }
 
+    public String getKoreanWord() {
+        return koreanWord;
+    }
+
     public static MenuCategory pickRandomMenuCategory() {
         int maxCode = getMaxCode();
         int minCode = getMinCode();

@@ -2,6 +2,7 @@ package menu.domain.results;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import menu.domain.menu.MenuCategory;
 
 public class RecommendCategories {
@@ -30,5 +31,15 @@ public class RecommendCategories {
 
     public List<MenuCategory> getCategories() {
         return categories;
+    }
+
+    public String resultFormat() {
+        List<String> formatComponents = new ArrayList<>();
+        formatComponents.add("카테고리");
+        formatComponents.addAll(categories.stream().map(MenuCategory::getKoreanWord)
+                .collect(Collectors.toList()));
+
+        return formatComponents.stream()
+                .collect(Collectors.joining(" | ", "[ ", " ]"));
     }
 }

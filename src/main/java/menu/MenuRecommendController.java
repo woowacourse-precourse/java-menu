@@ -4,6 +4,7 @@ import java.util.List;
 import menu.domain.coach.Coach;
 import menu.domain.coach.Coaches;
 import menu.domain.menu.MenuService;
+import menu.domain.results.RecommendResult;
 import menu.ui.dto.CoachesRequest;
 import menu.ui.dto.MenuRequest;
 import menu.ui.view.InputView;
@@ -29,6 +30,9 @@ public class MenuRecommendController {
         CoachesRequest coachesRequest = inputView.requestCoachNames();
         Coaches coaches = coachesRequest.toCoaches();
         updateCoachesAvoidMenu(coaches);
+
+        RecommendResult recommendResult = menuService.recommendMenus(coaches);
+        outputView.resultView(recommendResult);
     }
 
     private void updateCoachesAvoidMenu(Coaches coaches) {

@@ -6,6 +6,7 @@ import menu.domain.coach.Coach;
 import menu.domain.coach.Coaches;
 import menu.domain.results.RecommendCategories;
 import menu.domain.results.RecommendCoachMenu;
+import menu.domain.results.RecommendResult;
 
 public class MenuService {
     private final MenuRepository menuRepository;
@@ -21,15 +22,17 @@ public class MenuService {
         }
     }
 
-    public void recommendMenus(Coaches coaches) {
-        RecommendCategories randomCategories = getRandomCategories();
+    public RecommendResult recommendMenus(Coaches coaches) {
+        RecommendCategories recommendCategories = getRandomCategories();
         List<RecommendCoachMenu> coachMenus = coaches.getCoaches().stream()
                 .map(RecommendCoachMenu::of)
                 .collect(Collectors.toList());
 
-        for (MenuCategory category : randomCategories.getCategories()) {
+        for (MenuCategory category : recommendCategories.getCategories()) {
             recommendMenuByCategory(category, coachMenus);
         }
+
+        return RecommendResult.of(recommendCategories, coachMenus);
     }
 
     public RecommendCategories getRandomCategories() {
