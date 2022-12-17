@@ -1,26 +1,22 @@
 package menu.domain.dto;
 
+import java.util.List;
+
 public class RecommendResultDto {
 
-    private final String day;
-    private final String category;
-    private final String menu;
+    private final String name;
+    private final List<String> menus;
 
-    public RecommendResultDto(String day, String category, String menu) {
-        this.day = day;
-        this.category = category;
-        this.menu = menu;
+    public RecommendResultDto(String name, List<String> menus) {
+        this.name = name;
+        this.menus = menus;
     }
 
-    public String getDay() {
-        return day;
+    public String getName() {
+        return name;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public String getMenu() {
-        return menu;
+    public List<String> getMenus() {
+        return menus;
     }
 }

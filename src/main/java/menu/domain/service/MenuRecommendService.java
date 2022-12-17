@@ -37,8 +37,8 @@ public class MenuRecommendService {
         }
     }
 
-    public List<List<RecommendResultDto>> recommendFoods(CategoryStrategy categoryStrategy, MenuStrategy menuStrategy) {
-        List<List<RecommendResultDto>> result = new ArrayList<>();
+    public List<RecommendResultDto> recommendFoods(CategoryStrategy categoryStrategy, MenuStrategy menuStrategy) {
+        List<RecommendResultDto> result = new ArrayList<>();
 
         List<Coach> coaches = CoachRepository.findAll();
         for (Coach coach : coaches) {
@@ -47,7 +47,7 @@ public class MenuRecommendService {
         return result;
     }
 
-    public List<RecommendResultDto> recommendFood(Coach coach, CategoryStrategy categoryStrategy, MenuStrategy menuStrategy) {
+    public RecommendResultDto recommendFood(Coach coach, CategoryStrategy categoryStrategy, MenuStrategy menuStrategy) {
         for (Day day : Day.values()) {
             Category category = createCategory(coach, categoryStrategy);
             Menu menu = createMenu(coach, category, menuStrategy);

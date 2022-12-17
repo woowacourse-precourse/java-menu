@@ -13,7 +13,7 @@ public class Coach {
     private static final int MAXIMUM_NAME_LENGTH = 4;
     private static final String ERROR_INVALID_CANNOT_FOOD_SIZE = "[ERROR] 못먹는 메뉴는 최소 0개 최대 2개이어야 합니다.";
     private static final int MAXIMUM_SIZE_CANNOT_FOOD = 2;
-    private static final int MACIMUM_CATEGORY_SIZE = 2;
+    private static final int MAXIMUM_CATEGORY_SIZE = 2;
 
     private final String name;
     private final List<Menu> canNotEatFoods;
@@ -49,7 +49,7 @@ public class Coach {
         long count = recommendResults.stream()
                 .filter(recommendResult -> recommendResult.isEqualCategory(category))
                 .count();
-        return count >= MACIMUM_CATEGORY_SIZE;
+        return count >= MAXIMUM_CATEGORY_SIZE;
     }
 
     public boolean canEat(Menu menu) {
@@ -65,9 +65,14 @@ public class Coach {
                 .anyMatch(recommendResult -> recommendResult.hasMenu(menu));
     }
 
-    public List<RecommendResultDto> toRecommendResultDto() {
+    public RecommendResultDto toRecommendResultDto() {
+        List<String> menus = mapToMenus();
+        return new RecommendResultDto(name, menus);
+    }
+
+    private List<String> mapToMenus() {
         return recommendResults.stream()
-                .map(r -> new RecommendResultDto(r.getDay().getName(), r.getCategory().getName(), r.getMenu()))
+                .map(RecommendResult::getMenu)
                 .collect(Collectors.toList());
     }
 
