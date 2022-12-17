@@ -21,8 +21,13 @@ public class MenuController {
             //OutputView.printError("코치 인원을 재설정 해주세요(2~5명 사이)");
             //start();
         }
+
+        //못먹는 음식 검사해야함(0~2개)
+        for (int i = 0; i < coach.length; i++) {
+            InputView.notFoodInput(coach[i]);
+        }
+
         RandomNum();
-        System.out.println(coach[0]);
     }
     //카테고리
     public void RandomNum(){
@@ -43,9 +48,25 @@ public class MenuController {
         }
         if (max >= 3) {
             RandomNum();
+        } else {
+            String category = "[ 카테고리 | ";
+            for (int i = 0; i < 5; i++) {
+                if (randomNum.get(i) == 1) {
+                    category = category + "일식 | ";
+                } else if (randomNum.get(i) == 2) {
+                    category = category + "한식 | ";
+                } else if (randomNum.get(i) == 3) {
+                    category = category + "중식 | ";
+                } else if (randomNum.get(i) == 4) {
+                    category = category + "아시안 | ";
+                } else if (randomNum.get(i) == 5) {
+                    category = category + "양식 | ";
+                }
+            }
+            System.out.println(category);
         }
-        System.out.println(randomNum);
-        System.out.println(max);
+
+        //System.out.println(max);
 
     }
 }

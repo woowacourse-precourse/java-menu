@@ -14,8 +14,8 @@ public class InputView {
         printBreak();
         return input;
     }
-    public static String notFoodInput() {
-        System.out.println(INPUT_NOT_FOOD);
+    public static String notFoodInput(String ch) {
+        System.out.println(ch+INPUT_NOT_FOOD);
         String input = Console.readLine();
         printBreak();
         return input;
