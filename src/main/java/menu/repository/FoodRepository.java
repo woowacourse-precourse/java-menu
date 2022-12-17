@@ -4,12 +4,12 @@ import menu.config.InitData;
 import menu.domain.Category;
 import menu.domain.Food;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static menu.domain.Category.*;
+import static menu.exception.GlobalExceptionMessage.WRONG_FOOD_NAME_EXCEPTION;
+import static menu.exception.GlobalExceptionMessage.WRONG_FOOD_NAME_PARSING_EXCEPTION;
 
 public class FoodRepository {
     private static final Map<Category, List<Food>> foods = new HashMap<>();
@@ -17,6 +17,44 @@ public class FoodRepository {
     static {
         initCategoryData();
         initFoodData();
+    }
+
+    public List<String> loadAllFoodNamesByCategory(Category category) {
+        return foods.get(category)
+                .stream()
+                .map(Food::loadName)
+                .collect(Collectors.toList());
+    }
+
+    public Food findFoodBy(Category category, String lastFoodName) {
+        return foods.get(category)
+                .stream()
+                .filter(food -> food.loadName().equals(lastFoodName))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(WRONG_FOOD_NAME_EXCEPTION.getMessage()));
+    }
+
+    public List<Food> findFoodsByNames(List<String> foodNames) {
+        if (foodNames.get(0).equals("")) {
+            return Collections.emptyList();
+        }
+        List<Food> findFoods = new ArrayList<>();
+        List<List<Food>> categoryFoods = new ArrayList<>(foods.values());
+        List<Food> totalFoods = new ArrayList<>();
+        categoryFoods.forEach(totalFoods::addAll);
+        foodNames.forEach(foodName -> totalFoods.forEach(food -> {
+            if (food.isSame(foodName)) {
+                findFoods.add(food);
+            }
+        }));
+        validateFoodSize(foodNames, findFoods);
+        return findFoods;
+    }
+
+    private void validateFoodSize(List<String> foodNames, List<Food> findFoods) {
+        if (foodNames.size() != findFoods.size()) {
+            throw new IllegalArgumentException(WRONG_FOOD_NAME_PARSING_EXCEPTION.getMessage());
+        }
     }
 
     private static void initCategoryData() {
