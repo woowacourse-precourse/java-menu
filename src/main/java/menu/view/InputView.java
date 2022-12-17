@@ -15,12 +15,18 @@ public class InputView {
      * @return
      */
     public List<String> readCoachNames() {
-        String uesrInput = getUserInput();
-        uesrInput.split(PrintMsg.COMMA.getMsg());
+        String userInput = getUserInput();
+        checkCoachNames(userInput);
         return null;
     }
-    public List<String> checkCoachNames() {
-        return null;
+    public List<String> checkCoachNames(String userInput) {
+        InputException.nullException(userInput);
+        InputException.notEndFormatException(userInput);
+
+        List<String> userList = List.of(userInput.split(PrintMsg.COMMA.getMsg()));
+        InputException.notMemberSizeException(userList.size());
+        InputException.notCoachFormatException(userList);
+        return userList;
     }
 
     /**

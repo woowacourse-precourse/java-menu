@@ -14,10 +14,10 @@ public class InputExceptionTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
     @ParameterizedTest
-    @ValueSource(strings = {"", " "})
+    @ValueSource(strings = {"토미,제임스,포코,"})
     public void notEndFormat_test(String userInput) {
         assertThatThrownBy(() -> {
-            InputException.notEndFormat(userInput);
+            InputException.notEndFormatException(userInput);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -25,7 +25,7 @@ public class InputExceptionTest {
     @ValueSource(ints = {0,1,6})
     public void notMemberSize_test(int size) {
         assertThatThrownBy(() -> {
-            InputException.notMemberSize(size);
+            InputException.notMemberSizeException(size);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -33,7 +33,7 @@ public class InputExceptionTest {
     @ValueSource(ints = {0,1,5})
     public void notCoachNameSize_test(int size) {
         assertThatThrownBy(() -> {
-            InputException.notCoachNameSize(size);
+            InputException.notCoachNameSizeException(size);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
