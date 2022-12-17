@@ -46,6 +46,10 @@ public enum Category {
         return menuList;
     }
 
+    public String getCategoryName() {
+        return categoryName;
+    }
+
     public boolean equals(Category category) {
         return categoryNumber == category.categoryNumber;
     }
