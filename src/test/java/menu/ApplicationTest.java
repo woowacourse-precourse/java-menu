@@ -21,12 +21,21 @@ import org.mockito.MockedStatic;
 public class ApplicationTest extends NsTest {
     private static final String ERROR_DIFFERENT_LENGTHS = "[ERROR] 코치의 이름은 최소 2글자, 최대 4글자이다.";
     private static final String ERROR_DIFFERENT_COACH_LENGTHS = "[ERROR] 코치는 최소 2명, 최대 5명까지 식사를 함께 한다.";
+    private static final String ERROR_DIFFERENT_CANT_EAT_LENGTHS = "[ERROR] 각 코치는 최소 0개, 최대 2개의 못 먹는 메뉴가 있다.";
 
     private static final Duration RANDOM_TEST_TIMEOUT = Duration.ofSeconds(10L);
 
     @DisplayName("전체 기능 테스트")
     @Nested
     class AllFeatureTest {
+        @Test
+        void 코치_못_먹는_음식_예외_테스트() {
+            assertSimpleTest(() -> {
+                runException("토미,제임스,포코","우동,스시","우동,스시,마파두부");
+                assertThat(output()).contains(ERROR_DIFFERENT_CANT_EAT_LENGTHS);
+            });
+        }
+
         @Test
         void 코치_수_예외_테스트() {
             assertSimpleTest(() -> {
