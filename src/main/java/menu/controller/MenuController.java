@@ -29,6 +29,7 @@ public class MenuController {
         readCoachNames();
         readCoachsCannotEat();
         doRecommand();
+        printResult();
     }
 
     public void readCoachNames() {
@@ -70,5 +71,10 @@ public class MenuController {
      */
     public void doRecommand() {
         menuDomain.doRecommand();
+    }
+
+    public void printResult() {
+        outputView.printEmptyMsg();
+        outputView.printService(menuDomain.getResult());
     }
 }

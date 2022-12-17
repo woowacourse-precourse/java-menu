@@ -81,4 +81,10 @@ public class MenuDomain {
         return name;
     }
 
+    public Result getResult() {
+        Result result = Result.of();
+        result.initCoach(coachs);
+        result.setRecommand(daysRecommand, coachs);
+        return result;
+    }
 }

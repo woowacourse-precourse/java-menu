@@ -2,6 +2,9 @@ package menu.util;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum Categori {
     JAPAN(1, "일식"),
     KOREA(2, "한식"),
@@ -18,6 +21,14 @@ public enum Categori {
         this.name = name;
     }
 
+    public static List<String> getCategoriNames() {
+       List<String> names = new ArrayList<>();
+        for (Categori categori : Categori.values()) {
+            names.add(categori.name);
+        }
+        return names;
+    }
+
     public static String getCategoriNameWithCode(int code) {
         for (Categori categori : Categori.values()) {
             if (categori.number == code) {
@@ -29,10 +40,6 @@ public enum Categori {
 
     public String getName() {
         return name;
-    }
-
-    public int getNumber() {
-        return number;
     }
 
 }

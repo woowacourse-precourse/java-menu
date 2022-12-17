@@ -10,5 +10,6 @@ public class Application {
         // TODO: 프로그램 구현
         MenuController menuController = new MenuController(new InputView(), new OutputView(), new MenuDomain());
         menuController.initMenu();
+        menuController.start();
     }
 }
