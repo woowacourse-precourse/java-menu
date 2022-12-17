@@ -20,4 +20,8 @@ public enum Category {
   public static Category getCategory(int categoryId) {
     return Arrays.stream(Category.values()).filter(it -> it.categoryId == categoryId).findFirst().orElseThrow(IllegalArgumentException::new);
   }
+
+  public static String getCategoryInKorean(int categoryId) {
+    return Arrays.stream(Category.values()).filter(it -> it.categoryId == categoryId).map(it -> it.categoryName).findFirst().orElseThrow(IllegalArgumentException::new);
+  }
 }
