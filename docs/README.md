@@ -5,6 +5,10 @@
     - [x] 음식 추가 기능
     - [x] 해당 음식을 가지고 있는지 확인 기능
 - [ ] Coach
+    - [ ] 필드, 생성자, getter 생성
+    - [ ] 못 먹는 음식 추가 기능
+    - [ ] 이름 글자 validate
+    - [ ] 먹을 수 있는 음식인지 체크 기능
 
 ## repository
 - [ ] foodRepository
