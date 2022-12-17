@@ -20,9 +20,11 @@ public class ServiceController {
 
     public void run() {
         outputView.printServiceStartMessage();
+
         List<Coach> coaches = makeCoaches();
         Recommendation recommendation = new Recommendation(coaches);
         recommendation.run();
+
         outputView.printServiceFinishMessage(recommendation.requestCategoryFormat(), recommendation.getCoaches());
     }
 
@@ -31,8 +33,8 @@ public class ServiceController {
 
         List<String> coachNames = readCoachNames();
         for (String coachName : coachNames) {
-            List<String> canNotEatMenus = readCanNotEatMenus(coachName);
-            Coach coach = new Coach(coachName, canNotEatMenus);
+            List<String> deniedMenus = readDeniedMenus(coachName);
+            Coach coach = new Coach(coachName, deniedMenus);
             coaches.add(coach);
         }
 
@@ -49,7 +51,7 @@ public class ServiceController {
         }
     }
 
-    private List<String> readCanNotEatMenus(String coachName) {
+    private List<String> readDeniedMenus(String coachName) {
         while (true) {
             try {
                 return inputView.readCanNotEatMenus(coachName);
