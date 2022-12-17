@@ -4,6 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputView {
+    private static final String MENU_PROGRAM_START_MESSAGE = "점심 메뉴 추천을 시작합니다.\n";
+
+    public static void printMenuProgramStartMessage(){
+        System.out.println(MENU_PROGRAM_START_MESSAGE);
+    }
 
     public static void printWeekRecommendMenu(List<String> categories, Map<String, List<String>> menus) {
         System.out.println("메뉴 추천 결과입니다.");

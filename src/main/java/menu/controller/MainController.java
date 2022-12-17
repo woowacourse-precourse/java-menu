@@ -1,5 +1,7 @@
 package menu.controller;
 
+import menu.view.OutputView;
+
 public class MainController {
     private final MenuController menuController;
     private final CoachController coachController;
@@ -13,6 +15,7 @@ public class MainController {
     }
 
     public void run() {
+        OutputView.printMenuProgramStartMessage();
         menuController.initMenu();
         coachController.addCoaches();
         menuRecommendController.recommendWeekMenu();
