@@ -1,4 +1,4 @@
-package menu;
+package menu.maker;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import menu.model.Category;
