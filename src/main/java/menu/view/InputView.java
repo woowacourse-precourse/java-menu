@@ -22,6 +22,7 @@ public class InputView {
         String input = Console.readLine();
         String[] banFoods = parse(input);
         InputValidator.validateBanFoodsNumber(banFoods);
+        InputValidator.validateDuplicatedBanFoodNames(banFoods);
         for(String banFood : banFoods){
             InputValidator.validateExistFood(banFood);
         }

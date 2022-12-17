@@ -46,5 +46,10 @@ public class InputValidator {
         }
     }
 
-
+    public static void validateDuplicatedBanFoodNames(String[] names){
+        Set<String> set = new HashSet<>(Arrays.asList(names));
+        if(names.length != set.size()){
+            throw new IllegalArgumentException(Message.DUPLICATED_INPUT_ERROR);
+        }
+    }
 }
