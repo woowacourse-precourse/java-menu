@@ -8,6 +8,10 @@ public class MenuApplication {
     public void run() {
         doSetup();
         getCoachInfo();
+        doRecommending();
+    }
+
+    private static void doRecommending() {
         ControllerHolder.get(ControllerName.RECOMMANDING).process();
     }
 
