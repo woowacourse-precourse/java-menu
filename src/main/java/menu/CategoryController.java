@@ -79,4 +79,17 @@ public class CategoryController {
 
         throw new IllegalArgumentException("카테고리 고르는 것이 불가능합니다.");
     }
+
+    public List<String> getRecommendMenus(String name) {
+        Coach coach = CoachRepository.findCoachByName(name);
+        List<String> foods = coach.getFoods();
+        return foods;
+    }
+
+    public List<String> getCategoryNames(List<Category> categories) {
+        return categories.stream()
+                .map(category -> category.getName())
+                .collect(Collectors.toList());
+    }
+
 }
