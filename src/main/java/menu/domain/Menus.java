@@ -2,6 +2,7 @@ package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Menus {
 
@@ -22,7 +23,10 @@ public class Menus {
         return false;
     }
 
-    public Menu pickRandomMenu() {
-        return Randoms.shuffle(menus).get(0);
+    public String pickRandomMenu() {
+        List<String> candidateMenus = menus.stream()
+            .map(Menu::getName)
+            .collect(Collectors.toList());
+        return Randoms.shuffle(candidateMenus).get(0);
     }
 }

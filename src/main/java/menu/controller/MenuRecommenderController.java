@@ -1,5 +1,6 @@
 package menu.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +11,7 @@ import menu.domain.Coach;
 import menu.domain.Menu;
 import menu.domain.MenuRecommender;
 import menu.domain.Menus;
+import menu.domain.RecommendMenus;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -25,14 +27,17 @@ public class MenuRecommenderController {
 
     public void run() {
         postBannedMenusOfCoach();
-        recommendMenus();
+        List<RecommendMenus> recommendMenus = recommendMenus();
     }
 
-    private void recommendMenus() {
+    private List<RecommendMenus> recommendMenus() {
+        List<RecommendMenus> recommendMenus = new ArrayList<>();
         for (Coach coach : coaches) {
             List<Category> categories = menuRecommender.recommendCategories();
-            List<Menu> menus = menuRecommender.recommendMenus(coach, categories);
+            List<String> menus = menuRecommender.recommendMenus(coach, categories);
+            recommendMenus.add(new RecommendMenus(coach, menus));
         }
+        return recommendMenus;
     }
 
     private void postBannedMenusOfCoach() {

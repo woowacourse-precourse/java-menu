@@ -1,5 +1,6 @@
 package menu.util;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.Category;
@@ -92,15 +93,13 @@ public class Validator {
         }
     }
 
-    public static void validateRecommendMenus(List<Menu> recommendMenus) {
+    public static void validateRecommendMenus(List<String> recommendMenus) {
         validateDuplicatedMenus(recommendMenus);
     }
 
-    private static void validateDuplicatedMenus(List<Menu> recommendMenus) {
+    private static void validateDuplicatedMenus(List<String> recommendMenus) {
         int originMenuSize = recommendMenus.size();
-        int menuSize = recommendMenus.stream()
-            .map(Menu::getName)
-            .collect(Collectors.toSet())
+        int menuSize = new HashSet<>(recommendMenus)
             .size();
 
         if (originMenuSize != menuSize) {

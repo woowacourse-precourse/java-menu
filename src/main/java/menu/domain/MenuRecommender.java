@@ -29,9 +29,9 @@ public class MenuRecommender {
         return categories;
     }
 
-    public List<Menu> recommendMenus(Coach coach, List<Category> categories) {
+    public List<String> recommendMenus(Coach coach, List<Category> categories) {
         try {
-            List<Menu> recommendMenus = new ArrayList<>();
+            List<String> recommendMenus = new ArrayList<>();
             for (Category category : categories) {
                 recommendMenu(category, coach, recommendMenus);
             }
@@ -43,10 +43,10 @@ public class MenuRecommender {
         return recommendMenus(coach, categories);
     }
 
-    private void recommendMenu(Category category, Coach coach, List<Menu> recommendMenus) {
+    private void recommendMenu(Category category, Coach coach, List<String> recommendMenus) {
         Menus candidateMenus = menus.get(category);
-        Menu menu = candidateMenus.pickRandomMenu();
-        if (!coach.isBannedMenu(menu.getName())) {
+        String menu = candidateMenus.pickRandomMenu();
+        if (!coach.isBannedMenu(menu)) {
             recommendMenus.add(menu);
             return;
         }
