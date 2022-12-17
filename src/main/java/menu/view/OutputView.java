@@ -22,8 +22,11 @@ public class OutputView {
 
     public static void printResult(List<String> recomandedCategory, List<Coach> coaches) {
         System.out.println(Message.RESULT);
-        System.out.println(START + "구분");
+        System.out.print(START + "구분" + SEPARATOR);
         System.out.print(String.join(SEPARATOR, Day.getDayValueList()));
+        System.out.println(END);
+        System.out.print(START + "카테고리"+ SEPARATOR);
+        System.out.print(String.join(SEPARATOR, recomandedCategory));
         System.out.println(END);
         for (Coach coach : coaches) {
             System.out.print(START + coach.getName());
@@ -31,6 +34,7 @@ public class OutputView {
                 System.out.print(SEPARATOR);
                 System.out.print(menu);
             }
+            System.out.println(END);
         }
         System.out.println();
         System.out.println(Message.FINISH);

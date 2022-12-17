@@ -32,7 +32,6 @@ public class MenuController {
                 readCoach();
                 readDislikeMenu();
                 randomSelect();
-                System.out.println("finish?");
                 OutputView.printResult(recomandedCategory, coaches);
                 keep = false;
             }
@@ -72,11 +71,10 @@ public class MenuController {
 
     private void randomSelect() {
         List<String> days = Day.getDayValueList();
-        List<String> menus = new ArrayList<>();
         for (String day : days) {
             selectCategory();
-            selectMenu();
         }
+            selectMenu();
     }
 
     private void selectCategory() {
@@ -96,9 +94,6 @@ public class MenuController {
         for (Coach coach : coaches) {
             for (String recommandCategory : recomandedCategory) {
                 checkToCoach(coach, recommandCategory);
-                if (coach.getRecomandedMenu().size() == 5) {
-                    break;
-                }
             }
         }
     }
@@ -114,9 +109,7 @@ public class MenuController {
             // 뽑은 추천메뉴와 싫은메뉴 전달해서 코치의 진짜 추천메뉴에 추가
 
             isCorrect(coach, getRandomMenu(coach, menuPerCategory), recommandMenu);
-            if (coach.getRecomandedMenu().size() == 5) {
-                flag = false;
-            }
+            flag = false;
         }
     }
 
