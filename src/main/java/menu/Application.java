@@ -5,12 +5,11 @@ import menu.service.CategoryRecommendService;
 import menu.service.MenuRecommendService;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class Application {
     public static void main(String[] args) {
-        System.out.println("점심 메뉴 추천을 시작합니다.\n");
-        System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
-        String[] coachNames = Console.readLine().split(",");
+        String[] coachNames = inputCoachNames();
         System.out.println();
         for (String coachName : coachNames) {
             System.out.printf("%s(이)가 못 먹는 메뉴를 입력해 주세요.\n", coachName);
@@ -46,6 +45,33 @@ public class Application {
         }
         System.out.println();
         System.out.println("추천을 완료했습니다.");
+    }
+
+    private static String[] inputCoachNames() {
+        while (true) {
+            System.out.println("점심 메뉴 추천을 시작합니다.\n");
+            System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
+            try {
+                String[] coachNames = getValidCoachNames();
+                return coachNames;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static String[] getValidCoachNames() throws IllegalArgumentException {
+        String[] coachNames = Console.readLine().split(",");
+        if (coachNames.length < 2) {
+            throw new IllegalArgumentException("[ERROR] 코치는 최소 2명 이상 입력해야 합니다.");
+        }
+        if (coachNames.length > 5) {
+            throw new IllegalArgumentException("[ERROR] 코치는 최대 5명 입력해야 합니다.");
+        }
+        if (Stream.of(coachNames).anyMatch((coachName) -> coachName.length() < 2 || coachName.length() > 4)) {
+            throw new IllegalArgumentException("[ERROR] 코치 이름은 2~4글자이어야 합니다.");
+        }
+        return coachNames;
     }
 
     private static void printFormattedResultLine(String group, List<String> contents) {
