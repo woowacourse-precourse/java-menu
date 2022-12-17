@@ -13,14 +13,25 @@ public class RecommendResultService {
 
     public void createAndSaveResult(Coach coach, DayWeek dayWeek, String menuName) {
         RecommendResult recommendResult = new RecommendResult(dayWeek, menuName);
-        System.out.println("recommendResult = " + recommendResult);
         resultRepository.saveMenuResult(coach, recommendResult);
     }
 
     public void saveCategoryResult(DayWeek dayWeek, Category category) {
         resultRepository.saveCategoryResult(dayWeek, category);
     }
-    public void getRecommendResult(List<Coach> coaches) {
 
+    public String getRecommendResult(List<Coach> coaches) {
+        StringBuilder recommendResult = new StringBuilder("");
+        for (Coach coach : coaches) {
+            List<RecommendResult> results = resultRepository.findRecommendResultByCoach(coach);
+            recommendResult.append("[ ").append(coach).append(" | ")
+                    .append(RecommendResult.getRecommendMenuNames(results)).append(" ]\n");
+        }
+        return recommendResult.toString();
+    }
+
+    public String getRecommendCategory() {
+        List<Category> categories = resultRepository.findCategoryByDayWeek();
+        return Category.getCategoryNames(categories);
     }
 }
