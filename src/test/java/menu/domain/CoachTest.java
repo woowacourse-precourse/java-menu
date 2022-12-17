@@ -3,6 +3,7 @@ package menu.domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -25,5 +26,16 @@ class CoachTest {
 
         assertThatThrownBy(() -> coach.setBlacklist(List.of("쌈밥", "쌀국수", "탕수육")))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("못 먹는 음식으면 True를 반환한다.")
+    @ParameterizedTest
+    @CsvSource({"쌈밥","쌀국수"})
+    void blacklistTest(String name) {
+        Coach coach = new Coach("포비");
+
+        coach.setBlacklist(List.of("쌈밥", "쌀국수"));
+
+        Assertions.assertThat(coach.isBlacklist(name)).isTrue();
     }
 }
