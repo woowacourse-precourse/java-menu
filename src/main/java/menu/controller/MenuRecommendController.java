@@ -60,11 +60,11 @@ public class MenuRecommendController {
     private Menu getMenuByCoach(MenuCategory menuCategory, Coach coach) {
         List<RecommendResult> recommendResults = recommendResultService.findAll();
         Menu randomMenu = menuService.getRandomMenuByMenuCategory(menuCategory);
-        if (recommendResults.stream().map(recommendResult
-                -> recommendResult.getCoachAndMenu().get(coach)).collect(Collectors.toList()).stream()
-                .anyMatch(menu -> menu.equals(randomMenu))) {
-            return getMenuByCoach(menuCategory, coach);
-        }
+        List<Menu> menus = recommendResults.stream().map(recommendResult
+                -> recommendResult.getCoachAndMenu().get(coach)).collect(Collectors.toList());
+//        if(menus.size() != 0 && menus.stream().anyMatch(menu -> menu.equals(randomMenu))) {
+//            return getMenuByCoach(menuCategory, coach);
+//        }
         return randomMenu;
     }
 
@@ -91,9 +91,17 @@ public class MenuRecommendController {
         List<String> coachNames = this.readCoaches();
         for (String coachName : coachNames) {
             OutputView.printInputHateMenuMessage(coachName);
-            List<Menu> hateMenus = InputView.readHateMenus().stream().map(menuService::findByName).collect(Collectors.toList());
-            coachService.addCoach(coachName, hateMenus);
+            saveHateMenus(coachName);
         }
+    }
+
+    private void saveHateMenus(String coachName) {
+        List<String> hateMenus = InputView.readHateMenus();
+        if(hateMenus.get(0).isBlank()){
+            coachService.addCoach(coachName, new ArrayList<>());
+            return;
+        }
+        coachService.addCoach(coachName, hateMenus.stream().map(menuService::findByName).collect(Collectors.toList()));
     }
 
     public List<String> readCoaches() {

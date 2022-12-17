@@ -20,7 +20,9 @@ public class InputView {
 
     public static List<String> readHateMenus() {
         List<String> hateMenus = Arrays.stream(Console.readLine().split(",")).collect(Collectors.toList());
-        Validate.validateHateMenu(hateMenus);
+        if(!hateMenus.get(0).isEmpty()) {
+            Validate.validateHateMenu(hateMenus);
+        }
         return hateMenus;
     }
 }

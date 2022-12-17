@@ -37,10 +37,14 @@ public class MenuRepository {
                 -> menu.getName().equals(name))
                 .findFirst()
                 .orElseThrow(()
-                        -> new IllegalArgumentException(IllegalArgumentExceptionMessage.NO_MATCHING_MENU.getMessage()));
+                        -> new IllegalArgumentException( name + IllegalArgumentExceptionMessage.NO_MATCHING_MENU.getMessage()));
     }
 
     public List<Menu> findByCategory(MenuCategory menuCategory) {
         return menus.stream().filter(menu -> menu.getMenuCategory().equals(menuCategory)).collect(Collectors.toList());
+    }
+
+    public void save(Menu menu) {
+        menus.add(menu);
     }
 }

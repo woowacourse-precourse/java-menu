@@ -15,4 +15,12 @@ public class Coach {
         this.name = name;
         this.hateMenus = hateMenus;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Menu> getHateMenus() {
+        return hateMenus;
+    }
 }

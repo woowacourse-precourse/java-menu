@@ -26,6 +26,9 @@ public class MenuService {
     public Menu getRandomMenuByMenuCategory(MenuCategory menuCategory) {
         List<Menu> menus = menuRepository.findByCategory(menuCategory);
         return Randoms.shuffle(menus).get(0);
+    }
 
+    public void save(Menu menu) {
+        menuRepository.save(menu);
     }
 }

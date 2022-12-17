@@ -81,8 +81,8 @@ public class OutputView {
         }
     }
 
-    private static String getMessageByCoach(Coach cocoach, List<Menu> menus) {
-        StringBuilder stringBuilder = new StringBuilder(DIVISION_START + DIVISION_SPACE + cocoach + DIVISION_SPACE + DIVISION_LINE);
+    private static String getMessageByCoach(Coach coach, List<Menu> menus) {
+        StringBuilder stringBuilder = new StringBuilder(DIVISION_START + DIVISION_SPACE + coach.getName() + DIVISION_SPACE + DIVISION_LINE);
         for (Menu menu : menus) {
             stringBuilder.append(DIVISION_SPACE + menu.getName() + DIVISION_SPACE + DIVISION_LINE);
         }
