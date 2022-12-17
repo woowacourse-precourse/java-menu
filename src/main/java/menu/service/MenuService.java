@@ -12,6 +12,15 @@ public class MenuService {
 	private final MenuRepository menuRepository = MenuRepository.getInstance();
 	private final InputView inputView = InputView.getInstance();
 
+	private static final MenuService instance = new MenuService();
+
+	private MenuService() {
+	}
+
+	public static MenuService getInstance() {
+		return instance;
+	}
+
 	//코치 리스트 생성 기능 - 서비스
 	public List<Coach> makeCoachList() {
 		List<Coach> coaches = inputView.readCoachNames();
