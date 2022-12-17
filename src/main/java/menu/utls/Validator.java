@@ -4,8 +4,6 @@ import menu.message.ErrorMessage;
 import menu.model.Category;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class Validator {
     private static final String DELIMITER = ",";
@@ -25,9 +23,18 @@ public class Validator {
     }
 
     private void checkDuplicateName(String[] names) {
-        List<String> nameCheck = Arrays.stream(names).collect(Collectors.toList());
-        for (String name : names) {
-            if (nameCheck.contains(name)) {
+        for (int index = 0; index < names.length; index++) {
+            check(names, index);
+        }
+    }
+
+    private void check(String[] names, int index) {
+        String name = names[index];
+        for (int compareIndex = 0; compareIndex < names.length; compareIndex++) {
+            if (index == compareIndex) {
+                continue;
+            }
+            if (name.equals(names[compareIndex])) {
                 throw new IllegalArgumentException(ErrorMessage.INCORRECT_COACH_NAMES);
             }
         }
