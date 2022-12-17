@@ -28,6 +28,8 @@ public class MenuController {
         for (int day = 1; day <= NUMBER_OF_DAY; day++) {
             recommendMenu();
         }
+
+        outputView.printServiceEndNotice(coaches);
     }
 
     private void readCoachNames() {
