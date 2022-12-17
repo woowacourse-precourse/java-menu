@@ -1,6 +1,7 @@
 package menu.view;
 
 import menu.ErrorConstants;
+import menu.model.Category;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,6 +13,7 @@ public class InputValidator {
     private static final int MAX_COACH_NAME_LENGTH = 4;
     private static final int MIN_COACH_COUNT = 2;
     private static final int MAX_COACH_COUNT = 5;
+    private static final int MAX_CANNOT_EAT_FOODS_COUNT = 2;
 
     public void validateReadCoachNames(List<String> coachNames) {
         if (isWrongCoachNameLength(coachNames)) {
@@ -33,5 +35,19 @@ public class InputValidator {
     private boolean isWrongCoachCount(List<String> coachNames) {
         int coachCount = coachNames.size();
         return coachCount < MIN_COACH_COUNT || coachCount > MAX_COACH_COUNT;
+    }
+
+    public void validateReadCannotEatFoods(List<String> cannotEatFoods) {
+        if (isNotExistFoods(cannotEatFoods)) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_PREFIX + "등록된 메뉴에 해당 메뉴가 없습니다.");
+        }
+    }
+
+    private boolean isNotExistFoods(List<String> cannotEatFoods) {
+        long notExistCount = cannotEatFoods.stream()
+                .filter(Category::isNotExistMenu)
+                .count();
+
+        return notExistCount != 0;
     }
 }
