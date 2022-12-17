@@ -16,4 +16,8 @@ public class Coach {
         this.inedibleFoods = new ArrayList<>();
         this.weeklyFoods = new LinkedHashMap<>();
     }
+
+    public String getName() {
+        return name;
+    }
 }
