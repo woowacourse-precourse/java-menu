@@ -70,20 +70,17 @@ public class RecommendController {
         return frequency >= NUMBER_OF_MAX_CATEGORY_DUPLICATE;
     }
 
-    private Menu recommendMenuByCategory(Category category) {
-        List<Menu> menuByThisCategory = menuRepository.getMenusByCategory(category);
-        List<String> menuNamesByThisCategory = menuByThisCategory.stream()
-                .map(Menu::getName)
-                .collect(Collectors.toList());
-        String menu = Randoms.shuffle(menuNamesByThisCategory).get(0);
+    private Menu recommendMenu() {
+        List<String> menus = menuRepository.getMenuNames();
+        String menu = Randoms.shuffle(menus).get(0);
         return menuRepository.getMenuByName(menu);
     }
 
     private void recommendMenuEachCoach(Coach coach, Category category) {
         Menu recommendMenu;
         do {
-            recommendMenu = recommendMenuByCategory(category);
-        } while (coach.getCanNotEats().contains(recommendMenu) || coach.isRecommended(recommendMenu));
+            recommendMenu = recommendMenu();
+        } while (!(recommendMenu.getCategory() == category) || coach.getCanNotEats().contains(recommendMenu) || coach.isRecommended(recommendMenu));
         coach.addRecommendMenu(recommendMenu);
     }
 }

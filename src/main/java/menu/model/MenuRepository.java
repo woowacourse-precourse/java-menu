@@ -39,7 +39,7 @@ public class MenuRepository {
                 .orElseThrow(() -> new IllegalArgumentException(NO_MENU_MESSAGE));
     }
 
-    public List<Menu> getMenusByCategory(Category category) {
-        return menus.stream().filter(v -> v.getCategory() == category).collect(Collectors.toList());
+    public List<String> getMenuNames() {
+        return menus.stream().map(v -> v.getName()).collect(Collectors.toList());
     }
 }
