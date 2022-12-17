@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,18 +15,20 @@ public final class FileResolver {
 
     private FileResolver() {}
 
-    public static void resolveFileToMenuByCategoryData(Map<Category, List<Menu>> menuData, String filePath) throws IOException {
+    public static Map<Category, List<Menu>> resolveFileToMenuByCategoryData(String filePath) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
 
+        Map<Category, List<Menu>> menuData = new HashMap<>();
         String line;
         while ((line = reader.readLine()) != null) {
-            String[] categoryAndMenus = line.split(",");
+            String[] categoryAndMenus = line.trim().split(":");
             Category categoryName = Category.findCategoryByName(categoryAndMenus[0]);
 
-            String[] menus = categoryAndMenus[1].split(", ");
+            String[] menus = categoryAndMenus[1].trim().split(", ");
 
             menuData.put(categoryName, generateMenusName(menus));
         }
+        return menuData;
     }
 
     private static List<Menu> generateMenusName(String[] menus) {
