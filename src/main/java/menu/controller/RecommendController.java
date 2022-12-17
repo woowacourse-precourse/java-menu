@@ -28,17 +28,6 @@ public class RecommendController {
         this.outputview = new Outputview();
     }
 
-    private void addCoaches() {
-        List<String> coachNames = inputview.readCoachNames();
-        coaches.addAll(coachNames.stream().map(Coach::new).collect(Collectors.toList()));
-    }
-
-    private void addCannotEats() {
-        for (Coach coach : coaches) {
-            coach.addCannotEats(inputview.readCantEats(coach.getName(), menuRepository));
-        }
-    }
-
     public void doRecommend() {
         outputview.printStart();
         addCoaches();
@@ -52,21 +41,15 @@ public class RecommendController {
         outputview.printResult(coaches, categories);
     }
 
-    private void recommendMenuEachCoach(Coach coach, Category category) {
-        Menu recommendMenu;
-        do {
-            recommendMenu = recommendMenuByCategory(category);
-        } while (coach.getCanNotEats().contains(recommendMenu) || coach.isRecommended(recommendMenu));
-        coach.addRecommendMenu(recommendMenu);
+    private void addCoaches() {
+        List<String> coachNames = inputview.readCoachNames();
+        coaches.addAll(coachNames.stream().map(Coach::new).collect(Collectors.toList()));
     }
 
-    public Menu recommendMenuByCategory(Category category) {
-        List<Menu> menuByThisCategory = menuRepository.getMenusByCategory(category);
-        List<String> menuNamesByThisCategory = menuByThisCategory.stream()
-                .map(Menu::getName)
-                .collect(Collectors.toList());
-        String menu = Randoms.shuffle(menuNamesByThisCategory).get(0);
-        return menuRepository.getMenuByName(menu);
+    private void addCannotEats() {
+        for (Coach coach : coaches) {
+            coach.addCannotEats(inputview.readCantEats(coach.getName(), menuRepository));
+        }
     }
 
     public List<Category> getFiveCategories() {
@@ -82,6 +65,7 @@ public class RecommendController {
         return categories;
     }
 
+
     private boolean isMoreThanTwo(List<Category> categories, Category newCategory) {
         int frequency = Collections.frequency(categories, newCategory);
         if (frequency > NUMBER_OF_MAX_CATEGORY_DUPLICATE) {
@@ -89,4 +73,22 @@ public class RecommendController {
         }
         return false;
     }
+
+    public Menu recommendMenuByCategory(Category category) {
+        List<Menu> menuByThisCategory = menuRepository.getMenusByCategory(category);
+        List<String> menuNamesByThisCategory = menuByThisCategory.stream()
+                .map(Menu::getName)
+                .collect(Collectors.toList());
+        String menu = Randoms.shuffle(menuNamesByThisCategory).get(0);
+        return menuRepository.getMenuByName(menu);
+    }
+
+    private void recommendMenuEachCoach(Coach coach, Category category) {
+        Menu recommendMenu;
+        do {
+            recommendMenu = recommendMenuByCategory(category);
+        } while (coach.getCanNotEats().contains(recommendMenu) || coach.isRecommended(recommendMenu));
+        coach.addRecommendMenu(recommendMenu);
+    }
+
 }
