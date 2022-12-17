@@ -21,6 +21,7 @@ public class MenuDecideController {
         }
 
         service.makeCategoryResult();
+        output.printResult(service.getCategoryResult());
     }
 
     private void makeCatEatMenus(Coach coach) {

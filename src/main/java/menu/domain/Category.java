@@ -23,4 +23,8 @@ public enum Category {
         }
         throw new IllegalArgumentException("[ERROR] 해당 카테고리를 찾을 수 없슶니다.");
     }
+
+    public String getName() {
+        return name;
+    }
 }

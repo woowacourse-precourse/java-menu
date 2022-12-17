@@ -29,15 +29,20 @@ public class MenuDecideService {
     }
 
     public void makeCategoryResult() {
-        Category category = decideCategory();
-        while (!categoryResult.isPossible(category)) {
-            category = decideCategory();
+        while (categoryResult.getSize() < 5) {
+            Category category = decideCategory();
+            if (categoryResult.isPossible(category)) {
+                categoryResult.add(category);
+            }
         }
-        categoryResult.add(category);
     }
 
     private Category decideCategory() {
         int number = Randoms.pickNumberInRange(1, 5);
         return Category.findByNumber(number);
+    }
+
+    public CategoryResult getCategoryResult() {
+        return categoryResult;
     }
 }
