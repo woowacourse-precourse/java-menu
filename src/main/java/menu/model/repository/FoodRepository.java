@@ -1,5 +1,6 @@
 package menu.model.repository;
 
+import menu.model.domain.Coach;
 import menu.model.domain.Food;
 
 import java.util.ArrayList;
@@ -16,11 +17,15 @@ public class FoodRepository {
         return id++;
     }
 
-//    public Food findByName(String name) {
-//        return members.values().stream()
-//                .filter(member -> member.getName().equals(name))
-//                .findFirst().orElse(null);
-//    }
+    public List<Food> findAll() {
+        return new ArrayList<>(foods.values());
+    }
+
+    public Food findByName(String name) {
+        return foods.values().stream()
+                .filter(food -> food.getName().equals(name))
+                .findFirst().orElse(null);
+    }
 //
 //    public List<Member> findAll() {
 //        return new ArrayList<>(members.values());
