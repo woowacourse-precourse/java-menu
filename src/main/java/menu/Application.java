@@ -1,5 +1,6 @@
 package menu;
 
+import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.MenuRecommender;
 import menu.ui.input.Input;
@@ -19,6 +20,8 @@ public class Application {
         List<Coach> coachList = createCoachList(coachNames, bannedMenus);
         MenuRecommender menuRecommender = new MenuRecommender(coachList);
         List<List<String>> recommendationResult = menuRecommender.getRecommendationResult();
+        List<Category> categories = menuRecommender.getCategoryHistory();
+        output.printResult(categories, recommendationResult);
         output.notifyEnding();
     }
 
