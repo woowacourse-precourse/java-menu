@@ -13,4 +13,9 @@ public class RecommendResult {
     public Menu getMenus(DayOfWeek dayOfWeek) {
         return result.get(dayOfWeek);
     }
+
+    public boolean containMenu(Menu menu) {
+        return result.containsValue(menu);
+    }
+
 }

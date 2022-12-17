@@ -42,6 +42,9 @@ public class MenuRecommender {
         for (Coach coach : group.getGroup()) {
             RecommendResult recommendResult = result.get(coach);
             Menu recommendedMenu = selectMenu(coach, menuNames);
+            while (recommendResult.containMenu(recommendedMenu)) {
+                recommendedMenu = selectMenu(coach, menuNames);
+            }
             recommendResult.putMenus(dayOfWeek, recommendedMenu);
             result.put(coach, recommendResult);
         }
