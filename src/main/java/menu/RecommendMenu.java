@@ -45,6 +45,11 @@ public class RecommendMenu {
 		menu.add(new String[] { "라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니"});
 	}
 	
+	public void recommendProcess() {
+		pickCategoryForAWeek();
+		pickRandomFood();
+	}
+	
 	public void pickCategoryForAWeek() {
 		String category = "";
 		boolean checkPass = false;

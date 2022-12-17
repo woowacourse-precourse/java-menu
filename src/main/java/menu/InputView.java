@@ -11,8 +11,8 @@ import org.assertj.core.util.Arrays;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-	ArrayList<String> coachName;
-	LinkedHashMap<String, ArrayList<String>> notEatingMenuForEachCoach = new LinkedHashMap<>();
+	private ArrayList<String> coachName;
+	private LinkedHashMap<String, ArrayList<String>> notEatingMenuForEachCoach = new LinkedHashMap<>();
 	
 	public void askCoachName() {
 		boolean checkPass = false;
@@ -111,5 +111,13 @@ public class InputView {
 	public void inputNotEatingMenuForEachCoach(int coachIndex, String notEatingMenu) {
 		String[] notEatingMenuStr = notEatingMenu.split(",");
 		notEatingMenuForEachCoach.put(coachName.get(coachIndex), new ArrayList(Arrays.asList(notEatingMenuStr)));
+	}
+	
+	public ArrayList<String> getCoachName(){
+		return coachName;
+	}
+	
+	public LinkedHashMap<String, ArrayList<String>> getNotEatingMenuForEachCoach() {
+		return notEatingMenuForEachCoach;
 	}
 }

@@ -1,9 +1,13 @@
 package menu;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
 public class Application {
+	static InputView iv = new InputView();
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+    	iv.askCoachName();
+    	iv.askNotEatingMenu();
+    	RecommendMenu rm = new RecommendMenu(iv.getCoachName(), iv.getNotEatingMenuForEachCoach());
+    	rm.recommendProcess();
+    	OutputView ov = new OutputView(rm.getCoachName(), rm.getCategoryForWeek(), rm.getResult());
+    	ov.printResult();
     }
 }

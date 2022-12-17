@@ -15,7 +15,7 @@ public class OutputView {
 		this.coachName = coachName;
 	}
 	
-	public void prinktResult() {
+	public void printResult() {
 		printRecommendInstruction();
 		printPickedCategory();
 		printEachPersonResult();
