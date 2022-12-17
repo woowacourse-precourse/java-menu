@@ -1,7 +1,10 @@
 package menu;
 
+import menu.controller.ServiceController;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        ServiceController serviceController = new ServiceController();
+        serviceController.run();
     }
 }

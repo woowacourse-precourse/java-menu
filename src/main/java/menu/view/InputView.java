@@ -13,6 +13,7 @@ public class InputView {
     InputValidator inputValidator = new InputValidator();
 
     public List<String> readCoachNames() {
+        System.out.println(READ_COACH_NAMES_MESSAGE);
         String line = Console.readLine();
         List<String> coachNames = new ArrayList<>(Arrays.asList(line.split(",")));
         inputValidator.validateCoachNamesLength(coachNames);
