@@ -28,6 +28,9 @@ public class MenuController {
 
     public void select() {
         result = resultService.initializeResult(coach);
-        resultService.pickCategory(result);
+        String category = resultService.pickCategory(result);
+        for (String coachName : coach.getCoachNames()) {
+            resultService.pickMenu(category, result, coachName, ban);
+        }
     }
 }
