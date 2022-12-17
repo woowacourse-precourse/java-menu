@@ -11,24 +11,17 @@ public class Coach {
 
     private final String name;
     private final List<Food> inedibles;
-    private final List<Category> recommendedCategories;
     private final List<Food> recommendedFoods;
 
     public Coach(String name, List<Food> inedibles) {
         this.name = name;
         this.inedibles = inedibles;
-        this.recommendedCategories = new ArrayList<>();
         this.recommendedFoods = new ArrayList<>();
     }
 
-    public void getRecommended() {
-        Category category = Category.from(Randoms.pickNumberInRange(1, 5));
-        while (isRecommendedTwice(category)) {
-            category = Category.from(Randoms.pickNumberInRange(1, 5));
-        }
-        recommendedCategories.add(category);
+    public void pickFrom(Category category) {
         String foodName = pickFoodNameFrom(category);
-        while (isRecommended(foodName) || isInedible(foodName)) {
+        while (wasRecommended(foodName) || isInedible(foodName)) {
             foodName = pickFoodNameFrom(category);
         }
         recommendedFoods.add(Food.from(foodName));
@@ -38,18 +31,11 @@ public class Coach {
         return Randoms.shuffle(Food.foodNamesFromCategory(category)).get(0);
     }
 
-    private boolean isRecommendedTwice(Category category) {
-        long count = recommendedCategories.stream()
-                .filter(element -> element.equals(category))
-                .count();
-        return count == 2;
-    }
-
     private boolean isInedible(String foodName) {
         return inedibles.contains(Food.from(foodName));
     }
 
-    private boolean isRecommended(String foodName) {
+    private boolean wasRecommended(String foodName) {
         long count = recommendedFoods.stream()
                 .filter(element -> element.equals(Food.from(foodName)))
                 .count();
