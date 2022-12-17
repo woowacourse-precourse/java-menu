@@ -14,6 +14,10 @@ public class Coach {
         this.foodEaten = new ArrayList<>();
     }
 
+    public List<String> getFoodEaten() {
+        return foodEaten;
+    }
+
     public void addFoodNotEat(String food) {
         foodNotEat.add(food);
     }

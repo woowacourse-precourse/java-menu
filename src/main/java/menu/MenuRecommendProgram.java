@@ -35,6 +35,7 @@ public class MenuRecommendProgram {
 
     public void run() {
         // start 부분
+        start();
 
         for (int i = 0; i < 5; i++) {
             String category = selectCategory();
