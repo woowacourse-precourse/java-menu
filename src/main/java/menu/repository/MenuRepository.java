@@ -22,8 +22,8 @@ public class MenuRepository {
 
     public static Menu findMenu(String name) {
         return menus.stream()
-                .filter(menu -> menu.getName().equals(name))
+                .filter(menu -> menu.getName().equals(name.trim()))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 메뉴를 찾을 수 없습니다."));
+                .orElseThrow(() -> new IllegalArgumentException(String.format("[ERROR] %s 메뉴를 찾을 수 없습니다.", name)));
     }
 }
