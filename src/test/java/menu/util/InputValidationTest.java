@@ -5,8 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static menu.constant.ExceptionMessage.WRONG_COACH_COUNT;
-import static menu.constant.ExceptionMessage.WRONG_COACH_NAME_LENGTH;
+import static menu.constant.ExceptionMessage.*;
 import static menu.domain.DomainCondition.*;
 import static menu.domain.DomainCondition.NAX_COACH_NAME_LENGTH;
 
@@ -34,6 +33,18 @@ class InputValidationTest {
                         inputValidation.validateCoach(userInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(String.format(WRONG_COACH_NAME_LENGTH.getValue(), MIN_COACH_NAME_LENGTH.getValue(), NAX_COACH_NAME_LENGTH.getValue()));
+    }
+
+    @DisplayName("입력받은 코치가 못 먹는 음식의 개수가 0~2개 사이가 아니면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"우동, 스시, 라자냐"} )
+    void 코치_음식_검증_테스트(String userInput) throws Exception {
+        InputValidation inputValidation = new InputValidation();
+
+        Assertions.assertThatThrownBy(() ->
+                        inputValidation.validateNotEatFood(userInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(String.format(WRONG_COACH_FOOD_COUNT.getValue(), MIN_FOOD_COUNT.getValue(), MAX_FOOD_COUNT.getValue()));
     }
 
 }
