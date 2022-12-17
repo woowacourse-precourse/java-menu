@@ -48,4 +48,8 @@ public class LunchSuggestion {
         }
         return stringBuilder.toString();
     }
+
+    public boolean sameFoodInWeek(Coach coach, String food) {
+        return lunchSuggestion.get(coach).contains(food);
+    }
 }
