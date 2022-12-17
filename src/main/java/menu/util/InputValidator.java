@@ -7,7 +7,9 @@ import static menu.util.TransformInput.splitInput;
 public class InputValidator {
     private final static int MIN_SIZE = 2;
     private final static int MAX_SIZE = 5;
+    private final static int MAX_MENU_SIZE = 2;
     private final static String INVALID_SIZE_ERROR = "[ERROR] 코치 이름은 최소 2명과 5명입니다.";
+    private final static String INVALID_MENU_SIZE_ERROR = "[ERROR] 못먹는 메뉴는 최대 2개입니다.";
     private final static int NAME_MIN_LENGTH = 2;
     private final static int NAME_MAX_LENGTH = 4;
     private final static String INVALID_LENGTH_ERROR_MESSAGE = "[ERROR] 코치 이름은 최소 2글자, 최대 4글자로 입력하세요.";
@@ -27,6 +29,14 @@ public class InputValidator {
 
         if (names.size() < MIN_SIZE || names.size() > MAX_SIZE){
             throw new IllegalArgumentException(INVALID_SIZE_ERROR);
+        }
+    }
+
+    public static void validateMenuSize(String input) {
+        List<String> menu = splitInput(input);
+
+        if (menu.size() > MAX_MENU_SIZE){
+            throw new IllegalArgumentException(INVALID_MENU_SIZE_ERROR);
         }
     }
 }

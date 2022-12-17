@@ -1,12 +1,8 @@
 package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import menu.domain.CoachRepository;
 
-import java.util.List;
-
-import static menu.util.InputValidator.validateNameLength;
-import static menu.util.InputValidator.validateNamesSize;
+import static menu.util.InputValidator.*;
 
 public class InputView {
     public static String readCoachName() {
@@ -23,6 +19,7 @@ public class InputView {
         OutputView.printInputHateMenu(name);
 
         String hateMenu = Console.readLine();
+        validateMenuSize(hateMenu);
         return hateMenu;
     }
 }
