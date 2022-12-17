@@ -2,6 +2,7 @@ package menu.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import menu.utils.validator.CoachesValidator;
 
 public class Coaches {
 
@@ -10,6 +11,7 @@ public class Coaches {
     private List<String> categories = new ArrayList<>();
 
     public Coaches(List<String> coachNames) {
+        new CoachesValidator(coachNames);
         coachNames.stream().forEach(
             coachName -> coaches.add(new Coach(coachName.toString()))
         );
