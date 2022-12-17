@@ -1,6 +1,7 @@
 package menu.util;
 
 import menu.domain.Coach;
+import menu.domain.Menu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,5 +26,21 @@ public class Validator {
         }
 
         return coaches;
+    }
+
+    public void validateHateMenuCount(List<String> inputMenuNames) {
+        if(inputMenuNames.size() < 0 || inputMenuNames.size() > 2) {
+            throw new IllegalArgumentException(ERROR_PREFIX + "코치는 최소 2명, 최대 5명 식사를 같이 할 수 있습니다.");
+        }
+    }
+
+    public List<Menu> validateIsMenuExist(List<String> inputMenuNames) {
+        List<Menu> hateMenus = new ArrayList<>();
+        for (String inputMenuName : inputMenuNames) {
+            Menu menu = Menu.checkIsMenuExist(inputMenuName);
+            hateMenus.add(menu);
+        }
+
+        return hateMenus;
     }
 }

@@ -1,6 +1,10 @@
 package menu.domain;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static menu.domain.Category.*;
+import static menu.util.Constants.ERROR_PREFIX;
 
 public enum Menu {
     KO_1(KOREAN, "김밥"), KO_2(KOREAN, "김치찌개"), KO_3(KOREAN, "쌈밥"), KO_4(KOREAN, "된장찌개"), KO_5(KOREAN, "비빔밥"), KO_6(KOREAN, "칼국수"), KO_7(KOREAN, "불고기"), KO_8(KOREAN, "떡볶이"), KO_9(KOREAN, "제육볶음"),
@@ -15,5 +19,12 @@ public enum Menu {
     Menu(Category category, String name) {
         this.category = category;
         this.name = name;
+    }
+
+    public static Menu checkIsMenuExist(String inputMenuName) {
+        return Arrays.stream(values())
+                .filter(menu -> menu.name.equals(inputMenuName))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(ERROR_PREFIX + "존재하지 않는 메뉴입니다."));
     }
 }
