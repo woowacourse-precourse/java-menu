@@ -1,7 +1,7 @@
 package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import menu.domain.coach.Coach;
+import menu.validator.view.InputCommonValidator;
 
 import java.util.function.Supplier;
 
@@ -9,11 +9,20 @@ public class InputView {
     
     public String inputCoachNames(OutputView outputView) {
         outputView.printInputCoachNamesGuide();
-        return Console.readLine();
+        String inputCoachNames = input();
+        InputCommonValidator.validate(inputCoachNames);
+        return inputCoachNames;
     }
     
     public String inputUneatableMenu(OutputView outputView, String coachName) {
         outputView.printInputUneatableMenuGuide(coachName);
+    
+        String inputUneatableMenu = input();
+        InputCommonValidator.validate(inputUneatableMenu);
+        return inputUneatableMenu;
+    }
+    
+    private String input() {
         return Console.readLine();
     }
     
