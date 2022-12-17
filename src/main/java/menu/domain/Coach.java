@@ -26,15 +26,11 @@ public class Coach {
     }
 
     public List<String> getNames() {
-        List<String> coachNames = new ArrayList<>();
-        coachNames.addAll(coaches.keySet());
-
-        return coachNames;
+        return new ArrayList<>(coaches.keySet());
     }
 
     public void setCanNotEat(String name, String input) {
-        String[] words = input.split(",");
-        List<String> canNotEatFoods = Arrays.asList(words);
+        List<String> canNotEatFoods = Arrays.asList(input.split(","));
         validateCanNotEatFood(canNotEatFoods);
         List<String> foods = new ArrayList<>(canNotEatFoods);
 
@@ -51,6 +47,7 @@ public class Coach {
 
         for (String name : recommendFoods.keySet()) {
             totalRecommend += "[ " + name;
+
             for (String food : recommendFoods.get(name)) {
                 totalRecommend += " | " + food;
             }
