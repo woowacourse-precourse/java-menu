@@ -27,9 +27,9 @@ public enum MenuList {
         return category;
     }
 
-    public static List<String> getFiled(Category category){
-        for(MenuList menuList : values()){
-            if(menuList.getCategory() == category){
+    public static List<String> getFiled(Category category) {
+        for (MenuList menuList : values()) {
+            if (menuList.getCategory() == category) {
                 return new ArrayList<>(menuList.getMenus());
             }
         }
