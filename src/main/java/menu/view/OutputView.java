@@ -55,5 +55,9 @@ public class OutputView {
                 .map(foodCategories::get)
                 .collect(Collectors.toList());
     }
+
+    public void printError(String message) {
+        System.out.printf("[ERROR] %s\n", message);
+    }
 }
 

@@ -11,6 +11,7 @@ import menu.view.OutputView;
 public class MenuController {
     private final InputView inputView;
     private final OutputView outputView;
+    private FoodRecommender recommender;
 
     public MenuController() {
         inputView = new InputView();
@@ -19,16 +20,35 @@ public class MenuController {
 
     public void run() {
         outputView.printStart();
-        List<Coach> coaches = inputView.readCoaches()
-                .stream()
-                .map(Coach::new)
-                .collect(Collectors.toList());
-        FoodRecommender recommender = new FoodRecommender(coaches);
-
+        List<Coach> coaches = getCoaches();
         for (Coach coach : coaches) {
-            coach.setBlacklist(inputView.readBlackList(coach));
+            addBlacklist(coach);
         }
         MenuResult menuResult = recommender.recommendByDay();
         outputView.printResult(menuResult);
+    }
+
+    private void addBlacklist(Coach coach) {
+        try {
+            coach.setBlacklist(inputView.readBlackList(coach));
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            addBlacklist(coach);
+        }
+    }
+
+    private List<Coach> getCoaches() {
+        try {
+            List<Coach> coaches = inputView.readCoaches()
+                    .stream()
+                    .map(Coach::new)
+                    .collect(Collectors.toList());
+            recommender = new FoodRecommender(coaches);
+            return coaches;
+
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return getCoaches();
+        }
     }
 }
