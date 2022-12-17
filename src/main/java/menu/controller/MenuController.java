@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import menu.dto.RecommendationDTO;
 import menu.model.Category;
 import menu.model.Coach;
-import menu.utls.Validator;
+import menu.utils.Validator;
 import menu.view.InputView;
 import menu.view.OutputView;
 import java.util.ArrayList;

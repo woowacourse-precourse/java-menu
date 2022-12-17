@@ -1,4 +1,4 @@
-package menu.utls;
+package menu.utils;
 
 import menu.message.ErrorMessage;
 import menu.model.Category;
