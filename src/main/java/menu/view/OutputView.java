@@ -1,6 +1,7 @@
 package menu.view;
 
 import menu.domain.Coach;
+import menu.domain.Food;
 import menu.domain.Group;
 import menu.domain.enums.Category;
 import menu.domain.enums.Weekday;
@@ -25,9 +26,8 @@ public class OutputView {
         System.out.println(START_RECOMMEND);
     }
 
-    public static void printRecommendResult(Group group) {
+    public static void printRecommendResult(final Group group) {
         System.out.println(RECOMMEND_RESULT);
-        System.out.println(DIVISION_FORMAT);
         printDivision();
         printCategory(group.categories());
         printRecommends(group);
@@ -44,7 +44,7 @@ public class OutputView {
     }
 
 
-    private static void printCategory(List<Category> categories) {
+    private static void printCategory(final List<Category> categories) {
         String category = categories.stream()
                 .map(Category::categoryName)
                 .collect(joining(BAR));
@@ -52,11 +52,11 @@ public class OutputView {
         System.out.println(message);
     }
 
-    private static void printRecommends(Group group) {
+    private static void printRecommends(final Group group) {
         for (Coach coach : group.coaches()) {
             String menus = coach.recommends().stream()
-                    .map(it -> it.food().name()).
-                    collect(joining(BAR));
+                    .map(Food::name)
+                    .collect(joining(BAR));
             String message = format(COACH_RECOMMENDED_FOOD_FORMAT, coach.name(), menus);
             System.out.println(message);
         }

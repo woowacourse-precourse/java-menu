@@ -11,14 +11,14 @@ public class Coach {
 
     private final String name;
     private final List<Food> inedibleFoods;
-    private final List<Recommend> recommends = new ArrayList<>();
+    private final List<Food> recommends = new ArrayList<>();
 
-    public Coach(String name, List<Food> inedibleFoods) {
+    public Coach(final String name, final List<Food> inedibleFoods) {
         this.name = name;
         this.inedibleFoods = inedibleFoods;
     }
 
-    public static Coach ofName(String name) {
+    public static Coach ofName(final String name) {
         return new Coach(name, new ArrayList<>());
     }
 
@@ -26,26 +26,26 @@ public class Coach {
         return name;
     }
 
-    public List<Recommend> recommends() {
+    public List<Food> recommends() {
         return recommends;
     }
 
-    public boolean isDuplicatedCategory(Category category) {
+    public boolean isDuplicatedCategory(final Category category) {
         long count = inedibleFoods.stream()
                 .filter(it -> it.category().equals(category))
                 .count();
         return MAX_DUPLICATED_COUNT <= count;
     }
 
-    public boolean isEdible(Food food) {
+    public boolean isEdible(final Food food) {
         return !inedibleFoods.contains(food);
     }
 
-    public void addInedibleFoods(List<Food> foods) {
+    public void addInedibleFoods(final List<Food> foods) {
         inedibleFoods.addAll(foods);
     }
 
-    public void addRecommend(Recommend recommend) {
-        this.recommends.add(recommend);
+    public void addRecommend(final Food food) {
+        this.recommends.add(food);
     }
 }

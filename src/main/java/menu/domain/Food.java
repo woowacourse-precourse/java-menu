@@ -9,12 +9,12 @@ public class Food {
     private final Category category;
     private final String name;
 
-    public Food(Category category, String name) {
+    public Food(final Category category, final String name) {
         this.category = category;
         this.name = name;
     }
 
-    public static Food ofName(String name) {
+    public static Food ofName(final String name) {
         return new Food(Category.mapByName(name), name);
     }
 
@@ -27,7 +27,7 @@ public class Food {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (!(o instanceof Food)) {
             return false;
         }
