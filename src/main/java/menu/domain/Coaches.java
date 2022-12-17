@@ -1,5 +1,8 @@
 package menu.domain;
 
+import static menu.domain.constant.MenuRule.MAXIMUM_COACH_COUNT;
+import static menu.domain.constant.MenuRule.MINIMUM_COACH_COUNT;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,9 +18,19 @@ public class Coaches {
     }
 
     public void addCoaches(List<String> coachNames) {
+        validateCoachesLength(coachNames);
         coachNames.forEach(name -> {
             coaches.add(new Coach(name));
         });
+    }
+
+    private void validateCoachesLength(List<String> coachNames) {
+        if (MINIMUM_COACH_COUNT <= coachNames.size() && coachNames.size() <= MAXIMUM_COACH_COUNT) {
+            return;
+        }
+        throw new IllegalArgumentException(String.format(
+                "[ERROR] %d명 이상 %d명 이하의 코치들이 밥을 함께 먹어야 합니다.", MINIMUM_COACH_COUNT, MAXIMUM_COACH_COUNT
+        ));
     }
 
     public List<String> getCoachNames() {

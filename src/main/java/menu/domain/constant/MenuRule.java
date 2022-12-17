@@ -6,4 +6,6 @@ public class MenuRule {
     public static final int COUNT_OF_CATEGORIES = 5;
     public static final int MINIMUM_COACH_NAME_LENGTH = 2;
     public static final int MAXIMUM_COACH_NAME_LENGTH = 4;
+    public static final int MINIMUM_COACH_COUNT = 2;
+    public static final int MAXIMUM_COACH_COUNT = 5;
 }
