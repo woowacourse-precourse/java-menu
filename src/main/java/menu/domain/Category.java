@@ -1,5 +1,8 @@
 package menu.domain;
 
+import java.util.Arrays;
+import java.util.List;
+
 public enum Category {
     JAPAN(1, "일식"),
     KOREA(2,"한식"),

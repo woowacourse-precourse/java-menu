@@ -1,7 +1,9 @@
 package menu.controller;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import menu.domain.Category;
 import menu.domain.Food;
+import menu.domain.RandomFood;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -13,6 +15,7 @@ public class MenuController {
     public static OutputView outputView = new OutputView();
     public static InputView inputView = new InputView();
     public static Food food = new Food();
+    public static RandomFood randomFood = new RandomFood();
 
     public void start(){
         outputView.printStart();
@@ -25,6 +28,7 @@ public class MenuController {
     public void run(){
         List<String> coaches = createCoach();
         createNotFoods(coaches);
+        createRandomFoods();
 
     }
 
@@ -34,10 +38,15 @@ public class MenuController {
     public void createNotFoods(List<String> coaches){
         List<String> notFoods = new ArrayList<>();
         for(String coach: coaches){
-            inputView.inputNotFood(coach);
+            notFoods = inputView.inputNotFood(coach);
             // 음식 카테고리 검색,
+            food.splitNotFood(notFoods);
+
             // 음식 삭제
         }
+    }
+    public void createRandomFoods(){
+        String category = randomFood.pickCategory();
     }
 
 
