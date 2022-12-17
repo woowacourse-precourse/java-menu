@@ -19,7 +19,7 @@ public enum DomainCondition implements EnumUtil {
         this.number = number;
     }
 
-    public static boolean validCoachCount(List<> coachNames) {
+    public static boolean validCoachCount(List<String> coachNames) {
         return (MIN_COACH_COUNT.number <= coachNames.size())
                 && (coachNames.size() <= MAX_COACH_COUNT.number);
     }
