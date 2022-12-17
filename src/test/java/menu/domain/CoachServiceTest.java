@@ -15,4 +15,11 @@ class CoachServiceTest {
         coachService.registerCoaches("포비,제이슨,김정우");
         assertThat(CoachRepository.coaches().size()).isEqualTo(3);
     }
+
+    @Test
+    void registerCannotEatFoods() {
+        Coach coach = new Coach("정우");
+        coachService.registerCannotEatFoods(coach,"규동");
+        assertThat(coach.getCannotEatFoods().get(0)).isEqualTo("규동");
+    }
 }
