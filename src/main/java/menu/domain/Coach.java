@@ -16,6 +16,10 @@ public class Coach {
         return name;
     }
 
+    public List<Menu> getRecommendMenus() {
+        return recommendMenus;
+    }
+
     public void addHateMenu(Menu menu) {
         hateMenus.add(menu);
     }

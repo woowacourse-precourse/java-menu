@@ -11,4 +11,8 @@ public class CategoryRepository {
     public void addRecommendedCategories(List<Category> recommendedCategories) {
         recommendedCategories.forEach(category -> categories.add(category));
     }
+
+    public List<Category> findCategories() {
+        return categories;
+    }
 }

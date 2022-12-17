@@ -28,7 +28,6 @@ public class MenuController extends Controller{
         generateCoachList();
         inputHateMenus();
         recommendMenus();
-
     }
 
     public void start() {
@@ -57,7 +56,12 @@ public class MenuController extends Controller{
         menuService.recommendMenus(categories, coaches);
     }
 
+    private void printRecommendedMenus() {
+        List<Category> recommendedCategories = categoryService.getRecommendedCategories();
+        List<Coach> coaches = coachService.findAll();
+        outputView.printRecommendedResult(recommendedCategories, coaches);
 
+    }
 
 
 }

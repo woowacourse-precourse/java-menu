@@ -14,6 +14,10 @@ public class CategoryService {
     private final CategoryRepository categoryRepository = new CategoryRepository();
     private final static Integer CATEGORY_SIZE = 5;
 
+    public List<Category> getRecommendedCategories() {
+        return categoryRepository.findCategories();
+    }
+
     public List<Category> getFiveCategories() {
         List<Category> categories = new ArrayList<>();
         for (int i = 0; i < CATEGORY_SIZE; i++) {
