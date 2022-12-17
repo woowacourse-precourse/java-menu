@@ -10,6 +10,7 @@ import menu.domain.coach.repository.CoachRepository;
 import menu.domain.menu.Category;
 import menu.domain.menu.entity.Menu;
 import menu.domain.menu.repository.MenuRepository;
+import menu.dto.menu.RecommendMenusDto;
 
 public class MenuService {
 
@@ -27,11 +28,12 @@ public class MenuService {
         this.menuRepository = menuRepository;
     }
 
-    public Map<Coach, List<Menu>> recommendLunchMenus() {
+    public RecommendMenusDto recommendLunchMenus() {
         List<Coach> coaches = coachRepository.findAll();
         List<Category> categories = new ArrayList<>();
+        Map<Coach, List<Menu>> recommendMenus = calculateRecommendMenus(coaches, categories);
 
-        return calculateRecommendMenus(coaches, categories);
+        return new RecommendMenusDto(categories, recommendMenus);
     }
 
     private Map<Coach, List<Menu>> calculateRecommendMenus(final List<Coach> coaches, final List<Category> categories) {
@@ -47,7 +49,7 @@ public class MenuService {
     }
 
     private void processAddRecommendMenus(final Map<Coach, List<Menu>> recommendMenus,
-            final List<Menu> menus, final List<Coach> coaches) {
+        final List<Menu> menus, final List<Coach> coaches) {
         coaches.forEach(coach -> {
             List<Menu> previousRecommendMenus = recommendMenus.getOrDefault(coach, new ArrayList<>());
             previousRecommendMenus.add(findRecommendEatableMenu(menus, coach));

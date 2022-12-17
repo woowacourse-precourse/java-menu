@@ -9,6 +9,7 @@ public class MenuOutputView extends DefaultOutputView {
 
     private static final String GUIDE_RECOMMEND_MENU_MESSAGE = "메뉴 추천 결과입니다.";
     private static final String GUIDE_STANDARD_DAYS = "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]";
+    private static final String GUIDE_CATEGORY_LOG = "카테고리";
 
     private static final String LOG_FORMAT = "[ %s ]";
     private static final String LOG_SEPARATOR = " | ";
@@ -28,16 +29,27 @@ public class MenuOutputView extends DefaultOutputView {
         System.out.println(GUIDE_RECOMMEND_MENU_MESSAGE);
         System.out.println(GUIDE_STANDARD_DAYS);
 
-        String categoriesLog = String.format(LOG_FORMAT, String.join(LOG_SEPARATOR, dto.getRecommendCategories()));
-        System.out.println(categoriesLog);
+        System.out.println(formatCategoriesNameLog(dto.getCategoriesName()));
+
         Map<String, List<String>> recommendMenus = dto.getRecommendMenus();
         recommendMenus.keySet().stream()
-                .map(coachName ->
-                        coachName.concat(LOG_SEPARATOR).concat(String.join(LOG_SEPARATOR, recommendMenus.get(coachName))))
-                .forEach(recommendMenusLog -> System.out.println(formatRecommendMenusLog(recommendMenusLog)));
+                .map(coachName -> formatRecommendMenusLog(coachName, recommendMenus.get(coachName)))
+                .forEach(recommendMenusLog -> System.out.println(formatLog(recommendMenusLog)));
     }
 
-    private String formatRecommendMenusLog(String recommendMenusLog) {
-        return String.format(LOG_FORMAT, recommendMenusLog);
+    private String formatCategoriesNameLog(List<String> categoriesName) {
+        return formatLog(GUIDE_CATEGORY_LOG
+                .concat(LOG_SEPARATOR)
+                .concat(String.join(LOG_SEPARATOR, categoriesName)));
+    }
+
+    private String formatRecommendMenusLog(String coachName, List<String> recommendMenusName) {
+        return coachName
+                .concat(LOG_SEPARATOR)
+                .concat(String.join(LOG_SEPARATOR, recommendMenusName));
+    }
+
+    private String formatLog(String log) {
+        return String.format(LOG_FORMAT, log);
     }
 }
