@@ -1,13 +1,14 @@
 package menu.domain;
 
+import static menu.domain.MenuRecommendatorConstants.COACH_NAME_MAXIMUM_SIZE;
+import static menu.domain.MenuRecommendatorConstants.COACH_NAME_MINIMUM_SIZE;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Coach {
 
-    private static final int COACH_NAME_MINIMUM_SIZE = 2;
-    private static final int COACH_NAME_MAXIMUM_SIZE = 4;
     private static final String NAME_LENGTH_ERROR = "코치 이름은 2~4글자 이내여야 합니다.";
     private static final String NAME_ALPHABETIC_ERROR = "코치 이름은 문자로만 이루어져야 합니다.";
 

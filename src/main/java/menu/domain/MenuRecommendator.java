@@ -2,15 +2,18 @@ package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import static menu.domain.MenuRecommendatorConstants.ALLOWED_DUPLICATED_CATEGORY_NUMBER;
+import static menu.domain.MenuRecommendatorConstants.END_MENU_NUMBER;
+import static menu.domain.MenuRecommendatorConstants.START_MENU_NUMBER;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class MenuRecommendator {
-    private static final int START_MENU_NUMBER = 1;
-    private static final int END_MENU_NUMBER = 5;
+
     private static final int FIRST_ELEMENT_INDEX = 0;
-    private static final long ALLOWED_DUPLICATED_CATEGORY_NUMBER = 2L;
+
 
     private List<Category> categories = new ArrayList<>();
 

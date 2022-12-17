@@ -1,12 +1,13 @@
 package menu.domain;
 
+import static menu.domain.MenuRecommendatorConstants.COACHES_MAXIMUM_SIZE;
+import static menu.domain.MenuRecommendatorConstants.COACHES_MINIMUM_SIZE;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Coaches {
-    private static final int COACHES_MINIMUM_SIZE = 2;
-    private static final int COACHES_MAXIMUM_SIZE = 5;
     private static final String COACHES_MINIMUM_SIZE_ERROR = "코치는 최소 2명 이상 입력해야 합니다.";
     private static final String COACHES_MAXIMUM_SIZE_ERROR = "코치는 최대 5명 까지만 입력해야 합니다.";
 
