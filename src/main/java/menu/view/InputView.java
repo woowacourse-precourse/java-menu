@@ -1,14 +1,12 @@
 package menu.view;
 
-import java.util.Scanner;
+import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-
     private static final String SEPARATOR = ",";
-    private final Scanner scanner = new Scanner(System.in);
 
     public String[] readCoachNames() {
-        return scanner.nextLine().split(SEPARATOR);
+        return Console.readLine().split(SEPARATOR);
     }
 
 }
