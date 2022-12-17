@@ -35,5 +35,4 @@ public enum ItalianFood {
         foodNames.remove(any.getName());
         return foodNames;
     }
-
 }

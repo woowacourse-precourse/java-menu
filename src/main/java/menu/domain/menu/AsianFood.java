@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.naming.Name;
 
 public enum AsianFood {
     팟타이("팟타이"),
