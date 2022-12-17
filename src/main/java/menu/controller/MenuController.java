@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import menu.domain.Category;
 import menu.domain.Menu;
+import menu.repository.MenuRepository;
 
 public class MenuController {
     private static final Map<Category, String> INIT_MENUS_INFO = new HashMap<>();
@@ -33,6 +34,7 @@ public class MenuController {
         List<String> parsedMenu = Arrays.stream(menus.split(MENU_DELIMITER)).collect(Collectors.toList());
         for(String menuName : parsedMenu){
             Menu menu = new Menu(menuName, category);
+            MenuRepository.add(menu);
             category.addMenu(menu);
         }
     }

@@ -8,4 +8,8 @@ public class Menu {
         this.name = name;
         this.category = category;
     }
+
+    public String getName() {
+        return name;
+    }
 }
