@@ -65,7 +65,7 @@ public class MenuController {
 
     public String recommendRandomMenu(String name, String category) {
         List<String> selectableMenu = categoriesAndMenu.get(category);
-        String selectedMenu = Randoms.shuffle(allCategory).get(0);
+        String selectedMenu = Randoms.shuffle(selectableMenu).get(0);
         try {
             validateRecommendationMenu(name, selectedMenu);
         } catch (IllegalArgumentException exception) {
@@ -90,7 +90,6 @@ public class MenuController {
             foodRecommendedByCoaches.put(name, new ArrayList<>());
         }
         for (int i = 0; i < 5; i++) {
-            // i는 요일 월(0), 화(1), 수(2), 목(3), 금(4)
             String pickedCategory = pickTodayRandomCategory();
             pickedCategories.add(i, pickedCategory);
             for (String name : coachName) {
@@ -106,13 +105,5 @@ public class MenuController {
         setCoachDislikeFood();
         startRandomRecommendation();
         outputView.printFinalResult(foodRecommendedByCoaches, pickedCategories);
-    }
-
-    public static void main(String[] args) {
-        MenuController m = new MenuController();
-        m.setCoachName();
-        m.setCoachDislikeFood();
-        m.startRandomRecommendation();
-        m.outputView.printFinalResult(m.foodRecommendedByCoaches, m.pickedCategories);
     }
 }
