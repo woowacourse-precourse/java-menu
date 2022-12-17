@@ -12,6 +12,7 @@ public enum Category {
     
     
     private static final String WRONG_NUMBER_EXCEPTION = "잘못된 숫자가 입력되었습니다.";
+    private static final String WRONG_MENU_NAME_EXCEPTION = "메뉴 추천 서비스에서 추천할 수 없는 메뉴입니다.";
     private final int number;
     private final String name;
     private final List<String> menus;
@@ -41,7 +42,25 @@ public enum Category {
                 .orElseThrow(() -> new IllegalArgumentException(WRONG_NUMBER_EXCEPTION));
     }
     
-    private static boolean isEquals(int number, Category menu) {
-        return menu.getNumber() == number;
+    private static boolean isEquals(int number, Category category) {
+        return category.getNumber() == number;
+    }
+    
+    public static void findByMenu(String menu) {
+        boolean find = false;
+        for (Category category : values()) {
+            find = isContains(menu, category);
+            if (isContains(menu, category)) {
+                return;
+            }
+        }
+        
+        if (!find) {
+            throw new IllegalArgumentException(WRONG_MENU_NAME_EXCEPTION);
+        }
+    }
+    
+    private static boolean isContains(String menu, Category category) {
+        return category.getMenus().contains(menu);
     }
 }

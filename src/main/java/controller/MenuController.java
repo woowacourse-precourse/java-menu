@@ -96,13 +96,17 @@ public class MenuController {
     
     private void addInedibleMenus(Coaches coaches) {
         for (Coach coach : coaches.getCoaches()) {
-            List<String> inedibleMenus = inputView.readInedibleMenus(coach.getName());
-            try {
-                coach.addInedibleMenus(inedibleMenus);
-            } catch (IllegalArgumentException e) {
-                outputView.printError(e);
-                addInedibleMenus(coaches);
-            }
+            getInedibleMenus(coach);
+        }
+    }
+    
+    private void getInedibleMenus(Coach coach) {
+        List<String> inedibleMenus = inputView.readInedibleMenus(coach.getName());
+        try {
+            coach.addInedibleMenus(inedibleMenus);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e);
+            getInedibleMenus(coach);
         }
     }
 }
