@@ -23,7 +23,9 @@ public class MenuController {
     }
 
     private List<String> creatCoaches() {
-        return coach.makeCoaches(getCoachName());
+        List<String> coaches = coach.makeCoaches(getCoachName());
+        printCoachNames(coaches);
+        return coaches;
     }
 
     private void init() {
