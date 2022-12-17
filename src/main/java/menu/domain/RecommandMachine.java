@@ -12,11 +12,14 @@ public class RecommandMachine {
     private static final Integer MAX_EACH_CATEGORY_COUNT = 2;
     private static final Integer ZERO = 0;
 
-    public void recommand(List<Coach> coaches) {
+    public List<CoachFoodRecommand> recommand(List<Coach> coaches) {
         CategoryRecommand categoryRecommand = recommandCategory();
+        List<CoachFoodRecommand> foodRecommends = new ArrayList<>();
         for (Coach coach : coaches) {
-
+            CoachFoodRecommand coachFoodRecommand = CoachFoodRecommand.recommandFood(coach, categoryRecommand);
+            foodRecommends.add(coachFoodRecommand);
         }
+        return foodRecommends;
     }
 
     private CategoryRecommand recommandCategory() {

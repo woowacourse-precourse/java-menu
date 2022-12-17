@@ -1,6 +1,7 @@
 package menu.controller;
 
 import menu.domain.Coach;
+import menu.domain.CoachFoodRecommand;
 import menu.domain.NotEatableFood;
 import menu.domain.RecommandMachine;
 
@@ -22,7 +23,7 @@ public class MenuController {
     public void start() {
         try {
             List<Coach> coaches = init();
-            recommandMachine.recommand(coaches);
+            List<CoachFoodRecommand> foodRecommands = recommandMachine.recommand(coaches);
 
         } catch (IllegalArgumentException error) {
             printErrorMessage(error.getMessage());

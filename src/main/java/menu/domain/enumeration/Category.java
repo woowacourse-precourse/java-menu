@@ -18,12 +18,12 @@ public enum Category {
         this.categoryName = categoryName;
     }
 
-    public Integer getCategoryIndex() {
-        return this.categoryIndex;
-    }
-
-    public String getCategoryName() {
-        return this.categoryName;
+    public static Integer findCategoryIndex(String category) {
+        return Arrays.stream(Category.values())
+                .filter(c-> c.categoryName.equals(category))
+                .findAny()
+                .map(Category::getCategoryIndex)
+                .orElse(0);
     }
 
     public static String findCategoryName(Integer index) {
@@ -32,5 +32,13 @@ public enum Category {
                 .findAny()
                 .map(Category::getCategoryName)
                 .orElse(null);
+    }
+
+    public String getCategoryName() {
+        return this.categoryName;
+    }
+
+    public Integer getCategoryIndex() {
+        return this.categoryIndex;
     }
 }
