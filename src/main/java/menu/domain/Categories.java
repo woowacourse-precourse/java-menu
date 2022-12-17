@@ -21,7 +21,7 @@ public class Categories {
     public List<Category> getRecommendedCategories() {
         List<Category> recommendedCategories = new ArrayList<>();
         while (recommendedCategories.size() != 5) {
-            Category category = categories.get(Randoms.pickNumberInRange(0, 4));
+            Category category = categories.get(Randoms.pickNumberInRange(1, 5) - 1);
             if (getCount(recommendedCategories, category) == 2) {
                 continue;
             }
