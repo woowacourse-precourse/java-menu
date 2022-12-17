@@ -13,4 +13,8 @@ public class EatenMenu {
     public void eat(String menu) {
         eatenMenu.add(menu);
     }
+
+    public List<String> getEatenMenu() {
+        return eatenMenu;
+    }
 }
