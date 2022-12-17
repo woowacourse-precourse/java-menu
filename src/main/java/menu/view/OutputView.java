@@ -37,18 +37,23 @@ public class OutputView {
     public void printRecommendationResult(Map<String, List<String>> foodRecommendedByCoaches) {
         List<String> coachName = foodRecommendedByCoaches.keySet().stream().collect(Collectors.toList());
         for (String name : coachName) {
-            String phrase = "[ " + name + " |";
-            for (int i = 0; i < 5; i++) {
-                phrase += " " + foodRecommendedByCoaches.get(name).get(i) + " ";
-
-                if (i != 4) {
-                    phrase += "|";
-                }
-                if (i == 4) {
-                    phrase += "]";
-                }
-            }
-            System.out.println(phrase);
+            makeRecommendationPhrase(name, foodRecommendedByCoaches);
         }
     }
+
+    public void makeRecommendationPhrase(String name, Map<String, List<String>> foodRecommendedByCoaches) {
+        String phrase = "[ " + name + " |";
+        for (int i = 0; i < 5; i++) {
+            phrase += " " + foodRecommendedByCoaches.get(name).get(i) + " ";
+
+            if (i != 4) {
+                phrase += "|";
+            }
+            if (i == 4) {
+                phrase += "]";
+            }
+        }
+        System.out.println(phrase);
+    }
+
 }
