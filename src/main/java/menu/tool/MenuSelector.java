@@ -14,28 +14,33 @@ public class MenuSelector {
 
   /**
    * 한 코치의 전체 요일에 대한 메뉴를 선택하는 메서드
-   * @param coach
+   * @param coachList
+   * @param day
+   *
    */
-  public static void selectAllMenu(Coach coach){
-    for(Day day:Day.values()){
+  public static void selectAllMenu(List<Coach> coachList, Day day){
+    for(Coach coach:coachList){
       Category category=ServiceRepository.getCategoryList().get(day.getDay()-1);
-      String menu=selectMenu(category, coach.getMenuList().values());
+      String menu=selectMenu(category, coach);
       coach.addMenuList(day, menu);
+      System.out.println(category.getCategory()+day+menu);
     }
   }
 
   /**
    * 카테고리 내에서 메뉴를 하나 선택하여 반환하는 메서드
    * @param category
-   * @param result
+   * @param coach
    * @return
    */
-  private static String selectMenu(Category category, Collection result){
-    String[] menuList=ServiceRepository.getMenuList(category);
+  private static String selectMenu(Category category, Coach coach){
+    Collection<String> result=coach.getMenuList().values();
+    List<String> menuList= List.of(ServiceRepository.getMenuList(category));
+    System.out.println(menuList);
     String selectedMenu="";
     while(true){
-      selectedMenu=menuList[Randoms.pickNumberInRange(0,menuList.length-1)];
-      if(!result.contains(selectedMenu)) break;
+      selectedMenu=Randoms.shuffle(menuList).get(0);
+      if(!(result.contains(selectedMenu)||coach.getExcludedMenu().contains(selectedMenu))) break;
     }
     return selectedMenu;
 
