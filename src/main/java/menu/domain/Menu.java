@@ -1,6 +1,5 @@
 package menu.domain;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -15,7 +14,7 @@ public enum Menu {
     ASIAN_MENU(Category.ASIAN,
             Arrays.asList("팟타이", "카오 팟", "나시고렝", "파인애플 볶음밥", "쌀국수", "똠얌꿍", "반미", "월남쌈", "분짜")),
     WESTERN_MENU(Category.WESTERN,
-            Arrays.asList("라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니")),;
+            Arrays.asList("라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니"));
 
     private static final String DOES_NOT_EXIST_CATEGORY_ERROR = "존재하지 않는 카테고리입니다.";
     private static final String DOES_NOT_EXIST_MENU_ERROR = "존재하지 않는 메뉴를 입력했습니다.";
@@ -23,32 +22,32 @@ public enum Menu {
     private final Category category;
     private final List<String> menus;
 
-    Menu(Category category, List<String> menus){
+    Menu(Category category, List<String> menus) {
         this.category = category;
         this.menus = menus;
     }
 
-    public static Menu fromInput(Category input){
+    public static Menu fromInput(Category input) {
         return Arrays.stream(values())
-                .filter(menu->menu.getCategory().equals(input))
+                .filter(menu -> menu.getCategory().equals(input))
                 .findFirst()
-                .orElseThrow(()->new IllegalArgumentException(DOES_NOT_EXIST_CATEGORY_ERROR));
+                .orElseThrow(() -> new IllegalArgumentException(DOES_NOT_EXIST_CATEGORY_ERROR));
     }
 
-    public static void validateExistedMenus(List<String> menus){
-        if(menus.isEmpty()){
+    public static void validateExistedMenus(List<String> menus) {
+        if (menus.isEmpty()) {
             return;
         }
-        for(String menu : menus){
+        for (String menu : menus) {
             validateExistedMenu(menu);
         }
     }
 
-    public static void validateExistedMenu(String inputMenu){
+    public static void validateExistedMenu(String inputMenu) {
         Arrays.stream(values())
                 .filter(menu -> menu.menus.contains(inputMenu.trim()))
                 .findFirst()
-                .orElseThrow(()->new IllegalArgumentException(DOES_NOT_EXIST_MENU_ERROR));
+                .orElseThrow(() -> new IllegalArgumentException(DOES_NOT_EXIST_MENU_ERROR));
     }
 
     public Category getCategory() {

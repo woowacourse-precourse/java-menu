@@ -12,27 +12,27 @@ public class Coaches {
 
     private final List<Coach> coaches = new ArrayList<>();
 
-    public Coaches(List<String> coachNames){
+    public Coaches(List<String> coachNames) {
         validateCoachNames(coachNames);
         initCoaches(coachNames);
     }
 
-    private void validateCoachNames(List<String> coachNames){
-        if(coachNames.size()<COACHES_MINIMUM_SIZE){
+    private void validateCoachNames(List<String> coachNames) {
+        if (coachNames.size() < COACHES_MINIMUM_SIZE) {
             throw new IllegalArgumentException(COACHES_MINIMUM_SIZE_ERROR);
         }
-        if(coachNames.size()>COACHES_MAXIMUM_SIZE){
+        if (coachNames.size() > COACHES_MAXIMUM_SIZE) {
             throw new IllegalArgumentException(COACHES_MAXIMUM_SIZE_ERROR);
         }
     }
 
-    public void initCoaches(List<String> coachNames){
-        for(String name : coachNames){
+    public void initCoaches(List<String> coachNames) {
+        for (String name : coachNames) {
             coaches.add(new Coach(name));
         }
     }
 
-    public List<Coach> getCoaches(){
+    public List<Coach> getCoaches() {
         return Collections.unmodifiableList(coaches);
     }
 }

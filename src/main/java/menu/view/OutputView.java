@@ -1,6 +1,5 @@
 package menu.view;
 
-import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.Coaches;
 
@@ -17,30 +16,28 @@ public class OutputView {
     private static final String PROGRAM_START_MESSAGE = "점심 메뉴 추천을 시작합니다.";
     private static final String PROGRAM_END_MESSAGE = "\n추천을 완료했습니다.";
 
-    public static void printError(String message){
-        System.out.println(ERROR_PREFIX+message);
+    public static void printError(String message) {
+        System.out.println(ERROR_PREFIX + message);
     }
 
-    public void printProgramStart(){
+    public void printProgramStart() {
         System.out.println(PROGRAM_START_MESSAGE);
     }
 
-    public void printRecommendResult(Coaches coaches, List<String> categories){
+    public void printRecommendResult(Coaches coaches, List<String> categories) {
         System.out.println(RESULT_MESSAGE);
         System.out.println(String.format(CATEGORY_RESULT_MESSAGE, toPrintable(categories)));
-        for(Coach coach : coaches.getCoaches()){
-            System.out.println(String.format(COACH_RESULT_MESSAGE,coach.getName(),
+        for (Coach coach : coaches.getCoaches()) {
+            System.out.println(String.format(COACH_RESULT_MESSAGE, coach.getName(),
                     toPrintable(coach.getSelectedMenu())));
         }
     }
 
-    private String toPrintable(List<String> input){
+    private String toPrintable(List<String> input) {
         return String.join(MENU_DELIMITER, input);
     }
 
-    public void printProgramEnd(){
+    public void printProgramEnd() {
         System.out.println(PROGRAM_END_MESSAGE);
     }
-
-
 }

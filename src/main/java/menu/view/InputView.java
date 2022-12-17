@@ -23,7 +23,7 @@ public class InputView {
     public List<String> readInedibleMenus(String name) {
         System.out.println(String.format(INPUT_INEDIBLE_MENU_MESSAGE, name));
         List<String> inputs = Arrays.asList(readLine().split(NAMES_INPUT_DELIMITER));
-        if(inputs.equals(EMPTY_LIST)){
+        if (inputs.equals(EMPTY_LIST)) {
             return new ArrayList<>();
         }
         return inputs;
