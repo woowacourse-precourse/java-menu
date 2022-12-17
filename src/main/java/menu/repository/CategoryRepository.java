@@ -25,6 +25,11 @@ public class CategoryRepository {
         categories.add(new Category(categoryName));
     }
 
+    public void addFoodToCategory(String categoryName, List<String> foods) {
+        Category category = findCategoryByName(categoryName);
+        foods.forEach(category::addFood);
+    }
+
     public boolean isValidCategory(String categoryName) {
         return categories.stream().anyMatch(category -> categoryName.equals(category.getName()));
     }
