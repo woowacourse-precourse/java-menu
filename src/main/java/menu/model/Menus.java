@@ -58,10 +58,4 @@ public class Menus extends Serializer {
     public boolean contains(final String menu) {
         return this.menus.contains(menu);
     }
-
-    public List<String> getCloneMenus() {
-        List<String> clone = new ArrayList<>();
-        clone.addAll(this.menus);
-        return clone;
-    }
 }

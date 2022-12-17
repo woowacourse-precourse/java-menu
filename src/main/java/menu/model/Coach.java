@@ -22,25 +22,8 @@ public class Coach {
         alreadyEatFoods.addMenus(menus);
     }
 
-    public void addAlreadyEatFood(final List<String> foods) {
-        cannotEatFoods.addAll(foods);
-    }
-
     public boolean cannotEatMenu(final String menu) {
         return cannotEatFoods.contains(menu) || alreadyEatFoods.contains(menu);
-    }
-
-    public boolean isTooManySameCategory(final List<String> categoryMenus) {
-        return getDuplicateCategoryCount(categoryMenus) >= MAX_RECOMMENDED_COUNT;
-    }
-
-    private long getDuplicateCategoryCount(final List<String> categoryMenus) {
-        final List<String> categoryMenusClone = clone(categoryMenus);
-        final List<String> alreadyEatFoodsClone = alreadyEatFoods.getCloneMenus();
-
-        categoryMenusClone.retainAll(alreadyEatFoodsClone);
-
-        return categoryMenusClone.size();
     }
 
     private static List<String> clone(final List<String> categoryMenus) {
