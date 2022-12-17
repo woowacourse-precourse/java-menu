@@ -55,6 +55,7 @@ public class Controller {
     }
 
     private Status printResult() {
+        menuRecommendation.getResult();
         return Status.EXIT;
     }
 }
