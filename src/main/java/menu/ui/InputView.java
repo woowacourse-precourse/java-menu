@@ -34,31 +34,20 @@ public class InputView {
     /**
      * 코치가 못먹는 메뉴를 입력받는다.
      */
-    public String readExcludedMenu(Coach coach) {
+    public String[] readExcludedMenu(Coach coach) {
       try {
         System.out.print(coach.getName());
         System.out.println("(이)가 못 먹는 메뉴를 입력해 주세요.");
-        String cmd = Console.readLine();
-        ValidChecker.checkMoveCMD(cmd);
-        return cmd;
+        String rawString = Console.readLine();
+        String[] menuList=rawString.split(",");
+        ValidChecker.checkMenuList(menuList);
+        ValidChecker.checkMenu(menuList);
+        return menuList;
       } catch (IllegalArgumentException e) {
         OutputView.printError(e);
         return readExcludedMenu(coach);
       }
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public String readGameCommand() {
-      try {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        String cmd = Console.readLine();
-        ValidChecker.checkGameCMD(cmd);
-        return cmd;
-      } catch (IllegalArgumentException e) {
-        OutputView.printError(e);
-        return readGameCommand();
-      }
-    }
+
 }
