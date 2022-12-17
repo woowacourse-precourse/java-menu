@@ -24,4 +24,8 @@ public class Coach {
     public boolean isNameOf(String name) {
         return this.name.equals(name);
     }
+
+    public void registerInedibleFoods(List<String> inedibleFoods) {
+        inedibleFoods.forEach(food -> inedibleFoods.add(food));
+    }
 }
