@@ -33,7 +33,7 @@ public class MenuRecommendProgram {
 
         for (int i = 0; i < 5; i++) {
             String category = selectCategory();
-            // 코치들에게 메뉴를 선정하도록 하는 메서드
+            selectMenus(category);
         }
 
         // 결과 출력
