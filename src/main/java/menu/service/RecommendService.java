@@ -65,15 +65,15 @@ public class RecommendService {
         return FoodCategory.findByNumber(randomNum);
     }
 
-    public void recommendMenu(FoodCategory foodCategory, Coach coach) {
+    public Menu recommendMenu(FoodCategory foodCategory, Coach coach) {
         try {
-            recommendToCoach(foodCategory, coach);
+            return recommendToCoach(foodCategory, coach);
         } catch (IllegalStateException e) {
-            recommendToCoach(foodCategory, coach);
+            return recommendToCoach(foodCategory, coach);
         }
     }
 
-    private void recommendToCoach(FoodCategory foodCategory, Coach coach) {
+    private Menu recommendToCoach(FoodCategory foodCategory, Coach coach) {
         String menuName = getRandomMenu(foodCategory);
         Menu menu = new Menu(menuName);
         validateCanNotEatMenu(coach, menu);
@@ -82,6 +82,7 @@ public class RecommendService {
         validateAlreadyEat(menu, eatMenus);
         eatMenus.add(menu);
         eatFoods.put(coach, eatMenus);
+        return menu;
     }
 
     private void validateAlreadyEat(Menu menu, List<Menu> eatMenus) {
