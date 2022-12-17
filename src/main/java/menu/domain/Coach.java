@@ -2,8 +2,7 @@ package menu.domain;
 
 import menu.utils.ExceptionMessage;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Coach {
 
@@ -26,5 +25,9 @@ public class Coach {
 
     public void addMenu(String menu) {
         menus.add(menu);
+    }
+
+    public boolean hasSameMenuRecommend(String menu) {
+        return menus.contains(menu);
     }
 }
