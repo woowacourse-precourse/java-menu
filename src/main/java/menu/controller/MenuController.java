@@ -1,5 +1,6 @@
 package menu.controller;
 
+import menu.dto.CouchNamesRequest;
 import menu.service.MenuService;
 import menu.view.MenuView;
 
@@ -13,6 +14,7 @@ public class MenuController {
     }
 
     public void start() {
-
+        menuView.printStartMessage();
+        menuView.receiveCouches();
     }
 }
