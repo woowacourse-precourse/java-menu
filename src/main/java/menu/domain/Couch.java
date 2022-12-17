@@ -19,4 +19,13 @@ public class Couch {
             hateMenu.add(menu);
         }
     }
+
+    public boolean canEat(Menu menu){
+        for(Menu hateFood : hateMenu){
+            if(hateFood.getMenuName().equals(menu.getMenuName())){
+                return false;
+            }
+        }
+        return true;
+    }
 }
