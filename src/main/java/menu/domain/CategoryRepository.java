@@ -19,4 +19,13 @@ public class CategoryRepository {
 
         return false;
     }
+
+    public static Category findCategoryByCategoryName(String categoryName) {
+        for (Category category : categories) {
+            if (category.getName().equals(categoryName)) {
+                return category;
+            }
+        }
+        return null;
+    }
 }

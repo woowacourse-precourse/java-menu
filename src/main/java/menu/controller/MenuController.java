@@ -2,10 +2,13 @@ package menu.controller;
 
 import static menu.domain.CoachRepository.saveCoach;
 import static menu.service.RandomCategoriesMaker.findRandomCategory;
+import static menu.service.RandomMenusMaker.findMenu;
 import static menu.view.OutputView.printStartMessage;
 
 import menu.domain.Coach;
 import menu.domain.CoachRepository;
+import menu.domain.RecommendationMenu;
+import menu.domain.RecommendationMenuRepository;
 import menu.service.InitializationService;
 import menu.service.ValidationService;
 import menu.view.InputView;
@@ -33,7 +36,7 @@ public class MenuController {
         List<String> coachNames = takeCoaches();
         takeMenuFromCoach(coachNames);
 
-        takeRandoms();
+        takeRandoms(coachNames);
     }
 
     public List<String> takeCoaches() {
@@ -77,7 +80,8 @@ public class MenuController {
         saveCoach(coach);
     }
 
-    public void takeRandoms() {
+    public void takeRandoms(List<String> coachNames) {
         List<String> randomCategories = findRandomCategory();
+        findMenu(coachNames, randomCategories);
     }
 }
