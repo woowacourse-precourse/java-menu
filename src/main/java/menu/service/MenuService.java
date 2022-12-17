@@ -78,5 +78,16 @@ public class MenuService {
         return true;
     }
 
+    private void choiceCategory(){
+        while(true){
+            Category category = menuRecommendApp.getCategories().get(Randoms.pickNumberInRange(1, 5)-1);
+
+            if(!menuRecommendApp.isAppearCategoryMoreThanThree(category.getCategoryNumber())) {
+                menuRecommendApp.addCategoryByDayOfTheWeek(category.getName());
+                return;
+            }
+        }
+    }
+
 
 }
