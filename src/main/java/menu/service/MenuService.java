@@ -97,33 +97,28 @@ public class MenuService implements Menu {
         return categoriesDto;
     }
 
-    private void getRecommand(List<Coach> coaches, List<Category> categories) {
-        for (int i = 0; i < 5; i++) {
-            recommendDay(coaches, categories);
-        }
-    }
-
-    private List<Coach> initCoaches(final List<String> names, final List<List<String>> notAteMenus) {
-        final List<Coach> coaches = new ArrayList<>();
-        generateCoaches(names, notAteMenus, coaches);
-        return coaches;
-    }
-
-    private void generateCoaches(final List<String> names, final List<List<String>> notAteMenus, final List<Coach> coaches) {
-        for (int i = 0; i < names.size(); i++) {
-            final String name = names.get(i);
-            final List<String> notAteMenu = notAteMenus.get(i);
-            coaches.add(new Coach(new CoachName(name), notAteMenu));
-        }
-    }
-
     private void recommendDay(final List<Coach> coaches, final List<Category> categories) {
-        categories.add(getCategory());
-        final List<String> categoryMenus = menus.get(getCategory());
-
+        final Category picked = pickCategory(categories);
+        final List<String> oneCategoryMenus = menus.get(picked);
         for (final Coach coach : coaches) {
-            recommendDayAndCoach(coach, categoryMenus);
+            recommendDayCoach(coach, oneCategoryMenus);
         }
+    }
+
+    private Category pickCategory(final List<Category> alreadyPicked) {
+        while (true) {
+            final Category newCategory = new CategoryPicker(pick).pickCategory();
+            if (canPickCategory(alreadyPicked, newCategory)) {
+                alreadyPicked.add(newCategory);
+                return newCategory;
+            }
+        }
+    }
+
+    private boolean canPickCategory(final List<Category> picked, final Category newCategory) {
+        return picked.stream()
+                .filter(it -> it == newCategory)
+                .count() < MAX_SAME_CATEGORY;
     }
 
     private void recommendDayAndCoach(final Coach coach, final List<String> oneCategoryMenus) {
@@ -137,12 +132,6 @@ public class MenuService implements Menu {
     }
 
     private String getOneMenu(final List<String> oneCategoryMenus) {
-        return picker.shuffle(oneCategoryMenus).get(0);
+        return pick.shuffle(oneCategoryMenus).get(0);
     }
-
-    private Category getCategory() {
-        final int picked = picker.pickNumberInRange(1, 5);
-        return Category.findCategory(picked);
-    }
-
 }
