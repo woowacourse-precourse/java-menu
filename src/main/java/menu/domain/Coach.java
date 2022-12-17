@@ -7,6 +7,7 @@ public class Coach {
 
     private final static int NAME_MAX_LENGTH = 4;
     private final static int NAME_MIN_LENGTH = 2;
+    private final static int HATE_MENU_MAX_SIZE = 2;
 
     private final String name;
     private final List<String> hateMenus;
@@ -20,8 +21,18 @@ public class Coach {
         this.hateMenus = new ArrayList<>(hateMenus);
     }
 
+    public void addLunchMenu(Category category) {
+        while (true) {
+            String randomMenu = category.createRandomMenu();
+            if (!isHateOrDuplicateMenu(randomMenu)) {
+                lunchMenus.add(randomMenu);
+                break;
+            }
+        }
+    }
+
     private void validateHateMenus(List<String> hateMenus) {
-        if (hateMenus.size() > 2) {
+        if (hateMenus.size() > HATE_MENU_MAX_SIZE) {
             throw new IllegalArgumentException("코치가 못먹는 메뉴는 최대 2개입니다. 추가할려는 메뉴 갯수  : " +
                     hateMenus.size());
         }
@@ -37,16 +48,6 @@ public class Coach {
         }
     }
 
-
-    public void addLunchMenu(Category category) {
-        while (true) {
-            String randomMenu = category.createRandomMenu();
-            if (!isHateOrDuplicateMenu(randomMenu)) {
-                lunchMenus.add(randomMenu);
-                break;
-            }
-        }
-    }
 
     private boolean isHateOrDuplicateMenu(String menu) {
         return isHateMenu(menu) || duplicateLunchMenu(menu);

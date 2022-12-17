@@ -29,6 +29,7 @@ public class MenuApplication {
         Coaches coaches = addEachCoachesHateMenu(coachNameDtos);
         List<Category> categories = recommendCategoryMaker.make();
         addCoachesLunchMenu(coaches, categories);
+
         outputView.printWeeklyRecommendMenu(CoachesWeeklyMenu.from(categories, coaches));
     }
 
