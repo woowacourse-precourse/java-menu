@@ -20,6 +20,13 @@ public class MenuService {
     }
 
     public void registerInedibleFoodsToCoach(String coachName, List<String> inedibleFoods) {
+        checkFoods(inedibleFoods);
         coaches.registerInedibleFoodsToCoach(coachName, inedibleFoods);
+    }
+
+    private void checkFoods(List<String> foods) {
+        foods.forEach(food -> {
+            Category.checkFoodExist(food);
+        });
     }
 }
