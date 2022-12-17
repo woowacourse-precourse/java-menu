@@ -19,5 +19,6 @@ public class MainController {
         menuController.initMenu();
         coachController.addCoaches();
         menuRecommendController.recommendWeekMenu();
+        OutputView.printMenuProgramEndMessage();
     }
 }

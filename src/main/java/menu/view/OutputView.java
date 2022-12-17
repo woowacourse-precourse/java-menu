@@ -5,9 +5,13 @@ import java.util.Map;
 
 public class OutputView {
     private static final String MENU_PROGRAM_START_MESSAGE = "점심 메뉴 추천을 시작합니다.\n";
-
+    public static final String MENU_PROGRAM_END_MESSAGE = "\n추천을 완료했습니다.";
     public static void printMenuProgramStartMessage(){
         System.out.println(MENU_PROGRAM_START_MESSAGE);
+    }
+
+    public static void printMenuProgramEndMessage(){
+        System.out.println(MENU_PROGRAM_END_MESSAGE);
     }
 
     public static void printWeekRecommendMenu(List<String> categories, Map<String, List<String>> menus) {

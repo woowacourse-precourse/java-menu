@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /*
 일식: 규동, 우동, 미소시루, 스시, 가츠동, 오니기리, 하이라이스, 라멘, 오코노미야끼
@@ -38,12 +39,16 @@ public enum Category {
         return number;
     }
 
-    public Menu getRandomMenu() {
+    public String getRandomMenu() {
         return getRandomMenus().get(PICK_MENU_INDEX);
     }
 
-    private List<Menu> getRandomMenus() {
-        return Randoms.shuffle(menus);
+    private List<String> getRandomMenus() {
+        List<String> menuNames = menus.stream().map(menu -> {
+            return menu.getName();
+        }).collect(Collectors.toList());
+        List<String> shuffledMenu = Randoms.shuffle(menuNames);
+        return shuffledMenu;
     }
 
     public String getName() {

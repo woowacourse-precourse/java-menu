@@ -10,6 +10,7 @@ import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.Menu;
 import menu.repository.CoachRepository;
+import menu.repository.MenuRepository;
 import menu.view.OutputView;
 
 public class MenuRecommendController {
@@ -40,7 +41,8 @@ public class MenuRecommendController {
     private void addMenuOfCoach(Coach coach, Category category) {
         Menu menu = null;
         do {
-            menu = getRandomMenuByCategory(category);
+            String menuName = getRandomMenuByCategory(category);
+            menu = MenuRepository.findByName(menuName);
         } while (!isValidMenuForCoach(coach, menu));
         coach.addRecommendMenu(menu);
     }
@@ -57,7 +59,7 @@ public class MenuRecommendController {
         return coach.isEatable(menu);
     }
 
-    private Menu getRandomMenuByCategory(Category category) {
+    private String getRandomMenuByCategory(Category category) {
         return category.getRandomMenu();
     }
 
