@@ -5,11 +5,11 @@ import java.util.List;
 
 public class Coach {
     private final String name;
-    private String forbiddenFood;
     private List<String> forbiddenFoods;
 
-    public Coach(String name) {
+    public Coach(String name, List<String> forbiddenFoods) {
         this.name = name;
+        this.forbiddenFoods = forbiddenFoods;
     }
 
     public String getName() {
@@ -20,18 +20,4 @@ public class Coach {
         return forbiddenFoods;
     }
 
-    public void setForbiddenFood(String forbiddenFood) {
-        this.forbiddenFood = forbiddenFood;
-    }
-
-    private List<String> stringToList(String input) {
-        List<String> foods = new ArrayList<>();
-        String[] inputFoods = input.split(",");
-
-        for (int i = 0; i < inputFoods.length; i++) {
-            foods.add(inputFoods[i]);
-        }
-
-        return foods;
-    }
 }
