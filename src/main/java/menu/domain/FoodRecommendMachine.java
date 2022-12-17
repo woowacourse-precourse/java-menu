@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 public class FoodRecommendMachine {
     public static final int MAX_CATEGORY_NUM = 2;
+    public static final int MENU_DONT_RECOMMENDED = 0;
 
     private FoodPeerCoaches coaches;
     private Map<DayRecommend, FoodCategory> foodRecommends = new HashMap<>();
@@ -78,7 +79,7 @@ public class FoodRecommendMachine {
         long count = foodRecommends.keySet().stream()
                 .filter(dayRecommend -> dayRecommend.isCoachMenu(coach, menu))
                 .count();
-        if (count == 0) {
+        if (count == MENU_DONT_RECOMMENDED) {
             return true;
         }
         return false;

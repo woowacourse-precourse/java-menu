@@ -11,6 +11,9 @@ public enum FoodCategory {
     아시안(4, "팟타이, 카오 팟, 나시고렝, 파인애플 볶음밥, 쌀국수, 똠얌꿍, 반미, 월남쌈, 분짜"),
     양식(5, "라자냐, 그라탱, 뇨끼, 끼슈, 프렌치 토스트, 바게트, 스파게티, 피자, 파니니");
 
+    public static final String NOT_EXITING_CATEGORY_NUM_ERROR_MESSAGE = "[ERROR] 해당 번호는 카테고리에 등록되지 않은 번호입니다.";
+    public static final String NOT_EXITING_MENU_ERROR_MESSAGE = "[ERROR] 등록 되지 않은 주문 메뉴 입니다.";
+
     private int categoryNum;
     private List<Menu> menus;
 
@@ -28,7 +31,7 @@ public enum FoodCategory {
                 .filter(foodCategory -> foodCategory.categoryNum == categoryNumber)
                 .findAny()
                 .orElseThrow(() -> {
-                    throw new IllegalArgumentException("[ERROR] 해당 번호는 카테고리에 등록되지 않은 번호입니다.");
+                    throw new IllegalArgumentException(NOT_EXITING_CATEGORY_NUM_ERROR_MESSAGE);
                 });
     }
 
@@ -37,7 +40,7 @@ public enum FoodCategory {
                 .filter(foodCategory -> foodCategory.containMenu(menuName))
                 .findFirst()
                 .orElseThrow(() -> {
-                    throw new IllegalArgumentException("[ERROR] 등록 되지 않은 주문 메뉴 입니다.");
+                    throw new IllegalArgumentException(NOT_EXITING_MENU_ERROR_MESSAGE);
                 });
         return targetCategory.getMenu(menuName);
     }
@@ -48,7 +51,7 @@ public enum FoodCategory {
                 return menu;
             }
         }
-        throw new IllegalArgumentException("[ERROR] 존재하지 않는 메뉴 입니다.");
+        throw new IllegalArgumentException(NOT_EXITING_MENU_ERROR_MESSAGE);
     }
 
     private List<Menu> getMenuListData(String menuData) {
