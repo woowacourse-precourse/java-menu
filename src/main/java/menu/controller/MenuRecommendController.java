@@ -90,11 +90,7 @@ public class MenuRecommendController {
     }
 
     private Coaches setRandomMenuPerCoach(Coaches coaches) {
-        for (Coach coach : coaches.getCoaches()) {
-            coach.addSelectMenu(menuRecommendService.selectWeekMenu(coach));
-        }
-
-        return coaches;
+        return menuRecommendService.selectWeekMenu(coaches);
     }
 
     private void showResult(Coaches coaches) {

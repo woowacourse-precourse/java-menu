@@ -12,7 +12,7 @@ public class Coach {
 
     private final String name;
     private HateMenu hateMenu;
-    private SelectMenu selectMenu;
+    private SelectMenu selectMenu = new SelectMenu();
 
     public Coach(String name) {
         validateName(name);
@@ -33,8 +33,13 @@ public class Coach {
     public void addHateMenus(HateMenu hateMenu) {
         this.hateMenu = hateMenu;
     }
-    public void addSelectMenu(SelectMenu selectMenu) {
-        this.selectMenu = selectMenu;
+
+    public void addSelectMenu(String menu) {
+        selectMenu.addMenu(menu);
+    }
+
+    public boolean isAlreadyExistMenu(String menu) {
+        return selectMenu.isAlreadyExist(menu);
     }
 
     public boolean isHateMenu(String menu) {

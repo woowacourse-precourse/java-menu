@@ -2,6 +2,7 @@ package menu.service;
 
 import menu.constants.Category;
 import menu.model.Coach;
+import menu.model.Coaches;
 import menu.model.SelectCategory;
 import menu.model.SelectMenu;
 import menu.util.RandomCategoryValueGenerator;
@@ -30,22 +31,29 @@ public class MenuRecommendService {
         return category;
     }
 
-    public SelectMenu selectWeekMenu(Coach coach) {
-        SelectMenu selectMenu = new SelectMenu();
+    public Coaches selectWeekMenu(Coaches coaches) {
         for (Category category : selectCategory.getSelectCategories()) {
-            selectMenu.addMenu(selectMenu(selectMenu, category, coach));
+            selectMenuPerCoach(category, coaches);
         }
 
-        return selectMenu;
+        return coaches;
     }
 
-    private String selectMenu(SelectMenu selectMenu, Category category, Coach coach) {
+    private Coaches selectMenuPerCoach(Category category, Coaches coaches) {
+        for (Coach coach : coaches.getCoaches()) {
+            coach.addSelectMenu(selectMenu(category, coach));
+        }
+
+        return coaches;
+    }
+
+    private String selectMenu(Category category, Coach coach) {
         boolean selectMenuState = true;
         String menu = null;
 
         while (selectMenuState) {
             menu = new RandomMenuValueGenerator().generate(category);
-            selectMenuState = selectMenu.isAlreadyExist(menu) || coach.isHateMenu(menu);
+            selectMenuState = coach.isAlreadyExistMenu(menu) || coach.isHateMenu(menu);
         }
 
         return menu;
