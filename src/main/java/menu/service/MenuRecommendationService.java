@@ -5,7 +5,7 @@ import static menu.repository.CoachRepository.coaches;
 import static menu.repository.MenuRepository.findMenusByCategory;
 import static menu.repository.RecommendationResultRepository.addMenu;
 import static menu.repository.RecommendationResultRepository.existMenu;
-import static menu.repository.RecommendationResultRepository.result;
+import static menu.repository.RecommendationResultRepository.isValidCategory;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import menu.domain.Category;
@@ -17,10 +17,19 @@ public class MenuRecommendationService {
   private static final int DAYS = 5;
 
   public void recommend() {
-    Category category = getRandomCategory();
+    Category category = recommendCategory();
     coaches().forEach(coach -> {
       addMenu(coach, recommendMenu(coach, category));
     });
+  }
+
+  private Category recommendCategory() {
+    while (true) {
+      Category category = getRandomCategory();
+      if (isValidCategory(category)) {
+        return category;
+      }
+    }
   }
 
   private Category getRandomCategory() {
