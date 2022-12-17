@@ -33,7 +33,7 @@ public class MenuService {
 
     private void addMenu(List<Coach> coaches, Category category) {
         coaches.forEach(coach -> {
-            coach.addMenu(getMenu(coach, category));
+            coach.addMenu(getMenuByCategory(coach, category));
         });
     }
 
@@ -48,7 +48,7 @@ public class MenuService {
         return category;
     }
 
-    public Menu getMenu(Coach coach, Category category) {
+    public Menu getMenuByCategory(Coach coach, Category category) {
         Menu menu;
         while (true) {
             menu = MenuSelector.getMenu(category);
