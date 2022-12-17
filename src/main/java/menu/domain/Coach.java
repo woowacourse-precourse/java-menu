@@ -1,8 +1,6 @@
 package menu.domain;
 
-import static menu.domain.constant.MenuRule.MAXIMUM_COACH_NAME_LENGTH;
 import static menu.domain.constant.MenuRule.MAXIMUM_INEDIBLE_MENU_COUNT;
-import static menu.domain.constant.MenuRule.MINIMUM_COACH_NAME_LENGTH;
 import static menu.domain.constant.MenuRule.MINIMUM_INEDIBLE_MENU_COUNT;
 
 import java.util.ArrayList;
@@ -19,19 +17,9 @@ public class Coach {
     private final Map<Day, String> weeklyMenus;
 
     public Coach(String name) {
-        validate(name);
         this.name = name;
         this.inedibleMenus = new ArrayList<>();
         this.weeklyMenus = new LinkedHashMap<>();
-    }
-
-    private void validate(String name) {
-        if (MINIMUM_COACH_NAME_LENGTH <= name.length() && name.length() <= MAXIMUM_COACH_NAME_LENGTH) {
-            return;
-        }
-        throw new IllegalArgumentException(String.format(
-                "[ERROR] 코치 이름은 %d자 이상 %d자 이하여야 합니다.", MINIMUM_COACH_NAME_LENGTH, MAXIMUM_COACH_NAME_LENGTH
-        ));
     }
 
     public String getName() {

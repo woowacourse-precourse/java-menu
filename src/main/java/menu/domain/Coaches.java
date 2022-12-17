@@ -1,7 +1,9 @@
 package menu.domain;
 
 import static menu.domain.constant.MenuRule.MAXIMUM_COACH_COUNT;
+import static menu.domain.constant.MenuRule.MAXIMUM_COACH_NAME_LENGTH;
 import static menu.domain.constant.MenuRule.MINIMUM_COACH_COUNT;
+import static menu.domain.constant.MenuRule.MINIMUM_COACH_NAME_LENGTH;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +21,23 @@ public class Coaches {
 
     public void addCoaches(List<String> coachNames) {
         validateCoachesLength(coachNames);
+        validateCoachNames(coachNames);
         coachNames.forEach(name -> {
             coaches.add(new Coach(name));
         });
+    }
+
+    private void validateCoachNames(List<String> coachNames) {
+        coachNames.forEach(this::validateCoachName);
+    }
+
+    private void validateCoachName(String name) {
+        if (MINIMUM_COACH_NAME_LENGTH <= name.length() && name.length() <= MAXIMUM_COACH_NAME_LENGTH) {
+            return;
+        }
+        throw new IllegalArgumentException(String.format(
+                "[ERROR] 코치 이름은 %d자 이상 %d자 이하여야 합니다.", MINIMUM_COACH_NAME_LENGTH, MAXIMUM_COACH_NAME_LENGTH
+        ));
     }
 
     private void validateCoachesLength(List<String> coachNames) {
