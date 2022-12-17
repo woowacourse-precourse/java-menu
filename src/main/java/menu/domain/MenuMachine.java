@@ -15,8 +15,8 @@ public class MenuMachine {
         return menuMachine;
     }
 
-    public Menu recommendMenu() {
-        List<String> menus = Menu.getAllMenus()
+    public Menu recommendMenuFrom(Category category) {
+        List<String> menus = Menu.getMenusOfCategory(category)
                 .stream().map(Menu::getName)
                 .collect(Collectors.toUnmodifiableList());
 
