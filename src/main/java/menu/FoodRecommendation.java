@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.Map;
 
 public class FoodRecommendation {
-    Map<Week, Category> categoryByWeek = new LinkedHashMap<>();
-    List<Coach> coaches;
+    private final Map<Week, Category> categoryByWeek = new LinkedHashMap<>();
+    private final List<Coach> coaches;
 
     public FoodRecommendation(List<Coach> coaches) {
         validate(coaches);
