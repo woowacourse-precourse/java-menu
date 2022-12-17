@@ -55,6 +55,7 @@
 5. printResultInfromMessage() - 메뉴 추천 결과 안내 메세지 출력
 6. printResult() - 전체 결과를 출력
 7. formatAsTable() - 리스트를 테이블 형식으로 format
+8. printResultTalbe() - 결과 테이블을 출력
 
 ## Controller 클래스
  - view단과 도메인을 활용해서 프로그램을 돌리는 단계
