@@ -12,6 +12,6 @@ public class SettingCoach {
 
     public void addCoachCantEatMenus(String coachName, List<String> cantEatMenus) {
         Coach coach = CoachRepository.findCoachByCoachName(coachName);
-        coach.addCantEatMenus(cantEatMenus);
+        coach.setCantEatMenus(cantEatMenus);
     }
 }
