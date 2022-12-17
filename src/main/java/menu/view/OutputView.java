@@ -6,6 +6,11 @@ import java.util.Map;
 public class OutputView {
     private static final String MENU_PROGRAM_START_MESSAGE = "점심 메뉴 추천을 시작합니다.\n";
     public static final String MENU_PROGRAM_END_MESSAGE = "\n추천을 완료했습니다.";
+
+    public static void printErrorMessage(String message){
+        System.out.println(message);
+    }
+
     public static void printMenuProgramStartMessage(){
         System.out.println(MENU_PROGRAM_START_MESSAGE);
     }

@@ -9,6 +9,7 @@ import menu.domain.Menu;
 import menu.repository.CoachRepository;
 import menu.repository.MenuRepository;
 import menu.view.InputView;
+import menu.view.OutputView;
 
 public class CoachController {
 
@@ -18,9 +19,15 @@ public class CoachController {
     }
 
     private void addCoachesByName() {
-        List<Coach> coaches = createCoachesByNames(getParsedCoachNames());
-        if (coaches.size() < 2 || coaches.size() > 5) {//TODO validate 분리 필요, 매직넘버제거
-            throw new IllegalArgumentException("[ERROR] 코치는 최소 2명, 최대 5명끼리 식사합니다.");
+        List<Coach> coaches = new ArrayList<>();
+        try{
+            coaches = createCoachesByNames(getParsedCoachNames());
+            if (coaches.size() < 2 || coaches.size() > 5) {//TODO validate 분리 필요, 매직넘버제거
+                throw new IllegalArgumentException("[ERROR] 코치는 최소 2명, 최대 5명끼리 식사합니다.");
+            }
+        } catch (IllegalArgumentException e){
+            OutputView.printErrorMessage(e.getMessage());
+            addCoachesByName();
         }
         CoachRepository.addAll(coaches);
     }
@@ -52,14 +59,19 @@ public class CoachController {
     }
 
     private void addNoEatableMenuOfCoach(Coach coach) {
-        String inputNoEatableMenus = InputView.inputNoEatableMenus(coach.getName());
-        List<Menu> parsedMenus = getParsedNoEatableMenu(inputNoEatableMenus);
-        if (parsedMenus == null) {
-            return;
+        try{
+            String inputNoEatableMenus = InputView.inputNoEatableMenus(coach.getName());
+            List<Menu> parsedMenus = getParsedNoEatableMenu(inputNoEatableMenus);
+            if (parsedMenus == null) {
+                return;
+            }
+            coach.addNoEatableMenuAll(parsedMenus);
+            // update coach
+            CoachRepository.update(CoachRepository.getIndex(coach), coach);
+        } catch (IllegalArgumentException e){
+            OutputView.printErrorMessage(e.getMessage());
+            addNoEatableMenuOfCoach(coach);
         }
-        coach.addNoEatableMenuAll(parsedMenus);
-        // update coach
-        CoachRepository.update(CoachRepository.getIndex(coach), coach);
     }
 
     private List<Menu> getParsedNoEatableMenu(String inputNoEatableMenus) { //TODO Parsing util클래스 생성
