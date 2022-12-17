@@ -37,7 +37,7 @@ public class MenuController {
         readDislikeFoods();
 
         for (int day = MONDAY; day <= FRIDAY; day++) {
-            recommendMenu();
+            recommendCategoryAndMenu();
         }
 
         outputView.printServiceEndNotice(categoryHistory.getCategoryHistory(), coaches);
@@ -60,13 +60,23 @@ public class MenuController {
         }
     }
 
-    private void recommendMenu() {
+    private void recommendCategoryAndMenu() {
+        Category category = recommendCategory();
+
+        for (Coach coach : coaches) {
+            recommendMenu(coach, category);
+        }
+    }
+
+    private Category recommendCategory() {
         Category category = categoryService.selectCategory();
         categoryHistory.addCategory(category);
 
-        for (Coach coach : coaches) {
-            String menu = menuService.selectMenu(coach, category);
-            coach.addRecommendedMenu(menu);
-        }
+        return category;
+    }
+
+    private void recommendMenu(Coach coach, Category category) {
+        String menu = menuService.selectMenu(coach, category);
+        coach.addRecommendedMenu(menu);
     }
 }
