@@ -11,5 +11,8 @@ public class MenuConstants {
 
     public static final int NUMBER_OF_DAYS = 5;
 
+    public static final int FIRST_CATEGORY = 1;
+    public static final int LAST_CATEGORY = 5;
+
     public static final String DELIMITER = ",";
 }
