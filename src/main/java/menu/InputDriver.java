@@ -11,7 +11,7 @@ public class InputDriver {
         return checkIfValidStringForNameList(Console.readLine());
     }
 
-    private String checkIfValidStringForNameList(String readLine) {
+    public String checkIfValidStringForNameList(String readLine) {
         checkIfSplitValid(readLine);
         checkIfNoSameName(readLine);
         checkIfNameLengthValid(readLine);
@@ -59,21 +59,12 @@ public class InputDriver {
 
     }
 
-    private String checkIfValidStringForMenuList(String readLine) {
+    public String checkIfValidStringForMenuList(String readLine) {
         checkIfSplitMenuValid(readLine);
-        checkIfSplitMenuWithNoSpace(readLine);
         checkIfMenuNumberValid(readLine);
         return readLine;
     }
 
-    private void checkIfSplitMenuWithNoSpace(String readLine) {
-        for (String menu : List.of(readLine.split(","))){
-            if (menu.contains(" ")){
-                outputDriver.printErrorForScanMenuHasSpace();
-                throw new IllegalArgumentException();
-            }
-        }
-    }
 
     private void checkIfSplitMenuValid(String readLine) {
         if (List.of(readLine.split(",")).contains("")){
