@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum Categories {
-    JPN("일식"),
-    KOR("한식"),
-    CHN("중식"),
-    ASN("아시안"),
-    WES("양식");
+    일식("일식"),
+    한식("한식"),
+    중식("중식"),
+    아시안("아시안"),
+    양식("양식");
 
     private String name;
     private List<String> menues;
