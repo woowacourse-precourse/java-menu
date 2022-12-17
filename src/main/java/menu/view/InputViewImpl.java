@@ -1,6 +1,5 @@
 package menu.view;
 
-import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -8,7 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.Coach;
-import menu.domain.Coaches;
 import menu.domain.Menu;
 import menu.dto.request.CoachNameDto;
 
@@ -24,11 +22,12 @@ public class InputViewImpl implements InputView {
     }
 
     @Override
-    public List<Menu> sendHateMenuBySpecificCoach(CoachNameDto coachNameDto) {
+    public Coach sendHateMenuBySpecificCoach(CoachNameDto coachNameDto) {
         System.out.println(coachNameDto.getName() + "(이)가 못 먹는 메뉴를 입력해주세요.");
         List<String> hateMenuNames = Arrays.asList(Console.readLine().split(","));
-        return hateMenuNames.stream()
+        List<Menu> hateMenus = hateMenuNames.stream()
                 .map(Menu::of)
-                .collect(Collectors.toList());
+                .collect(toList());
+        return new Coach(coachNameDto.getName(), hateMenus);
     }
 }

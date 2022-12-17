@@ -32,10 +32,8 @@ public class MenuApplication {
     }
 
     private Coaches addEachCoachesHateMenu(List<CoachNameDto> coachNameDtos) {
-        return coachNameDtos.stream().map(coachNameDto -> {
-                    List<Menu> menus = inputView.sendHateMenuBySpecificCoach(coachNameDto);
-                    return new Coach(coachNameDto.getName(), menus);
-                })
+        return coachNameDtos.stream()
+                .map(inputView::sendHateMenuBySpecificCoach)
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Coaches::new));
     }
 
@@ -44,5 +42,4 @@ public class MenuApplication {
             coaches.addLunchMenuToEachCoach(category);
         }
     }
-
 }
