@@ -1,14 +1,14 @@
 package menu.service;
 
-import menu.domain.Coach;
-import menu.domain.Coaches;
-import menu.domain.Menu;
-import menu.domain.MenuRepository;
+import menu.domain.*;
+import menu.utills.Recommender;
+import menu.utills.constants.Category;
 
 import java.util.List;
 
 public class Service {
     private final Coaches coaches = new Coaches();
+    private final Categories categories = new Categories();
 
     public void setMenus() {
         MenuRepository.initialize();
@@ -23,13 +23,21 @@ public class Service {
     }
 
     public void recommend() {
-       coaches.takeRecommend();
+        setCategories();
+        coaches.takeRecommendByCategories(categories.getCategories());
     }
 
     private void addHateMenu(Coach coach, List<String> hateMenuNames) {
         for (String menuName : hateMenuNames) {
             Menu menu = MenuRepository.getMenuByName(menuName);
             coach.addHateMenu(menu);
+        }
+    }
+
+    private void setCategories() {
+        while (!categories.isFull()) {
+            Category category = Recommender.getRandomCategory();
+            categories.addCategories(category);
         }
     }
 }

@@ -3,10 +3,12 @@ package menu.utills;
 import camp.nextstep.edu.missionutils.Randoms;
 import menu.utills.constants.Category;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Recommender {
-    public static Category getRandomCategory () {
+    public static Category getRandomCategory() {
         int randomNumber = generateRandomNumber();
         return Category.getCategoryByValue(randomNumber);
     }

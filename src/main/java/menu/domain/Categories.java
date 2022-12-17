@@ -14,9 +14,13 @@ public class Categories {
         }
         categories.add(category);
     }
-    
+
     public boolean isFull() {
         return categories.size() == 5;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
     }
 
     private boolean duplicatedDouble(Category newCategory) {
