@@ -15,16 +15,20 @@ public class OutputView {
     }
 
     public void printInputCoach() {
+        System.out.println();
         System.out.println(Message.INPUT_COACH.getMessage());
     }
 
     public void printHardToEat(Coach coach) {
+        System.out.println();
         System.out.println(String.format(Message.IMPOSSIBLE_TO_EAT.getMessage(), coach.getName()));
     }
 
     public void printRecommendation(Recommendation recommendation, List<Coach> coaches) {
+        System.out.println();
         System.out.println(Message.RECOMMEND_RESULT.getMessage());
         printResult(recommendation, coaches);
+        System.out.println();
         System.out.println(Message.RECOMMEND_FINISH.getMessage());
     }
 
