@@ -27,12 +27,6 @@ public class MainController {
         displayStartMessage();
         setCategories();
         setCoachNames();
-        /*
-        for(Coach coach : coaches){
-            setBanFoods(coach);
-            setMenusOfWeek(coach);
-        }
-        */
         for(Coach coach : coaches){
             setBanFoods(coach);
         }
