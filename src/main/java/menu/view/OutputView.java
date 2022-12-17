@@ -13,7 +13,7 @@ public class OutputView {
 
     private static final String PRINT_START_MESSAGE = "점심 메뉴 추천을 시작합니다.";
     private static final String EXCEPTION_MESSAGE = "[ERROR] ";
-    private static final String MENU_MESSAGE = "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]";
+    private static final String MENU_MESSAGE = "메뉴 추천 결과입니다.\n[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]";
     private static final String CATEGORY_MESSAGE_FORMAT = "[ 카테고리 | {0} ]";
     private static final String MENU_MESSAGE_FORMAT = "[ {0} | {1} ]";
     private static final String MENU_MESSAGE_DELIMITER = " | ";
