@@ -12,7 +12,7 @@ public class CoachNameDTO {
 
     private CoachNameDTO() {}
 
-    public static CoachNameDTO getInstnace() {
+    public static CoachNameDTO getInstance() {
         return coachNameDTO;
     }
 
@@ -21,6 +21,7 @@ public class CoachNameDTO {
     }
 
     public void setCoaches(String nameInput) {
+        coaches.clear();
         List<String> names = List.of(nameInput.split(","));
         names.forEach(name -> coaches.add(new Coach(name)));
     }

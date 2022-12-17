@@ -1,6 +1,5 @@
 package menu.view;
 
-import java.util.Scanner;
 import menu.DTO.CoachNameDTO;
 import menu.DTO.FoodCanNotEatDTO;
 
@@ -8,8 +7,8 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-    private static final Scanner scanner = new Scanner(System.in);
-    private static final CoachNameDTO coachNameDTO = CoachNameDTO.getInstnace();
+    private static final CoachNameDTO coachNameDTO = CoachNameDTO.getInstance();
+    private static final FoodCanNotEatDTO foodCanNotEatDTO = FoodCanNotEatDTO.getInstance();
     private static final String COACH_NAME_INPUT_REQUEST
             = "코치의 이름을 입력해 주세요. (, 로 구분)";
     private static final String FOOD_CAN_NOT_EAT_INPUT_REQUEST
@@ -26,7 +25,8 @@ public class InputView {
     public static FoodCanNotEatDTO readFoodCanNotEat(String name) {
         System.out.println();
         printFoodCanNotEatInputRequest(name);
-        return new FoodCanNotEatDTO(scanner.nextLine());
+        foodCanNotEatDTO.setFoodsCanNotEat(Console.readLine());
+        return foodCanNotEatDTO;
     }
 
     private static void printCoachNameInputRequest() {
@@ -36,6 +36,4 @@ public class InputView {
     private static void printFoodCanNotEatInputRequest(String name) {
         System.out.println(name + FOOD_CAN_NOT_EAT_INPUT_REQUEST);
     }
-
-
 }
