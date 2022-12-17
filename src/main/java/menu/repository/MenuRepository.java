@@ -40,4 +40,8 @@ public class MenuRepository {
         }
         return new ArrayList<>();
     }
+
+    public static void clear() {
+        menus.clear();
+    }
 }

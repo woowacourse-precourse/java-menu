@@ -40,4 +40,8 @@ public class HardToEatRepository {
         }
         return new ArrayList<>();
     }
+
+    public static void clear() {
+        menus.clear();
+    }
 }

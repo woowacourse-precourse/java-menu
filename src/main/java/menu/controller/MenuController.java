@@ -1,9 +1,11 @@
 package menu.controller;
 
 import java.util.List;
+import menu.config.MenuConfig;
 import menu.domain.Coach;
 import menu.dto.Recommendation;
 import menu.repository.HardToEatRepository;
+import menu.repository.MenuRepository;
 import menu.service.MenuService;
 import menu.utils.MenuValidator;
 import menu.view.InputView;
@@ -16,13 +18,20 @@ public class MenuController {
     private final MenuService menuService = new MenuService();
 
     public void process() {
-        outputView.printServiceStart();
+        initConfig();
         List<Coach> coaches = inputCoaches();
         processHardToEatMenus(coaches);
         processMenuRecommendation(coaches);
     }
 
+    private void initConfig() {
+        MenuRepository.clear();
+        HardToEatRepository.clear();
+        MenuConfig.configure();
+    }
+
     private List<Coach> inputCoaches() {
+        outputView.printServiceStart();
         outputView.printInputCoach();
         return inputView.readCoaches();
     }
@@ -42,13 +51,12 @@ public class MenuController {
     }
 
     private void processMenuRecommendation(List<Coach> coaches) {
-        while (true) {
-            try {
-                Recommendation recommendation = getRecommendation(coaches);
-                MenuValidator.validate(recommendation);
-                outputView.printRecommendation(recommendation, coaches);
-            } catch (IllegalStateException e) {
-            }
+        try {
+            Recommendation recommendation = getRecommendation(coaches);
+            MenuValidator.validate(recommendation);
+            outputView.printRecommendation(recommendation, coaches);
+        } catch (IllegalStateException e) {
+            processMenuRecommendation(coaches);
         }
     }
 
