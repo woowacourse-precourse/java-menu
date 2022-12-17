@@ -23,7 +23,7 @@ public class Coach {
         }
     }
 
-    private void setInedible(List<String> inedibles) {
+    public void setInedible(List<String> inedibles) {
         validateInedibles(inedibles);
         this.inedibles = inedibles;
     }
