@@ -33,4 +33,11 @@ public class MenuRepository {
             menus.put(category, new ArrayList<>(List.of(menu)));
         }
     }
+
+    public List<String> findByCategory(Category category) {
+        if (menus.containsKey(category)) {
+            return menus.get(category);
+        }
+        return new ArrayList<>();
+    }
 }
