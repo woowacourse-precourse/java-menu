@@ -5,6 +5,7 @@ import java.util.List;
 import menu.domain.Category;
 import menu.domain.CategoryHistory;
 import menu.domain.Coach;
+import menu.domain.Coaches;
 import menu.service.CategoryService;
 import menu.service.MenuService;
 import menu.util.Constant;
@@ -20,7 +21,7 @@ public class MenuController {
     private CategoryHistory categoryHistory;
     private CategoryService categoryService;
     private MenuService menuService;
-    private List<Coach> coaches;
+    private Coaches coaches;
 
     public MenuController() {
         this.inputView = new InputView();
@@ -28,7 +29,7 @@ public class MenuController {
         this.categoryHistory = new CategoryHistory();
         this.categoryService = new CategoryService(categoryHistory);
         this.menuService = new MenuService();
-        this.coaches = new ArrayList<>();
+        this.coaches = new Coaches();
     }
 
     public void startMenuRecommendService() {
@@ -40,7 +41,7 @@ public class MenuController {
             recommendCategoryAndMenu();
         }
 
-        outputView.printServiceEndNotice(categoryHistory.getCategoryHistory(), coaches);
+        outputView.printServiceEndNotice(categoryHistory.getCategoryHistory(), coaches.getCoaches());
     }
 
     private void readCoachNames() {
@@ -49,12 +50,12 @@ public class MenuController {
 
         String[] coachNames = coachNameInput.split(Constant.INPUT_DELIMITER);
         for (String name : coachNames) {
-            coaches.add(new Coach(name));
+            coaches.addCoach(new Coach(name));
         }
     }
 
     private void readDislikeFoods() {
-        for (Coach coach : coaches) {
+        for (Coach coach : coaches.getCoaches()) {
             outputView.printDislikeFoodInputNotice(coach.getName());
             coach.addDislikeFood(inputView.readDislikeFoods());
         }
@@ -63,7 +64,7 @@ public class MenuController {
     private void recommendCategoryAndMenu() {
         Category category = recommendCategory();
 
-        for (Coach coach : coaches) {
+        for (Coach coach : coaches.getCoaches()) {
             recommendMenu(coach, category);
         }
     }
