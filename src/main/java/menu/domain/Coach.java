@@ -22,4 +22,13 @@ public class Coach {
     public String getName() {
         return name;
     }
+
+    public boolean checkCanEat(List<Menu> selectedMenus) {
+        for(Menu menu : selectedMenus){
+            if(cantEat.contains(menu)){
+                return false;
+            }
+        }
+        return true;
+    }
 }

@@ -31,7 +31,7 @@ public class Day {
     public Category getCategory(int number) {
         for (int index = 1; index < number + 1; index++) {
             if (index == number) {
-                return categories.get(index);
+                return categories.get(index-1);
             }
         }
         return null;

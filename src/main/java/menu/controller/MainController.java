@@ -32,6 +32,24 @@ public class MainController {
         makeCoaches();
         makeCantEatMenus();
         List<Category>selectedCategories = coaches.makeSelectedCategories();
+        List<List<Menu>>selectedMenus = makeDailyMenus(selectedCategories);
+    }
+
+    private List<List<Menu>> makeDailyMenus(List<Category> selectedCategories) {
+        List<List<Menu>> selectedMenus = new ArrayList<>();
+        for(Coach coach : coaches.getCoaches()){
+            List<Menu>eachCoachesSelectedMenu = makeEachCoachesMenu(selectedCategories, coach);
+            selectedMenus.add(eachCoachesSelectedMenu);
+        }
+        return selectedMenus;
+    }
+
+    private List<Menu> makeEachCoachesMenu(List<Category> selectedCategories, Coach coach) {
+        List<Menu>selectedMenus = coaches.makeSelectedMenus(selectedCategories);
+        if(!coach.checkCanEat(selectedMenus)){
+            return makeEachCoachesMenu(selectedCategories, coach);
+        }
+        return selectedMenus;
     }
 
     private void makeCantEatMenus() {

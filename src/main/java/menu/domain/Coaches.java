@@ -101,4 +101,15 @@ public class Coaches {
         }
         return selectedCategories;
     }
+
+    public List<Menu> makeSelectedMenus(List<Category> selectedCategories) {
+        List<Menu>selectedMenus = new ArrayList<>();
+        for(Category category : selectedCategories){
+            selectedMenus.add(category.getRandomMenu());
+        }
+        if(new HashSet<>(selectedMenus).size()!=5){
+            return makeSelectedMenus(selectedCategories);
+        }
+        return selectedMenus;
+    }
 }
