@@ -17,12 +17,26 @@ public class RecommendSystem implements RandomPicker {
         List<MenuCategory> categories = new ArrayList<>();
 
         while (categories.size() < MAX_CATEGORY_SIZE) {
-            final int categoryNumber = Randoms.pickNumberInRange(FIRST_CATEGORY_NUMBER, LAST_CATEGORY_NUMBER);
-            //TODO 중복검증
-            categories.add(MenuCategory.pickCategory(categoryNumber));
+            final MenuCategory category = pickCategory(categories);
+            categories.add(category);
         }
 
         return categories;
+    }
+
+    private static MenuCategory pickCategory(final List<MenuCategory> categories) {
+        final int categoryNumber = Randoms.pickNumberInRange(FIRST_CATEGORY_NUMBER, LAST_CATEGORY_NUMBER);
+        final MenuCategory category = MenuCategory.pickCategory(categoryNumber);
+
+        final long count = categories.stream()
+                .filter(c -> c.equals(category))
+                .count();
+
+        if (count >= 2) {
+            return pickCategory(categories);
+        }
+
+        return category;
     }
 
     private static MenuCategory pickCategory() {
