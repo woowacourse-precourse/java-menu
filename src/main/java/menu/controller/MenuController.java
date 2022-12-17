@@ -19,6 +19,17 @@ public class MenuController {
     private final OutputView outputView = new OutputView();
     private final MenuService menuService = new MenuService();
 
+    public void run() {
+        outputView.showInitMessage();
+        start();
+    }
+
+    public void start() {
+        List<Coach> coaches = getCoaches();
+        List<Category> recommendCategories = menuService.recommend(coaches);
+        outputView.showMenus(coaches, recommendCategories);
+    }
+
     private List<Coach> getCoaches() {
         try {
             List<Coach> coaches = new ArrayList<>();
