@@ -46,4 +46,8 @@ public enum Food {
         String foodNameWithoutSpace = foodNameWithSpace.replaceAll(" ", "_");
         return name().equals(foodNameWithoutSpace);
     }
+
+    public Category getCategory() {
+        return category;
+    }
 }

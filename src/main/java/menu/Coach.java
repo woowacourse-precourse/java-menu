@@ -10,11 +10,13 @@ import menu.constant.Food;
 public class Coach {
 
     private final String name;
+    private final List<Food> inedibles;
     private final List<Category> recommendedCategories;
     private final List<Food> recommendedFoods;
 
-    public Coach(String name) {
+    public Coach(String name, List<Food> inedibles) {
         this.name = name;
+        this.inedibles = inedibles;
         this.recommendedCategories = new ArrayList<>();
         this.recommendedFoods = new ArrayList<>();
     }
@@ -26,7 +28,7 @@ public class Coach {
         }
         recommendedCategories.add(category);
         String foodName = pickFoodNameFrom(category);
-        while (isRecommended(foodName)) {
+        while (isRecommended(foodName) || isInedible(foodName)) {
             foodName = pickFoodNameFrom(category);
         }
         recommendedFoods.add(Food.from(foodName));
@@ -41,6 +43,10 @@ public class Coach {
                 .filter(element -> element.equals(category))
                 .count();
         return count == 2;
+    }
+
+    private boolean isInedible(String foodName) {
+        return inedibles.contains(Food.from(foodName));
     }
 
     private boolean isRecommended(String foodName) {
