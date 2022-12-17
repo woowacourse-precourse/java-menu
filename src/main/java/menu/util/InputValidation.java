@@ -52,7 +52,7 @@ public class InputValidation {
         List<String> inputs = new ArrayList<>();
         for (String input : userInput) {
             if(input.trim().length() > 0) {
-                inputs.add(input);
+                inputs.add(input.trim());
             }
         }
         return inputs;
