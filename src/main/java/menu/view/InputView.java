@@ -12,6 +12,7 @@ import menu.domain.exception.InputException;
 public class InputView {
     private final static String INPUT_COACH_NAME = "코치의 이름을 입력해 주세요. (, 로 구분)";
     private final static String INPUT_COACH_CAN_NOT_EAT_MENUS = "(이)가 못 먹는 메뉴를 입력해 주세요.";
+    private final static int CAN_NOT_EAT_MENUS_COUNT_LIMIT = 3;
 
     public List<String> getCoachName() {
         System.out.println(INPUT_COACH_NAME);
@@ -75,6 +76,7 @@ public class InputView {
 
     public void validateCannotEatMenus(String uncheckedMenus) {
         validateDuplicateMenus(uncheckedMenus);
+        validateMenuLength(uncheckedMenus);
         validateMenuInCategory(uncheckedMenus);
     }
 
@@ -97,6 +99,13 @@ public class InputView {
             if(menuCategory == Category.INVALID_CATEGORY) {
                 throw new IllegalArgumentException(InputException.INVALID_MENU.getExceptionMessage());
             }
+        }
+    }
+
+    public void validateMenuLength(String uncheckedMenus) {
+        List<String> cannotEatMenus = convertStringToList(uncheckedMenus);
+        if(cannotEatMenus.size() > CAN_NOT_EAT_MENUS_COUNT_LIMIT) {
+            throw new IllegalArgumentException(InputException.OUT_OF_RANGE_MENU_COUNT.getExceptionMessage());
         }
     }
 }
