@@ -14,6 +14,12 @@ public class InputView {
         outputView.initMessage();
         String coachString = Console.readLine();
         List<String> coachList = Arrays.asList(coachString.split(","));
+        for (int i = 0; i < coachList.size(); i++) {
+            if (coachList.get(i).length() < 2 || coachList.get(i).length() > 4) {
+                throw new IllegalArgumentException("[ERROR] 코치이름의 길이를 확인해주세요");
+            }
+        }
+
         return coachList;
     }
 
