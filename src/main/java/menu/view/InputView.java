@@ -13,7 +13,7 @@ public class InputView {
     private static final String DELIMITER = ",";
 
     public static CoachNamesDto readCoachNames() {
-        //안내 문구 출력
+        OutputView.printReadCoachNames();
         String names = Console.readLine();
         List<String> coaches = Arrays.stream(names.split(DELIMITER))
                 .collect(Collectors.toList());
