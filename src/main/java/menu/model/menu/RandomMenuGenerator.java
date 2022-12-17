@@ -1,13 +1,21 @@
 package menu.model.menu;
 
-import menu.model.category.Category;
-
 import java.util.List;
 
-public class RandomMenuGenerator {
-    public Menu pickMenuByCategory(Category category, List<Menu> hatingMenu) {
-        // TODO 구현 필요
+import camp.nextstep.edu.missionutils.Randoms;
 
-        return null;
+public class RandomMenuGenerator {
+    public Menu pickMenuByCategory(Category category, List<Menu> exceptedMenuList) {
+        List<String> menuList = category.getMenuList();
+        removeHatingMenu(menuList, exceptedMenuList);
+
+        String menuName = Randoms.shuffle(menuList).get(0);
+        return new Menu(menuName);
+    }
+
+    private void removeHatingMenu(List<String> menuList, List<Menu> exceptedMenuList) {
+        for(Menu exceptedMenu : exceptedMenuList) {
+            menuList.remove(exceptedMenu.getName());
+        }
     }
 }
