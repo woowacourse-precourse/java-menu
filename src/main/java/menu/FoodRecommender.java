@@ -5,7 +5,7 @@ import java.util.*;
 
 public class FoodRecommender {
     private int dayCount;
-    private Map<String, Integer> categoryCount;
+    private final Map<String, Integer> categoryCount;
 
     FoodRecommender() {
         dayCount = 0;
@@ -14,6 +14,17 @@ public class FoodRecommender {
             categoryCount.put(categoryI, 0);
         }
     }
+
+    public void recommend(Coach[] coaches) {
+        while (dayCount < 7) {
+            String category = pickCategory();
+            for (Coach coach: coaches) {
+                pickMenu(coach, category);
+            }
+            dayCount++;
+        }
+    }
+
 
     public void pickMenu(Coach coach, String category) {
         String newMenu;
