@@ -16,7 +16,8 @@ public class MenuRecommendController {
 
     public void performingProgram() {
         Coaches coaches = settingInformation();
-        coaches = setRandomMenuPerCoach(coaches);
+        coaches = performRecommendMenu(coaches);
+        showResult(coaches);
     }
 
     private Coaches settingInformation() {
@@ -82,11 +83,21 @@ public class MenuRecommendController {
         }
     }
 
+    private Coaches performRecommendMenu(Coaches coaches) {
+        menuRecommendService.selectWeekCategory();
+        coaches = setRandomMenuPerCoach(coaches);
+        return coaches;
+    }
+
     private Coaches setRandomMenuPerCoach(Coaches coaches) {
         for (Coach coach : coaches.getCoaches()) {
             coach.addSelectMenu(menuRecommendService.selectWeekMenu(coach));
         }
 
         return coaches;
+    }
+
+    private void showResult(Coaches coaches) {
+        outputView.printResultMenuRecommend(menuRecommendService.getSelectCategory(), coaches);
     }
 }
