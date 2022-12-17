@@ -9,9 +9,9 @@ public class MenuController {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public MenuController(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public MenuController() {
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
     }
 
     public void run() {
