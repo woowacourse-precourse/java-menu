@@ -1,7 +1,5 @@
 package menu.validator;
 
-import menu.domain.ValidMenus;
-
 public class Validate {
 
     private static final String DIVIDE = ",";
@@ -11,9 +9,5 @@ public class Validate {
         if (!(2 <= nameLength && nameLength <= 4)) {
             throw new IllegalArgumentException(ErrorMessages.ERROR.toString() + ErrorMessages.INVALID_COACH);
         }
-    }
-
-    public static void menu(String menuName) {
-        ValidMenus.findMenuByName(menuName);
     }
 }
