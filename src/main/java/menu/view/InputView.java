@@ -10,7 +10,14 @@ import java.util.stream.Collectors;
 
 public class InputView {
 
+    private final OutputView outputView;
+
+    public InputView(OutputView outputView) {
+        this.outputView = outputView;
+    }
+
     public List<Couch> readCouchName() {
+        outputView.printReadCouchName();
         String names = Console.readLine();
         String[] split = names.split(",");
 
@@ -19,7 +26,8 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    public List<Food> readCannotFood() {
+    public List<Food> readCannotFood(Couch couch) {
+        outputView.printReadDeniedFood(couch.getName());
         String names = Console.readLine();
         String[] split = names.split(",");
         return Arrays.stream(split)
