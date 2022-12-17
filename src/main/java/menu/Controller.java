@@ -12,7 +12,6 @@ public class Controller {
 
     public void initGame() {
         System.out.println(Output.INIT);
-        System.out.println(Output.INPUT_COACH);
         String[] names = ExceptionHandler.input(Input::inputName);
         for (String name : names) {
             System.out.printf((Output.INPUT_HATE) + "%n", name);
