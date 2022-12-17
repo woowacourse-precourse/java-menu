@@ -1,5 +1,6 @@
 package menu.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class CoachFood {
@@ -11,4 +12,12 @@ public class CoachFood {
         this.recommendedFood = new RecommendedFood();
     }
 
+    //모든 요일에 대해서 반복 (월 ~ 금의 추천메뉴에 대해서 수행)
+    public void updateRecommendedFood(List<List<String>> foodsInCategory) {
+        foodsInCategory.forEach(foods -> recommendedFood.pickRecommendedFood(foods, dislikeFood.getDislikeFoods()));
+    }
+
+    public List<String> getRecommendedFoods() {
+        return Collections.unmodifiableList(recommendedFood.getFoods());
+    }
 }

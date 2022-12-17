@@ -3,6 +3,7 @@ package menu.domain;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class MenuRecommendation {
     private final RecommendedCategory recommendedCategory;
@@ -22,6 +23,25 @@ public class MenuRecommendation {
 
     public void initializeDislikeFoods(String coachName, List<String> dislikeFoods) {
         coachFoods.put(new Coach(coachName), new CoachFood(dislikeFoods));
+    }
+
+    //모든 코치에 대해서 수행
+    public void recommendFood() {
+        coachFoods.entrySet()
+                .forEach(set -> recommendFood(set.getKey(), set.getValue(), recommendedCategory.getAllFoodsInCategoryForWeek()));
+    }
+
+    public List<List<String>> getRecommendedFood() {
+        return coachFoods.values()
+                .stream()
+                .map(food -> food.getRecommendedFoods())
+                .collect(Collectors.toList());
+    }
+
+    //수행하고 업데이트
+    private void recommendFood(Coach coach, CoachFood coachFood, List<List<String>> foodsInCategory) {
+        coachFood.updateRecommendedFood(foodsInCategory);
+        coachFoods.put(coach, coachFood);
     }
 
 }
