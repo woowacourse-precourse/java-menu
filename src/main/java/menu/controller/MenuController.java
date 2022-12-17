@@ -86,4 +86,13 @@ public class MenuController {
         }
     }
 
+    private void decideMenuForEachCoach(int day) {
+        for (int i = 0; i < coaches().size(); i++) {
+            MenuCategory category = weekCategories().get(day - 1);
+            List<String> menus = categories.get(category);
+            validateRecommendMenu(i, menus);
+        }
+    }
+
+
 }
