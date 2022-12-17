@@ -2,7 +2,6 @@ package menu;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import javax.print.attribute.HashAttributeSet;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -16,16 +15,18 @@ public class InputView {
     private final String NUMBER_OF_HATE_FOOD_ERROR = "싫어하는 음식은 최소 0개, 2개 까지만 가능합니다";
 
     public List<String> inputNameOfCoaches() {
-        String[] nameOfAllCoaches = Console.readLine().split(",");
+        List<String> nameOfAllCoaches = Arrays.stream(Console.readLine().split(","))
+                .map(String::trim)
+                .collect(Collectors.toList());
 
         nameLengthValidate(nameOfAllCoaches);
         numberOfCoachesValidate(nameOfAllCoaches);
+        System.out.println();
 
-        return Arrays.stream(nameOfAllCoaches)
-                .collect(Collectors.toList());
+        return nameOfAllCoaches;
     }
 
-    private void nameLengthValidate(String[] nameOfAllCoaches) {
+    private void nameLengthValidate(List<String> nameOfAllCoaches) {
         for (String name : nameOfAllCoaches) {
             if (!(2 <= name.length() && name.length() <= 4)) {
                 throw new IllegalArgumentException(SystemConstant.ERROR + NAME_LENGTH_ERROR);
@@ -33,42 +34,46 @@ public class InputView {
         }
     }
 
-    private void numberOfCoachesValidate(String[] nameOfAllCoaches) {
-        if (!(2 <= nameOfAllCoaches.length && nameOfAllCoaches.length <= 5)) {
+    private void numberOfCoachesValidate(List<String> nameOfAllCoaches) {
+        if (!(2 <= nameOfAllCoaches.size() && nameOfAllCoaches.size() <= 5)) {
             throw new IllegalArgumentException(SystemConstant.ERROR + NUMBER_OF_COACHES_ERROR);
         }
     }
 
-    public List<String> inputHateFood() {
-        String[] hateFoods = Console.readLine().split(",");
+    public List<String> inputHateFood(Coach coach) { // 여기다가 출력문을 추가해도 될듯, 추후에 진짜로 만드는 과정에서 생각해보자.
+        System.out.println(coach + "(이)가 못 먹는 메뉴를 입력해 주세요.");
+        List<String> hateFoods = Arrays.stream(Console.readLine().split(","))
+                .map(String::trim)
+                .collect(Collectors.toList());
 
         numberOfHateFoodValidate(hateFoods);
         hateFoodDuplicateValidate(hateFoods);
         foodExistValidate(hateFoods);
+        System.out.println();
 
-        return Arrays.stream(hateFoods).collect(Collectors.toList());
+        return hateFoods;
     }
 
-    private void foodExistValidate(String[] hateFoods) {
+    private void foodExistValidate(List<String> hateFoods) {
         for (String food : hateFoods) {
             Category.foodValidate(food);
         }
     }
 
-    private void numberOfHateFoodValidate(String[] hateFoods) {
-        if (!(hateFoods.length <= 2)) {
-            throw new IllegalArgumentException(SystemConstant.ERROR + NUMBER_OF_HATE_FOOD_ERROR)
+    private void numberOfHateFoodValidate(List<String> hateFoods) {
+        if (!(hateFoods.size() <= 2)) {
+            throw new IllegalArgumentException(SystemConstant.ERROR + NUMBER_OF_HATE_FOOD_ERROR);
         }
     }
 
-    private void hateFoodDuplicateValidate(String[] hateFoods) {
+    private void hateFoodDuplicateValidate(List<String> hateFoods) {
         Set<String> duplicateChecker = new HashSet<>();
 
         for (String food : hateFoods) {
             duplicateChecker.add(food);
         }
 
-        if (duplicateChecker.size() != hateFoods.length) {
+        if (duplicateChecker.size() != hateFoods.size()) {
             throw new IllegalArgumentException(SystemConstant.ERROR + DUPLICATE_HATE_FOOD);
         }
     }
