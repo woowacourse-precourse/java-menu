@@ -8,7 +8,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public enum Menu {
+public enum Category {
     JAPANESE_FOOD(1, "일식",Arrays.asList("규동", "우동", "미소시루", "스시", "가츠동", "오니기리",
             "하이라이스", "라멘", "오코노미야끼")),
     KOREAN_FOOD(2, "한식", Arrays.asList("김밥", "김치찌개", "쌈밥", "된장찌개", "비빔밥", "칼국수",
@@ -24,14 +24,14 @@ public enum Menu {
                     CHINESE_FOOD.menus, ASIAN_FOOD.menus, WESTERN_FOOD.menus)
             .flatMap(Collection::stream)
             .collect(Collectors.toList());
-    private static final Map<Integer, Menu> CATEGORY_BY_NUMBER = Stream.of(values())
-            .collect(Collectors.toMap(Menu::getCategoryNumber, Function.identity()));
+    private static final Map<Integer, Category> CATEGORY_BY_NUMBER = Stream.of(values())
+            .collect(Collectors.toMap(Category::getCategoryNumber, Function.identity()));
 
     private final int categoryNumber;
     private final String category;
     private final List<String> menus;
 
-    Menu(int categoryNumber, String category, List<String> menus) {
+    Category(int categoryNumber, String category, List<String> menus) {
         this.categoryNumber = categoryNumber;
         this.category = category;
         this.menus = menus;
@@ -45,7 +45,7 @@ public enum Menu {
         return ALL_MENU.contains(menu);
     }
 
-    public static Menu getCategoryByNumber(int number) {
+    public static Category getCategoryByNumber(int number) {
         return CATEGORY_BY_NUMBER.get(number);
     }
 }
