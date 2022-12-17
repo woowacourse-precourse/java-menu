@@ -10,7 +10,7 @@ public class MenuService {
 
     public String selectMenu(Coach coach, Category category) {
         while (true) {
-            List<String> dislikeFood = coach.getDislikeFood();
+            List<String> dislikeFood = coach.getDislikeFoods();
             List<String> recommendedMenu = coach.getRecommendedMenus();
 
             List<String> menus = Menu.getMenuNamesByCategory(category);

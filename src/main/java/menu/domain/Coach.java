@@ -6,12 +6,12 @@ import java.util.List;
 public class Coach {
 
     private String name;
-    private DislikeFood dislikeFood;
+    private DislikeFoods dislikeFoods;
     private List<String> recommendedMenus;
 
     public Coach(String name) {
         this.name = name;
-        this.dislikeFood = new DislikeFood();
+        this.dislikeFoods = new DislikeFoods();
         this.recommendedMenus = new ArrayList<>();
     }
 
@@ -19,8 +19,8 @@ public class Coach {
         return name;
     }
 
-    public List<String> getDislikeFood() {
-        return dislikeFood.getDislikeFood();
+    public List<String> getDislikeFoods() {
+        return dislikeFoods.getDislikeFoods();
     }
 
     public List<String> getRecommendedMenus() {
@@ -28,7 +28,7 @@ public class Coach {
     }
 
     public void addDislikeFood(String foodInput) {
-        dislikeFood.addDislikeFood(foodInput);
+        dislikeFoods.addDislikeFood(foodInput);
     }
 
     public void addRecommendedMenu(String menu) {
