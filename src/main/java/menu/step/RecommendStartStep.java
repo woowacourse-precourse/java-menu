@@ -13,7 +13,7 @@ public class RecommendStartStep extends MenuRecommendApplicationStep{
     @Override
     protected Step pureAction() {
         OutputView.printRecommendStart();
-        return new Exit(controller, logger);
+        return new InputCoachNameStep(controller, logger);
     }
 
     @Override

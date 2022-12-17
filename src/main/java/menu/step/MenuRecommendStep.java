@@ -21,9 +21,9 @@ public class MenuRecommendStep extends MenuRecommendApplicationStep {
 
     @Override
     protected Step pureAction() {
-        List<WeekRecommends> recommend = controller.recommend(coaches);
-        OutputView.printRecommendResult(recommend);
-        return null;
+        controller.recommend(coaches);
+        OutputView.printRecommendResult(coaches);
+        return new Exit(controller, logger);
     }
 
     @Override
