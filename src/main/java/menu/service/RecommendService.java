@@ -82,8 +82,12 @@ public class RecommendService {
         return recommendMenus;
     }
 
-    private static void addMenu(final List<RecommendResult> results, final MenuCategory category, final int j, final String menuName) {
-        results.get(j).addMenu(new Menu(category, menuName));
+    private static void addMenu(
+            final List<RecommendResult> results,
+            final MenuCategory category,
+            final int index,
+            final String menuName) {
+        results.get(index).addMenu(new Menu(category, menuName));
     }
 
     private String recommendUntilSuccess(final Coach coach, final List<String> menus) {
