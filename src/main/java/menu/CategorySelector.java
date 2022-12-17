@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MenuSelector {
+public class CategorySelector {
     private static final int MENU_MIN = 1;
     private static final int MENU_MAX = 5;
     private static final int WEEK_MAX = 2;

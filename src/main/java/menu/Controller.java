@@ -9,7 +9,7 @@ public class Controller {
     private static final int EXIT = 0;
     private static final String CATEGORY = "카테고리";
     List<Coach> coaches = new ArrayList<>();
-    MenuSelector menuSelector = new MenuSelector();
+    CategorySelector categorySelector = new CategorySelector();
 
 
     public void initGame() {
@@ -25,7 +25,7 @@ public class Controller {
         if (count == DAYS) {
             return EXIT;
         }
-        String category = menuSelector.pickCategory();
+        String category = categorySelector.pickCategory();
         List<String> menus = Dish.pickCategory(category);
         for (Coach coach : coaches) {
             coach.pickFood(menus);
@@ -36,7 +36,7 @@ public class Controller {
     public void printResult() {
         System.out.println(Output.PRINT_RESULT);
         System.out.println(Output.DAYS);
-        System.out.println(ResultView.print(CATEGORY, menuSelector.getCategoryRepository()));
+        System.out.println(ResultView.print(CATEGORY, categorySelector.getCategoryRepository()));
         for (Coach coach : coaches) {
             System.out.println(ResultView.print(coach.getName(), coach.getEatenFood()));
         }
