@@ -23,6 +23,7 @@ public class Controller {
     }
 
     private void recommend() {
-        outputView.printRecommendation(service.chooseMenus(service.chooseCategories()));
+        service.chooseCategories();
+        service.chooseMenus();
     }
 }

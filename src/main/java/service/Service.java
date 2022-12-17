@@ -1,11 +1,15 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import domain.Categories;
 import domain.Coach;
 import domain.CoachNames;
+import domain.Menus;
 
 public class Service {
     private CoachNames coachNames;
@@ -44,5 +48,26 @@ public class Service {
 
     public void chooseCategories() {
         categories = Categories.generateCategories();
+    }
+
+    public void chooseMenus() {
+        for (String category : categories) {
+            List<String> menu = Arrays.stream(Menus.values())
+                .filter(menus -> menus.getCategory().equals(category))
+                .collect(Collectors.toList())
+                .get(0)
+                .getMenus();
+            coachs.forEach(coach -> {
+                while (true) {
+                    String recommendedMenu = Randoms.shuffle(menu).get(0);
+                    if (coach.getInedibleMenus().contains(recommendedMenu)) {
+                        continue;
+                    }
+                    coach.addMenu(recommendedMenu);
+                    break;
+                }
+            });
+        }
+        coachs.forEach(coach -> coach.getMenus().forEach(System.out::println));
     }
 }
