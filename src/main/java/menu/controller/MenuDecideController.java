@@ -11,5 +11,6 @@ public class MenuDecideController {
 
     public void run() {
         output.printStart();
+        output.askCoachName();
     }
 }
