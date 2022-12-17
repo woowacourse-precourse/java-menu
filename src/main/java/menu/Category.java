@@ -14,6 +14,10 @@ public class Category {
 		categories.add("양식");
 	}
 
+	public int getCategoriesCount() {
+		return categories.size();
+	}
+
 	public String getCategory(int index) {
 		return categories.get(index);
 	}
