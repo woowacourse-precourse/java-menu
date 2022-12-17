@@ -1,21 +1,21 @@
 package menu.domain.menucategory;
 
 public class MenuCategory {
-    private static final int MAX_SELECTED_COUNT = 2;
-    private int selectedCount;
+
+    private final SelectedCount selectedCount;
     private final String name;
 
     public MenuCategory(String name) {
         this.name = name;
-        this.selectedCount = 0;
+        this.selectedCount = SelectedCount.generate();
     }
 
     public void select() {
-        selectedCount++;
+        selectedCount.add();
     }
 
     public boolean canSelect() {
-        return this.selectedCount < MAX_SELECTED_COUNT;
+        return selectedCount.canSelect();
     }
 
     public String name() {
