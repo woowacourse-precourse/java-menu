@@ -31,10 +31,15 @@ public class MenuController {
                 recommendMenu(category, coach);
             }
         }
-        
+
+        // for (Coach coach : coaches) {
+        //     coach.printCoach();
+        // }
+        outputView.printRecommendMenuResult(recommender.getCategoryCheckList());
         for (Coach coach : coaches) {
-            coach.printCoach();
+            outputView.printRecommendMenuResultByCoach(coach.getName(), coach.getAlreadyRecommended());
         }
+
         outputView.printServiceEnd();
     }
 

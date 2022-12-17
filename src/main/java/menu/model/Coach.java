@@ -17,6 +17,14 @@ public class Coach {
         System.out.println(name + alreadyRecommended);
     }
 
+    public List<String> getAlreadyRecommended() {
+        return alreadyRecommended;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public void addFood(String recommendedFood) {
         alreadyRecommended.add(recommendedFood);
     }

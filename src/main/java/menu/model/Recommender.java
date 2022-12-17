@@ -25,4 +25,8 @@ public class Recommender {
     public String recommendFood(List<String> menus) {
         return Randoms.shuffle(menus).get(0);
     }
+
+    public List<Category> getCategoryCheckList() {
+        return categoryCheckList;
+    }
 }
