@@ -19,4 +19,16 @@ public class MenuRecommender {
     private boolean validCategory(Category category) {
         return Collections.frequency(categoryHistory, category) == 3;
     }
+
+    private String recommendMenu(Category category, Coach coach) {
+        boolean inavailableMenu = true;
+        String menu = null;
+
+        while (inavailableMenu) {
+            menu = Randoms.shuffle(category.getMenus()).get(0);
+            inavailableMenu = coach.checkMenu(menu);
+        }
+
+        return menu;
+    }
 }
