@@ -24,6 +24,12 @@ public class MenuRecommendApp {
         }
     }
 
+    public void initializeCategory(){
+        for (CategoryEnum category : CategoryEnum.values()) {
+            categories.add(new Category(category.name() , category.getNum() , Arrays.stream(category.getMenus().split(",")).collect(Collectors.toList())));
+        }
+    }
+
     public List<Coach> getCoaches() {
         return coaches;
     }
