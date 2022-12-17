@@ -51,10 +51,10 @@ public class CoachRecommendMenuRepository {
             final List<String> coachMenus,
             final List<String> menuNames) {
         while (true) {
-            List<String> shuffleMenu = Randoms.shuffle(menuNames);
-            if (!coachMenus.contains(shuffleMenu.get(FIRST_MENU)) && coachExcludeMenu.isPossibleToEat(
-                    shuffleMenu.get(FIRST_MENU))) {
-                coachMenus.add(shuffleMenu.get(FIRST_MENU));
+            String recommendMenu = Randoms.shuffle(menuNames).get(FIRST_MENU);
+            if (!coachMenus.contains(recommendMenu) && coachExcludeMenu.isPossibleToEat(
+                    recommendMenu)) {
+                coachMenus.add(recommendMenu);
                 return;
             }
         }

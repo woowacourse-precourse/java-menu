@@ -38,7 +38,7 @@ public class OutputView {
 
     private void printCoachRecommendMenu(final List<CoachRecommendMenu> startMenuRecommend) {
         for (CoachRecommendMenu coachRecommendMenu : startMenuRecommend) {
-            System.out.printf("[ %s |", coachRecommendMenu.getCoachName());
+            System.out.print("[ " + coachRecommendMenu.getCoachName() + " |");
             System.out.print(createMenuMessage(coachRecommendMenu.getMenuList()));
             System.out.println("]");
         }
