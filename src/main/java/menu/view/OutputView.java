@@ -9,4 +9,9 @@ public class OutputView {
     public static void askCoach() {
         System.out.println(Message.ASK_COACH.getMessage());
     }
+
+    public static void askNoEat(String name) {
+        System.out.println();
+        System.out.println(name + Message.ASK_NO_EAT.getMessage());
+    }
 }

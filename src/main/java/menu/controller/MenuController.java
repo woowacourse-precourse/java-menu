@@ -16,11 +16,21 @@ public class MenuController {
 
     public void run() {
         OutputView.start();
-        askCoach();
+        List<Coach> coaches = askCoach();
+        askNoEat(coaches);
     }
 
-    private void askCoach() {
+    private List<Coach> askCoach() {
         OutputView.askCoach();
         List<Coach> coaches = InputView.inputCoach();
+        menuSuggester.setCoaches(coaches);
+        return coaches;
+    }
+
+    private void askNoEat(List<Coach> coaches) {
+        for (Coach coach : coaches) {
+            OutputView.askNoEat(coach.getName());
+        }
+
     }
 }
