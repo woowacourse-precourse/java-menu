@@ -30,7 +30,7 @@ public class MenuController {
         outputView.printStart();
     }
 
-    public void readCoachInfo() {
+    public List<String> readCoachNames() {
         List<String> coachNames = null;
         do {
             outputView.printReadCoachNames();
@@ -41,10 +41,19 @@ public class MenuController {
                 outputView.printError(e.getMessage());
             }
         } while (true);
+        return coachNames;
+    }
+
+    public void readImpossibleMenus(String coachName) {
+        outputView.printReadImpossibleMenus(coachName);
+        List<String> impossibleMenuList = inputView.readImpossibleMenus();
+        coachList.add(new Coach(coachName, impossibleMenuList));
+    }
+
+    public void readCoachInfo() {
+        List<String> coachNames = readCoachNames();
         for (String coachName : coachNames) {
-            outputView.printReadImpossibleMenus(coachName);
-            List<String> impossibleMenuList = inputView.readImpossibleMenus();
-            coachList.add(new Coach(coachName, impossibleMenuList));
+            readImpossibleMenus(coachName);
         }
     }
 
