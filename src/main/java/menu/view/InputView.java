@@ -4,11 +4,19 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import menu.utils.ErrorMessages;
 
 public class InputView {
 
-    public static final String INPUT_DELIMITER = ",";
-    public static final int MAX_FOODS = 2;
+    private static final String INPUT_DELIMITER = ",";
+
+    private static final int MAX_FOODS = 2;
+
+    private static final int MIN_COACH_SIZE = 2;
+    private static final int MAX_COACH_SIZE = 5;
+
+    private static final int MIN_NAME_LENGTH = 2;
+    private static final int MAX_NAME_LENGTH = 4;
 
     public List<String> readCoachNames() {
         System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
@@ -29,8 +37,11 @@ public class InputView {
     }
 
     private void validateCoachNames(List<String> names) {
-        if (names.size() < 2 || names.size() > 5) {
-            throw new IllegalArgumentException("코치는 최소 2명, 최대 5명 입력해야 합니다.");
+        if (names.size() < MIN_COACH_SIZE) {
+            throw new IllegalArgumentException(ErrorMessages.TOO_MIN_COACH);
+        }
+        if (names.size() > MAX_COACH_SIZE) {
+            throw new IllegalArgumentException(ErrorMessages.TOO_MANY_COACH);
         }
         for (String name : names) {
             validateNameLength(name);
@@ -38,8 +49,11 @@ public class InputView {
     }
 
     private void validateNameLength(String name) {
-        if (name.length() < 2 || name.length() > 4) {
-            throw new IllegalArgumentException("이름은 최소 2글자, 최대 4글자여야 합니다.");
+        if (name.length() < MIN_NAME_LENGTH) {
+            throw new IllegalArgumentException(ErrorMessages.TOO_MIN_NAME);
+        }
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException(ErrorMessages.TOO_BIG_NAME);
         }
     }
 
@@ -54,7 +68,7 @@ public class InputView {
 
     private void validateNotEatFoods(List<String> foods) {
         if (foods.size() > MAX_FOODS) {
-            throw new IllegalArgumentException("못 먹는 메뉴는 최대 2개만 입력 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessages.OVER_MAX_FOOD);
         }
     }
 }

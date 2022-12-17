@@ -11,6 +11,7 @@ import menu.domain.Coach;
 import menu.domain.FoodCategory;
 import menu.domain.Menu;
 import menu.repository.MenuRepository;
+import menu.utils.ErrorMessages;
 
 public class RecommendService {
 
@@ -53,7 +54,7 @@ public class RecommendService {
         FoodCategory category = getCategory(randomNum);
         Integer counts = categoryCounts.getOrDefault(category, 0);
         if (counts >= 2) {
-            throw new IllegalStateException("이미 2번 추천되었습니다");
+            throw new IllegalStateException(ErrorMessages.OVER_RECOMMEND);
         }
         categoryCounts.put(category, counts + 1);
         return category;
@@ -84,13 +85,13 @@ public class RecommendService {
 
     private void validateAlreadyEat(Menu menu, List<Menu> eatMenus) {
         if (eatMenus.contains(menu)) {
-            throw new IllegalStateException("이미 코치가 먹은 음식입니다");
+            throw new IllegalStateException(ErrorMessages.ALREADY_EAT);
         }
     }
 
     private void validateCanNotEatMenu(Coach coach, Menu menu) {
         if (coach.canNotEat(menu)) {
-            throw new IllegalStateException("코치가 안먹는 음식입니다");
+            throw new IllegalStateException(ErrorMessages.DISLIKE_MENU);
         }
     }
 
