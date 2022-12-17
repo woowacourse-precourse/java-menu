@@ -15,10 +15,9 @@ public class RecommendResult {
         this.coaches = coaches;
         this.categories = new ArrayList<>();
         this.categoryRandomNumberGenerator = categoryRandomNumberGenerator;
-        makeRecommendResult();
     }
 
-    private void makeRecommendResult() {
+    public void makeRecommendResult() {
         generateRandomCategories();
         generateRandomMenus();
     }
