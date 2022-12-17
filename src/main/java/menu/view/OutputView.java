@@ -18,7 +18,7 @@ public class OutputView {
     private void printCoachMenu(List<CoachWeekMenu> coachWeekMenu) {
         for(CoachWeekMenu coachMenu : coachWeekMenu) {
             System.out.print(Constant.outputRecommendFoodResultStart
-                    + coachMenu.getCoach()
+                    + coachMenu.getCoach().getName()
                     + Constant.outputRecommendFoodResultCenter);
             printEachMenu(coachMenu);
         }
@@ -29,6 +29,7 @@ public class OutputView {
             if (i == coachWeekMenu.getEatMenus().size()-1) {
                 System.out.println(coachWeekMenu.getEatMenus().get(i)
                         +Constant.outputRecommendFoodResultEnd);
+                break;
             }
             System.out.print(coachWeekMenu.getEatMenus().get(i)
                     + Constant.outputRecommendFoodResultCenter);
