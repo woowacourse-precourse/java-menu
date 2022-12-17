@@ -21,7 +21,7 @@ public class OutputView {
     }
 
     public void printMenuMessage(String coachName) {
-        String message = coachName + inputMenuMessage;
+        String message = "\n" + coachName + inputMenuMessage;
         System.out.println(message);
     }
 
@@ -34,7 +34,7 @@ public class OutputView {
     }
     
     private void printCategory(List<String> category) {
-        String message = "[ " + String.join(" | ", category) + " ]";
+        String message = "[ 카테고리 | " + String.join(" | ", category) + " ]";
         System.out.println(message);
     }
 

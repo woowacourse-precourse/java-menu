@@ -5,6 +5,8 @@ import menu.menu.Category;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +17,11 @@ public class MenuRecommendProgramTest {
 
     @DisplayName("모든 카테고리 선정 테스트")
     @Test
-    void selectCategoryTest_1() {
+    void selectCategoryTest_1() throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
+        Method selectCategoryMethod
+                = MenuRecommendProgram.class.getDeclaredMethod("selectCategory");
+        selectCategoryMethod.setAccessible(true);
+
         MenuRecommendProgram menuRecommendProgram = new MenuRecommendProgram();
         HashMap<String, Integer> countOfCategorySelected = new HashMap<>() {{
             for (Category category: Category.values()) {
@@ -24,7 +30,7 @@ public class MenuRecommendProgramTest {
             }
         }};
         for (int i = 0; i < 10; i++) {
-            String category = menuRecommendProgram.selectCategory();
+            String category = (String) selectCategoryMethod.invoke(menuRecommendProgram);
             Integer countOfSelect = countOfCategorySelected.get(category);
             countOfCategorySelected.put(category, countOfSelect + 1);
         }
@@ -39,7 +45,11 @@ public class MenuRecommendProgramTest {
 
     @DisplayName("이미 먹은 메뉴나 먹지 못하는 메뉴는 추천하지 않는다.")
     @Test
-    void selectMenuTest() {
+    void selectMenuTest() throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
+        Method SelectMenuMethod
+                = MenuRecommendProgram.class.getDeclaredMethod("selectMenu", Coach.class, String.class);
+        SelectMenuMethod.setAccessible(true);
+
         MenuRecommendProgram menuRecommendProgram = new MenuRecommendProgram();
         Coach coach = new Coach("한빈");
         coach.addFoodNotEat("스시");
@@ -47,7 +57,7 @@ public class MenuRecommendProgramTest {
         notEatFoods.add("스시");
 
         for (int i = 0; i < 8; i++) {
-            String menu = menuRecommendProgram.selectMenu(coach, "일식");
+            String menu = (String) SelectMenuMethod.invoke(menuRecommendProgram, coach, "일식");
             assertThat(notEatFoods.contains(menu)).isFalse();
             notEatFoods.add(menu);
         }

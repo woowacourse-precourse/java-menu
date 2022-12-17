@@ -35,15 +35,18 @@ public class MenuRecommendProgram {
         selectedCategory = new ArrayList<>();
     }
 
+    // 주요 로직
     public void run() {
-        start();
-
-        for (int i = 0; i < 5; i++) {
-            String category = selectCategory();
-            selectMenus(category);
+        try {
+            start();
+            for (int i = 0; i < 5; i++) {
+                String category = selectCategory();
+                selectMenus(category);
+            }
+            printResult();
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
         }
-
-        printResult();
     }
 
     private void start() {
@@ -54,50 +57,25 @@ public class MenuRecommendProgram {
         }
     }
 
-
-
-    private void printStartMessage() {
-        outputView.printStart();
-    }
-
-    private void inputCoach() {
-        printCoachMessage();
-        List<String> coachNames = inputView.readCoaches();
-        for (String coachName: coachNames) {
-            Coach coach = new Coach(coachName);
-            coaches.add(coach);
-        }
-    }
-
-    private void printCoachMessage() {
-        outputView.printCoachMessage();
-    }
-
-
-    private void printMenuMessage(Coach coach) {
-        String coachName = coach.getName();
-        outputView.printMenuMessage(coachName);
-    }
-    private void inputMenus(Coach coach) {
-        printMenuMessage(coach);
-        List<String> menusNotEaten = inputView.readMenuNotEat();
-        for (String menuNotEaten: menusNotEaten) {
-            coach.addFoodNotEat(menuNotEaten);
-        }
-    }
-
-    private void printResult() {
-        outputView.printResult(selectedCategory, coaches);
-    }
-
-    public void selectMenus(String category) {
+    private void selectMenus(String category) {
         for (Coach coach: coaches) {
             selectMenu(coach, category);
         }
     }
 
+    private String selectMenu(Coach coach, String category) {
+        String menu;
+        List<String> menus = Category.getMenus(category);
+        boolean isSelect;
+        do {
+            menu = menuRecommend.selectMenu(menus);
+            isSelect = validateMenu(coach, menu);
+        } while (!isSelect);
+        coach.addfoodEaten(menu);
+        return menu;
+    }
 
-    public String selectCategory() {
+    private String selectCategory() {
         String category;
         boolean isSelect;
         do {
@@ -110,20 +88,45 @@ public class MenuRecommendProgram {
         return category;
     }
 
-    private boolean validateCategory(String category) {
-        return countOfCategorySelected.get(category) < 2;
+    // 출력
+    private void printStartMessage() {
+        outputView.printStart();
     }
 
-    public String selectMenu(Coach coach, String category) {
-        String menu;
-        List<String> menus = Category.getMenus(category);
-        boolean isSelect;
-        do {
-            menu = menuRecommend.selectMenu(menus);
-            isSelect = validateMenu(coach, menu);
-        } while (!isSelect);
-        coach.addfoodEaten(menu);
-        return menu;
+    private void printCoachMessage() {
+        outputView.printCoachMessage();
+    }
+
+    private void printMenuMessage(Coach coach) {
+        String coachName = coach.getName();
+        outputView.printMenuMessage(coachName);
+    }
+
+    private void printResult() {
+        outputView.printResult(selectedCategory, coaches);
+    }
+
+    // 입력
+    private void inputCoach() {
+        printCoachMessage();
+        List<String> coachNames = inputView.readCoaches();
+        for (String coachName: coachNames) {
+            Coach coach = new Coach(coachName);
+            coaches.add(coach);
+        }
+    }
+
+    private void inputMenus(Coach coach) {
+        printMenuMessage(coach);
+        List<String> menusNotEaten = inputView.readMenuNotEat();
+        for (String menuNotEaten: menusNotEaten) {
+            coach.addFoodNotEat(menuNotEaten);
+        }
+    }
+
+    // 검증
+    private boolean validateCategory(String category) {
+        return countOfCategorySelected.get(category) < 2;
     }
 
     private boolean validateMenu(Coach coach, String menu) {

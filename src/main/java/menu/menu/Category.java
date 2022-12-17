@@ -16,7 +16,7 @@ public enum Category {
             Arrays.asList("팟타이", "카오 팟", "나시고렝", "파인애플 볶음밥", "쌀국수", "똠얌꿍", "반미", "월남쌈", "분짜")),
     WESTERN_FOOD("양식", 5,
             Arrays.asList("라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니")),
-    EMPTY("카테고리 해당 없음", 0, Collections.emptyList());
+    EMPTY("카테고리 해당 없음", 0, Arrays.asList(""));
 
     private String categoryName;
     private Integer categoryNumber;
