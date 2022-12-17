@@ -13,7 +13,7 @@ public class CategoryRecommender {
         List<Category> categories = new ArrayList<>(List.of(Category.values()));
         Category category;
         while (true) {
-            category = categories.get(Randoms.pickNumberInRange(1,5));
+            category = categories.get(Randoms.pickNumberInRange(1,5) - 1);
             if (Collections.frequency(recommendedCategories, category) > 2) {
                 recommendedCategories.add(category);
                 break;
