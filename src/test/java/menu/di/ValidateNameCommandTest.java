@@ -1,8 +1,10 @@
 package menu.di;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
@@ -26,5 +28,11 @@ class ValidateNameCommandTest {
     @Test
     void ValidateNameCommand_객체는_생성시_적절한_값이_들어오면_잘_생성된다() {
         assertDoesNotThrow(() -> new ValidateMenuCommand("헬로우,사람,아님"));
+    }
+
+    @Test
+    void getNames_메서드는_input_을_바탕으로_이름을_찾아준다() {
+        assertThat(new ValidateMenuCommand("사람,아님").getMenus())
+                .containsAll(List.of("사람", "아님"));
     }
 }
