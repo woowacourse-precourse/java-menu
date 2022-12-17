@@ -24,10 +24,14 @@ public class Coach {
     }
 
     public void addHateMenus(List<Menu> menus) {
-        hateMenus.addAll(menus);
-        if (hateMenus.size() > 2) {
-            throw new IllegalArgumentException("코치가 못먹는 메뉴는 최대 2개입니다. 현재 못먹는 메뉴 갯수  : " + hateMenus.size());
+        if (menus.size() + hateMenus.size() > 2) {
+            throw new IllegalArgumentException("코치가 못먹는 메뉴는 최대 2개입니다. 추가할려는 메뉴 갯수  : " + menus.size());
         }
+
+        if (menus.stream().distinct().count() != menus.size()) {
+            throw new IllegalArgumentException("중복된 메뉴가 존재합니다.");
+        }
+        hateMenus.addAll(menus);
     }
 
     public boolean isHateMenu(Menu menu) {
