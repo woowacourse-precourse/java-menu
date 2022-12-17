@@ -2,7 +2,7 @@ package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import menu.utils.CoachNameParser;
-import menu.utils.FoodsInputParser;
+import menu.utils.MenusInputParser;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class InputView {
     public List<String> readDoNotRecommendFoodsOf(String name) {
         String input = getInput(format(DO_NOT_RECOMMEND, name));
 
-        return FoodsInputParser.parser(input);
+        return MenusInputParser.parser(input);
     }
 
     private String getInput(String message) {
