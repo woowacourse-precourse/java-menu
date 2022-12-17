@@ -11,6 +11,7 @@ public class MenuRecommendProgram {
     private HashMap<String, Integer> countOfCategorySelected;
     private List<Coach> coaches;
     private MenuRecommend menuRecommend;
+    private List<String> selectedCategory;
 
     public MenuRecommendProgram() {
         countOfCategorySelected = new HashMap<>() {{
@@ -21,14 +22,20 @@ public class MenuRecommendProgram {
         }};
         coaches = new ArrayList<>();
         menuRecommend = new MenuRecommend();
+        selectedCategory = new ArrayList<>();
     }
 
-    public void selectCategory() {
+    public String selectCategory() {
+        String category;
         boolean isSelect;
         do {
-            String category = menuRecommend.selectCategory();
+            category = menuRecommend.selectCategory();
             isSelect = validateCategory(category);
         } while (isSelect);
+        Integer countOfSelect = countOfCategorySelected.get(category);
+        countOfCategorySelected.put(category, countOfSelect);
+        selectedCategory.add(category);
+        return category;
     }
 
     private boolean validateCategory(String category) {
