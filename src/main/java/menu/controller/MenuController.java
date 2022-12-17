@@ -5,16 +5,20 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.BannedFoods;
+import menu.domain.Categories;
 import menu.domain.Crew;
 import menu.domain.Crews;
+import menu.util.CategoryGenerator;
 import menu.view.InputView;
 import menu.view.OutputView;
 
 public class MenuController {
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
+    private final CategoryGenerator categoryGenerator = new CategoryGenerator();
     private Crews crews;
     private BannedFoods bannedFoods = new BannedFoods();
+    private Categories categories = new Categories();
 
     public void run() {
         /**
@@ -24,11 +28,14 @@ public class MenuController {
          * 3. 요일별 카테고리 채우기
          * 4. 요일별 코치들의 음식 채우기
          */
-
+        // 1. 코치 이름 받기
         crews = new Crews(getCrews());
+
+        // 2. 못먹는 메뉴 입력 받기
         getBannedFoods();
 
         // 3. 요일별 카테고리 채우기
+        categories = categoryGenerator.generateCategories();
 
         // 4. 요일별 코치들의 음식 채우기
     }
@@ -39,7 +46,7 @@ public class MenuController {
     }
 
     private void fillBannedFoods(int crewSize) {
-        for(int i=0; i<crewSize; i++) {
+        for (int i = 0; i < crewSize; i++) {
             Crew crew = crews.getCrews().get(i);
             outputView.printRequestOfBannedFoods(crew.getName());
             String foods = inputView.readBannedFoods();
