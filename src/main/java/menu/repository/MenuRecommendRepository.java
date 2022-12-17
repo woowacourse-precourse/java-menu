@@ -1,8 +1,11 @@
-package menu.domain;
+package menu.repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import menu.domain.Coach;
+import menu.domain.Food;
+import menu.domain.MenuRecommend;
 
 public class MenuRecommendRepository {
 

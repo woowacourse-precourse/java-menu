@@ -3,6 +3,7 @@ package menu.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import menu.repository.FoodRepository;
 
 public class Coach {
     private final String name;

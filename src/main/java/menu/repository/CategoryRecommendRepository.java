@@ -1,8 +1,11 @@
-package menu.domain;
+package menu.repository;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import menu.domain.Category;
+import menu.domain.CategoryRecommend;
+import menu.domain.Weekday;
 
 public class CategoryRecommendRepository {
 

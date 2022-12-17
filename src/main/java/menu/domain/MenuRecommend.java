@@ -2,6 +2,8 @@ package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import menu.repository.FoodRepository;
+import menu.repository.MenuRecommendRepository;
 
 public class MenuRecommend {
 

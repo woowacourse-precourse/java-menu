@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.Category;
 import menu.domain.Food;
-import menu.domain.FoodRepository;
+import menu.repository.FoodRepository;
 
 public class Data {
     private static final int FOODS_INDEX = 1;
@@ -19,6 +19,7 @@ public class Data {
     private static final Category western = Category.WESTERN;
 
 
+    // TODO 메서드 길이 조건 위반. 꼭 리팩터링!
     public static void loadData() {
         String japaneseData = "일식: 규동, 우동, 미소시루, 스시, 가츠동, 오니기리, 하이라이스, 라멘, 오코노미야끼";
         for (String foodName: parsingFoodName(japaneseData)) {

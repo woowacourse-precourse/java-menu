@@ -1,6 +1,7 @@
 package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import menu.repository.CategoryRecommendRepository;
 
 public class CategoryRecommend {
 
