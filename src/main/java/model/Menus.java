@@ -18,4 +18,13 @@ public class Menus {
     public List<String> getMenus() {
         return menus;
     }
+    
+    public boolean isMenuReduplication(String menu) {
+        return menus.contains(menu);
+    }
+    
+    @Override
+    public String toString() {
+        return menus.toString();
+    }
 }
