@@ -24,6 +24,8 @@ public class InputView {
         System.out.println(String.format(READ_INEDIBLES, coach.getName()));
         String input = Console.readLine();
         List<String> inedibles = List.of(input.split(","));
+        if (inedibles.size() == 0)
+            return inedibles;
         for (String food : inedibles) {
             if (!Category.checkFoodInMenus(food)) {
                 throw new IllegalArgumentException(INVALID_FOOD);
