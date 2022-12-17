@@ -35,7 +35,7 @@ public class CouchGroup {
 
     private boolean isDuplicateName(List<Couch> couches) {
         Set<Couch> distinct = new HashSet<>(couches);
-        return couches.size() == distinct.size();
+        return couches.size() != distinct.size();
     }
 
     public int size() {
