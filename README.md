@@ -9,13 +9,13 @@
 ## 📮 미션 제출 방법
 
 - 미션 구현을 완료한 후 GitHub을 통해 제출해야 한다.
-  - GitHub을 활용한 제출
-    방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고해
-    제출한다.
+    - GitHub을 활용한 제출
+      방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고해
+      제출한다.
 - GitHub에 미션을 제출한 후 [우아한테크코스 지원](https://apply.techcourse.co.kr) 사이트에 접속하여 프리코스 과제를 제출한다.
-  - 자세한 방법은 [제출 가이드](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse#제출-가이드)
-    참고
-  - **Pull Request만 보내고 지원 플랫폼에서 과제를 제출하지 않으면 최종 제출하지 않은 것으로 처리되니 주의한다.**
+    - 자세한 방법은 [제출 가이드](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse#제출-가이드)
+      참고
+    - **Pull Request만 보내고 지원 플랫폼에서 과제를 제출하지 않으면 최종 제출하지 않은 것으로 처리되니 주의한다.**
 
 ## 🚨 과제 제출 전 체크 리스트 - 0점 방지
 
@@ -42,25 +42,25 @@ BUILD SUCCESSFUL in 0s
 
 - 코치들은 월, 화, 수, 목, 금요일에 점심 식사를 같이 한다.
 - 메뉴를 추천하는 과정은 아래와 같이 이뤄진다.
-  1. 월요일에 추천할 카테고리를 무작위로 정한다.
-  2. 각 코치가 월요일에 먹을 메뉴를 추천한다.
-  3. 화, 수, 목, 금요일에 대해 i, ii 과정을 반복한다.
+    1. 월요일에 추천할 카테고리를 무작위로 정한다.
+    2. 각 코치가 월요일에 먹을 메뉴를 추천한다.
+    3. 화, 수, 목, 금요일에 대해 i, ii 과정을 반복한다.
 - 코치의 이름은 최소 2글자, 최대 4글자이다.
 - 코치는 최소 2명, 최대 5명까지 식사를 함께 한다.
 - 각 코치는 최소 0개, 최대 2개의 못 먹는 메뉴가 있다. (`,` 로 구분해서 입력한다.)
-  - 먹지 못하는 메뉴가 없으면 빈 값을 입력한다.
-  - 추천을 못하는 경우는 발생하지 않으니 고려하지 않아도 된다.
+    - 먹지 못하는 메뉴가 없으면 빈 값을 입력한다.
+    - 추천을 못하는 경우는 발생하지 않으니 고려하지 않아도 된다.
 - 한 주에 같은 카테고리는 최대 2회까지만 고를 수 있다.
 - 각 코치에게 한 주에 중복되지 않는 메뉴를 추천해야 한다.
-  - 예시)
-    - 구구: 비빔밥, 김치찌개, 쌈밥, 규동, 우동 → 한식을 3회 먹으므로 불가능
-    - 토미: 비빔밥, 비빔밥, 규동, 우동, 볶음면 → 한 코치가 같은 메뉴를 먹으므로 불가능
-    - 제임스: 비빔밥, 김치찌개, 스시, 가츠동, 짜장면 → 매일 다른 메뉴를 먹으므로 가능
-    - 포코: 비빔밥, 김치찌개, 스시, 가츠동, 짜장면 → 제임스와 메뉴가 같지만, 포코는 매번 다른 메뉴를 먹으므로 가능
+    - 예시)
+        - 구구: 비빔밥, 김치찌개, 쌈밥, 규동, 우동 → 한식을 3회 먹으므로 불가능
+        - 토미: 비빔밥, 비빔밥, 규동, 우동, 볶음면 → 한 코치가 같은 메뉴를 먹으므로 불가능
+        - 제임스: 비빔밥, 김치찌개, 스시, 가츠동, 짜장면 → 매일 다른 메뉴를 먹으므로 가능
+        - 포코: 비빔밥, 김치찌개, 스시, 가츠동, 짜장면 → 제임스와 메뉴가 같지만, 포코는 매번 다른 메뉴를 먹으므로 가능
 - 메뉴 추천을 완료하면 프로그램이 종료된다.
 - 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시
   받는다.
-  - `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
+    - `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
 
 ### 입출력 요구 사항
 
@@ -145,14 +145,14 @@ BUILD SUCCESSFUL in 0s
 - 프로그램 구현이 완료되면 `ApplicationTest`의 모든 테스트가 성공해야 한다. **테스트가 실패할 경우 0점 처리한다.**
 - 프로그래밍 요구 사항에서 달리 명시하지 않는 한 파일, 패키지 이름을 수정하거나 이동하지 않는다.
 - indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
-  - 예를 들어 while문 안에 if문이 있으면 들여쓰기는 2이다.
-  - 힌트: indent(인덴트, 들여쓰기) depth를 줄이는 좋은 방법은 함수(또는 메서드)를 분리하면 된다.
+    - 예를 들어 while문 안에 if문이 있으면 들여쓰기는 2이다.
+    - 힌트: indent(인덴트, 들여쓰기) depth를 줄이는 좋은 방법은 함수(또는 메서드)를 분리하면 된다.
 - 3항 연산자를 쓰지 않는다.
 - 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
-  - 함수(또는 메서드)가 한 가지 일만 잘하도록 구현한다.
+    - 함수(또는 메서드)가 한 가지 일만 잘하도록 구현한다.
 - else 예약어를 쓰지 않는다.
-  - 힌트: if 조건절에서 값을 return 하는 방식으로 구현하면 else를 사용하지 않아도 된다.
-  - else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 switch/case도 허용하지 않는다.
+    - 힌트: if 조건절에서 값을 return 하는 방식으로 구현하면 else를 사용하지 않아도 된다.
+    - else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 switch/case도 허용하지 않는다.
 
 ### 카테고리와 메뉴 요구 사항
 
@@ -174,11 +174,11 @@ BUILD SUCCESSFUL in 0s
 
 ```java
 // 예시 코드. 사용하는 자료 구조에 따라 난수를 적절하게 가공해도 된다.
-String category = categories.get(Randoms.pickNumberInRange(1, 5));
+String category=categories.get(Randoms.pickNumberInRange(1,5));
 ```
 
 - 임의로 카테고리의 순서 또는 데이터를 변경하면 안 된다.
-  - `Randoms.pickNumberInRange()`의 결과가 **1이면 일식, 2면 한식, 3이면 중식, 4면 아시안, 5면 양식**을 추천해야 한다.
+    - `Randoms.pickNumberInRange()`의 결과가 **1이면 일식, 2면 한식, 3이면 중식, 4면 아시안, 5면 양식**을 추천해야 한다.
 - 추천할 수 없는 카테고리인 경우 다시 `Randoms.pickNumberInRange()`를 통해 임의의 값을 생성해서 추천할 카테고리를 정해야 한다.
 
 #### 메뉴
@@ -186,15 +186,15 @@ String category = categories.get(Randoms.pickNumberInRange(1, 5));
 - 추천할 메뉴는 정해진 카테고리에 있는
   메뉴를 [`camp.nextstep.edu.missionutils`](https://github.com/woowacourse-projects/mission-utils)에서
   제공하는 `Randoms.shuffle()`을 통해 임의의 순서로 섞은 후, 첫 번째 값을 사용해야 한다.
-  - 카테고리에 포함되는 메뉴 목록을 `List<String>` 형태로 준비한다.
+    - 카테고리에 포함되는 메뉴 목록을 `List<String>` 형태로 준비한다.
 
 ```java
-String menu = Randoms.shuffle(menus).get(0);
+String menu=Randoms.shuffle(menus).get(0);
 ```
 
 - 임의로 메뉴의 순서 또는 데이터를 변경하면 안 된다.
-  - `Randoms.shuffle()` 메서드의 인자로 전달되는 메뉴 데이터는, 최초에 제공한 목록을 그대로 전달해야 한다.
-    - 코치에게 추천할 메뉴를 정할 때 이미 추천한 메뉴, 먹지 못하는 메뉴도 포함된 리스트를 전달해야 한다.
+    - `Randoms.shuffle()` 메서드의 인자로 전달되는 메뉴 데이터는, 최초에 제공한 목록을 그대로 전달해야 한다.
+        - 코치에게 추천할 메뉴를 정할 때 이미 추천한 메뉴, 먹지 못하는 메뉴도 포함된 리스트를 전달해야 한다.
 - 추천할 수 없는 메뉴인 경우 다시 섞은 후 첫 번째 값을 사용해야 한다.
 
 ---
@@ -204,7 +204,7 @@ String menu = Randoms.shuffle(menus).get(0);
 - 미션은 [java-menu](https://github.com/woowacourse-precourse/java-menu) 저장소를 Fork & Clone해 시작한다.
 - **기능을 구현하기 전 `docs/README.md`에 구현할 기능 목록을 정리**해 추가한다.
 - **Git의 커밋 단위는 앞 단계에서 `docs/README.md`에 정리한 기능 목록 단위**로 추가한다.
-  - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
+    - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse)
   문서를 참고한다.
-  - 소감은 간소하게 입력해도 된다. 예를 들어, "."만 입력해도 좋다.
+    - 소감은 간소하게 입력해도 된다. 예를 들어, "."만 입력해도 좋다.
