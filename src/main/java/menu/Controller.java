@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
-    List<Coach> coaches = new ArrayList<>();
-    MenuSelector menuSelector = new MenuSelector();
 
     private static final int DAYS = 5;
     private static final int EXIT = 0;
+    private static final String CATEGORY = "카테고리";
+    List<Coach> coaches = new ArrayList<>();
+    MenuSelector menuSelector = new MenuSelector();
+
 
     public void initGame() {
         System.out.println(Output.INIT);
@@ -35,7 +37,7 @@ public class Controller {
     public void printResult() {
         System.out.println(Output.PRINT_RESULT);
         System.out.println(Output.DAYS);
-        System.out.println(ResultView.print("카테고리", menuSelector.getCategoryRepository()));
+        System.out.println(ResultView.print(CATEGORY, menuSelector.getCategoryRepository()));
         for (Coach coach : coaches) {
             System.out.println(ResultView.print(coach.getName(), coach.getEatenFood()));
         }
