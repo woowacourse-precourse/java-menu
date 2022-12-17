@@ -15,6 +15,6 @@ public class Coach {
     }
 
     public void eat(String menu) {
-        eatenMenu.eat(menu);
+        eatenMenu.add(menu);
     }
 }

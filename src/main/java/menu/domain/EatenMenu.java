@@ -10,7 +10,7 @@ public class EatenMenu {
         return !eatenMenu.contains(menu);
     }
 
-    public void eat(String menu) {
+    public void add(String menu) {
         eatenMenu.add(menu);
     }
 
