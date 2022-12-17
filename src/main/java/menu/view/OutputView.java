@@ -29,6 +29,7 @@ public class OutputView {
 
     public static void printProgramStartMessage() {
         System.out.println(PROGRAM_START_MESSAGE);
+        printNewLine();
     }
 
     public static void printReadCoachNames() {
@@ -36,11 +37,13 @@ public class OutputView {
     }
 
     public static void printReadCantEatMenus(CoachNameDto coachNameDto) {
+        printNewLine();
         String name = coachNameDto.getName();
         System.out.println(name + READ_CANT_EAT_MENUS_MESSAGE);
     }
 
     public static void printRecommendedMenus(Map<Coach, RecommendResult> result) {
+        printNewLine();
         System.out.println(RECOMMENDED_MENU_MESSAGE);
         printDayOfWeek();
         printCategories(result);
@@ -50,6 +53,7 @@ public class OutputView {
             printMenusOrderedByDayOfWeek(result.get(coach));
             System.out.println(LINE_POSTFIX);
         }
+        printNewLine();
         System.out.println(FINISHED_MENU_MESSAGE);
     }
 
@@ -79,5 +83,9 @@ public class OutputView {
             Menu menu = result.getMenus(dayOfWeek);
             System.out.print(menu.getName());
         }
+    }
+
+    private static void printNewLine() {
+        System.out.println();
     }
 }
