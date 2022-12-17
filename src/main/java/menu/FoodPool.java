@@ -21,24 +21,4 @@ public class FoodPool {
             foods.put(category[i], categoryWithFood[i]);
         }
     }
-
-    public static enum CategoryMapper {
-        JAPAN("일식"),
-        KOREA("한식"),
-        CHINA("중식"),
-        ASIA("아시안"),
-        WEST("양식");
-
-        private final String categoryName;
-
-        CategoryMapper(String categoryName) {
-            this.categoryName = categoryName;
-        }
-
-        public String getCategoryName() {
-            return this.categoryName;
-        }
-
-    }
-
 }
