@@ -8,4 +8,8 @@ public class Coach {
     public Coach(List<String> coachNames) {
         this.coachNames = coachNames;
     }
+
+    public List<String> getCoachNames() {
+        return coachNames;
+    }
 }
