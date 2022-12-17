@@ -9,6 +9,7 @@ import java.util.List;
 
 public class MenuService {
     private static final int NEEDED_CATEGORIES = 5;
+
     private void validateMenuExist(String name) {
         if (!MenuRepository.menuExist(name)) {
             throw new IllegalArgumentException("존재하지 않는 메뉴입니다. :" + name);

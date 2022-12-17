@@ -27,6 +27,7 @@ public class CoachService {
     private void recommendMenuTo(Coach coach, MenuCategory menuCategory) {
         List<String> menus = MenuRepository.getMenusOf(menuCategory);
         String menu = Randoms.shuffle(menus).get(0);
+
         if (!coach.canRecommend(menu)) {
             recommendMenuTo(coach, menuCategory);
         }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecommendCategoryRepository {
-    private static List<MenuCategory> menuCategories = new ArrayList<>();
+    private final static List<MenuCategory> menuCategories = new ArrayList<>();
 
     public static void addCategory(MenuCategory category) {
         menuCategories.add(category);
