@@ -3,6 +3,7 @@ package menu.initializer;
 import menu.domain.Food;
 import menu.domain.FoodCategory;
 import menu.domain.FoodRepository;
+import menu.domain.JapaneseFood;
 
 public class FoodInitializer {
     public static void initializeFood() {
@@ -15,15 +16,9 @@ public class FoodInitializer {
 
     private static void initializeJapanese() {
         FoodCategory japanese = FoodCategory.JAPANESE;
-        FoodRepository.addFood(new Food(japanese, "규동"));
-        FoodRepository.addFood(new Food(japanese, "우동"));
-        FoodRepository.addFood(new Food(japanese, "미소시루"));
-        FoodRepository.addFood(new Food(japanese, "스시"));
-        FoodRepository.addFood(new Food(japanese, "가츠동"));
-        FoodRepository.addFood(new Food(japanese, "오니기리"));
-        FoodRepository.addFood(new Food(japanese, "하이라이스"));
-        FoodRepository.addFood(new Food(japanese, "라멘"));
-        FoodRepository.addFood(new Food(japanese, "오코노미야끼"));
+        for (JapaneseFood japaneseFood : JapaneseFood.values()) {
+            FoodRepository.addFood(new Food(japanese, japaneseFood.getName()));
+        }
     }
 
     private static void initializeKorean() {
