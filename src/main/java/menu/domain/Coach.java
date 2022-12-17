@@ -1,6 +1,7 @@
 package menu.domain;
 
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +13,7 @@ public class Coach {
 
     private final String name;
     private List<Menu> blacklist;
-    private Map<Day, Menu> menus;
+    private final Map<Day, Menu> menus;
 
     public Coach(String name) {
         validateName(name);
@@ -27,7 +28,7 @@ public class Coach {
     }
 
     public Map<Day, Menu> getMenus() {
-        return menus;
+        return Collections.unmodifiableMap(menus);
     }
 
     public void setBlacklist(List<Menu> blacklist) {

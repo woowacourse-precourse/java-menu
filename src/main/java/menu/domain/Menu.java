@@ -3,7 +3,7 @@ package menu.domain;
 import java.util.Objects;
 
 public class Menu {
-    private String name;
+    private final String name;
 
     public Menu(String name) {
         this.name = name;

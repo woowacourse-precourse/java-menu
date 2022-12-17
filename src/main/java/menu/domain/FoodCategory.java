@@ -10,9 +10,9 @@ public enum FoodCategory {
     ASIAN("아시안",4, List.of("팟타이", "카오 팟", "나시고렝", "파인애플 볶음밥", "쌀국수", "똠얌꿍", "반미", "월남쌈", "분짜")),
     WESTERN("양식",5, List.of("라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니"));
 
-    private String name;
-    private int categoryNumber;
-    private List<String> foods;
+    private final String name;
+    private final int categoryNumber;
+    private final List<String> foods;
 
     FoodCategory(String name, int categoryNumber, List<String> foods) {
         this.name = name;

@@ -10,7 +10,7 @@ public class FoodRecommender {
     private static final int COACH_MAX_SIZE = 5;
 
     private final List<Coach> coaches;
-    private Map<Day, FoodCategory> foodCategories;
+    private final Map<Day, FoodCategory> foodCategories;
 
     public FoodRecommender(List<Coach> coaches) {
         validateSize(coaches);

@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 public class MenuResult {
-    private List<Coach> coaches;
-    private Map<Day, FoodCategory> foodCategories;
+    private final List<Coach> coaches;
+    private final Map<Day, FoodCategory> foodCategories;
 
     public MenuResult(List<Coach> coaches, Map<Day, FoodCategory> foodCategories) {
         this.coaches = coaches;
