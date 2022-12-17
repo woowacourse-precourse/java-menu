@@ -16,13 +16,17 @@ public class OutputView {
     }
 
     public void outputRecommendation(RecommendationDTO recommendationDTO) {
+        System.out.println(getRecommendation(recommendationDTO).toString());
+    }
+
+    private StringBuilder getRecommendation(RecommendationDTO recommendationDTO) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(NoticeMessage.OUTPUT_RECOMMENDATION_MENU + NEW_LINE);
         stringBuilder.append(NoticeMessage.OUTPUT_RECOMMENDATION_MENU_DAY + NEW_LINE);
         addCategory(recommendationDTO, stringBuilder);
         addCoachMenus(recommendationDTO, stringBuilder);
         stringBuilder.append(NEW_LINE + NoticeMessage.OUTPUT_RECOMMENDATION_MENU_COMPLETE);
-        System.out.println(stringBuilder.toString());
+        return stringBuilder;
     }
 
     private void addCoachMenus(RecommendationDTO recommendationDTO, StringBuilder stringBuilder) {
