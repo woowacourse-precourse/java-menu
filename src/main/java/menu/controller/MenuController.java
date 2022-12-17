@@ -38,18 +38,25 @@ public class MenuController {
 
     public void run() {
         OutputView.printStartMessage();
+        coachesInit();
+        recommendMenuToCoaches();
+        OutputView.printEndMessage();
+    }
+
+    private void coachesInit() {
         List<String> coachNames = StringParser.getSplitList(InputView.getCoachNames());
-        Coaches coaches = new Coaches();
         coachNames.stream().forEach(name -> coaches.add(new Coach(name)));
         coaches.getCoaches().stream().forEach(coach -> {
             List<String> cantEatMenu = StringParser.getSplitList(InputView.getCantEatMenu(categories, coach.getName()));
             coach.setCantEatMenu(cantEatMenu);
         });
+    }
+
+    private void recommendMenuToCoaches() {
         List<Category> recommendedCategories = categories.getRecommendedCategories();
         recommendedCategories.stream().forEach(category -> {
             coaches.getCoaches().stream().forEach(coach -> coach.addEatMenu(category));
         });
         OutputView.printRecommendedResult(recommendedCategories, coaches);
-        OutputView.printEndMessage();
     }
 }
