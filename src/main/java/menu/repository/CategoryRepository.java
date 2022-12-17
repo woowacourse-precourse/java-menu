@@ -1,0 +1,1 @@
+package menu.repository;import java.util.ArrayList;import java.util.List;import menu.domain.Category;public class CategoryRepository {    private final List<Category> categories = new ArrayList<>();    public void addCategory(Category category) {        categories.add(category);    }}
