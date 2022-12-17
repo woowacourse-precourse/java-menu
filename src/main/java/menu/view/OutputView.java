@@ -1,7 +1,10 @@
 package menu.view;
 
 
+import menu.domain.Coach;
+
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
@@ -15,6 +18,13 @@ public class OutputView {
 
     public static void printCategory(List<String> categoryNames){
         System.out.println("[ 카테고리 | "+String.join(" | ",categoryNames) + " ]");
+    }
+    public static void printRecommendation(Map<Coach, List<String>> recommendation){
+        for (Map.Entry<Coach, List<String>> entry: recommendation.entrySet()) {
+            System.out.println("[ " + entry.getKey().getName() + " | " + String.join(" | ",entry.getValue()) + " ]");
+
+
+        }
     }
 
     public static void printResult(){
