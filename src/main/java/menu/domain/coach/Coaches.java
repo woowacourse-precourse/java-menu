@@ -3,6 +3,7 @@ package menu.domain.coach;
 import java.util.ArrayList;
 import java.util.List;
 import menu.domain.exceptions.WrongCoachNumberException;
+import menu.utils.Constants;
 
 public class Coaches {
 
@@ -22,7 +23,7 @@ public class Coaches {
     }
 
     private void validation(String[] names) {
-        if (names.length < 2 || names.length > 5) {
+        if (names.length < Constants.MIN_COACH_NUMBER || names.length >  Constants.MAX_COACH_NUMBER) {
             throw new WrongCoachNumberException();
         }
     }

@@ -5,6 +5,7 @@ import java.util.List;
 import menu.domain.Food;
 import menu.domain.exceptions.WrongFoodNumberException;
 import menu.domain.exceptions.WrongNameException;
+import menu.utils.Constants;
 
 public class Coach {
 
@@ -21,7 +22,7 @@ public class Coach {
     private void validationOfName(String name) {
         long count = name.length();
 
-        if (2 > count || count > 4) {
+        if (Constants.MIN_COACH_NAME_LEN > count || count > Constants.MAX_COACH_NAME_LEN) {
             throw new WrongNameException();
         }
     }
@@ -35,7 +36,7 @@ public class Coach {
     }
 
     private void validationOfUnEatables(List<Food> unEatables) {
-        if (unEatables.size() > 2) {
+        if (unEatables.size() > Constants.MAX_UNEATABLE_LEN) {
             throw new WrongFoodNumberException();
         }
     }
