@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import menu.domain.Category;
 import menu.domain.Coach;
@@ -19,6 +18,13 @@ public class MenuRecommenderController {
     public void run() {
         MenuRecommender menuRecommender = initMenus();
         List<Coach> coaches = initCoaches();
+        inputBannedMenusOfCoaches(coaches);
+    }
+
+    private void inputBannedMenusOfCoaches(List<Coach> coaches) {
+        for (Coach coach : coaches) {
+            InputView.inputBannedMenus(coach.getName());
+        }
     }
 
     private List<Coach> initCoaches() {
