@@ -18,4 +18,15 @@ public class UserInput {
 
         return Arrays.asList(userInput);
     }
+
+    public List<String> requestCannotEatMenu(){
+        String[] userInput;
+        boolean isRightInput;
+        do{
+            userInput = Console.readLine().split(",");
+            isRightInput = validator.validateNotHaveMenuList(userInput);
+        }while(isRightInput);
+
+        return Arrays.asList(userInput);
+    }
 }

@@ -13,6 +13,19 @@ public class Validator {
         return isAllRight;
     }
 
+    public boolean validateNotHaveMenuList(String[] userInput){
+        boolean isAllRight = true;
+        try{
+            if(!(userInput.length <= 2)){
+                String errorMessage = "[ERROR] 코치님들의 못 먹는 메뉴는, 2개까지 입력이 가능합니다. 다시 입력해 주십시오.";
+                errorProcess(errorMessage);
+            }
+        }catch(IllegalArgumentException ex){
+            isAllRight = false;
+        }
+        return isAllRight;
+    }
+
     private void validateCoachNumber(String[] coaches){
         if(!(2 <= coaches.length && coaches.length <= 5)){
             String errorMessage = "[ERROR] 입력해 주시는 코치님들의 숫자는 2~5명 사이로 다시 입력해 주십시오.";
