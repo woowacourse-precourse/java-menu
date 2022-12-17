@@ -18,6 +18,14 @@ public class CoachRepository {
         coaches.clear();
     }
 
+    public static void addDislikeMenus(Coach coach, List<Menu> menus) {
+        menus.forEach(coach::addDislikeMenu);
+    }
+
+    public static List<Coach> getCoaches() {
+        return coaches;
+    }
+
     private static void validateCoachCount(List<String> coachNames) {
         if (coachNames.size() > COACH_MAX_COUNT) {
             throw new IllegalArgumentException(ERROR_PREFIX + "코치의 수는 최대 " + COACH_MAX_COUNT + "명 입니다.");

@@ -1,10 +1,14 @@
 package menu.controller;
 
+import menu.domain.Coach;
 import menu.domain.CoachRepository;
+import menu.domain.Menu;
+import menu.domain.MenuRepository;
 import menu.view.InputView;
 import menu.view.OutputView;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MenuController {
 
@@ -15,6 +19,7 @@ public class MenuController {
     public void run() {
         OutputView.printServiceStartMessage();
         addCoaches();
+        addCoachesDislikeMenus();
     }
 
     private void initMenus() {
@@ -31,5 +36,20 @@ public class MenuController {
             CoachRepository.clearCoaches();
             addCoaches();
         }
+    }
+
+    private void addCoachesDislikeMenus() {
+        CoachRepository.getCoaches().forEach(coach -> {
+            CoachRepository.addDislikeMenus(coach, getDislikeMenus(coach));
+        });
+
+    }
+
+    private List<Menu> getDislikeMenus(Coach coach) {
+        String coachName = coach.getCoachName();
+        List<String> dislikeMenusName = InputView.inputDislikeMenus(coachName);
+        return dislikeMenusName.stream()
+                .map(MenuRepository::findByName)
+                .collect(Collectors.toUnmodifiableList());
     }
 }

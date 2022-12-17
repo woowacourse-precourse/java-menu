@@ -1,14 +1,22 @@
 package menu.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static menu.constant.SystemConstant.*;
 
 public class Coach {
 
     private final String coachName;
+    private final List<Menu> dislikeMenus = new ArrayList<>();
 
     public Coach(String coachName) {
         validateNameLength(coachName);
         this.coachName = coachName;
+    }
+
+    public void addDislikeMenu(Menu menu) {
+        dislikeMenus.add(menu);
     }
 
     public String getCoachName() {
