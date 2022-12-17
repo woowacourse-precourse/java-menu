@@ -16,4 +16,10 @@ class CouchTest {
                 .hasMessageContaining(ErrorMessage.COUCH_NAME_OUT_OF_RANGE.getMessage());
     }
 
+    @Test
+    void Couch_객체의_이름은_앞뒤_공백을_무시한다() {
+        Couch couch = Couch.from(" 최최준호 ");
+        Assertions.assertThat(couch.getName()).isEqualTo("최최준호");
+    }
+
 }
