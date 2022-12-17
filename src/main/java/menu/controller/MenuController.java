@@ -4,6 +4,7 @@ import menu.domain.Coach;
 import menu.domain.CoachName;
 import menu.service.CoachService;
 import menu.service.MenuService;
+import menu.service.RecommendService;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 public class MenuController {
     private MenuService menuService = new MenuService();
     private CoachService coachService = new CoachService();
+    private RecommendService recommendService = new RecommendService();
     public MenuController() {
         menuService.initMenus();
     }
@@ -23,6 +25,8 @@ public class MenuController {
         List<Coach> coaches = readCoachNames();
         coaches.stream().forEach(coach -> readConNotEatMenus(coach));
         coachService.saveCoaches(coaches);
+        recommendService.createWeeklyRecommendMenu();
+
     }
 
     private List<Coach> readCoachNames() {
@@ -35,7 +39,7 @@ public class MenuController {
 
     private Coach readConNotEatMenus(Coach coach) {
         try {
-            List<String> menus = InputView.readCanNotEatMenu();
+            List<String> menus = InputView.readCanNotEatMenu(coach.getName());
             checkMenu(menus);
             coach.addCanNotEatMenus(menus);
             return coach;

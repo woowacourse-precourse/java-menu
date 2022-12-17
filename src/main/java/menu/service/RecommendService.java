@@ -1,2 +1,7 @@
-package menu.service;public class RecommendService {
+package menu.service;
+
+public class RecommendService {
+
+    public void createWeeklyRecommendMenu() {
+    }
 }
