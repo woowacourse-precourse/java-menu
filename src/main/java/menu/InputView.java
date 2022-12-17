@@ -31,7 +31,6 @@ public class InputView {
         validateInputFormat(pickyEatingsInput);
         List<String> pickEatings = Arrays.asList(pickyEatingsInput.split(","));
         validatePickyEatingsNumber(pickEatings);
-        System.out.println("pickEatings = " + pickEatings);
 
         for (String pickyEating : pickEatings) {
             validatePickyEatingsName(pickyEating);
@@ -71,7 +70,6 @@ public class InputView {
 
     private void validatePickyEatingsName(String pickEating) {
         for (Category category : Category.values()) {
-            //pickEating에 안들어감
             if (category.getMenus().contains(pickEating)) {
                 return;
             }
