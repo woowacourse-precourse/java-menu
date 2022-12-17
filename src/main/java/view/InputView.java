@@ -21,8 +21,10 @@ public class InputView {
     public String getHateFood(String name) {
         String hateFoods;
 
-        System.out.printf(INPUT_COACH_HATE_FOOD_COMMENT, name);
-        hateFoods = Console.readLine();
+        do {
+            System.out.printf(INPUT_COACH_HATE_FOOD_COMMENT, name);
+            hateFoods = Console.readLine();
+        } while (!Validator.isValidFoodName(hateFoods));
 
         return hateFoods;
     }
