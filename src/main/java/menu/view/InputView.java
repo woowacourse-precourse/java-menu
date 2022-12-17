@@ -12,7 +12,18 @@ public class InputView {
     public void getCoachName() {
         System.out.println(INPUT_COACH_NAME);
         String userCoachName = Console.readLine();
+        validateCoachNameCount(userCoachName);
         validateDuplicateCoachName(userCoachName);
+    }
+
+    public void validateCoachNameCount(String uncheckedCoachNames) {
+        List<String> coachNames = List.of(uncheckedCoachNames.split(","));
+        if(coachNames.size() < 2) {
+            throw new IllegalArgumentException(InputException.OUT_OF_COACH_NAME_COUNT_MINIMUM.getExceptionMessage());
+        }
+        if(coachNames.size() > 5) {
+            throw new IllegalArgumentException(InputException.OUT_OF_COACH_NAME_COUNT_MAXIMUM.getExceptionMessage());
+        }
     }
 
     private void validateDuplicateCoachName(String uncheckedCoachNames) {
