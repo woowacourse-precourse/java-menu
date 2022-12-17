@@ -16,6 +16,11 @@ public class RecommendController implements Controller{
 
     private final CoachService coachService = new CoachService();
 
+    private final MenuController menuController = new MenuController();
+
+    public RecommendController() {
+        menuController.process();
+    }
 
     @Override
     public void process() {
