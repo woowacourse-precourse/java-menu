@@ -1,7 +1,7 @@
 package menu.repository;
 
-import menu.domain.CATEGORY;
-import menu.domain.MENU;
+import menu.domain.source.CATEGORY;
+import menu.domain.source.MENU;
 import menu.domain.menucategory.MenuCategory;
 
 import java.util.ArrayList;
@@ -29,21 +29,15 @@ public class MenuRepository {
     }
 
     private static boolean containsMenu(String menu, MenuCategory menuCategory) {
-        for (String existMenu : menus.get(menuCategory)) {
-            if (existMenu.equals(menu)) {
-                return true;
-            }
-        }
-        return false;
+        return menus.get(menuCategory)
+                .stream()
+                .anyMatch(menu::equals);
     }
 
     public static boolean menuExist(String menu) {
-        for (MenuCategory menuCategory : menus.keySet()) {
-            if (containsMenu(menu, menuCategory)) {
-                return true;
-            }
-        }
-        return false;
+        return menus.keySet()
+                .stream()
+                .anyMatch(menuCategory -> containsMenu(menu, menuCategory));
     }
 
     public static List<String> getCategories() {
@@ -53,12 +47,10 @@ public class MenuRepository {
     }
 
     public static MenuCategory getCategoryByName(String name) {
-        for (MenuCategory menuCategory : categories) {
-            if (name.equals(menuCategory.name())) {
-                return menuCategory;
-            }
-        }
-        throw new IllegalArgumentException("존재하지 않는 카테고리입니다.");
+        return categories.stream()
+                .filter(category -> name.equals(category.name()))
+                .findFirst()
+                .get();
     }
 
     public static List<String> getMenusOf(MenuCategory category) {
