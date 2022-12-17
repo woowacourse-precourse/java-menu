@@ -36,10 +36,10 @@ public class MenuRecommendService {
     private static void makeListOfMenu(List<Weekend> weekend, List<Coach> coaches,
         Map<String, List<Menu>> recommendedMenuList) {
         for (Weekend day : weekend) {
-            List<Menu> recommendMenu = new ArrayList<>();
             List<Menu> menu = MenuRepository.findMenuByCategory(day.getCategory());
             List<String> menuNames = MenuRepository.getMenuName(menu);
             for (Coach coach : coaches) {
+            List<Menu> recommendMenu = new ArrayList<>();
                 List<Menu> canNotEatMenus = coach.getCanNotEatMenu();
                 while (recommendMenu.size() < 5) {
                     String menuName = Randoms.shuffle(menuNames).get(0);
@@ -48,10 +48,6 @@ public class MenuRecommendService {
                     }
 
                 }
-                    recommendedMenuList.put(coach.name, recommendMenu);
-                    for (String name :recommendedMenuList.keySet()){
-                        System.out.println(name);
-                    }
             }
         }
     }

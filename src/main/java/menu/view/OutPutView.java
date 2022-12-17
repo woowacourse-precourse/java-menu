@@ -40,9 +40,9 @@ public class OutPutView {
             for (Menu menu : recommend.get(name)) {
                 sb.append(menu.getName()+" | ");
             }
+        System.out.println(sb.deleteCharAt(sb.length()-1));
             sb.append("]");
             sb.append("\n");
-        System.out.println(sb.deleteCharAt(sb.length()-2));
         }
             System.out.println("추천을 완료했습니다");
 
