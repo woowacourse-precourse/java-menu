@@ -17,7 +17,7 @@ public class InputView {
         List<String> nameInput = splitInput(Console.readLine());
         coachSizeValidation(nameInput);
         coachNameLengthValidation(nameInput);
-        return trimEachInput(splitInput(Console.readLine()));
+        return trimEachInput(nameInput);
     }
 
     public List<Coach> getCoachNotEat(List<String> coachNames) throws IllegalArgumentException{
