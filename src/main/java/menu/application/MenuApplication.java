@@ -1,7 +1,5 @@
 package menu.application;
 
-import java.util.List;
-
 import menu.controller.MenuController;
 import menu.domain.Coach;
 import menu.handler.InputHandler;
@@ -26,12 +24,9 @@ public class MenuApplication {
         inputHandler.readCoachCanNotEat(coach);
 
         menuController.recommendCategory();
-        List<String> recommendCategory = menuController.getRecommendCategory();
-
-        menuController.recommendForCoach(coach, recommendCategory);
+        menuController.recommendForCoach(coach, menuController.getRecommendCategory());
 
         outputView.printResult(menuController.getRecommendCategoryWord(), coach.toString());
-
         outputView.printEnd();
     }
 }
