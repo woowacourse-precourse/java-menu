@@ -75,7 +75,12 @@ public class MenuRecommendProgram {
     }
 
 
+    private void printMenuMessage(Coach coach) {
+        String coachName = coach.getName();
+        outputView.printMenuMessage(coachName);
+    }
     private void inputMenus(Coach coach) {
+        printMenuMessage(coach);
         List<String> menusNotEaten = inputView.readMenuNotEat();
         for (String menuNotEaten: menusNotEaten) {
             coach.addFoodNotEat(menuNotEaten);
