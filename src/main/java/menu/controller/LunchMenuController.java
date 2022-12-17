@@ -7,6 +7,7 @@ import menu.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static menu.view.validation.MenuValidation.menuValidation;
 import static menu.view.validation.NameValidation.nameValidation;
 
 public class LunchMenuController {
@@ -36,7 +37,7 @@ public class LunchMenuController {
     }
 
     public void recommendMenu(int index){
-        String inputMenus = inputView.readMenus(names.get(index));
+        String inputMenus = inputMenus(index);
         List<String> recommendMenus = new ArrayList<>();
         List<String> cannotEatMenus = splitMenus(inputMenus);
         while(recommendMenus.size()<5){
@@ -74,6 +75,14 @@ public class LunchMenuController {
         do {
             input = inputView.readNames();
         } while (!nameValidation(input));
+        return input;
+    }
+
+    private String inputMenus(int index) {
+        String input;
+        do {
+            input = inputView.readMenus(names.get(index));
+        } while (!menuValidation(input));
         return input;
     }
 }
