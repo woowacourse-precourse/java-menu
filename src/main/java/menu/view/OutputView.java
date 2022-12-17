@@ -5,7 +5,6 @@ import menu.domain.CoachRepository;
 import menu.domain.Day;
 import menu.domain.MenuRecommendationResult;
 
-import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;

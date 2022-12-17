@@ -58,10 +58,6 @@ public class MenuRecommendationResult {
         return result.containsValue(shuffledMenu);
     }
 
-    public void setRecommendationResult(String coachName, HashMap<Day, String> result) {
-        recommendationResult.put(coachName, result);
-    }
-
     public Map<String, Map<Day, String>> getRecommendationResult() {
         return recommendationResult;
     }
