@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class FoodRecommendation {
+    private static final int DUPLICATE = 1;
     private final Map<Week, Category> categoryByWeek = new LinkedHashMap<>();
     private final List<Coach> coaches;
 
@@ -42,7 +43,7 @@ public class FoodRecommendation {
 
     private Category getRandomCategory() {
         Category category = Category.getCategoryByOrder(Randoms.pickNumberInRange(1, 5));
-        while (countContains(category) > 1) {
+        while (countContains(category) > DUPLICATE) {
             category = Category.getCategoryByOrder(Randoms.pickNumberInRange(1, 5));
         }
         return category;
