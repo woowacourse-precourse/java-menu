@@ -8,6 +8,7 @@ public class Validator {
     private static final int COACH_MAX_LENGTH = 5;
     private static final int NAME_MIN_LENGTH = 2;
     private static final int NAME_MAX_LENGTH = 4;
+    private static final int ALLEGE_MENU_MAX_LENGTH = 2;
 
     public void validateCoachNames(String input) {
         String[] names = input.split(DELIMITER);
@@ -27,6 +28,13 @@ public class Validator {
     private void checkCoachLength(int length) {
         if (length < COACH_MIN_LENGTH || length > COACH_MAX_LENGTH) {
             throw new IllegalArgumentException(ErrorMessage.INCORRECT_COACH_NAMES);
+        }
+    }
+
+    public void validateAllegeMenu(String input) {
+        String[] allegeMenu = input.split(DELIMITER);
+        if (allegeMenu.length > ALLEGE_MENU_MAX_LENGTH) {
+            throw new IllegalArgumentException(ErrorMessage.INCORRECT_ALLEGE_MENU);
         }
     }
 }
