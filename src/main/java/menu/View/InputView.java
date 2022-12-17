@@ -17,20 +17,23 @@ public class InputView {
     public Coachs readCoachNames() {
         System.out.println(READ_COACH_NAMES);
         String input = Console.readLine();
+        System.out.println();
         return new Coachs(input);
     }
 
     public List<String> readInedibles(Coach coach) {
         System.out.println(String.format(READ_INEDIBLES, coach.getName()));
         String input = Console.readLine();
+        if (input.length() == 0)
+            return List.of();
         List<String> inedibles = List.of(input.split(","));
-        if (inedibles.size() == 0)
-            return inedibles;
+        System.out.println(inedibles.size());
         for (String food : inedibles) {
             if (!Category.checkFoodInMenus(food)) {
                 throw new IllegalArgumentException(INVALID_FOOD);
             }
         }
+        System.out.println();
         return inedibles;
     }
 }
