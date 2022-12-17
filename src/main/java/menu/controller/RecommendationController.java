@@ -24,7 +24,6 @@ public class RecommendationController {
         List<String> coaches = initializeCoachName();
         initializeDislikeFood(coaches);
         recommendFood();
-        printResult();
     }
 
     private List<String> initializeCoachName() {
@@ -56,6 +55,7 @@ public class RecommendationController {
 
     private void recommendFood() {
         menuRecommendation.recommendFood();
+        printResult();
     }
 
     private List<String> transferToList(String input) {

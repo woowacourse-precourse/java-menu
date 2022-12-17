@@ -39,7 +39,7 @@ public enum InitialMenu {
         Arrays.stream(values())
                 .filter(menu -> menu.getFoods().contains(food))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 메뉴에 포함된 음식이 아닙니다." + food));
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 메뉴에 포함된 음식이 아닙니다."));
     }
 
     public static List<String> getFoodsInCategory(String category) {
