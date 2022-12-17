@@ -11,4 +11,8 @@ public class Result {
         this.selectedCategory = selectedCategory;
         this.categoryCounts = categoryCounts;
     }
+
+    public int checkCategoryCount(String categoryName) {
+        return categoryCounts.get(categoryName);
+    }
 }
