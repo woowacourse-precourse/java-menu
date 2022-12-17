@@ -2,6 +2,8 @@ package menu.view;
 
 import menu.coach.Coach;
 
+import java.util.List;
+
 public class OutputView {
 
     private static final String START_MESSAGE = "점심 메뉴 추천을 시작합니다.\n";
@@ -37,6 +39,9 @@ public class OutputView {
 
     public static void printErrorMessage_setCoachesCannotEats() {
         System.out.println(ERROR_MESSAGE_START + ERROR_MESSAGE_SET_COACHES_CANNOT_EATS);
+    }
+
+    public static void printRecommendResult(List<Coach> coaches) {
     }
 
 }
