@@ -30,6 +30,6 @@ public class OutputView {
     }
 
     public static void endMessage(){
-        System.out.println("추천을 완료했습니다.");
+        System.out.println("\n추천을 완료했습니다.");
     }
 }
