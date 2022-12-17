@@ -27,11 +27,7 @@ public class Controller {
                 }
             }
         }
-        outputView.printResultTitle();
-        outputView.printCategory(categories, dailyCategory);
-        for (Coach eachCoach : coach) {
-            outputView.printRecommendedFood(eachCoach);
-        }
+        printResult(dailyCategory, coach);
     }
 
     private void recommendMenu(List<Coach> coach, int num){
@@ -42,6 +38,14 @@ public class Controller {
                     break;
                 }
             }
+        }
+    }
+
+    private void printResult(List<Integer> dailyCategory, List<Coach> coach){
+        outputView.printResultTitle();
+        outputView.printCategory(categories, dailyCategory);
+        for (Coach eachCoach : coach) {
+            outputView.printRecommendedFood(eachCoach);
         }
     }
 }
