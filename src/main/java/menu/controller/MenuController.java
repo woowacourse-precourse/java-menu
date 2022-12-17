@@ -2,6 +2,7 @@ package menu.controller;
 
 import menu.domain.Coach;
 import menu.domain.CoachName;
+import menu.service.CoachService;
 import menu.service.MenuService;
 import menu.view.InputView;
 import menu.view.OutputView;
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class MenuController {
     private MenuService menuService = new MenuService();
-
+    private CoachService coachService = new CoachService();
     public MenuController() {
         menuService.initMenus();
     }
@@ -20,7 +21,7 @@ public class MenuController {
     public void run() {
         List<Coach> coaches = readCoachNames();
         coaches.stream().forEach(coach -> readConNotEatMenus(coach));
-
+        coachService.saveCoaches(coaches);
     }
 
     private List<Coach> readCoachNames() {
