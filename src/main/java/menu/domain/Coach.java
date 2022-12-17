@@ -9,14 +9,14 @@ public class Coach {
     public static final int NAME_MAX_SIZE = 4;
 
     private final String name;
-    private final List<Menu> banFoods;
+    private final List<Menu> banMenus;
 
     private List<Menu> recommendMenu = new ArrayList<>();
 
-    public Coach(String name, List<Menu> banFoods) {
+    public Coach(String name, List<Menu> banMenus) {
         validate(name);
         this.name = name;
-        this.banFoods = banFoods;
+        this.banMenus = banMenus;
     }
 
     public void validate(String name) {
@@ -34,7 +34,7 @@ public class Coach {
     }
 
     public boolean canEat(Menu menu) {
-        return !banFoods.contains(menu);
+        return !banMenus.contains(menu);
     }
 
     public boolean hasNotSameMenu(Menu menu) {
