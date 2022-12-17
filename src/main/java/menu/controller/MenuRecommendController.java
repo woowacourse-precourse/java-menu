@@ -99,5 +99,6 @@ public class MenuRecommendController {
 
     private void showResult(Coaches coaches) {
         outputView.printResultMenuRecommend(menuRecommendService.getSelectCategory(), coaches);
+        outputView.printEndProgram();
     }
 }
