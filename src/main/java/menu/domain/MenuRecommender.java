@@ -30,13 +30,18 @@ public class MenuRecommender {
     }
 
     public List<Menu> recommendMenus(List<Category> categories) {
-        List<Menu> recommendMenus = new ArrayList<>();
-        for (Category category : categories) {
-            Menus candidateMenus = menus.get(category);
-            recommendMenus.add(candidateMenus.pickRandomMenu());
+        try {
+            List<Menu> recommendMenus = new ArrayList<>();
+            for (Category category : categories) {
+                Menus candidateMenus = menus.get(category);
+                recommendMenus.add(candidateMenus.pickRandomMenu());
+            }
+            Validator.validateRecommendMenus(recommendMenus);
+            return recommendMenus;
+        } catch (CannotRecommendMenuException exception) {
+            System.out.println(exception.getMessage());
         }
-        Validator.validateRecommendMenus(recommendMenus);
-        return recommendMenus;
+        return recommendMenus(categories);
     }
 
     public boolean isExistedMenu(String menu) {
