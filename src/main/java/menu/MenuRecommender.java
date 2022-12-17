@@ -8,12 +8,16 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class MenuRecommender {
+    private static final int INITIAL_COUNT = 0;
+    private static final int ADD_COUNT = 1;
+    private static final int LIMIT_COUNT = 3;
+    private static final int MAX_CATEGORY_COUNT = 5;
+
     private static final String DELIMITER = ",";
+
     private static final List<Coach> coaches = new ArrayList<>();
     private static List<String> categories;
-    private static Map<String, Integer> categoriesCounter = initCounter();
-
-    static Category categoryForString = new Category();
+    private static final Map<String, Integer> categoriesCounter = initCounter();
 
     public static List<String> splitter(String coachNames) {
         return Arrays.stream(coachNames.split(DELIMITER))
@@ -49,13 +53,6 @@ public class MenuRecommender {
         }
     }
 
-//    private static void getEachCoachRecommend(Coach coach) {
-//        for (String category : categories) {
-//            String menu = getOneFood(category, coach);
-//            coach.addMenu(menu);
-//        }
-//    }
-
     private static String getOneFood(String category, Coach coach) {
         String menu;
 
@@ -87,12 +84,12 @@ public class MenuRecommender {
     }
 
     private static boolean isCompleteCount(List<String> categories) {
-        return categories.size() != 5;
+        return categories.size() != MAX_CATEGORY_COUNT;
     }
 
     public static boolean isValidCategory(String category) {
-        if (categoriesCounter.get(category) + 1 < 3) {
-            categoriesCounter.put(category,categoriesCounter.getOrDefault(category, 0) + 1);
+        if (categoriesCounter.get(category) + ADD_COUNT < LIMIT_COUNT) {
+            categoriesCounter.put(category,categoriesCounter.getOrDefault(category, INITIAL_COUNT) + ADD_COUNT);
             return true;
         }
 
@@ -102,11 +99,11 @@ public class MenuRecommender {
     private static Map<String, Integer> initCounter() {
         Map<String, Integer> counter = new HashMap<>();
 
-        counter.put(Category.getCategories(1), 0);
-        counter.put(Category.getCategories(2), 0);
-        counter.put(Category.getCategories(3), 0);
-        counter.put(Category.getCategories(4), 0);
-        counter.put(Category.getCategories(5), 0);
+        counter.put(Category.getCategories(ConstValue.ILLSIK), INITIAL_COUNT);
+        counter.put(Category.getCategories(ConstValue.HANSIK), INITIAL_COUNT);
+        counter.put(Category.getCategories(ConstValue.JOONGSIK), INITIAL_COUNT);
+        counter.put(Category.getCategories(ConstValue.ASIAN), INITIAL_COUNT);
+        counter.put(Category.getCategories(ConstValue.YANGSIK), INITIAL_COUNT);
 
         return counter;
     }

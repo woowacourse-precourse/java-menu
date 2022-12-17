@@ -6,8 +6,6 @@ import java.util.List;
 
 public class RandomMenuSelector {
     public String getRandomMenu(List<String> menus) {
-        String menuName = Randoms.shuffle(menus).get(0);
-        System.out.println(menuName);
-        return menuName;
+        return Randoms.shuffle(menus).get(0);
     }
 }

@@ -26,10 +26,6 @@ public class Coach {
         menus.add(menu);
     }
 
-    public List<String> getMenus() {
-        return menus;
-    }
-
     public String toString() {
         return "[ " + name + " | " + String.join(" | ", menus) + " ]";
     }

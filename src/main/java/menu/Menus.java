@@ -73,6 +73,10 @@ public class Menus {
             return hansik;
         }
 
+        return getOthers(category);
+    }
+
+    private static List<String> getOthers(String category) {
         if (category.equals("중식")) {
             return joongsik;
         }
