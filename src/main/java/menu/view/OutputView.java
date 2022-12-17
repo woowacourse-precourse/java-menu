@@ -2,7 +2,6 @@ package menu.view;
 
 import menu.dto.RecommendationDTO;
 import menu.message.NoticeMessage;
-
 import java.util.List;
 
 public class OutputView {

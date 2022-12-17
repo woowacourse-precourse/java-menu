@@ -15,6 +15,10 @@ import java.util.stream.Collectors;
 
 public class MenuController {
     private static final String DELIMITER = ",";
+    private static final int DAY_LENGTH = 5;
+    private static final int CATEGORY_START_INCLUSIVE = 1;
+    private static final int CATEGORY_END_INCLUSIVE = 5;
+    private static final int CATEGORY_LIMIT = 2;
 
     private final OutputView outputView;
     private final InputView inputView;
@@ -58,7 +62,7 @@ public class MenuController {
     }
 
     private void recommendMenu(List<Coach> coaches, List<Category> categories) {
-        for (int day = 0; day < 5; day++) {
+        for (int day = 0; day < DAY_LENGTH; day++) {
             for (Coach coach : coaches) {
                 addRecommendation(categories, day, coach);
             }
@@ -91,12 +95,11 @@ public class MenuController {
     }
 
     private void addCategory(List<Category> categories, HashMap<String, Integer> categoryCheck) {
-        //TODO 숫자 상수 분리
         int day = 0;
-        while (day < 5) {
-            Category category = Category.getCategoryByRandomNumber(Randoms.pickNumberInRange(1, 5));
+        while (day < DAY_LENGTH) {
+            Category category = Category.getCategoryByRandomNumber(Randoms.pickNumberInRange(CATEGORY_START_INCLUSIVE, CATEGORY_END_INCLUSIVE));
             String categoryName = category.getName();
-            if (!categoryCheck.containsKey(categoryName) || categoryCheck.get(categoryName) < 2) {
+            if (!categoryCheck.containsKey(categoryName) || categoryCheck.get(categoryName) < CATEGORY_LIMIT) {
                 categoryCheck.put(categoryName, categoryCheck.getOrDefault(categoryName, 0) + 1);
                 categories.add(category);
                 day++;
