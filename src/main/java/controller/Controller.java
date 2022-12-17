@@ -11,7 +11,14 @@ public class Controller {
 
     public void control() {
         init();
-        play();
-        end();
+
+    }
+
+    private void init() {
+        outputView.printStartMessage();
+        service.saveCoachNames(inputView.readCoachNames());
+        while (service.isOnInitializing()) {
+            service.saveInedibleMenu(service.getCoachName(), inputView.readInedibleMenu(service.getCoachName()));
+        }
     }
 }
