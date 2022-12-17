@@ -1,3 +1,5 @@
+package menu;
+
 public enum ValidCategories {
     JAPANESE("일식"),
     KOREAN("한식"),

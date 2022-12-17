@@ -1,4 +1,4 @@
-import java.util.Arrays;
+package menu;
 
 public enum ValidMenus {
     //JAPANESE
