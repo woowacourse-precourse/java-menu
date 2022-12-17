@@ -3,6 +3,7 @@ package domain;
 public class Coach {
 
     private final String name;
+    private HateMenus hateMenus;
 
     public Coach(String name) {
         validateNameLength(name);
@@ -18,5 +19,13 @@ public class Coach {
 
     public String getName() {
         return name;
+    }
+
+    public void addHateMenus(HateMenus hateMenus) {
+        this.hateMenus = hateMenus;
+    }
+
+    public HateMenus getHateMenus() {
+        return hateMenus;
     }
 }
