@@ -61,6 +61,12 @@ public class Service {
 			count += countValue;
 		return count;
 	}
+
+	public void printSelectMenu() {
+		for (int index = 0; index < perCoachRecommendMenu.size(); index++) {
+			outputView.resultMenu(coach.getCoachsName(index), perCoachRecommendMenu.get(coach.getCoachsName(index)));
+		}
+	}
 	private List<String> checkInputCoach() {
 		try {
 			outputView.coachInputMessage();
