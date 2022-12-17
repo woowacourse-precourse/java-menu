@@ -4,13 +4,15 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
+import menu.controller.subcontroller.InitializingController;
+import menu.domain.status.ApplicationStatus;
 import menu.domain.Category;
-import menu.domain.CategoryRepository;
+import menu.domain.repository.CategoryRepository;
 import menu.domain.Coach;
-import menu.domain.CoachRepository;
+import menu.domain.repository.CoachRepository;
 import menu.domain.Day;
 import menu.domain.Menu;
-import menu.domain.MenuRepository;
+import menu.domain.repository.MenuRepository;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -93,15 +95,6 @@ public class MainController {
         return menu;
     }
 
-    private enum ApplicationStatus {
-        INITIALIZE_MENUS,
-        RECEIVE_COACH_DATA,
-        GIVE_RECOMMENDATION,
-        APPLICATION_EXIT;
 
-        public boolean playable() {
-            return this != APPLICATION_EXIT;
-        }
-    }
 
 }

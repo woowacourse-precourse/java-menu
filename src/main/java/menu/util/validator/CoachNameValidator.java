@@ -1,5 +1,6 @@
-package menu.util;
+package menu.util.validator;
 
+import menu.util.ExceptionMessage;
 import menu.util.validator.Validator;
 
 public class CoachNameValidator extends Validator {

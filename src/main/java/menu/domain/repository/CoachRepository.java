@@ -1,9 +1,10 @@
-package menu.domain;
+package menu.domain.repository;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import menu.domain.Coach;
 
 public class CoachRepository {
     private CoachRepository() {

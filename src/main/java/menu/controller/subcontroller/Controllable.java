@@ -1,4 +1,4 @@
-package menu.controller;
+package menu.controller.subcontroller;
 
 @FunctionalInterface
 public interface Controllable {

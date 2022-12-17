@@ -1,11 +1,11 @@
-package menu.controller;
+package menu.controller.subcontroller;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.Category;
-import menu.domain.CategoryRepository;
+import menu.domain.repository.CategoryRepository;
 import menu.domain.Menu;
-import menu.domain.MenuRepository;
+import menu.domain.repository.MenuRepository;
 
 public class InitializingController implements Controllable {
 

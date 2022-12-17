@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.Coach;
 import menu.domain.Menu;
-import menu.domain.MenuRepository;
-import menu.util.CoachNameValidator;
+import menu.domain.repository.MenuRepository;
+import menu.util.validator.CoachNameValidator;
 import menu.util.ExceptionMessage;
 import menu.util.Util;
 

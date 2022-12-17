@@ -1,9 +1,10 @@
-package menu.domain;
+package menu.domain.repository;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import menu.domain.Category;
 import menu.util.ExceptionMessage;
 
 public class CategoryRepository {
