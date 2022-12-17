@@ -26,11 +26,11 @@ public enum Category {
         return Arrays.stream(values())
                 .filter(category -> category.getNumber() == number)
                 .findFirst()
-                .get(); // 없는 경우를 호출하지는 않음
+                .orElseThrow(() -> new IllegalArgumentException(SystemConstant.ERROR + SystemConstant.NOT_EXIST_MENU));
     }
 
-    public static Category foodValidate(String food) {
-        return Arrays.stream(values())
+    public static void foodValidate(String food) {
+        Arrays.stream(values())
                 .filter(category -> category.getFoods().contains(food))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(SystemConstant.ERROR + SystemConstant.NOT_EXIST_MENU));
@@ -38,10 +38,6 @@ public enum Category {
 
     public int getNumber() {
         return this.number;
-    }
-
-    public String getName() {
-        return this.name;
     }
 
     public List<String> getFoods() {

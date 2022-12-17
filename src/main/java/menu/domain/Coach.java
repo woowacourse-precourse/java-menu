@@ -32,10 +32,6 @@ public class Coach {
         recommendedFood.add(food);
     }
 
-    public String getName() {
-        return this.name;
-    }
-
     public List<String> getRecommendedFoods() {
         return this.recommendedFood;
     }
