@@ -1,8 +1,8 @@
 package menu.maker;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import menu.global.Constants;
 import menu.model.Category;
-import menu.model.MenuCandidate;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +22,7 @@ public class MenuMaker {
 
             for (String coachName : coachNames) {
                 List<String> exceptedFood = exceptedFoods.get(coachName);
-                List<String> categories = MenuCandidate.MENU.get(candidateCategory);
+                List<String> categories = Constants.MENU.get(candidateCategory);
 
                 recommendMenu(recommendMenuMap, categories, exceptedFood, coachName);
             }
