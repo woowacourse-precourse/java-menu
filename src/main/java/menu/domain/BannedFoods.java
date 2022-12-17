@@ -1,6 +1,7 @@
 package menu.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BannedFoods {
@@ -16,5 +17,10 @@ public class BannedFoods {
 
     public List<String> getBannedFoods() {
         return bannedFoods;
+    }
+
+    public void addBannedFoods(String bannedFoodsInput) {
+        Arrays.stream(bannedFoodsInput.split(","))
+                .forEach(name -> addBannedFood(name));
     }
 }
