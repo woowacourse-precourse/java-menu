@@ -60,11 +60,10 @@ public class MenuService implements Menu {
     }
 
     private void validateMenu(final String menu) {
-        if (!menu.isEmpty()) {
-            final boolean menuIsValid = menus.values().stream().anyMatch(it -> it.contains(menu));
-            if (!menuIsValid) {
-                throw new IllegalArgumentException(MENU_NOT_FOUND_MSG);
-            }
+        final boolean menuIsValid = menus.values().stream().
+                anyMatch(e -> e.contains(menu));
+        if (!menuIsValid) {
+            throw new IllegalArgumentException(MENU_NOT_FOUND_MSG);
         }
     }
 
