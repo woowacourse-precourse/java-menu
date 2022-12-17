@@ -2,6 +2,8 @@ package menu.controller;
 
 import menu.constant.Category;
 import menu.constant.Day;
+import menu.model.Coach;
+import menu.model.Menu;
 import menu.model.Recommender;
 import menu.view.InputView;
 import menu.view.OutputView;
@@ -11,6 +13,7 @@ import java.util.List;
 
 public class MainController {
     List<Category> categories;
+    List<Coach> coaches;
     Recommender recommender;
 
     public MainController(){
@@ -19,22 +22,46 @@ public class MainController {
     }
 
     public void execute(){
-        OutputView.printServiceStartMessage();
-        OutputView.printGetCoachNamesMessage();
-        String[] coachNames = InputView.readCoachNames();
-
+        displayStartMessage();
+        setCategories();
+        setCoachNames();
+        for(Coach coach : coaches){
+            setBanFoods(coach);
+            setMenusOfWeek(coach);
+        }
+        displayRecommendationResult();
+        displayFinishMessage();
     }
 
-    private void setCategories(){
-        for(int i = 0; i < Day.size(); i++){
-            setCategoryOfDay(Day.get(i));
+    private void displayStartMessage(){
+        OutputView.printServiceStartMessage();
+    }
+
+    private void setCoachNames(){
+        OutputView.printGetCoachNamesMessage();
+        String[] coachNames = InputView.readCoachNames();
+        for(String coachName : coachNames){
+            coaches.add(new Coach(coachName));
         }
     }
 
-    private void setCategoryOfDay(Day day){
+    private void setBanFoods(Coach coach){
+        OutputView.printGetBanFoodsMessage(coach.getName());
+        String[] banFoods = InputView.readBanFoods();
+        coach.setBanFoods(banFoods);
+    }
+
+
+    private void setCategories(){
+        for(int i = 0; i < Day.size(); i++){
+            setCategoryOfDay();
+        }
+    }
+
+    private void setCategoryOfDay(){
         Category recommendedCategory = recommender.recommendCategory();
         if(checkDuplicationCount(recommendedCategory) >= 2){
-            setCategoryOfDay(day);
+            setCategoryOfDay();
             return;
         }
         categories.add(recommendedCategory);
@@ -48,5 +75,39 @@ public class MainController {
             }
         }
         return count;
+    }
+
+    private void setMenusOfWeek(Coach coach){
+        for(int i = 0; i < categories.size(); i++){
+            setMenuOfDay(Day.get(i), categories.get(i), coach);
+        }
+    }
+
+    private void setMenuOfDay(Day day, Category category, Coach coach){
+        String recommendedMenu = recommender.recommendMenuOfCategory(category);
+        if(isDuplicatedMenu(coach, recommendedMenu)){
+            setMenuOfDay(day, category, coach);
+            return;
+        }
+        Menu menu = new Menu(day, category, recommendedMenu);
+        coach.addMenu(menu);
+    }
+
+    private boolean isDuplicatedMenu(Coach coach, String recommendedMenu){
+        List<Menu> menusOfCoach = coach.getMenusOfWeek().getMenus();
+        for(Menu menu : menusOfCoach){
+            if(menu.getMenuName().equals(recommendedMenu)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void displayRecommendationResult(){
+
+    }
+
+    private void displayFinishMessage(){
+        OutputView.printServiceFinishMessage();
     }
 }
