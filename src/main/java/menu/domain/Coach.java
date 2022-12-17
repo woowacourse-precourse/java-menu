@@ -8,17 +8,20 @@ import java.util.stream.Stream;
 
 public class Coach {
     private final CoachName name;
-    private final List<String> cannotEatMenus;
     private final List<String> eatMenus = new ArrayList<>();
+    private final List<String> inedibleMenus = new ArrayList<>();
 
     private final int INEDIBLE_MENU_LIMIT = 2;
     private final String CANNOT_EAT_MENU_SIZE_INVALID =
             String.format("[ERROR] 코치가 못 먹는 음식은 %d개 이상이면 안됩니다.", INEDIBLE_MENU_LIMIT);
 
-    public Coach(CoachName name, List<String> cannotEatMenus) {
-        validateCannotEatMenus(cannotEatMenus);
+    public Coach(CoachName name) {
         this.name = name;
-        this.cannotEatMenus = cannotEatMenus;
+    }
+
+    public void addInedibleMenus(List<String> inedibleMenus) {
+        validateCannotEatMenus(inedibleMenus);
+        this.inedibleMenus.addAll(inedibleMenus);
     }
 
     private void validateCannotEatMenus(List<String> menus) {
@@ -34,7 +37,7 @@ public class Coach {
     }
 
     private List<String> getCannotEatableMenus() {
-        return Stream.concat(cannotEatMenus.stream(), eatMenus.stream())
+        return Stream.concat(inedibleMenus.stream(), eatMenus.stream())
                 .collect(Collectors.toList());
     }
 
