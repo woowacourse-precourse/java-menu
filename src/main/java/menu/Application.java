@@ -8,6 +8,9 @@ import java.util.stream.Stream;
 
 public class Application {
     public static final List<String> TOTAL_DAY = Arrays.asList("월요일", "화요일", "수요일", "목요일", "금요일");
+    public static final String INPUT_NAME_MESSAGE = "점심 메뉴 추천을 시작합니다.\n코치의 이름을 입력해 주세요. (, 로 구분)";
+    public static final String MENU_RESULT_START = "메뉴 추천 결과입니다.";
+    public static final String MENU_RESULT_END = "추천을 완료했습니다.";
 
     public static void main(String[] args) {
         String[] coachNames = inputCoachNames();
@@ -32,8 +35,7 @@ public class Application {
 
     private static String[] inputCoachNames() {
         while (true) {
-            System.out.println("점심 메뉴 추천을 시작합니다.\n");
-            System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
+            System.out.println(INPUT_NAME_MESSAGE);
             try {
                 String[] coachNames = getValidCoachNames();
                 System.out.println();
@@ -102,14 +104,14 @@ public class Application {
     }
 
     private static void showResult(String[] coachNames, List<String> recommendedCategories, Map<String, List<String>> recommendMenusByCoach) {
-        System.out.println("메뉴 추천 결과입니다.");
+        System.out.println(MENU_RESULT_START);
         printFormattedResultLine("구분", TOTAL_DAY);
         printFormattedResultLine("카테고리", recommendedCategories);
         for (String coachName : coachNames) {
             printFormattedResultLine(coachName, recommendMenusByCoach.get(coachName));
         }
         System.out.println();
-        System.out.println("추천을 완료했습니다.");
+        System.out.println(MENU_RESULT_END);
     }
 
     private static void printFormattedResultLine(String group, List<String> contents) {
