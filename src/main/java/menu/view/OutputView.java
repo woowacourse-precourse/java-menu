@@ -5,7 +5,8 @@ import java.util.List;
 import static menu.view.ViewConstants.*;
 
 public class OutputView {
-    private String barDelimeter = " | ";
+    private final String BAR_DELIMITER = " | ";
+
     public void showStartRecommender() {
         System.out.println(startLunchRecommenderMessage);
     }
@@ -16,13 +17,13 @@ public class OutputView {
     }
 
     public void showRecommendedCategory(List<String> recommendedCategories) {
-        String categoryMessage = String.join(barDelimeter, recommendedCategories);
+        String categoryMessage = String.join(BAR_DELIMITER, recommendedCategories);
         System.out.println("[ 카테고리 | " + categoryMessage + " ]");
     }
 
     public void showRecommendedMenu(String coachName, List<String> recommendedMenus) {
-        String menuMessage = String.join(barDelimeter, recommendedMenus);
-        System.out.println("[ " + coachName + barDelimeter + menuMessage + " ]");
+        String menuMessage = String.join(BAR_DELIMITER, recommendedMenus);
+        System.out.println("[ " + coachName + BAR_DELIMITER + menuMessage + " ]");
     }
 
     public void showEndRecommender() {
