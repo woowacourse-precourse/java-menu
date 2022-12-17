@@ -4,6 +4,8 @@ import menu.domain.Coaches;
 import menu.view.InputView;
 import menu.view.OutputView;
 
+import java.util.function.Supplier;
+
 public class MenuController {
 
     private final InputView inputView;
@@ -22,6 +24,15 @@ public class MenuController {
 
     public Coaches getCoachesName() {
         outputView.getCoachesName();
-        return inputView.getCoachesName();
+        return repeat(inputView::getCoachesName);
+    }
+
+    private <T> T repeat(Supplier<T> inputReader) {
+        try {
+            return inputReader.get();
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return repeat(inputReader);
+        }
     }
 }

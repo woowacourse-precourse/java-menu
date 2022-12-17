@@ -13,4 +13,7 @@ public class OutputView {
         System.out.println(GET_COACHES_NAME_MESSAGE);
     }
 
+    public void printError(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }

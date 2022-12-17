@@ -3,6 +3,7 @@ package menu.view;
 import camp.nextstep.edu.missionutils.Console;
 import menu.domain.Coach;
 import menu.domain.Coaches;
+import menu.utils.ErrorMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ public class InputView {
 
     public Coaches getCoachesName() {
         String[] input = Console.readLine().split(",");
+        checkValidCoaches(input);
         return convertStringToCoaches(input);
     }
 
@@ -26,5 +28,17 @@ public class InputView {
             coaches.add(new Coach(name));
         }
         return new Coaches(coaches);
+    }
+
+    public void checkValidCoaches(String[] input) {
+        for (String name : input) {
+            validCoachNameSize(name);
+        }
+    }
+
+    public void validCoachNameSize(String name) {
+        if (name.length() < 2 || name.length() > 5) {
+            throw new IllegalArgumentException(ErrorMessage.COACH_NAME_SIZE_IS_BETWEEN_TWO_AND_FOUR);
+        }
     }
 }
