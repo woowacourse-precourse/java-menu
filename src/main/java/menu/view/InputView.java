@@ -87,6 +87,10 @@ public class InputView {
     }
 
     private void validateMenuInCategory(String uncheckedMenus) {
+        if(uncheckedMenus.isEmpty()) {
+            return;
+        }
+
         List<String> cannotEatMenus = convertStringToList(uncheckedMenus);
         for(String cannotEatMenu : cannotEatMenus) {
             Category menuCategory = Category.validateMenu(cannotEatMenu);
