@@ -2,6 +2,7 @@ package menu.controller;
 
 import menu.domain.Coach;
 import menu.domain.Menu;
+import menu.service.CategoryService;
 import menu.service.CoachService;
 import menu.view.InputView;
 import menu.view.OutputView;
@@ -11,6 +12,7 @@ import java.util.List;
 public class MenuController extends Controller{
 
     private final CoachService coachService = new CoachService();
+    private final CategoryService categoryService = new CategoryService();
 
     public MenuController(InputView inputView, OutputView outputView) {
         super(inputView, outputView);
@@ -43,5 +45,8 @@ public class MenuController extends Controller{
 
         return coaches;
     }
+
+
+
 
 }
