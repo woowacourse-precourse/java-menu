@@ -9,6 +9,7 @@ import menu.util.ExceptionMessage;
 
 public class CategoryRepository {
     private static final int MAX_SAME_CATEGORY = 2;
+    private static final int GAP_WITH_INDEX = 1;
 
     private CategoryRepository() {
     }
@@ -50,7 +51,7 @@ public class CategoryRepository {
     }
 
     private static int getRandomIndex() {
-        return Randoms.pickNumberInRange(Constants.MIN_RANGE.value, Constants.MAX_RANGE.value) - 1;
+        return Randoms.pickNumberInRange(Constants.MIN_RANGE.value, Constants.MAX_RANGE.value) - GAP_WITH_INDEX;
     }
 
     public static List<Category> getCategoriesAlreadyEaten() {
