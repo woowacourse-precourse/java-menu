@@ -16,4 +16,19 @@ public class OutputView {
         System.out.println(SERVICE_END_MESSAGE);
     }
 
+    public void printCoachNameInformMessage() {
+        System.out.println(COACH_NAME_INFORM_MESSAGE);
+    }
+
+    public void printPickEatingsInformMessage() {
+        System.out.println(PICKYEATINGS_INFORM_MESSAGE);
+    }
+
+    public void printResultInformMessage() {
+        System.out.println(RESULT_INFORM_MESSAGE);
+    }
+
+
+
+
 }
