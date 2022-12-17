@@ -53,7 +53,6 @@ public class OutputView {
             }
             System.out.printf(END_LINE, recommendFoods.get(coach).get(4));
             System.out.println();
-
         }
     }
 

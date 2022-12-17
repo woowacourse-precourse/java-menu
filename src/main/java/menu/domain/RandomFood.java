@@ -50,5 +50,5 @@ public class RandomFood {
         }
         return randomFoods;
     }
-    
+
 }
