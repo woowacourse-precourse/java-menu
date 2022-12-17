@@ -1,5 +1,6 @@
 package menu.view;
 
+import menu.entity.Category;
 import menu.entity.Coach;
 
 import java.util.HashSet;
@@ -34,5 +35,11 @@ public class InputValidators {
         Set<String> hateMenuSet = new HashSet<>(hateMenus);
         if (hateMenus.size() != hateMenuSet.size())
             throw new IllegalArgumentException("못먹는 메뉴의 이름은 중복되어선 안됨");
+    }
+
+    public static void validateHateMenuPresent(List<String> hateMenus) {
+        if(!Category.containsMenu(hateMenus)){
+            throw new IllegalArgumentException("존재하지 않는 메뉴");
+        }
     }
 }

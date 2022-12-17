@@ -36,7 +36,9 @@ public enum Category {
 
     public static List<Category> getCategoryOfWeekList() {
         Category[] categories = values();
-        Map<Category, Integer> categoryCnt = initCategoryCnt(categories);
+        int[] categoryCnt = new int[categories.length];
+
+//        Map<Category, Integer> categoryCnt = initCategoryCnt(categories);
         List<Category> dailyList = new ArrayList<>();
 
         for (int i = 0; i < 5; i++) {
@@ -46,7 +48,7 @@ public enum Category {
         return dailyList;
     }
 
-    private static Category findRandomCategory(Category[] categories, Map<Category, Integer> categoryCnt) {
+    private static Category findRandomCategory(Category[] categories, int[] categoryCnt) {
         Category randomCategory;
         do {
             randomCategory = categories[Randoms.pickNumberInRange(1, 5) - 1];
@@ -54,21 +56,39 @@ public enum Category {
         return randomCategory;
     }
 
-    private static boolean isAvailableCategory(Map<Category, Integer> categoryCnt, Category randomCategory) {
-        if (categoryCnt.get(randomCategory) + 1 <= 2) {
-            categoryCnt.put(randomCategory, categoryCnt.get(randomCategory) + 1);
+    private static boolean isAvailableCategory(int[] categoryCnt, Category randomCategory) {
+        if (categoryCnt[randomCategory.code - 1] + 1 <= 2) {
+            categoryCnt[randomCategory.code - 1] += 1;
             return true;
         }
         return false;
     }
 
-    private static Map<Category, Integer> initCategoryCnt(Category[] categories) {
-        Map<Category, Integer> categoryCnt = new HashMap<>();
-        for (Category category : categories) {
-            categoryCnt.put(category, 0);
+    public static boolean containsMenu(List<String> hateMenus) {
+        List<String> allHateMenus = new ArrayList<>();
+
+        Category[] categories = values();
+        for(Category category : categories){
+            List<String> menuList = category.getMenuList();
+            allHateMenus.addAll(menuList);
         }
-        return categoryCnt;
+
+        for (String hateMenu : hateMenus){
+            if(!allHateMenus.contains(hateMenu)){
+                return false;
+//                throw new IllegalArgumentException("존재하지 않는 메뉴입니다");
+            }
+        }
+        return true;
     }
+
+//    private static Map<Category, Integer> initCategoryCnt(Category[] categories) {
+//        Map<Category, Integer> categoryCnt = new HashMap<>();
+//        for (Category category : categories) {
+//            categoryCnt.put(category, 0);
+//        }
+//        return categoryCnt;
+//    }
 
     public List<String> getMenuList() {
         return this.menuList;

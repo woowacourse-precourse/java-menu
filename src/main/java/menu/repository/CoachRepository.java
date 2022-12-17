@@ -9,7 +9,8 @@ import java.util.Map;
 
 public class CoachRepository {
 
-    private final Map<String, Coach> coachDB = new HashMap<>();
+//    private final Map<String, Coach> coachDB = new HashMap<>();
+    private final List<Coach> coachDB = new ArrayList<>();
 
     private static final CoachRepository instance = new CoachRepository();
 
@@ -23,15 +24,16 @@ public class CoachRepository {
 
     public void save(Coach coach) {
         validateDuplicateEntity(coach);
-        coachDB.put(coach.getName(), coach);
+        coachDB.add(coach);
+//        coachDB.put(coach.getName(), coach);
     }
 
     private void validateDuplicateEntity(Coach coach) {
-        if (coachDB.containsKey(coach.getName()))
+        if (coachDB.contains(coach))
             throw new IllegalStateException("이미 존재하는 코치");
     }
 
     public List<Coach> findAll() {
-        return new ArrayList<>(coachDB.values());
+        return new ArrayList<>(coachDB);
     }
 }

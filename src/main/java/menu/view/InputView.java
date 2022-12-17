@@ -50,6 +50,9 @@ public class InputView {
             try {
                 System.out.println(coach.getName() + "(이)가 못 먹는 메뉴를 입력해 주세요.");
                 hateMenus = Arrays.asList(Console.readLine().split(","));
+
+                validateHateMenuPresent(hateMenus);
+
                 validateHateMenusSize(hateMenus);
                 validateDuplicateHateMenuName(hateMenus);
                 break;
@@ -59,4 +62,6 @@ public class InputView {
         }
         return hateMenus;
     }
+
+
 }

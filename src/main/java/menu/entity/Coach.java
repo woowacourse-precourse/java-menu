@@ -2,10 +2,7 @@ package menu.entity;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Coach {
     private String name;
@@ -23,11 +20,11 @@ public class Coach {
         this.hateMenus = new ArrayList<>(hateMenus);
     }
 
-    public List<String> getWeeklyMenuList(List<Category> categories) {
+    public List<String> getWeeklyMenuList(List<Category> weeklyCategoryList) {
         List<String> weeklyMenuList = new ArrayList<>();
         Set<String> menuAlreadyPicked = new HashSet<>();
 
-        for (Category category : categories) {//5 times
+        for (Category category : weeklyCategoryList) {//5 times
             String menu = findRandomMenu(menuAlreadyPicked, category.getMenuList());
             weeklyMenuList.add(menu);
         }
@@ -62,5 +59,16 @@ public class Coach {
         if (name.length() >= 2 && name.length() <= 4)
             return new Coach(name);
         throw new IllegalArgumentException("코치의 이름은 2글자에서 4글자여야 합니다.");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        Coach c = (Coach) o;
+        return Objects.equals(this.name, c.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

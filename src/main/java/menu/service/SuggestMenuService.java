@@ -23,18 +23,19 @@ public class SuggestMenuService {
     }
 
     public SuggestMenuResultDto suggest() {
-        List<Category> dailyCategoryList = Category.getCategoryOfWeekList();
-        SuggestMenuResultDto resultDto = new SuggestMenuResultDto(dailyCategoryList);
+        List<Category> weeklyCategoryList = Category.getCategoryOfWeekList();
+        SuggestMenuResultDto resultDto = new SuggestMenuResultDto(weeklyCategoryList);
 
         List<Coach> coachList = coachRepository.findAll();
-        findResultOfCoaches(dailyCategoryList, resultDto, coachList);
+        findResultOfCoaches(weeklyCategoryList, resultDto, coachList);
         return resultDto;
     }
 
-    private void findResultOfCoaches(List<Category> dailyCategoryList, SuggestMenuResultDto resultDto, List<Coach> coachList) {
+    private void findResultOfCoaches(List<Category> weeklyCategoryList, SuggestMenuResultDto resultDto, List<Coach> coachList) {
         for (Coach coach : coachList) {
-            List<String> weeklyMenuList = coach.getWeeklyMenuList(new ArrayList<>(dailyCategoryList));
-            resultDto.addCoachMenuList(coach.getName(), weeklyMenuList);
+            List<String> weeklyMenuList = coach.getWeeklyMenuList(weeklyCategoryList);
+
+            resultDto.addResult(coach.getName(), weeklyMenuList);
         }
     }
 }
