@@ -20,6 +20,14 @@ public class MenuRecommender {
         return categories;
     }
 
+    public void setMembers(List<Member> members) {
+        this.members = members;
+    }
+
+    public void setCategories(List<String> categories) {
+        this.categories = categories;
+    }
+
     public void makeRecommends() {
         for (int i = 0; i < 5; i++) {
             manageMealsDayOfTheWeek();
