@@ -13,13 +13,17 @@ public class InputView {
 
     public List<String> readCoaches() {
         System.out.println(INPUT_COACHES);
-        return Arrays.stream(Console.readLine().split(DELIMITER))
-                .collect(Collectors.toList());
+        return readList();
     }
 
     public List<String> readBlackList(Coach coach) {
         System.out.printf(INPUT_BLACKLIST_MESSAGE, coach.getName());
+        return readList();
+    }
+
+    private List<String> readList() {
         return Arrays.stream(Console.readLine().split(DELIMITER))
                 .collect(Collectors.toList());
     }
+
 }
