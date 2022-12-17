@@ -17,13 +17,20 @@ class InputViewValidationTest {
     }
 
     @Test
-    void couchNumMaxInRange() {
+    void couchNumOverInRange() {
         assertThatThrownBy(() -> inputViewValidation.couchNumValidate("정우,포비,제이슨,안녕,하세요,반가워"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void couchNameValidate() {
+    void couchNameOverInRange() {
+        assertThatThrownBy(() -> inputViewValidation.couchNumValidate("정우입니다"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @Test
+    void couchNameLowInRange() {
+        assertThatThrownBy(() -> inputViewValidation.couchNumValidate("정"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
