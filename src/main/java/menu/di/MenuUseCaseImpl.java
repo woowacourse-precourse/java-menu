@@ -17,10 +17,10 @@ public class MenuUseCaseImpl implements MenuUseCase {
     private static final String NUMBER_OVER_RANGE_MESSAGE = "사람 수가 범위를 벗어났습니다";
     private static final int MINIMUM_COACH_COUNT = 2;
     private static final int MAXIMUM_COACH_COUNT = 5;
-    private static final int COACH_CANNOT_EAT_COUNT_START = 2;
-    private static final int COACH_CANNOT_EAT_COUNT_END = 5;
+    private static final int COACH_CANNOT_EAT_COUNT_START = 0;
+    private static final int COACH_CANNOT_EAT_COUNT_END = 2;
     private static final int MAX_SAME_CATEGORY = 2;
-    private static final String COACH_CANNOT_EAT_ERROR_MESSAGE = "0개부터 2개까지만 못먹는 음식으로 등록할 수 있습니다";
+    private static final String COACH_CANNOT_EAT_ERROR_MESSAGE = "먹지 못하는 음식으로 등록할 수 있는 범위를 벗어났습니다";
     private static final int PICK_DATE_SIZE = 5;
     private final Map<Category, List<String>> menus;
     private final Picker picker;
