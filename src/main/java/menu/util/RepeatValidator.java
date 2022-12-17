@@ -7,13 +7,13 @@ public class RepeatValidator {
     public static <T> T readUntilValidate(Supplier<T> expression) {
         T input = null;
         do {
-            input = tryExpression(expression);
+            input = trySupplier(expression);
         } while (input == null);
 
         return input;
     }
 
-    private static <T> T tryExpression(Supplier<T> expression) {
+    private static <T> T trySupplier(Supplier<T> expression) {
         try {
             return expression.get();
         } catch (IllegalArgumentException exception) {
