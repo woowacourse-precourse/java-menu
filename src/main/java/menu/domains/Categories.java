@@ -1,4 +1,4 @@
-package menu;
+package menu.domains;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +21,5 @@ public enum Categories {
     public static void updateMenu(Categories category,List<String> categoryMenu){
         category.menues.addAll(categoryMenu);
     }
-
 
 }
