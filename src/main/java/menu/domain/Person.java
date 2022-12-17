@@ -24,20 +24,24 @@ public class Person {
         return name;
     }
 
-    public void adUnavailableMenus(String menus) {
-        String[] split = validate(menus);
+    public void addUnavailableMenus(String menus) {
+        String[] split = validateUnavailableMenus(menus);
         List<Menu> result = Arrays.stream(split)
                 .map(Menu::new)
                 .collect(Collectors.toList());
         unavailable = new Menus(result);
     }
 
-    private String[] validate(String input) {
+    private String[] validateUnavailableMenus(String input) {
         for (int index = 0; index < input.length(); index++) {
             if (input.charAt(index) != ',' || Character.isAlphabetic(input.charAt(index))) {
                 throw new IllegalArgumentException("올바른 입력이 아닙니다. 쉽표로 구분하여 입력해주세요");
             }
         }
-        return input.split(",");
+        String[] result = input.split(",");
+        if (result.length > 2) {
+            throw new IllegalArgumentException("최대 2개의 못 먹는 메뉴만 입력할 수 있습니다.");
+        }
+        return result;
     }
 }

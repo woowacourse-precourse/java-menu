@@ -24,7 +24,7 @@ public class People implements Iterable<Person> {
 
     public void addUnavailableMeneus(List<String> inputs) {
         for (int index = 0; index < inputs.size(); index++) {
-            people.get(index).adUnavailableMenus(inputs.get(index));
+            people.get(index).addUnavailableMenus(inputs.get(index));
         }
     }
 }
