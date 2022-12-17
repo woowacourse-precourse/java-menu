@@ -12,9 +12,7 @@ public class MenuRepository {
     private static final List<Menu> menuRepository = new ArrayList<>();
 
     public static void addMenu(Menu menu) {
-        if(!menuRepository.contains(menu)) {
-            menuRepository.add(menu);
-        }
+        menuRepository.add(menu);
     }
 
     public static Menu getMenuByMenuName(String menuName) {
@@ -28,15 +26,11 @@ public class MenuRepository {
         return menuRepository.contains(menu);
     }
 
-    public static boolean isExistMenuByName(String menuName) {
-        Menu findMenu = menuRepository.stream()
+    public static void isExistMenuByName(String menuName) {
+        menuRepository.stream()
                 .filter(menu -> menu.getName().equals(menuName))
-                .findFirst()
-                .orElseGet(null);
-        if(findMenu != null) {
-            return true;
-        }
-        return false;
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(ExceptionType.IS_NOT_IN_MENU.toString()));
     }
 
     public static List<Menu> getMenusByCategory(Category category) {

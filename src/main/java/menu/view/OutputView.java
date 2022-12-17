@@ -15,17 +15,18 @@ public class OutputView {
 
     public void printServiceStart() {
         System.out.println(SERVICE_START);
+        System.out.println();
     }
 
     public void printGetCoachNames() {
         System.out.println(GET_COACH_NAMES);
     }
 
-    public void printGetCantEatMenus() {
-        System.out.println(GET_CANT_EAT_MANUS);
+    public void printGetCantEatMenus(String name) {
+        System.out.println(name + GET_CANT_EAT_MANUS);
     }
 
-    public static void printErrorMessage(String message) {
+    public void printErrorMessage(String message) {
         System.out.println(message);
     }
 }

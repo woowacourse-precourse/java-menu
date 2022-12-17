@@ -3,7 +3,7 @@ package menu.view;
 import camp.nextstep.edu.missionutils.Console;
 import menu.utils.Validation;
 
-public class InputVIew {
+public class InputView {
 
     private String readLine() {
         return Console.readLine();
