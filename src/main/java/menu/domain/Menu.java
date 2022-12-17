@@ -9,7 +9,7 @@ public class Menu {
     private final List<String> koreanMenus = new ArrayList<>
             (List.of("김밥", "김치찌개", "쌈밥", "된장찌개", "비빔밥", "칼국수", "불고기", "떡볶이", "제육볶음"));
     private final List<String> chineseMenus = new ArrayList<>
-            (List.of("깐풍기", "볶음면", "동파육", "짜장면", "짬뽕", "마파두부", "탕수육", "토마토" "달걀볶음", "고추잡채"));
+            (List.of("깐풍기", "볶음면", "동파육", "짜장면", "짬뽕", "마파두부", "탕수육", "토마토", "달걀볶음", "고추잡채"));
     private final List<String> asianMenus = new ArrayList<>
             (List.of("팟타이", "카오 팟", "나시고렝", "파인애플 볶음밥", "쌀국수", "똠얌꿍", "반미", "월남쌈", "분짜"));
     private final List<String> westernMenus = new ArrayList<>
