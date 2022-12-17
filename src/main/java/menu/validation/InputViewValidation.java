@@ -37,4 +37,16 @@ public class InputViewValidation {
             throw new IllegalArgumentException(ERROR_COACH_DUPLICATE);
         }
     }
+
+    public static List<String> checkDislikeFoodValid(String dislikeFood) {
+        String[] dislikeFoodInfo = dislikeFood.split(",");
+        checkDislikeFoodInfoCount(dislikeFoodInfo);
+        return Arrays.asList(dislikeFoodInfo);
+    }
+
+    private static void checkDislikeFoodInfoCount(String[] dislikeFoodInfo) {
+        if (dislikeFoodInfo.length >2) {
+            throw new IllegalArgumentException(ERROR_NOT_VALID_DISLIKE_FOOD_COUNT);
+        }
+    }
 }
