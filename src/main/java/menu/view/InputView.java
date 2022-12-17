@@ -1,6 +1,7 @@
 package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import menu.util.PrintMsg;
 
 import java.util.List;
 
@@ -15,6 +16,10 @@ public class InputView {
      */
     public List<String> readCoachNames() {
         String uesrInput = getUserInput();
+        uesrInput.split(PrintMsg.COMMA.getMsg());
+        return null;
+    }
+    public List<String> checkCoachNames() {
         return null;
     }
 
