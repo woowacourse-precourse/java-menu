@@ -94,5 +94,10 @@ public class MenuController {
         }
     }
 
-
+    private static void validateRecommendMenu(int index, List<String> menus) {
+        String menu = Randoms.shuffle(menus).get(0);
+        while (coaches().get(index).cannotRecommendMenu(menu)) {
+            menu = Randoms.shuffle(menus).get(0);
+        }
+    }
 }
