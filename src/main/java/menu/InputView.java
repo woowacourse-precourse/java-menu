@@ -6,25 +6,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputView {
-    public List<String> coachNameInput(){
+    public List<String> coachNameInput() {
         List<String> names = new ArrayList<>();
-        String[] name = Console.readLine().split(",");
-        if(name.length<2 || name.length>5)
-            throw new IllegalArgumentException("[ERROR] 최소2명 최대 5명 입력");
+        String[] name = validateNumber();
+
         for(int i=0; i<name.length;i++){
-            if(validateName(name[i])) {
                 names.add(name[i]);
-            }
         }
         return names;
     }
-    public boolean validateName(String name){
-        if(name.length()<2 || name.length()>5){
-            throw new IllegalArgumentException("[ERROR] 최소 2글자, 최대 4글자 입력");
+    public String[] validateNumber(){
+        String[] name;
+        while(true) {
+            name = Console.readLine().split(",");
+            try {
+                if (name.length < 2 || name.length > 5)
+                    throw new IllegalArgumentException("[ERROR] 최소2명 최대 5명 입력");
+                for(int i=0; i<name.length; i++){
+                    if(name[i].length()<2 || name[i].length()>5){
+                        throw new IllegalArgumentException("[ERROR] 최소 2글자, 최대 4글자 입력");
+                    }
+                }
+                break;
+            }
+            catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
         }
-        return true;
+        return name;
     }
-
 
 
     public List<String> coachCantEatInput(){
