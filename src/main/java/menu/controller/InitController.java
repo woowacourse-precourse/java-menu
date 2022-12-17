@@ -21,8 +21,8 @@ public class InitController {
 
     private void initCategoryAndMenuRepository() {
         for (String categoryName : CategoryType.names) {
-            Category category = new Category(categoryName);
             int categoryId = CategoryType.getIndexByName(categoryName);
+            Category category = new Category(categoryName);
             categoryRepository.save(categoryId, category);
 
             initMenuRepository(category);
