@@ -1,10 +1,17 @@
 package menu.client;
 
 import java.util.function.Supplier;
+import menu.di.MenuUseCase;
 import menu.di.ValidateMenuCommand;
 import menu.di.ValidateNameCommand;
 
 public class MenuClient {
+
+    private final MenuUseCase menuUseCase;
+
+    public MenuClient(MenuUseCase menuUseCase) {
+        this.menuUseCase = menuUseCase;
+    }
 
     public void run() {
         printStartMessage();
@@ -18,7 +25,9 @@ public class MenuClient {
     }
 
     private ValidateNameCommand askNames() {
-        return InputView.askNames();
+        ValidateNameCommand validateNameCommand = InputView.askNames();
+        menuUseCase.validateNames(validateNameCommand);
+        return validateNameCommand;
     }
 
     private ValidateMenuCommand askMenus() {
