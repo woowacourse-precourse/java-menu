@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import menu.domain.Category;
 import menu.domain.Coach;
+import menu.domain.CoachMapper;
 import menu.domain.CoachName;
-import menu.domain.utils.Picker;
+import menu.domain.utils.CategoryPicker;
+import menu.domain.utils.pick;
 import menu.service.dto.CoachNameDto;
 import menu.service.dto.MenuDto;
 import menu.service.dto.RecommendResultDto;
@@ -16,16 +17,19 @@ import menu.service.dto.RecommendResultDto;
 public class MenuService implements Menu {
 
     private static final String MENU_NOT_FOUND_MSG = "없는 메뉴입니다";
-
     private static final String NUMBER_OVER__MSG = "사람 수가 범위를 벗어났습니다";
     private static final int LIMIT_COACH_COUNT = 2;
     private static final int MAX_COACH_COUNT = 5;
+    private static final int COACH_CANNOT_EAT_COUNT_END = 2;
+    private static final int MAX_SAME_CATEGORY = 2;
+    private static final String COACH_CANNOT_EAT_ERROR_MSG = "등록할 수 있는 범위를 벗어났습니다";
+    private static final int PICK_DATE_SIZE = 5;
     private final Map<Category, List<String>> menus;
-    private final Picker picker;
+    private final pick pick;
 
-    public MenuService(final Map<String, List<String>> menus, final Picker picker) {
+    public MenuService(final Map<String, List<String>> menus, final pick pick) {
         this.menus = stringToMenuConverter(menus);
-        this.picker = picker;
+        this.pick = pick;
     }
 
     private Map<Category, List<String>> stringToMenuConverter(final Map<String, List<String>> input) {
@@ -39,7 +43,7 @@ public class MenuService implements Menu {
     public void validateCoachNames(final CoachNameDto coachNameDto) {
         final List<String> names = coachNameDto.getNames();
         if (names.size() >= LIMIT_COACH_COUNT && names.size() <= MAX_COACH_COUNT) {
-            names.forEach(CoachName::new);
+            names.forEach(CoachName::of);
         } else {
             throw new IllegalArgumentException(NUMBER_OVER__MSG);
         }
