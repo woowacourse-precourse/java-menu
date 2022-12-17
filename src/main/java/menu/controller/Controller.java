@@ -1,7 +1,6 @@
 package menu.controller;
 
-import menu.domain.Member;
-import menu.repo.MemberRepository;
+import menu.service.MenuService;
 import menu.utils.MemberValid;
 import menu.view.InputView;
 import menu.view.OutputView;
@@ -9,11 +8,20 @@ import menu.view.OutputView;
 import java.util.Arrays;
 
 public class Controller {
-    private final MemberRepository memberRepository = new MemberRepository();
+    private final MenuService menuService = new MenuService();
 
     public void run() {
         OutputView.printStart();
         saveMember();
+        saveMenu();
+        for (int i = 0; i < 7; i++) {
+            recommendMenu();
+        }
+        OutputView.printResult(menuService.getWeekCategory(),menuService.getMembers());
+    }
+
+    private void recommendMenu() {
+        menuService.pickCategory();
     }
 
     private void saveMember() {
@@ -22,7 +30,11 @@ public class Controller {
         for (String member : members) {
             String[] notEats = InputView.inputNotEat(member).split(",");
             MemberValid.isValidNotEat(notEats);
-            memberRepository.save(new Member(member, Arrays.asList(notEats)));
+            menuService.saveMember(member, Arrays.asList(notEats));
         }
+    }
+
+    private void saveMenu() {
+        menuService.saveMenu();
     }
 }
