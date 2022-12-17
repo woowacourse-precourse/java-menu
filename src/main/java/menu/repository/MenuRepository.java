@@ -8,7 +8,7 @@ import menu.domain.Menus;
 
 public class MenuRepository {
 
-    private static final Map<Category, Menus> repository = new EnumMap<>(Category.class);
+    private final Map<Category, Menus> repository = new EnumMap<>(Category.class);
 
     public void save(Category category, Menus menus) {
         repository.put(category, menus);

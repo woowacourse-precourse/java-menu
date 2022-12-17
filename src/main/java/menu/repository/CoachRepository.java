@@ -9,7 +9,7 @@ import menu.domain.Coach;
 
 public class CoachRepository {
 
-    private static final List<Coach> repository = new ArrayList<>();
+    private final List<Coach> repository = new ArrayList<>();
 
     public void saveAll(List<String> coachNames) {
         List<Coach> coaches = coachNames.stream()
