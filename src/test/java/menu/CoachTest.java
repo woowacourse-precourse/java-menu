@@ -9,13 +9,20 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CoachTest {
+    private static  String BIBIM = "비빔밥";
     Coach coach = new Coach("유성욱");
-    Food food = new Food("비빔밥", Category.KOREA);
+    Food food = new Food(BIBIM, Category.KOREA);
 
     @Test
     void 중복_음식(){
-        coach.addNewFood(Day.MONDAY,"비빔밥");
-        assertTrue(!coach.ifFoodDuplicate("비빔밥"));
+        coach.addNewFood(Day.MONDAY,BIBIM);
+        assertTrue(!coach.ifFoodDuplicate(BIBIM));
+    }
+
+    @Test
+    void 못먹는_음식_검사(){
+        coach.addCantEatFood(food);
+        assertTrue(!coach.ifNotIncludeInCantEat(BIBIM));
     }
 
 }
