@@ -1,9 +1,13 @@
 package menu.controller;
 
+import menu.domain.category.Category;
+import menu.domain.history.RecommendHistory;
+import menu.domain.recommender.CategoryRecommender;
 import menu.view.InputView;
 import menu.view.OutputView;
 
 import java.util.List;
+import java.util.Map;
 
 public class MainController {
 
@@ -20,6 +24,10 @@ public class MainController {
     public void runMain() {
         outputView.printStart();
         List<String> coachNames = inputController.readValidCoachNames();
-        System.out.println(inputController.readValidHateMenusByCoach(coachNames));
+        Map<String, List<String>> hateMenusByCoach = inputController.readValidHateMenusByCoach(coachNames);
+        RecommendHistory recommendHistory = new RecommendHistory();
+        CategoryRecommender categoryRecommender = new CategoryRecommender(recommendHistory);
+        Category category = categoryRecommender.recommend();
+        System.out.println(category);
     }
 }
