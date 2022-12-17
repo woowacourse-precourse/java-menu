@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import menu.domain.constant.Category;
 import menu.domain.constant.Day;
+import menu.domain.vo.CoachMenu;
 
 public class Coach {
     private final String name;
@@ -47,5 +48,10 @@ public class Coach {
             return false;
         }
         return true;
+    }
+
+    public CoachMenu getCoachMenu() {
+        List<String> existFoods = new ArrayList<>(weeklyFoods.values());
+        return new CoachMenu(name, existFoods);
     }
 }
