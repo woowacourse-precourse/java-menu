@@ -20,21 +20,22 @@ public class CategoryService {
 
     public List<Category> getFiveCategories() {
         List<Category> categories = new ArrayList<>();
-        for (int i = 0; i < CATEGORY_SIZE; i++) {
+        while(categories.size() != CATEGORY_SIZE) {
             Category category = pickCategory();
-            if(getFrequency(categories, category) == 2) {
-                i-=1;
-                continue;
-            }
+            System.out.println("category.name() = " + category.name());
+
             categories.add(category);
         }
-
+        categories.forEach(category -> System.out.println("category.name() = " + category.name()));
         categoryRepository.addRecommendedCategories(categories);
         return categories;
     }
 
     private int getFrequency(List<Category> categories, Category category) {
-        return Collections.frequency(categories, category);
+        List<String> categoryNames = new ArrayList<>();
+        categories.forEach(c -> categoryNames.add(c.name()));
+
+        return Collections.frequency(categoryNames, category.name());
     }
 
     private Category pickCategory() {
@@ -42,14 +43,15 @@ public class CategoryService {
 
         if (categoryNumber == 1) {
             return JAPANESE;
-        } else if (categoryNumber == 1) {
+        } else if (categoryNumber == 2) {
             return KOREAN;
-        } else if (categoryNumber == 1) {
+        } else if (categoryNumber == 3) {
             return CHINESE;
-        } else if (categoryNumber == 1) {
+        } else if (categoryNumber == 4) {
             return ASIAN;
+        } else if (categoryNumber == 5) {
+            return WESTERN;
         }
-        return WESTERN;
-
+        return null;
     }
 }
