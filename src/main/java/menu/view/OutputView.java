@@ -28,8 +28,13 @@ public class OutputView {
 
     public void printCategories(List<Category> categories) {
         System.out.printf(RECOMMEND_RESULT_CATEGORY);
-        for (Category category : categories) {
-            System.out.printf(category.getCategoryName() + RECOMMEND_RESULT_PARTITION);
+        for(int i = 0; i<categories.size(); i++) {
+            Category category = categories.get(i);
+            if(i != categories.size() - 1) {
+                System.out.printf(category.getCategoryName() + RECOMMEND_RESULT_PARTITION);
+                continue;
+            }
+            System.out.printf(category.getCategoryName());
         }
         System.out.println(RECOMMEND_RESULT_END);
     }
@@ -52,6 +57,6 @@ public class OutputView {
             }
             System.out.printf(menu.getMenuName());
         }
-        System.out.println();
+        System.out.println(RECOMMEND_RESULT_END);
     }
 }
