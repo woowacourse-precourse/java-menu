@@ -142,6 +142,32 @@ public class ApplicationTest extends NsTest {
         }
 
         @Test
+        void Validate_코치_수_초과_테스트() {
+            assertSimpleTest(() -> {
+                try {
+                    Validate.coachLength(Arrays.asList("김씨", "김씨", "김씨", "김씨", "김씨", "송씨"), 2, 5);
+                    // 이름이 같은 경우도 있을수 있기때문에 예외처리를 해주지않았다
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+                assertThat(output()).contains(ERROR_DIFFERENT_COACH_LENGTHS);
+            });
+        }
+
+        @Test
+        void Validate_코치_수_미만_테스트() {
+            assertSimpleTest(() -> {
+                try {
+                    Validate.coachLength(Arrays.asList("김씨"), 2, 5);
+                    // 이름이 같은 경우도 있을수 있기때문에 예외처리를 해주지않았다
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+                assertThat(output()).contains(ERROR_DIFFERENT_COACH_LENGTHS);
+            });
+        }
+
+        @Test
         void 이름에_숫자_포함_예외_테스트() {
             assertSimpleTest(() -> {
                 runException("토미,제임1스,포코");
