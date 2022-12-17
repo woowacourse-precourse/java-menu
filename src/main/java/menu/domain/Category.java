@@ -1,1 +1,1 @@
-package menu.domain;public class Category {    private final String name;    public Category(String name) {        this.name = name;    }}
+package menu.domain;public class Category {    private final String name;    public Category(String name) {        this.name = name;    }    @Override    public boolean equals(Object object) {        Category category = (Category) object;        if (category.name.equals(this.name)) {            return true;        }        return false;    }}
