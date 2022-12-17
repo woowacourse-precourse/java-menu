@@ -31,4 +31,8 @@ public enum Category {
     public String getName() {
         return this.name;
     }
+
+    public List<String> getMenus() {
+        return this.foods;
+    }
 }

@@ -60,6 +60,7 @@ public class MenuController {
             validateCoachSize(names);
             List<Coach> coaches = makeCoaches(names);
             CoachRepository.initializeCoaches(coaches);
+            MenuForWeekRepository.initializeCoaches(coaches);
             return coaches;
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception);
