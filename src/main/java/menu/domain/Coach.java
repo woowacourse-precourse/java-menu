@@ -22,5 +22,13 @@ public class Coach {
     public void addNotEatMenu(String notEatMenu){
         notEatMenus.add(notEatMenu);
     }
-    
+
+    public boolean canEatMenu(String menu){
+        if(notEatMenus.contains(menu))
+            return false;
+        if(menuRecommendResult.contains(menu))
+            return false;
+
+        return true;
+    }
 }
