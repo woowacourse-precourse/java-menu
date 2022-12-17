@@ -6,6 +6,8 @@ import menu.domain.history.RecommendHistory;
 
 public class CategoryRecommender {
 
+    private static final int START_RANGE = 1;
+    private static final int END_RANGE = 5;
     private final RecommendHistory history;
 
     public CategoryRecommender(RecommendHistory history) {
@@ -21,7 +23,7 @@ public class CategoryRecommender {
     }
 
     private Category pickRandomCategory() {
-        int categoryNumber = Randoms.pickNumberInRange(1, 5);
+        int categoryNumber = Randoms.pickNumberInRange(START_RANGE, END_RANGE);
         return Category.valueOfCategoryNumber(categoryNumber);
     }
 }
