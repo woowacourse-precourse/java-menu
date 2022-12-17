@@ -38,8 +38,13 @@ public class InputValidator {
     }
 
     public void validateReadCannotEatFoods(List<String> cannotEatFoods) {
-        if (isNotExistFoods(cannotEatFoods)) {
-            throw new IllegalArgumentException(ErrorConstants.ERROR_PREFIX + "등록된 메뉴에 해당 메뉴가 없습니다.");
+        if (!cannotEatFoods.isEmpty()) {
+            if (isNotExistFoods(cannotEatFoods)) {
+                throw new IllegalArgumentException(ErrorConstants.ERROR_PREFIX + "등록된 메뉴에 해당 메뉴가 없습니다.");
+            }
+            if (isFoodCountOverTwo(cannotEatFoods)) {
+                throw new IllegalArgumentException(ErrorConstants.ERROR_PREFIX + "못 먹는 메뉴는 최대 2개여야합니다.");
+            }
         }
     }
 
@@ -49,5 +54,9 @@ public class InputValidator {
                 .count();
 
         return notExistCount != 0;
+    }
+
+    private boolean isFoodCountOverTwo(List<String> cannotEatFoods) {
+        return cannotEatFoods.size() > MAX_CANNOT_EAT_FOODS_COUNT;
     }
 }
