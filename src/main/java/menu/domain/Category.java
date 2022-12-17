@@ -20,6 +20,10 @@ public class Category {
         return name;
     }
 
+    public List<Menu> getMenus() {
+        return menus;
+    }
+
     @Override
     public String toString() {
         return name;
