@@ -3,7 +3,9 @@ package menu.exception;
 public class CommonException implements InputException{
     @Override
     public void verifyException(String input) {
-
+        checkSeperatedByComma(input, 0, 1);
+        checkEmpty(input);
+        checkBlank(input);
     }
 
     protected void checkSeperatedByComma(String input, int min, int max) {
@@ -16,6 +18,12 @@ public class CommonException implements InputException{
     protected void checkEmpty(String input) {
         if (input.isEmpty()) {
             throw new IllegalArgumentException(ExceptionCode.IS_EMPTY.getMessage());
+        }
+    }
+
+    protected void checkBlank(String input) {
+        if (input.isBlank()) {
+            throw new IllegalArgumentException(ExceptionCode.IS_BLANK.getMessage());
         }
     }
 }
