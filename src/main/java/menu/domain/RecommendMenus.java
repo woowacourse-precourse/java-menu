@@ -7,6 +7,10 @@ public class RecommendMenus {
         this.menu = menu;
     }
 
+    public String getMenu(){
+        return this.menu;
+    }
+
     public boolean isRecommendable(){
         return true;
     }

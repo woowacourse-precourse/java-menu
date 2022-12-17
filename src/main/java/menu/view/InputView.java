@@ -16,8 +16,8 @@ public class InputView {
         return coachNames;
     }
 
-    public static List<String> readDislikeMenu() {
-        System.out.println(SystemMessage.DISLIKE_MENU_INPUT_MESSAGE);
+    public static List<String> readDislikeMenu(String name) {
+        System.out.println(name+SystemMessage.DISLIKE_MENU_INPUT_MESSAGE);
         String names = Console.readLine();
         List<String> dislikeMenus = new ArrayList<>();
         dislikeMenus = Arrays.asList(names.split(","));
