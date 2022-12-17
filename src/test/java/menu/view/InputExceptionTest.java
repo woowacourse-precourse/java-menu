@@ -1,7 +1,10 @@
 package menu.view;
 
+import menu.util.PrintMsg;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -35,6 +38,18 @@ public class InputExceptionTest {
         assertThatThrownBy(() -> {
             InputException.notCoachNameSizeException(size);
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1,3})
+    public void notFoodsSize_test(int size) {
+        assertThatThrownBy(() -> {
+            InputException.notFoodsSizeException(size);
+        }).isInstanceOf(IllegalArgumentException.class);
+
+        String s = "";
+        List<String> sList = List.of(s.split(PrintMsg.COMMA.getMsg()));
+        System.out.println(sList);
     }
 
 

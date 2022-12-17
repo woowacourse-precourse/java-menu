@@ -56,7 +56,7 @@ public class MenuController {
             try {
                 outputView.printEmptyMsg();
                 outputView.printMsg(coachName+PrintMsg.INPUT_FOODS.getMsg());
-                return inputView.readCoachNames();
+                return inputView.readNotEatFoods();
             } catch (IllegalArgumentException exception) {
                 outputView.printMsg(exception.getMessage());
             }

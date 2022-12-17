@@ -8,9 +8,16 @@ import java.util.List;
 
 public class InputException {
     public static void nullException(String userInput) {
-        if (userInput == null || userInput.isBlank() || userInput.isEmpty()) {
+        if (isNull(userInput)) {
             throw new IllegalArgumentException(ExceptionMsg.NULL.getMsg());
         }
+    }
+
+    public static boolean isNull(String userInput) {
+        if (userInput == null || userInput.isBlank() || userInput.isEmpty()) {
+            return true;
+        }
+        return false;
     }
 
     public static void notEndFormatException(String userInput) {
@@ -37,6 +44,13 @@ public class InputException {
         if (!(size >= CoachCode.MIN_NAME.getCode()
         && size <= CoachCode.MAX_NAME.getCode())) {
             throw new IllegalArgumentException("코치 이름은 최소 2글자에서 최대 4글자입니다.");
+        }
+    }
+
+    public static void notFoodsSizeException(int size) {
+        if (!(size >= CoachCode.MIN_FOOD.getCode()
+        && size <= CoachCode.MAX_FOOD.getCode())) {
+            throw new IllegalArgumentException("음식은 최소0개, 최대 2개까지만 입력 가능합니다.");
         }
     }
 }
