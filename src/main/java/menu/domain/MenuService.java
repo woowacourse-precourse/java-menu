@@ -1,6 +1,7 @@
 package menu.domain;
 
 import java.util.List;
+import menu.domain.constant.Category;
 
 public class MenuService {
     private final Coaches coaches;
