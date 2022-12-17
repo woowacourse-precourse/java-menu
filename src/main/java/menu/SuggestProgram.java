@@ -1,5 +1,6 @@
 package menu;
 
+import menu.domains.Categories;
 import menu.domains.Coach;
 import menu.views.ProgramOutput;
 import menu.views.UserInput;
@@ -11,15 +12,15 @@ public class SuggestProgram {
 
     private final UserInput userInput = new UserInput();
     private final ProgramOutput output = new ProgramOutput();
+    private final MenuSuggester suggester = new MenuSuggester();
 
     public void startProgram(){
         output.suggestProgramStart();
         output.printRequestCoachNames();
         List<String> coachesName = userInput.requestCoachName();
         List<Coach> coaches = makeCoachList(coachesName);
-
         addCannotHaveMenu(coaches);
-
+        makeMenuSuggestResult(coaches);
     }
 
     private List<Coach> makeCoachList(List<String> coaches){
@@ -34,5 +35,13 @@ public class SuggestProgram {
         for (Coach coach : coaches) {
             coach.updateCannotHaveMenu(userInput, output);
         }
+    }
+
+    private void makeMenuSuggestResult(List<Coach> coaches){
+        // 카테고리 뽑는 기능
+        List<Categories> suggestedCategory = suggester.categorySuggest();
+        // 이후 카테고리를 뽑고 나서, 메뉴를 선정하는 기능 추가
+
+        // 이후 메뉴 추천 결과 입력 후 종료.
     }
 }
