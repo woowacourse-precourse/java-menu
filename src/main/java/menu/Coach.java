@@ -33,6 +33,10 @@ public class Coach {
         return foods;
     }
 
+    public boolean contains(String food) {
+        return foods.contains(food);
+    }
+
     public boolean containsInedible(String food) {
         return inedibleFoods.contains(food);
     }

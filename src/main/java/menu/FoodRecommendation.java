@@ -39,6 +39,9 @@ public class FoodRecommendation {
         for (Coach coach : coaches) {
             Category category = categoryByWeek.get(week);
             String food = category.getRandomFood();
+            while (coach.contains(food)) {
+                food = category.getRandomFood();
+            }
             coach.recommendFood(food);
         }
     }
