@@ -1,9 +1,9 @@
 # 기능 목록
 ## domain
-- [ ] Category
-    - [ ] 필드, 생성자, getter 생성
-    - [ ] 음식 추가 기능
-    - [ ] 해당 음식을 가지고 있는지 확인 기능
+- [x] Category
+    - [x] 필드, 생성자, getter 생성
+    - [x] 음식 추가 기능
+    - [x] 해당 음식을 가지고 있는지 확인 기능
 - [ ] Coach
 
 ## repository
@@ -15,7 +15,7 @@
 
 
 ## view
-- [ ] 문구 생성
+- [x] 문구 생성
 
 
 ## MainController
