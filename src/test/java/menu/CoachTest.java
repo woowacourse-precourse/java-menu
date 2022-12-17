@@ -17,4 +17,14 @@ public class CoachTest {
 
         assertThat(s).isEqualTo("오코노미야끼");
     }
+
+    @Test
+    @DisplayName("음식 고르기2")
+    void pickFood2() {
+        Coach coach = new Coach("name", List.of("aa", "bb"));
+        String food = coach.pickFood(List.of("aa", "bb", "cc"));
+
+        assertThat(food).isEqualTo("cc");
+
+    }
 }
