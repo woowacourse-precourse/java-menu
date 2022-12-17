@@ -22,6 +22,10 @@ public enum Category {
         return name;
     }
 
+    public int getValue() {
+        return value;
+    }
+
     public static Category from(String name) {
         return Arrays.stream(Category.values())
                 .filter(category -> category.name.equals(name))
