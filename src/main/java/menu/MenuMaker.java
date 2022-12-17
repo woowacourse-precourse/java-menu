@@ -1,7 +1,6 @@
 package menu;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.Category;
@@ -10,34 +9,32 @@ import menu.domain.Menu;
 import menu.domain.exception.MenuException;
 
 public class MenuMaker {
-    private final Coach coach;
-    private final List<Category> categories;
+    private final List<Coach> coaches;
+    private final Category category;
 
-    public MenuMaker(Coach coach, List<Category> categories) {
-        this.coach = coach;
-        this.categories = categories;
+    public MenuMaker(List<Coach> coaches, Category category) {
+        this.coaches = coaches;
+        this.category = category;
     }
 
-    public List<Menu> makeRandomMenus() {
-        List<Menu> coachMenu = new ArrayList<>();
-        for(Category category : categories) {
-            List<String> menus = category.getMenuList()
-                    .stream()
-                    .map(Menu::getMenuName)
-                    .collect(Collectors.toList());
-            Menu menu = makeRandomMenu(menus, coachMenu);
-            coachMenu.add(menu);
+    public void makeRandomMenus() {
+        List<String> menus = category.getMenuList()
+                .stream()
+                .map(Menu::getMenuName)
+                .collect(Collectors.toList());
+        for(Coach coach : coaches) {
+            Menu menu = makeRandomMenu(menus, coach);
+            coach.getRecommendMenus().add(menu);
         }
-        return coachMenu;
     }
 
-    private Menu makeRandomMenu(List<String> menus, List<Menu> coachMenu) {
+    private Menu makeRandomMenu(List<String> menus, Coach coach) {
         try {
             Menu menu = generateRandomMenu(menus);
-            validateMenu(menu, coachMenu);
+            validateMenu(menu, coach);
             return menu;
         } catch (IllegalStateException e) {
-            return makeRandomMenu(menus, coachMenu);
+            return makeRandomMenu(menus, coach);
         }
     }
 
@@ -46,19 +43,21 @@ public class MenuMaker {
         return new Menu(menu);
     }
 
-    private void validateMenu(Menu uncheckedMenu, List<Menu> menus) {
-        validateDuplicateRandomMenu(uncheckedMenu, menus);
-        validateCannotEatRandomMenu(uncheckedMenu);
+    private void validateMenu(Menu uncheckedMenu, Coach coach) {
+        validateDuplicateRandomMenu(uncheckedMenu, coach);
+        validateCannotEatRandomMenu(uncheckedMenu, coach);
     }
 
-    private void validateDuplicateRandomMenu(Menu uncheckedMenu, List<Menu> menus) {
+    private void validateDuplicateRandomMenu(Menu uncheckedMenu, Coach coach) {
+        List<Menu> menus = coach.getRecommendMenus();
         if(menus.contains(uncheckedMenu)) {
             throw new IllegalStateException(MenuException.DUPLICATE_MENU.getExceptionMessage());
         }
     }
 
-    private void validateCannotEatRandomMenu(Menu uncheckedMenu) {
+    private void validateCannotEatRandomMenu(Menu uncheckedMenu, Coach coach) {
         boolean cannotEat = coach.existsCannotEatMenus(uncheckedMenu);
+
         if(cannotEat) {
             throw new IllegalStateException(MenuException.CAN_NOT_MENU.getExceptionMessage());
         }
