@@ -33,4 +33,11 @@ public class Coach {
         }
         coachAteMenu.add(menu);
     }
+
+    public List<String> coachToDto() {
+        final List<String> dto = new ArrayList<>();
+        dto.add(coachName.getName());
+        dto.addAll(coachAteMenu);
+        return dto;
+    }
 }

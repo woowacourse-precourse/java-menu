@@ -31,4 +31,7 @@ public enum Category {
                 .orElseThrow(() -> new IllegalArgumentException("카테고리가 존재하지 않습니다"));
     }
 
+    public String categoryKeyToDto() {
+        return keyword;
+    }
 }
