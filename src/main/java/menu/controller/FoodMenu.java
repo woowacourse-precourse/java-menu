@@ -7,36 +7,56 @@ import java.util.Map;
 
 public class FoodMenu {
 
-    private final Map<Category, List<Food>> foodMenu;
+    private final Map<Category, List<String>> foodMenu;
 
     public FoodMenu() {
         this.foodMenu = new HashMap<>();
     }
 
     public void setMenu() {
+        setJapanese();
+
+        setKorean();
+
+        setChinese();
+
+        setAsian();
+
+        setWestern();
+    }
+
+    private void setJapanese() {
         foodMenu.put(Category.JAPANESE,
-            Arrays.asList(new Food("규동"), new Food("우동"), new Food("미소시루"),
-                new Food("스시"), new Food("가츠동"), new Food("오니기리"),
-                new Food("하이라이스"), new Food("라멘"), new Food("오코노미야끼")));
+            Arrays.asList("규동", "우동", "미소시루",
+                "스시", "가츠동", "오니기리",
+                "하이라이스", "라멘", "오코노미야끼"));
+    }
 
+    private void setKorean() {
         foodMenu.put(Category.KOREAN,
-            Arrays.asList(new Food("김밥"), new Food("김치찌개"), new Food("쌈밥"),
-                new Food("된장찌개"), new Food("비빔밥"), new Food("칼국수"),
-                new Food("불고기"), new Food("떡볶이"), new Food("제육볶음")));
+            Arrays.asList("김밥", "김치찌개", "쌈밥",
+                "된장찌개", "비빔밥", "칼국수",
+                "불고기", "떡볶이", "제육볶음"));
+    }
 
+    private void setChinese() {
         foodMenu.put(Category.CHINESE,
-            Arrays.asList(new Food("깐풍기"), new Food("볶음면"), new Food("동파육"),
-                new Food("짜장면"), new Food("짬뽕"), new Food("마파두부"),
-                new Food("탕수육"), new Food("토마토 달걀볶음"), new Food("고추잡채")));
+            Arrays.asList("깐풍기", "볶음면", "동파육",
+                "짜장면", "짬뽕", "마파두부",
+                "탕수육", "토마토 달걀볶음", "고추잡채"));
+    }
 
+    private void setAsian() {
         foodMenu.put(Category.ASIAN,
-            Arrays.asList(new Food("팟타이"), new Food("카오 팟"), new Food("나시고렝"),
-                new Food("파인애플 볶음밥"), new Food("쌀국수"), new Food("똠얌꿍"),
-                new Food("반미"), new Food("월남쌈"), new Food("분짜")));
+            Arrays.asList("팟타이", "카오 팟", "나시고렝",
+                "파인애플 볶음밥", "쌀국수", "똠얌꿍",
+                "반미", "월남쌈", "분짜"));
+    }
 
+    private void setWestern() {
         foodMenu.put(Category.WESTERN,
-            Arrays.asList(new Food("라자냐"), new Food("그라탱"), new Food("뇨끼"),
-                new Food("끼슈"), new Food("프렌치 토스트"), new Food("바게트"),
-                new Food("스파게티"), new Food("피자"), new Food("파니니")));
+            Arrays.asList("라자냐", "그라탱", "뇨끼",
+                "끼슈", "프렌치 토스트", "바게트",
+                "스파게티", "피자", "파니니"));
     }
 }
