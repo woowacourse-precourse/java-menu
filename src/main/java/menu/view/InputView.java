@@ -21,7 +21,7 @@ public class InputView {
     public static NotEatFoodsDTO readNotEatFoodByCoach(String name) {
         System.out.printf(INPUT_NOT_EAT_FOODS , name);
         String notEatFoods = Console.readLine();
-        // 검증
+        Validator.validateNotEatFoods(notEatFoods);
         return new NotEatFoodsDTO(name, Converter.restArrayToList(notEatFoods));
     }
 
