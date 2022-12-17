@@ -4,12 +4,23 @@ import camp.nextstep.edu.missionutils.Randoms;
 import menu.domain.Category;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.stream.Collectors;
 
 public class CategoryGenerator {
-    public Category pick(){
-        return Arrays.stream(Category.values())
-                .collect(Collectors.toList())
-                .get(Randoms.pickNumberInRange(1, 5));
+    public Category pick(HashMap<Category, Integer> categoryCounter) {
+        int flag = 3;
+        Category pick = null;
+        while (flag >= 2) {
+            pick = Arrays.stream(Category.values())
+                    .collect(Collectors.toList())
+                    .get(Randoms.pickNumberInRange(1, 5));
+            flag = categoryCounter.get(pick);
+        }
+        return pick;
     }
+
+//    public Category pickRemainCategory(List<Category> categories){
+//        return categories.get(Randoms.pickNumberInRange(1, categories.size()));
+//    }
 }
