@@ -20,10 +20,6 @@ public class Menus {
         menus.add(new Menu("양식", List.of(foodList.split(", "))));
     }
 
-    public static List<Menu> getMenus() {
-        return menus;
-    }
-
     public static Menu getMenuByCategory(String category) {
         return menus.stream()
                 .filter(menu -> menu.getCategory().equals(category))
