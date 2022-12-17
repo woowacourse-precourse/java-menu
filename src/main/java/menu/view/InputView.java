@@ -21,7 +21,7 @@ public class InputView {
         }
         String[] coachesName = coachesName_input.split(",");
         if (!checkCoachesName_number(coachesName) || !checkCoachesName_value(coachesName))
-            throw new IllegalStateException();
+            throw new IllegalArgumentException();
         return coachesName;
     }
 
@@ -49,7 +49,7 @@ public class InputView {
         String coachCannotEats_input = Console.readLine();
         String[] coachCannotEats = coachCannotEats_input.split(",");
         if (!checkCoachCannotEats_number(coachCannotEats) || !checkCoachCannotEats_value(coachCannotEats)) {
-            throw new IllegalStateException();
+            throw new IllegalArgumentException();
         }
         return coachCannotEats;
     }

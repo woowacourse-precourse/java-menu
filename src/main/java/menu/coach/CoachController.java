@@ -33,7 +33,7 @@ public class CoachController {
         String[] coachesName = null;
         try {
             coachesName = InputView.setCoachesName();
-        } catch (IllegalStateException | IllegalArgumentException exception) {
+        } catch (IllegalArgumentException exception) {
             OutputView.printErrorMessage_setCoachesName();
         }
         return coachesName;
