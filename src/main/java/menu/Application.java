@@ -1,7 +1,10 @@
 package menu;
 
+import menu.system.MenuApplication;
+
 public class Application {
     public static void main(String[] args) {
-        System.out.println("test2");
+        MenuApplication menuApplication = new MenuApplication();
+        menuApplication.run();
     }
 }
