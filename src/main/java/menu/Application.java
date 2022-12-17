@@ -41,13 +41,15 @@ public class Application {
 
 		//카테고리 정하기
 		int categoryNumber = Randoms.pickNumberInRange(1, 5);
-		//한 주에 같은 카테고리는 최대 2회까지만 고를 수 있다.
-		if (categoryCount.get(categoryNumber) < 2) {
-			categoryCount.set(categoryNumber, categoryCount.get(categoryNumber) + 1);
-			//1이면 일식, 2면 한식, 3이면 중식, 4면 아시안, 5면 양식
-			List<String> menus = Category.getMenus(categoryNumber);
 
+		//한 주에 같은 카테고리는 최대 2회까지만 고를 수 있다.
+		while (categoryCount.get(categoryNumber) < 2) {
+			categoryNumber = Randoms.pickNumberInRange(1, 5);
 		}
+
+		categoryCount.set(categoryNumber, categoryCount.get(categoryNumber) + 1);
+		//1이면 일식, 2면 한식, 3이면 중식, 4면 아시안, 5면 양식
+		List<String> menus = Category.getMenus(categoryNumber);
 
 		//메뉴 추천 결과 출력
 		//View.showRecommendResult(menuRecommendResult);
