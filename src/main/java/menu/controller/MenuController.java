@@ -46,7 +46,8 @@ public class MenuController {
         }
     }
     public void createRandomFoods(){
-        String category = randomFood.pickCategory();
+        List<String> allCategory = randomFood.allCategory();
+        System.out.println(allCategory.toString());
     }
 
 
