@@ -3,8 +3,12 @@ package menu.view;
 import camp.nextstep.edu.missionutils.Console;
 import menu.validator.InputValidator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.StringTokenizer;
 import java.util.stream.Collectors;
 
 public class InputView {
@@ -45,5 +49,27 @@ public class InputView {
 
     private void printInputCoachName() {
         System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
+    }
+
+    public Map<String, List<String>> readExceptedFood(List<String> names) {
+        Map<String, List<String>> exceptedFoods = new HashMap<>();
+
+        for (String name : names) {
+            printInputExceptedFood(name);
+            String exceptedFood = Console.readLine();
+
+            StringTokenizer st = new StringTokenizer(exceptedFood, ",");
+
+            while (st.hasMoreTokens()) {
+                exceptedFoods.computeIfAbsent(name, k -> new ArrayList<>());
+                exceptedFoods.get(name).add(st.nextToken());
+            }
+        }
+
+        return exceptedFoods;
+    }
+
+    private void printInputExceptedFood(String name) {
+        System.out.println(name + "(이)가 못 먹는 메뉴를 입력해 주세요.");
     }
 }

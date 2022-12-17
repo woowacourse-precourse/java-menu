@@ -3,6 +3,7 @@ package menu;
 import menu.view.InputView;
 
 import java.util.List;
+import java.util.Map;
 
 public class MenuEngine {
 
@@ -12,5 +13,9 @@ public class MenuEngine {
         InputView inputView = new InputView();
 
         List<String> coachNames = inputView.readCoachName();
+
+        Map<String, List<String>> exceptedFoods = inputView.readExceptedFood(coachNames);
+
+
     }
 }
