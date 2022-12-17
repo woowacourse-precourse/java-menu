@@ -20,10 +20,12 @@ public class MenuService {
         return categories;
     }
 
-    public void recommendMenu(List<Category> categories, NoEatMenu noEatMenu) {
-        List<Object> objects = new ArrayList<>();
+    public List<String> recommendMenu(List<Category> categories, NoEatMenu noEatMenu) {
+        List<String> randomMenus = new ArrayList<>();
         for (Category category : categories) {
-            MenuRepository.makeRandomMenuByCategory(category);
+            String randomMenu = MenuRepository.makeRandomMenuByCategory(category);
+            randomMenus.add(randomMenu);
         }
+        return randomMenus;
     }
 }
