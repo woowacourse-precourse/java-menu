@@ -14,17 +14,17 @@ public class InputView {
     private final Separator separator = new Separator();
     private final OutputView outputView = new OutputView();
 
-    public List<Coach> readCoaches() {
+    public List<String> readCoaches() {
         // inputCoachNames로 리팩터링 필요
         outputView.printCoachNamesInputMessage();
         String inputCoaches = Console.readLine();
         List<String> coachNames = separator.separateNames(inputCoaches);
         validator.validateCoachCount(coachNames);
-        List<Coach> coaches = validator.validateCoachNameLength(coachNames);
+        validator.validateCoachNameLength(coachNames);
 
         outputView.printEnter();
 
-        return coaches;
+        return coachNames;
     }
 
     public List<Menu> readHateMenus(String name) {

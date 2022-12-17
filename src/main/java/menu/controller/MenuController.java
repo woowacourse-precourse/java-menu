@@ -30,7 +30,8 @@ public class MenuController extends Controller{
     }
 
     public void generateCoachList() {
-        List<Coach> coaches = repeat(inputView::readCoaches);
+        List<String> coaches = repeat(inputView::readCoaches);
+        coaches.forEach(coach -> coachService.addCoach(coach));
     }
 
     public List<Coach> inputHateMenus() {
