@@ -18,11 +18,21 @@ public class InputView {
         try{
             String input = getInput(InputMessage.READ_COACH_NAME.getMessage());
             ValidateUtils.isValidCoachCount(input.split(","));
-            List<String> names = new ArrayList<>(Arrays.asList(input.split(",")));
-            return names;
+            return new ArrayList<>(Arrays.asList(input.split(",")));
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             return readCoachNames();
+        }
+    }
+
+    public List<String> readBanFoods(String name){
+        try{
+            String input = getInput(name+InputMessage.READ_COACH_BAN_FOODS.getMessage());
+            ValidateUtils.isValidBanFoodCount(input.split(","));
+            return new ArrayList<>(Arrays.asList(input.split(",")));
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return readBanFoods(name);
         }
     }
 
