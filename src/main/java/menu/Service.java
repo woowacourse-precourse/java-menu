@@ -25,7 +25,7 @@ public class Service {
 		category.settingCategorys();
 		menu.settingMenu();
 		for (int index = 0; index < category.getCategoriesCount(); index++) {
-			totelMenu.settingTotelMenus(category.getCategory(index), menu.getMenus(index));
+			totelMenu.settingTotelMenus(category.getCategory(index), menu.getTotelMenus(index));
 		}
 	}
 
@@ -38,7 +38,7 @@ public class Service {
 
 	public void byDayOfTheWeekSelectCategory() {
 		while (countSelect() != 5) {
-			String selectCategory = category.getCategory(Randoms.pickNumberInRange(1, 5));
+			String selectCategory = category.getCategory(Randoms.pickNumberInRange(0, 4));
 			judgmentCotegotyAdd(selectCategory);
 		}
 	}
@@ -57,6 +57,26 @@ public class Service {
 		for (int countValue : countCotegory.values())
 			count += countValue;
 		return count;
+	}
+
+
+	private List<String> checkInputCoach() {
+		try {
+			outputView.coachInputMessage();
+			return inputView.readInputCoachs();
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return checkInputCoach();
+		}
+	}
+	private List<String> checkInputNotEatFood(String coachName) {
+		try {
+			outputView.notEatFoodMessage(coachName);
+			return inputView.readNotEatFood();
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return checkInputNotEatFood(coachName);
+		}
 	}
 
 }
