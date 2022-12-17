@@ -15,6 +15,9 @@ public class CoachState {
         this.exceptedMenuList = new ArrayList<>(coach.getHatingMenuList());
     }
 
+    public String getCoachName() {
+        return coach.getName();
+    }
     public void addExceptedMenu(Menu exceptedMenu) {
         exceptedMenuList.add(exceptedMenu);
     }

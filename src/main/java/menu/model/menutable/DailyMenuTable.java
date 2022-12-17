@@ -1,5 +1,6 @@
 package menu.model.menutable;
 
+import menu.model.coach.Coach;
 import menu.model.menu.Category;
 import menu.model.menu.Menu;
 import menu.model.menu.RandomMenuGenerator;
@@ -34,6 +35,15 @@ public class DailyMenuTable {
         for(CoachState coachState : dailyMenuTable.keySet()) {
             dailyMenuTable.put(coachState, randomMenuGenerator.pickMenuByCategory(category, coachState.getExceptedMenu()));
         }
+    }
+
+    public String getMenu(String coachName) {
+        for(CoachState coachState: dailyMenuTable.keySet()) {
+            if(coachState.getCoachName().equals(coachName)) {
+                return dailyMenuTable.get(coachState).getName();
+            }
+        }
+        return null;
     }
 
     public DailyMenuTable initNewDailyMenuTable() {

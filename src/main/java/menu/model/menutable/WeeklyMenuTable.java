@@ -8,4 +8,8 @@ public class WeeklyMenuTable {
     WeeklyMenuTable(List<DailyMenuTable> menuTable) {
         this.menuTable = new ArrayList<>(menuTable);
     }
+
+    public String getMenu(int date, String coachName) {
+        return menuTable.get(date).getMenu(coachName);
+    }
 }

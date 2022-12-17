@@ -26,7 +26,7 @@ public class MenuSuggestController {
         List<Category> categoryList = randomCategoryGenerator.pickCategories(5);
         WeeklyMenuTable weeklyMenuTable = MenuTableGenerator.makeWeeklyMenuTable(categoryList, coachList);
 
-        outputManager.printWeeklyMenuTable(weeklyMenuTable);
+        outputManager.printWeeklyMenuTable(categoryList, coachList, weeklyMenuTable);
         outputManager.printEnd();
     }
 
