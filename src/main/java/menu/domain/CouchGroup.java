@@ -25,7 +25,7 @@ public class CouchGroup {
             throw new IllegalArgumentException(ErrorMessage.COUCH_NAME_DUPLICATE.getMessage());
         }
         if (isOutOfRange(couches)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.COUCH_GROUP_OUT_OF_RANGE.getMessage());
         }
     }
 

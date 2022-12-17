@@ -46,7 +46,7 @@ public class RecommendController {
         IntStream.range(0, couchGroup.size()).mapToObj(couchGroup::get)
                 .forEach(couch -> {
                     Food food = recommendService.getFood(category, couch);
-                    couch.eatFood(food);
+                    couch.recommend(food);
                 });
     }
 
@@ -54,7 +54,7 @@ public class RecommendController {
         IntStream.range(0, couchGroup.size()).mapToObj(couchGroup::get)
                 .forEach(couch -> {
                     List<Food> foods = repeat(() -> inputView.readCannotFood(couch));
-                    foods.forEach(couch::denyFood);
+                    couch.denyFood(foods);
                 });
     }
 

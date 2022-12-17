@@ -3,7 +3,6 @@ package menu.domain;
 import menu.utils.ErrorMessage;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -41,21 +40,23 @@ public class Couch {
         return name;
     }
 
-    public void denyFood(Food food) {
-        denied.add(food);
+    public void denyFood(List<Food> foods) {
+        if (foods == null) {
+            return;
+        }
+        if (!denied.isEmpty()) {
+            throw new IllegalStateException(ErrorMessage.COUCH_ALREADY_DENY_FOOD.getMessage());
+        }
+        denied.addAll(foods);
     }
 
     public boolean isDeny(Food food) {
         return denied.contains(food);
     }
 
-    public void eatFood(Food food) {
+    public void recommend(Food food) {
         recommend.add(food);
-        denyFood(food);
-    }
-
-    public List<Food> getRecommend() {
-        return Collections.unmodifiableList(recommend);
+        denied.add(food);
     }
 
     public String toMessage() {

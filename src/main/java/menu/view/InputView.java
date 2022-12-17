@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import menu.domain.Couch;
 import menu.domain.CouchGroup;
 import menu.domain.Food;
+import org.junit.platform.commons.util.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,8 +32,10 @@ public class InputView {
     public List<Food> readCannotFood(Couch couch) {
         outputView.printReadDeniedFood(couch.getName());
         String names = Console.readLine();
+        if (StringUtils.isBlank(names)) {
+            return null;
+        }
         String[] split = names.split(",");
-
         return Arrays.stream(split)
                 .map(String::trim)
                 .map(Food::from)
