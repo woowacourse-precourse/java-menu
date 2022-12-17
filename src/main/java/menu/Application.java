@@ -22,22 +22,21 @@ public class Application {
         return category;
     }
 
-    static void foodRecommend(Managecoach managecoach, int category, FoodList foodList){
-        for(Coach coach: managecoach.getCoachList()){
+    static void foodRecommend(Managecoach managecoach, int category, FoodList foodList) {
+        for (Coach coach : managecoach.getCoachList()) {
             coach.updateAteFood(pickMenu(coach, foodList, category));
         }
     }
 
-    static String pickMenu(Coach coach, FoodList foodList, int category){
+    static String pickMenu(Coach coach, FoodList foodList, int category) {
         String menu;
-        while(true){
-            menu = Randoms.shuffle(foodList.foods.get(category-1)).get(0);
-            if(!coach.getAteFood().contains(menu) && !coach.getHateFood().contains(menu))
+        while (true) {
+            menu = Randoms.shuffle(foodList.foods.get(category - 1)).get(0);
+            if (!coach.getAteFood().contains(menu) && !coach.getHateFood().contains(menu))
                 break;
         }
         return menu;
     }
-
 
 
     static int categoryRecommend(List<Integer> category) {
@@ -58,22 +57,23 @@ public class Application {
         return cnt <= 2;
     }
 
+    static void setCoachHate(Managecoach coachList, View view) {
+        for (int cCnt = 0; cCnt < coachList.getCoachList().size(); cCnt++) {
+            List<String> hateList = view.inputCoachHateFood(coachList.getCoachList().get(cCnt).getName());
+            coachList.getCoachList().get(cCnt).updateHateFood(hateList);
+        }
+    }
+
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
         try {
             View view = new View();
             view.startGame();
             FoodList foodList = new FoodList();
             List<String> coachNameList = view.inputCoachName();
             Managecoach coachList = makeCoachList(coachNameList);
-            for (int cCnt = 0; cCnt < coachList.getCoachList().size(); cCnt++) {
-                List<String> hateList = view.inputCoachHateFood(coachList.getCoachList().get(cCnt).getName());
-                coachList.getCoachList().get(cCnt).updateHateFood(hateList);
-            }
+            setCoachHate(coachList, view);
             List<Integer> weekCategory = recommend(coachList, foodList);
-//            System.out.println(coachList.getCoachList().get(0).getAteFood());
-
             view.printRecommendResult(coachList, weekCategory);
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
