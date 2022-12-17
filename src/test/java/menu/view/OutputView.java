@@ -9,6 +9,15 @@ public class OutputView {
     }
 
     public static void printServiceFinishMessage(){
+        System.out.println();
         System.out.println(Message.SERVICE_FINISH_MESSAGE);
     }
+
+    public static void printGetCoachNamesMessage(){
+        System.out.println();
+        System.out.println(Message.GET_COACH_NAMES_MESSAGE);
+    }
+
+
+
 }
