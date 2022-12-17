@@ -12,4 +12,5 @@ public enum Week {
     Week(String value) {
         this.value = value;
     }
+
 }
