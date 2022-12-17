@@ -19,13 +19,6 @@ public class Group {
 //        }
 //    }
 
-    public void makeMenus() {
-        for (int i = 0; i < 5; i++) {
-            makeCategory();
-            coaches.forEach(coach -> coach.addMenu(categoryHistory.get(categoryHistory.size() - 1)));
-        }
-    }
-
     private void makeCategory() {
 //        validateCoachSize();
         Category category = new Category();
@@ -36,11 +29,14 @@ public class Group {
         categoryHistory.add(categoryName);
     }
 
-    public List<Coach> getCoaches() {
-        return Collections.unmodifiableList(coaches);
+    public void makeMenus() {
+        for (int i = 0; i < 5; i++) {
+            makeCategory();
+            coaches.forEach(coach -> coach.addMenu(categoryHistory.get(categoryHistory.size() - 1)));
+        }
     }
 
-    public List<String> getCategoryHistory() {
-        return Collections.unmodifiableList(categoryHistory);
+    public MenuDTO getMenu() {
+        return new MenuDTO(coaches, categoryHistory);
     }
 }

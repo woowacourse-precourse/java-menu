@@ -1,6 +1,7 @@
 package menu.view;
 
 import menu.domain.Coach;
+import menu.domain.MenuDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,14 +12,14 @@ public class OutputView {
     private final String SYSTEM_OVER_MESSAGE = "추천을 완료했습니다.";
 
 
-    public void renderResult(List<Coach> coaches, List<String> categories) {
+    public void renderResult(MenuDTO menu) {
         System.out.println(RESULT_MESSAGE);
         System.out.println(WEEK_EXPRESSION);
 
-        System.out.println(categories.stream()
+        System.out.println(menu.getCategories().stream()
                 .collect(Collectors.joining(" | ", "[ 카테고리 | ", " ]")));
 
-        coaches.stream()
+        menu.getCoaches()
                 .forEach(coach -> {
                     System.out.print("[ " + coach.getName() + " | ");
                     System.out.println(coach.getMenus().stream()

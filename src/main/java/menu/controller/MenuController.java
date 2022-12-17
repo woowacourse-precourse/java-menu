@@ -22,7 +22,7 @@ public class MenuController {
             addCannotEatMenus(coach);
         }
         group.makeMenus();
-        outputView.renderResult(group.getCoaches(), group.getCategoryHistory());
+        outputView.renderResult(group.getMenu());
     }
 
     private List<CoachName> readCoachNames() {
