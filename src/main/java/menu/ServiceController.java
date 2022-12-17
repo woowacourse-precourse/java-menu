@@ -11,7 +11,7 @@ public class ServiceController {
     OutputView outputView = new OutputView();
     InputView inputView = new InputView();
     InputException inputException = new InputException();
-    List<CoachModel> serviceModel = new ArrayList<>();
+    List<ServiceModel> serviceModel = new ArrayList<>();
     List<Category> categories = new ArrayList<>();
     List<String> selectedCategory = new ArrayList<>();
 
@@ -27,7 +27,7 @@ public class ServiceController {
     public void initService() {
         outputView.printServiceStart();
         initCoach();
-        initCantEatMenu();
+        initCantEatMenuList();
     }
 
     public void initCoach() {
@@ -43,25 +43,29 @@ public class ServiceController {
         makeServiceModel(coachNameList);
     }
 
-    public void initCantEatMenu() {
-        String menus;
+    public void initCantEatMenuList() {
         String[] menuList;
         for (int i = 0; i < serviceModel.size(); i++) {
-            outputView.printRequireCantEatMenu(serviceModel.get(i).getName());
-            menus = inputView.readInput();
-            menuList = menus.split(",");
-            while (inputException.exceptionMenu(menuList)) {
-                menus = inputView.readInput();
-                menuList = menus.split(",");
-            }
+            menuList = initCantEatMenu(serviceModel.get(i));
             serviceModel.get(i).makeCantEatMenu(menuList);
         }
     }
 
+    public String[] initCantEatMenu(ServiceModel serviceModel) {
+        outputView.printRequireCantEatMenu(serviceModel.getCoachName());
+        String menus = inputView.readInput();
+        String[] menuList = menus.split(",");
+        while (inputException.exceptionMenu(menuList)) {
+            menus = inputView.readInput();
+            menuList = menus.split(",");
+        }
+        return menuList;
+    }
+
     public void makeServiceModel(String[] coachNames) {
         for (int i = 0; i < coachNames.length; i++) {
-            CoachModel coachModel = new CoachModel(coachNames[i]);
-            serviceModel.add(coachModel);
+            ServiceModel serviceModel = new ServiceModel(coachNames[i]);
+            this.serviceModel.add(serviceModel);
         }
     }
 
