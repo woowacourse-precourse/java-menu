@@ -32,7 +32,7 @@ public class Coach {
     }
 
     public String getName() {
-        return getName();
+        return name;
     }
 
 }
