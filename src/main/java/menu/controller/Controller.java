@@ -4,6 +4,7 @@ import menu.domain.MenuRecommendation;
 import menu.domain.Status;
 import menu.dto.input.ReadNamesDto;
 import menu.dto.input.ReadUnavailableMenuDto;
+import menu.dto.output.PrintCriticalExceptionDto;
 import menu.dto.output.PrintExceptionDto;
 import menu.view.IOViewResolver;
 
@@ -26,8 +27,8 @@ public class Controller {
     private void initStatusMap() {
         statusMap.put(Status.READ_NAMES, this::readNames);
         statusMap.put(Status.READ_UNAVAILABLE_MENU, this::readUnavailableMenu);
+        statusMap.put(Status.PRINT_RESULT, this::printResult);
     }
-
 
     public Status run(Status status) {
         try {
@@ -35,6 +36,9 @@ public class Controller {
         } catch (IllegalArgumentException exception) {
             ioViewResolver.outputViewResolve(new PrintExceptionDto(exception));
             return status;
+        } catch (Exception exception) {
+            ioViewResolver.outputViewResolve(new PrintCriticalExceptionDto(exception));
+            return Status.EXIT;
         }
     }
 
@@ -47,6 +51,10 @@ public class Controller {
     private Status readUnavailableMenu() {
         ReadUnavailableMenuDto readUnavailableMenuDto = ioViewResolver.inputViewResolve(ReadUnavailableMenuDto.class);
         menuRecommendation.addUnavailableMenus(readUnavailableMenuDto.getInputs());
-        return null;
+        return Status.PRINT_RESULT;
+    }
+
+    private Status printResult() {
+        return Status.EXIT;
     }
 }

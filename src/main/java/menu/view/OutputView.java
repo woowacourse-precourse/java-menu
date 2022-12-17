@@ -1,5 +1,6 @@
 package menu.view;
 
+import menu.dto.output.PrintCriticalExceptionDto;
 import menu.dto.output.PrintExceptionDto;
 
 public class OutputView {
@@ -18,6 +19,11 @@ public class OutputView {
     }
 
     public void printException(PrintExceptionDto dto) {
+        System.out.println(errorHead + dto.getException().getMessage());
+    }
+
+    public void printCriticalException(PrintCriticalExceptionDto dto) {
+        System.out.println("예기치 못한 오류가 발생했습니다.");
         System.out.println(errorHead + dto.getException().getMessage());
     }
 }

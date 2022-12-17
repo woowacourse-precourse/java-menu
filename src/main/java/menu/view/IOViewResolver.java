@@ -2,6 +2,7 @@ package menu.view;
 
 import menu.dto.input.ReadNamesDto;
 import menu.dto.input.ReadUnavailableMenuDto;
+import menu.dto.output.PrintCriticalExceptionDto;
 import menu.dto.output.PrintExceptionDto;
 import menu.view.exception.NotFoundViewException;
 
@@ -28,6 +29,7 @@ public final class IOViewResolver {
     private void initOutputViewMappings(OutputView outputView) {
 //        outputViewMap.put(PrintVendingMachineCoinDto.class, dto -> outputView.printVendingMachineCoin((PrintVendingMachineCoinDto) dto));
         outputViewMap.put(PrintExceptionDto.class, dto -> outputView.printException((PrintExceptionDto) dto));
+        outputViewMap.put(PrintCriticalExceptionDto.class, dto -> outputView.printCriticalException((PrintCriticalExceptionDto) dto));
     }
 
     public <T> T inputViewResolve(final Class<T> type) {
