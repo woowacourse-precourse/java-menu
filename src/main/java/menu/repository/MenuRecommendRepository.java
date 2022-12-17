@@ -72,6 +72,15 @@ public class MenuRecommendRepository {
 		}
 	}
 
+	public static List<Category> getCategories() {
+		List<Day> days = Day.getAllDays();
+		List<Category> categories = new ArrayList<>();
+		for (Day day : days) {
+			categories.add(categoryByDay.get(day));
+		}
+		return categories;
+	}
+
 	public static List<Menu> getMenusByCoach(Coach coach) {
 		List<Day> days = Day.getAllDays();
 		List<Menu> menus = new ArrayList<>();

@@ -48,8 +48,16 @@ public class RecommendService {
 		for (Coach coach : coaches) {
 			String menu = Randoms.shuffle(menus).get(0);
 			Menu chosenMenu = MenuRepository.getMenu(menu);
+			isMenuInRightCategory(day, chosenMenu);
 			isMenuEatable(coach, chosenMenu);
 			MenuRecommendRepository.addMenuByDayAndCoach(day, coach, chosenMenu);
+		}
+	}
+
+	private static void isMenuInRightCategory(Day day, Menu menu) {
+		Category category = MenuRecommendRepository.categoryByDay().get(day);
+		if (!MenuRepository.menus().get(category).contains(menu)) {
+			throw new IllegalArgumentException("[ERROR] 지정된 카테고리에 속하지 않은 메뉴입니다.");
 		}
 	}
 

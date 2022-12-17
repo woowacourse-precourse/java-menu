@@ -23,22 +23,18 @@ public class OutputView {
 
 	public static void printResult() {
 		System.out.println(resultMsg);
-		Map<Day, Category> dayCategory = MenuRecommendRepository.categoryByDay();
-		Map<Day, Map<Coach, Menu>> coachMenuByDay = MenuRecommendRepository.coachMenuByDay();
-		printTable(dayCategory, coachMenuByDay);
+		printDays();
+		printTable();
 		System.out.println();
 	}
 
-	private static void printTable(Map<Day, Category> dayCategory, Map<Day, Map<Coach, Menu>> coachMenuByDay) {
-		printDays(Day.getAllDays());
-		List<Category> categories = dayCategory.keySet().stream()
-			.map(day -> dayCategory.get(day))
-			.collect(Collectors.toList());
-		printCategories(categories);
+	private static void printTable() {
+		printCategories();
 		printCoachMenus();
 	}
 
-	private static void printDays(List<Day> days) {
+	private static void printDays() {
+		List<Day> days = Day.getAllDays();
 		List<String> dayString = days.stream()
 			.map(day -> day.getDay())
 			.collect(Collectors.toList());
@@ -46,12 +42,12 @@ public class OutputView {
 		System.out.println(formatter(dayString));
 	}
 
-	private static void printCategories(List<Category> categories) {
-		List<String> dayString = categories.stream()
-			.map(day -> day.getName())
+	private static void printCategories() {
+		List<String> categories = MenuRecommendRepository.getCategories().stream()
+			.map(category -> category.getName())
 			.collect(Collectors.toList());
-		dayString.add(0, "카테고리");
-		System.out.println(formatter(dayString));
+		categories.add(0, "카테고리");
+		System.out.println(formatter(categories));
 	}
 
 	private static void printCoachMenus() {
