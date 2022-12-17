@@ -1,4 +1,4 @@
-package menu.domain;
+package menu.domain.categories;
 
 import java.util.ArrayList;
 import java.util.List;
