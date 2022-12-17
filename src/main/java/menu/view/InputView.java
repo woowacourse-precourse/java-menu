@@ -12,7 +12,7 @@ public class InputView {
 
         }catch(IllegalArgumentException e){
             System.out.println(e);
-            inputCoachesView();
+            input = inputCoachesView();
         }
         return input;
     }
