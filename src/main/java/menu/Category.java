@@ -19,7 +19,9 @@ public enum Category {
         this.food = food;
     }
 
-
+    public String getCategoryName(){
+        return name;
+    }
     public boolean checkFoodInside(String food){
         return (this.food.stream()
                 .anyMatch(foodName -> foodName.equals(food)));

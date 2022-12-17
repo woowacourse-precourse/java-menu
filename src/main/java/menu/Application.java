@@ -8,6 +8,7 @@ public class Application {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
 
+        outputView.printStart();
         List<String> coachName = inputView.readCoachName();
         List<Coach> coach = inputView.readDislikeFood(coachName);
         Category[] categories = Category.values();
@@ -23,7 +24,7 @@ public class Application {
             }
             for (Coach eachCoach : coach){
                 while (true){
-                    Menu menu = new Menu(categories[i - 1].getMenuList());
+                    Menu menu = new Menu(categories[dailyCategory.get(i) - 1].getMenuList());
                     if (eachCoach.isValidMenu(menu)){
                         break ;
                     }
@@ -31,8 +32,11 @@ public class Application {
             }
         }
         outputView.printResultTitle();
+        outputView.printCategory(categories, dailyCategory);
         for (Coach eachCoach : coach){
             outputView.printRecommendedFood(eachCoach);
         }
+        outputView.printEnd();
+
     }
 }

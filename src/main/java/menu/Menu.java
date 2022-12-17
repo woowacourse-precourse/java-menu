@@ -8,7 +8,7 @@ public class Menu {
     private String menu;
 
     Menu(List<String> menus){
-        String menu = Randoms.shuffle(menus).get(0);
+        menu = Randoms.shuffle(menus).get(0);
     }
 
     public String getMenuName(){

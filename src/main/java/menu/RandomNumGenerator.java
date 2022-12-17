@@ -6,7 +6,7 @@ import java.util.List;
 
 public class RandomNumGenerator {
     public static int makeCategoryNum (){
-        int num = Randoms.pickUniqueNumbersInRange(1,5);
+        int num = Randoms.pickNumberInRange(1,5);
         return num;
     }
 }
