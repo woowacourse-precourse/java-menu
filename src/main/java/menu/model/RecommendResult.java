@@ -11,19 +11,28 @@ import java.util.Map;
 public class RecommendResult {
     private DayOfTheWeek dayOfTheWeek;
     private MenuCategory menuCategory;
+
+    public Map<Coach, Menu> getCoachAndMenu() {
+        return coachAndMenu;
+    }
+
     private Map<Coach, Menu> coachAndMenu;
 
     public RecommendResult(DayOfTheWeek dayOfTheWeek, MenuCategory menuCategory) {
         this.dayOfTheWeek = dayOfTheWeek;
         this.menuCategory = menuCategory;
-        coachAndMenu = new HashMap<>();
+        this.coachAndMenu = new HashMap<>();
     }
 
     public DayOfTheWeek getDayOfTheWeek() {
-        return dayOfTheWeek;
+        return this.dayOfTheWeek;
     }
 
     public MenuCategory getMenuCategory() {
-        return menuCategory;
+        return this.menuCategory;
+    }
+
+    public void setCoachAndMenu(Coach coach, Menu menu) {
+        this.coachAndMenu.put(coach, menu);
     }
 }

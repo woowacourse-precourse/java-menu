@@ -1,5 +1,6 @@
 package menu.service;
 
+import menu.model.Coach;
 import menu.model.Menu;
 import menu.repository.CoachRepository;
 
@@ -18,5 +19,9 @@ public class CoachService {
 
     public void addCoach(String name, List<Menu> hateMenus) {
         coachRepository.addCoach(name, hateMenus);
+    }
+
+    public List<Coach> findAll() {
+        return coachRepository.findAll();
     }
 }

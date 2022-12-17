@@ -36,4 +36,8 @@ public class CoachRepository {
     public void addCoach(String name, List<Menu> hateMenus ) {
         this.coaches.add(new Coach(name, hateMenus));
     }
+
+    public List<Coach> findAll() {
+        return coaches;
+    }
 }

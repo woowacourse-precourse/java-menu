@@ -33,11 +33,42 @@ public class MenuRecommendController {
         OutputView.printStartMessage();
         saveCoaches();
         OutputView.printResultMessage();
+        // TODO: 추천한 메뉴 계산
+        calcRecommendResults();
+        List<RecommendResult> recommendResults = recommendResultService.findAll();
         // TODO: 추천한 메뉴 출력
         OutputView.printFinishMessage();
     }
 
-    private void saveRecommendResultsHaveMenuCategory() {
+    private void calcRecommendResults() {
+        calcRecommendResultsHaveMenuCategory();
+        calcRecommendResultHaveCoachAndMenu();
+    }
+
+    public void calcRecommendResultHaveCoachAndMenu() {
+        List<RecommendResult> recommendResults = recommendResultService.findAll();
+        List<MenuCategory> menuCategories = recommendResults.stream().map(RecommendResult::getMenuCategory).collect(Collectors.toList());
+        List<Coach> coaches = coachService.findAll();
+        for (int i = 0; i < menuCategories.size(); i++) {
+            for (Coach coach : coaches) {
+                Menu menu = getMenuByCoach(menuCategories.get(i), coach);
+                recommendResultService.update(coach, menu, i);
+            }
+        }
+    }
+
+    private Menu getMenuByCoach(MenuCategory menuCategory, Coach coach) {
+        List<RecommendResult> recommendResults = recommendResultService.findAll();
+        Menu randomMenu = menuService.getRandomMenuByMenuCategory(menuCategory);
+        if (recommendResults.stream().map(recommendResult
+                -> recommendResult.getCoachAndMenu().get(coach)).collect(Collectors.toList()).stream()
+                .anyMatch(menu -> menu.equals(randomMenu))) {
+            return getMenuByCoach(menuCategory, coach);
+        }
+        return randomMenu;
+    }
+
+    private void calcRecommendResultsHaveMenuCategory() {
         List<DayOfTheWeek> dayOfTheWeeks = Arrays.stream(DayOfTheWeek.values()).collect(Collectors.toList());
         for (DayOfTheWeek day : dayOfTheWeeks) {
             MenuCategory menuCategory = getRandomMenuCategory();

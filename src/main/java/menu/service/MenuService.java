@@ -1,7 +1,12 @@
 package menu.service;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import jdk.jfr.Category;
 import menu.model.Menu;
+import menu.model.MenuCategory;
 import menu.repository.MenuRepository;
+
+import java.util.List;
 
 /**
  * @Author : jeeseob
@@ -16,5 +21,11 @@ public class MenuService {
 
     public Menu findByName(String name) {
         return menuRepository.findByName(name);
+    }
+
+    public Menu getRandomMenuByMenuCategory(MenuCategory menuCategory) {
+        List<Menu> menus = menuRepository.findByCategory(menuCategory);
+        return Randoms.shuffle(menus).get(0);
+
     }
 }

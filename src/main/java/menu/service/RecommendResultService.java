@@ -1,5 +1,7 @@
 package menu.service;
 
+import menu.model.Coach;
+import menu.model.Menu;
 import menu.model.RecommendResult;
 import menu.repository.RecommendResultRepository;
 
@@ -22,5 +24,10 @@ public class RecommendResultService {
 
     public void save(RecommendResult recommendResult) {
         recommendResultRepository.save(recommendResult);
+    }
+
+    public void update(Coach coach, Menu menu, int index) {
+        RecommendResult recommendResult = this.findAll().get(index);
+        recommendResult.setCoachAndMenu(coach, menu);
     }
 }

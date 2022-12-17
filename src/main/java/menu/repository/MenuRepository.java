@@ -2,10 +2,12 @@ package menu.repository;
 
 import menu.model.Coach;
 import menu.model.Menu;
+import menu.model.MenuCategory;
 import menu.util.IllegalArgumentExceptionMessage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @Author : jeeseob
@@ -36,5 +38,9 @@ public class MenuRepository {
                 .findFirst()
                 .orElseThrow(()
                         -> new IllegalArgumentException(IllegalArgumentExceptionMessage.NO_MATCHING_MENU.getMessage()));
+    }
+
+    public List<Menu> findByCategory(MenuCategory menuCategory) {
+        return menus.stream().filter(menu -> menu.getMenuCategory().equals(menuCategory)).collect(Collectors.toList());
     }
 }
