@@ -14,7 +14,7 @@ public class Output {
     }
 
     public void askCantEatMenu(Coach coache) {
-        System.out.println(String.format("%s(이)가 못 먹는 메뉴를 입력해 주세요.", coache.getName()));
+        System.out.println(String.format(NEW_LINE + "%s(이)가 못 먹는 메뉴를 입력해 주세요.", coache.getName()));
     }
 
     public void printError(String message) {
