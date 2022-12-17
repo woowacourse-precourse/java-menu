@@ -20,6 +20,7 @@ public class InputView {
 
         String hateMenu = Console.readLine();
         validateMenuSize(hateMenu);
+        validateInvalidMenu(hateMenu);
         return hateMenu;
     }
 }

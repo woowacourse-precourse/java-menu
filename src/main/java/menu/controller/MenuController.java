@@ -45,12 +45,25 @@ public class MenuController {
         initHateMenu();
     }
 
-    private void initHateMenu() {
+    private List<String> initHateMenu() {
         List<String> names = CoachRepository.getCoachNames();
         for (String name : names) {
-            String menu = InputView.readHateMenu(name);
+            String menu = initCoachHateMenu(name);
             CoachRepository.hateMenuRegistration(name, splitInput(menu));
         }
+        return names;
+    }
+
+    private String initCoachHateMenu(String name) {
+        String menu;
+        String coachnName = name;
+        try {
+            menu = InputView.readHateMenu(coachnName);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return initCoachHateMenu(coachnName);
+        }
+        return menu;
     }
 
     private List<String> initCoachNames() {
