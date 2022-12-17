@@ -5,6 +5,7 @@ import menu.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Coach {
@@ -44,6 +45,6 @@ public class Coach {
     }
 
     public List<String> getRecommendedMenu() {
-        return this.recommendedMenu;
+        return Collections.unmodifiableList(recommendedMenu);
     }
 }
