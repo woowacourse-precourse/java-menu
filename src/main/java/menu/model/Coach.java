@@ -2,6 +2,8 @@ package menu.model;
 
 import menu.constants.ExceptionMessage;
 
+import java.util.List;
+
 public class Coach {
     private static final int MINIMUM_NAME_LENGTH = 2;
     private static final int MAXIMUM_NAME_LENGTH = 4;
@@ -17,6 +19,11 @@ public class Coach {
 
     public String getName() {
         return name;
+    }
+    public List<String> getSelectMenu() {
+        List<String> selectMenuResult = selectMenu.getSelectMenu();
+        selectMenuResult.add(0, name);
+        return selectMenuResult;
     }
 
     public void addHateMenus(HateMenu hateMenu) {
