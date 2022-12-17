@@ -1,5 +1,7 @@
 package menu.client;
 
+import menu.di.RecommendResultDto;
+
 public class OutputView {
 
     private static final String ERROR_PREFIX = "[ERROR] ";
@@ -14,6 +16,10 @@ public class OutputView {
 
     public static void printStartMessage() {
         println(START_MESSAGE);
+    }
+
+    public static void printResult(RecommendResultDto resultDto) {
+
     }
 
     private static void println() {

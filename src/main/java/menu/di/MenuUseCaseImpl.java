@@ -46,7 +46,7 @@ public class MenuUseCaseImpl implements MenuUseCase {
     }
 
     @Override
-    public MenusDto recommend(List<String> names, List<String> menus) {
+    public RecommendResultDto recommend(List<String> names, List<List<String>> menus) {
         return null;
     }
 

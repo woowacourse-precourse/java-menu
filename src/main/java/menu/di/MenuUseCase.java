@@ -8,5 +8,5 @@ public interface MenuUseCase {
 
     void validateMenus(ValidateMenuCommand validateMenuCommand);
 
-    MenusDto recommend(List<String> names, List<String> menus);
+    RecommendResultDto recommend(List<String> names, List<List<String>> menus);
 }

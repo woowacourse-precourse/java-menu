@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import menu.di.MenuUseCase;
+import menu.di.RecommendResultDto;
 import menu.di.ValidateMenuCommand;
 import menu.di.ValidateNameCommand;
 
@@ -49,6 +50,8 @@ public class MenuClient {
     }
 
     private void printResult(List<String> names, List<List<String>> menus) {
+        RecommendResultDto resultDto = menuUseCase.recommend(names, menus);
+        OutputView.printResult(resultDto);
     }
 
     private void handleError(Runnable something) {
