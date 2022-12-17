@@ -20,15 +20,23 @@ public class MenuRecommender {
         return categories;
     }
 
-    public void chooseCategory() {
+    public void manageMealsDayOfTheWeek() {
+        String category = chooseCategory();
+        for (Member memeber : members) {
+            chooseMenu(category, memeber);
+        }
+    }
+
+    private String chooseCategory() {
         String category = MenuRandomGenerator.selectRandomCategory();
         while (!validateCategoryDuplication(category)) {
             category = MenuRandomGenerator.selectRandomCategory();
         }
         categories.add(category);
+        return category;
     }
 
-    public void chooseMenu(String category, Member member) {
+    private void chooseMenu(String category, Member member) {
         String menu = MenuRandomGenerator.selectRandomMenu(category);
 
         //중복과 편식 둘 다 해당하지 않을 때 까지 반복
