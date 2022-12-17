@@ -1,6 +1,6 @@
 package menu.domain.coach;
 
-import menu.validator.domain.InputCoachNamesValidator;
+import menu.validator.domain.InputCoachNameValidator;
 
 import java.util.Objects;
 
@@ -8,6 +8,7 @@ public class CoachName {
     private final String coachName;
     
     public CoachName(String coachName) {
+        InputCoachNameValidator.validate(coachName);
         this.coachName = coachName;
     }
     
