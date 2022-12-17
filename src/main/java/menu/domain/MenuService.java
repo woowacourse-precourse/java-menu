@@ -45,4 +45,8 @@ public class MenuService {
     public List<CoachMenu> getCoachMenus() {
         return coaches.getCoachMenus();
     }
+
+    public List<String> getCategoriesOfWeek() {
+        return weeklyCategory.getCategoriesOfWeek();
+    }
 }

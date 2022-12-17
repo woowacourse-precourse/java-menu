@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import menu.domain.constant.Category;
 import menu.domain.constant.Day;
 
@@ -43,5 +44,12 @@ public class WeeklyCategory {
 
     public Category getCategoryOfDay(Day day) {
         return dayCategories.get(day);
+    }
+
+    public List<String> getCategoriesOfWeek() {
+        List<Category> categories = new ArrayList<>(dayCategories.values());
+        return categories.stream()
+                .map(Category::getName)
+                .collect(Collectors.toList());
     }
 }

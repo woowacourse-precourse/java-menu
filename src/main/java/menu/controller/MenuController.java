@@ -48,7 +48,8 @@ public class MenuController {
 
     private void announceMenuRecommendResult() {
         menuService.recommendMenu();
+        List<String> categoriesOfWeek = menuService.getCategoriesOfWeek();
         List<CoachMenu> coachMenus = menuService.getCoachMenus();
-//        outputView.printMenuRecommencResult(coachMenus);
+        outputView.printMenuRecommencResult(coachMenus);
     }
 }
