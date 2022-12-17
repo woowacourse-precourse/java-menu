@@ -1,0 +1,44 @@
+package menu.Model;
+
+import java.util.List;
+
+public class Coach {
+    private String name;
+    private List<String> inedibles;
+    private final String INVALID_NAME = "입력된 이름이 올바르지 않습니다.";
+    private final String NAME_OVER_RANGE = "입력된 이름의 길이가 올바르지 않습니다.";
+    private final String INEDIBLES_OVER_RANGE = "못먹는 음식의 수가 너무 많습니다.";
+
+    public Coach(String name) {
+        validateName(name);
+        this.name = name;
+    }
+
+    private void validateName(String name) {
+        if (!name.matches("^[A-Za-z]*$")) {
+            throw new IllegalArgumentException(INVALID_NAME);
+        }
+        if (name.length() > 4 || name.length() < 2) {
+            throw new IllegalArgumentException(NAME_OVER_RANGE);
+        }
+    }
+
+    private void setInedible(List<String> inedibles) {
+        validateInedibles(inedibles);
+        this.inedibles = inedibles;
+    }
+
+    private void validateInedibles(List<String> inedibles) {
+        if (inedibles.size() > 2) {
+            throw new IllegalArgumentException(INEDIBLES_OVER_RANGE);
+        }
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public List<String> getInedibles() {
+        return this.inedibles;
+    }
+}
