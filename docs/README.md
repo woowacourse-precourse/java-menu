@@ -72,7 +72,7 @@ List<String> menu에다가 다 넣어놓기.
 
 ## OutputViewConstants (constant)
 
-- [ ] OutputView 에서 사용되는 상수를 관리한다.
+- [x] OutputView 에서 사용되는 상수를 관리한다.
 
 ## ExceptionConstants (constant)
 

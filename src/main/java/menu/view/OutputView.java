@@ -1,5 +1,7 @@
 package menu.view;
 
+import static menu.constant.OutputViewConstants.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import menu.domain.Category;
@@ -9,35 +11,34 @@ import menu.domain.Coaches;
 public class OutputView {
 
     public static void printStartMessage() {
-        System.out.println("점심 메뉴 추천을 시작합니다.");
+        System.out.println(START_MESSAGE);
     }
 
     public static void printEndMessage() {
-        System.out.println("추천을 완료했습니다.");
+        System.out.println(END_MESSAGE);
     }
 
     public static void printRecommendedResult(List<Category> recommendedCategories, Coaches coaches) {
-        System.out.println("메뉴 추천 결과입니다.\n"
-                + "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
+        System.out.println(RECOMMEND_RESULT_MESSAGE);
         List<String> categories = new ArrayList<>();
-        categories.add("카테고리");
+        categories.add(CATEGORY);
         recommendedCategories.stream().forEach(category -> categories.add(category.getName()));
         printCategoriesResult(categories);
         coaches.getCoaches().stream().forEach(OutputView::printCoachResult);
     }
 
     private static void printCategoriesResult(List<String> categories) {
-        System.out.print("[ ");
-        System.out.print(String.join(" | ", categories));
-        System.out.println(" ]");
+        System.out.print(OPEN_BRACKET);
+        System.out.print(String.join(DELIMITER, categories));
+        System.out.println(CLOSE_BRACKET);
     }
 
     private static void printCoachResult(Coach coach) {
         List<String> menus = new ArrayList<>();
         menus.add(coach.getName());
         menus.addAll(coach.getEatMenu());
-        System.out.print("[ ");
-        System.out.print(String.join(" | ", menus));
-        System.out.println(" ]");
+        System.out.print(OPEN_BRACKET);
+        System.out.print(String.join(DELIMITER, menus));
+        System.out.println(CLOSE_BRACKET);
     }
 }
