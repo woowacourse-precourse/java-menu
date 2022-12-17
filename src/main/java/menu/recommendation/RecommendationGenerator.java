@@ -6,8 +6,6 @@ import menu.model.Category;
 import java.util.*;
 
 public class RecommendationGenerator {
-    private RecommendationGenerator recommendationGenerator;
-
     public List<Category> recommendCategory(){
         List<Category> categories = new ArrayList<>();
         while(categories.size() != 5){

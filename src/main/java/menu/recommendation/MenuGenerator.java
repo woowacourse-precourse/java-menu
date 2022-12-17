@@ -7,20 +7,16 @@ import menu.model.Category;
 import menu.model.Menu;
 
 public class MenuGenerator {
-    public List<String> RecommendMenuInWeek(List<Category> categories, List<String> dontEatMenus){
-        List<String> recommendMenus = new ArrayList<>();
-        for (Category todayCategory: categories){
-            String menu = validation(recommendMenus, dontEatMenus, todayCategory);
-            recommendMenus.add(menu);
-        }
-        return recommendMenus;
+    Menu menus = new Menu();
+    public String recommendMenu(List<String> recommendMenus, Category todayCategory, List<String> dontEatMenus){
+        String recommendMenu = validation(recommendMenus, dontEatMenus, todayCategory);
+        return recommendMenu;
     }
 
     public String validation(List<String> recommended, List<String> dontEat, Category todayCategory){
-        System.out.println(Menu.getInstance(todayCategory));
         String menu = null;
         while(true){
-            menu = Randoms.shuffle(Menu.getInstance(todayCategory)).get(0);
+            menu = Randoms.shuffle(menus.getInstance(todayCategory.getValue())).get(0);
             if(!(recommended.contains(menu) || dontEat.contains(menu))){
                 break;
             }
