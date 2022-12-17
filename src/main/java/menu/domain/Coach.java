@@ -67,10 +67,10 @@ public class Coach {
     }
 
     public boolean addTodayFood(Food todayFood) {
-        if (isValidEatFood(todayFood)) {
+        if (!isValidEatFood(todayFood)) {
             return false;
         }
-        if (isValidateDuplicateTodayFood(todayFood)) {
+        if (!isValidateDuplicateTodayFood(todayFood)) {
             return false;
         }
         thisWeekFoods.add(todayFood);
@@ -101,5 +101,9 @@ public class Coach {
 
     public List<String> getDoNotEatFoods() {
         return doNotEatFoods;
+    }
+
+    public List<Food> getThisWeekFoods() {
+        return thisWeekFoods;
     }
 }

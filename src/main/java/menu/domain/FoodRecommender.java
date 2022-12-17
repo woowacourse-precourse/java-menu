@@ -17,16 +17,22 @@ public class FoodRecommender {
         this.menus = menus;
     }
 
-    public void recommendTodayFood(Coach coach) {
-        Category todayCategory = getValidCategory(coach);
-        String todayFood = RandomUtils.pickFoodNameInShuffle(menus);
-        addValidTodayFood(coach, todayFood);
+    public void repeatThisWeekFood(Coach coach) {
+        for (int i = 0; i < 6; i++) {
+            recommendTodayFood(coach);
+        }
     }
 
-    private void addValidTodayFood(Coach coach, String todayFood) {
+    public void recommendTodayFood(Coach coach) {
+        Category todayCategory = getValidCategory(coach);
+        addValidTodayFood(coach, todayCategory);
+    }
+
+    private void addValidTodayFood(Coach coach, Category todayCategory) {
         while (true) {
-            if (coach.addTodayFood(new Food(todayFood))) {
-                return;
+            Food todayFood = returnTodayFoodInCategory(todayCategory);
+            if (coach.addTodayFood(todayFood)) {
+                break;
             }
         }
     }
@@ -36,6 +42,15 @@ public class FoodRecommender {
             Category todayCategory = RandomUtils.pickCategoryInRandom();
             if (!coach.isOverTwoCountOfDuplicateCategory(todayCategory)) {
                 return todayCategory;
+            }
+        }
+    }
+
+    private Food returnTodayFoodInCategory(Category todayCategory) {
+        while (true) {
+            Food todayFood = new Food(RandomUtils.pickFoodNameInShuffle(menus));
+            if (todayFood.getCategory().equals(todayCategory)) {
+                return todayFood;
             }
         }
     }

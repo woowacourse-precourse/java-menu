@@ -2,6 +2,7 @@ package menu.controller;
 
 import menu.domain.Coach;
 import menu.domain.CoachRepository;
+import menu.domain.FoodRecommender;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -11,6 +12,10 @@ public class Controller {
         inputAndSaveCoachName();
         for (Coach coach : CoachRepository.coaches()) {
             inputAndSaveFood(coach);
+        }
+        FoodRecommender foodRecommender = new FoodRecommender();
+        for (Coach coach : CoachRepository.coaches()) {
+            foodRecommender.repeatThisWeekFood(coach);
         }
     }
 
