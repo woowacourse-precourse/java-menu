@@ -20,15 +20,15 @@ public class Validator {
             checkValidCoachLetterCount(coaches);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
     }
 
     private static void checkValidCoachLetterCount(List<String> coaches) {
-        boolean isOverTwoLetter = coaches.stream().allMatch(name -> name.length() > 1);
-        boolean isUnderSixLetter = coaches.stream().allMatch(name -> name.length() < 6);
+        boolean isOverTwoLetter = coaches.stream().anyMatch(name -> name.length() > 1);
+        boolean isUnderSixLetter = coaches.stream().anyMatch(name -> name.length() < 6);
 
         if (!isOverTwoLetter || !isUnderSixLetter) {
             throw new IllegalArgumentException(INVALID_COACH_NAME_OUTPUT_MESSAGE);
@@ -40,10 +40,10 @@ public class Validator {
             checkValidCoachCount(coaches);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
     }
 
     private static void checkValidCoachCount(List<String> coaches) {
