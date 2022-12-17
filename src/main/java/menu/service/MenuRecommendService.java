@@ -9,7 +9,7 @@ import menu.util.RandomMenuValueGenerator;
 
 public class MenuRecommendService {
     private static final int WEEK = 5;
-    private SelectCategory selectCategory = new SelectCategory();
+    private final SelectCategory selectCategory = new SelectCategory();
 
 
     public void selectWeekCategory() {
