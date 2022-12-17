@@ -28,6 +28,7 @@ public class Coach {
                 return pickFood(menus);
             }
         }
+        eatenFood.add(picked);
         return picked;
     }
 }
