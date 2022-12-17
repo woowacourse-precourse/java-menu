@@ -2,6 +2,7 @@ package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,6 +16,12 @@ public class InputView {
         String coach = Console.readLine();
         List<String> coaches = Arrays.asList(coach.split(","));
         return coaches;
+    }
+    public List<String> inputNotFood(String coachName){
+        List<String> notFood = new ArrayList<>();
+        System.out.printf(INPUT_FOOD_NAME,coachName);
+        notFood = Arrays.asList(Console.readLine().split(","));
+        return notFood;
     }
 
 }

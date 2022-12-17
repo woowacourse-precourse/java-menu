@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class Food {
     Map<Category, List<String>> foods = new HashMap<>();
+
     public Map<Category,List<String>> initFoods(){
         foods.put(Category.JAPAN, Arrays.asList("규동, 우동, 미소시루, 스시, 가츠동, 오니기리, 하이라이스, 라멘, 오코노미야끼"));
         foods.put(Category.KOREA, Arrays.asList("김밥, 김치찌개, 쌈밥, 된장찌개, 비빔밥, 칼국수, 불고기, 떡볶이, 제육볶음"));
@@ -16,5 +17,18 @@ public class Food {
         return foods;
     }
 
-    
+    public Map<Category,List<String>> changeFood(Category category, String foodName){
+        for(String name: foods.get(category)){
+            if(name.equals(foodName)){
+                foods.get(category).remove(foodName);
+            }
+        }
+        return foods;
+    }
+
+    public void deleteFood(Category category, List<String> existingFoods, String foodName){
+        if(existingFoods.contains(foodName)){
+            foods.get(category).remove(foodName);
+        }
+    }
 }
