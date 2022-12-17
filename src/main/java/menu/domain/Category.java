@@ -6,4 +6,8 @@ public class Category {
     public Category(String category) {
         this.category = category;
     }
+
+    public String getCategoryName() {
+        return category;
+    }
 }

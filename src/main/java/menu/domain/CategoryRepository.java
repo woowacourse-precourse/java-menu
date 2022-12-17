@@ -12,4 +12,8 @@ public class CategoryRepository {
         menuCategories.add(menuCategory);
         return menuCategory;
     }
+
+    public static Category makeRandomCategory(int pickNumberInRange) {
+        return menuCategories.get(pickNumberInRange);
+    }
 }

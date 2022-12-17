@@ -2,16 +2,17 @@ package menu.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CoachRepository {
 
-    private List<Coach> coachList = new ArrayList<>();
+    private static final List<Coach> coachList = new ArrayList<>();
 
-    public CoachRepository(List<Coach> coaches) {
-        this.coachList = coaches;
+    public static void saveCoach(Coach coach) {
+        coachList.add(coach);
     }
 
-    public List<Coach> getCoachList() {
+    public static List<Coach> findAllCouch() {
         return coachList;
     }
 }
