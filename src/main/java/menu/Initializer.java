@@ -1,5 +1,7 @@
 package menu;
 
+import menu.domains.Categories;
+
 import java.util.List;
 
 public class Initializer {
