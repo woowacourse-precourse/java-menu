@@ -36,7 +36,7 @@ public class HardToEatRepository {
 
     public static List<String> findByCoach(Coach coach) {
         if (menus.containsKey(coach)) {
-            return menus.get(coach);
+            return new ArrayList<>(menus.get(coach));
         }
         return new ArrayList<>();
     }
