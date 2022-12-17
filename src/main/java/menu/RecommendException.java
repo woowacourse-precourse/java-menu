@@ -22,6 +22,12 @@ public class RecommendException {
 				throw new IllegalArgumentException("[ERROR] 한글로 이루어져야합니다.");
 			}
 		}
-
 	}
+
+	public void checkNotEatFoodSize(int size) throws IllegalArgumentException {
+		if (size > 2) {
+			throw new IllegalArgumentException("[ERROR] 못먹는 음식은 2개 초과할수 없습니다.");
+		}
+	}
+
 }

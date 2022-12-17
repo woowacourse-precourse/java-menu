@@ -19,6 +19,7 @@ public class InputView {
 	public List<String> readNotEatFood() {
 		List<String> splitFoods = new ArrayList<>();
 		String inputNotEatFoods = Console.readLine();
+		checkinputNotEatFood(inputNotEatFoods);
 		splitFoods.addAll(Arrays.asList(inputNotEatFoods.split(",")));
 		return splitFoods;
 	}
@@ -27,6 +28,11 @@ public class InputView {
 		String[] split = inputCoachs.split(",");
 		recommendException.checkCoachsSize(split.length);
 		recommendException.checkCoachsNameSize(split);
+		recommendException.checkMissMatch(split);
+	}
+	public void checkinputNotEatFood(String inputNotEatFoods) {
+		String[] split = inputNotEatFoods.split(",");
+		recommendException.checkNotEatFoodSize(split.length);
 		recommendException.checkMissMatch(split);
 	}
 }
