@@ -7,8 +7,7 @@ public class Separator {
     private final static String SEPARATOR = ",";
 
     public List<String> separateNames(String names) {
-        String replacedNames = names.replace(" ", "");
-        List<String> strings = Arrays.asList(replacedNames.split(SEPARATOR));
+        List<String> strings = Arrays.asList(names.split(SEPARATOR));
         return strings;
     }
 
