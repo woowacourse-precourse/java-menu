@@ -10,6 +10,9 @@ import menu.domain.Coach;
 
 public class OutputView {
     private static final String SEPARATOR = " | ";
+    private static final String ELEMENTS_PRINT_FORMAT = "[ %s ]\n";
+    private static final String WEEKDAY_TITLE = "구분";
+    private static final String CATEGORY_TITLE = "카테고리";
 
     public void printServiceStart() {
         System.out.println("점심 메뉴 추천을 시작합니다.");
@@ -17,15 +20,15 @@ public class OutputView {
 
     public void printMenus(List<Category> categories, List<Coach> coaches) {
         System.out.println("메뉴 추천 결과입니다.");
-        printElements("구분", Weekday.getNames());
-        printElements("카테고리", getCategoryNames(categories));
+        printElements(WEEKDAY_TITLE, Weekday.getNames());
+        printElements(CATEGORY_TITLE, getCategoryNamesOf(categories));
         for (Coach coach : coaches) {
             printElements(coach.getName(), getFoodNamesWithBlank(coach.getRecommendedFoods()));
         }
         System.out.println("추천을 완료했습니다.");
     }
 
-    private List<String> getCategoryNames(List<Category> categories) {
+    private List<String> getCategoryNamesOf(List<Category> categories) {
         return categories.stream()
                 .map(Category::getName)
                 .collect(Collectors.toList());
@@ -37,8 +40,9 @@ public class OutputView {
                 .collect(Collectors.toList());
     }
 
-    private void printElements(String name, List<String> elements) {
+    private void printElements(String title, List<String> elements) {
         String joinedElements = String.join(SEPARATOR, elements);
-        System.out.printf("[ %s ]\n", String.join(SEPARATOR, name, joinedElements));
+        String elementsWithTitle = String.join(SEPARATOR, title, joinedElements);
+        System.out.printf(ELEMENTS_PRINT_FORMAT, elementsWithTitle);
     }
 }
