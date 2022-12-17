@@ -45,7 +45,8 @@ public class OutputView {
                         +Constant.outputRecommendFoodResultEnd);
                 break;
             }
-            System.out.print(weekCategory.get(i).label() + " | ");
+            System.out.print(weekCategory.get(i).label()
+                    + Constant.outputRecommendFoodResultCenter);
         }
     }
 }

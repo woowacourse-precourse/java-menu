@@ -27,7 +27,7 @@ public class Controller {
         List<CoachWeekMenu> coachWeekMenus = makeCoachWeekMenu(coaches);
         Menu menu;
 
-        for (int i = 0 ; i < 5; i++) {
+        for (int i = 0 ; i < Constant.weekNum; i++) {
             FoodCategory foodCategory = recommend.recommendCategory();
             menu = new Menu(foodCategory);
             coachWeekMenus = menu.chooseShuffleMenu(coachWeekMenus);

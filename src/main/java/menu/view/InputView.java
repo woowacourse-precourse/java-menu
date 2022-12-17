@@ -13,7 +13,7 @@ import java.util.List;
 public class InputView {
 
     public List<String> getCoachName() throws IllegalArgumentException{
-        System.out.println("점심 메뉴 추천을 시작합니다. \n\n코치의 이름을 입력해 주세요. (, 로 구분)");
+        System.out.println(Constant.inputCoachName);
         List<String> nameInput = splitInput(Console.readLine());
         coachSizeValidation(nameInput);
         coachNameLengthValidation(nameInput);
@@ -48,7 +48,7 @@ public class InputView {
     // 코치의 이름은 최소 2글자, 최대 4글자 (Validation.1)
     private void coachNameLengthValidation(List<String> coachNames) {
         for (String name : coachNames) {
-            if (name.length() < 2 || name.length() > 4) {
+            if (name.length() < Constant.coachNameSizeMin || name.length() > Constant.coachNameSizeMax) {
                 throw new IllegalArgumentException(
                         ExceptionMessage.INVALID_COACH_NAME_LEN.getMessage());
             }
@@ -57,7 +57,7 @@ public class InputView {
 
     // 코치는 최소 2명, 최대 5명까지 식사를 함께 해야 함 (Validation.2)
     private void coachSizeValidation(List<String> coachNames) {
-        if (coachNames.size() < 2 || coachNames.size() > 5) {
+        if (coachNames.size() < Constant.coachesSizeMin || coachNames.size() > Constant.coachesSizeMax) {
             throw new IllegalArgumentException(
                     ExceptionMessage.INVALID_COACH_SIZE.getMessage());
         }
@@ -65,7 +65,7 @@ public class InputView {
 
     // 못먹는 메뉴는 2개를 넘을 수 없음 (Validation.3)
     private void notEatFoodSizeValidation(List<String> notEatFoods) {
-        if (notEatFoods.size() > 2) {
+        if (notEatFoods.size() > Constant.notEatFoodNumMax) {
             throw new IllegalArgumentException(
                     ExceptionMessage.INVALID_NOT_EAT_SIZE.getMessage());
         }

@@ -1,6 +1,7 @@
 package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import menu.Constant;
 import menu.enums.FoodCategory;
 import menu.vo.Coach;
 
@@ -29,7 +30,8 @@ public class Recommend {
     private FoodCategory recommendFoodCategory() {
         FoodCategory foodCategory;
         while (true) {
-            foodCategory = FoodCategory.valueOfNumber(Randoms.pickNumberInRange(1, 5));
+            foodCategory = FoodCategory.valueOfNumber(Randoms.pickNumberInRange(
+                    Constant.weekLabelMin, Constant.weekLabelMax));
             if (checkIsValidFoodCategory(foodCategory) == true) {
                 break;
             }
@@ -40,7 +42,7 @@ public class Recommend {
     // 이번주 두번 이상 먹지 않았는지 확인
     private boolean checkIsValidFoodCategory(FoodCategory foodCategory) {
         Integer categoryChooseNum = weekCategoryChoose.get(foodCategory);
-        if (categoryChooseNum >= 2) {
+        if (categoryChooseNum >= Constant.weekMaxCategory) {
             return false;
         }
         weekCategoryChoose.put(foodCategory,categoryChooseNum+1);
