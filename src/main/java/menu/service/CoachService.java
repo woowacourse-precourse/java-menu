@@ -5,6 +5,7 @@ import menu.domain.CoachRepository;
 
 public class CoachService {
     public void initialize(String[] coachNames) {
+        CoachRepository.deleteAll();
         for (String coachName : coachNames) {
             CoachRepository.addCoach(new Coach(coachName));
         }

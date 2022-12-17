@@ -17,7 +17,6 @@ public class MenuController {
 
     private void initRoutine() {
         menuService.printServiceStart();
-
         String[] coaches = menuService.askCoachNames();
         coachService.initialize(coaches);
 
@@ -25,7 +24,6 @@ public class MenuController {
             String[] foods = menuService.askInedibleFoodName(coach);
             coachService.addInedibleFood(coach, foods);
         }
-
         categoryService.initialize();
     }
 
