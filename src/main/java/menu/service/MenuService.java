@@ -16,11 +16,13 @@ public class MenuService {
     public Recommendation recommend(List<Coach> coaches) {
         Map<Coach, Map<Day, String>> recommendation = new HashMap<>();
         Map<Day, Category> categories = new HashMap<>();
+
         for (Day day : Day.values()) {
             Category randomCategory = getRandomCategory();
             storeCategories(categories, day, randomCategory);
             recommendPerCoach(recommendation, coaches, day, randomCategory);
         }
+
         return new Recommendation(recommendation, categories);
     }
 

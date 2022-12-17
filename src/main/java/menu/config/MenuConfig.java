@@ -35,6 +35,7 @@ public class MenuConfig {
         List<String> categoryPerMenus = getCategoryPerMenus(line);
         Category category = Category.from(categoryPerMenus.get(0));
         List<String> menus = getMenus(categoryPerMenus.get(1));
+
         for (String menu : menus) {
             MenuRepository.addMenu(category, menu);
         }

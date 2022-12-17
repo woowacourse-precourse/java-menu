@@ -13,6 +13,7 @@ public class Coach {
 
     private void validate(String name) {
         String notBlankName = name.trim();
+
         if (notBlankName.length() < 2 || notBlankName.length() > 4) {
             throw new IllegalArgumentException("코치의 이름은 최소 2글자, 최대 4글자이다.");
         }

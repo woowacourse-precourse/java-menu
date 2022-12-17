@@ -13,19 +13,30 @@ public class CoachesConverter {
     }
 
     public static List<Coach> convert(String input) {
-        List<Coach> coaches = Arrays.stream(input.split(","))
-                .map(s -> s.trim())
-                .map(Coach::new)
-                .collect(Collectors.toList());
+        List<Coach> coaches = generateCoaches(input);
         validate(coaches);
         return coaches;
     }
 
+    private static List<Coach> generateCoaches(String input) {
+        return Arrays.stream(input.split(","))
+                .map(s -> s.trim())
+                .map(Coach::new)
+                .collect(Collectors.toList());
+    }
+
     private static void validate(List<Coach> coaches) {
+        validateSize(coaches);
+        validateDuplication(coaches);
+    }
+
+    private static void validateSize(List<Coach> coaches) {
         if (coaches.size() < 2 || coaches.size() > 5) {
             throw new IllegalArgumentException("코치는 최소 2명, 최대 5명까지 식사를 함께 한다.");
         }
+    }
 
+    private static void validateDuplication(List<Coach> coaches) {
         Set<Coach> uniqueCoaches = new HashSet<>(coaches);
 
         if (uniqueCoaches.size() != coaches.size()) {
