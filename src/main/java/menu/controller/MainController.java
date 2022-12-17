@@ -14,12 +14,10 @@ import java.util.Map;
 
 public class MainController {
 
-    private final InputView inputView;
     private final OutputView outputView;
     private final InputController inputController;
 
     public MainController(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
         this.outputView = outputView;
         this.inputController = new InputController(inputView, outputView);
     }
@@ -29,15 +27,27 @@ public class MainController {
         List<String> coachNames = inputController.readValidCoachNames();
         Map<String, List<String>> hateMenusByCoach = inputController.readValidHateMenusByCoach(coachNames);
         RecommendHistory recommendHistory = new RecommendHistory();
-        Recorder recorder = new Recorder(recommendHistory);
+        recommendAndRecord(coachNames, hateMenusByCoach, recommendHistory);
+        outputView.printRecommendedResult(Day.valuesAsList(), recommendHistory.getMenuByCoach(), recommendHistory.getCategories());
+    }
+
+    private void recommendAndRecord(List<String> coachNames, Map<String, List<String>> hateMenusByCoach, RecommendHistory recommendHistory) {
         for (int i = 0; i < Day.sizeOfValues(); i++) {
-            CategoryRecommender categoryRecommender = new CategoryRecommender(recommendHistory);
-            Category category = categoryRecommender.recommend();
+            Recorder recorder = new Recorder(recommendHistory);
+            Category category = recommendCategory(recommendHistory);
             recorder.recordCategory(category);
-            MenuRecommender menuRecommender = new MenuRecommender(hateMenusByCoach, recommendHistory);
-            Map<String, String> menuByCoach = menuRecommender.recommendByCoach(category);
+            Map<String, String> menuByCoach = recommendMenuByCoach(hateMenusByCoach, recommendHistory, category);
             recorder.recordMenuByCoach(menuByCoach, coachNames);
         }
-        outputView.printRecommendedResult(Day.valuesAsList(), recommendHistory.getMenuByCoach(), recommendHistory.getCategories());
+    }
+
+    private static Map<String, String> recommendMenuByCoach(Map<String, List<String>> hateMenusByCoach, RecommendHistory recommendHistory, Category category) {
+        MenuRecommender menuRecommender = new MenuRecommender(hateMenusByCoach, recommendHistory);
+        return menuRecommender.recommendByCoach(category);
+    }
+
+    private Category recommendCategory(RecommendHistory recommendHistory) {
+        CategoryRecommender categoryRecommender = new CategoryRecommender(recommendHistory);
+        return categoryRecommender.recommend();
     }
 }
