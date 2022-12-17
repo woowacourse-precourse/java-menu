@@ -38,18 +38,12 @@ public class SuggestProgram {
     }
 
     private void makeMenuSuggestResult(List<Coach> coaches){
-
         List<Categories> suggestedCategory = suggester.categorySuggest();
-
         for (Categories categories : suggestedCategory) {
             for (Coach coach : coaches) {
                 coach.updateSuggestedMenus(categories);
             }
         }
-        // 이렇게 주지 말고, 월요일이면 월요일쭉, 화요일이면 화요일 쭉 으로 바꿔서 하자.
-        // 그렇게 해야, 테스트 케이스를 성공시킬 수 있다.
-
-
         output.printSuggestedMenuResult(suggestedCategory,coaches);
         output.printSuggestingEnd();
     }
