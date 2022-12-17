@@ -21,4 +21,15 @@ public class RepeatValidator {
             return null;
         }
     }
+
+    public static void runUntilValidate(Runnable expression) {
+        while(true) {
+            try {
+                expression.run();
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
 }
