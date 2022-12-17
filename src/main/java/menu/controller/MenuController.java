@@ -17,17 +17,32 @@ public class MenuController {
 
     public void run() {
         System.out.println(START_MESSAGE);
-        List<CoachName> coaches = inputView.readNames().stream()
-                .map(name -> new CoachName(name))
-                .collect(Collectors.toList());
-
+        List<CoachName> coaches = readCoachNames();
         for (CoachName coach : coaches) {
+            addCannotEatMenus(coach);
+        }
+        group.makeMenus();
+        outputView.renderResult(group.getCoaches(), group.getCategoryHistory());
+    }
+
+    private List<CoachName> readCoachNames() {
+        try {
+            return inputView.readNames().stream()
+                    .map(CoachName::new)
+                    .collect(Collectors.toList());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readCoachNames();
+        }
+    }
+
+    private void addCannotEatMenus(CoachName coach) {
+        try {
             List<String> cannotEatMenus = inputView.readMenuCantEat(coach.getName());
             group.addCoach(coach, cannotEatMenus);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            addCannotEatMenus(coach);
         }
-
-        group.makeMenus();
-
-        outputView.renderResult(group.getCoaches(), group.getCategoryHistory());
     }
 }
