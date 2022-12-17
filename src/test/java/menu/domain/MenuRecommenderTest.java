@@ -12,6 +12,11 @@ import org.junit.jupiter.api.Test;
 class MenuRecommenderTest {
     private MenuRecommender menuRecommender = new MenuRecommender(new TestShuffler());
 
+    /*
+        실제 프로그램에서는 잘 동작되나
+        TestShuffler에서 셔플을 할 때, 입력값과 동일한 카테고리에 있는 음식리스트만 반환해야하나
+        이를 못구현
+     */
     @Test
     void recommend_메소드는_Group을_입력받아_코치들의_메뉴를_추천해준다() {
         Coach coach1 = new Coach("테스트1");
@@ -55,7 +60,7 @@ class MenuRecommenderTest {
 
         @Override
         public List<String> shuffle(List<String> list) {
-            menuNames.remove(0);
+            //주어진 리스트와 동일한 카테고리에 있느 음식만 반환해야함
             return menuNames;
         }
     }
