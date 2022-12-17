@@ -1,37 +1,34 @@
 package menu.util;
 
-import static menu.message.ErrorMessage.INCORRECT_INPUT_FORMAT;
-import static menu.message.ErrorMessage.LESS_THAN_MINIMUM_NUMBER_OF_COACH;
-import static menu.message.ErrorMessage.OVER_MAXIMUM_NUMBER_OF_COACH;
-import static menu.message.ErrorMessage.OVER_MAXIMUM_NUMBER_OF_DISLIKE_FOOD;
+import menu.message.ErrorMessage;
 
 public class Validator {
     private static final String NAME_OR_COMMA = "^[가-힣,]*$";
 
     public static void validateCoachNamesInput(String input) {
         if (!containsOnlyCommaOrName(input)) {
-            throw new IllegalArgumentException(INCORRECT_INPUT_FORMAT);
+            throw new IllegalArgumentException(ErrorMessage.INCORRECT_INPUT_FORMAT);
         }
 
         String[] coaches = input.split(",");
 
         if (isLessThanMinimumNumberOfCoach(coaches)) {
-            throw new IllegalArgumentException(LESS_THAN_MINIMUM_NUMBER_OF_COACH);
+            throw new IllegalArgumentException(ErrorMessage.LESS_THAN_MINIMUM_NUMBER_OF_COACH);
         }
         if (isOverMaximumNumberOfCoach(coaches)) {
-            throw new IllegalArgumentException(OVER_MAXIMUM_NUMBER_OF_COACH);
+            throw new IllegalArgumentException(ErrorMessage.OVER_MAXIMUM_NUMBER_OF_COACH);
         }
     }
 
     public static void validateDislikeFoodsInput(String input) {
         if (!containsOnlyCommaOrName(input)) {
-            throw new IllegalArgumentException(INCORRECT_INPUT_FORMAT);
+            throw new IllegalArgumentException(ErrorMessage.INCORRECT_INPUT_FORMAT);
         }
 
         String[] foods = input.split(",");
 
         if (isOverMaximumNumberOfDislikeFood(foods)) {
-            throw new IllegalArgumentException(OVER_MAXIMUM_NUMBER_OF_DISLIKE_FOOD);
+            throw new IllegalArgumentException(ErrorMessage.OVER_MAXIMUM_NUMBER_OF_DISLIKE_FOOD);
         }
     }
 
