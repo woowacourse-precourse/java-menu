@@ -8,4 +8,8 @@ public class OutputView {
     public static void enterCoach() {
         System.out.println("\n코치의 이름을 입력해 주세요. (, 로 구분)");
     }
+
+    public static void error(String message) {
+        System.out.println("[ERROR]" + message);
+    }
 }
