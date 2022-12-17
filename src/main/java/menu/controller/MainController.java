@@ -23,6 +23,10 @@ public class MainController {
         outputView.startMessage();
         inputView.readCoachName().stream()
                 .forEach(e -> coachs.add(new Coach(e, inputView.readCantEats(e))));
+        result();
+    }
+
+    public void result(){
         outputView.resultMessage();
         List<String> categorys = Menu.selectCategory();
         outputView.LineMessage("카테고리", categorys);
