@@ -39,7 +39,6 @@ public class RecommendService {
 				recommendMenu(day, menus);
 				return;
 			} catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
 			}
 		}
 	}

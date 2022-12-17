@@ -23,7 +23,6 @@ public class MainController {
 				OutputView.printEndMsg();
 				return;
 			} catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
 			}
 		}
 	}
