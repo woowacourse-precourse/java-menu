@@ -7,7 +7,8 @@ import menu.model.MenuRecommendation;
 import java.util.ArrayList;
 import java.util.List;
 
-import static menu.view.View.*;
+import static menu.view.InputView.*;
+import static menu.view.OutputView.*;
 
 public class MenuRecommendationController {
     MenuRecommendation recommendation;
@@ -20,7 +21,8 @@ public class MenuRecommendationController {
 
     public void run() {
         printStartMessage();
-        makeCoaches(requestInputCoachName());
+        requestCoachNames();
+        makeCoaches(receiveCoachNames());
         setUnwantedMenus();
         categories = recommendation.getRandomCategories();
         recommendMenus();
@@ -47,7 +49,8 @@ public class MenuRecommendationController {
     private void setUnwantedMenus() {
         for (int i = 0; i < coaches.size(); i++) {
             Coach coach = coaches.get(i);
-            List<String> unwantedMenus = requestUnwantedMenu(coach.getName());
+            requestUnwantedMenu(coach.getName());
+            List<String> unwantedMenus = receiveUnwantedMenus();
             coach.setUnwantedMenus(unwantedMenus);
         }
     }
