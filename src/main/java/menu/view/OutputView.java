@@ -15,6 +15,7 @@ public class OutputView {
     private static final String SPLIT_MESSAGE = "구분";
     private static final String JOIN_DELIMITER = " | ";
     private static final String CATEGORY_MESSAGE = "카테고리";
+    private static final String COMPLETE_RECOMMEND_MESSAGE = "추천을 완료했습니다.";
 
     public void printLunchMenuRecommendMessage() {
         printMessage(LUNCH_MENU_RECOMMEND_MESSAGE);
@@ -53,6 +54,10 @@ public class OutputView {
         String formattedRecommendMenus = MessageFormat.format(
                 RESULT_MESSAGE_FORMAT, String.join(JOIN_DELIMITER, recommendMenus));
         printMessage(formattedRecommendMenus);
+    }
+
+    public void printCompleteRecommendMessage() {
+        printMessage(COMPLETE_RECOMMEND_MESSAGE);
     }
 
     private void printBlankLine() {
