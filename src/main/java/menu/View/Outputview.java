@@ -26,10 +26,10 @@ public class Outputview {
         System.out.println(END_MESSAGE);
     }
 
-    public void printResult(Coachs coachs) {
+    public void printResult(Coachs coachs, List<String> pickCategories) {
         System.out.println(RESULT_MESSAGE);
         printWeekDays();
-        printCategories();
+        printCategories(pickCategories);
         for (Coach coach : coachs.getCoachs()) {
             printRecommend(coach);
         }
@@ -40,8 +40,8 @@ public class Outputview {
         System.out.println(makeResultView("구분", WEEKDAYS));
     }
 
-    private void printCategories() {
-        System.out.println(makeResultView("카테고리", Category.getNames()));
+    private void printCategories(List<String> pickCategories) {
+        System.out.println(makeResultView("카테고리", pickCategories));
     }
 
     private void printRecommend(Coach coach) {

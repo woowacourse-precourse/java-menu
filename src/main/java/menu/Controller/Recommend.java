@@ -5,6 +5,7 @@ import menu.Model.Coachs;
 import menu.Model.Coach;
 
 import java.util.Map;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class Recommend {
     private final int START_CATEGORY_RANK = 1;
     private final int END_CATEGORY_RANK = 5;
     private Map<Category, Integer> categoryCounts = new HashMap<>();
+    private List<String> pickCategories = new ArrayList<>();
 
     public Recommend() {
         for (Category cg : Category.values()) {
@@ -26,6 +28,7 @@ public class Recommend {
         for (int i = 0; i < WEEK_NUMBER; i++) {
             Category cg = pickCategory();
             chooseMenu(coachs, cg.getMenus());
+            pickCategories.add(cg.getName());
         }
     }
 
@@ -53,5 +56,9 @@ public class Recommend {
                 return cg;
             }
         }
+    }
+
+    public List<String> getPickCategories() {
+        return this.pickCategories;
     }
 }
