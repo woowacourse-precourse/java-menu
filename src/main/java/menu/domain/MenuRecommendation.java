@@ -6,14 +6,14 @@ import java.util.stream.Collectors;
 
 public class MenuRecommendation {
 
-    private final People people;
+    private static People people;
 
     public MenuRecommendation(String input) {
         String[] split = validate(input);
         List<Person> result = Arrays.stream(split)
                 .map(Person::new)
                 .collect(Collectors.toList());
-        this.people = new People(result);
+        people = new People(result);
     }
 
     private String[] validate(String input) {
@@ -23,5 +23,12 @@ public class MenuRecommendation {
             }
         }
         return input.split(",");
+    }
+    public static People getPeople() {
+        return people;
+    }
+
+    public void addUnavailableMenus(List<String> inputs) {
+        people.addUnavailableMeneus(inputs);
     }
 }

@@ -3,6 +3,7 @@ package menu.controller;
 import menu.domain.MenuRecommendation;
 import menu.domain.Status;
 import menu.dto.input.ReadNamesDto;
+import menu.dto.input.ReadUnavailableMenuDto;
 import menu.dto.output.PrintExceptionDto;
 import menu.view.IOViewResolver;
 
@@ -24,7 +25,9 @@ public class Controller {
 
     private void initStatusMap() {
         statusMap.put(Status.READ_NAMES, this::readNames);
+        statusMap.put(Status.READ_UNAVAILABLE_MENU, this::readUnavailableMenu);
     }
+
 
     public Status run(Status status) {
         try {
@@ -38,6 +41,12 @@ public class Controller {
     private Status readNames() {
         ReadNamesDto readNamesDto = ioViewResolver.inputViewResolve(ReadNamesDto.class);
         menuRecommendation = new MenuRecommendation(readNamesDto.getUserInput());
+        return Status.READ_UNAVAILABLE_MENU;
+    }
+
+    private Status readUnavailableMenu() {
+        ReadUnavailableMenuDto readUnavailableMenuDto = ioViewResolver.inputViewResolve(ReadUnavailableMenuDto.class);
+        menuRecommendation.addUnavailableMenus(readUnavailableMenuDto.getInputs());
         return null;
     }
 }
