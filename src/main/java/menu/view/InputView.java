@@ -11,6 +11,7 @@ public class InputView {
     public static List<Coach> inputCoach() {
         String input = Console.readLine();
         Validator.validateCoach(input);
+
         String[] coaches = input.split(",");
         List<Coach> list = new ArrayList<>();
         for (String name : coaches) {
@@ -22,6 +23,8 @@ public class InputView {
 
     public static List<String> inputNoEat() {
         String input = Console.readLine();
+        Validator.validateFood(input);
+
         String[] foods = input.split(",");
         List<String> list = new ArrayList<>();
         for (String food : foods) {

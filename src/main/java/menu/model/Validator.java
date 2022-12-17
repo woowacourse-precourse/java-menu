@@ -10,19 +10,18 @@ public class Validator {
     private static final int NAME_MAX = 4;
     private static final int COACH_MIN = 2;
     private static final int COACH_MAX = 5;
-    private static final int FOOD_MIN = 0;
     private static final int FOOD_MAX = 2;
 
     public static void validateCoach(String input) {
         String[] coaches = input.split(",");
-        validateLength(coaches);
+        validateCoachSize(coaches);
 
         for (String name : coaches) {
             validateName(name);
         }
     }
 
-    private static void validateLength(String[] coaches) {
+    private static void validateCoachSize(String[] coaches) {
         if (coaches.length < COACH_MIN) {
             throw new IllegalArgumentException(ErrorMessage.COACH_MIN.getMessage());
         }
@@ -39,4 +38,12 @@ public class Validator {
             throw new IllegalArgumentException(ErrorMessage.NAME_MAX.getMessage());
         }
     }
+
+    public static void validateFood(String input) {
+        String[] foods = input.split(",");
+        if (foods.length > FOOD_MAX) {
+            throw new IllegalArgumentException(ErrorMessage.FOOD_MAX.getMessage());
+        }
+    }
+
 }

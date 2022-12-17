@@ -17,7 +17,9 @@ public class MenuController {
     public void run() {
         OutputView.start();
         List<Coach> coaches = askCoach();
-        askNoEat(coaches);
+        for (Coach coach : coaches) {
+            askNoEat(coach);
+        }
         int[] suggestedCategory = menuSuggester.run();
         OutputView.showResult(suggestedCategory, coaches);
     }
@@ -36,12 +38,17 @@ public class MenuController {
         return coaches;
     }
 
-    private void askNoEat(List<Coach> coaches) {
-        for (Coach coach : coaches) {
-            OutputView.askNoEat(coach.getName());
-            List<String> noEatFood = InputView.inputNoEat();
-            coach.setNoEatFood(noEatFood);
-        }
+    private void askNoEat(Coach coach) {
+        List<String> noEatFood = null;
+        do {
+            try {
+                OutputView.askNoEat(coach.getName());
+                noEatFood = InputView.inputNoEat();
+                coach.setNoEatFood(noEatFood);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (noEatFood == null);
     }
 
 }
