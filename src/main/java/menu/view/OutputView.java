@@ -12,7 +12,7 @@ public class OutputView {
     private static final String SPACE = " ";
     private static final String START_BRACKET = "[ ";
     private static final String END_BRACKET = "]";
-    private static final String START_PHRASE = "점심 메뉴 추천을 시작합니다.+\n";
+    private static final String START_PHRASE = "점심 메뉴 추천을 시작합니다.\n";
 
     public static void printPhrase(String phrase) {
         System.out.println(phrase);
