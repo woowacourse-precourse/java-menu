@@ -4,7 +4,7 @@ import java.util.List;
 
 public class HateMenuDto {
 
-    private final static int HATE_MENU_MAX_SIZE = 2;
+    private static final int HATE_MENU_MAX_SIZE = 2;
 
     private final List<String> hateMenus;
 

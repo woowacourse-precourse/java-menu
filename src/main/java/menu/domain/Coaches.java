@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Coaches {
 
-    private final static int MIN_SIZE = 2;
-    private final static int MAX_SIZE = 5;
+    private static final int MIN_SIZE = 2;
+    private static final int MAX_SIZE = 5;
 
     private final List<Coach> coaches;
 

@@ -6,9 +6,9 @@ import java.util.List;
 
 public class Coach {
 
-    private final static int NAME_MAX_LENGTH = 4;
-    private final static int NAME_MIN_LENGTH = 2;
-    private final static int HATE_MENU_MAX_SIZE = 2;
+    private static final int NAME_MAX_LENGTH = 4;
+    private static final int NAME_MIN_LENGTH = 2;
+    private static final int HATE_MENU_MAX_SIZE = 2;
 
     private final String name;
     private final List<String> hateMenus;
