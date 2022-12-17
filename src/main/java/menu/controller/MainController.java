@@ -40,4 +40,15 @@ public class MainController {
         });
         coachService.registerCoach(coaches);
     }
+
+    public void registerInEdibleFood() {
+        List<String> coaches = coachService.findAllCoaches();
+        for (String coach : coaches) {
+            List<String> inEdibleFoods = Requester.requestStringListInput(() -> {
+                outputView.printPhrase(InputPhrase.COACH_PREFERENCE.getPhrase(), coach);
+                return inputView.readStringList();
+            });
+            coachService.registerInedibleFoodByCoach(coach, inEdibleFoods);
+        }
+    }
 }
