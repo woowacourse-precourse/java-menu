@@ -21,13 +21,7 @@ public class Coaches {
     // TODO: refactoring indent, line
     public void takeRecommendByCategories(List<Category> categories) {
         for (Category category : categories) {
-            for (Coach coach : coaches) {
-                Menu randomMenu = Recommender.getRandomMenu(category);
-                while (coach.unAcceptable(randomMenu)) {
-                    randomMenu = Recommender.getRandomMenu(category);
-                }
-                coach.addRecommendedMenu(randomMenu);
-            }
+            recommendMenuByCategory(category);
         }
     }
 
@@ -35,6 +29,16 @@ public class Coaches {
         return coaches.stream()
                 .map(Coach::getRecommendedMenuNames)
                 .collect(Collectors.toList());
+    }
+
+    private void recommendMenuByCategory(Category category) {
+        for (Coach coach : coaches) {
+            Menu randomMenu = Recommender.getRandomMenu(category);
+            while (coach.unAcceptable(randomMenu)) {
+                randomMenu = Recommender.getRandomMenu(category);
+            }
+            coach.addRecommendedMenu(randomMenu);
+        }
     }
 }
 
