@@ -10,7 +10,7 @@ public class Category {
         this.positions = positions;
     }
 
-    public List<Integer> getPositions() {
+    public List<Integer> getCategory() {
         return positions;
     }
 }

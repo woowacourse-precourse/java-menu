@@ -5,13 +5,16 @@ import java.util.List;
 
 public class LunchMenuController {
     private final InputView inputView;
+    private final OutputView outputView;
     private final LunchMenuService lunchMenuService;
     private List<String> names;
     private List<List<String>> results;
 
     public LunchMenuController(){
         this.inputView = new InputView();
+        this.outputView = new OutputView();
         this.lunchMenuService = new LunchMenuService();
+
         this.names = new ArrayList<>();
         this.results = new ArrayList<>();
     }
@@ -23,10 +26,7 @@ public class LunchMenuController {
         for(int i=0;i<countPeople;i++){
             recommendMenu(i);
         }
-        //결과 차례대로 출력
-        for(List<String> result : results){
-            System.out.println("결과출력: " +result);
-        }
+        outputView.printResult(lunchMenuService.changeCategoryToString(),names, results);
     }
 
     public void recommendMenu(int index){
