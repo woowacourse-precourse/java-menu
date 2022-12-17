@@ -22,11 +22,30 @@ public class InputView {
     }
 
     public List<Coach> readCoachNames() {
-        System.out.println(Message.INPUT_COACH_NAMES.message);
-        List<String> coaches = Util.splitByComma(Console.readLine());
-        validateCoachNumber(coaches);
-        coaches.forEach(coach -> new CoachNameValidator().validate(coach));
-        return convertToCoach(coaches);
+        try {
+            System.out.println(Message.INPUT_COACH_NAMES.message);
+            List<String> coaches = Util.splitByComma(Console.readLine());
+            validateCoachNumber(coaches);
+            coaches.forEach(coach -> new CoachNameValidator().validate(coach));
+            return convertToCoach(coaches);
+        } catch (IllegalArgumentException exception) {
+            printExceptionMessage(exception);
+            return readCoachNames();
+        }
+    }
+
+    public List<Menu> readMenuNotToEat(String name) {
+        try {
+            System.out.printf(Message.INPUT_MENU_NOT_TO_EAT.message, name);
+            List<Menu> menus = Util.splitByComma(Console.readLine())
+                    .stream().map(MenuRepository::findByName)
+                    .collect(Collectors.toList());
+            validateMenuNotToEatSize(menus);
+            return menus;
+        } catch (IllegalArgumentException exception) {
+            printExceptionMessage(exception);
+            return readMenuNotToEat(name);
+        }
     }
 
     private static void validateCoachNumber(List<String> coaches) {
@@ -39,19 +58,15 @@ public class InputView {
         return coaches.stream().map(Coach::new).collect(Collectors.toList());
     }
 
-    public List<Menu> readMenuNotToEat(String name) {
-        System.out.printf(Message.INPUT_MENU_NOT_TO_EAT.message, name);
-        List<Menu> menus = Util.splitByComma(Console.readLine())
-                .stream().map(MenuRepository::findByName)
-                .collect(Collectors.toList());
-        validateMenuNotToEatSize(menus);
-        return menus;
-    }
 
     private static void validateMenuNotToEatSize(List<Menu> menus) {
         if (menus.size() >= Range.MAX_MENU_NOT_TO_EAT_SIZE.value) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_MENU_NOT_TO_EAT_SIZE.getMessage());
         }
+    }
+
+    private void printExceptionMessage(Exception exception) {
+        System.out.println(exception.getMessage());
     }
 
     private enum Message {
