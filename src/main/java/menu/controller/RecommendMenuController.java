@@ -2,6 +2,7 @@ package menu.controller;
 
 import menu.domain.CoachRepository;
 import menu.domain.DislikeMenuRepository;
+import menu.domain.RecommendMenuRepository;
 import menu.view.Input;
 import menu.view.Output;
 
@@ -18,5 +19,6 @@ public class RecommendMenuController {
         output.printStart();
         CoachRepository coachRepository = input.getCoach();
         DislikeMenuRepository dislikeMenus = input.getDislikeFood(coachRepository);
+        RecommendMenuRepository recommendMenuRepository = new RecommendMenuRepository(coachRepository, dislikeMenus);
     }
 }

@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class CoachRepository {
-    private static final List<Coach> coaches = new ArrayList<>();
+    private final List<Coach> coaches = new ArrayList<>();
     private final int minCoachCount = 2;
     private final int maxCoachCount = 5;
     public static final String SEPARATOR = ",";

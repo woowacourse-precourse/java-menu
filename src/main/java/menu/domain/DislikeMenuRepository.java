@@ -19,4 +19,8 @@ public class DislikeMenuRepository {
             menus.put(coach, disLikeMenus);
         }
     }
+
+    public Map<Coach, List<Menu>> menus(){
+        return this.menus;
+    }
 }
