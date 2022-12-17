@@ -5,6 +5,8 @@ import menu.constant.FoodCategory;
 import menu.domain.Category;
 import menu.repository.CategoryRepository;
 
+import java.util.List;
+
 public class CategoryService {
     private static class InstanceHolder {
         private static final CategoryService INSTANCE = new CategoryService();
@@ -21,9 +23,8 @@ public class CategoryService {
     }
 
     public String pickRandomCategory() {
-        return FoodCategory.findFoodByKey(
-                Randoms.pickNumberInList(FoodCategory.findKeys())
-        );
+        int key = Randoms.pickNumberInRange(1,5);
+        return FoodCategory.findFoodByKey(key);
     }
 
     public String pickRandomFoodInCategory(String categoryName) {
