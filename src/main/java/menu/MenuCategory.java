@@ -2,8 +2,6 @@ package menu;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Stack;
 
 public class MenuCategory {

@@ -2,9 +2,7 @@ package menu;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 import java.util.Stack;
 import menu.ui.InputView;
 
