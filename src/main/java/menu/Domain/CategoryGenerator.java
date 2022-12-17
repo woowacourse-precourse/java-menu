@@ -17,20 +17,29 @@ public class CategoryGenerator {
         this.categoryCount = new int[6];
     }
 
-    public List<String> generate() {
+//    public List<String> generate() {
+//        List<String> categoryList = categoryAndFood.getCategoryList();
+//        while (recommandList.size() < 5) {
+//            int number = Randoms.pickNumberInRange(1, 5);
+//            if (validateNumber(number)) {
+//                recommandList.add(categoryList.get(number - 1));
+//                this.categoryCount[number]++;
+//            }
+//        }
+//        return recommandList;
+//    }
+
+    public String generateCategory() {
         List<String> categoryList = categoryAndFood.getCategoryList();
-        while (recommandList.size() < 5) {
-            int number = Randoms.pickNumberInRange(1, 5);
-            if(validateNumber(number)){
-                recommandList.add(categoryList.get(number-1));
-                this.categoryCount[number]++;
-            }
+        int number = Randoms.pickNumberInRange(1, 5);
+        if (validateNumber(number)) {
+            this.categoryCount[number]++;
         }
-        return recommandList;
+        return categoryList.get(number - 1);
     }
 
-    private boolean validateNumber(int num){
-        if(this.categoryCount[num] >= 2){
+    private boolean validateNumber(int num) {
+        if (this.categoryCount[num] >= 2) {
             return false;
         }
         return true;

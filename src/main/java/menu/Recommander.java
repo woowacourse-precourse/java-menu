@@ -26,17 +26,18 @@ public class Recommander {
         this.category = categoryAndFood.getCategoryList();
         this.categoryCount = new int[6];
         this.coachList = new ArrayList<>();
-        this.recommandatedCategory = categoryGenerator.generate();
+        this.recommandatedCategory = new ArrayList<>();
     }
 
     public void run() {
         OutputView.getInvitation();
         getCoaches();
         getAllergy();
-        for (Coach coach:
-             coachList) {
-            coach.setCategory(recommandatedCategory);
-            coach.recommandMenu();
+        for (int i = 0; i < 5; i++) {
+            String generatedCategory = categoryGenerator.generateCategory();
+            recommandatedCategory.add(generatedCategory);
+            setCategory(generatedCategory);
+            recommand(generatedCategory);
         }
         OutputView.printResult();
         OutputView.printCategory("카테고리", recommandatedCategory);
@@ -65,6 +66,20 @@ public class Recommander {
         for (Coach coach:
              coachList) {
             coach.out();
+        }
+    }
+
+    private void setCategory(String category){
+        for (Coach coach:
+             coachList) {
+            coach.setCategory(category);
+        }
+    }
+
+    private void recommand(String category){
+        for (Coach coach:
+             coachList) {
+            coach.recommandMenu(category);
         }
     }
 

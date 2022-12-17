@@ -18,35 +18,32 @@ public class Coach {
         this.name = name;
         this.database = database;
         this.result = new ArrayList<>();
+        this.recommandatedcategory = new ArrayList<>();
     }
 
-    public void setAllergic(List<String> allergy){
+    public void setAllergic(List<String> allergy) {
         this.allergic = allergy;
     }
 
-    public void setCategory(List<String> category){
-        this.recommandatedcategory = category;
+    public void setCategory(String category) {
+        this.recommandatedcategory.add(category);
     }
 
-    public void out(){
+    public void out() {
         OutputView.printCategory(name, result);
     }
 
-    public void recommandMenu(){
-        for (String category:
-             recommandatedcategory) {
-            List<String> menus = database.get(category);
-            result.add(getMenu(menus));
-        }
+    public void recommandMenu(String category) {
+        result.add(getMenu(database.get(category)));
     }
 
-    private String getMenu(List<String> menus){
-        while(true){
-            String menu = Randoms.shuffle(menus).get(0);
-            if(!allergic.contains(menu)){
+    private String getMenu(List<String> m) {
+        while (true) {
+            List<String> result = Randoms.shuffle(m);
+            String menu = result.get(0);
+            if (!this.allergic.contains(menu) || !this.result.contains(menu)) {
                 return menu;
             }
         }
     }
-
 }

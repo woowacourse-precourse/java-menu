@@ -27,7 +27,7 @@ public class CategoryAndFood {
     private void addingList(List<String> line){
         String category = line.get(0);
         categories.add(category);
-        dataBase.put(category,line.subList(1, line.size()-1));
+        dataBase.put(category,line.subList(1, line.size()));
     }
 
     public List<String> getCategoryList(){

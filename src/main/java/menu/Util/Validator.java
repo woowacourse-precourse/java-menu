@@ -21,7 +21,7 @@ public class Validator {
         return allergyList;
     }
 
-//    public static List<String> no  못먹는 음식이 input으로 들어왔을 때
+
 
 
     private static void validateCoachNameSize(List<String> names) {
