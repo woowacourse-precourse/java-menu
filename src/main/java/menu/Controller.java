@@ -1,5 +1,6 @@
 package menu;
 
+import menu.domain.MenuRepository;
 import menu.service.Service;
 import menu.utills.Converter;
 import menu.utills.Validator;
@@ -27,7 +28,7 @@ public class Controller {
     private void setCoach() {
         List<String> coachNames = getCoachNames();
         List<List<String>> hateMenus = getHateMenu(coachNames);
-        service.setCoach(coachNames,hateMenus);
+        service.setCoach(coachNames, hateMenus);
     }
 
     private List<String> getCoachNames() {
@@ -58,11 +59,17 @@ public class Controller {
             List<String> hateMenus = Converter.toListByDelimiter(hatMenuInput);
             Validator.containDuplicate(hateMenus);
             Validator.isInSize(hateMenus, 0, 2);
-//            TODO: 존재하지 않는 메뉴일 경우 예외처리 해줘야함
+            checkExistedMenuName(hateMenus);
             return hateMenus;
         } catch (IllegalArgumentException exception) {
             OutputView.printErrorMessage(exception.getMessage());
             return getHateMenuByCoach(coach);
+        }
+    }
+
+    private void checkExistedMenuName(List<String> hateMenus) {
+        for (String menuName : hateMenus) {
+            MenuRepository.getMenuByName(menuName);
         }
     }
 }
