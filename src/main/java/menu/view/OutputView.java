@@ -1,5 +1,7 @@
 package menu.view;
 
+import menu.category.Category;
+import menu.category.CategoryService;
 import menu.coach.Coach;
 
 import java.util.List;
@@ -15,6 +17,13 @@ public class OutputView {
     private static final String ERROR_MESSAGE_START = "[ERROR] ";
     private static final String ERROR_MESSAGE_SET_COACHES_NAME = "코치는 최소 2명 이상, 5명 이하 입력해야 합니다.\n";
     private static final String ERROR_MESSAGE_SET_COACHES_CANNOT_EATS = "못 먹는 메뉴는 최대 2개까지만 가능하며, 존재하는 메뉴여야 합니다.\n";
+
+    private static final String RECOMMEND_RESULT_MESSAGE_START = "메뉴 추천 결과입니다.\n";
+    private static final String RECOMMEND_RESULT_MESSAGE_WEEK = "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]\n";
+    private static final String RECOMMEND_RESULT_MESSAGE_SEPARATOR = " | ";
+    private static final String RECOMMEND_RESULT_MESSAGE_END = " ]\n";
+    private static final String RECOMMEND_RESULT_MESSAGE_CATEGORY_START = "[ 카테고리 | ";
+    private static final String RECOMMEND_RESULT_MESSAGE_COACH_MENU_START = "[ ";
 
 
     public static void printStartMessage() {
@@ -42,6 +51,33 @@ public class OutputView {
     }
 
     public static void printRecommendResult(List<Coach> coaches) {
+        StringBuilder result = new StringBuilder(RECOMMEND_RESULT_MESSAGE_START);
+        result.append(RECOMMEND_RESULT_MESSAGE_WEEK);
+
+        // 카테고리
+        result.append(RECOMMEND_RESULT_MESSAGE_CATEGORY_START);
+        List<Integer> recommendCategoryNumbers = CategoryService.getRecommendCategoryNumbers();
+        for (int i = 0; i < recommendCategoryNumbers.size(); i++) {
+            result.append(Category.getCategoryNameByNumber(recommendCategoryNumbers.get(i)));
+            if (i != recommendCategoryNumbers.size() - 1) {
+                result.append(RECOMMEND_RESULT_MESSAGE_SEPARATOR);
+            }
+        }
+        result.append(RECOMMEND_RESULT_MESSAGE_END);
+
+        // 코치, 코치별 메뉴
+        for (Coach coach : coaches) {
+            result.append(RECOMMEND_RESULT_MESSAGE_COACH_MENU_START + RECOMMEND_RESULT_MESSAGE_SEPARATOR);
+            List<String> menusRecommended = coach.getMenusRecommended();
+            for (int i = 0; i < menusRecommended.size(); i++) {
+                result.append(menusRecommended.get(i));
+                if (i != menusRecommended.size() - 1) {
+                    result.append(RECOMMEND_RESULT_MESSAGE_SEPARATOR);
+                }
+            }
+        }
+
+        System.out.println(result);
     }
 
 }

@@ -14,13 +14,17 @@ public class CategoryService {
 
     private static List<Integer> recommendCategoryNumbers = new ArrayList<>(); // 주별 카테고리 추천 (숫자로 저장)
 
+    public static List<Integer> getRecommendCategoryNumbers() {
+        return recommendCategoryNumbers;
+    }
+
     // 못 먹는 메뉴 기반 랜덤 추천
     public static void recommendMenu() {
         List<Coach> coaches = CoachService.getCoaches();
         recommendCategories();
         for (Coach coach : coaches) {
             List<String> recommendMenusToCoach = setRecommendMenusToCoach(coach);
-            coach.setRecommendedMenu(recommendMenusToCoach);
+            coach.setMenusRecommended(recommendMenusToCoach);
         }
         OutputView.printRecommendResult(coaches);
     }
