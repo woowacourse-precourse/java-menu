@@ -1,17 +1,17 @@
 package menu.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Coach {
     private final String name;
-    private final List<String> menus;
     private final List<String> cannotEatMenus;
+    private final List<String> eatMenus = new ArrayList<>();
 
-    public Coach(String name, List<String> menus, List<String> cannotEatMenus) {
+    public Coach(String name, List<String> cannotEatMenus) {
         validateName(name);
         validateCannotEatMenus(cannotEatMenus);
         this.name = name;
-        this.menus = menus;
         this.cannotEatMenus = cannotEatMenus;
     }
 
@@ -26,4 +26,6 @@ public class Coach {
             throw new IllegalArgumentException("[ERROR] 코치가 못 먹는 음식은 2개 이상이면 안됩니다.");
         }
     }
+
+
 }
