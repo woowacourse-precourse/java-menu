@@ -23,4 +23,10 @@ public class Coach {
         recommendedFood.add(menu.getMenuName());
         return true;
     }
+
+    @Override
+    public String toString() {
+        String str = String.join(" | ", recommendedFood);
+        return ("[" + name + " | " + str + "]");
+    }
 }
