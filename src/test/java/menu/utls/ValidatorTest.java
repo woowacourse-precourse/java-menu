@@ -2,6 +2,7 @@ package menu.utls;
 
 import menu.message.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -22,4 +23,11 @@ class ValidatorTest {
                 .hasMessage(ErrorMessage.INCORRECT_COACH_NAMES);
     }
 
+    @Test
+    @DisplayName("못 먹는 메뉴가 2개 초과인 경우 에러처리")
+    void validateAllegeMenu() {
+        assertThatThrownBy(() -> validator.validateAllegeMenu("우동,스시,뇨끼"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INCORRECT_ALLEGE_MENU);
+    }
 }
