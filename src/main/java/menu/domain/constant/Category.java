@@ -14,9 +14,9 @@ public enum Category {
     ASIAN(4, "아시안", Arrays.asList("팟타이", "카오 팟", "나시고렝", "파인애플 볶음밥", "쌀국수", "똠얌꿍", "반미", "월남쌈", "분짜")),
     WESTERN(5, "양식", Arrays.asList("라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니"));
 
-    private int number;
-    private String name;
-    private List<String> menus;
+    private final int number;
+    private final String name;
+    private final List<String> menus;
 
     Category(int number, String name, List<String> menus) {
         this.number = number;
@@ -29,6 +29,7 @@ public enum Category {
         for (Category category : Category.values()) {
             if (category.haveFood(food)) {
                 haveFood = true;
+                break;
             }
         }
         if (!haveFood) {
@@ -49,6 +50,7 @@ public enum Category {
     }
 
     private boolean isNumberOf(int number) {
+        System.out.println(number);
         return this.number == number;
     }
 }
