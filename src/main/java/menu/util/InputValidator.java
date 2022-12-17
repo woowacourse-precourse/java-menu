@@ -17,7 +17,6 @@ public class InputValidator {
     }
 
     public static void checkFoodNames(List<String> foodNames) {
-        checkPattern(foodNames);
         checkFoodSize(foodNames);
     }
 
