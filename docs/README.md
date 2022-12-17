@@ -23,6 +23,7 @@
   - [x] 각 코치의 이름이 2글자 미만, 4글자 초과할 경우 IllegalArgumentException 발생
   - [x] 중복되는 코치의 이름이 있다면 IllegalArgumentException 발생
 - [x] 코치가 먹지 못하는 음식을 ,로 구분지어서 입력 받는다.
+  - [ ] 등록된 메뉴에 없는 음식을 입력 받으면 IllegalArgumentException 발생
   - [ ] 먹지 못하는 메뉴가 2개를 초과할 경우 IllegalArgumentException 발생
 
 ### 메뉴 추천
