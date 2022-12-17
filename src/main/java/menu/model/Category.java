@@ -23,4 +23,11 @@ public enum Category {
         this.menus = menus;
     }
 
+    public static Category from(int number){
+        return Arrays.stream(Category.values())
+                .filter(category -> category.num == number)
+                .findFirst()
+                .get();
+    }
+
 }

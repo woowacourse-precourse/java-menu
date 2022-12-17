@@ -9,7 +9,7 @@ public class Coach {
     private String name;
     private List<Menu> nonMenus;
 
-    private Map<Category,Integer> eatCategory;
+    private Map<Category, Integer> eatCategory;
     private List<Menu> eatMenu;
 
     public Coach(String name) {
@@ -25,6 +25,16 @@ public class Coach {
     public void setNonMenus(List<Menu> nonMenus) {
         this.nonMenus = nonMenus;
     }
+
+    public void countCategory(Category category){
+        int count = eatCategory.get(category);
+        eatCategory.put(category, count + 1);
+    }
+    public boolean isFineCategory(Category category){
+        int count = eatCategory.get(category);
+        return count>2;
+    }
+
 
     public void validateNameSize(String name){
         if(isCorrectNameSize(name)){
