@@ -29,7 +29,6 @@ public class MenuRecommendController {
     }
 
     private void addDayMenuOfCoaches(List<Coach> coaches) {
-
         Category category = getValidCategory(existCategories);
         existCategories.add(category);
 
@@ -73,9 +72,9 @@ public class MenuRecommendController {
 
     private Category getRandomCategory() {
         Category category = null;
-        try{
+        try {
             category = Category.findByNumber(Randoms.pickNumberInRange(1, 5));
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             getRandomCategory();
         }

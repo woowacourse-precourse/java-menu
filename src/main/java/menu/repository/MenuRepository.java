@@ -5,7 +5,7 @@ import java.util.List;
 import menu.domain.Menu;
 
 public class MenuRepository {
-    private static List<Menu> menus = new ArrayList<>();
+    private static final List<Menu> menus = new ArrayList<>();
 
     public static void add(Menu menu) {
         menus.add(menu);

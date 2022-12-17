@@ -6,7 +6,7 @@ import java.util.List;
 import menu.domain.Coach;
 
 public class CoachRepository {
-    private static List<Coach> coaches = new ArrayList<>();
+    private static final List<Coach> coaches = new ArrayList<>();
 
     public static void addAll(List<Coach> newCoaches) {
         coaches.addAll(newCoaches);

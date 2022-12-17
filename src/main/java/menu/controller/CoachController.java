@@ -8,10 +8,20 @@ import menu.domain.Coach;
 import menu.domain.Menu;
 import menu.repository.CoachRepository;
 import menu.repository.MenuRepository;
+import menu.validator.CoachDuplicateValidator;
+import menu.validator.CoachGroupSizeValidator;
+import menu.validator.CoachNameSizeValidator;
+import menu.validator.NoEatableMenuSizeValidator;
+import menu.validator.SizeValidator;
 import menu.view.InputView;
 import menu.view.OutputView;
 
 public class CoachController {
+    private static final String BLANK = "";
+    private static final int FIRST_INDEX = 0;
+    private static final String COACH_DELIMITER = ",";
+    private static final String NO_EATABLE_MENU_DELIMITER = ",";
+
 
     public void addCoaches() {
         addCoachesByName();
@@ -20,16 +30,21 @@ public class CoachController {
 
     private void addCoachesByName() {
         List<Coach> coaches = new ArrayList<>();
-        try{
+        try {
             coaches = createCoachesByNames(getParsedCoachNames());
-            if (coaches.size() < 2 || coaches.size() > 5) {//TODO validate 분리 필요, 매직넘버제거
-                throw new IllegalArgumentException("[ERROR] 코치는 최소 2명, 최대 5명끼리 식사합니다.");
-            }
-        } catch (IllegalArgumentException e){
+            validate(coaches);
+        } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             addCoachesByName();
         }
         CoachRepository.addAll(coaches);
+    }
+
+    private void validate(List<Coach> coaches) {
+        SizeValidator coachGroupSizeValidator = new CoachGroupSizeValidator();
+        coachGroupSizeValidator.validate(coaches.size());
+        CoachDuplicateValidator coachDuplicateValidator = new CoachDuplicateValidator();
+        coachDuplicateValidator.validate(coaches);
     }
 
     private List<Coach> createCoachesByNames(List<String> names) {
@@ -42,14 +57,13 @@ public class CoachController {
     }
 
     private void validateName(String name) {
-        if (name.length() < 2 || name.length() > 4) { //TODO validate 분리 필요, 매직넘버제거
-            throw new IllegalArgumentException("[ERROR] 코치의 이름은 2글자이상, 4글자이하여야합니다.");
-        }
+        SizeValidator coachNameSizeValidator = new CoachNameSizeValidator();
+        coachNameSizeValidator.validate(name.length());
     }
 
     private List<String> getParsedCoachNames() {
         String names = InputView.inputCoachNames();
-        return Arrays.stream(names.split(",")).collect(Collectors.toList());
+        return Arrays.stream(names.split(COACH_DELIMITER)).collect(Collectors.toList());
     }
 
     private void addNoEatableMenuOfCoaches(List<Coach> coaches) {
@@ -59,7 +73,7 @@ public class CoachController {
     }
 
     private void addNoEatableMenuOfCoach(Coach coach) {
-        try{
+        try {
             String inputNoEatableMenus = InputView.inputNoEatableMenus(coach.getName());
             List<Menu> parsedMenus = getParsedNoEatableMenu(inputNoEatableMenus);
             if (parsedMenus == null) {
@@ -68,26 +82,26 @@ public class CoachController {
             coach.addNoEatableMenuAll(parsedMenus);
             // update coach
             CoachRepository.update(CoachRepository.getIndex(coach), coach);
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             addNoEatableMenuOfCoach(coach);
         }
     }
 
     private List<Menu> getParsedNoEatableMenu(String inputNoEatableMenus) { //TODO Parsing util클래스 생성
-        List<String> parsedNames = Arrays.stream(inputNoEatableMenus.split(",")).collect(Collectors.toList());
+        List<String> parsedNames = Arrays.stream(inputNoEatableMenus.split(NO_EATABLE_MENU_DELIMITER))
+                .collect(Collectors.toList());
         validateNoEatableMenuSize(parsedNames.size());
-        if (parsedNames.get(0).equals("")) {
+        if (parsedNames.get(FIRST_INDEX).equals(BLANK)) {
             return null;
         }
-        return Arrays.stream(inputNoEatableMenus.split(",")).map(parsedName -> {
+        return parsedNames.stream().map(parsedName -> {
             return MenuRepository.findByName(parsedName);
         }).collect(Collectors.toList());
     }
 
     private void validateNoEatableMenuSize(int size) {
-        if (size > 2) {
-            throw new IllegalArgumentException("[ERROR] 코치당 먹을 수 없는 메뉴는 최대 2개까지 입력할 수 있습니다.");
-        }
+        SizeValidator noEatableMenuSizeValidator = new NoEatableMenuSizeValidator();
+        noEatableMenuSizeValidator.validate(size);
     }
 }
