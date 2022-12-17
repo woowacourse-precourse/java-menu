@@ -25,6 +25,10 @@ public class OutputView {
         System.out.println(CATEGORY_DAY_MESSAGE);
     }
 
+    public static void printResult(String result) {
+        System.out.println(result);
+    }
+
     public static void printEndMessage() {
         System.out.println(END_MESSAGE);
     }

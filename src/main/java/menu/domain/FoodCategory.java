@@ -22,4 +22,18 @@ public enum FoodCategory {
     public String getCategoryName() {
         return categoryName;
     }
+    public static FoodCategory categoryNumberToFoodCategory(int num) {
+        if(num == 1) {
+            return FoodCategory.JAPANESE;
+        } else if(num == 2) {
+            return FoodCategory.KOREAN;
+        } else if(num == 3) {
+            return FoodCategory.CHINESE;
+        } else if(num == 4) {
+            return FoodCategory.ASIAN;
+        } else if(num == 5) {
+            return FoodCategory.ITALIAN;
+        }
+        return null;
+    }
 }

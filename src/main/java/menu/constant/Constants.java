@@ -11,8 +11,7 @@ public class Constants {
 
     public static final String START_BRACKET = "[";
     public static final String END_BRACKET = "]";
-    public static final String STICK = "|";
-    public static final String THREE_SPACES = "   ";
+    public static final String STICK = " | ";
 
     public static final String ERROR_MESSAGE = "[ERROR]";
     public static final String COACH_INVALID_RANGE_ERROR_MESSAGE_OVER_TWO = " 코치는 최소 2명 이상 입력해야 합니다.";

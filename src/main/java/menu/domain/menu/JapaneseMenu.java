@@ -4,9 +4,10 @@ import menu.domain.FoodCategory;
 
 import java.util.List;
 
-public class JapaneseMenu {
+public class JapaneseMenu implements SpecificMenu {
 
     public FoodCategory foodCategory;
+
     public List<String> japaneseFoods;
 
     public JapaneseMenu() {
@@ -19,5 +20,9 @@ public class JapaneseMenu {
             return true;
         }
         return false;
+    }
+
+    public List<String> getFoodsList() {
+        return japaneseFoods;
     }
 }
