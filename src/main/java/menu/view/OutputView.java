@@ -12,6 +12,15 @@ public class OutputView {
         System.out.println();
     }
 
+    public void printAskingCoachNames() {
+        System.out.println(ViewConstants.ASKING_NAME);
+    }
+
+    public void printAskingInedibleMenus(String coachName) {
+        System.out.printf(ViewConstants.ASKING_INEDIBLE_MENU, coachName);
+        System.out.println();
+    }
+
     public void printResult(List<String> previousCategories, List<Coach> coaches) {
         System.out.println(ViewConstants.RESULT);
         System.out.println(ViewConstants.DAYS);
