@@ -13,6 +13,8 @@ public enum Day {
     THURSDAY("목요일", 4),
     FRI("금요일", 5);
 
+    private static final int CATEGORY_FREQUENCY_UPPER_BOUNDS = 2;
+    private static final int FIRST_COLUMN_INDEX = 0;
     private final String name;
     private final int seq;
     private Category category = null;
@@ -31,7 +33,7 @@ public enum Day {
     public static boolean isAvailableCategory(Category target) {
         return inOrder().stream()
                 .filter(day -> Objects.equals(day.getCategory(), target))
-                .count() < 2;
+                .count() < CATEGORY_FREQUENCY_UPPER_BOUNDS;
     }
 
     public static List<List<String>> getCategoriesResult() {
@@ -42,7 +44,7 @@ public enum Day {
         List<String> days = inOrder().stream()
                 .map(day -> day.getName())
                 .collect(Collectors.toList());
-        days.add(0, "구분");
+        days.add(FIRST_COLUMN_INDEX, "구분");
         return days;
     }
 
@@ -51,7 +53,7 @@ public enum Day {
                 .map(day -> day.getCategory())
                 .map(Category::getName)
                 .collect(Collectors.toList());
-        categories.add(0, "카테고리");
+        categories.add(FIRST_COLUMN_INDEX, "카테고리");
         return categories;
     }
 

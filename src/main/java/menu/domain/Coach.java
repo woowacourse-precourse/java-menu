@@ -9,6 +9,7 @@ public class Coach {
     public static final int NAME_LENGTH_LOWER_BOUNDS = 2;
     public static final int NAME_LENGTH_UPPER_BOUNDS = 4;
     public static final int NO_EAT_NUMBER_UPPER_BOUNDS = 2;
+    private static final int FIRST_COLUMN_INDEX = 0;
     private final String name;
     private final Menus noEat;
     private final Menus eaten;
@@ -36,7 +37,7 @@ public class Coach {
 
     public List<String> getRecommendationResult() {
         List<String> result = new ArrayList<>(eaten.getNames());
-        result.add(0, name);
+        result.add(FIRST_COLUMN_INDEX, name);
         return Collections.unmodifiableList(result);
     }
 }
