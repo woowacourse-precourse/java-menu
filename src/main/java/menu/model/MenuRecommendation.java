@@ -29,7 +29,7 @@ public class MenuRecommendation {
         String randomMenu;
         while (true) {
             randomMenu = Randoms.shuffle(menus).get(0);
-            if (!coach.availableMenu(randomMenu))
+            if (coach.availableMenu(randomMenu))
                 break;
         }
 

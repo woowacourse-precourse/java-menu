@@ -21,7 +21,7 @@ public class Coach {
     }
 
     public boolean availableMenu(String menu){
-        return !hasMenu(menu) && isUnwantedMenu(menu);
+        return !hasMenu(menu) && !isUnwantedMenu(menu);
     }
 
     public boolean hasMenu(String menu){
