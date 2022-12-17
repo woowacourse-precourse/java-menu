@@ -50,6 +50,26 @@ public class InputTest extends NsTest {
         });
     }
 
+    @DisplayName("못 먹는 메뉴가 없는 메뉴일 때")
+    @ValueSource(strings = {"초코파이", "빵"})
+    @ParameterizedTest
+    void getInvalidFoodName(String input) {
+        assertSimpleTest(() -> {
+            runException("톰톰,뱅뱅", input);
+            assertThat(output()).contains(InputException.INVALID_MENU.getExceptionMessage());
+        });
+    }
+
+    @DisplayName("못 먹는 메뉴 개수가 3개 이상일 때")
+    @ValueSource(strings = {"김치찌개,쌈밥,우동", "김치찌개,쌈밥,우동,제육볶음"})
+    @ParameterizedTest
+    void getMoreFoodName(String input) {
+        assertSimpleTest(() -> {
+            runException("톰톰,뱅뱅", input);
+            assertThat(output()).contains(InputException.OUT_OF_RANGE_MENU_COUNT.getExceptionMessage());
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
