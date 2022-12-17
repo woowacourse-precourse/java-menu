@@ -14,7 +14,7 @@ public class Controller {
         OutputView.printStart();
         saveMember();
         saveMenu();
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 5; i++) {
             recommendMenu();
         }
         OutputView.printResult(menuService.getWeekCategory(),menuService.getMembers());
