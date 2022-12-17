@@ -13,12 +13,12 @@ public class OutputView {
     }
 
     //메뉴 추천 결과
-    public static void printResult(A a) {
-        System.out.println(RESULT_MENU_RECOMMEND);
-        System.out.println(DAYS);
-        System.out.println(a);
-        printBreak();
-    }
+//    public static void printResult(A a) {
+//        System.out.println(RESULT_MENU_RECOMMEND);
+//        System.out.println(DAYS);
+//        System.out.println(a);
+//        printBreak();
+//    }
 
     //추천 완료 메세지 출력
     public static void printFinish() {
