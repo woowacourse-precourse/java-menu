@@ -43,6 +43,7 @@ public class MenuRecommendSystem {
      * 코치 이름 입력받기*
      */
     private void makeCoaches() {
+        OutputView.printPromptForCoachNameInput();
         coaches = createCoachesByNames();
     }
 
@@ -51,7 +52,7 @@ public class MenuRecommendSystem {
      * @param coach: 이름으로 생성한 코치 한 명
      */
     private void addMenuCannotToEat(Coach coach) {
-        OutputView.setPromptForMenuCannotToEatInput(coach.getName());
+        OutputView.printPromptForMenuCannotToEatInput(coach.getName());
         List<String> menuCannotEat = InputView.readMenuCoachCannotEat();
         for (String menu : menuCannotEat) {
             coach.addMenuCannotEat(menu);
@@ -66,7 +67,7 @@ public class MenuRecommendSystem {
         if (coachNameList.size() < 2) {
             throw new IllegalArgumentException(LESS_THAN_MIN_VALUE);
         }
-        return InputView.readCoachNameList().stream().map(Coach::new).collect(Collectors.toList());
+        return coachNameList.stream().map(Coach::new).collect(Collectors.toList());
     }
 
     /**
