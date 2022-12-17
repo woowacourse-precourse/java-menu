@@ -6,12 +6,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Recommendation {
+    public static final String ALREADY_FULLY_RECOMMENDED = "이미 모든 요일의 추천이 완료되었습니다.";
     public List<Category> categories = new ArrayList<>();
 
     public Recommendation() {
-        for (int i = 0; i < 5; i++) {
-            Category categoryForDay = recommendCategoryForDay();
-            categories.add(categoryForDay);
+    }
+
+    public Category addCategory() {
+        preventAddingIfCategoryIsFull();
+        Category categoryForDay = recommendCategoryForDay();
+        categories.add(categoryForDay);
+        return categoryForDay;
+    }
+
+    private void preventAddingIfCategoryIsFull() {
+        if (categories.size()>=5) {
+            throw new IllegalStateException(ALREADY_FULLY_RECOMMENDED);
         }
     }
 

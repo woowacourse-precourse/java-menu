@@ -101,12 +101,17 @@ public class MenuRecommendSystem {
      */
     private void recommend() {
         recommendation = new Recommendation();
-
         Set<String> cannotToEat = getTotalMenuCoachCannotToEat();
-        for(Category category: recommendation.categories) {
-            for(Coach coach: coaches) {
-                coach.recommendMenu(category, cannotToEat);
-            }
+
+        for(int i = 0; i < 5; i++) {
+            recommendForADay(recommendation, cannotToEat);
+        }
+    }
+
+    private void recommendForADay(Recommendation recommendation, Set<String> cannotToEat) {
+        Category recommendedCategory = recommendation.addCategory();
+        for(Coach coach: coaches) {
+            coach.recommendMenu(recommendedCategory, cannotToEat);
         }
     }
 
