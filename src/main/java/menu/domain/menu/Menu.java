@@ -1,12 +1,16 @@
 package menu.domain.menu;
 
+import menu.domain.category.Category;
+
 import java.util.Objects;
 
 public class Menu {
+    private final Category category;
     private final String menuName;
     
-    public Menu(String menuName) {
+    public Menu(String menuName, Category category) {
         this.menuName = menuName;
+        this.category = category;
     }
     
     @Override
@@ -14,18 +18,19 @@ public class Menu {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Menu menu = (Menu) o;
-        return Objects.equals(menuName, menu.menuName);
+        return category == menu.category && Objects.equals(menuName, menu.menuName);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(menuName);
+        return Objects.hash(category, menuName);
     }
     
     @Override
     public String toString() {
         return "Menu{" +
-                "menuName='" + menuName + '\'' +
+                "category=" + category +
+                ", menuName='" + menuName + '\'' +
                 '}';
     }
 }

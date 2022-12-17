@@ -24,7 +24,7 @@ public class MenuCreator {
     
     public static List<Menu> from(Category category) {
         return Randoms.shuffle(parseMenus(category)).stream()
-                .map(Menu::new)
+                .map(menuName -> new Menu(menuName, category))
                 .collect(Collectors.toUnmodifiableList());
     }
     
