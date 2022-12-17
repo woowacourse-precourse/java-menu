@@ -49,7 +49,6 @@ public class OutputView {
 
     private String getRecommendation(People people) {
         StringBuilder result = new StringBuilder();
-
         for (Person person : people) {
             StringJoiner joiner = new StringJoiner(DELIMITER, PREFIX, SUFFIX);
             joiner.add(person.getName());
@@ -94,5 +93,4 @@ public class OutputView {
                 "%s\n" +
                 "\n추천을 완료했습니다.";
     }
-
 }

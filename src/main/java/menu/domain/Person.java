@@ -77,5 +77,4 @@ public class Person {
         private static final String INVALID_INPUT_FORMAT = "올바른 입력이 아닙니다. 쉽표로 구분하여 입력해주세요";
         private static final String INVALID_UNAVAILABLE_COUNT = String.format("최대 %d개의 못 먹는 메뉴만 입력할 수 있습니다.", UNAVAILABLE_MENU_COUNT_LIMIT);
     }
-
 }

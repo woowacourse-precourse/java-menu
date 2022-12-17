@@ -7,11 +7,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class MenuRecommendation {
 
     public static final String DELIMITER = ",";
     public static final String REGEX = ".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*";
+    public static final int COUNT_LIMIT = 2;
 
     private static People people;
     private List<String> shuffledCategories;
@@ -28,7 +30,7 @@ public class MenuRecommendation {
         String[] split = names.split(DELIMITER);
         for (String name : split) {
             if (!name.matches(REGEX)) {
-                throw new IllegalArgumentException("올바른 입력이 아닙니다. 쉽표로 구분하여 입력해주세요");
+                throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_FORMAT);
             }
         }
         return split;
@@ -49,14 +51,9 @@ public class MenuRecommendation {
         return people;
     }
 
-    public List<String> getShuffledCategories() {
-        return shuffledCategories;
-    }
-
     private List<String> calculateShuffledCategories(CategoryRandomGenerator generator) {
-
         List<String> result = new ArrayList<>();
-        for (Day value : Day.values()) {
+        for (int index = 0; index < Day.values().length; index++) {
             String generated = generator.generate();
             while (!result.isEmpty() && !validateCount(result, generated)) {
                 generated = generator.generate();
@@ -66,9 +63,17 @@ public class MenuRecommendation {
         return result;
     }
 
+    public List<String> getShuffledCategories() {
+        return shuffledCategories;
+    }
+
     private boolean validateCount(List<String> result, String generated) {
         return result.stream()
                 .filter(m -> m.equals(generated))
-                .count() <= 2;
+                .count() <= COUNT_LIMIT;
+    }
+
+    private static final class ErrorMessage {
+        private static final String INVALID_INPUT_FORMAT = "올바른 입력이 아닙니다. 쉽표로 구분하여 입력해주세요";
     }
 }
