@@ -37,4 +37,10 @@ public class MenuRepository {
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 이름의 메뉴를 찾을 수 없습니다."));
     }
+
+    public List<Menu> findByCategory(Category category) {
+        return menus.stream()
+                .filter(menu -> menu.isCategoryMath(category))
+                .collect(Collectors.toList());
+    }
 }

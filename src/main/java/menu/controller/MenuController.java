@@ -4,6 +4,7 @@ import java.util.List;
 import menu.domain.Couch;
 import menu.dto.CouchHateMenusRequest;
 import menu.dto.CouchNamesRequest;
+import menu.dto.RecommendMenusResponse;
 import menu.service.MenuService;
 import menu.view.MenuView;
 
@@ -25,5 +26,7 @@ public class MenuController {
             CouchHateMenusRequest couchHateMenusRequest = menuView.receiveCouchHateMenus(couch.getName());
             menuService.addHateMenusForCouch(couch, couchHateMenusRequest);
         }
+        RecommendMenusResponse recommendMenus = menuService.createRecommendMenus();
+        menuView.printResultMessage(recommendMenus);
     }
 }
