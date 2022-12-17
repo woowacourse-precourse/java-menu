@@ -2,6 +2,10 @@ package menu;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        Category category = new Category();
+
+        for (String item : category.Choose()) {
+            System.out.print(item + " ");
+        }
     }
 }
