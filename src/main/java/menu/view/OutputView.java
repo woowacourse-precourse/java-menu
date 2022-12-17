@@ -17,11 +17,17 @@ public class OutputView {
     public void printMenus(List<Category> categories, List<Coach> coaches) {
         System.out.println("메뉴 추천 결과입니다.");
         printElements("구분", List.of("월요일", "화요일", "수요일", "목요일", "금요일"));
-        printElements("카테고리", categories.stream().map(Category::getName).collect(Collectors.toList()));
+        printElements("카테고리", getCategoryNames(categories));
         for (Coach coach : coaches) {
             printElements(coach.getName(), getFoodNamesWithBlank(coach.getRecommendedFoods()));
         }
         System.out.println("추천을 완료했습니다.");
+    }
+
+    private List<String> getCategoryNames(List<Category> categories) {
+        return categories.stream()
+                .map(Category::getName)
+                .collect(Collectors.toList());
     }
 
     private List<String> getFoodNamesWithBlank(List<Food> foods) {
