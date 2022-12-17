@@ -9,7 +9,7 @@ import menu.dto.CoachNamesDto;
 public class InputView {
     private static final String DELIMITER = ",";
 
-    public static CoachNamesDto readGroup() {
+    public static CoachNamesDto readCoachNames() {
         //안내 문구 출력
         String names = Console.readLine();
         List<String> coaches = Arrays.stream(names.split(DELIMITER))
