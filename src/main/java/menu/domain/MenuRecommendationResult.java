@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 public class MenuRecommendationResult {
-    //    private Map<Day, Map<String, String>> recommendationResult = new HashMap();
     private Map<String, Map<Day, String>> recommendationResult = new HashMap();
     private Map<Day, Categories> categoriesResult = new HashMap<>();
 
@@ -27,24 +26,18 @@ public class MenuRecommendationResult {
         for (Categories categories : categoriesResult.values()) {
             if (categories.equals(category)) count++;
         }
-        return count > 2;
+        return count >= 2;
     }
 
-    public void menuRecommend(Day day, String coachName) {
-        numberGenerator randomNumberGenerator = new RandomNumberGenerator();
-        int index = randomNumberGenerator.generate();
-        Categories category = Categories.getCategoryBYIndex(index);
+    // 코치 1명의 한 요일 메뉴 추천 - 정해진 카테고리 내에서 추천
+    public String menuRecommend(Day day, String coachName) {
 
         String shuffledMenu;
         while (true) {
-            shuffledMenu = Categories.getShuffledMenu(index);
-            if (validateHateMenu(coachName, shuffledMenu)) break;
+            shuffledMenu = Categories.getShuffledMenu(categoriesResult.get(day));
+            if (validateHateMenu(coachName, shuffledMenu) || !validateDuplicateMenu(coachName, shuffledMenu)) break;
         }
-
-        HashMap<Day, String> result = new HashMap<>();
-        result.put(day, shuffledMenu);
-
-        recommendationResult.put(coachName, result);
+        return shuffledMenu;
     }
 
     private boolean validateHateMenu(String coachName, String shuffledMenu) {
@@ -53,6 +46,16 @@ public class MenuRecommendationResult {
             return false;
         }
         return true;
+    }
+
+    private boolean validateDuplicateMenu(String coachName, String shuffledMenu) {
+        Map<Day, String> result = recommendationResult.get(coachName);
+        // true는 가지고 있는거니깐 중복
+        return result.containsValue(shuffledMenu);
+    }
+
+    public void setRecommendationResult(String coachName, HashMap<Day, String> result) {
+        recommendationResult.put(coachName, result);
     }
 
     public Map<String, Map<Day, String>> getRecommendationResult() {

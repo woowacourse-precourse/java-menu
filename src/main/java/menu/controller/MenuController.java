@@ -6,6 +6,7 @@ import menu.domain.MenuRecommendationResult;
 import menu.view.InputView;
 import menu.view.OutputView;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -19,9 +20,6 @@ public class MenuController {
 
         recommendCoachMenu(menuRecommendationResult);
 
-        System.out.println(menuRecommendationResult.toString());
-        System.out.println(CoachRepository.getCoachHateMenu().toString());
-
         OutputView.printRecommendationResult(menuRecommendationResult);
         OutputView.printSuccessMessage();
     }
@@ -33,16 +31,20 @@ public class MenuController {
         }
     }
 
+    // 코치 한 명씩 메뉴 추천 받음
     private void recommendCoachMenu(MenuRecommendationResult menuRecommendationResult) {
         for (String coachName : CoachRepository.getCoachNames()) {
             recommendationMenu(menuRecommendationResult, coachName);
         }
     }
 
+    // 1명 코치 기준 : 월화수목금 추천받은거 result에 저장해서 Result객체에 저장
     private void recommendationMenu(MenuRecommendationResult menuRecommendationResult, String coachName) {
+        HashMap<Day, String> result = new HashMap<>();
         for (Day day : Day.values()) {
-            menuRecommendationResult.menuRecommend(day, coachName);
+            result.put(day, menuRecommendationResult.menuRecommend(day, coachName));
         }
+        menuRecommendationResult.setRecommendationResult(coachName, result);
     }
 
     private void setUp() {
