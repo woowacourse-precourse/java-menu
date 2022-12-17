@@ -24,15 +24,18 @@ public class OutputView {
         System.out.println("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
         printCategories(categories);
         printFoodOfCrews(crews);
+        System.out.println("\n추천을 완료했습니다.");
     }
 
     public void printCategories(Categories categories) {
-        String printCategoryMap = "[ 카테고리 " + categories.toString() + " ]";
+        String printCategoryMap = "[ 카테고리 " + categories.toString() + "]";
         System.out.println(printCategoryMap);
     }
 
     public void printFoodOfCrews(Crews crews) {
-
+        for (Crew crew : crews.getCrews()) {
+            System.out.println("[ " + crew.getName() + " " + crew.toString() + "]");
+        }
     }
 
     public static void printError(String message) {
