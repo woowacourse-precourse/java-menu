@@ -24,4 +24,8 @@ public class OutputView {
         String menuMessage = String.join(barDelimeter, recommendedMenus);
         System.out.println("[ " + coachName + barDelimeter + menuMessage + " ]");
     }
+
+    public void showEndRecommender() {
+        System.out.println(endLunchRecommenderMessage);
+    }
 }
