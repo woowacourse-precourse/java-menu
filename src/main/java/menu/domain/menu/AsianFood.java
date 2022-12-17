@@ -1,5 +1,11 @@
 package menu.domain.menu;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import javax.naming.Name;
+
 public enum AsianFood {
     팟타이("팟타이"),
     카오_팟("카오 팟"),
@@ -9,11 +15,25 @@ public enum AsianFood {
     똠얌꿍("똠얌꿍"),
     반미("반미"),
     월남쌈("월남쌈"),
-    분짜("분짜");
+    분짜("분짜"),
+    any("any");
 
     private final String name;
 
     AsianFood(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<String> getAllFoods() {
+        List<String> foodNames = new ArrayList<>();
+        Arrays.stream(values())
+                .map(i -> foodNames.add(i.getName()))
+                .collect(Collectors.toList());
+        foodNames.remove(any.getName());
+        return foodNames;
     }
 }
