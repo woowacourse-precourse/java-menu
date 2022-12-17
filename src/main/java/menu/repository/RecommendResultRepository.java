@@ -1,6 +1,5 @@
 package menu.repository;
 
-import menu.model.Menu;
 import menu.model.RecommendResult;
 
 import java.util.ArrayList;

@@ -49,6 +49,7 @@ public class OutputView {
         printDivision(recommendResults);
         printCategory(recommendResults);
         printCoachAndMenu(recommendResults, coaches);
+        System.out.println(); // 마지막 빈칸
     }
 
     private static void printDivision(List<RecommendResult> recommendResults) {
