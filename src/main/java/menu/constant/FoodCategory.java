@@ -1,6 +1,8 @@
 package menu.constant;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public enum FoodCategory {
     JAPAN(1, "일식"),
@@ -23,6 +25,12 @@ public enum FoodCategory {
                 .findAny()
                 .orElseThrow()
                 .getFoodCategory();
+    }
+
+    public static List<Integer> findKeys() {
+        return Arrays.stream(FoodCategory.values())
+                .map(FoodCategory::getKey)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public int getKey() {
