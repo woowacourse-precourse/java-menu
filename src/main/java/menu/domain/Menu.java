@@ -10,6 +10,10 @@ public class Menu {
         this.name = name;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
     public String getName() {
         return name;
     }

@@ -2,6 +2,8 @@ package menu.domain.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import menu.domain.Category;
 import menu.domain.Menu;
 import menu.utils.ExceptionType;
 
@@ -35,5 +37,11 @@ public class MenuRepository {
             return true;
         }
         return false;
+    }
+
+    public static List<Menu> getMenusByCategory(Category category) {
+        return menuRepository.stream()
+                .filter(menu -> menu.getCategory().equals(category))
+                .collect(Collectors.toList());
     }
 }
