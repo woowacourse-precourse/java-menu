@@ -28,7 +28,7 @@ public class NameValidation {
     private static void isInRangeOfNameSize(List<String> inputs) {
         for(String input : inputs){
             if (input.length() < 2 || input.length() > 4) {
-                System.out.println("2~4글자만 입력 가능");
+                System.out.println("[ERROR] 이름은 2~4글자까지 입력 가능합니다.");
                 throw new IllegalArgumentException();
             }
         }
@@ -36,7 +36,7 @@ public class NameValidation {
 
     private static void isInRangeOfPeopleSize(List<String> input) {
         if (input.size() < 2 || input.size() > 5) {
-            System.out.println("2~5명만 입력 가능");
+            System.out.println("[ERROR] 이름은 2~5명만 입력 가능합니다.");
             throw new IllegalArgumentException();
         }
     }

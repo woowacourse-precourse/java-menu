@@ -37,7 +37,7 @@ public class MenuValidation {
             }
         }
         if(!isIn){
-            System.out.println("메뉴안에 없음");
+            System.out.println("[ERROR] 존재하지 않는 메뉴입니다.");
             throw new IllegalArgumentException();
         }
     }
@@ -51,7 +51,7 @@ public class MenuValidation {
     }
     private static void isInRange(List<String> input) {
         if (input.size() > 3) {
-            System.out.println("2개까지만 입력 가능");
+            System.out.println("[ERROR] 메뉴는 2개까지만 입력 가능합니다.");
             throw new IllegalArgumentException();
         }
     }
