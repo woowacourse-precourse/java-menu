@@ -22,15 +22,11 @@ public class Coach {
     }
 
     public String getName() {
-        // TODO 구현 필요
-
-        return "";
+        return name;
     }
 
     public List<Menu> getHatingMenuList() {
-        // TODO 구현 필요
-
-        return new ArrayList<>();
+        return new ArrayList<>(hatingMenuList);
     }
 
     public void addHatingMenu(Menu hatingMenu) {
