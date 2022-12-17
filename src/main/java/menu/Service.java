@@ -35,7 +35,12 @@ public class Service {
 	}
 
 
-
+	public void byDayOfTheWeekSelectCategory() {
+		while (countSelect() != 5) {
+			String selectCategory = category.getCategory(Randoms.pickNumberInRange(1, 5));
+			judgmentCotegotyAdd(selectCategory);
+		}
+	}
 
 	public void judgmentCotegotyAdd(String selectCategory) {
 		if (countCotegory.get(selectCategory) < 2)
