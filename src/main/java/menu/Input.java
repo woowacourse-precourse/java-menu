@@ -2,15 +2,19 @@ package menu;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Input {
 
     private final static String DELiMITER = ",";
+    private final static int COACH_MAX_AMOUNT = 5;
+    private final static int COACH_MIN_AMOUNT = 2;
+    private final static int HATE_MAX_AMOUNT = 2;
+    private final static int NAME_MAX_LENGTH = 4;
+    private final static int NAME_MIN_LENGTH = 2;
 
     public static String[] inputName() {
+        System.out.println(Output.INPUT_COACH);
         String input = Console.readLine();
         validateCoach(input);
         return input.split(DELiMITER);
@@ -18,11 +22,12 @@ public class Input {
 
     public static void validateCoach(String input) {
         String[] split = input.split(DELiMITER);
-        if (split.length > 5 || split.length < 2) {
+        validateDuplicate(split);
+        if (split.length > COACH_MAX_AMOUNT || split.length < COACH_MIN_AMOUNT) {
             throw new IllegalArgumentException(ErrorMessage.COACH_AMOUNT_RANGE.toString());
         }
         for (String coachName : split) {
-            if (coachName.length() > 4 || coachName.length() < 2) {
+            if (coachName.length() > NAME_MAX_LENGTH || coachName.length() < NAME_MIN_LENGTH) {
                 throw new IllegalArgumentException(ErrorMessage.COACH_AMOUNT_RANGE.toString());
             }
         }
@@ -37,7 +42,8 @@ public class Input {
 
     public static void validateHate(String input) {
         String[] split = input.split(DELiMITER);
-        if (split.length > 2) {
+        validateDuplicate(split);
+        if (split.length > HATE_MAX_AMOUNT) {
             throw new IllegalArgumentException(ErrorMessage.HATE_AMOUNT.toString());
         }
         for (String food : split) {
@@ -45,6 +51,13 @@ public class Input {
             if (!contain) {
                 throw new IllegalArgumentException(ErrorMessage.INPUT_IN_LIST.toString());
             }
+        }
+    }
+
+    private static void validateDuplicate(String[] split) {
+        Set<String> set = new HashSet<>(List.of(split));
+        if (set.size() != split.length) {
+            throw new IllegalArgumentException(ErrorMessage.NON_DUPLICATE.toString());
         }
     }
 }
