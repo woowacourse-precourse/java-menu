@@ -9,8 +9,9 @@ public class CoachService {
 
     private final CoachRepository coachRepository = new CoachRepository();
 
-    public void createCoachInfo(String coachName, List<String> notEatFoodNames) {
+    public Coach createCoachInfo(String coachName, List<String> notEatFoodNames) {
         Coach coach = new Coach(coachName, notEatFoodNames);
         coachRepository.saveCoach(coach);
+        return coach;
     }
 }
