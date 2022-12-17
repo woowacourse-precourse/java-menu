@@ -1,12 +1,15 @@
 package menu.domain;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Menu {
+    private List<String> category = List.of("", "일식", "한식", "중식", "아시안", "양식");
     private Map<String, List<String>> menu = new HashMap<>() {{
+        put("", List.of());
         put("일식", List.of("규동", "우동", "미소시루", "스시", "가츠동", "오니기리", "하이라이스", "라멘", "오코노미야끼"));
         put("한식", List.of("김밥", "김치찌개", "쌈밥", "된장찌개", "비빔밥", "칼국수", "불고기", "떡볶이", "제육볶음"));
         put("중식", List.of("깐풍기", "볶음면", "동파육", "짜장면", "짬뽕", "마파두부", "탕수육", "토마토 달걀볶음", "고추잡채"));
@@ -16,5 +19,9 @@ public class Menu {
 
     public Map<String, List<String>> getMenu() {
         return menu;
+    }
+
+    public List<String> getCategory() {
+        return category;
     }
 }
