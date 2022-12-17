@@ -42,4 +42,13 @@ public enum Category {
         }
         return null;
     }
+
+    public static Category findByName(String categoryName) {
+        for (Category category : Category.values()) {
+            if (category.getCategoryName().equals(categoryName)) {
+                return category;
+            }
+        }
+        return null;
+    }
 }
