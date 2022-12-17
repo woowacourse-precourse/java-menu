@@ -21,10 +21,10 @@ public enum Categories {
     Categories(int categoryCode, String categoryName){
         this.categoryCode = categoryCode;
         this.categoryName = categoryName;
-        initMenu(categoryName);
+        initMenu();
     }
 
-    private void initMenu(String categoryName){
+    private void initMenu(){
         this.menu = CSVUtils.getCsvLine(this.categoryName);
     }
 
@@ -40,5 +40,9 @@ public enum Categories {
 
     public String getRandomMenu(){
         return Randoms.shuffle(this.menu).get(0);
+    }
+
+    public String getCategoryName(){
+        return this.categoryName;
     }
 }

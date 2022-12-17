@@ -1,8 +1,10 @@
 package menu.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import menu.domain.Categories;
 import menu.domain.Coach;
 import menu.domain.LunchTable;
@@ -15,12 +17,16 @@ public class LunchMenuRecommendController {
     private OutputView outputView;
     private LunchTable lunchTable;
 
+    private List<Coach> coaches;
+
     private void init(){
         initView();
+        initCoachInfo();
+        initLunchTable();
     }
 
     public void run(){
-
+        init();
     }
 
     private void initView(){
@@ -35,11 +41,13 @@ public class LunchMenuRecommendController {
             coach.setBanFoods(inputView.readBanFoods(name));
             coaches.add(coach);
         }
+        this.coaches = coaches;
     }
 
-    private void intLunchTable(){
+    private void initLunchTable(){
         this.lunchTable = new LunchTable();
         initRandomCategory();
+        lunchTable.setCoaches(coaches);
     }
 
     private void initRandomCategory(){

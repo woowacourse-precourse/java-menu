@@ -16,4 +16,8 @@ public class Coach {
     public boolean isBanFood(String food){
         return banFoods.contains(food);
     }
+
+    public String getName(){
+        return this.name;
+    }
 }
