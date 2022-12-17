@@ -48,14 +48,14 @@ public class Category {
         return false;
     }
 
-    // number로 name 찾기
-    public static String getCategoryNameByNumber(int categoryNumber) {
+    // name으로 menus 찾기
+    public static List<String> getCategoryMenusByNumber(int categoryNumber) {
         for (Categories category : Category.Categories.values()) {
             if (category.getNumber() == categoryNumber) {
-                return category.getName();
+                return category.getMenus();
             }
         }
-        return "";
+        return List.of(""); // 여기로 올 경우는 없음
     }
 
 }
