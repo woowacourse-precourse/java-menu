@@ -36,12 +36,15 @@ public class MenuController {
         foodRecommendation = new FoodRecommendation(coaches);
         foodRecommendation.selectRandomCategory();
         for (Coach coach : coaches) {
-            OutputView.inputInedibleFood(coach);
-            coach.addInedibleFoods(InputView.readInedibleFoods());
-            OutputView.newLine();
+            setInedible(coach);
         }
     }
 
+    private void setInedible(Coach coach) {
+        OutputView.inputInedibleFood(coach);
+        coach.addInedibleFoods(InputView.readInedibleFoods());
+        OutputView.newLine();
+    }
 
     private void recommendFood() {
         foodRecommendation.recommend();
