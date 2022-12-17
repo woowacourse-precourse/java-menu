@@ -9,6 +9,7 @@ import menu.domain.Categories;
 import menu.domain.Crew;
 import menu.domain.Crews;
 import menu.util.CategoryGenerator;
+import menu.util.FoodsFiller;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -16,6 +17,7 @@ public class MenuController {
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
     private final CategoryGenerator categoryGenerator = new CategoryGenerator();
+    private final FoodsFiller foodsFiller = new FoodsFiller();
     private Crews crews;
     private BannedFoods bannedFoods = new BannedFoods();
     private Categories categories = new Categories();
@@ -38,6 +40,16 @@ public class MenuController {
         categories = categoryGenerator.generateCategories();
 
         // 4. 요일별 코치들의 음식 채우기
+        fillFoods();
+
+        // 5. 출력하기
+        outputView.printResult(categories, crews);
+    }
+
+    private void fillFoods() {
+        for(Crew crew : crews.getCrews()) {
+            foodsFiller.fillFoods(crew, categories, bannedFoods.getBannedFoods());
+        }
     }
 
     private void getBannedFoods() {
