@@ -1,6 +1,7 @@
 package menu.utils;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import menu.domain.Category;
@@ -16,6 +17,7 @@ public class MenuValidator {
 
     public static void validate(Recommendation recommendation) {
         validateHardToEatMenu(recommendation.getRecommendation());
+        validateDuplicationMenu(recommendation.getRecommendation());
         validateDuplicationCategory(recommendation.getCategories());
     }
 
@@ -37,6 +39,28 @@ public class MenuValidator {
     private static void validateHardToEatMenuContain(Coach coach, String menu) {
         if (HardToEatRepository.findByCoach(coach).contains(menu)) {
             throw new IllegalStateException("먹지 못하는 메뉴가 포함되어 있다.");
+        }
+    }
+
+    private static void validateDuplicationMenu(Map<Coach, Map<Day, String>> recommendation) {
+        Set<Coach> coaches = recommendation.keySet();
+
+        for (Coach coach : coaches) {
+            validateDuplicationMenuContain(recommendation.get(coach));
+        }
+    }
+
+    private static void validateDuplicationMenuContain(Map<Day, String> menuByDay) {
+        Set<String> menus = new HashSet<>();
+        int count = 0;
+
+        for (Day day : Day.values()) {
+            menus.add(menuByDay.get(day));
+            count += 1;
+        }
+
+        if (menus.size() < count) {
+            throw new IllegalStateException("중복되는 메뉴가 포함되어 있다.");
         }
     }
 
