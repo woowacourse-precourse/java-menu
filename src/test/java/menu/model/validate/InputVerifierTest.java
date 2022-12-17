@@ -54,5 +54,18 @@ class InputVerifierTest {
                 .hasMessageContaining("코치가 못 먹는 음식은 한글만 입력할 수 있습니다.");
     }
 
+    @DisplayName("코치가 먹지 못하는 음식의 종류의 개수가 0~2개인가")
+    @Test
+    void 못_먹는음식_개수() {
+        // given
+        List<String> hateFoods = Arrays.asList("피자", "치킨", "사과");
+
+        // when, then
+        assertThatThrownBy(() -> {
+                    InputVerifier.tryCoachesHateMenu(hateFoods);
+                }
+        ).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("코치가 못 먹는 메뉴는 최소 0개, 최대 2개이다.");
+    }
 
 }
