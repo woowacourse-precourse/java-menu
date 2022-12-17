@@ -58,16 +58,16 @@ public class OutputView {
     }
 
     private static String getCountry(int country) {
-        if(country == 1) {
+        if(country == CountryConstant.JAPAN) {
             return CountryConstant.JAPAN_FOOD;
         }
-        if(country == 2) {
+        if(country == CountryConstant.KOREA) {
             return CountryConstant.KOREA_FOOD;
         }
-        if(country == 3) {
+        if(country == CountryConstant.CHINA) {
             return CountryConstant.CHINA_FOOD;
         }
-        if(country == 4) {
+        if(country == CountryConstant.ASIA) {
             return CountryConstant.ASIA_FOOD;
         }
         return CountryConstant.WEST_FOOD;
