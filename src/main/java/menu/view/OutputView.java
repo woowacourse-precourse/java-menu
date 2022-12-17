@@ -1,6 +1,6 @@
 package menu.view;
 
-import menu.domain.CouchGroup;
+import menu.domain.CoachGroup;
 import menu.utils.Category;
 import menu.utils.OutputMessage;
 import menu.utils.Weekend;
@@ -21,11 +21,11 @@ public class OutputView {
         System.out.printf(OutputMessage.INPUT_COUCH_CANNOT_EAT.getMessage(), name);
     }
 
-    public void printResult(CouchGroup couchGroup, List<Category> categories) {
+    public void printResult(CoachGroup coachGroup, List<Category> categories) {
         System.out.println(OutputMessage.RECOMMEND_RESULT.getMessage());
         printWeekend();
         printCategories(categories);
-        printCouchGroup(couchGroup);
+        printCouchGroup(coachGroup);
         printComplete();
     }
 
@@ -33,8 +33,8 @@ public class OutputView {
         System.out.println(OutputMessage.RECOMMEND_COMPLETE.getMessage());
     }
 
-    private void printCouchGroup(CouchGroup couchGroup) {
-        System.out.println(couchGroup.toMessage());
+    private void printCouchGroup(CoachGroup coachGroup) {
+        System.out.println(coachGroup.toMessage());
     }
 
     private void printCategories(List<Category> categories) {

@@ -15,7 +15,7 @@ class RecommendServiceTest {
                         recommendService.getCategory();
                     }
                 }).isInstanceOf(IllegalStateException.class)
-                .hasMessageContaining(ErrorMessage.TOO_MANY_CATEGORIES.getMessage());
+                .hasMessageContaining(ErrorMessage.CATEGORY_TOO_MANY.getMessage());
 
     }
 

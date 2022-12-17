@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
 
-public class Couch {
+public class Coach {
 
     private static final String MESSAGE_DELIMITER = " | ";
     private static final String MESSAGE_PREFIX = "[ ";
@@ -16,7 +16,7 @@ public class Couch {
     private final List<Food> denied = new ArrayList<>();
     private final List<Food> recommend = new ArrayList<>();
 
-    private Couch(String name) {
+    private Coach(String name) {
         String refined = name.trim();
         validateName(refined);
         this.name = refined;
@@ -24,7 +24,7 @@ public class Couch {
 
     private void validateName(String name) {
         if (isOutOfRange(name)) {
-            throw new IllegalArgumentException(ErrorMessage.COUCH_NAME_OUT_OF_RANGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.COACH_NAME_OUT_OF_RANGE.getMessage());
         }
     }
 
@@ -32,8 +32,8 @@ public class Couch {
         return name.length() < 2 || name.length() > 4;
     }
 
-    public static Couch from(String name) {
-        return new Couch(name);
+    public static Coach from(String name) {
+        return new Coach(name);
     }
 
     public String getName() {
@@ -45,7 +45,7 @@ public class Couch {
             return;
         }
         if (!denied.isEmpty()) {
-            throw new IllegalStateException(ErrorMessage.COUCH_ALREADY_DENY_FOOD.getMessage());
+            throw new IllegalStateException(ErrorMessage.COACH_ALREADY_DENY_FOOD.getMessage());
         }
         denied.addAll(foods);
     }

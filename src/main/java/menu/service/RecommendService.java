@@ -1,7 +1,7 @@
 package menu.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import menu.domain.Couch;
+import menu.domain.Coach;
 import menu.domain.Food;
 import menu.utils.Category;
 import menu.utils.ErrorMessage;
@@ -28,7 +28,7 @@ public class RecommendService {
 
     private void validateCategory() {
         if (categories.size() > Weekend.size()) {
-            throw new IllegalStateException(ErrorMessage.TOO_MANY_CATEGORIES.getMessage());
+            throw new IllegalStateException(ErrorMessage.CATEGORY_TOO_MANY.getMessage());
         }
     }
 
@@ -39,8 +39,8 @@ public class RecommendService {
         return count > MAX_CATEGORY_STORAGE;
     }
 
-    public Food getFood(Category category, Couch couch) {
-        List<String> foods = Food.getFoodByCategoryAndCouch(category, couch);
+    public Food getFood(Category category, Coach coach) {
+        List<String> foods = Food.getFoodByCategoryAndCouch(category, coach);
         String foodName = Randoms.shuffle(foods).get(0);
         return Food.from(foodName);
     }

@@ -1,8 +1,8 @@
 package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import menu.domain.Couch;
-import menu.domain.CouchGroup;
+import menu.domain.Coach;
+import menu.domain.CoachGroup;
 import menu.domain.Food;
 import org.junit.platform.commons.util.StringUtils;
 
@@ -18,19 +18,19 @@ public class InputView {
         this.outputView = outputView;
     }
 
-    public CouchGroup readCouchName() {
+    public CoachGroup readCouchName() {
         outputView.printReadCouchName();
         String names = Console.readLine();
         String[] split = names.split(",");
-        List<Couch> couches = Arrays.stream(split)
-                .map(Couch::from)
+        List<Coach> coaches = Arrays.stream(split)
+                .map(Coach::from)
                 .collect(Collectors.toList());
 
-        return CouchGroup.from(couches);
+        return CoachGroup.from(coaches);
     }
 
-    public List<Food> readCannotFood(Couch couch) {
-        outputView.printReadDeniedFood(couch.getName());
+    public List<Food> readCannotFood(Coach coach) {
+        outputView.printReadDeniedFood(coach.getName());
         String names = Console.readLine();
         if (StringUtils.isBlank(names)) {
             return null;

@@ -1,6 +1,6 @@
 package menu.controller;
 
-import menu.domain.CouchGroup;
+import menu.domain.CoachGroup;
 import menu.domain.Food;
 import menu.service.RecommendService;
 import menu.utils.Category;
@@ -27,31 +27,31 @@ public class RecommendController {
 
     public void run() {
         outputView.printInitRecommend();
-        CouchGroup couchGroup = repeat(inputView::readCouchName);
+        CoachGroup coachGroup = repeat(inputView::readCouchName);
 
         List<Category> categories = new ArrayList<>();
 
-        couchDenyFood(couchGroup);
+        couchDenyFood(coachGroup);
 
         IntStream.range(0, Weekend.size())
                 .mapToObj(index -> recommendService.getCategory()).forEach(category -> {
                     categories.add(category);
-                    couchRecommendedFood(couchGroup, category);
+                    couchRecommendedFood(coachGroup, category);
                 });
 
-        outputView.printResult(couchGroup, categories);
+        outputView.printResult(coachGroup, categories);
     }
 
-    private void couchRecommendedFood(CouchGroup couchGroup, Category category) {
-        IntStream.range(0, couchGroup.size()).mapToObj(couchGroup::get)
+    private void couchRecommendedFood(CoachGroup coachGroup, Category category) {
+        IntStream.range(0, coachGroup.size()).mapToObj(coachGroup::get)
                 .forEach(couch -> {
                     Food food = recommendService.getFood(category, couch);
                     couch.recommend(food);
                 });
     }
 
-    private void couchDenyFood(CouchGroup couchGroup) {
-        IntStream.range(0, couchGroup.size()).mapToObj(couchGroup::get)
+    private void couchDenyFood(CoachGroup coachGroup) {
+        IntStream.range(0, coachGroup.size()).mapToObj(coachGroup::get)
                 .forEach(couch -> {
                     List<Food> foods = repeat(() -> inputView.readCannotFood(couch));
                     couch.denyFood(foods);

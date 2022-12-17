@@ -80,10 +80,10 @@ public enum Food {
         throw new IllegalArgumentException(ErrorMessage.FOOD_NOT_EXIST.getMessage());
     }
 
-    public static List<String> getFoodByCategoryAndCouch(Category category, Couch couch) {
+    public static List<String> getFoodByCategoryAndCouch(Category category, Coach coach) {
         return Arrays.stream(values())
                 .filter(value -> value.category == category)
-                .filter(value -> !couch.isDeny(value))
+                .filter(value -> !coach.isDeny(value))
                 .map(value -> value.alias)
                 .collect(Collectors.toList());
     }
