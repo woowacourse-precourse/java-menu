@@ -18,9 +18,8 @@ public class CoachService {
     }
 
     public void inputHateMenus(Coach coach, List<Menu> hateMenus) {
-        coachRepository.removeCoach(coach.getName());
         coach.addHateMenus(hateMenus);
-        coachRepository.insertCoach(coach);
+        coachRepository.updateCoach(coach);
 
         coachRepository.printAll();
     }

@@ -1,6 +1,7 @@
 package menu.repository;
 
 import menu.domain.Coach;
+import menu.domain.Menu;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -16,11 +17,11 @@ public class CoachRepository {
         coaches.add(coach);
     }
 
-    public void removeCoach(String name) {
-        for (Iterator<Coach> iterator = coaches.iterator(); iterator.hasNext();) {
-            Coach coach = iterator.next();
-            if (coach.getName().equals(name)) {
-                iterator.remove();
+    public void updateCoach(Coach coach) {
+        for(int i = 0; i < coaches.size(); i++) {
+            if (coaches.get(i).getName().equals(coach.getName())) {
+                coaches.set(i,coach);
+                break;
             }
         }
     }

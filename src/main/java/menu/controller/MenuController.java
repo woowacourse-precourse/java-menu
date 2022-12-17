@@ -35,11 +35,11 @@ public class MenuController extends Controller{
 
     public List<Coach> inputHateMenus() {
         List<Coach> coaches = coachService.findAll();
-        coaches.forEach(coach -> {
+        for (Coach coach : coaches) {
             outputView.printCoachNamesInputMessage(coach.getName());
             List<Menu> hateMenus = repeat(inputView::readHateMenus);
             coachService.inputHateMenus(coach, hateMenus);
-        });
+        }
 
         return coaches;
     }
