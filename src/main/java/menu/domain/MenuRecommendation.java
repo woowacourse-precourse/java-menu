@@ -17,12 +17,13 @@ public class MenuRecommendation {
     }
 
     private String[] validate(String input) {
-        for (int index = 0; index < input.length(); index++) {
-            if (input.charAt(index) != ',' || Character.isAlphabetic(input.charAt(index))) {
+        String[] split = input.split(",");
+        for (String s : split) {
+            if (!s.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")) {
                 throw new IllegalArgumentException("올바른 입력이 아닙니다. 쉽표로 구분하여 입력해주세요");
             }
         }
-        return input.split(",");
+        return split;
     }
     public static People getPeople() {
         return people;
