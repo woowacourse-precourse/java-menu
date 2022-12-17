@@ -1,5 +1,7 @@
 package menu.view.utils;
 
+import menu.repository.Menu;
+
 import java.util.List;
 
 import static menu.constant.Constants.*;
@@ -28,4 +30,11 @@ public class Validators {
             throw new IllegalArgumentException(ERROR_MESSAGE + CANT_EATING_COUNT_MESSAGE_OVER_TWO);
         }
     }
+
+    public static void validateForFoodName(String foodName) {
+        if(Menu.getCategoryNum(foodName) == -1 ) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + INVALID_FOOD_NAME_ERROR_MESSAGE);
+        }
+    }
+
 }

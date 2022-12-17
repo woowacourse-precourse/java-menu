@@ -20,5 +20,5 @@ public class Constants {
 
     public static final String COACH_NAME_INVALID_RANGE_ERROR_MESSAGE = " 코치의 이름은 최소 2글자, 최대 4글자입니다.";
     public static final String CANT_EATING_COUNT_MESSAGE_OVER_TWO = " 못 먹는 음식은 최대 2개까지 설정 가능합니다.";
-
+    public static final String INVALID_FOOD_NAME_ERROR_MESSAGE = " 존재하지 않는 음식 이름입니다.";
 }

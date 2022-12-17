@@ -58,4 +58,23 @@ class ValidatorsTest {
         assertThat(t).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ERROR_MESSAGE + COACH_INVALID_RANGE_ERROR_MESSAGE_UNDER_FIVE);
     }
+
+    @DisplayName("존재하는 음식이름 인 경우")
+    @ParameterizedTest
+    @ValueSource(strings = {"규동", "김밥", "동파육", "프렌치 토스트"})
+    void test6(String input) {
+        Throwable t = catchThrowable(() -> Validators.validateForFoodName(input));
+
+        assertThat(t).doesNotThrowAnyException();
+    }
+
+    @DisplayName("존재하지 않는 음식이름 인 경우")
+    @ParameterizedTest
+    @ValueSource(strings = {"김치", "초밥", "오징어", "감자"})
+    void test7(String input) {
+        Throwable t = catchThrowable(() -> Validators.validateForFoodName(input));
+
+        assertThat(t).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ERROR_MESSAGE + INVALID_FOOD_NAME_ERROR_MESSAGE);
+    }
 }
