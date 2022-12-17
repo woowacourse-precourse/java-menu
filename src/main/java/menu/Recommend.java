@@ -14,12 +14,12 @@ public class Recommend {
         List<String> categories = category.choose();
         List<String> names = getNames();
         Map<String, List<String>> hates = getHates(names);
-        Map<String, List<String>> menus = getMenus(categories, names, hates);
+        Map<String, List<String>> menus = menu.recommend(categories, names, hates);
         printResult(categories, names, menus);
     }
 
     private List<String> getNames() {
-        System.out.println("코치의 이름을 입력해주세요. (,로 구분)");
+        System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
         while (true) {
             try {
                 List<String> names = coach.getNames();
@@ -41,15 +41,6 @@ public class Recommend {
         return hates;
     }
 
-    private Map<String, List<String>> getMenus(List<String> categories, List<String> names,
-                                               Map<String, List<String>> hates) {
-        Map<String, List<String>> menus = new HashMap<>();
-        for (String name : names) {
-            menus.put(name, menu.recommend(categories, hates.get(name)));
-        }
-        return menus;
-    }
-
     private void printResult(List<String> categories, List<String> names, Map<String, List<String>> menus) {
         System.out.println("메뉴 추천 결과입니다.");
         System.out.println("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
@@ -57,6 +48,7 @@ public class Recommend {
         for (String name : names) {
             printRow(name, menus.get(name));
         }
+        System.out.println();
         System.out.println("추천을 완료했습니다.");
     }
 
