@@ -29,7 +29,7 @@ public class FoodRecommender {
     }
 
 
-    public void pickMenu(Coach coach, String category) {
+    private void pickMenu(Coach coach, String category) {
         String newMenu;
         while (true) {
             newMenu = Randoms.shuffle(Arrays.asList(FoodPool.foods.get(category))).get(0);
@@ -38,7 +38,7 @@ public class FoodRecommender {
         coach.addAteMenus(newMenu);
     }
 
-    public String pickCategory() {
+    private String pickCategory() {
         String newCategory;
         while (true) {
             newCategory = FoodPool.category[Randoms.pickNumberInRange(1, 5) - 1];
