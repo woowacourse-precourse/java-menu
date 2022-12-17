@@ -11,4 +11,12 @@ public class MenuManager {
             CoachRepository.add(new Coach(coachName));
         }
     }
+
+    public List<String> findAllCoachNames() {
+        return CoachRepository.getAllNames();
+
+    }
+
+    public void saveHatingMenus(List<String> hatingMenus, List<String> coachNames) {
+    }
 }

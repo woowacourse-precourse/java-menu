@@ -17,7 +17,26 @@ public class MenuController {
     public void run() {
         printStartMessage();
         saveCoachNames();
+        saveHatingMenus();
 
+    }
+
+    private void saveHatingMenus() {
+        List<String> coachNames = menuManager.findAllCoachNames();
+        for (String coachName : coachNames) {
+            List<String> hatingMenus = getHatingMenus(coachName);
+            menuManager.saveHatingMenus(hatingMenus, coachNames);
+        }
+    }
+
+    private List<String> getHatingMenus(String coachName) {
+        output.printHatingMenusMessage(coachName);
+        try {
+            return input.readHatingMenus();
+        } catch (IllegalArgumentException e) {
+            output.printErrorMessage(e);
+            return getHatingMenus(coachName);
+        }
     }
 
     private void saveCoachNames() {
