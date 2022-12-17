@@ -18,8 +18,8 @@ public class MenuController {
 
     public void run() {
         outputView.printStartMessage();
-        inputCoaches();
-        inputCoachesHateFood();
+        Coaches.listToCoaches(inputFromView());
+        inputView.inputCoachesHateFoods();
 
         Menus.init();
 
@@ -29,24 +29,6 @@ public class MenuController {
         outputView.printEndMessage();
     }
 
-    private void inputCoaches() {
-        try {
-            Coaches.listToCoaches(inputFromView());
-        } catch (IllegalArgumentException error) {
-            outputView.printErrorMessage(error.getMessage());
-            Coaches.init();
-            inputCoaches();
-        }
-    }
-
-    private void inputCoachesHateFood() {
-        try {
-            inputView.inputCoachesHateFoods();
-        } catch (IllegalArgumentException error) {
-            outputView.printErrorMessage(error.getMessage());
-            inputCoachesHateFood();
-        }
-    }
 
     private List<String> inputFromView() {
         try {
