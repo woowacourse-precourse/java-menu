@@ -6,6 +6,7 @@ import menu.domain.Category;
 import menu.domain.CategoryHistory;
 
 public class CategoryService {
+    private static final boolean SELECT_INVALID_CATEGORY = true;
 
     private CategoryHistory categoryHistory;
 
@@ -15,7 +16,7 @@ public class CategoryService {
 
     public Category selectCategory() {
         List<Category> selectedCategory = categoryHistory.getCategoryHistory();
-        while (true) {
+        while (SELECT_INVALID_CATEGORY) {
             int categoryNumber = Randoms.pickNumberInRange(1, 5);
             Category category = Category.getCategoryByNumber(categoryNumber);
 
