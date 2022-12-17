@@ -5,5 +5,5 @@ import java.util.List;
 public interface RandomPicker {
     MenuCategory pickRandomCategory();
 
-    List<String> pickRandomMenu(final MenuCategory category);
+    String pickRandomMenu(List<String> menus, List<String> holdMenus);
 }

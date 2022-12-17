@@ -5,8 +5,8 @@
         - [ ] 한 주에 같은 카테고리는 최대 2회까지만 고를 수 있다.
         - [ ] 각 코치에게 한 주에 중복되지 않는 메뉴를 추천해야 한다.
         - [x] 랜덤으로 카레고리를 뽑아준다 RecommendSystem#pickRandomCategory()
-        - [ ] 랜덤으로 음식을 뽑아준다
-      - [x] 메뉴 저장 기능 MenuRepository
+        - [x] 랜덤으로 음식을 뽑아준다 RecommendSystem#pickRandomMenu()
+        - [x] 메뉴 저장 기능 MenuRepository
 
 - [ ] 입력
     - [ ] 코치 이름

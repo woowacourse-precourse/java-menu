@@ -25,7 +25,14 @@ public class RecommendSystem implements RandomPicker {
     }
 
     @Override
-    public List<String> pickRandomMenu(final MenuCategory category) {
-        return null;
+    public String pickRandomMenu(final List<String> menus, final List<String> holdMenus) {
+        final String menu = Randoms.shuffle(menus).get(0);
+
+        if (holdMenus.contains(menu)) {
+            return pickRandomMenu(menus, holdMenus);
+        }
+
+        holdMenus.add(menu);
+        return menu;
     }
 }
