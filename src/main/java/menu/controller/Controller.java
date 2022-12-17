@@ -16,8 +16,10 @@ public class Controller {
     private static OutputView OUTPUT_VIEW = new OutputView();
 
     public void run() {
-        Recommender recommender = new Recommender(readCoaches());
+        List<Coach> coaches = readCoaches();
+        Recommender recommender = new Recommender(coaches);
         recommender.recommend();
+        OUTPUT_VIEW.printMenus(recommender.getRecommendedCategories(), coaches);
     }
 
     private List<Coach> readCoaches() {

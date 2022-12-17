@@ -1,18 +1,29 @@
 package menu.view;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import menu.constant.Category;
+import menu.constant.Food;
 import menu.domain.Coach;
 
 public class OutputView {
     private static final String SEPARATOR = " | ";
 
-    public void printMenus(List<Coach> coaches) {
+    public void printMenus(List<Category> categories, List<Coach> coaches) {
         System.out.println("메뉴 추천 결과입니다.");
         printElements("구분", List.of("월요일", "화요일", "수요일", "목요일", "금요일"));
-        printElements("카테고리", List.of("뽑힌", "카테고리", "들"));
-        printElements("코치이름", List.of("월요일메뉴", "화요일메뉴", "수", "목", "금"));
+        printElements("카테고리", categories.stream().map(Category::getName).collect(Collectors.toList()));
+        for (Coach coach : coaches) {
+            printElements(coach.getName(), getFoodNamesWithBlank(coach.getRecommendedFoods()));
+        }
         System.out.println("추천을 완료했습니다.");
+    }
+
+    private List<String> getFoodNamesWithBlank(List<Food> foods) {
+        return foods.stream()
+                .map(Food::getNameWithBlank)
+                .collect(Collectors.toList());
     }
 
     private void printElements(String name, List<String> elements) {

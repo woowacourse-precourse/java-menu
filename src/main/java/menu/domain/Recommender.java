@@ -1,6 +1,7 @@
 package menu.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -39,5 +40,9 @@ public class Recommender {
                 .filter(element -> element.equals(category))
                 .count();
         return count == 2;
+    }
+
+    public List<Category> getRecommendedCategories() {
+        return Collections.unmodifiableList(recommendedCategories);
     }
 }

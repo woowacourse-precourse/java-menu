@@ -45,4 +45,8 @@ public class Coach {
     public List<Food> getRecommendedFoods() {
         return recommendedFoods;
     }
+
+    public String getName() {
+        return name;
+    }
 }

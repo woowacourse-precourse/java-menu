@@ -50,4 +50,8 @@ public enum Food {
     public Category getCategory() {
         return category;
     }
+
+    public String getNameWithBlank() {
+        return name().replaceAll("_", " ");
+    }
 }
