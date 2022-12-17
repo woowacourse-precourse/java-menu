@@ -7,6 +7,7 @@ import java.util.List;
 public class RecommendMachine {
     private static final Integer MAX_RECOMMEND_CATEGORY_COUNT = 2;
     private static final Integer DAY_OF_SIZE = 5;
+
     public List<String> recommendCategory() {
         List<String> result = new ArrayList<>();
         while (result.size() < DAY_OF_SIZE) {
@@ -18,8 +19,18 @@ public class RecommendMachine {
         return result;
     }
 
-    public void recommendFood(Menu menu, String category) {
-        String men = menu.recommendMenu(category);
+    public List<String> recommendMenu(Menu menu, String coach, List<String> category) {
+        List<String> result = new ArrayList<>();
+        int index = 0;
+        while (result.size() < DAY_OF_SIZE) {
+            String recommendingFood = menu.recommendFood((category.get(index)));
+            if (menu.isDislike(coach, recommendingFood)) {
+                continue;
+            }
+            result.add(recommendingFood);
+            index++;
+        }
+        return result;
     }
 
     private boolean canRecommend(List<String> category, String recommend) {
