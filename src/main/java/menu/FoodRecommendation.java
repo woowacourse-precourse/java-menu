@@ -19,6 +19,9 @@ public class FoodRecommendation {
     public FoodRecommendation(List<Coach> coaches) {
         validate(coaches);
         this.coaches = coaches;
+    }
+
+    public void selectRandomCategory() {
         for (Week week : Week.values()) {
             categoryByWeek.put(week, getRandomCategory());
         }
