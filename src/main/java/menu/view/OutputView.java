@@ -20,13 +20,13 @@ public class OutputView {
         System.out.println(coach.getName() + Messages.INPUT_INEDIBLE_FOOD.getMessage());
     }
 
-    public static void result(Map<Coach, List<String>> recommend) {
+    public static void result(List<Coach> coaches, Map<Week, Category> categoryByWeek) {
+        System.out.println(Messages.RESULT.getMessage());
         printDivision();
-        printCategory();
-        for (Coach coach : recommend.keySet()) {
-            printCoachAndFoods(coach, recommend.get(coach));
-        }
-
+        printCategory(categoryByWeek);
+        printFoodsByCoach(coaches);
+        System.out.println();
+        System.out.println(Messages.COMPLETE_RECOMMEND.getMessage());
     }
 
     private static void printDivision() {
@@ -38,18 +38,24 @@ public class OutputView {
         System.out.println(division);
     }
 
-    private static void printCategory() {
+    private static void printCategory(Map<Week, Category> categoryByWeek) {
         StringBuilder category = new StringBuilder("[ 카테고리 | ");
-        for (Category c : Category.values()) {
-            category.append(c.getCategoryName()).append(" | ");
+        for (Week week : categoryByWeek.keySet()) {
+            category.append(categoryByWeek.get(week).getCategoryName()).append(" | ");
         }
         category.replace(category.length() - 2, category.length() - 1, "]");
         System.out.println(category);
     }
 
-    private static void printCoachAndFoods(Coach coach, List<String> foods) {
+    private static void printFoodsByCoach(List<Coach> coaches) {
+        for(Coach coach : coaches) {
+            printFood(coach);
+        }
+    }
+
+    private static void printFood(Coach coach) {
         StringBuilder sb = new StringBuilder("[ " + coach.getName() + " | ");
-        for (String food : foods) {
+        for (String food : coach.getFoods()) {
             sb.append(food).append(" | ");
         }
         sb.replace(sb.length() - 2, sb.length()-1, "]");

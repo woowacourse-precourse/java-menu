@@ -10,17 +10,18 @@ public class MenuController {
     FoodRecommendation foodRecommendation;
     public void run() {
         OutputView.start();
-        foodRecommendation = new FoodRecommendation();
         List<Coach> coaches = readCoachName();
-
+        foodRecommendation = new FoodRecommendation(coaches);
         for(Coach coach : coaches) {
             OutputView.inputInedibleFood(coach);
             coach.addFoods(InputView.readInedibleFoods());
 
-            foodRecommendation.recommend(coach);
+
         }
 
-        OutputView.result(foodRecommendation.getRecommend());
+        foodRecommendation.recommend(coaches);
+
+        OutputView.result(foodRecommendation.getCoaches(), foodRecommendation.getCategoryByWeek());
     }
 
     private List<Coach> readCoachName() {
