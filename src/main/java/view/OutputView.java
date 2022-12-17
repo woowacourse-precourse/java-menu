@@ -31,4 +31,12 @@ public class OutputView {
         println("[INFO] " + value);
     }
 
+    public void printStartMessage() {
+        println(START_MESSAGE);
+        printNewLine();
+    }
+
+    public void printReadingCoachNames() {
+        println(READ_COACH_NAMES);
+    }
 }
