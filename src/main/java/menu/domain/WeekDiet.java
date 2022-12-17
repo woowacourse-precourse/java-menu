@@ -5,6 +5,7 @@ import menu.util.MenuChoicer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -13,6 +14,10 @@ public class WeekDiet {
     private static final List<Week> weeks = Arrays.stream(Week.values()).collect(Collectors.toList());
     private List<FoodCategory> weekFoodCategories;
     private Map<Coach,List<String>> weekDietByCoachs;
+
+    {
+        weekDietByCoachs = new HashMap<>();
+    }
 
     public void generateFoodCataegories(){
         List<FoodCategory> createdFoodCategories = CategoryChoicer.makeWeekCategories();
