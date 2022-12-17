@@ -14,6 +14,7 @@ import menu.repository.MenuRepository;
 public class MenuService {
 
     private static final int CATEGORY_SIZE = 5;
+    private static final int RANDOM_INDEX = 0;
 
     private final MenuRepository menuRepository;
 
@@ -30,17 +31,17 @@ public class MenuService {
     }
 
     private void recommendMenu(List<Coach> coaches, Category category) {
+        List<String> menus = menuRepository.findMenuNames(category);
         for (Coach coach : coaches) {
-            Menu menu = findMenu(category, coach);
+            Menu menu = recommendValidMenu(coach, menus);
             coach.addRecommendMenu(menu);
         }
     }
 
-    private Menu findMenu(Category category, Coach coach) {
-        List<String> menuNames = menuRepository.findMenuNames(category);
-        Menu menu = new Menu(shuffle(menuNames).get(0));
+    private Menu recommendValidMenu(Coach coach, List<String> menus) {
+        Menu menu = new Menu(shuffle(menus).get(RANDOM_INDEX));
         while (coach.isInvalidMenu(menu)) {
-            menu = new Menu(shuffle(menuNames).get(0));
+            menu = new Menu(shuffle(menus).get(RANDOM_INDEX));
         }
         return menu;
     }
