@@ -18,7 +18,7 @@ public class Coach {
 
     public boolean existsCannotEatMenus(Menu menu) {
         for(Menu cannotEatMenu : cannotEatMenus) {
-            if(cannotEatMenu == menu) {
+            if(cannotEatMenu.equals(menu)) {
                 return true;
             }
         }
