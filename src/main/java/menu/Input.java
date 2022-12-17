@@ -24,11 +24,13 @@ public class Input {
         String[] split = input.split(DELiMITER);
         validateDuplicate(split);
         if (split.length > COACH_MAX_AMOUNT || split.length < COACH_MIN_AMOUNT) {
-            throw new IllegalArgumentException(ErrorMessage.COACH_AMOUNT_RANGE.toString());
+            throw new IllegalArgumentException(String.format(ErrorMessage.COACH_AMOUNT_RANGE.toString(),
+                    COACH_MIN_AMOUNT, COACH_MAX_AMOUNT));
         }
         for (String coachName : split) {
             if (coachName.length() > NAME_MAX_LENGTH || coachName.length() < NAME_MIN_LENGTH) {
-                throw new IllegalArgumentException(ErrorMessage.COACH_NAME_RANGE.toString());
+                throw new IllegalArgumentException(String.format(ErrorMessage.COACH_NAME_RANGE.toString(),
+                        NAME_MIN_LENGTH, NAME_MAX_LENGTH));
             }
         }
     }
@@ -53,7 +55,8 @@ public class Input {
         String[] split = input.split(DELiMITER);
         validateDuplicate(split);
         if (split.length > HATE_MAX_AMOUNT) {
-            throw new IllegalArgumentException(ErrorMessage.HATE_AMOUNT.toString());
+            throw new IllegalArgumentException(String.format(ErrorMessage.HATE_AMOUNT.toString(),
+                    HATE_MAX_AMOUNT));
         }
         for (String food : split) {
             boolean contain = Arrays.stream(Dish.values()).anyMatch(s -> s.menus.contains(food));
