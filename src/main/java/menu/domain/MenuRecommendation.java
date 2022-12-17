@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import menu.domain.condition.CoachCondition;
+import menu.domain.initialdata.Day;
 import menu.domain.initialdata.InitialMenu;
 import menu.dto.RecommendationResultDto;
 
@@ -28,9 +29,8 @@ public class MenuRecommendation {
         coachFoods.put(new Coach(coachName), new CoachFood(dislikeFoods));
     }
 
-    //모든 코치에 대해서 수행
     public void recommendFood() {
-        while (recommendedCategory.getCategories().size() < 5) {
+        while (recommendedCategory.getCategories().size() < Day.getDays().size()) {
             recommendDailyFood();
         }
     }
@@ -46,21 +46,14 @@ public class MenuRecommendation {
         return recommendedCategory.getCategories();
     }
 
-    private List<List<String>> getRecommendedFood() {
-        return coachFoods.values()
-                .stream()
-                .map(CoachFood::getRecommendedFoods)
-                .collect(Collectors.toList());
-    }
-
     private void recommendDailyFood() {
         String category = recommendedCategory.pickRandomCategory();
         coachFoods.entrySet()
-                .forEach(set -> recommendFood(set.getKey(), set.getValue(), InitialMenu.getFoodsInCategory(category)));
+                .forEach(set -> recommendForEachCoach(set.getKey(), set.getValue(),
+                        InitialMenu.getFoodsInCategory(category)));
     }
 
-    //이걸 매일매일 한 번씩 해주어야한다!
-    private void recommendFood(Coach coach, CoachFood coachFood, List<String> foodsInCategory) {
+    private void recommendForEachCoach(Coach coach, CoachFood coachFood, List<String> foodsInCategory) {
         coachFood.updateRecommendedFood(foodsInCategory);
         coachFoods.put(coach, coachFood);
     }

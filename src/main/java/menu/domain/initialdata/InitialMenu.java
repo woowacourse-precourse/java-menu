@@ -56,7 +56,4 @@ public enum InitialMenu {
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 잘못된 카테고리 번호입니다."));
     }
-
-    //못 먹는 메뉴로 입력한게 여기에 해당하지 않으면 예외
-    //
 }

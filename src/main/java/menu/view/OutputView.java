@@ -4,14 +4,14 @@ import java.util.List;
 import menu.dto.RecommendationResultDto;
 
 public class OutputView {
-    private final String START = "점심 메뉴 추천을 시작합니다.";
+    private final String START = "점심 메뉴 추천을 시작합니다.\n";
     private final String RESULT_INFO = "메뉴 추천 결과입니다.";
     private final String DAY = "구분";
     private final String CATEGORY = "카테고리";
     private final String START_DELIMITER = "[ ";
     private final String END_DELIMITER = " ]";
     private final String DELIMITER = " | ";
-    private final String END = "추천을 완료했습니다.";
+    private final String END = "\n추천을 완료했습니다.";
 
     public OutputView() {
     }

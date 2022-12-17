@@ -5,6 +5,7 @@ import java.util.List;
 import menu.CategoryPicker;
 
 public class RecommendedCategory {
+    private final int MAX_DUPLICATE = 2;
     private List<String> categories;
 
     public RecommendedCategory() {
@@ -33,6 +34,6 @@ public class RecommendedCategory {
     private boolean isAbleToAdd(String category) {
         return (int) categories.stream()
                 .filter(name -> name.equals(category))
-                .count() < 2;
+                .count() < MAX_DUPLICATE;
     }
 }

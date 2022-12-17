@@ -6,8 +6,8 @@ import java.util.regex.Pattern;
 public class InputView {
     private final String ASK_COACH_NAME = "코치의 이름을 입력해 주세요. (, 로 구분)";
     private final String DELIMITER = ",";
-    private final String MULTIPLE_INPUT_REGEX = "^[ㄱ-ㅎ가-힣,]*$";
-    private final String ASK_DISLIKE_FOOD = "%s(이)가 못 먹는 메뉴를 입력해 주세요.";
+    private final String MULTIPLE_INPUT_REGEX = "^[가-힣,]*$";
+    private final String ASK_DISLIKE_FOOD = "\n%s(이)가 못 먹는 메뉴를 입력해 주세요.";
 
     public String readCoachName() {
         System.out.println(ASK_COACH_NAME);

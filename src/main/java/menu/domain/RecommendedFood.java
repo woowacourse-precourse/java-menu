@@ -12,12 +12,11 @@ public class RecommendedFood {
         this.foods = new ArrayList<>();
     }
 
-    //한 요일에 대해서 업데이트
     public void pickRecommendedFood(List<String> foodsInCategory, List<String> dislikeFoods) {
         String food;
         while (true) {
             food = FoodRecommender.pickRandomFood(foodsInCategory);
-            if (isAbleToAdd(food, dislikeFoods)) {
+            if (isUnableToAdd(food, dislikeFoods)) {
                 continue;
             }
             foods.add(food);
@@ -29,7 +28,7 @@ public class RecommendedFood {
         return Collections.unmodifiableList(foods);
     }
 
-    private boolean isAbleToAdd(String food, List<String> dislikeFoods) {
+    private boolean isUnableToAdd(String food, List<String> dislikeFoods) {
        return foods.contains(food) || dislikeFoods.contains(food);
     }
 }

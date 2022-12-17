@@ -12,7 +12,6 @@ public class CoachFood {
         this.recommendedFood = new RecommendedFood();
     }
 
-    //모든 요일에 대해서 반복 (월 ~ 금의 추천메뉴에 대해서 수행)
     public void updateRecommendedFood(List<String> foodsInCategory) {
         recommendedFood.pickRecommendedFood(foodsInCategory, dislikeFood.getDislikeFoods());
     }
