@@ -59,8 +59,6 @@ public class RecommendSystemController {
     }
 
     private void generateRecommendFood(List<Coach> coaches) {
-        for(Coach coach : coaches) {
-            recommendSystem.addRecommendMenu(coach);
-        }
+        recommendSystem.addTotalRecommendMenu(coaches);
     }
 }

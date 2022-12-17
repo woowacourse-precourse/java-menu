@@ -24,19 +24,24 @@ public class RecommendSystem {
     }
 
     // 음식을 추천하는 기능
-    public void addRecommendMenu(Coach coach) {
-        List<String> recommedMenus = coach.getRecommendedMenu();
-        int index = 0;
-        while(!(recommedMenus.size() == RECOMMAND_MAX_NUM)) {
-            String category = recommendCategories.get(index++);
-            List<String> menus = Category.getmenu(category);
-            String menu = Randoms.shuffle(menus).get(0);
-            while(checkCanNotEatMenu(coach, menu)) {
-                menu = Randoms.shuffle(menus).get(0);
+    public void addTotalRecommendMenu(List<Coach> coaches) {
+        for(int i = 0; i < 5; i++) {
+            String category = recommendCategories.get(i);
+            for(Coach coach : coaches) {
+                List<String> recommedMenus = coach.getRecommendedMenu();
+                String menu = recommendMenu(coach, category);
+                recommedMenus.add(menu);
             }
-            recommedMenus.add(menu);
         }
+    }
 
+    private String recommendMenu(Coach coach, String category){
+        List<String> menus = Category.getmenu(category);
+        String menu = Randoms.shuffle(menus).get(0);
+        while(checkCanNotEatMenu(coach, menu)) {
+            menu = Randoms.shuffle(menus).get(0);
+        }
+        return menu;
     }
 
     private boolean checkCanNotEatMenu(Coach coach, String menu) {
