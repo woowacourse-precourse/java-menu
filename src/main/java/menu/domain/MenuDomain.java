@@ -82,6 +82,10 @@ public class MenuDomain {
         return name;
     }
 
+    /**
+     * 최종 결과를 가져오기 위한 메서드
+     * @return
+     */
     public Result getResult() {
         Result result = Result.of();
         result.initCoach(coachs);
