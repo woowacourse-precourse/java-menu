@@ -7,6 +7,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.util.Lists.newArrayList;
 
 class CoachTest {
 
@@ -45,5 +46,22 @@ class CoachTest {
         assertThatThrownBy(() -> coach = new Coach("토미", menus))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 못먹는 메뉴는 최소 0개 최대 2개이어야 합니다.");
+    }
+
+    @Test
+    void 코치의_추천결과중_카테고리가2회이상인지_테스트() {
+        List<Menu> menus = List.of(new Menu(Category.JAPAN_FOOD, "우동"),
+                new Menu(Category.JAPAN_FOOD, "스시")
+        );
+        RecommendResult recommendResult =
+                new RecommendResult(Day.MON, Category.JAPAN_FOOD, new Menu(Category.JAPAN_FOOD, "오니기리"));
+        RecommendResult recommendResult2 =
+                new RecommendResult(Day.TUE, Category.JAPAN_FOOD, new Menu(Category.JAPAN_FOOD, "오코노미야끼"));
+
+        Coach tomi = new Coach("토미", menus, newArrayList(recommendResult, recommendResult2));
+
+        boolean duplicateCategory = tomi.isDuplicateCategory(Category.JAPAN_FOOD, Day.WED);
+        System.out.println(duplicateCategory);
+        assertThat(duplicateCategory).isTrue();
     }
 }

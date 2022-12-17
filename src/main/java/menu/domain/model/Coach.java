@@ -1,5 +1,6 @@
 package menu.domain.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Coach {
@@ -12,12 +13,20 @@ public class Coach {
 
     private final String name;
     private final List<Menu> canNotEatFoods;
+    private final List<RecommendResult> recommendResults;
 
     public Coach(String name, List<Menu> canNotEatFoods) {
         validateNameLength(name);
         validateCanNotFoodSize(canNotEatFoods);
         this.name = name;
         this.canNotEatFoods = canNotEatFoods;
+        this.recommendResults = new ArrayList<>();
+    }
+
+    public Coach(String name, List<Menu> canNotEatFoods, List<RecommendResult> recommendResults) {
+        this.name = name;
+        this.canNotEatFoods = canNotEatFoods;
+        this.recommendResults = recommendResults;
     }
 
     private static void validateNameLength(String name) {
@@ -32,7 +41,28 @@ public class Coach {
         }
     }
 
+    public boolean isDuplicateCategory(Category category, Day day) {
+        int count = 0;
+        for (int i = 0; i < day.getIndex(); i++) {
+            RecommendResult recommendResult = recommendResults.get(i);
+            if (recommendResult.isEqualCategory(category)) {
+                count++;
+            }
+        }
+        System.out.println(count);
+        return count >= 2;
+    }
+
     public boolean canEat(Menu menu) {
         return !canNotEatFoods.contains(menu);
+    }
+
+    @Override
+    public String toString() {
+        return "Coach{" +
+                "name='" + name + '\'' +
+                ", canNotEatFoods=" + canNotEatFoods +
+                ", recommendResults=" + recommendResults +
+                '}';
     }
 }

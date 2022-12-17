@@ -16,6 +16,10 @@ public class Menu {
         return this.name.equals(name);
     }
 
+    public boolean isEqualCategory(Category category) {
+        return this.category.equals(category);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -35,5 +39,9 @@ public class Menu {
                 "category=" + category +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    public String getName() {
+        return name;
     }
 }
