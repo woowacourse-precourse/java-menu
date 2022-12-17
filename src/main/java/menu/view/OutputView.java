@@ -33,4 +33,8 @@ public class OutputView {
         System.out.println(coach.getResult().stream()
                 .collect(Collectors.joining(ViewConstants.DELIMITER, ViewConstants.FRONT, ViewConstants.BACK)));
     }
+
+    public void printException(Exception e) {
+        System.out.println(e.getMessage());
+    }
 }
