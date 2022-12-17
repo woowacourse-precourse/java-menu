@@ -1,5 +1,6 @@
 package menu;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import menu.view.InputView;
@@ -9,6 +10,7 @@ public class Service {
 
     private static final List<Coach> group = new ArrayList();
     private static final List<Menu> menus = new ArrayList();
+    private static final List<Day> daysResult = new ArrayList<>();
 
     public void start() {
         OutputView.start();
@@ -33,12 +35,12 @@ public class Service {
     }
 
     public void getHateMenuByCoach(Coach coach) {
-        while(true){
-            try{
+        while (true) {
+            try {
                 OutputView.insertHateMenuBy(coach);
                 InputView.insertHateMenuBy(this, coach);
                 break;
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -66,5 +68,35 @@ public class Service {
         }
         addMenu(new Menu(ValidMenus.findMenuByName(name)));
         return null;
+    }
+
+    public void initDays() {
+        for (DaysName dayName : DaysName.values()) {
+            initDay(dayName);
+        }
+    }
+
+    public void initDay(DaysName dayName) {
+        int categoryNumber = Randoms.pickNumberInRange(1, 5);
+        while (true) {
+            if (isAbleCategory(daysResult, ValidCategories.getCategoryByNumber(categoryNumber))) {
+                daysResult.add(new Day(dayName.getKorean(), ValidCategories.getCategoryByNumber(categoryNumber)));
+                return;
+            }
+            categoryNumber = Randoms.pickNumberInRange(1, 5);
+        }
+    }
+
+    public static boolean isAbleCategory(List<Day> days, ValidCategories category) {
+        int count = 0;
+        for (Day day : days) {
+            if (day.getCategoryName().equals(category.getKorean())) {
+                count++;
+            }
+            if (count == 2) {
+                return false;
+            }
+        }
+        return true;
     }
 }

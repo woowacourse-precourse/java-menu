@@ -15,4 +15,8 @@ public class Category {
     public void addMenu(Menu menu) {
         menus.add(menu);
     }
+
+    public String getName() {
+        return name;
+    }
 }
