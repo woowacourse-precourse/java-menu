@@ -10,7 +10,7 @@ public class Application {
         }
         return coaches;
     }
-    static String[] startRecommend(Coach[] coaches) {
+    static String[] startRecommendation(Coach[] coaches) {
         FoodRecommender foodRecommender = new FoodRecommender();
         return foodRecommender.recommend(coaches);
     }
@@ -20,7 +20,7 @@ public class Application {
     public static void main(String[] args) {
         System.out.println("점심 메뉴 추천을 시작합니다.");
         Coach[] coaches = initiate();
-        String[] categories = startRecommend(coaches);
+        String[] categories = startRecommendation(coaches);
         terminate(categories, coaches);
     }
 }
