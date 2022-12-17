@@ -3,6 +3,9 @@ package menu.model.validate;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
@@ -36,5 +39,20 @@ class InputVerifierTest {
             InputVerifier.coachesCountMin2Max5(coachCount);
         });
     }
+
+    @DisplayName("코치가 먹지 못하는 음식을 한글로 입력 받았는가")
+    @Test
+    void 못_먹는_음식_한글입력() {
+        // given
+        List<String> hateFoods = Arrays.asList("pizza", "chicken");
+
+        // when, then
+        assertThatThrownBy(() -> {
+                    InputVerifier.tryCoachesHateMenu(hateFoods);
+                }
+        ).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("코치가 못 먹는 음식은 한글만 입력할 수 있습니다.");
+    }
+
 
 }

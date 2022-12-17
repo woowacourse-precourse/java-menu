@@ -29,13 +29,9 @@ public class InputVerifier {
     }
 
     public static void tryCoachesHateMenu(List<String> hateMenus) {
-        try {
-            for (String hateMenu : hateMenus) {
-                coachHateMenuIsKorean(hateMenu);
-                coachHateMenusCount0To2(hateMenus.size());
-            }
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
+        for (String hateMenu : hateMenus) {
+            coachHateMenuIsKorean(hateMenu);
+            coachHateMenusCount0To2(hateMenus.size());
         }
     }
 
