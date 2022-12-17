@@ -53,6 +53,7 @@ List<String> menu에다가 다 넣어놓기.
 ## MenuController (controller)
 
 - [x] 카테고리에 대한 정보들을 초기 설정한다.
+- [ ] 메뉴 추천 프로그램을 시작한다.
 
 ## StringParser (util)
 
