@@ -14,7 +14,20 @@ public class Coach {
     private static final String COACH_NAME_OUT_OF_RANGE_MIN = "[ERROR] 코치의 이름은 최소 2글자 이상 입력해야 합니다.";
     private static final String COACH_NAME_OUT_OF_RANGE_MAX = "[ERROR] 코치의 이름은 최대 4글자 이하 입력해야 합니다.";
 
-    public List<String> makeCoaches(String names) {
+    private String name;
+    private NotEatableFood notEatableFoods;
+
+    public static Coach makeCoach(String name, NotEatableFood notEatableFoods) {
+        return new Coach(name, notEatableFoods);
+    }
+
+    public Coach (String name, NotEatableFood notEatableFoods){
+        validateCoachName(name);
+        this.name = name;
+        this.notEatableFoods = notEatableFoods;
+    }
+
+    public List<String> getCoachNames(String names) {
         List<String> coachNames = List.of(names.split(","));
         validateCoachesLength(coachNames);
         for (int i =0; i< coachNames.size(); i++) {
