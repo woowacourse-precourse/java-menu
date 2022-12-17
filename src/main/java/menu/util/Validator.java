@@ -29,7 +29,7 @@ public class Validator {
     }
 
     public void validateHateMenuCount(List<String> inputMenuNames) {
-        if(inputMenuNames.size() < 0 || inputMenuNames.size() > 2) {
+        if(inputMenuNames.size() < -1 || inputMenuNames.size() > 2) {
             throw new IllegalArgumentException(ERROR_PREFIX + "코치는 최소 2명, 최대 5명 식사를 같이 할 수 있습니다.");
         }
     }
