@@ -25,11 +25,12 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public void printResult(List<String> category) {
+    public void printResult(List<String> category, List<Coach> coaches) {
         System.out.println(resultStartMessage);
         System.out.println(categoryMessage);
         printCategory(category);
-
+        printAllCoachsEatenMenu(coaches);
+        System.out.println(endMessage);
     }
     
     private void printCategory(List<String> category) {
@@ -38,7 +39,10 @@ public class OutputView {
     }
 
     private void printAllCoachsEatenMenu(List<Coach> coaches) {
-
+        for (Coach coach: coaches) {
+            printOneCoachEatenMenu(coach);
+        }
+        System.out.println();
     }
 
     private void printOneCoachEatenMenu(Coach coach) {
