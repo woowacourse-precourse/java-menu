@@ -5,7 +5,7 @@ public enum ResultMessage {
     HEAD_OF_LINE("[ "),
     TAIL_OF_LINE(" ]"),
     DELIMITER(" | "),
-    CLASSIFICATION("분류"),
+    CLASSIFICATION("구분"),
     CATEGORY("카테고리");
 
     String message;
