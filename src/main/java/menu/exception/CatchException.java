@@ -25,4 +25,9 @@ public class CatchException {
         Set<String> inputSet = Set.of(inputArr);
         if(inputArr.length!=inputSet.size()) throwException(SAME_NAME_EXCEPTION.getError());
     }
+    public void tooManyCantException(String input){
+        String[] inputArr = input.split(",");
+        if(inputArr.length>2) throwException(TOO_MANY_CANT_EXCEPTION.getError());
+
+    }
 }

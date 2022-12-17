@@ -14,6 +14,7 @@ public class InputConsole {
     }
     public static String inputCantConsole(){
         String input = Console.readLine();
+        catchException.tooManyCantException(input);
         return input;
     }
 }
