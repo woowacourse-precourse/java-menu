@@ -26,8 +26,6 @@ public class MenuService {
     }
 
     private void checkFoods(List<String> foods) {
-        foods.forEach(food -> {
-            Category.checkFoodExist(food);
-        });
+        foods.forEach(Category::checkFoodExist);
     }
 }
