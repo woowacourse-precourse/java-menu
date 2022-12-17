@@ -1,6 +1,7 @@
 package menu.service.coach;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.coach.entity.Coach;
@@ -20,6 +21,7 @@ public class CoachService {
     private static final String NOT_FOUND_COACH = "해당 이름을 가진 코치를 찾을 수 없습니다.";
     private static final String NOT_FOUND_MENU = "해당 이름을 가진 메뉴를 찾을 수 없습니다.";
     private static final String TOO_MANY_INEDIBLE_MENUS_EXCEPTION_MESSAGE = "먹을 수 없는 메뉴는 최대 %d개만 지정 가능합니다.";
+    private static final String DUPLICATE_MENUS_NAME_EXCEPTION = "메뉴 이름은 중복될 수 없습니다.";
 
     private final CoachRepository coachRepository;
     private final MenuRepository menuRepository;
@@ -71,13 +73,23 @@ public class CoachService {
         coach.addAllInedibleMenus(inedibleMenus);
     }
 
-    private List<Menu> findAllByInedibleMenusName(String notEatMenus) {
-        String[] menuNames = notEatMenus.split(NAME_SEPARATOR);
+    private List<Menu> findAllByInedibleMenusName(String inedibleMenusName) {
+        String[] menuNames = inedibleMenusName.split(NAME_SEPARATOR);
 
+        validateInedibleMenus(menuNames);
         return Arrays.stream(menuNames)
                 .map(menuName -> menuRepository.findByName(menuName)
                 .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_MENU)))
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    private void validateInedibleMenus(String[] inedibleMenusName) {
+        List<String> menuNames = Arrays.stream(inedibleMenusName)
+                .distinct().collect(Collectors.toList());
+
+        if (inedibleMenusName.length != menuNames.size()) {
+            throw new IllegalArgumentException(DUPLICATE_MENUS_NAME_EXCEPTION);
+        }
     }
 
     private void validateInedibleMenusCount(final List<Menu> inedibleMenus) {
