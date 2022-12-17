@@ -53,6 +53,7 @@ public class MenuRecommendProgram {
             menu = menuRecommend.selectMenu(menus);
             isSelect = validateMenu(coach, menu);
         } while (!isSelect);
+        coach.addfoodEaten(menu);
         return menu;
     }
 
