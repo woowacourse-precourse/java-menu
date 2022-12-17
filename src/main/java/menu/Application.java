@@ -1,5 +1,7 @@
 package menu;
 
+import java.util.List;
+import menu.domain.Coach;
 import menu.initializer.FoodInitializer;
 import menu.input.InputView;
 
@@ -11,6 +13,6 @@ public class Application {
     }
 
     private static void run() {
-        String[] coaches = InputView.readCoachNames();
+        List<Coach> coaches = InputView.readCoachNames();
     }
 }
