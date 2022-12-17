@@ -19,6 +19,13 @@ public class MenuController {
         this.menu = menu;
     }
 
+    public void run() {
+        printStartMessage();
+        final List<String> coachNames = exceptionError(this::getNames);
+        final List<List<String>> menus = getMenus(coachNames);
+        printResult(coachNames, menus);
+    }
+
     private void printStartMessage() {
         OutputView.printStartMessage();
     }
