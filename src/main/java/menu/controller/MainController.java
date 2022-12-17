@@ -105,7 +105,7 @@ public class MainController {
 
     private void setMenusOfDayForALLCoach(Day day){
         for(int i = 0; i < coaches.size(); i ++){
-            setMenuOfDay(day, categories.get(i), coaches.get(i));
+            setMenuOfDay(day, categories.get(day.getOrder()), coaches.get(i));
         }
     }
 
