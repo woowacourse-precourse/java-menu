@@ -8,6 +8,7 @@ public enum MessageFormat {
     RESULT_DATA_FORMAT("[ %s ]"),
     INPUT_PARSER(","),
     DATA_PARSER(" | "),
+    ERROR_MESSAGE_FORMAT("[ERROR] %s"),
     RESULT_END_COMMENT("추천을 완료했습니다");
 
     private final String message;
