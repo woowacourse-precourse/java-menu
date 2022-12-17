@@ -9,6 +9,15 @@ import menu.model.Coach;
 
 public class InputView {
 
+	private static final InputView instance = new InputView();
+
+	private InputView() {
+	}
+
+	public static InputView getInstance() {
+		return instance;
+	}
+
 	// 코치 이름 입력후 코치 객체 반환
 	public List<Coach> readCoachNames() {
 		Message.printMessage(Message.INPUT_COACH_NAMES);
