@@ -38,6 +38,6 @@ public class MenuService {
 
     private void recommendMenuOfDay(Day day) {
         Category categoryOfDay = weeklyCategory.getCategoryOfDay(day);
-        coaches.recommandMenuForEachCoach(day, categoryOfDay);
+        coaches.recommendMenuForEachCoach(day, categoryOfDay);
     }
 }

@@ -3,6 +3,8 @@ package menu.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import menu.domain.constant.Category;
+import menu.domain.constant.Day;
 
 public class Coaches {
     private final List<Coach> coaches;
@@ -33,5 +35,9 @@ public class Coaches {
                 .filter(coach -> coach.isNameOf(coachName))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 코치의 이름입니다."));
+    }
+
+    public void recommendMenuForEachCoach(Day day, Category categoryOfDay) {
+        coaches.forEach(coach -> coach.recommendMenuOfDay(day, categoryOfDay));
     }
 }
