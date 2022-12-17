@@ -37,7 +37,6 @@ public class MenuRecommender {
     }
 
     private static boolean isAvailableToEat(Coach coach, String recommendMenu) {
-        // 만약 코치가 먹은 메뉴 중 중복된 메뉴가 있거나 못먹는 메뉴이면 true를 반환한다.
         return !(coach.isHateFood(recommendMenu) || MenuForWeekRepository.didCoachEat(coach, recommendMenu));
     }
 
@@ -51,5 +50,4 @@ public class MenuRecommender {
         }
         return recommendCategory;
     }
-
 }

@@ -58,6 +58,7 @@ public class OutputView {
     }
 
     public void printMenuResult(HashMap<Coach, List<String>> menuResult) {
+        // TODO : 출력 메소드 바꿔보기 (지저분함)
         printNewLine();
         println(MENU_RECOMMENDATION_RESULT_TITLE);
         println(WEEKDAYS);

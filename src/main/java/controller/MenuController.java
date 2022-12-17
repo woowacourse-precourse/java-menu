@@ -8,12 +8,14 @@ import repository.MenuForWeekRepository;
 import view.InputView;
 import view.OutputView;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class MenuController {
     private static final int MINIMUM_COACHES = 2;
     private static final int MAXIMUM_MENU_SIZE = 2;
+    private static final int MAXIMUM_COACH_SIZE = 5;
     private final OutputView outputView;
     private final InputView inputView;
 
@@ -35,10 +37,13 @@ public class MenuController {
 
     private List<String> getHateFoodNames(String hateFoodNames, String coachName) {
         try {
-            List<String> foodNames = splitNames(hateFoodNames);
-            validateFoodSize(foodNames);
-            validateFoodNames(foodNames);
-            return foodNames;
+            if (!hateFoodNames.isEmpty()) {
+                List<String> foodNames = splitNames(hateFoodNames);
+                validateFoodSize(foodNames);
+                validateFoodNames(foodNames);
+                return foodNames;
+            }
+            return Collections.emptyList();
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception);
             return getHateFoodNames(inputView.readNotAvailableFood(coachName), coachName);
@@ -74,6 +79,17 @@ public class MenuController {
     }
 
     private void validateCoachSize(List<String> names) {
+        validateMinimumSize(names);
+        validateMaximumSize(names);
+    }
+
+    private void validateMaximumSize(List<String> names) {
+        if (names.size() > MAXIMUM_COACH_SIZE) {
+            throw new IllegalArgumentException("코치는 최소 5명 이하로 입력해야 합니다.");
+        }
+    }
+
+    private void validateMinimumSize(List<String> names) {
         if (names.size() < MINIMUM_COACHES) {
             throw new IllegalArgumentException("코치는 최소 2명 이상 입력해야 합니다.");
         }
@@ -84,7 +100,7 @@ public class MenuController {
                 .collect(Collectors.toList());
     }
 
-    private List<String> splitNames(String coachNames) {
-        return List.of(coachNames.split(","));
+    private List<String> splitNames(String names) {
+        return List.of(names.split(","));
     }
 }
