@@ -9,6 +9,7 @@ import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.Menus;
 import menu.domain.Result;
+import menu.view.OutputView;
 
 public class ResultService {
     public Result initializeResult(Coach coach) {
@@ -50,5 +51,9 @@ public class ResultService {
             }
         }
         return false;
+    }
+
+    public void printResult() {
+        OutputView.printResultMessage();
     }
 }

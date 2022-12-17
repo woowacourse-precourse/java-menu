@@ -12,4 +12,9 @@ public class OutputView {
     public static void messageBanInput(String coachName) {
         System.out.println(coachName + "(이)가 못 먹는 메뉴를 입력해 주세요.");
     }
+
+    public static void printResultMessage() {
+        System.out.println("메뉴 추천 결과입니다.");
+        System.out.println("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
+    }
 }

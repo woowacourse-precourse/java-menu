@@ -33,4 +33,8 @@ public class MenuController {
             resultService.pickMenu(category, result, coachName, ban);
         }
     }
+
+    public void finish() {
+        resultService.printResult();
+    }
 }

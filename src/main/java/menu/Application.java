@@ -13,5 +13,6 @@ public class Application {
         for (int i = 0; i < 5; i++) {
             menuController.select();
         }
+        menuController.finish();
     }
 }
