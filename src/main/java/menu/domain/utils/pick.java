@@ -2,7 +2,7 @@ package menu.domain.utils;
 
 import java.util.List;
 
-public interface Picker {
+public interface pick {
 
     int pickNumberInRange(int start, int end);
 

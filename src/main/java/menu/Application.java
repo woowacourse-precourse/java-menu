@@ -6,7 +6,7 @@ import java.util.Map;
 import menu.controller.MenuController;
 import menu.service.Menu;
 import menu.service.MenuService;
-import menu.domain.utils.RandomPicker;
+import menu.domain.utils.RandomPick;
 
 public class Application {
 
@@ -17,7 +17,7 @@ public class Application {
 
     private static Menu getMenu() {
         Map<String, List<String>> menus = initMenu();
-        return new MenuService(menus, new RandomPicker());
+        return new MenuService(menus, new RandomPick());
     }
 
     private static Map<String, List<String>> initMenu() {

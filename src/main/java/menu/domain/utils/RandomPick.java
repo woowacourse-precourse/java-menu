@@ -3,7 +3,7 @@ package menu.domain.utils;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
-public class RandomPicker implements Picker {
+public class RandomPick implements pick {
 
     @Override
     public int pickNumberInRange(int start, int end) {
