@@ -5,15 +5,14 @@ import menu.utils.RandomUtils;
 
 public class FoodRecommender {
 
-    public void repeatThisWeekFood(Coach coach) {
+    public void repeatThisWeekFood() {
         for (int i = 0; i < 5; i++) {
-            recommendTodayFood(coach);
+            for (Coach coach : CoachRepository.coaches()) {
+                recommendTodayFood(coach);
+//                coach.getThisWeekFoods().forEach((food) -> System.out.println(food.getName()));
+//                System.out.println();
+            }
         }
-        System.out.print(coach.getName() + " : ");
-        for (Food food : coach.getThisWeekFoods()) {
-            System.out.print(food.getName() + " ");
-        }
-        System.out.println();
     }
 
     public void recommendTodayFood(Coach coach) {

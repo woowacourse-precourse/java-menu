@@ -10,7 +10,7 @@ import static menu.utils.ErrorMessage.*;
 public class Coach {
     private final String name;
     private List<String> doNotEatFoods = new ArrayList<>();
-    private List<Food> thisWeekFoods = new ArrayList<>();
+    private final List<Food> thisWeekFoods = new ArrayList<>();
 
     public Coach(String name) {
         validateNameRange(name);

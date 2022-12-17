@@ -14,9 +14,7 @@ public class Controller {
             inputAndSaveFood(coach);
         }
         FoodRecommender foodRecommender = new FoodRecommender();
-        for (Coach coach : CoachRepository.coaches()) {
-            foodRecommender.repeatThisWeekFood(coach);
-        }
+        foodRecommender.repeatThisWeekFood();
         OutputView.printRecommendationResult(CoachRepository.coaches());
         OutputView.printMenuRecommendationEnd();
     }
