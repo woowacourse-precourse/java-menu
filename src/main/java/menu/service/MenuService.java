@@ -84,8 +84,16 @@ public class MenuService {
     }
 
     private boolean canRecommend(String selectedMenu, List<Menu> impossibleMenus, List<Menu> alreadyRecommended) {
-        if (impossibleMenus.contains(selectedMenu) || alreadyRecommended.contains(selectedMenu))
-            return false;
+        for (int i = 0; i < impossibleMenus.size(); i++) {
+            if (impossibleMenus.get(i).getMenuName().equals(selectedMenu)) {
+                return false;
+            }
+        }
+        for (int i = 0; i < alreadyRecommended.size(); i++) {
+            if (alreadyRecommended.get(i).getMenuName().equals(selectedMenu)) {
+                return false;
+            }
+        }
         return true;
     }
 
