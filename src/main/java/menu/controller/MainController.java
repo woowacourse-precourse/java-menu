@@ -27,9 +27,17 @@ public class MainController {
         displayStartMessage();
         setCategories();
         setCoachNames();
+        /*
         for(Coach coach : coaches){
             setBanFoods(coach);
-            setMenusOfWeek(coach);
+            setMenusOfWeek(coach); //이거 같이하면 테스트에서 들어오는 리스트 순서 때문에 테스트 오류남
+        }
+        */
+        for(Coach coach : coaches){
+            setBanFoods(coach);
+        }
+        for(int i = 0; i < Day.size(); i++){
+            setMenusOfDayForALLCoach(Day.get(i));
         }
         displayRecommendationResult();
         displayFinishMessage();
@@ -95,6 +103,12 @@ public class MainController {
         }
     }
 
+    private void setMenusOfDayForALLCoach(Day day){
+        for(int i = 0; i < coaches.size(); i ++){
+            setMenuOfDay(day, categories.get(i), coaches.get(i));
+        }
+    }
+
     private void setMenuOfDay(Day day, Category category, Coach coach){
         String recommendedMenu = recommender.recommendMenuOfCategory(category);
         if(isDuplicatedMenu(coach, recommendedMenu)){
@@ -106,7 +120,7 @@ public class MainController {
             return;
         }
         Menu menu = new Menu(day, category, recommendedMenu);
-        coach.addMenu(menu);
+        coach.addMenu(menu, day);
     }
 
     private boolean isDuplicatedMenu(Coach coach, String recommendedMenu){

@@ -13,8 +13,10 @@ public class Recommender {
     }
 
     public String recommendMenuOfCategory(Category category){
-        List<String> menus = category.getMenus();
-        String menu = Randoms.shuffle(menus).get(0);
+        List<String> shuffledMenus = Randoms.shuffle(category.getMenus());
+        String menu = shuffledMenus.get(0);
+        System.out.println(category.getName() + menu);
+        System.out.println(shuffledMenus);
         return menu;
     }
 

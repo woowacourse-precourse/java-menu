@@ -1,5 +1,7 @@
 package menu.model;
 
+import menu.constant.Day;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +30,7 @@ public class Coach {
     public String[] getBanFoods(){
         return banFoods;
     }
-    public void addMenu(Menu menu){
-        menusOfWeek.add(menu);
+    public void addMenu(Menu menu, Day day){
+        menusOfWeek.add(day.getOrder(), menu);
     }
 }
