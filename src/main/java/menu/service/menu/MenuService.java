@@ -27,55 +27,59 @@ public class MenuService {
         this.menuRepository = menuRepository;
     }
 
-    public Map<Coach, List<Menu>> recommendLunchMenu(String coachName) {
+    public Map<Coach, List<Menu>> recommendLunchMenus() {
         List<Coach> coaches = coachRepository.findAll();
-        Map<Coach, List<Menu>> recommendLunchMenu = new HashMap<>();
+        List<Category> categories = new ArrayList<>();
 
-        coaches.forEach(coach -> recommendLunchMenu.put(coach, calculateRecommendLunchMenu(coach)));
-        return recommendLunchMenu;
+        return calculateRecommendMenus(coaches, categories);
     }
 
-    private List<Menu> calculateRecommendLunchMenu(Coach coach) {
-        List<Menu> recommendMenus = new ArrayList<>();
+    private Map<Coach, List<Menu>> calculateRecommendMenus(final List<Coach> coaches, final List<Category> categories) {
+        Map<Coach, List<Menu>> recommendMenus = new HashMap<>();
+        int count = 0;
 
-        while (recommendMenus.size() <= LUNCH_COUNT) {
-            Menu randomMenu = findRecommendMenu(recommendMenus, coach);
-            processRandomMenu(recommendMenus, randomMenu);
+        while (count++ < LUNCH_COUNT) {
+            Category recommendCategory = findValidCategory(categories);
+            List<Menu> menus = menuRepository.findAllByCategory(recommendCategory);
+            processAddRecommendMenus(recommendMenus, menus, coaches);
         }
         return recommendMenus;
     }
 
-    private void processRandomMenu(final List<Menu> recommendMenus, Menu randomMenu) {
-        if (!recommendMenus.contains(randomMenu)) {
-            recommendMenus.add(randomMenu);
-        }
+    private void processAddRecommendMenus(final Map<Coach, List<Menu>> recommendMenus,
+            final List<Menu> menus, final List<Coach> coaches) {
+        coaches.forEach(coach -> {
+            List<Menu> previousRecommendMenus = recommendMenus.getOrDefault(coach, new ArrayList<>());
+            previousRecommendMenus.add(findRecommendEatableMenu(menus, coach));
+            recommendMenus.put(coach, previousRecommendMenus);
+        });
     }
 
-    private Menu findRecommendMenu(final List<Menu> recommendMenus, Coach coach) {
-        Category category = findValidCategory(recommendMenus);
-        List<Menu> menus = menuRepository.findAllByCategory(category);
-        Menu recommendMenu = Randoms.shuffle(menus).get(SELECT_MENU_INDEX);
+    private Menu findRecommendEatableMenu(final List<Menu> menus, Coach coach) {
+        Menu randomMenu = Randoms.shuffle(menus).get(SELECT_MENU_INDEX);
 
-        while (coach.matchesByInedibleMenu(recommendMenu)) {
-            recommendMenu = Randoms.shuffle(menus).get(SELECT_MENU_INDEX);
+        while (coach.matchesByInedibleMenu(randomMenu)) {
+            randomMenu = Randoms.shuffle(menus).get(SELECT_MENU_INDEX);
         }
-        return Randoms.shuffle(menus).get(SELECT_MENU_INDEX);
+        return randomMenu;
     }
 
-    private Category findValidCategory(final List<Menu> recommendMenus) {
-        Category category = findRandomCategory();
-        while (calculateRecommendLunchCategory(recommendMenus, category) > MAX_DUPLICATE_LUNCH_CATEGORY) {
-            category = findRandomCategory();
+    private Category findValidCategory(final List<Category> categories) {
+        Category randomCategory = findRandomCategory();
+
+        while (calculateRecommendCategory(categories, randomCategory) > MAX_DUPLICATE_LUNCH_CATEGORY) {
+            randomCategory = findRandomCategory();
         }
-        return category;
+        categories.add(randomCategory);
+        return randomCategory;
+    }
+
+    private long calculateRecommendCategory(final List<Category> categories, Category category) {
+        return categories.stream().filter(addCategory -> addCategory.matches(category)).count();
     }
 
     private Category findRandomCategory() {
         int categoryNumber = Randoms.pickNumberInRange(MIN_CATEGORY_NUMBER, MAX_CATEGORY_NUMBER);
         return Category.findByNumber(categoryNumber);
-    }
-
-    private long calculateRecommendLunchCategory(final List<Menu> recommendMenus, Category category) {
-        return recommendMenus.stream().filter(menu -> menu.matchesByCategory(category)).count();
     }
 }
