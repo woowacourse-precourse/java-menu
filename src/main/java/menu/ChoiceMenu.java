@@ -41,10 +41,15 @@ public class ChoiceMenu {
     }
 
     public void setCoachs() {
-        String[] coachNames = getCoachNames();
-        for (String coachName : coachNames) {
-            settingCoach.addCoach(coachName);
-            setCantEatMenusToCoach(coachName);
+        try {
+            String[] coachNames = getCoachNames();
+            for (String coachName : coachNames) {
+                settingCoach.addCoach(coachName);
+                setCantEatMenusToCoach(coachName);
+            }
+        } catch (IllegalArgumentException e) {
+            output.printErrorMessage(e.getMessage());
+            setCoachs();
         }
     }
 
