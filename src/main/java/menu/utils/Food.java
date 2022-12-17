@@ -1,7 +1,6 @@
-package menu.domain;
+package menu.utils;
 
-import menu.utils.Category;
-import menu.utils.ErrorMessage;
+import menu.domain.Coach;
 
 import java.util.Arrays;
 import java.util.List;

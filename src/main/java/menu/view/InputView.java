@@ -3,7 +3,7 @@ package menu.view;
 import camp.nextstep.edu.missionutils.Console;
 import menu.domain.Coach;
 import menu.domain.CoachGroup;
-import menu.domain.Food;
+import menu.utils.Food;
 import org.junit.platform.commons.util.StringUtils;
 
 import java.util.Arrays;

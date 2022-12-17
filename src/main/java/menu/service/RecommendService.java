@@ -2,9 +2,9 @@ package menu.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import menu.domain.Coach;
-import menu.domain.Food;
 import menu.utils.Category;
 import menu.utils.ErrorMessage;
+import menu.utils.Food;
 import menu.utils.Weekend;
 
 import java.util.ArrayList;

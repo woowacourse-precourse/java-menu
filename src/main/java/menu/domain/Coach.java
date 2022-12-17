@@ -1,6 +1,7 @@
 package menu.domain;
 
 import menu.utils.ErrorMessage;
+import menu.utils.Food;
 
 import java.util.ArrayList;
 import java.util.List;

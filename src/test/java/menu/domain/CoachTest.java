@@ -1,6 +1,7 @@
 package menu.domain;
 
 import menu.utils.ErrorMessage;
+import menu.utils.Food;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
