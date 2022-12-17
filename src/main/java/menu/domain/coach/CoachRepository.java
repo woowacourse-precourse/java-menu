@@ -22,4 +22,8 @@ public class CoachRepository {
         coaches.add(coach);
     }
 
+    public List<Coach> getCoaches() {
+        return coaches;
+    }
+
 }
