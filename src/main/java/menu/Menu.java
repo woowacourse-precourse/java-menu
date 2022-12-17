@@ -17,7 +17,7 @@ public class Menu {
 		menus.add(Arrays.asList("라자냐, 그라탱, 뇨끼, 끼슈, 프렌치 토스트, 바게트, 스파게티, 피자, 파니니"));
 	}
 
-	public List<String> getMenus(int index) {
+	public List<String> getTotelMenus(int index) {
 		return menus.get(index);
 	}
 }
