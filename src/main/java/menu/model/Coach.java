@@ -6,6 +6,7 @@ import java.util.*;
 
 public class Coach {
 
+    private static final int DAYS = 5;
     private String name;
     private List<Menu> nonMenus;
 
@@ -28,30 +29,38 @@ public class Coach {
 
 
     /**
+     * 월화수목금 추천 됐는지 확인 기능
+     */
+    public boolean isStop() {
+        return eatMenu.size() != DAYS;
+    }
+
+    /**
      * 메뉴 제한 확인 메서드
      */
-    public boolean isFineEatMenu(String menu){
+    public boolean isFineEatMenu(String menu) {
         return eatMenu.contains(menu);
     }
 
     /**
      * 카테고리 제한 확인 메서드
      */
-    public void countCategory(Category category){
+    public void countCategory(Category category) {
         int count = eatCategory.get(category);
         eatCategory.put(category, count + 1);
     }
-    public boolean isFineCategory(Category category){
+
+    public boolean isFineCategory(Category category) {
         int count = eatCategory.get(category);
-        return count>2;
+        return count > 2;
     }
 
 
     /**
      * Coach 이름 예외사항 체크
      */
-    public void validateNameSize(String name){
-        if(isCorrectNameSize(name)){
+    public void validateNameSize(String name) {
+        if (isCorrectNameSize(name)) {
             return;
         }
         throw new IllegalArgumentException(ErrorMessage.NAME_SIZE_OVER_ERROR_MESSAGE.getMessage());
