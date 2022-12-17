@@ -8,6 +8,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
+    private static final String INITIAL_SETTING = "";
+    private static final String SPACE = " ";
+    private static final String DELIMITER = "|";
+    private static final String START_BRACKET = "[";
+    private static final String END_BRACKET = "]";
     public void printStartMessage() {
         System.out.println(RuntimeMessage.PROGRAM_START_MESSAGE.getMessage());
     }
@@ -16,8 +21,7 @@ public class OutputView {
         System.out.println(RuntimeMessage.COACH_NAME_INPUT_MESSAGE.getMessage());
     }
 
-    public void printFinalResult(Map<String, List<String>> foodRecommendedByCoaches,
-                                 List<String> pickedCategories) {
+    public void printFinalResult(Map<String, List<String>> foodRecommendedByCoaches, List<String> pickedCategories) {
         System.out.println(RuntimeMessage.MENU_RECOMMENDATION_RESULT_MESSAGE.getMessage());
         System.out.println(RuntimeMessage.DAY_OF_WEEK_LIST_MESSAGE.getMessage());
         makeCategoryPhrase(pickedCategories);
@@ -26,15 +30,15 @@ public class OutputView {
     }
 
     public void makeCategoryPhrase(List<String> pickedCategories) {
-        String phrase = "";
+        String phrase = INITIAL_SETTING;
         for (int i = MyValue.MONDAY.getValue(); i < MyValue.SATURDAY.getValue(); i++) {
-            phrase += " " + pickedCategories.get(i) + " ";
+            phrase += SPACE + pickedCategories.get(i) + SPACE;
 
             if (i != MyValue.FRIDAY.getValue()) {
-                phrase += "|";
+                phrase += DELIMITER;
             }
         }
-        System.out.println("[" + " 카테고리 " + "|" + phrase + "]");;
+        System.out.println(START_BRACKET + " 카테고리 " + DELIMITER + phrase + END_BRACKET);;
     }
 
     public void printRecommendationResult(Map<String, List<String>> foodRecommendedByCoaches) {
@@ -45,18 +49,15 @@ public class OutputView {
     }
 
     public void makeRecommendationPhrase(String name, Map<String, List<String>> foodRecommendedByCoaches) {
-        String phrase = "[ " + name + " |";
+        String phrase = INITIAL_SETTING;
         for (int i = MyValue.MONDAY.getValue(); i < MyValue.SATURDAY.getValue(); i++) {
-            phrase += " " + foodRecommendedByCoaches.get(name).get(i) + " ";
+            phrase += SPACE + foodRecommendedByCoaches.get(name).get(i) + SPACE;
 
             if (i != MyValue.FRIDAY.getValue()) {
-                phrase += "|";
-            }
-            if (i == MyValue.FRIDAY.getValue()) {
-                phrase += "]";
+                phrase += DELIMITER;
             }
         }
-        System.out.println(phrase);
+        System.out.println(START_BRACKET + SPACE + name + SPACE + DELIMITER + phrase + END_BRACKET);
     }
 
 }
