@@ -10,52 +10,71 @@ import java.util.List;
 public class MenuService {
 
     private CategoryResult categoryResult;
+    private int categoryPool[] = new int[6];
+    public static MenuService instance = new MenuService();
+    List<String> categoryResultList = new ArrayList<>();
 
-    public RecommendResult recommendMenu(List<Coach> coachList) {
-        categoryResult = recommendCategory();
+    private MenuService() {
+        for (int i = 1; i <= 5; i++) {
+            categoryPool[i] = 2;
+        }
+    }
+
+    public static MenuService getInstance() {
+        return instance;
+    }
+
+    public RecommendResult recommend(List<Coach> coachList) {
+
         List<MenuResult> menuResultList = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            String category = recommendCategory();
+            categoryResultList.add(category);
+            for (Coach coach : coachList) {
+                coach.getMenuList().add(recommendMenu(coach, category));
+            }
+        }
+        categoryResult = new CategoryResult(categoryResultList);
         for (Coach coach : coachList) {
-            MenuResult menuResult = recommendMenu(coach);
-            menuResultList.add(menuResult);
+            menuResultList.add(new MenuResult(coach.getCoachName(), coach.getMenuList()));
         }
         return new RecommendResult(categoryResult, menuResultList);
     }
 
-    public CategoryResult recommendCategory() {
-        int categoryPool[] = new int[6];
-        for (int i = 1; i <= 5; i++) {
-            categoryPool[i] = 2;
-        }
-        int selected = 0;
-        List<String> categoryResult = new ArrayList<>();
-        while (selected != 5) {
+    public String recommendCategory() {
+
+        while (true) {
             int i = Randoms.pickNumberInRange(1, 5);
             if (categoryPool[i] > 0) {
-                selected++;
-                categoryResult.add(convertCategoryNumberToString(i));
                 categoryPool[i]--;
+                return convertCategoryNumberToString(i);
             }
         }
-        return new CategoryResult(categoryResult);
     }
 
-    public MenuResult recommendMenu(Coach coach) {
-        String coachName = coach.getCoachName();
+    public Menu recommendMenu(Coach coach, String category) {
         List<String> impossibleMenus = coach.getImpossibleMenus();
-        List<String> categoryResult = this.categoryResult.getCategoryResult();
         List<String> recommendMenuList = new ArrayList<>();
         List<String> alreadyRecommended = new ArrayList<>();
-        for (int i = 0; i < categoryResult.size(); i++) {
-            String menus = Category.valueOf(categoryResult.get(i)).getMenus();
-            List<String> menuList = Parser.parse(menus);
-            String selectedMenu = "";
-            do {
-                selectedMenu = Randoms.shuffle(menuList).get(0);
-            } while (!canRecommend(selectedMenu, impossibleMenus, alreadyRecommended));
-            alreadyRecommended.add(selectedMenu);
-            recommendMenuList.add(selectedMenu);
+        String menus = Category.valueOf(category).getMenus();
+        List<String> menuList = Parser.parse(menus);
+
+        for (String menu : menuList) {
+            //System.out.print(" " + menu + " ");
         }
-        return new MenuResult(coachName, recommendMenuList);
+        String selectedMenu = Randoms.shuffle(menuList).get(0);
+        do {
+            //System.out.println("뽑아본 메뉴는 다음과 같아요 : " + selectedMenu);
+            if (canRecommend(selectedMenu, impossibleMenus, alreadyRecommended)) {
+                break;
+            }
+            selectedMenu = Randoms.shuffle(menuList).get(0);
+        } while (true);
+        alreadyRecommended.add(selectedMenu);
+        recommendMenuList.add(selectedMenu);
+        //System.out.println("뽑힌 메뉴는 다음과 같아요 : " + selectedMenu);
+        return new Menu(selectedMenu);
+
     }
 
     private boolean canRecommend(String selectedMenu, List<String> impossibleMenus, List<String> alreadyRecommended) {

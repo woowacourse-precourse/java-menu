@@ -1,6 +1,5 @@
 package menu.controller;
 
-import menu.model.CategoryResult;
 import menu.model.Coach;
 import menu.model.MenuResult;
 import menu.model.RecommendResult;
@@ -9,7 +8,6 @@ import menu.view.InputView;
 import menu.view.OutputView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MenuController {
@@ -24,7 +22,7 @@ public class MenuController {
         inputView = new InputView();
         outputView = new OutputView();
         coachList = new ArrayList<>();
-        menuService = new MenuService();
+        menuService = MenuService.getInstance();
     }
 
     public void run() {
@@ -36,7 +34,7 @@ public class MenuController {
     }
 
     public void recommendMenu() {
-        recommendResult = menuService.recommendMenu(coachList);
+        recommendResult = menuService.recommend(coachList);
     }
 
     public void start() {

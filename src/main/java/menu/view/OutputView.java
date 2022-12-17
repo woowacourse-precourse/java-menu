@@ -1,6 +1,7 @@
 package menu.view;
 
 import menu.model.CategoryResult;
+import menu.model.Menu;
 import menu.model.MenuResult;
 
 import java.util.List;
@@ -71,12 +72,12 @@ public class OutputView {
 
     public void printMenuResult(MenuResult menuResult) {
         String coachName = menuResult.getCoachName();
-        List<String> menuList = menuResult.getMenuList();
+        List<Menu> menuList = menuResult.getMenuList();
         printMessage(OPEN_EMBRACE);
         printMessage(SPACE + coachName + SPACE);
         for (int i = 0; i < menuList.size(); i++) {
             printMessage(DELIMITER);
-            printMessage(SPACE + menuList.get(i) + SPACE);
+            printMessage(SPACE + menuList.get(i).getMenuName() + SPACE);
         }
         printlnMessage(CLOSE_EMBRACE);
     }

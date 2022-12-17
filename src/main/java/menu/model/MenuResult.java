@@ -4,9 +4,9 @@ import java.util.List;
 
 public class MenuResult {
     private String coachName;
-    private List<String> menuList;
+    private List<Menu> menuList;
 
-    public MenuResult(String coachName, List<String> menuList) {
+    public MenuResult(String coachName, List<Menu> menuList) {
         this.coachName = coachName;
         this.menuList = menuList;
     }
@@ -15,7 +15,7 @@ public class MenuResult {
         return coachName;
     }
 
-    public List<String> getMenuList() {
+    public List<Menu> getMenuList() {
         return menuList;
     }
 }
