@@ -21,8 +21,12 @@ public class CoachService {
     public void registerCoach(List<String> coaches) {
         coaches.forEach(coachRepository::addCoach);
     }
-    
+
     public List<String> findAllCoaches() {
         return coachRepository.findAllCoach();
+    }
+
+    public void registerInedibleFoodByCoach(String coach, List<String> foods) {
+        coachRepository.addInedibleFoodToCoach(coach, foods);
     }
 }
