@@ -4,8 +4,9 @@ import menu.utils.ErrorMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class CouchTest {
@@ -23,29 +24,35 @@ class CouchTest {
         Assertions.assertThat(couch.getName()).isEqualTo("최최준호");
     }
 
-
-    @Nested
-    class recommend_메소드에_대해서 {
-        @Test
-        void recommend_메소드를_실행하면_해당_Food에_대해_isDeny_True() {
-
-        }
-
-        @Test
-        void recommend_메소드를_실행하면_해당_Food에_대해_isDeny_True() {
-
-        }
+    @Test
+    void recommend_메소드를_실행하면_해당_Food에_대해_isDeny_True() {
+        Couch couch = Couch.from("최준호");
+        couch.recommend(Food.가츠동);
+        Assertions.assertThat(couch.isDeny(Food.가츠동)).isTrue();
     }
 
+    @Test
+    void recommend_메소드를_실행하면_해당_Food가_toMessage에_포함() {
+        Couch couch = Couch.from("최준호");
+        couch.recommend(Food.가츠동);
+        Assertions.assertThat(couch.toMessage()).contains(Food.가츠동.getAlias());
+    }
 
     @Test
     void denyFood_메소드를_실행하면_해당_Food에_대해_isDeny_True() {
-
+        Couch couch = Couch.from("최준호");
+        couch.denyFood(List.of(Food.가츠동));
+        Assertions.assertThat(couch.isDeny(Food.가츠동)).isTrue();
     }
 
     @Test
-    void toMessage_메소드는_다음_형태에_맞춰_출력한다() {
-        String string = "";
+    void denyFood_메소드를_중복해서_실행하면_예외() {
+        Couch couch = Couch.from("최준호");
+        couch.denyFood(List.of(Food.가츠동));
+        Assertions.assertThatThrownBy(() -> {
+                    couch.denyFood(List.of(Food.고추잡채));
+                }).isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining(ErrorMessage.COUCH_ALREADY_DENY_FOOD.getMessage());
     }
 
 }
