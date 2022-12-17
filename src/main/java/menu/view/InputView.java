@@ -34,6 +34,7 @@ public class InputView {
             String[] splitMenus = menu.split(",");
             List<String> menus = Arrays.asList(splitMenus);
             Validate.cantEatLength(menus, 0, 2);
+            Validate.duplication(menus);
             return menus;
         }
         return new ArrayList<>();
