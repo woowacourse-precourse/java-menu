@@ -25,7 +25,7 @@ public class MenuApplication {
         Coaches coaches = inputView.sendCoachNames();
         addEachCoachesHateMenu(coaches);
         List<Category> categories = recommendCategoryMaker.make();
-        coaches.addLunchMenuToEachCoach(categories);
+        addCoachesLunchMenu(coaches, categories);
         outputView.printWeeklyRecommendMenu(CoachesWeeklyMenu.from(categories, coaches));
     }
 
@@ -35,6 +35,12 @@ public class MenuApplication {
                     List<Menu> menus = inputView.sendHateMenuBySpecificCoach(coach);
                     coach.addHateMenus(menus);
                 });
+    }
+
+    private void addCoachesLunchMenu(Coaches coaches, List<Category> categories) {
+        for (Category category : categories) {
+            coaches.addLunchMenuToEachCoach(category);
+        }
     }
 
 }

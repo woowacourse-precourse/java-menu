@@ -34,7 +34,17 @@ public class Coach {
         hateMenus.addAll(menus);
     }
 
-    public boolean isHateOrDuplicateMenu(Menu menu) {
+    public void addLunchMenu(Category category) {
+        while (true) {
+            Menu randomMenuByCategory = Menu.createRandomMenuByCategory(category);
+            if (!isHateOrDuplicateMenu(randomMenuByCategory)) {
+                lunchMenus.add(randomMenuByCategory);
+                break;
+            }
+        }
+    }
+
+    private boolean isHateOrDuplicateMenu(Menu menu) {
         return isHateMenu(menu) || duplicateLunchMenu(menu);
     }
 
@@ -46,9 +56,6 @@ public class Coach {
         return lunchMenus.contains(menu);
     }
 
-    public void addLunchMenu(Menu menu) {
-        lunchMenus.add(menu);
-    }
 
     public List<Menu> getLunchMenus() {
         return lunchMenus;

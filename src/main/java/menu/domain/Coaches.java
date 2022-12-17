@@ -14,18 +14,8 @@ public class Coaches {
         this.coaches = coaches;
     }
 
-    public void addLunchMenuToEachCoach(List<Category> categories) {
-        coaches.forEach(coach -> {
-            for (Category category : categories) {
-                while (true) {
-                    Menu randomMenuByCategory = Menu.createRandomMenuByCategory(category);
-                    if (!coach.isHateOrDuplicateMenu(randomMenuByCategory)) {
-                        coach.addLunchMenu(randomMenuByCategory);
-                        break;
-                    }
-                }
-            }
-        });
+    public void addLunchMenuToEachCoach(Category category) {
+        coaches.forEach(coach -> coach.addLunchMenu(category));
     }
 
 
