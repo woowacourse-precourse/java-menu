@@ -8,5 +8,7 @@ public class OutputView {
         System.out.println(INIT_MESSAGE);
     }
 
-
+    public void printErrorMessage(Exception e){
+        System.out.println(e.getMessage());
+    }
 }

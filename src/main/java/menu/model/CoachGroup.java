@@ -1,6 +1,5 @@
 package menu.model;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +13,7 @@ public class CoachGroup {
 
     public CoachGroup(String names){
         List<String> parseNames = parseName(names);
-        validateLength(parseNames);
+        validateCoachSize(parseNames);
         coaches = makeCoachGroup(parseNames);
     }
 
@@ -27,7 +26,7 @@ public class CoachGroup {
         return names.stream().map(Coach::new).collect(Collectors.toList());
     }
 
-    public void validateLength(List<String> names){
+    public void validateCoachSize(List<String> names){
         if(isCorrectSize(names)){
             return;
         }
