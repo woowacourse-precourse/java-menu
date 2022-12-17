@@ -12,7 +12,7 @@ public class Menu {
     private static final Integer MAX_DISLIKE_FOOD_SIZE = 2;
 
     private final Map<Category, List<String>> menu = new HashMap<>();
-    private static Map<String, List<String>> dislikeFoods = new HashMap<>();
+    private static final Map<String, List<String>> dislikeFoods = new HashMap<>();
 
     public Menu() {
         menu.put(Category.JAPANESE_FOOD, makeJapaneseFood());
