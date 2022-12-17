@@ -1,5 +1,7 @@
 package menu.domain;
 
+import menu.utills.Converter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +36,7 @@ public class Coach {
         List<String> messages = new ArrayList<>();
         messages.add(this.name);
         messages.add(recommended.toString());
-        return String.join(" | ", messages);
+        return Converter.toStringByDelimiter(messages);
     }
 
     public boolean unAcceptable(Menu menu) {

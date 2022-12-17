@@ -1,5 +1,6 @@
 package menu.domain;
 
+import menu.utills.Converter;
 import menu.utills.constants.Category;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class Categories {
         List<String> categoryNames= categories.stream()
                 .map(Category::getLabel)
                 .collect(Collectors.toList());
-        return String.join(" | ", categoryNames);
+        return Converter.toStringByDelimiter(categoryNames);
     }
 
     private boolean duplicatedDouble(Category newCategory) {

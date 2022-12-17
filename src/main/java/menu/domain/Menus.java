@@ -1,5 +1,7 @@
 package menu.domain;
 
+import menu.utills.Converter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,7 +26,6 @@ public class Menus {
         List<String> menuNames = menus.stream()
                 .map(Menu::getName)
                 .collect(Collectors.toList());
-
-        return String.join(" | ", menuNames);
+        return Converter.toStringByDelimiter(menuNames);
     }
 }
