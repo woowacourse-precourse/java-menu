@@ -32,7 +32,7 @@ public class MenuController {
         UserList menuList = readRemoveMenu(coachList);
 
         recommendMenu(menuList, coachList);
-
+        outputView.print(Constants.END_MESSAGE);
     }
 
     public CoachList readCoachList() {
