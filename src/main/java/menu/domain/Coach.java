@@ -18,8 +18,16 @@ public class Coach {
         this.inedibleFoods = inedibleFoods;
     }
 
+    public static Coach ofName(String name) {
+        return new Coach(name, new ArrayList<Food>());
+    }
+
     public String name() {
         return name;
+    }
+
+    public List<Recommend> recommends() {
+        return recommends;
     }
 
     public boolean isDuplicatedCategory(Category category) {
@@ -35,5 +43,9 @@ public class Coach {
 
     public void addInedibleFoods(List<Food> foods) {
         inedibleFoods.addAll(foods);
+    }
+
+    public void addRecommend(Recommend recommend) {
+        this.recommends.add(recommend);
     }
 }

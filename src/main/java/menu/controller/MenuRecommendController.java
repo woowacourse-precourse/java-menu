@@ -1,7 +1,6 @@
 package menu.controller;
 
 import menu.domain.Coach;
-import menu.domain.WeekRecommends;
 import menu.usecase.MenuRecommendUseCase;
 
 import java.util.List;
@@ -17,8 +16,8 @@ public class MenuRecommendController {
     /**
      * 메뉴 추천
      */
-    public List<WeekRecommends> recommend(List<Coach> coaches) {
-        return menuRecommendUseCase.command(
+    public void recommend(List<Coach> coaches) {
+        menuRecommendUseCase.command(
                 new MenuRecommendUseCase.Command(coaches));
     }
 }

@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import menu.domain.Coach;
 import menu.domain.Food;
 import menu.domain.Recommend;
-import menu.domain.WeekRecommends;
 import menu.domain.enums.Category;
 import menu.domain.enums.Weekday;
 import menu.usecase.MenuRecommendUseCase;
@@ -12,7 +11,6 @@ import menu.usecase.MenuRecommendUseCase;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
-import static java.util.stream.Collectors.toUnmodifiableList;
 
 public class MenuRecommend implements MenuRecommendUseCase {
 
@@ -24,29 +22,26 @@ public class MenuRecommend implements MenuRecommendUseCase {
      * 요일별로 반복하여 코치별로 메뉴 추천
      */
     @Override
-    public List<WeekRecommends> command(Command command) {
-        return Weekday.weekdays()
-                .stream()
-                .map(it -> new WeekRecommends(it, recommendForCoachByrdDay(it, command.coaches())))
-                .collect(toUnmodifiableList());
+    public void command(Command command) {
+        Weekday.weekdays()
+                .forEach(it -> recommendForCoachByrdDay(it, command.coaches()));
     }
 
     /**
      * 코치들에게 요일별로 메뉴를 추천한다.
      */
-    private List<Recommend> recommendForCoachByrdDay(Weekday weekday, List<Coach> coaches) {
-        return coaches.stream()
-                .map(it -> recommendForCoach(weekday, it))
-                .collect(toUnmodifiableList());
+    private void recommendForCoachByrdDay(Weekday weekday, List<Coach> coaches) {
+        coaches.forEach(it -> recommendForCoach(weekday, it));
     }
 
     /**
      * 코치에게 해당 요일에 대한 메뉴를 추천한다.
      */
-    private Recommend recommendForCoach(Weekday weekday, Coach coach) {
+    private void recommendForCoach(Weekday weekday, Coach coach) {
         Category category = selectCategoryForCoach(coach);
         Food food = selectMenuForCoach(coach, category);
-        return new Recommend(coach, weekday, food);
+        Recommend recommend = new Recommend(coach, weekday, food);
+        coach.addRecommend(recommend);
     }
 
     private Category selectCategoryForCoach(Coach coach) {
@@ -59,13 +54,12 @@ public class MenuRecommend implements MenuRecommendUseCase {
     }
 
     private Food selectMenuForCoach(Coach coach, Category category) {
-        // 메뉴 렌덤 선택
         List<String> foodNames = category.foodNames();
         Food food;
         do {
             String foodName = Randoms.shuffle(foodNames).get(FIRST_SELECT_MENU_INDEX);
-            food = category.mapFoodByName(foodName);
-        } while (coach.isEdible(food));
+            food = Category.mapFoodByName(foodName);
+        } while (!coach.isEdible(food));
 
         return food;
     }

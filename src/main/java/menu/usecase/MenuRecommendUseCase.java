@@ -1,13 +1,12 @@
 package menu.usecase;
 
 import menu.domain.Coach;
-import menu.domain.WeekRecommends;
 
 import java.util.List;
 
 public interface MenuRecommendUseCase {
 
-    List<WeekRecommends> command(Command command);
+    void command(Command command);
 
     class Command {
         private final List<Coach> coaches;
