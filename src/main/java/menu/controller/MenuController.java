@@ -7,7 +7,7 @@ import menu.util.ResourceReader;
 
 import java.util.List;
 
-public class MenuController implements Controller{
+public class MenuController implements Controller {
 
     private final MenuService menuService;
     private final ResourceReader resourceReader = new ResourceReader();
