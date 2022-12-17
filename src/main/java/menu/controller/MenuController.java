@@ -51,14 +51,6 @@ public class MenuController {
             String name = coach.getName();
             outputView.print(Messages.COACH_UNEATABLE, name);
             coach.addUnEatable(inputView.inputBasicLine());
-
-//            try {
-//                coach.addUnEatable(inputView.inputBasicLine()); // 에러 다시 입력
-//            } catch (IllegalArgumentException e) {
-//                System.out.println(e.getMessage());
-//                return coach.addUnEatable(inputView.inputBasicLine());
-//            }
-//            coach.addUnEatable(readUnEatables()); // 에러 다시 입력
         }
     }
 
@@ -106,16 +98,6 @@ public class MenuController {
             lunchSuggestion.addSuggestion(coach, food);
         }
     }
-
-    private String readUnEatables() {
-        return inputView.inputBasicLine();
-    }
-
-//    private Coaches readCoaches() {
-//        outputView.print(Messages.INPUT_COACH_NAME);
-//        return new Coaches(inputView.inputBasicLine());
-//    }
-
 
     private void showLunchSuggestionWith(Categories categories) {
         outputView.print(Messages.LUNCH_SUGGEST_RESULT);
