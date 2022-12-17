@@ -15,5 +15,8 @@ public class ConstantBox {
     public static final int MAX_TRY_NUMBER = 5;
     public static final int MIN_COACH_LENGTH = 2;
     public static final int MAX_COACH_LENGTH = 4;
+    public static final int MAX_FORBID_MENU_NUM = 2;
+    public static final int MAX_COACH_NUM = 5;
+    public static final int MIN_COACH_NUM = 2;
     public static final int ZERO = 0;
 }

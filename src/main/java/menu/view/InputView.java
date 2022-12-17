@@ -4,7 +4,10 @@ import static menu.ConstantBox.EMPTY_STRING;
 import static menu.ConstantBox.INPUT_COACH_MESSAGE;
 import static menu.ConstantBox.INPUT_FORBID_MENU_MESSAGE;
 import static menu.ConstantBox.MAX_COACH_LENGTH;
+import static menu.ConstantBox.MAX_COACH_NUM;
+import static menu.ConstantBox.MAX_FORBID_MENU_NUM;
 import static menu.ConstantBox.MIN_COACH_LENGTH;
+import static menu.ConstantBox.MIN_COACH_NUM;
 import static menu.ConstantBox.SEPARATOR_FOR_INPUT;
 import static menu.ConstantBox.START_MESSAGE;
 
@@ -23,6 +26,7 @@ public class InputView {
         System.out.println(INPUT_COACH_MESSAGE);
         String input = Console.readLine();
         List<String> coaches = validateInputCoachName(input);
+        validateNumberOfCoach(coaches);
         return coaches;
     }
 
@@ -35,6 +39,7 @@ public class InputView {
         System.out.println(tempCoachName + INPUT_FORBID_MENU_MESSAGE);
         String input = Console.readLine();
         List<String> forbiddenFood = validateSeparatorForForbiddenFood(input);
+        validateNumberOfForbiddenMenu(forbiddenFood);
         return forbiddenFood;
     }
 
@@ -89,5 +94,20 @@ public class InputView {
             return Collections.emptyList();
         }
         return List.of(input.split(SEPARATOR_FOR_INPUT));
+    }
+
+    private void validateNumberOfForbiddenMenu(List<String> input) {
+        if (input.size() > MAX_FORBID_MENU_NUM) {
+            throw new IllegalArgumentException("[ERROR] 입력한 못먹는 음식이 너무 많습니다. (최대 " + MAX_FORBID_MENU_NUM + "개.)");
+        }
+    }
+
+    private void validateNumberOfCoach(List<String> input) {
+        if (input.size() > MAX_COACH_NUM) {
+            throw new IllegalArgumentException("[ERROR] 입력한 코치의 수가 너무 많습니다. (최대 " + MAX_COACH_NUM + "개.)");
+        }
+        if (input.size() < MIN_COACH_NUM) {
+            throw new IllegalArgumentException("[ERROR] 입력한 코치의 수가 너무 적습니다. (최소 " + MIN_COACH_NUM + "개.)");
+        }
     }
 }
