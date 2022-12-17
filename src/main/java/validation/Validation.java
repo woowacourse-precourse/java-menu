@@ -62,6 +62,16 @@ public class Validation {
 	public static void validateHateFoodInput(String hateFoodInput) {
 		String[] hateFoods = hateFoodInput.split(",");
 
+		for(int index=0;index< hateFoods.length;index++){
+			if(hateFoods[index].contains(".") || hateFoods[index].contains("|") || hateFoods[index].contains("#")
+				|| hateFoods[index].contains("@") || hateFoods[index].contains("!") || hateFoods[index].contains("$")
+				|| hateFoods[index].contains("%") || hateFoods[index].contains("^") || hateFoods[index].contains("&")
+				|| hateFoods[index].contains("*") || hateFoods[index].contains("(") || hateFoods[index].contains(")") || hateFoods[index].contains("#")
+				|| hateFoods[index].contains("/")){
+				throw new IllegalArgumentException("[ERROR] 구분자는 ,를 이용해주세요. ");
+			}
+		}
+
 		if (hateFoods.length > 2) {
 			throw new IllegalArgumentException("[ERROR] 못 먹는 음식은 2개까지만 입력해주세요. ");
 		}
