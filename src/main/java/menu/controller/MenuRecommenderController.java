@@ -1,5 +1,7 @@
 package menu.controller;
 
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -20,8 +22,13 @@ public class MenuRecommenderController {
         List<Coach> coaches = initCoaches();
 
         postBannedMenusOfCoach(coaches, menuRecommender);
-        
+        recommendMenus(menuRecommender, coaches);
+    }
 
+    private void recommendMenus(MenuRecommender menuRecommender, List<Coach> coaches) {
+        for (Coach coach : coaches) {
+            List<Category> categories = menuRecommender.recommendCategories();
+        }
     }
 
     private void postBannedMenusOfCoach(List<Coach> coaches, MenuRecommender menuRecommender) {

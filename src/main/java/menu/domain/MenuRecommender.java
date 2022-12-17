@@ -1,5 +1,8 @@
 package menu.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class MenuRecommender {
@@ -17,5 +20,14 @@ public class MenuRecommender {
             }
         }
         return false;
+    }
+
+    public List<Category> recommendCategories() {
+        List<Category> categories = new ArrayList<>();
+        while (categories.size() < 5) {
+            int category = Randoms.pickNumberInRange(1, 5);
+            categories.add(Category.get(category));
+        }
+        return categories;
     }
 }
