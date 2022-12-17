@@ -22,6 +22,10 @@ public class CoachRepository {
         coaches.clear();
     }
 
+    public static List<Coach> getCoaches() {
+        return coaches;
+    }
+
     public static void addDislikeMenus(Coach coach, List<Menu> menus) {
         menus.forEach(coach::addDislikeMenu);
     }
@@ -46,10 +50,6 @@ public class CoachRepository {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public static List<Coach> getCoaches() {
-        return coaches;
-    }
-
     public static Map<String, List<String>> getCoachesRecommendMenus() {
         Map<String, List<String>> coachesRecommendMenus = new LinkedHashMap<>();
         coaches.forEach(coach -> {
@@ -64,10 +64,10 @@ public class CoachRepository {
 
     private static void validateCoachCount(List<String> coachNames) {
         if (coachNames.size() > COACH_MAX_COUNT) {
-            throw new IllegalArgumentException(ERROR_PREFIX + "코치의 수는 최대 " + COACH_MAX_COUNT + "명 입니다.");
+            throw new IllegalArgumentException(ERROR_PREFIX + "코치는 최대 " + COACH_MAX_COUNT + "명까지만 입력해야 합니다." );
         }
         if (coachNames.size() < COACH_MIN_COUNT) {
-            throw new IllegalArgumentException(ERROR_PREFIX + "코치의 수는 최소 " + COACH_MIN_COUNT + "명 입니다.");
+            throw new IllegalArgumentException(ERROR_PREFIX + "코치는 최소 " + COACH_MIN_COUNT + "명 이상 입력해야 합니다." );
         }
     }
 }
