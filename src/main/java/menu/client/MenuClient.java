@@ -2,7 +2,6 @@ package menu.client;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 import java.util.function.Supplier;
 import menu.di.MenuUseCase;
 import menu.di.RecommendResultDto;
@@ -54,30 +53,12 @@ public class MenuClient {
         OutputView.printResult(resultDto);
     }
 
-    private void handleError(Runnable something) {
-        try {
-            something.run();
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            handleError(something);
-        }
-    }
-
     private <T> T handleError(Supplier<T> something) {
         try {
             return something.get();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return handleError(something);
-        }
-    }
-
-    private <T, R> R handleError(Function<T, R> something, T argument) {
-        try {
-            return something.apply(argument);
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return handleError(something, argument);
         }
     }
 }
