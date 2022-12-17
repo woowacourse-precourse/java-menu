@@ -5,6 +5,8 @@ import menu.view.InputView;
 
 public class InputHandler {
 
+    private static final int ZERO = 0;
+
     private final InputView inputView;
 
     public InputHandler(InputView inputView) {
@@ -23,7 +25,7 @@ public class InputHandler {
 
     public void readCoachCanNotEat(Coach coach) {
         try {
-            for (int i = 0; i < coach.getNames().size(); i++) {
+            for (int i = ZERO; i < coach.getNames().size(); i++) {
                 String coachName = coach.getNames().get(i);
                 String input = inputView.readCanNotEat(coachName);
 

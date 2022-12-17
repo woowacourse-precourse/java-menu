@@ -6,6 +6,9 @@ import java.util.List;
 
 public class CategoryForDay {
 
+    private static final int MAXIMUM_SIZE_OF_CATEGORY = 5;
+    private static final int MAXIMUM_FREQUENCY_OF_CATEGORY = 2;
+
     private final List<String> categories;
 
     public CategoryForDay() {
@@ -17,7 +20,7 @@ public class CategoryForDay {
     }
 
     public void setCategories() {
-        while (categories.size() != 5) {
+        while (categories.size() != MAXIMUM_SIZE_OF_CATEGORY) {
             String category = Menu.recommendCategory();
             checkCategoryFrequency(category);
         }
@@ -36,7 +39,7 @@ public class CategoryForDay {
     }
 
     private void checkCategoryFrequency(String category) {
-        if (Collections.frequency(categories, category) < 2) {
+        if (Collections.frequency(categories, category) < MAXIMUM_FREQUENCY_OF_CATEGORY) {
             categories.add(category);
         }
     }

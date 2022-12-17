@@ -8,6 +8,11 @@ import java.util.Map;
 
 public class Coach {
 
+    private static final String COMMA = ",";
+    private static final int MINIMUM_LENGTH_OF_NAME = 2;
+    private static final int MAXIMUM_LENGTH_OF_NAME = 4;
+    private static final int MAXIMUM_LENGTH_OF_CAN_NOT_EAT = 2;
+
     private final Map<String, List<String>> coaches;
     private final Map<String, List<String>> recommendFoods;
 
@@ -30,7 +35,7 @@ public class Coach {
     }
 
     public void setCanNotEat(String name, String input) {
-        List<String> canNotEatFoods = Arrays.asList(input.split(","));
+        List<String> canNotEatFoods = Arrays.asList(input.split(COMMA));
         validateCanNotEatFood(canNotEatFoods);
         List<String> foods = new ArrayList<>(canNotEatFoods);
 
@@ -58,7 +63,7 @@ public class Coach {
     }
 
     private void makeCoach(String input) {
-        String[] names = input.split(",");
+        String[] names = input.split(COMMA);
 
         for (String name : names) {
             validateName(name);
@@ -68,13 +73,13 @@ public class Coach {
     }
 
     private void validateName(String name) {
-        if (name.length() < 2 || name.length() > 4) {
+        if (name.length() < MINIMUM_LENGTH_OF_NAME || name.length() > MAXIMUM_LENGTH_OF_NAME) {
             throw new IllegalArgumentException("[ERROR] 2~4자리의 이름만 입력이 가능합니다.");
         }
     }
 
     private void validateCanNotEatFood(List<String> canNotEatFoods) {
-        if (canNotEatFoods.size() > 2) {
+        if (canNotEatFoods.size() > MAXIMUM_LENGTH_OF_CAN_NOT_EAT) {
             throw new IllegalArgumentException("[ERROR] 각 코치가 먹지 못하는 메뉴는 최소 0개에서 최대 2개입니다.");
         }
     }
