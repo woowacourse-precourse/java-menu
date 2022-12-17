@@ -2,14 +2,12 @@ package menu.repository;
 
 import menu.domain.Coach;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MenuRecommendRepository {
     private static final MenuRecommendRepository instance = new MenuRecommendRepository();
 
-    private static final Map<Coach, List<String>> recommendation = new HashMap<>();
+    private static final Map<Coach, List<String>> recommendation = new LinkedHashMap<>();
 
     private MenuRecommendRepository() {
     }

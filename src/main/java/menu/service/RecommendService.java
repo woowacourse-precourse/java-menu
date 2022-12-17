@@ -38,7 +38,8 @@ public class RecommendService {
         for(String categoryName:categoriesName){
             List<String> menus = Category.findMenyByCategoryName(categoryName);
             String menu = Randoms.shuffle(menus).get(0);
-            while(coach.isUnableMenu(menu)){
+
+            while(coach.isUnableMenu(menu) || validateSameMenu(recommendationMenus,menu)){
                 menu = Randoms.shuffle(menus).get(0);
             }
             recommendationMenus.add(menu);
@@ -49,7 +50,9 @@ public class RecommendService {
 
     }
 
-
+    public boolean validateSameMenu(List<String> recommendationMenus, String menu){
+        return recommendationMenus.contains(menu);
+    }
 
     public List<String> makeCategory(){
         categoryMaker.makeRandomCategories();

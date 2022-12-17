@@ -22,9 +22,8 @@ public class OutputView {
     public static void printRecommendation(Map<Coach, List<String>> recommendation){
         for (Map.Entry<Coach, List<String>> entry: recommendation.entrySet()) {
             System.out.println("[ " + entry.getKey().getName() + " | " + String.join(" | ",entry.getValue()) + " ]");
-
-
         }
+        System.out.println("추천을 완료했습니다.");
     }
 
     public static void printResult(){
