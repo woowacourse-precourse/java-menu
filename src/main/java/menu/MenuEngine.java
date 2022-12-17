@@ -12,8 +12,7 @@ import java.util.Map;
 public class MenuEngine {
 
     public void start() {
-        System.out.println("점심 메뉴 추천을 시작합니다.");
-
+        printGameStart();
         InputView inputView = new InputView();
 
         List<String> coachNames = inputView.readCoachName();
@@ -28,12 +27,12 @@ public class MenuEngine {
 
         MenuMaker menuMaker = new MenuMaker();
 
-        Map<String, List<String>> menu = menuMaker.addMenu(category,
-                                                           coachNames,
-                                                           exceptedFoods);
+        Map<String, List<String>> menu = menuMaker.addMenu(category, coachNames, exceptedFoods);
 
-        OutputView.printDay();
-        OutputView.printCategory(category);
-        OutputView.printMenu(menu);
+        OutputView.printResult(category, menu);
+    }
+
+    private static void printGameStart() {
+        System.out.println("점심 메뉴 추천을 시작합니다.");
     }
 }

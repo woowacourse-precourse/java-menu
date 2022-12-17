@@ -9,16 +9,23 @@ import java.util.Map;
 
 public class OutputView {
 
-    public static void printDay() {
+    public static void printResult(final Category category,
+                                   final Map<String, List<String>> menu) {
+        printDay();
+        printCategory(category);
+        printMenu(menu);
+    }
+
+    private static void printDay() {
         System.out.println("메뉴 추천 결과입니다.");
         System.out.println(printMenu(Constants.DAY));
     }
 
-    public static void printCategory(Category category) {
+    private static void printCategory(Category category) {
         System.out.println(printMenu(category.getCategories()));
     }
 
-    public static String printMenu(final List<String> element) {
+    private static String printMenu(final List<String> element) {
         StringBuilder stringBuilder = new StringBuilder("[ ");
 
         stringBuilder.append(String.join(" | ", element));
@@ -28,7 +35,7 @@ public class OutputView {
         return stringBuilder.toString();
     }
 
-    public static void printMenu(final Map<String, List<String>> element) {
+    private static void printMenu(final Map<String, List<String>> element) {
         List<String> printing = new ArrayList<>();
 
         for (String key : element.keySet()) {
