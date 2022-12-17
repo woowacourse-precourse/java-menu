@@ -27,7 +27,12 @@ public class InputView {
     public List<String> readNoEatFoods(String coachName) {
         System.out.println(coachName + READ_NO_EAT_FOODS_MESSAGE);
         String command = Console.readLine();
-        inputvalidator.validateNoEatFoodsCommand(command);
+        try {
+            inputvalidator.validateNoEatFoodsCommand(command);
+        } catch (Exception e) {
+            outputView.printError(e.getMessage());
+            return readNoEatFoods(coachName);
+        }
         return Arrays.asList(command.split(","));
     }
 
