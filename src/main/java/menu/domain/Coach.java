@@ -1,11 +1,41 @@
 package menu.domain;
 
+import java.util.Objects;
+
 public class Coach {
     private final String name;
 
     public Coach(String name) {
         Validator.validate(name);
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "Coach{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Coach coach = (Coach) o;
+        return name.equals(coach.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
     private static class Validator {

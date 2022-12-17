@@ -2,6 +2,8 @@ package menu.controller;
 
 import menu.domain.Coach;
 import menu.domain.CoachRepository;
+import menu.domain.Menu;
+import menu.domain.MenuRepository;
 import menu.inputview.CoachInfoInputView;
 import menu.outputview.CoachInfoOutputView;
 
@@ -12,6 +14,16 @@ public class CoachInfoController extends AbstractController {
     public void doProcess() {
         List<Coach> coaches = getCoaches();
         CoachRepository.saveAll(coaches);
+
+        saveBannedMenus(coaches);
+    }
+
+    private static void saveBannedMenus(List<Coach> coaches) {
+        for (Coach coach : coaches) {
+            CoachInfoOutputView.printAskingMenuBanned(coach.getName());
+            List<Menu> bannedMenus = CoachInfoInputView.getMenusBanned();
+            MenuRepository.saveBannedMenu(coach, bannedMenus);
+        }
     }
 
     private static List<Coach> getCoaches() {
