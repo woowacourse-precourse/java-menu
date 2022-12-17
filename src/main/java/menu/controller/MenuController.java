@@ -29,9 +29,10 @@ public class MenuController {
         }
         List<String> recommendCategories = menuService.createRecommendCategories();
         menuView.printResultCategories(recommendCategories);
-        List<RecommendCouchMenu> recommendMenus = couches.stream()
-                .map(couch -> menuService.createRecommendCouchMenu(recommendCategories, couch))
+        menuService.createRecommendCouchMenu(recommendCategories);
+        List<RecommendCouchMenu> recommends = couches.stream()
+                .map(RecommendCouchMenu::of)
                 .collect(Collectors.toList());
-        menuView.printResultMessage(recommendMenus);
+        menuView.printResultMessage(recommends);
     }
 }

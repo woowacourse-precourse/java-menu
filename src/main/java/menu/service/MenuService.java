@@ -10,7 +10,6 @@ import menu.domain.Couch;
 import menu.domain.Menu;
 import menu.dto.CouchHateMenusRequest;
 import menu.dto.CouchNamesRequest;
-import menu.dto.RecommendCouchMenu;
 import menu.repository.CouchRepository;
 import menu.repository.MenuRepository;
 
@@ -42,19 +41,20 @@ public class MenuService {
         }
     }
 
-    public RecommendCouchMenu createRecommendCouchMenu(List<String> recommendsCategory, Couch couch) {
-        List<String> recommendMenus = new ArrayList<>();
+    public void createRecommendCouchMenu(List<String> recommendsCategory) {
+        List<Couch> couches = couchRepository.findAll();
         for (String category : recommendsCategory) {
-            String recommendMenu = getRecommendMenu(couch, category, recommendMenus);
-            recommendMenus.add(recommendMenu);
+            for (Couch couch : couches) {
+                String recommendMenu = getRecommendMenu(couch, category);
+                couch.addRecommendMenu(recommendMenu);
+            }
         }
-        return new RecommendCouchMenu(couch.getName(), recommendMenus);
     }
 
-    private String getRecommendMenu(Couch couch, String category, List<String> recommendMenus) {
+    private String getRecommendMenu(Couch couch, String category) {
         while (true) {
             String menu = pickRandomMenu(category);
-            if (recommendMenus.contains(menu)) {
+            if (couch.alreadyRecommend(menu)) {
                 continue;
             }
             if (!couch.isHateMenu(menu)) {
@@ -69,7 +69,7 @@ public class MenuService {
                 .collect(Collectors.toList());
         List<String> recommendsCategory = new ArrayList<>();
         while (recommendsCategory.size() != 5) {
-            String category = categories.get(Randoms.pickNumberInRange(1, 5));
+            String category = categories.get(Randoms.pickNumberInRange(1, 5) - 1);
             addCategory(recommendsCategory, category);
         }
         return recommendsCategory;

@@ -6,6 +6,7 @@ import java.util.List;
 public class Couch {
     private final String name;
     private final List<Menu> hateMenus = new ArrayList<>();
+    private final List<String> recommendsMenus = new ArrayList<>();
 
     public Couch(String name) {
         this.name = name;
@@ -17,6 +18,14 @@ public class Couch {
 
     public void addHateMenu(Menu menu) {
         hateMenus.add(menu);
+    }
+
+    public boolean alreadyRecommend(String menu) {
+        return recommendsMenus.contains(menu);
+    }
+
+    public void addRecommendMenu(String menu) {
+        recommendsMenus.add(menu);
     }
 
     @Override
@@ -31,5 +40,9 @@ public class Couch {
         return hateMenus.stream()
                 .map(Menu::getName)
                 .anyMatch(menu -> menu.equals(offer));
+    }
+
+    public List<String> getRecommendsMenus() {
+        return List.copyOf(recommendsMenus);
     }
 }

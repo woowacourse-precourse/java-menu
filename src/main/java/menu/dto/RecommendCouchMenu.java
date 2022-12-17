@@ -1,6 +1,7 @@
 package menu.dto;
 
 import java.util.List;
+import menu.domain.Couch;
 
 public class RecommendCouchMenu {
     private String couchName;
@@ -9,6 +10,10 @@ public class RecommendCouchMenu {
     public RecommendCouchMenu(String couchName, List<String> menus) {
         this.couchName = couchName;
         this.menus = menus;
+    }
+
+    public static RecommendCouchMenu of(Couch couch) {
+        return new RecommendCouchMenu(couch.getName(), couch.getRecommendsMenus());
     }
 
     @Override
