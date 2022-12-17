@@ -9,6 +9,11 @@ public class MenuController {
     private final OutputView outputView = new OutputView();
     private final Menu menu = new Menu();
 
+    private void init() {
+        initCoaches();
+        menu.getCoachNames().forEach(this::initCoach);
+    }
+
     private void initCoaches() {
         while (true) {
             try {
