@@ -1,7 +1,6 @@
 package menu.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,6 +8,8 @@ import menu.view.OutputView;
 
 public class Coach {
     private static final String INVALID_NAME_RANGE = "[ERROR] 코치의 이름은 2글자 이상 4글자 이하입니다.";
+    private static final String INVALID_UNEATABLE_SIZE = "[ERROR] 못먹는 메뉴는 0개에서 2개 범위를 넘을 수 없습니다.";
+    private static final String DUPLICATED = "[ERROR] 중복을 제거해주세요";
     private List<String> prohibitionMenus = new ArrayList<String>();
     private List<String> recommendMenus = new ArrayList<String>();
     private String name;
@@ -38,22 +39,23 @@ public class Coach {
         recommendMenus.add(recommendMenu);
     }
 
-    public void setProhibitionMenus(String menus) {
-        if (menus.equals("")) {
-            return;
+    private void validateUnEatableMenus(String[] inputProhibitionMenus) {
+        if (!(0 <= inputProhibitionMenus.length && inputProhibitionMenus.length <= 2)) {
+            throw new IllegalArgumentException(INVALID_UNEATABLE_SIZE);
         }
+        if (inputProhibitionMenus.length != (new HashSet<String>(List.of(inputProhibitionMenus))).size()) {
+            throw new IllegalArgumentException(DUPLICATED);
+        }
+
+    }
+    public void setProhibitionMenus(String menus) {
         //TODO Category 메뉴에 없는 메뉴일시 올바르게 입력받기
         String[] inputProhibitionMenus = menus.split(",");
 
-        if (!(0 <= inputProhibitionMenus.length && inputProhibitionMenus.length <= 2)) {
-            //TODO 0개 입력시 오류
-            throw new IllegalArgumentException("[ERROR] 못먹는 메뉴는 0개에서 2개 범위를 넘을 수 없습니다.");
-        }
-        if (inputProhibitionMenus.length != (new HashSet<String>(List.of(inputProhibitionMenus))).size()) {
-            throw new IllegalArgumentException("[ERROR] 중복을 제거해주세요");
-        }
+        validateUnEatableMenus(inputProhibitionMenus);
 
         for (String menu : inputProhibitionMenus) {
+            Category.validateMenu(menu);
             prohibitionMenus.add(menu);
         }
     }

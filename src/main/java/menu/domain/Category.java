@@ -15,10 +15,11 @@ public enum Category {
     아시안("아시안", 4, new ArrayList<String>(Arrays.asList("팟타이", "카오 팟", "나시고렝", "파인애플", "볶음밥", "쌀국수", "똠얌꿍", "반미", "월남쌈", "분짜"))),
     양식("양식", 5, new ArrayList<String>(Arrays.asList("라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니")));
 
-    private final List<String> menu;
+
 
     private final String category;
     private final int index;
+    private final List<String> menu;
 
     Category(String category, int index, List<String> menu) {
         this.category = category;
@@ -26,6 +27,16 @@ public enum Category {
         this.menu = menu;
     }
 
+    public static void validateMenu(String menu) {
+        List<List<String>> allMenus = Arrays.stream(Category.values())
+                .map(category -> category.menu)
+                .collect(Collectors.toList());
+        for(List<String> menus : allMenus) {
+            if(menus.contains(menus)) {
+                throw new IllegalArgumentException("존재하지 않는 메뉴입니다.");
+            }
+        }
+    }
     public static String getFormat(List<Week> weeks) {
         return OutputView.CATEGORY_LINE_START
                 + weeks.stream().map(week -> week.getCategory())
