@@ -11,12 +11,13 @@ public class Group {
     public void addCoach(String name, List<String> cannotEatMenus) {
         coaches.add(new Coach(name, cannotEatMenus));
     }
-
-    private void validateCoachSize() {
-        if (coaches.size() < 2 || coaches.size() > 5) {
-            throw new IllegalArgumentException("[ERROR] 코치 수는 2명에서 5명 사이여야 합니다.");
-        }
-    }
+//
+//    private void validateCoachSize() {
+//        // TODO: 입력 validator로 이동
+//        if (coaches.size() < 2 || coaches.size() > 5) {
+//            throw new IllegalArgumentException("[ERROR] 코치 수는 2명에서 5명 사이여야 합니다.");
+//        }
+//    }
 
     public void makeMenus() {
         for (int i = 0; i < 5; i++) {
@@ -26,11 +27,15 @@ public class Group {
     }
 
     private void makeCategory() {
-        validateCoachSize();
+//        validateCoachSize();
         String category;
         do {
             category = Category.getRandomCategory();
-        } while (Collections.frequency(categoryHistory, category) < 2);
+        } while (Collections.frequency(categoryHistory, category) >= 2);
         categoryHistory.add(category);
+    }
+
+    public List<Coach> getCoaches() {
+        return Collections.unmodifiableList(coaches);
     }
 }

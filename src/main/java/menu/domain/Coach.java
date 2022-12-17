@@ -33,7 +33,7 @@ public class Coach {
         String menu;
         do {
             menu = category.getRandomMenu(categoryName);
-        } while (isEatable(menu) && isNotDuplicated(menu));
+        } while (!isEatable(menu) && !isNotDuplicated(menu));
     }
 
     private boolean isEatable(String menu) {
@@ -42,5 +42,9 @@ public class Coach {
 
     private boolean isNotDuplicated(String menu) {
         return Collections.frequency(eatMenus, menu) == 0;
+    }
+
+    public List<String> getMenus() {
+        return Collections.unmodifiableList(eatMenus);
     }
 }
