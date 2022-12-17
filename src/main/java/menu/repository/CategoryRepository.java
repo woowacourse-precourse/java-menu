@@ -21,6 +21,10 @@ public class CategoryRepository {
         return CategoryRepository.InstanceHolder.INSTANCE;
     }
 
+    public void addCategory(String categoryName) {
+        categories.add(new Category(categoryName));
+    }
+
     public boolean isValidCategory(String categoryName) {
         return categories.stream().anyMatch(category -> categoryName.equals(category.getName()));
     }
