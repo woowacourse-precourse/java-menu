@@ -7,6 +7,14 @@ public class OutputView {
         printEnter();
     }
 
+    public void printCoachNamesInputMessage(String name) {
+        System.out.printf("%s(이)가 못 먹는 메뉴를 입력해 주세요.\n", name);
+    }
+
+    public void printCoachNamesInputMessage() {
+        println("코치의 이름을 입력해 주세요. (, 로 구분)");
+    }
+
     public void printError(Exception error) {
         System.out.println(error.getMessage());
     }
