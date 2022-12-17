@@ -19,20 +19,21 @@ public class MenuMachine {
 
     public void selectMenus() {
         List<Integer> category = coach.getCategory();
-        List<String> recommendedMenus = new ArrayList<>();
-        for (int index = 0; index < MenuConstant.DAY_SIZE; index++) {
-            recommendedMenus.add(selectEachMenus(category.get(index)));
-        }
-        coach.setRecommendedMenus(recommendedMenus);
+        List<String> recommendedMenus = coach.getRecommendedMenus();
+
+        recommendedMenus.add(selectEachMenus(category.get(recommendedMenus.size())));
+//        coach.setRecommendedMenus(recommendedMenus);
     }
 
     private String selectEachMenus(int country) {
         Menus menus = new Menus();
         List<String> menu;
         while (true) {
+//            System.out.println("나라" + country);
             menu = Randoms.shuffle(menus.giveCountryMenus(country));
-
+//            System.out.println("리스트:" + menu);
             if (!isDuplicateMenu(menu.get(0)) && !isNotEatMenus(menu.get(0))) {
+//                System.out.println("메뉴:" + menu);
                 break;
             }
         }
