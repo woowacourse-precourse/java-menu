@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Coach {
     private String name;
@@ -21,6 +22,11 @@ public class Coach {
         return name;
     }
 
+    public String getFormat() {
+        return "[ " + name + " | " + recommendMenus.stream().collect(Collectors.joining(" | "))
+                + " ]";
+    }
+
     public boolean isMenuDuplicated() {
         return (new HashSet<String>(recommendMenus)).size() != 5;
     }
@@ -28,6 +34,7 @@ public class Coach {
         return recommendMenus;
     }
     public void setRecommendMenus(List<Week> weeks) {
+        recommendMenus = new ArrayList<String>();
         weeks.stream()
                 .forEach(week -> {
                     String recommendMenu = Category.recommendRandomMenu(week.getCategory());
@@ -37,7 +44,6 @@ public class Coach {
                     recommendMenus.add(recommendMenu);
                 });
 
-        System.out.println(recommendMenus);
     }
 
     public void setProhibitionMenus(String menus) {

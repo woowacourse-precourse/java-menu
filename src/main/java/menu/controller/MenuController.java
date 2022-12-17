@@ -56,6 +56,7 @@ public class MenuController {
             }
         }
 
+        outputView.programResult(coaches);
     }
 
     private List<Coach> getCoaches() {

@@ -18,6 +18,17 @@ public class Week {
                 .collect(Collectors.toList());
     }
 
+    public static String getWeekFormat() {
+        return "[ 구분 | "
+                + getWeeks().stream().map(week -> week.getFormat())
+                .collect(Collectors.joining(" | "))
+                + " ]";
+    }
+
+    public String getFormat() {
+        return week + "요일";
+    }
+
     public void setCategory(Category category) {
         this.category = category;
     }
