@@ -6,16 +6,19 @@ import java.util.List;
 public class Coach {
 
     private final String name;
-    private final List<String> cantEatMenu;
+    private List<String> cantEatMenu;
     private List<String> eatMenu;
 
-    public Coach(String name, List<String> cantEatMenu) {
+    public Coach(String name) {
         this.name = name;
-        this.cantEatMenu = cantEatMenu;
     }
 
     public String getName() {
         return name;
+    }
+
+    public void setCantEatMenu(List<String> cantEatMenu) {
+        this.cantEatMenu = cantEatMenu;
     }
 
     public List<String> getCantEatMenu() {
