@@ -17,4 +17,8 @@ public class Coach {
     private boolean isValidLength(int length) {
         return 2 <= length && length <= 4;
     }
+
+    public String getName() {
+        return name;
+    }
 }

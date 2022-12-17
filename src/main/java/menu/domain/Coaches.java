@@ -19,4 +19,8 @@ public class Coaches {
     private static boolean isValidSize(int size) {
         return 2 <= size && size <= 5;
     }
+
+    public List<Coach> getCoaches() {
+        return coaches;
+    }
 }

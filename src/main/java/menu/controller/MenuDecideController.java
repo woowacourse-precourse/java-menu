@@ -1,5 +1,6 @@
 package menu.controller;
 
+import menu.domain.Coach;
 import menu.domain.Coaches;
 import menu.domain.MenuDecideService;
 import menu.view.Input;
@@ -13,7 +14,10 @@ public class MenuDecideController {
     public void run() {
         output.printStart();
         output.askCoachName();
-        makeCoaches();
+
+        for (Coach coach : makeCoaches().getCoaches()) {
+            output.askCantEatMenu(coach);
+        }
     }
 
     private Coaches makeCoaches() {
