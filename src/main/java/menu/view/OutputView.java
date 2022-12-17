@@ -31,21 +31,21 @@ public class OutputView {
     }
 
     public void printRecommendMenu(List<String> food, String name) {
-        System.out.println("[ " + formattedMenu(food, name));
+        System.out.println("[ " + name + formattedMenu(food));
     }
 
     public void printExceptionMessage(Exception e) {
         System.out.println(ERROR + e.getMessage());
     }
 
-    private String formattedMenu(List<String> menu, String name) {
+    private String formattedMenu(List<String> menu) {
         return menu.stream()
-                .collect(Collectors.joining(" | ", name, " ]"));
+                .collect(Collectors.joining(" | ", " | ", " ]"));
     }
 
     //Todo: 이거 형식 %s 형태로 받아서 출력하기
     private String formattedCategory(List<String> category) {
         return category.stream()
-                .collect(Collectors.joining(" | ", "[카테고리 |", " ]"));
+                .collect(Collectors.joining(" | ", "[ 카테고리 | ", " ]"));
     }
 }
