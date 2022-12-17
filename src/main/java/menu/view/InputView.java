@@ -8,6 +8,10 @@ import java.util.List;
 
 public class InputView {
 
+    private String getUserInput(){
+        return Console.readLine();
+    }
+
     public List<String> getCoachNames(){
         String userInput = getUserInput();
         List<String> names = Arrays.asList(userInput.split(","));
@@ -15,7 +19,11 @@ public class InputView {
         return names;
     }
 
-    private String getUserInput(){
-        return Console.readLine();
+    public List<String> getHateMenus(){
+        String userInput = getUserInput();
+        List<String> hateMenus = Arrays.asList(userInput.split(","));
+        Validator.validateHateMenusSize(hateMenus);
+        return hateMenus;
     }
+
 }

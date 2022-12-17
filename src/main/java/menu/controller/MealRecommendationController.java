@@ -19,7 +19,9 @@ public class MealRecommendationController {
     public void run() {
         outputView.printStartGuide();
         getAndSaveCoaches();
+        getAndSaveEachCoachHateMenu();
     }
+
 
     private void getAndSaveCoaches() {
         outputView.printNameInputGuide();
@@ -27,7 +29,7 @@ public class MealRecommendationController {
             try {
                 List<String> coachNames = inputView.getCoachNames();
                 saveCoaches(coachNames);
-            } catch(IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }
         }
@@ -37,6 +39,16 @@ public class MealRecommendationController {
         for (String name : names) {
             Coach coach = new Coach(name);
             coachRepository.save(coach);
+        }
+    }
+
+    private void getEachCoachHateMenu() {
+        List<Coach> coaches = coachRepository.findALl();
+        for (Coach coach : coaches) {
+            outputView.printHateMenuInputGuide(coach.getName());
+            List<String> hateMenus = inputView.getHateMenus();
+            // List<Menu>로 바꾸는 검증 로직 필요
+            coach.setHateMenu(hateMenus);
         }
     }
 

@@ -13,4 +13,8 @@ public class OutputView {
     public void printError(String errorMessage){
         System.out.println("[ERROR]" +  errorMessage);
     }
+
+    public void printHateMenuInputGuide(String name){
+        System.out.printf("%d(이)가 못 먹는 메뉴 입력해 주세요.");
+    }
 }

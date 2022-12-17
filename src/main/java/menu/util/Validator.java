@@ -19,4 +19,12 @@ public class Validator {
         }
     }
 
+    public static void validateHateMenusSize(List<String> hateMenus){
+        if(hateMenus.size() < 0 || hateMenus.size() > 2){
+            throw new IllegalArgumentException(
+                    String.format("각 코치는 최소 %d개, 최대 %d개의 못 먹는 메뉴를 가질 수 있습니다.", 0, 2)
+            );
+        }
+    }
+
 }

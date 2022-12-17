@@ -17,11 +17,19 @@ public class Coach {
         this.hateMenu = new ArrayList<>();
     }
 
+    public String getName() {
+        return name;
+    }
+}
+
     public void setAteMenu(List<Menu> ateMenu) {
         this.ateMenu = ateMenu;
     }
 
     public void setHateMenu(List<Menu> hateMenu) {
+        // 검증 로직 필요
         this.hateMenu = hateMenu;
     }
+
 }
+
