@@ -1,5 +1,6 @@
 package menu.menu;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -54,5 +55,16 @@ public enum Category {
                 return category.getMenus();
             }
         }
-        return EMPTY.getMenus();    }
+        return EMPTY.getMenus();
+    }
+
+    public static List<String> getAllMenus() {
+        List<String> allMenus = new ArrayList<>();
+        for (Category category: Category.values()) {
+            for (String menu: category.menus) {
+                allMenus.add(menu);
+            }
+        }
+        return allMenus;
+    }
 }
