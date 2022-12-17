@@ -16,4 +16,10 @@ public class InputException {
             throw new IllegalArgumentException("[ERROR] 코치는 최소 2명, 최대 5명이서 식사를 함께할 수 있습니다.");
         }
     }
+
+    public void validateDislikeFoodCount(List<String> dislikeFood) {
+        if (dislikeFood.size() > 2) {
+            throw new IllegalArgumentException("[ERROR] 코치가 못먹는 메뉴의 수는 2개를 넘을 수 없습니다.");
+        }
+    }
 }
