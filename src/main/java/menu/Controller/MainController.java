@@ -5,12 +5,11 @@ import menu.View.OutputView;
 
 
 public class MainController {
-    private final Coaches coaches;
     private final RecommendController recommend;
     private final InitController initController;
 
     public MainController() {
-        coaches = new Coaches();
+        Coaches coaches = new Coaches();
         recommend = new RecommendController(coaches);
         initController = new InitController(coaches);
     }
