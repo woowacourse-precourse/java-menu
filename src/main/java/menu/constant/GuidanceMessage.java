@@ -1,4 +1,4 @@
-package menu;
+package menu.constant;
 
 public interface GuidanceMessage {
     String SERVICE_INTRO = "점심 메뉴 추천을 시작합니다.";
@@ -6,5 +6,6 @@ public interface GuidanceMessage {
     String INPUT_INEDIBLE = "(이)가 못 먹는 메뉴를 입력해 주세요.";
     String SERVICE_RESULT = "메뉴 추천 결과입니다.";
     String SERVICE_OUTRO = "추천을 완료했습니다.";
+    String DAYS_OF_WEEK = "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]";
 
 }

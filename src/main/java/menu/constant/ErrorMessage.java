@@ -1,4 +1,4 @@
-package menu;
+package menu.constant;
 
 public interface ErrorMessage {
     String PREFIX = "[ERROR] ";
