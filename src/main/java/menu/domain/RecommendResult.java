@@ -1,6 +1,7 @@
 package menu.domain;
 
-import java.util.Objects;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class RecommendResult {
     private final DayWeek dayWeek;
@@ -10,4 +11,10 @@ public class RecommendResult {
         this.dayWeek = dayWeek;
         this.menuName = menuName;
     }
+
+    public static String getRecommendMenuNames(List<RecommendResult> results) {
+        List<String> menuNames = results.stream().map(result -> result.menuName).collect(Collectors.toList());
+        return String.join(" | ", menuNames);
+    }
+
 }
