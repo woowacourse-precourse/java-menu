@@ -17,5 +17,10 @@ public class InputView {
         }
     }
 
-    public
+    public void readDislikeFood(List<String> coachName){
+        for (String name : coachName){
+            System.out.println(name + "(이)가 못 먹는 메뉴를 입력해 주세요.");
+            String input = Console.readLine();
+
+    }
 }
