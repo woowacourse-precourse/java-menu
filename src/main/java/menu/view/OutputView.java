@@ -1,6 +1,8 @@
 package menu.view;
 
+import java.util.Arrays;
 import java.util.Map;
+import java.util.stream.Collectors;
 import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.DayOfWeek;
@@ -15,7 +17,8 @@ public class OutputView {
     private static final String RECOMMENDED_MENU_MESSAGE = "메뉴 추천 결과입니다.";
     private static final String FINISHED_MENU_MESSAGE = "추천을 완료했습니다.";
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
-    private static final String DAY_OF_WEEKS = "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]";
+    private static final String DAY_OF_WEEKS_PREFIX = "구분";
+    private static final String CATEGORY_PREFIX = "카테고리";
     private static final String LINE_PREFIX = "[ ";
     private static final String LINE_POSTFIX = " ]";
     private static final String DELIMITER = " | ";
@@ -51,7 +54,12 @@ public class OutputView {
     }
 
     private static void printDayOfWeek() {
-        System.out.println(DAY_OF_WEEKS);
+        System.out.print(LINE_PREFIX + DAY_OF_WEEKS_PREFIX + DELIMITER);
+        String dayOfWeeks = Arrays.stream(DayOfWeek.values())
+                .map(DayOfWeek::getName)
+                .collect(Collectors.joining(DELIMITER));
+        System.out.print(dayOfWeeks);
+        System.out.println(LINE_POSTFIX);
     }
 
     private static void printCategories(Map<Coach, RecommendResult> result) {
