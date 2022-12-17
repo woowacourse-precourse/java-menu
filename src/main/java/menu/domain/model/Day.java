@@ -19,4 +19,8 @@ public enum Day {
     public int getIndex() {
         return index;
     }
+
+    public String getName() {
+        return name;
+    }
 }

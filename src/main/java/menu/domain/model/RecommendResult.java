@@ -29,4 +29,16 @@ public class RecommendResult {
                 ", menu=" + menu +
                 '}';
     }
+
+    public Day getDay() {
+        return day;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public String getMenu() {
+        return menu.getName();
+    }
 }

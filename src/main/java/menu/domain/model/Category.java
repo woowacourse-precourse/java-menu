@@ -40,4 +40,8 @@ public enum Category {
     private boolean isEqualNumber(int number) {
         return this.number == number;
     }
+
+    public String getName() {
+        return name;
+    }
 }

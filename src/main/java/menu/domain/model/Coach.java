@@ -1,7 +1,10 @@
 package menu.domain.model;
 
+import menu.domain.dto.RecommendResultDto;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Coach {
 
@@ -53,6 +56,21 @@ public class Coach {
         return !canNotEatFoods.contains(menu);
     }
 
+    public void addRecommendResult(RecommendResult recommendResult) {
+        recommendResults.add(recommendResult);
+    }
+
+    public boolean isDuplicateMenu(Menu menu) {
+        return recommendResults.stream()
+                .anyMatch(recommendResult -> recommendResult.hasMenu(menu));
+    }
+
+    public List<RecommendResultDto> toRecommendResultDto() {
+        return recommendResults.stream()
+                .map(r -> new RecommendResultDto(r.getDay().getName(), r.getCategory().getName(), r.getMenu()))
+                .collect(Collectors.toList());
+    }
+
     @Override
     public String toString() {
         return "Coach{" +
@@ -60,10 +78,5 @@ public class Coach {
                 ", canNotEatFoods=" + canNotEatFoods +
                 ", recommendResults=" + recommendResults +
                 '}';
-    }
-
-    public boolean isDuplicateMenu(Menu menu) {
-        return recommendResults.stream()
-                .anyMatch(recommendResult -> recommendResult.hasMenu(menu));
     }
 }
