@@ -12,4 +12,8 @@ public class Coach {
     public void setBanFoods(List<String> banFoods){
         this.banFoods = banFoods;
     }
+
+    public boolean isBanFood(String food){
+        return banFoods.contains(food);
+    }
 }
