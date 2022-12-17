@@ -14,7 +14,7 @@ public class InputView {
         try {
             List<String> coaches = Arrays.stream(Console.readLine().split(","))
                     .collect(Collectors.toList());
-            validate(coaches);
+            validateNumberOfCoaches(coaches);
             return coaches;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -22,7 +22,7 @@ public class InputView {
         }
     }
 
-    private static void validate(List<String> coaches) {
+    private static void validateNumberOfCoaches(List<String> coaches) {
         if (coaches.size() < CoachRules.MIN_NUMBER_OF_COACHES.getValue()) {
             throw new IllegalArgumentException(ErrorMessages.COACH_NUMBER_MIN.getMessage());
         }
