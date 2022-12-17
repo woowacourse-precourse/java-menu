@@ -5,7 +5,7 @@ import java.util.List;
 public class Validation {
     public void validateCoachesName(List<String> coachesName) {
         for (int i = 0; i < coachesName.size(); i++) {
-            if ((coachesName.size() < 2) || (coachesName.size() > 4)) {
+            if ((coachesName.get(i).length() < 2) || (coachesName.get(i).length() > 4)) {
                 throw new IllegalArgumentException("[ERROR] 코치의 이름은 최소 2글자, 최대 4글자입니다.");
             }
         }
