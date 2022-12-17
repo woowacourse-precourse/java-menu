@@ -25,7 +25,9 @@ public class CoachRepository {
     }
 
     public static void addCategory(MenuOption menuOption) {
-        categories.add(menuOption);
+        if (canAddCategory(menuOption.getCategory())) {
+            categories.add(menuOption);
+        }
     }
 
     public static boolean canAddCategory(String category) {
