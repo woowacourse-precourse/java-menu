@@ -32,6 +32,7 @@ public class MenuRecommendationController {
     private void makeCoaches(List<String> coachNames) {
         for (int i = 0; i < coachNames.size(); i++) {
             Coach coach = new Coach(coachNames.get(i));
+
             coaches.add(coach);
         }
     }
@@ -41,6 +42,7 @@ public class MenuRecommendationController {
             Category category = categories.get(i);
             for (int j = 0; j < coaches.size(); j++) {
                 Coach coach = coaches.get(j);
+
                 coach.addRecommendedMenu(recommendation.getRandomMenu(coach, category));
             }
         }
@@ -49,8 +51,10 @@ public class MenuRecommendationController {
     private void initUnwantedMenus() {
         for (int i = 0; i < coaches.size(); i++) {
             Coach coach = coaches.get(i);
+
             requestUnwantedMenu(coach.getName());
             List<String> unwantedMenus = receiveUnwantedMenus();
+
             coach.setUnwantedMenus(unwantedMenus);
         }
     }
