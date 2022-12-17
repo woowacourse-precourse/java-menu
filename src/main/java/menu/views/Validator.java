@@ -20,7 +20,7 @@ public class Validator {
     }
 
     private void errorProcess(String errorMessage){
-
+        ProgramOutput.printStatement(errorMessage);
         throw new IllegalArgumentException();
     }
 }
