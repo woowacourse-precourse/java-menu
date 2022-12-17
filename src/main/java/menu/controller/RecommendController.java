@@ -65,7 +65,6 @@ public class RecommendController {
         return categories;
     }
 
-
     private boolean isMoreThanTwo(List<Category> categories, Category newCategory) {
         int frequency = Collections.frequency(categories, newCategory);
         if (frequency > NUMBER_OF_MAX_CATEGORY_DUPLICATE) {
@@ -90,5 +89,4 @@ public class RecommendController {
         } while (coach.getCanNotEats().contains(recommendMenu) || coach.isRecommended(recommendMenu));
         coach.addRecommendMenu(recommendMenu);
     }
-
 }

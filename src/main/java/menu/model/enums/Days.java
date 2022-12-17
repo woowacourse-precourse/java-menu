@@ -18,6 +18,4 @@ public enum Days {
     public String getName() {
         return name;
     }
-
-
 }
