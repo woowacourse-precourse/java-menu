@@ -25,19 +25,22 @@ public class OutputView {
         System.out.println(ViewConstants.RESULT);
         System.out.println(ViewConstants.DAYS);
         printCategories(previousCategories);
-        coaches.forEach(this::printCoachMenus);
+        coaches.stream()
+                .map(Coach::getResult)
+                .forEach(this::printStyledRow);
+
         System.out.println();
     }
 
     private void printCategories(List<String> previousCategories) {
         previousCategories.add(0, ViewConstants.CATEGORY);
-        System.out.println(previousCategories.stream()
-                .collect(Collectors.joining(ViewConstants.DELIMITER, ViewConstants.FRONT, ViewConstants.BACK)));
+        printStyledRow(previousCategories);
     }
 
-    private void printCoachMenus(Coach coach) {
-        System.out.println(coach.getResult().stream()
-                .collect(Collectors.joining(ViewConstants.DELIMITER, ViewConstants.FRONT, ViewConstants.BACK)));
+    private void printStyledRow(List<String> row) {
+        System.out.println(row.stream()
+                .collect(Collectors.joining(ViewConstants.DELIMITER, ViewConstants.FRONT, ViewConstants.BACK))
+        );
     }
 
     public void printCompletion() {
