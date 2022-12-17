@@ -25,12 +25,21 @@ public class ApplicationTest extends NsTest {
     private static final String ERROR_DIFFERENT_COACH_LENGTHS = "[ERROR] 코치는 최소 2명, 최대 5명까지 식사를 함께 한다.";
     private static final String ERROR_DIFFERENT_CANT_EAT_LENGTHS = "[ERROR] 각 코치는 최소 0개, 최대 2개의 못 먹는 메뉴가 있다.";
     private static final String ERROR_DUPLICATE_VALUE = "[ERROR] 중복 값이 포함되어 있습니다.";
+    private static final String ERROR_NUMBER = "[ERROR] 숫자 값이 포함되어 있습니다.";
 
     private static final Duration RANDOM_TEST_TIMEOUT = Duration.ofSeconds(10L);
 
     @DisplayName("전체 기능 테스트")
     @Nested
     class AllFeatureTest {
+        @Test
+        void 이름에_숫자_포함_예외_테스트() {
+            assertSimpleTest(() -> {
+                runException("토미,제임1스,포코");
+                assertThat(output()).contains(ERROR_NUMBER);
+            });
+        }
+
         @Test
         void 코치_못_먹는_음식_중복_예외_테스트() {
             assertSimpleTest(() -> {
