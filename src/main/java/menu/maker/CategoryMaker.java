@@ -1,36 +1,57 @@
 package menu.maker;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import menu.global.Constants;
 import menu.model.Category;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static menu.global.Constants.MENU_NAME;
+
 public class CategoryMaker {
 
-    public void addCategory(Category category) {
+    public void addCategory(final Category category) {
         Map<Integer, Integer> categoriesCount = new HashMap<>();
         int count = 0;
 
         while (count < 5) {
             int categoryNumber = Randoms.pickNumberInRange(1, 5);
 
-            if (categoriesCount.get(categoryNumber) == null) {
-                category.getCategories().add(Constants.MENU_NAME.get(categoryNumber));
-            } else {
-                int categoryCount = categoriesCount.get(categoryNumber);
-                categoryCount += 1;
+            firstCategory(categoryNumber, categoriesCount, category);
+            alreadyHasCategory(categoryNumber, categoriesCount, category);
 
-                if (checkDuplicatedCount(categoryCount)) {
-                    continue;
-                }
-
-                categoriesCount.put(categoryNumber, categoryCount);
-                category.getCategories().add(Constants.MENU_NAME.get(categoryNumber));
-            }
             count++;
         }
+    }
+
+    private void firstCategory(final int categoryNumber,
+                               final Map<Integer, Integer> categoriesCount,
+                               final Category category) {
+
+        if (categoriesCount.get(categoryNumber) != null) {
+            return;
+        }
+
+        category.addCategory(MENU_NAME.get(categoryNumber));
+    }
+
+    private void alreadyHasCategory(final int categoryNumber,
+                                    final Map<Integer, Integer> categoriesCount,
+                                    final Category category) {
+
+        if (categoriesCount.get(categoryNumber) == null) {
+            return;
+        }
+
+        int categoryCount = categoriesCount.get(categoryNumber);
+        categoryCount += 1;
+
+        if (checkDuplicatedCount(categoryCount)) {
+            return;
+        }
+
+        categoriesCount.put(categoryNumber, categoryCount);
+        category.addCategory(MENU_NAME.get(categoryNumber));
     }
 
     private boolean checkDuplicatedCount(int number) {

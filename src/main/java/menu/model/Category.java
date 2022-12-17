@@ -15,4 +15,8 @@ public class Category {
     public List<String> getCategories() {
         return categories;
     }
+
+    public void addCategory(final String category) {
+        categories.add(category);
+    }
 }
