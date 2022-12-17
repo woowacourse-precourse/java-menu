@@ -1,0 +1,1 @@
+package menu.exception;public enum ExceptionMessage {    ERROR_MESSAGE_PREFIX("[ERROR] ");    private final String message;    ExceptionMessage(String message) {        this.message = message;    }    public String getErrorMessage() {        return ERROR_MESSAGE_PREFIX.message + this.message;    }}
