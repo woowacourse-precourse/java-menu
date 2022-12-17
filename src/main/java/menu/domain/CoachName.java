@@ -7,9 +7,12 @@ public class CoachName {
     private static final Pattern NAME_CONVENTION = Pattern.compile("^[가-힣]{2,4}$");
     private final String name;
 
-    public CoachName(final String name) {
+    private CoachName(final String name) {
         validateCoachName(name);
         this.name = name;
+    }
+    public static CoachName of(final String name){
+        return new CoachName(name);
     }
 
     private void validateCoachName(final String name) {

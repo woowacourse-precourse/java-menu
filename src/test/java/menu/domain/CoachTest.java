@@ -13,7 +13,7 @@ class CoachTest {
 
     @BeforeEach
     void setCoach() {
-        coach = new Coach(new CoachName("제준"), List.of("족발", "시간"));
+        coach = Coach.of(CoachName.of("제준"), List.of("족발", "시간"));
     }
 
     @Test

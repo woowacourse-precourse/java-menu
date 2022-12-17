@@ -9,10 +9,13 @@ public class Coach {
     private final List<String> coachNotAteMenu;
     private final List<String> coachAteMenu = new ArrayList<>();
 
-    public Coach(final CoachName coachName, final List<String> coachNotAteMenu) {
+    private Coach(final CoachName coachName, final List<String> coachNotAteMenu) {
         validateCoachName(coachName);
         this.coachName = coachName;
         this.coachNotAteMenu = coachNotAteMenu;
+    }
+    public static Coach of(final CoachName coachName, final List<String> coachNotAteMenu){
+        return new Coach(coachName, coachNotAteMenu);
     }
 
     private void validateCoachName(final CoachName coachName) {
