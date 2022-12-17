@@ -5,7 +5,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public enum Category {
+public enum FoodCategory {
     KOR("한식"),
     JAP("일식"),
     CHI("중식"),
@@ -13,10 +13,9 @@ public enum Category {
     WES("양식")
     ;
 
-
     private final String label;
 
-    Category(String label) {
+    FoodCategory(String label) {
         this.label = label;
     }
 
@@ -24,11 +23,12 @@ public enum Category {
         return label;
     }
 
-    private static final Map<String, Category> BY_LABEL=
-            Stream.of(values()).collect(Collectors.toMap(Category::label, Function.identity()));
+    private static final Map<String, FoodCategory> BY_LABEL=
+            Stream.of(values()).collect(Collectors.toMap(FoodCategory::label, Function.identity()));
 
 
-    public static Category valueOfLabel(String label) {
+    public static FoodCategory valueOfLabel(String label) {
         return BY_LABEL.get(label);
     }
+
 }
