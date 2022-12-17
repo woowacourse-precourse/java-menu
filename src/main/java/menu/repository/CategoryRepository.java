@@ -14,7 +14,6 @@ public class CategoryRepository {
 
     public void save(Category category) {
         categories.add(category);
-        System.out.println(category);
     }
 
     public int countByCategory(Category category) {

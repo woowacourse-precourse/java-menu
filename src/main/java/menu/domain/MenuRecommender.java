@@ -16,13 +16,22 @@ public class MenuRecommender {
     public void run() {
         int cnt = 0;
         while (cnt < 5) {
-            Category category = randomCategoryGenerator.create();
-            if(!validateCategory(category)){
-                continue;
-            }
-            categoryRepository.save(category);
+            // 카테고리 정하기
+            Category category = selectCategory();
+            System.out.println(category);
+            // 각 코치가 먹을 메뉴 추천
+
             cnt++;
         }
+    }
+
+    public Category selectCategory() {
+        Category category = randomCategoryGenerator.create();
+        if(!validateCategory(category)){
+            return selectCategory();
+        }
+        categoryRepository.save(category);
+        return category;
     }
 
     private boolean validateCategory(Category category) {
