@@ -8,7 +8,7 @@ public class Group {
     private final List<String> categoryHistory = new ArrayList<>();
     private final List<Coach> coaches = new ArrayList<>();
 
-    public void addCoach(String name, List<String> cannotEatMenus) {
+    public void addCoach(CoachName name, List<String> cannotEatMenus) {
         coaches.add(new Coach(name, cannotEatMenus));
     }
 //

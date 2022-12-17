@@ -1,10 +1,12 @@
 package menu.controller;
 
+import menu.domain.CoachName;
 import menu.domain.Group;
 import menu.view.InputView;
 import menu.view.OutputView;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MenuController {
     private final InputView inputView = new InputView();
@@ -15,10 +17,12 @@ public class MenuController {
 
     public void run() {
         System.out.println(START_MESSAGE);
-        List<String> coaches = inputView.readNames();
+        List<CoachName> coaches = inputView.readNames().stream()
+                .map(name -> new CoachName(name))
+                .collect(Collectors.toList());
 
-        for (String coach : coaches) {
-            List<String> cannotEatMenus = inputView.readMenuCantEat(coach);
+        for (CoachName coach : coaches) {
+            List<String> cannotEatMenus = inputView.readMenuCantEat(coach.getName());
             group.addCoach(coach, cannotEatMenus);
         }
 
