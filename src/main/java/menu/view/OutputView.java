@@ -1,5 +1,7 @@
 package menu.view;
 
+import menu.model.Coach;
+
 import java.util.List;
 
 public class OutputView {
@@ -10,5 +12,16 @@ public class OutputView {
             System.out.printf(" | %s", name);
         }
         System.out.println(" ]");
+    }
+
+    private void printCoachMenus(List<Coach> coaches) {
+        for (Coach coach : coaches) {
+            System.out.printf("[ %s", coach.getName());
+
+            for (String menu : coach.getMyMenu()) {
+                System.out.printf(" | %s", menu);
+            }
+            System.out.println(" ]");
+        }
     }
 }
