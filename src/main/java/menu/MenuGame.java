@@ -2,7 +2,6 @@ package menu;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
 import java.util.Stack;
 import menu.ui.InputView;
 import menu.ui.OutputView;
@@ -10,7 +9,7 @@ import menu.ui.OutputView;
 public class MenuGame {
 
     private List<Coach> coaches;
-    private Stack<String> menusForEachDay;
+    private Stack<String> menuCategoryForEachDay;
 
     public void start() {
         OutputView.printMenuGameStart();
@@ -27,14 +26,14 @@ public class MenuGame {
 
     private void selectCoachesMenus() {
         for(Coach coach : coaches)
-            coach.selectMenus(menusForEachDay);
+            coach.selectMenus(menuCategoryForEachDay);
 
 
     }
 
     private void createMenuCategory() {
         MenuCategory menuCategory = new MenuCategory();
-        this.menusForEachDay = menuCategory.createMenuForEachDay();
+        this.menuCategoryForEachDay = menuCategory.createMenuForEachDay();
     }
 
     private void enterCoachesAllergicMenus() {
