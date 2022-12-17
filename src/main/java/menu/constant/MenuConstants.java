@@ -7,7 +7,7 @@ public class MenuConstants {
     public static final int MINIMUM_COACH_NAME_LENGTH = 2;
     public static final int MAXIMUM_COACH_NAME_LENGTH = 4;
 
-    public static final int MAXIMUM_NUMBER_OF_INEDIBLE_MENU = 2;
+    public static final int MAXIMUM_NUMBER_OF_INEDIBLE_MENUS = 2;
 
     public static final String DELIMITER = ",";
 }
