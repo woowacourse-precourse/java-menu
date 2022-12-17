@@ -30,7 +30,7 @@ public class Coach {
         return true;
     }
 
-    public void recommendMenu(String menu) {
+    public void getRecommendedMenu(String menu) {
         recommendedMenus.add(menu);
     }
 

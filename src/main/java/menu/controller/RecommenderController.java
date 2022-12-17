@@ -40,7 +40,7 @@ public class RecommenderController {
 
     private List<String> getValidCoachesName() {
         List<String> coachesName = new ArrayList<>();
-        while(coachesName.size() == 0) {
+        while (coachesName.size() == 0) {
             try {
                 String userInput = inputView.getCoachesName();
                 coachesName = Validator.isValidCoachesName(userInput);
@@ -61,7 +61,7 @@ public class RecommenderController {
 
     private List<String> getValidDislikeMenus(String coachName) {
         List<String> dislikeMenus = null;
-        while(dislikeMenus == null) {
+        while (dislikeMenus == null) {
             try {
                 String userInput = inputView.getDislikeMenus(coachName);
                 dislikeMenus = Validator.isValidDislikeMenus(userInput);
@@ -75,16 +75,27 @@ public class RecommenderController {
 
     private void makeRecommendedCategories() {
         for (int count = 0; count < NUMBER_OF_RECOMMEND; count++) {
-            recommendCategory();
+            recommendValidCategory();
         }
     }
 
-    private void recommendCategory() {
+    private void recommendValidCategory() {
         Category recommendedCategory;
         do {
             recommendedCategory = categoryRecommender.recommendCategory();
         }
         while (!Validator.isValidCategory(recommendedCategory, recommendedCategories));
         recommendedCategories.add(recommendedCategory);
+    }
+
+    private void recommendValidMenu(Coach coach) {
+        for (Category category : recommendedCategories) {
+            String menu;
+            do {
+                menu = menuRecommender.recommendMenu(category);
+            }
+            while (!(coach.canEatMenu(menu) && !coach.isDuplicateMenu(menu)));
+            coach.getRecommendedMenu(menu);
+        }
     }
 }
