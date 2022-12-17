@@ -15,22 +15,28 @@ public class MenuGame {
     }
 
     private void play() {
-        List<Coach> coaches = new ArrayList<>();
         try {
-            coaches = createCoaches();
+            createCoaches();
+            enterCoachesAllergicMenus();
+
         }catch(IllegalArgumentException illegalArgumentException){
             OutputView.printErrorMessage(illegalArgumentException.getMessage());
         }
-
     }
 
-    private List<Coach> createCoaches() {
+    private void enterCoachesAllergicMenus() {
+        for(Coach coach : this.coaches){
+            coach.enterAllergicMenus();
+        }
+    }
+
+    private void createCoaches() {
         List<String> coachesNameOrigin;
         do{
             coachesNameOrigin = List.of((InputView.readCoachesName()).split(","));
         }while(!isValidCoachesName(coachesNameOrigin));
 
-        return makeCoaches(coachesNameOrigin);
+        this.coaches =  makeCoaches(coachesNameOrigin);
     }
 
     private List<Coach> makeCoaches(List<String> coachesNameOrigin) {
