@@ -51,3 +51,16 @@ public class MenuService implements Menu {
         }
     }
 
+    private List<Coach> initCoaches(final List<String> names, final List<List<String>> notAteMenus) {
+        final List<Coach> coaches = new ArrayList<>();
+        generateCoaches(names, notAteMenus, coaches);
+        return coaches;
+    }
+
+    private void generateCoaches(final List<String> names, final List<List<String>> notAteMenus, final List<Coach> coaches) {
+        for (int i = 0; i < names.size(); i++) {
+            final String name = names.get(i);
+            final List<String> notAteMenu = notAteMenus.get(i);
+            coaches.add(new Coach(new CoachName(name), notAteMenu));
+        }
+    }
