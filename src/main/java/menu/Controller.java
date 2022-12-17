@@ -7,6 +7,7 @@ import menu.utills.constants.CoachQuantity;
 import menu.view.InputVIew;
 import menu.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
@@ -38,8 +39,25 @@ public class Controller {
         }
     }
 
-    private List<List<String>> getHateMenu(List<String> coachs) {
-        
+    private List<List<String>> getHateMenu(List<String> coaches) {
+        List<List<String>> hateMenuList = new ArrayList<>();
+        for (String coach : coaches) {
+            hateMenuList.add(getHateMenuByCoach(coach));
+        }
+        return hateMenuList;
     }
 
+    private List<String> getHateMenuByCoach(String coach) {
+        try {
+            String hatMenuInput = InputVIew.getHateMenu(coach);
+            List<String> hateMenus = Converter.toListByDelimiter(hatMenuInput);
+            Validator.containDuplicate(hateMenus);
+            Validator.isInSize(hateMenus, 0, 2);
+//            TODO: 존재하지 않는 메뉴일 경우 예외처리 해줘야함
+            return hateMenus;
+        } catch (IllegalArgumentException exception) {
+            OutputView.printErrorMessage(exception.getMessage());
+            return getHateMenuByCoach(coach);
+        }
+    }
 }
