@@ -21,7 +21,7 @@ public enum Category {
         this.menus = menus;
     }
 
-    // 카테고리에 해당하는 메뉴 제공
+    // 숫자에 따를 카테고리르 제공하는 기능
     public static String getCategory (int num) {
         String category = "";
         if(num == JAPAN.number) {
@@ -36,5 +36,22 @@ public enum Category {
             category = WESTERN.category;
         }
         return category;
+    }
+
+    // 카테고리에 따른 메뉴를 제공하는 기능
+    public static List<String> getmenu (String category) {
+        List<String> menu = null;
+        if(category == JAPAN.category) {
+            menu = JAPAN.menus;
+        } else if(category == KOREA.category) {
+            menu = KOREA.menus;
+        } else if(category == CHINESE.category) {
+            menu = CHINESE.menus;
+        } else if(category == ASIAN.category) {
+            menu = ASIAN.menus;
+        } else if (category == WESTERN.category) {
+            menu = WESTERN.menus;
+        }
+        return menu;
     }
 }

@@ -19,8 +19,33 @@ public class RecommendSystem {
             }
             categories.add(category);
         }
+    }
 
+    // 음식을 추천하는 기능
+    public void addRecommendMenu(Coach coach) {
+        List<String> categories = coach.getRecommendedCategory();
+        List<String> recommedMenus = coach.getRecommendedMenu();
+        while(!(recommedMenus.size() == RECOMMAND_MAX_NUM)) {
+            String category = categories.get(Randoms.pickNumberInRange(0, categories.size()-1));
+            String menu = recommendMenu(category);
+            if(checkCanNotEatMenu(coach, menu)) {
+                continue;
+            }
+            recommedMenus.add(menu);
+        }
 
+    }
+
+    private String recommendMenu(String category) {
+        List<String> menu = Category.getmenu(category);
+        return menu.get(Randoms.pickNumberInRange(0, menu.size()-1));
+    }
+
+    private boolean checkCanNotEatMenu(Coach coach, String menu) {
+        if(coach.getRecommendedMenu().contains(menu) || coach.getCanNotEatFoods().contains(menu)) {
+            return true;
+        }
+        return false;
     }
 
     private int randomCategory() {
