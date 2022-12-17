@@ -19,10 +19,6 @@ public class Menu {
         return this.category == category;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
     public String getName() {
         return name;
     }

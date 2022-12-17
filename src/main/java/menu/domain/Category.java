@@ -4,18 +4,16 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public enum Category {
-    JAPANESE("일식", 1),
-    KOREAN("한식", 2),
-    CHINESE("중식", 3),
-    ASIAN("아시안", 4),
-    WESTERN("양식", 5);
+    JAPANESE("일식"),
+    KOREAN("한식"),
+    CHINESE("중식"),
+    ASIAN("아시안"),
+    WESTERN("양식");
 
     private final String name;
-    private final int number;
 
-    Category(String name, int number) {
+    Category(String name) {
         this.name = name;
-        this.number = number;
     }
 
     public String getName() {
