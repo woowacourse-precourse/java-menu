@@ -1,22 +1,23 @@
 package menu.domain;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
 public class MenuHistory {
     private final Map<Day, Menu> weekMenus;
 
-    private MenuHistory(Map<Day, Menu> weekMenus) {
-        this.weekMenus = weekMenus;
+    public MenuHistory() {
+        this.weekMenus = new EnumMap<>(Day.class);
     }
 
     public void addMenuOfDay(Menu menu, Day day) {
-        if(!hasMenu(menu)) {
+        if(!contains(menu)) {
             weekMenus.put(day, menu);
         }
     }
-    public boolean hasMenu(Menu menu) {
+    public boolean contains(Menu menu) {
         return weekMenus.containsValue(menu);
     }
 
