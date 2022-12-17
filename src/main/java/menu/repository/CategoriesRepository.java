@@ -9,6 +9,10 @@ import menu.domain.enums.Category;
 public class CategoriesRepository {
     private static final CategoriesRepository instance = new CategoriesRepository();
     private static final List<Categories> store = new ArrayList<>();
+    public static final int CATEGORIES_INDEX = 0;
+
+    private CategoriesRepository() {
+    }
 
     public static Categories generateCategories() {
         List<Category> categories = new ArrayList<>();
@@ -21,7 +25,21 @@ public class CategoriesRepository {
                 break;
             }
         }
-        return new Categories(categories);
+        return save(new Categories(categories));
+    }
+
+    private static Categories save(final Categories categories) {
+        delete();
+        store.add(categories);
+        return find();
+    }
+
+    private static Categories find() {
+        return store.get(CATEGORIES_INDEX);
+    }
+
+    private static void delete() {
+        store.clear();
     }
 
     private static int getCount(final List<Category> categories, final int day) {
