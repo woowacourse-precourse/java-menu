@@ -12,7 +12,7 @@ public class RecommendSystem {
 
     List<String> recommendCategories = new ArrayList<>();
 
-    public void addCoachCategory(Coach coach) {
+    public void addRandomCategory() {
         while(!(recommendCategories.size() == RECOMMAND_MAX_NUM)) {
             int num = randomCategory();
             String category = Category.getCategory(num);
@@ -29,7 +29,8 @@ public class RecommendSystem {
         int index = 0;
         while(!(recommedMenus.size() == RECOMMAND_MAX_NUM)) {
             String category = recommendCategories.get(index++);
-            String menu = recommendMenu(category);
+            List<String> menus = Category.getmenu(category);
+            String menu = Randoms.shuffle(menus).get(0);
             if(checkCanNotEatMenu(coach, menu)) {
                 index--;
                 continue;
@@ -66,6 +67,10 @@ public class RecommendSystem {
             return true;
         }
         return false;
+    }
+
+    public List<String> getRecommendCategories() {
+        return recommendCategories;
     }
 
 }
