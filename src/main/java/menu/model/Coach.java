@@ -26,6 +26,10 @@ public class Coach {
         this.selectMenu = selectMenu;
     }
 
+    public boolean isHateMenu(String menu) {
+        return hateMenu.isHateMenu(menu);
+    }
+
     private void validateName(String name) {
         if (isLessThanTwo(name.length())) {
             ExceptionMessage.NAME_LESS_THAN_TWO.throwException();
