@@ -37,7 +37,7 @@ public enum Categories {
         while (categories.size() != WEEKDAY) {
             int key = Randoms.pickNumberInRange(STARTER, Categories.values().length);
             String category = getCategory(key);
-            if (categories.stream().filter(x -> x.equals(category)).count() < LIMIT_OF_REPETITION) {
+            if (categories.stream().filter(kind -> kind.equals(category)).count() < LIMIT_OF_REPETITION) {
                 categories.add(category);
             }
         }

@@ -46,6 +46,7 @@ public class Controller {
             }
         }
     }
+
     private void recommend() {
         service.chooseCategories();
         service.chooseMenus();

@@ -11,10 +11,16 @@ public class ViewRenderer {
     private static final String END = " ]";
     private static final String DIVISION_LINE = " | ";
     private static final String LINE_BREAK_CHARACTER = "\n";
+    private static final String DIVISION = "구분";
+    private static final String MONDAY = "월요일";
+    private static final String TUESDAY = "화요일";
+    private static final String WEDNESDAY = "수요일";
+    private static final String THURSDAY = "목요일";
+    private static final String FRIDAY = "금요일";
 
     public String render(RecommendationResponseDto recommendationResponseDto) {
         StringBuilder sb = new StringBuilder();
-        String[] header = new String[] {"구분", "월요일", "화요일", "수요일", "목요일", "금요일"};
+        String[] header = new String[] {DIVISION, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY};
         sb.append(makeTable(Arrays.stream(header).collect(Collectors.toList())));
         recommendationResponseDto.getRecommendation().forEach(x -> sb.append(makeTable(x)));
         return sb.toString();
