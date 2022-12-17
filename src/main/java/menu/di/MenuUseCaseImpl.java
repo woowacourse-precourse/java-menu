@@ -17,6 +17,9 @@ public class MenuUseCaseImpl implements MenuUseCase {
     private static final String NUMBER_OVER_RANGE_MESSAGE = "사람 수가 범위를 벗어났습니다";
     private static final int MINIMUM_COACH_COUNT = 2;
     private static final int MAXIMUM_COACH_COUNT = 5;
+    private static final int COACH_CANNOT_EAT_COUNT_START = 2;
+    private static final int COACH_CANNOT_EAT_COUNT_END = 5;
+    private static final String COACH_CANNOT_EAT_ERROR_MESSAGE = "0개부터 2개까지만 못먹는 음식으로 등록할 수 있습니다";
     private static final int PICK_DATE_SIZE = 5;
     private final Map<Category, List<String>> menus;
     private final Picker picker;
@@ -45,14 +48,14 @@ public class MenuUseCaseImpl implements MenuUseCase {
 
     @Override
     public void validateMenus(ValidateMenuCommand validateMenuCommand) {
-        validateMenuCommand.getMenus()
-                .forEach(this::validateMenu);
+        List<String> menus = validateMenuCommand.getMenus();
+        if (COACH_CANNOT_EAT_COUNT_START > menus.size() || menus.size() > COACH_CANNOT_EAT_COUNT_END) {
+            throw new IllegalArgumentException(COACH_CANNOT_EAT_ERROR_MESSAGE);
+        }
+        menus.forEach(this::validateMenu);
     }
 
     private void validateMenu(String menu) {
-        if (menu.length() == 0) {
-            return;
-        }
         boolean menuIsValid = menus.values().stream().anyMatch(it -> it.contains(menu));
         if (!menuIsValid) {
             throw new IllegalArgumentException(MENU_NOT_FOUND_MESSAGE);
