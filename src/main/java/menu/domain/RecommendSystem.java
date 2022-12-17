@@ -31,8 +31,8 @@ public class RecommendSystem {
             String category = recommendCategories.get(index++);
             List<String> menus = Category.getmenu(category);
             String menu = Randoms.shuffle(menus).get(0);
-            if(checkCanNotEatMenu(coach, menu)) {
-                index--;
+            while(checkCanNotEatMenu(coach, menu)) {
+                menu = Randoms.shuffle(menus).get(0);
                 continue;
             }
             recommedMenus.add(menu);
