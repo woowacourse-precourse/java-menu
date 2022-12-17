@@ -1,4 +1,4 @@
-package menu;
+package menu.Domain;
 
 import java.util.List;
 
