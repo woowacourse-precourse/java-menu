@@ -1,5 +1,6 @@
 package menu.domain.coach;
 
+import menu.domain.menu.Menu;
 import menu.domain.menu.Menus;
 import menu.domain.menu.UneatableMenus;
 
@@ -12,5 +13,9 @@ public class Coach {
         this.coachName = new CoachName(coachName);
         this.menus = new Menus();
         this.uneatableMenus = new UneatableMenus();
+    }
+    
+    public boolean isExistSameMenu(Menu menu) {
+        return menus.isExistSameMenu(menu);
     }
 }

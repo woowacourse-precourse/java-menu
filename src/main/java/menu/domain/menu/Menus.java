@@ -9,4 +9,9 @@ public class Menus {
     public Menus() {
         menus = new ArrayList<>();
     }
+    
+    public boolean isExistSameMenu(Menu menu) {
+        return menus.stream()
+                .anyMatch(oldMenu -> oldMenu.equals(menu));
+    }
 }
