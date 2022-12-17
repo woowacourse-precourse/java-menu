@@ -3,6 +3,7 @@ package menu.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public enum Category {
     JAPAN("일식", 1, new ArrayList<>(List.of("규동", "우동", "미소시루", "스시", "가츠동", "오니기리", "하이라이스", "라멘", "오코노미야끼"))),
@@ -40,5 +41,9 @@ public enum Category {
                 .filter(category -> category.getIndex() == index)
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("카테고리 번호는 1 ~ 5 사이의 숫자여야합니다."));
+    }
+
+    public void addCount() {
+        this.count++;
     }
 }
