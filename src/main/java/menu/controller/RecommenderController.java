@@ -1,8 +1,6 @@
 package menu.controller;
 
-import menu.model.Category;
-import menu.model.Coach;
-import menu.model.Validator;
+import menu.model.*;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -12,6 +10,9 @@ import java.util.List;
 public class RecommenderController {
     private final InputView inputView;
     private final OutputView outputView;
+    private final CategoryRecommender categoryRecommender;
+    private final MenuRecommender menuRecommender;
+    private final int NUMBER_OF_RECOMMEND = 5;
 
     private List<Category> recommendedCategories = new ArrayList<>();
     private List<Coach> coaches = new ArrayList<>();
@@ -19,12 +20,15 @@ public class RecommenderController {
     public RecommenderController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
+        this.categoryRecommender = new CategoryRecommender();
+        this.menuRecommender = new MenuRecommender();
     }
 
     public void run() {
         outputView.showStartRecommender();
         registerCoaches();
         registerDislikeMenu();
+        makeRecommendedCategories();
     }
 
     private void registerCoaches() {
@@ -67,5 +71,20 @@ public class RecommenderController {
         }
 
         return dislikeMenus;
+    }
+
+    private void makeRecommendedCategories() {
+        for (int count = 0; count < NUMBER_OF_RECOMMEND; count++) {
+            recommendCategory();
+        }
+    }
+
+    private void recommendCategory() {
+        Category recommendedCategory;
+        do {
+            recommendedCategory = categoryRecommender.recommendCategory();
+        }
+        while (!Validator.isValidCategory(recommendedCategory, recommendedCategories));
+        recommendedCategories.add(recommendedCategory);
     }
 }

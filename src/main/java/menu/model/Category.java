@@ -12,7 +12,7 @@ public enum Category {
     private String categoryName;
     private List<String> menus;
 
-    Category(String categoryNamey, List<String> menus) {
+    Category(String categoryName, List<String> menus) {
         this.categoryName = categoryName;
         this.menus = menus;
     }
