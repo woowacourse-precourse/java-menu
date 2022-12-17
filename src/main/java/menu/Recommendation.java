@@ -39,4 +39,8 @@ public class Recommendation {
         }
         return true;
     }
+
+    public Map<String, List<String>> get() {
+        return this.coachMenu;
+    }
 }
