@@ -1,5 +1,6 @@
 package menu.controller;
 
+import menu.dto.ResultDto;
 import menu.service.MenuManager;
 import menu.view.Input;
 import menu.view.Output;
@@ -23,7 +24,7 @@ public class MenuController {
     }
 
     private void printResult() {
-        menuManager.activateRecommendation();
+        ResultDto resultDto = menuManager.activateRecommendation();
     }
 
     private void saveHatingMenus() {

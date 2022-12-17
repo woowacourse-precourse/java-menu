@@ -1,6 +1,7 @@
 package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import menu.dto.CompleteMenuDto;
 import menu.type.CategoryList;
 
 import java.util.ArrayList;
@@ -47,5 +48,13 @@ public class CoachRepository {
                 coach.addCompleteMenu(menu);
             }
         }
+    }
+
+    public static List<CompleteMenuDto> getCompleteMenuDtos() {
+        List<CompleteMenuDto> dtos = new ArrayList<>();
+        for (Coach coach : coachs) {
+            dtos.add(new CompleteMenuDto(coach.getName(), coach.getCompleteMenus()));
+        }
+        return dtos;
     }
 }

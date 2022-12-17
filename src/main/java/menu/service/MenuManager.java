@@ -3,6 +3,7 @@ package menu.service;
 import menu.domain.Coach;
 import menu.domain.CoachRepository;
 import menu.domain.WeeklyCategories;
+import menu.dto.ResultDto;
 
 import java.util.List;
 
@@ -25,9 +26,10 @@ public class MenuManager {
         coach.addHateMenus(hatingMenus);
     }
 
-    public void activateRecommendation() {
+    public ResultDto activateRecommendation() {
         weeklyCategories.pickCategories();
         CoachRepository.pickMenus(weeklyCategories.getCategoryList());
-
+        ResultDto resultDto = new ResultDto(weeklyCategories.getCategoryList(), CoachRepository.getCompleteMenuDtos());
+        return resultDto;
     }
 }
