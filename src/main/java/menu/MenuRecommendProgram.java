@@ -21,15 +21,14 @@ public class MenuRecommendProgram {
 
 
     public MenuRecommendProgram() {
-        countOfCategorySelected = new HashMap<>() {{
-            for (Category category: Category.values()) {
-                if (category.equals(Category.EMPTY)) {
-                    continue;
-                }
-                String categoryName = category.getCategoryName();
-                put(categoryName, 0);
+        countOfCategorySelected = new HashMap<>();
+        for (Category category: Category.values()) {
+            if (category.equals(Category.EMPTY)) {
+                continue;
             }
-        }};
+            String categoryName = category.getCategoryName();
+            countOfCategorySelected.put(categoryName, 0);
+        }
         coaches = new ArrayList<>();
         menuRecommend = new MenuRecommend();
         selectedCategory = new ArrayList<>();
