@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import menu.domain.Category;
+import menu.domain.CategoryPicker;
 import menu.domain.Coach;
 import menu.domain.CoachName;
 import menu.domain.Picker;
@@ -84,7 +85,7 @@ public class MenuUseCaseImpl implements MenuUseCase {
     }
 
     private void recommendOneDay(List<Coach> coaches, List<Category> categories) {
-        Category picked = pickCategory();
+        Category picked = new CategoryPicker(picker).pickCategory();
         categories.add(picked);
         List<String> oneCategoryMenus = menus.get(picked);
         for (Coach coach : coaches) {
@@ -106,9 +107,5 @@ public class MenuUseCaseImpl implements MenuUseCase {
         return picker.shuffle(oneCategoryMenus).get(0);
     }
 
-    private Category pickCategory() {
-        int picked = picker.pickNumberInRange(1, 5);
-        return Category.from(picked);
-    }
 
 }
