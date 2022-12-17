@@ -34,7 +34,7 @@ public class Coach {
 
     public void setRecommendMenus(Week week) {
         String recommendMenu = Category.recommendRandomMenu(week.getCategory());
-        while (isEatable()) {
+        while (isAllRecommendMenuEatable()) {
             recommendMenu = Category.recommendRandomMenu(week.getCategory());
         }
         recommendMenus.add(recommendMenu);
@@ -60,7 +60,7 @@ public class Coach {
         }
     }
 
-    public boolean isEatable() {
+    public boolean isAllRecommendMenuEatable() {
         int prohibitMenuCount = (int) recommendMenus.stream()
                 .filter(menu -> prohibitionMenus.contains(menu))
                 .count();
