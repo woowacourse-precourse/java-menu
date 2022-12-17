@@ -25,7 +25,7 @@ public class MainController {
     private void printResult(){
         resultView();
         weekView();
-        categoryView();
+        categoryView(coachController.getCategoryList());
         for(String coach: coachController.getCoaches().keySet()){
             printCoachMenu(coach);
         }

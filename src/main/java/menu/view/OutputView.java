@@ -12,8 +12,12 @@ public class OutputView {
     public static void weekView(){
         System.out.println("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
     }
-    public static void categoryView(){
-        System.out.println("[ 카테고리 | 한식 | 한식 | 일식 | 중식 | 아시안 ]");
+    public static void categoryView(List<String> categories){
+        System.out.print("[ 카테고리");
+        for(String food:categories){
+            System.out.print(" | " + food);
+        }
+        System.out.println(" ]");
     }
     public static void coachMenuView(String name, List<String> foods){
         System.out.print("[ " + name);
