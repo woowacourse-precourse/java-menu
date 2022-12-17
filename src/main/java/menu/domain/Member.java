@@ -24,4 +24,8 @@ public class Member {
     public List<String> getWeekEat() {
         return weekEat;
     }
+
+    public void addWeekEat(String menu) {
+        weekEat.add(menu);
+    }
 }
