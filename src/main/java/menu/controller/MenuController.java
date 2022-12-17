@@ -34,15 +34,20 @@ public class MenuController {
     public List<String> takeCoaches() {
         String name = ValidationService.takeCoachNames();
 
-        String[] split = name.split(",");
+        String[] splitNames = name.split(",");
 
-        return Arrays.stream(split)
+        return Arrays.stream(splitNames)
                 .collect(Collectors.toList());
     }
 
     public void takeMenuFromCoach(List<String> coachNames) {
         for (String coachName : coachNames) {
-            String notEatMenu = inputView.readNotEatMenus(coachName);
+            String notEatMenu = ValidationService.takeNotEatMenus(coachName);
+
+            String[] splitNames = notEatMenu.split(",");
+
+            List<String> notEatMenus = Arrays.stream(splitNames)
+                    .collect(Collectors.toList());
         }
     }
 }

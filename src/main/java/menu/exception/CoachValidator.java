@@ -2,7 +2,7 @@ package menu.exception;
 
 public class CoachValidator {
     private static final String EMPTY_ERROR_MESSAGE = "[ERROR] 값이 입력되지 않았습니다.";
-    private static final String NOT_FORMAT_ERROR_MESSAGE = "[ERROR] 형식이 올바르지 않습니다. (콤마로 구분)";
+    private static final String NOT_FORMAT_ERROR_MESSAGE = "[ERROR] 형식이 올바르지 않습니다. (,로 구분)";
     private static final String NUMBER_OF_COACH_ERROR_MESSAGE = "[ERROR] 코치는 2명 ~ 5명을 입력해야 합니다.";
     private static final String NAME_DIGITS_ERROR_MESSAGE = "[ERROR] 각 코치의 이름 자릿수는 2글자 ~ 4글자여야 합니다.";
 

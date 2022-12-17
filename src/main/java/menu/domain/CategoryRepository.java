@@ -9,4 +9,14 @@ public class CategoryRepository {
     public static void addCategory(Category category) {
         categories.add(category);
     }
+
+    public static boolean isExistFoodInAllCategories(String foodName) {
+        for (Category category : categories) {
+            if (category.isExistFood(foodName)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
