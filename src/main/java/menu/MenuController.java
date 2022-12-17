@@ -3,9 +3,7 @@ package menu;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MenuController {
 
@@ -27,7 +25,6 @@ public class MenuController {
             inputView.readNotEatMenu(coachsName.get(i));
             System.out.println();
         }
-
         for (int i = 0; i < 5; i++) {
             Category category = Category.getValueOf(Randoms.pickNumberInRange(1, 5));
             weekCategory.add(category.getName());
@@ -44,6 +41,7 @@ public class MenuController {
         outputView.printResult(weekCategory, coachsName, coachMenuList);
         outputView.printMessage(MESSAGE_END);
     }
+
 
 
 }
