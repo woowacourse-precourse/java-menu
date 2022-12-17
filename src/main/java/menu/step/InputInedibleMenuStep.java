@@ -1,6 +1,6 @@
 package menu.step;
 
-import menu.common.Logger;
+import menu.common.log.Logger;
 import menu.controller.MenuRecommendController;
 import menu.controller.mapper.MenuMapper;
 import menu.domain.Coach;

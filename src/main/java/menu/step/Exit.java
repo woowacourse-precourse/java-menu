@@ -1,6 +1,6 @@
 package menu.step;
 
-import menu.common.Logger;
+import menu.common.log.Logger;
 import menu.controller.MenuRecommendController;
 
 public class Exit extends MenuRecommendApplicationStep {

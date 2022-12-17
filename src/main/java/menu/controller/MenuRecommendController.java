@@ -1,5 +1,6 @@
 package menu.controller;
 
+import menu.common.config.MenuRecommendConfig;
 import menu.domain.Group;
 import menu.usecase.MenuRecommendUseCase;
 import menu.usecase.SelectCategoryUseCase;
@@ -9,10 +10,9 @@ public class MenuRecommendController {
     private final MenuRecommendUseCase menuRecommendUseCase;
     private final SelectCategoryUseCase selectCategoryUseCase;
 
-    public MenuRecommendController(final MenuRecommendUseCase menuRecommendUseCase,
-                                   final SelectCategoryUseCase selectCategoryUseCase) {
-        this.menuRecommendUseCase = menuRecommendUseCase;
-        this.selectCategoryUseCase = selectCategoryUseCase;
+    public MenuRecommendController(final MenuRecommendConfig config) {
+        this.menuRecommendUseCase = config.menuRecommendUseCase();
+        this.selectCategoryUseCase = config.selectCategoryUseCase();
     }
 
     /**

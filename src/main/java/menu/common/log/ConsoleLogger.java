@@ -1,4 +1,4 @@
-package menu.common;
+package menu.common.log;
 
 import static java.lang.String.format;
 
