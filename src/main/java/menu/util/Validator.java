@@ -1,8 +1,12 @@
 package menu.util;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+import menu.domain.Category;
 import menu.domain.Coach;
+import menu.domain.MenuRecommender;
+import menu.domain.Menus;
 
 public class Validator {
 
@@ -43,6 +47,16 @@ public class Validator {
 
         if (originCoachSize != coachSize) {
             throw new IllegalArgumentException("[ERROR] 코치의 이름은 중복되면 안됩니다.");
+        }
+    }
+
+    public static void validateBannedMenus(String input, MenuRecommender menuRecommender) {
+        validateExistedMenu(input, menuRecommender);
+    }
+
+    private static void validateExistedMenu(String input, MenuRecommender menuRecommender) {
+        if (!menuRecommender.isExistedMenu(input)) {
+            throw new IllegalArgumentException("[ERROR] 존재하지 않는 메뉴입니다.");
         }
     }
 }

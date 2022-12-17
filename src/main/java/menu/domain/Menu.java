@@ -9,4 +9,8 @@ public class Menu {
         this.category = category;
         this.name = name;
     }
+
+    public String getName() {
+        return name;
+    }
 }

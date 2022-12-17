@@ -2,8 +2,11 @@ package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import java.util.Map;
+import menu.domain.Category;
 import menu.domain.Coach;
-import menu.domain.Menu;
+import menu.domain.MenuRecommender;
+import menu.domain.Menus;
 import menu.util.Converter;
 import menu.util.Validator;
 
@@ -17,9 +20,10 @@ public class InputView {
         return coaches;
     }
 
-    public static String inputBannedMenus(String name) {
+    public static String inputBannedMenus(String name, MenuRecommender menuRecommender) {
         System.out.println(name + "(이)가 못 먹는 메뉴를 입력해 주세요.");
         String input = Console.readLine();
+        Validator.validateBannedMenus(input, menuRecommender);
         return input;
     }
 }

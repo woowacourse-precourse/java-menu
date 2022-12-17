@@ -11,4 +11,13 @@ public class Menus {
         this.category = category;
         this.menus = menus;
     }
+
+    public boolean isExistedMenu(String menu) {
+        for (Menu m : menus) {
+            if (menu.equals(m.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
