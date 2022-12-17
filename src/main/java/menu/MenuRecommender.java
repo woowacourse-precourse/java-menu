@@ -29,6 +29,8 @@ public class MenuRecommender {
         String recommendMenu;
         while (true) {
             recommendMenu = Randoms.shuffle(menus).get(0);
+            // TODO : 아래 제거
+            System.out.print(recommendMenu);
             if (isAvailableToEat(coach, recommendMenu)) {
                 break;
             }
@@ -45,6 +47,8 @@ public class MenuRecommender {
         Category recommendCategory;
         while (true) {
             recommendCategory = Category.getCategoryByNumber(Randoms.pickNumberInRange(1, 5));
+            // TODO : 아래 제거
+            System.out.print(recommendCategory);
             if (MenuForWeekRepository.isCategoryAvailableToAdd(recommendCategory)) {
                 break;
             }

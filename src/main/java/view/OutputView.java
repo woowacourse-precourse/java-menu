@@ -7,6 +7,7 @@ import repository.MenuForWeekRepository;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -58,15 +59,14 @@ public class OutputView {
     public void printMenuResult(HashMap<Coach, List<String>> menuResult) {
         println(MENU_RECOMMENDATION_RESULT_TITLE);
         println(WEEKDAYS);
-        HashMap<Week, Category> categoriesPerWeek = MenuForWeekRepository.getCategoriesPerWeek();
+        LinkedHashMap<Week, Category> categoriesPerWeek = MenuForWeekRepository.getCategoriesPerWeek();
         String categories = categoriesPerWeek.values().stream()
                 .map(category -> category.getName()).collect(Collectors.joining(" | "));
         println("[ 카테고리 | " + categories + " ]");
         for (Coach coach : menuResult.keySet()) {
             String menus = menuResult.get(coach).stream().collect(Collectors.joining(" | "));
-            println("[ " + coach.getName() + menus + " ]");
+            println("[ " + coach.getName() + " | " + menus + " ]");
         }
-
         printNewLine();
         println(FINISH_MESSAGE);
     }

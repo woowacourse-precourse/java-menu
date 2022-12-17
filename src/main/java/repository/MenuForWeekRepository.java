@@ -4,20 +4,17 @@ import constant.Category;
 import constant.Week;
 import menu.Coach;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class MenuForWeekRepository {
-    private static HashMap<Week, Category> categoriesPerWeek = new HashMap<>();
-    private static HashMap<Coach, List<String>> menusPerCoach = new HashMap<>();
+    private static LinkedHashMap<Week, Category> categoriesPerWeek = new LinkedHashMap<>();
+    private static LinkedHashMap<Coach, List<String>> menusPerCoach = new LinkedHashMap<>();
 
     public static HashMap<Coach, List<String>> getMenuResult() {
         return menusPerCoach;
     }
 
-    public static HashMap<Week, Category> getCategoriesPerWeek() {
+    public static LinkedHashMap<Week, Category> getCategoriesPerWeek() {
         return categoriesPerWeek;
     }
 
