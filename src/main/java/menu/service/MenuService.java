@@ -10,6 +10,17 @@ import java.util.List;
 
 public class MenuService {
 
+    public Category getCategory() {
+        Category category;
+        while (true) {
+            category = MenuSelector.getCategory();
+            if (category.canChoose()) {
+                break;
+            }
+        }
+        return category;
+    }
+
     public Menu getMenu(Coach coach, Category category) {
         Menu menu;
         while (true) {
