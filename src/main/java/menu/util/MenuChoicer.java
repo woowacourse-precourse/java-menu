@@ -17,10 +17,10 @@ public class MenuChoicer {
         List<String> menus = new ArrayList<>(totalDay);
 
 
-         for(FoodCategory foodCategory : weekFoodCategories){
+        for(FoodCategory foodCategory : weekFoodCategories){
              String pickedMenu = Randoms.shuffle(new ArrayList<>(foodCategory.getMenus())).get(0);
              menus.add(pickedMenu);
-         }
+        }
 
         return menus;
     }
