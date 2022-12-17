@@ -12,11 +12,12 @@ public enum Category {
     ASIAN(4, "아시안", "팟타이, 카오 팟, 나시고렝, 파인애플 볶음밥, 쌀국수, 똠얌꿍, 반미, 월남쌈, 분짜"),
     WESTERN(5, "양식", "라자냐, 그라탱, 뇨끼, 끼슈, 프렌치 토스트, 바게트, 스파게티, 피자, 파니니");
 
+    public static final String INVALID_NUMBER = "올바르지 않은 숫자입니다.";
     private int number;
     private String name;
     private List<String> menu;
 
-    public static final Map<Integer, Category> numberToCategory = new HashMap<>();
+    private static final Map<Integer, Category> numberToCategory = new HashMap<>();
 
     static {
         for(Category category: Category.values()) {
@@ -28,5 +29,13 @@ public enum Category {
         this.number = number;
         this.name = name;
         this.menu = Arrays.asList(menuJoinWithDelimiter.split(","));
+    }
+
+    public static Category getCategoryByNumber(int number) {
+        if (!numberToCategory.containsKey(number)) {
+            throw  new IllegalArgumentException(INVALID_NUMBER);
+        }
+        return numberToCategory.get(number);
+
     }
 }
