@@ -13,8 +13,8 @@ public class RecommendationSystem {
     List<Coach> coachList = new ArrayList<>();
     private void calculateResult(){
         for(int day = 0; day < 5; ++day){
-            FoodInformation todayCategory = Category.recommendCategory();
-            coachList.forEach(coach -> coach.recommendFood(todayCategory));
+            FoodInformation todayCategory = Category.getProperCategory();
+            coachList.forEach(coach -> coach.recommendAndEatFood(todayCategory));
         }
     }
     public void start(){
@@ -23,6 +23,7 @@ public class RecommendationSystem {
             coachList.add(new Coach(Input.readNoFoods(coach), coach));
 
         calculateResult();
+
         Output.printResult(coachList);
     }
 }
