@@ -21,11 +21,11 @@ public class OutputView {
     private static final String ERROR_MESSAGE_SET_COACHES_CANNOT_EATS = "못 먹는 메뉴는 최대 2개까지만 가능하며, 존재하는 메뉴여야 합니다.";
 
     private static final String RECOMMEND_RESULT_MESSAGE_HEADER = "메뉴 추천 결과입니다.";
+    private static final String RECOMMEND_RESULT_MESSAGE_WEEK = "구분";
+    private static final String RECOMMEND_RESULT_MESSAGE_CATEGORY = "카테고리";
     private static final String RECOMMEND_RESULT_MESSAGE_START = "[ ";
     private static final String RECOMMEND_RESULT_MESSAGE_SEPARATOR = " | ";
     private static final String RECOMMEND_RESULT_MESSAGE_END = " ]";
-    private static final String RECOMMEND_RESULT_MESSAGE_WEEK = "구분";
-    private static final String RECOMMEND_RESULT_MESSAGE_CATEGORY = "카테고리";
 
 
     public static void printStartMessage() {

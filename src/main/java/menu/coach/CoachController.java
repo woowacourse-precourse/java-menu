@@ -15,7 +15,7 @@ public class CoachController {
     }
 
     /**
-     * 코치 목록 초기화
+     * TODO: 코치 목록 초기화
      */
     public static void setCoaches() {
         String[] coachesName;
@@ -40,7 +40,7 @@ public class CoachController {
     }
 
     /**
-     * 코치별 못 먹는 메뉴 초기화
+     * TODO: 코치별 못 먹는 메뉴 초기화
      */
     private static void setCoachesCannotEat() {
         for (Coach coach : coaches) {

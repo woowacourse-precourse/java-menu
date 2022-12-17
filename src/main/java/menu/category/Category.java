@@ -35,7 +35,12 @@ public class Category {
         }
     }
 
-    // 존재하는 메뉴인지 확인
+    /**
+     * 존재하는 메뉴인지 확인
+     *
+     * @param menuToFind
+     * @return 존재한다면 true, 존재하지 않는다면 false
+     */
     public static boolean isInMenu(String menuToFind) {
         for (Category.Categories category : Category.Categories.values()) {
             List<String> menus = category.getMenus();
@@ -48,7 +53,12 @@ public class Category {
         return false;
     }
 
-    // name으로 menus 찾기
+    /**
+     * 카테고리 이름으로 메뉴 목록 찾기
+     *
+     * @param categoryNumber
+     * @return 해당 카테고리의 메뉴 목록
+     */
     public static List<String> getCategoryMenusByNumber(int categoryNumber) {
         for (Categories category : Category.Categories.values()) {
             if (category.getNumber() == categoryNumber) {
@@ -58,7 +68,12 @@ public class Category {
         return List.of(""); // 여기로 올 경우는 없음
     }
 
-    // number로 name 찾기
+    /**
+     * 카테고리 번호로 이름 찾기
+     *
+     * @param categoryNumber
+     * @return 해당 카테고리의 이름
+     */
     public static String getCategoryNameByNumber(int categoryNumber) {
         for (Categories category : Category.Categories.values()) {
             if (category.getNumber() == categoryNumber) {

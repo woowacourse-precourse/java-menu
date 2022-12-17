@@ -7,7 +7,7 @@ public class Coach {
 
     private String name;
     private List<String> menusCannotEats = new ArrayList<>();
-    private List<String> menusRecommended = new ArrayList<>(); // 순서 : 월, 화, 수, 목, 금
+    private List<String> menusRecommended = new ArrayList<>(); // 순서: 월/화/수/목/금
 
     public Coach(String name) {
         this.name = name;
@@ -29,6 +29,11 @@ public class Coach {
         this.menusRecommended = recommendedMenu;
     }
 
+    /**
+     * 못 먹는 메뉴 추가
+     *
+     * @param cannotEat
+     */
     public void addMenusCannotEats(String cannotEat) {
         this.menusCannotEats.add(cannotEat);
     }

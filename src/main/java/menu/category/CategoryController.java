@@ -10,6 +10,7 @@ public class CategoryController {
 
     public static void recommendMenu() {
         CategoryService.recommendCategories();
+
         List<Coach> coaches = CoachController.getCoaches();
         for (Coach coach : coaches) {
             List<String> recommendMenusToCoach = CategoryService.setRecommendMenusToCoach(coach);

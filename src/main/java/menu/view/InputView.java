@@ -8,9 +8,9 @@ import java.util.NoSuchElementException;
 public class InputView {
 
     /**
-     * 코치 이름 입력받기
+     * TODO: 코치 이름 입력받기
      *
-     * @return
+     * @return ","으로 나눈 코치들 이름 목록
      */
     public static String[] setCoachesName() {
         String coachesName_input;
@@ -41,9 +41,9 @@ public class InputView {
     }
 
     /**
-     * 코치가 못 먹는 메뉴 입력받기
+     * TODO: 코치가 못 먹는 메뉴 입력받기
      *
-     * @return
+     * @return ","으로 나눈 코치가 못 먹는 메뉴 목록
      */
     public static String[] setCoachesCannotEats() {
         String coachCannotEats_input;
@@ -64,7 +64,7 @@ public class InputView {
         return coachCannotEat.length <= 2;
     }
 
-    // 없는 메뉴일 경우
+    // 존재하지 않는 메뉴인지 확인
     private static boolean checkCoachCannotEats_value(String[] coachCannotEats) {
         for (String coachCannotEat : coachCannotEats) {
             if (Category.isInMenu(coachCannotEat)) {
