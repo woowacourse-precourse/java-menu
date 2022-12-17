@@ -13,12 +13,14 @@ public class InputView {
     public List<String> readCoachNames() {
         System.out.printf(INPUT_COACH_NAME, NAME_SEPARATOR);
         String input = readInput();
+        System.out.println();
         return splitComma(input);
     }
 
     public List<String> readDislikeMenu(String coachName) {
         System.out.printf(INPUT_DISLIKE_MENU, coachName);
         String input = readInput();
+        System.out.println();
         return splitComma(input);
     }
 
