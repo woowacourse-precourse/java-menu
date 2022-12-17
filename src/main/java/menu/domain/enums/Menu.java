@@ -1,5 +1,9 @@
 package menu.domain.enums;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public enum Menu {
     //    규동, 우동, 미소시루, 스시, 가츠동, 오니기리, 하이라이스, 라멘, 오코노미야끼
     GYUDON("규동"),
@@ -52,9 +56,16 @@ public enum Menu {
     PIZZA("피자"),
     PANINI("파니니");
 
-    private String name;
+    private final String name;
 
     Menu(final String name) {
         this.name = name;
+    }
+
+    public static boolean isExists(final List<String> menus) {
+        return Arrays.stream(values())
+                .map(menu -> menu.name)
+                .collect(Collectors.toList())
+                .containsAll(menus);
     }
 }

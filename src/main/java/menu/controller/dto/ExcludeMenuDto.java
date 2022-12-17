@@ -3,6 +3,7 @@ package menu.controller.dto;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import menu.domain.enums.Menu;
 import menu.message.ErrorMessage;
 
 public class ExcludeMenuDto {
@@ -23,6 +24,15 @@ public class ExcludeMenuDto {
         if (isDuplicated(allMenu)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATED_EXCLUDE_MENU);
         }
+        if (!isExistMenu(allMenu)) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_EXIST_MENU);
+        }
+    }
+
+    private boolean isExistMenu(final String allMenu) {
+        List<String> menus = Arrays.stream(allMenu.split(","))
+                .collect(Collectors.toList());
+        return Menu.isExists(menus);
     }
 
     private boolean isDuplicated(final String allMenu) {
