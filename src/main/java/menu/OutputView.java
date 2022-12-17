@@ -27,14 +27,17 @@ public class OutputView {
     }
 
     public void printCoachNameInformMessage() {
+        System.out.println();
         System.out.println(COACH_NAME_INFORM_MESSAGE);
     }
 
     public void printPickEatingsInformMessage(String name) {
+        System.out.println();
         System.out.println(name + PICKYEATINGS_INFORM_MESSAGE);
     }
 
     private void printResultInformMessage() {
+        System.out.println();
         System.out.println(RESULT_INFORM_MESSAGE);
     }
 
