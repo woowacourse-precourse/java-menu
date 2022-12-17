@@ -22,6 +22,7 @@ public class InputView {
     public String readBannedFoods() {
         try {
             String input = Console.readLine();
+            inputException.validateBannedFoods(input);
             return input;
         } catch (IllegalArgumentException exception) {
             printError(exception.getMessage());
