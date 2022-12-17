@@ -28,10 +28,9 @@ public class RecommendResult {
     }
 
     private void generateRandomMenus() {
-        for(Coach coach : coaches) {
-            MenuMaker menuMaker = new MenuMaker(coach, categories);
-            List<Menu> coachMenus = menuMaker.makeRandomMenus();
-            coach.setRecommendMenus(coachMenus);
+        for(Category category : categories) {
+            MenuMaker menuMaker = new MenuMaker(coaches, category);
+            menuMaker.makeRandomMenus();
         }
     }
 
