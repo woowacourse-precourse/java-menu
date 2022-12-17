@@ -19,6 +19,7 @@ public class MenuGame {
     private static int MAX_CANT_EAT = 2;
     private static int MIN_COACH = 2;
     private static int MAX_COACH =5;
+    private static String NO_EXIST_CANT_EAT ="";
     private List<Food> foods = new ArrayList<>();
     private List<Coach> coaches = new ArrayList<>();
     private MenuRecommend menuRecommend;
@@ -41,8 +42,17 @@ public class MenuGame {
             throw new IllegalArgumentException(ErrorResource.ERROR_START+ ErrorResource.COACH_BIG);
         }
         for(int i=0;i<coaches.size();i++){
+            makeEachCoach(coaches, i);
+        }
+    }
+    private void makeEachCoach(List<String> coaches, int i) {
+        try{
             Coach coach = new Coach(coaches.get(i));
             this.coaches.add(coach);
+        }
+        catch(IllegalArgumentException e){
+            this.coaches.clear();
+            throw e;
         }
     }
 
@@ -67,7 +77,7 @@ public class MenuGame {
         if(foods.size()>MAX_CANT_EAT){
             throw new IllegalArgumentException(ErrorResource.ERROR_START+ ErrorResource.TOO_MANY_CANT_EAT);
         }
-        if(foods.get(0).equals("")){
+        if(foods.get(0).equals(NO_EXIST_CANT_EAT)){
             return;
         }
         Food food = checkIfFoodExist(foods);
@@ -95,9 +105,7 @@ public class MenuGame {
         makeFoods(ASIAN_FOOD,Category.ASIAN);
         makeFoods(FOREIGN_FOOD,Category.FOREIGN);
     }
-    public List<Food> getFoods() {
-        return foods;
-    }
+
     public void makeFoods(String foodNames, Category category){
         String foodWithOutSpace = foodNames.replaceAll(" ","");
         List<String> splitFoodName = List.of(foodWithOutSpace.split(","));
