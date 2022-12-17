@@ -2,10 +2,12 @@ package service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import constant.ErrorLog;
 import domain.Categories;
 import domain.Coach;
 import domain.CoachNames;
@@ -47,10 +49,22 @@ public class Service {
         return null;
     }
 
-    public void saveInedibleMenu(CoachNameResponseDto coachNameResponseDto, InedibleMenuRequestDto inedibleMenuRequestDto) {
+    public void saveInedibleMenu(CoachNameResponseDto coachNameResponseDto,
+        InedibleMenuRequestDto inedibleMenuRequestDto) {
         coaches.getCoaches().forEach(coach -> {
             if (coach.getName().equals(coachNameResponseDto.getCoachName())) {
                 coach.addInedibleMenu(inedibleMenuRequestDto.getInedibleMenu());
+            }
+        });
+        validatePossibleRecommend();
+    }
+
+    private void validatePossibleRecommend() {
+        HashSet<String> menus = new HashSet<>();
+        coaches.getCoaches().forEach(coach -> menus.addAll(coach.getMenus()));
+        Arrays.stream(Menus.values()).forEach(category -> {
+            if (menus.containsAll(category.getMenus())) {
+                throw new IllegalArgumentException(ErrorLog.NO_POSSIBLE_RECOMMENDATION.getLog());
             }
         });
     }
