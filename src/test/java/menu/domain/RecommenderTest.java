@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 @DisplayName("Recommender 클래스")
 @DisplayNameGeneration(ReplaceUnderscores.class)
-public class RecommenderTest {
+class RecommenderTest {
 
     @Test
     void recommend_메서드는_추천_결과를_만들어낸다() {
