@@ -32,8 +32,10 @@ public class InputView {
         outputView.printReadDeniedFood(couch.getName());
         String names = Console.readLine();
         String[] split = names.split(",");
+
         return Arrays.stream(split)
-                .map(Food::valueOf)
+                .map(String::trim)
+                .map(Food::from)
                 .collect(Collectors.toList());
     }
 }

@@ -63,7 +63,7 @@ public class Couch {
         StringJoiner contents = new StringJoiner(MESSAGE_DELIMITER);
         contents.add(name);
         recommend.stream()
-                .map(Enum::name)
+                .map(Food::getAlias)
                 .forEach(contents::add);
 
         return result.append(MESSAGE_PREFIX)
