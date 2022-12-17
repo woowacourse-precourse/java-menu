@@ -21,7 +21,7 @@ public class OutputView {
     }
 
     public void printNameInputGuide(){
-        System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
+        System.out.println("\n코치의 이름을 입력해 주세요. (, 로 구분)");
     }
 
     public void printError(String errorMessage){
@@ -29,11 +29,11 @@ public class OutputView {
     }
 
     public void printHateMenuInputGuide(String name){
-        System.out.printf("%s(이)가 못 먹는 메뉴 입력해 주세요.", name);
+        System.out.printf("\n%s(이)가 못 먹는 메뉴 입력해 주세요.", name);
     }
 
     public void printResult(List<String> dayOfWeek, List<String> thisWeekCategories, Map<String, List<String>> ateMenuNamesByCoachName){
-        System.out.println("메뉴 추쳔 결과입니다.");
+        System.out.println("\n메뉴 추쳔 결과입니다.");
         System.out.println(getResult(dayOfWeek, thisWeekCategories, ateMenuNamesByCoachName));
         System.out.println("\n추천을 완료했습니다.");
     }
@@ -49,7 +49,7 @@ public class OutputView {
     }
 
     private String createWeekGuide(List<String> dayOfWeek){
-        sj = new StringJoiner(" | ", "[","]");
+        sj = new StringJoiner(" | ", "[ "," ]");
         sj.add("구분");
         for (String day : dayOfWeek) {
             sj.add(day);
@@ -58,7 +58,7 @@ public class OutputView {
     }
 
     private String createCategoryGuide(List<String> thisWeeKCategoryNames){
-        sj = new StringJoiner(" | ", "[","]");
+        sj = new StringJoiner(" | ", "[ "," ]");
         sj.add("카테고리");
         for (String categoryName : thisWeeKCategoryNames) {
             sj.add(categoryName);
@@ -76,7 +76,7 @@ public class OutputView {
     }
 
     private String getEachRecommendationStatusGuide(Map<String, List<String>> ateMenuNamesByCoachName, String coachName) {
-        sj = new StringJoiner(" | ", "[","]");
+        sj = new StringJoiner(" | ", "[ "," ]");
         sj.add(coachName);
         for (String ateMenuName : ateMenuNamesByCoachName.get(coachName)) {
             sj.add(ateMenuName);
