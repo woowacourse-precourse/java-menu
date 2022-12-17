@@ -43,7 +43,7 @@ public class CategoryService {
     public static List<String> setRecommendMenusToCoach(Coach coach) {
         List<String> recommendMenus = new ArrayList<>();
         for (Integer recommendCategoryNumber : recommendCategoryNumbers) {
-            List<String> menusOfCategory = Category.getCategoryMenusByNumber(recommendCategoryNumber);
+            List<String> menusOfCategory = Category.getCategoryMenusByNumber(recommendCategoryNumber); // 카테고리에 포함되는 메뉴 목록
             String randomMenu;
             while (true) {
                 randomMenu = Randoms.shuffle(menusOfCategory).get(0); // ApplicationTest에서 menusOfCategory에 없는 메뉴를 반환합니다.. (직접 실행시에는 정상 반환)
