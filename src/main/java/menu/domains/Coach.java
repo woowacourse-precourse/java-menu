@@ -32,13 +32,13 @@ public class Coach {
         cannotEatMenus.addAll(cannotHaveMenu);
     }
 
-    public void updateSuggestedMenus(List<Categories> categories){
-        for(int menuIndex = 0; menuIndex < 5;){
-            List<String> menuList = Categories.getMenuList(categories.get(menuIndex));
+    public void updateSuggestedMenus(Categories oneCategory){
+        while(true){
+            List<String> menuList = Categories.getMenuList(oneCategory);
             String suggestedMenu = Randoms.shuffle(menuList).get(0);
             if(isValidMenu(suggestedMenu)){
                 suggestedMenus.add(suggestedMenu);
-                menuIndex++;
+                break;
             }
         }
     }
