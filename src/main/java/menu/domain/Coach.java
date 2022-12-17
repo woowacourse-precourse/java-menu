@@ -13,12 +13,31 @@ public class Coach {
     private final List<Menu> canNotEatMenu;
 
     public Coach(String name, List<String> canNotEatMenu) {
+        validateName(name);
+        validateMenu(canNotEatMenu);
         this.name = name;
         this.canNotEatMenu = mapToMenus(canNotEatMenu);
     }
 
+    private void validateMenu(List<String> canNotEatMenu) {
+        if(canNotEatMenu.size()>2){
+            throw new IllegalArgumentException("코치가 못먹는 메뉴는 최대 2개입니다");
+        }
+
+    }
+
+    private void validateName(String name) {
+        if(name.length()<2 || name.length()>4){
+            throw new IllegalArgumentException("코치 이름의 길이는 2글자 이상 4글자 이해합니다");
+        }
+    }
+
     private List<Menu> mapToMenus(List<String> canNotEatMenu) {
         List<Menu> menus = new ArrayList<>();
+        if(canNotEatMenu.get(0).isBlank()){
+            menus.add(MenuRepository.findByMenuName("BLANK"));
+            return menus;
+        }
         for (String notEatMenu : canNotEatMenu) {
             Menu menu = MenuRepository.findByMenuName(notEatMenu);
             menus.add(menu);

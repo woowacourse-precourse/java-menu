@@ -10,36 +10,45 @@ import menu.domain.Weekend;
 import menu.repository.MenuRepository;
 import menu.repository.WeekendRepository;
 import menu.view.InputView;
+import menu.view.OutPutView;
 
 public class MenuRecommendController {
 
-    private static final List<Weekend> weekend= WeekendRepository.weekends();
+    private static final List<Weekend> weekend = WeekendRepository.weekends();
     private static final List<Menu> menus = MenuRepository.menus();
 
-    private final InputView inputView;
-
-    public MenuRecommendController(){
-        this.inputView = new InputView();
-    }
     public void run() {
         List<Coach> coaches = getChoachs();
-// TODO:
-//        Map<Weekend,Menu> recommend = getRecommendMenus(weekend,menus,coaches);
-//        OutPutView.printResult(recommended);
+        Map<String, List<Menu>> recommend = getRecommendMenus(coaches);
+        OutPutView.printResult(recommend);
     }
-// TODO:
-//    private Map<Weekend, Menu> getRecommendMenus(List<Weekend> weekend, List<Menu> menus, List<Coach> coaches) {
-//        return MenuRecommendService.recommend(coaches,weekend,menus);
-//    }
+
+    private Map<String, List<Menu>> getRecommendMenus(List<Coach> coaches) {
+        return MenuRecommendService.MakeNewRecommendMenu(coaches);
+    }
 
     private List<Coach> getChoachs() {
-        //TODO: 코치이름길이 검증, 코치인원수 검증
-        //
-        List<String> names = inputView.readCoachNames();
-        List<Coach> coaches = new ArrayList<>();
-        for (String name : names) {
-            coaches.add(new Coach(name,inputView.getCanNotEatMenus(name)));
+        try{
+            List<String> names;
+            names = InputView.readCoachNames();
+            return getChoachsCanNotEatMenu(names);
+        }  catch (IllegalArgumentException exception){
+            OutPutView.printError(exception);
+            return getChoachs();
         }
-        return coaches;
+
+    }
+
+    private List<Coach> getChoachsCanNotEatMenu(List<String> names) {
+        try {
+            List<Coach> coaches = new ArrayList<>();
+            for (String name : names) {
+                coaches.add(new Coach(name, InputView.getCanNotEatMenus(name)));
+            }
+            return coaches;
+        } catch (IllegalArgumentException exception){
+            OutPutView.printError(exception);
+            return getChoachsCanNotEatMenu(names);
+        }
     }
 }

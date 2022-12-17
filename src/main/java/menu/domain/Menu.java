@@ -36,4 +36,12 @@ public class Menu {
     public int hashCode() {
         return Objects.hash(name, category);
     }
+
+    @Override
+    public String toString() {
+        return "Menu{" +
+            "name='" + name + '\'' +
+            ", category=" + category +
+            '}';
+    }
 }
