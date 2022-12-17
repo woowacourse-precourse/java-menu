@@ -1,6 +1,7 @@
 package menu.enums;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 public enum MenuOption {
@@ -10,19 +11,31 @@ public enum MenuOption {
     ASIAN("아시안", 4, List.of("팟타이", "카오 팟", "나시고렝", "파인애플 볶음밥", "쌀국수", "똠얌꿍", "반미", "월남쌈", "분짜")),
     WESTERN("양식", 5, List.of("라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니"));
 
-    private final String name;
+    private final String category;
     private final int number;
     private final List<String> menus;
 
-    MenuOption(String name, int number, List<String> menus) {
-        this.name = name;
+    MenuOption(String category, int number, List<String> menus) {
+        this.category = category;
         this.number = number;
         this.menus = menus;
     }
 
-    public static MenuOption fromNumber(int number) {
+    public String getCategory() {
+        return this.category;
+    }
+
+    public static String getCategoryFromNumber(int number) {
         return Stream.of(values())
                 .filter(option -> option.number == number)
+                .findFirst()
+                .get()
+                .category;
+    }
+
+    public static MenuOption fromCategory(String category) {
+        return Stream.of(values())
+                .filter(option -> Objects.equals(option.category, category))
                 .findFirst()
                 .get();
     }
