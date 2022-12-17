@@ -11,7 +11,7 @@ import menu.view.dto.NotEatFoodsDTO;
 
 public class NotEatFoodService {
 
-    public static void addNotEatFoods(NotEatFoodsDTO notEatFoodDTO) {
+    public void addNotEatFoods(NotEatFoodsDTO notEatFoodDTO) {
         Coach findCoach = CoachRepository.findCoachByName(notEatFoodDTO.getName())
                 .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.NOT_FOUND_COACH));
         List<Food> foods = FoodRepository.findFoodsByFoodNames(notEatFoodDTO.getNotEatFoods());

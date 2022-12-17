@@ -8,18 +8,18 @@ import menu.repository.NotEatFoodRepository;
 
 public class CoachService {
 
-    public static void addCoach(String name) {
+    public void addCoach(String name) {
         Coach newCoach = new Coach(name);
         CoachRepository.addCoach(newCoach);
         NotEatFoodRepository.addInitNotEatFood(new NotEatFoods(newCoach));
     }
 
-    public static void addCoaches(List<String> names) {
+    public void addCoaches(List<String> names) {
         names.stream()
                 .forEach(name -> addCoach(name));
     }
 
-    public static List<Coach> findAllCoaches() {
+    public List<Coach> findAllCoaches() {
         return CoachRepository.findAll();
     }
 

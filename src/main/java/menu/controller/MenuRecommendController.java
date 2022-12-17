@@ -10,13 +10,23 @@ import menu.view.OutputView;
 
 public class MenuRecommendController {
 
+    private final CoachService coachService;
+    private final MenuRecommendService menuRecommendService;
+    private final NotEatFoodService notEatFoodService;
+
+    public MenuRecommendController(CoachService coachService, MenuRecommendService menuRecommendService, NotEatFoodService notEatFoodService) {
+        this.coachService = coachService;
+        this.menuRecommendService = menuRecommendService;
+        this.notEatFoodService = notEatFoodService;
+    }
+
     public void run() {
         initData();
         OutputView.printRun();
         List<String> coachNames = keepReadCoach();
         addCoach(coachNames);
         addNotEatFoods(coachNames);
-        OutputView.printResult(MenuRecommendService.run(), CoachService.findAllCoaches());
+        OutputView.printResult(menuRecommendService.run(), coachService.findAllCoaches());
     }
 
     private void initData() {
@@ -24,7 +34,7 @@ public class MenuRecommendController {
     }
 
     public void addCoach(List<String> coachNames) {
-        CoachService.addCoaches(coachNames);
+        coachService.addCoaches(coachNames);
     }
 
     public void addNotEatFoods(List<String> coachNames) {
@@ -44,7 +54,7 @@ public class MenuRecommendController {
 
     private void keepAddNotEatFood(String coachName) {
         try {
-            NotEatFoodService.addNotEatFoods(InputView.readNotEatFoodByCoach(coachName));
+            notEatFoodService.addNotEatFoods(InputView.readNotEatFoodByCoach(coachName));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             keepAddNotEatFood(coachName);
