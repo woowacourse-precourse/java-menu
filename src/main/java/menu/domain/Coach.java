@@ -39,4 +39,8 @@ public class Coach {
     public boolean isAlreadyRecommended(Food food) {
         return recommendedFoods.contains(food);
     }
+
+    public List<Food> getRecommendedFoods() {
+        return recommendedFoods;
+    }
 }
