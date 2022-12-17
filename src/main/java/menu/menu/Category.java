@@ -44,7 +44,15 @@ public enum Category {
         return EMPTY.getCategoryName();
     }
 
-    public List<String> getMenus(Category category) {
-        return category.menus;
+    public List<String> getMenus() {
+        return menus;
     }
+
+    public static List<String> getMenus(String categoryName) {
+        for (Category category: Category.values()) {
+            if (categoryName == category.getCategoryName()) {
+                return category.getMenus();
+            }
+        }
+        return EMPTY.getMenus();    }
 }
