@@ -1,5 +1,6 @@
 package menu.controller;
 
+import menu.RandomCategoryNumberGenerator;
 import menu.domain.CoachGroup;
 import menu.service.RecommendService;
 import menu.utils.Category;
@@ -22,7 +23,7 @@ public class RecommendController {
     public RecommendController() {
         this.outputView = new OutputView();
         this.inputView = new InputView(outputView);
-        this.recommendService = new RecommendService();
+        this.recommendService = new RecommendService(new RandomCategoryNumberGenerator());
     }
 
     public void run() {

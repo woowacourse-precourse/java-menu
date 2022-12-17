@@ -1,6 +1,7 @@
 package menu.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import menu.RandomNumberGenerator;
 import menu.domain.Coach;
 import menu.utils.Category;
 import menu.utils.ErrorMessage;
@@ -13,13 +14,18 @@ import java.util.stream.Collectors;
 
 public class RecommendService {
 
-    List<Category> categories = new ArrayList<>();
     private static final int MAX_CATEGORY_STORAGE = 2;
+
+    private final List<Category> categories = new ArrayList<>();
+    private final RandomNumberGenerator generator;
+
+    public RecommendService(RandomNumberGenerator generator) {
+        this.generator = generator;
+    }
 
     public Category getCategory() {
         validateCategory();
-        int categoryCode = Randoms.pickNumberInRange(Category.MIN, Category.MAX);
-        Category category = Category.from(categoryCode);
+        Category category = Category.from(generator.generate());
         categories.add(category);
         if (isOutOfRange(category)) {
             return getCategory();
