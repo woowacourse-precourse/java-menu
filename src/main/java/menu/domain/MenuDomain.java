@@ -62,7 +62,9 @@ public class MenuDomain {
      * 각 요일
      */
     public void eachDay(String dayName) {
-        daysRecommand.setDayCategori(getCategoriName());
+        String categoriName = getCategoriName();
+        daysRecommand.setDayCategori(categoriName);
+        daysRecommand.addPrintCategori(categoriName);
         for (Coach coach : coachs.getCoachs()) {
             daysRecommand.setDayMenu(coach, menu, dayName);
         }

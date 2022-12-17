@@ -8,20 +8,19 @@ public class MenuException {
     public static void checkMenuList(Menu menu, List<String> foods) {
         int count = 0;
         for (List<String> menuList : menu.getMenus().values()) {
-            if (checkNotInMenu(menuList, foods)) {
-                count++;
-            }
+            count += checkNotInMenu(menuList, foods);
         }
         notInMenuException(count, foods.size());
     }
 
-    private static boolean checkNotInMenu(List<String> menuList, List<String> foods) {
+    private static int checkNotInMenu(List<String> menuList, List<String> foods) {
+        int count = 0;
         for (String food : foods) {
             if (isInMenu(menuList, food)) {
-                return true;
+                count++;
             }
         }
-        return false;
+        return count;
     }
 
     private static boolean isInMenu(List<String> menuList, String food) {

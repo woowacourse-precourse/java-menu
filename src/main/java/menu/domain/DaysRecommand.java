@@ -17,10 +17,12 @@ import java.util.Map;
 public class DaysRecommand {
     private Map<String, Day> days;
     private List<String> categoriList;
+    private List<String> printCategori;
 
     DaysRecommand(Map<String, Day> days) {
         this.days = days;
         this.categoriList = new ArrayList<>();
+        this.printCategori = new ArrayList<>();
     }
 
     public static DaysRecommand of() {
@@ -38,6 +40,10 @@ public class DaysRecommand {
         return days;
     }
 
+    public List<String> getCategoriList() {
+        return categoriList;
+    }
+
     public void initCoachNames(Coachs coachs) {
         for (DayStatus dayStatus : DayStatus.values()) {
             days.get(dayStatus.getDay()).initCoachs(coachs);
@@ -46,6 +52,10 @@ public class DaysRecommand {
 
     public void setDayCategori(String categoriName) {
         categoriList.add(categoriName);
+    }
+
+    public void addPrintCategori(String categoriName) {
+        printCategori.add(categoriName);
     }
 
     public String getCategoriName() {
@@ -82,7 +92,7 @@ public class DaysRecommand {
 
     public boolean isAlreadyEat(Coach coach, String menuName) {
         for (DayStatus dayStatus : DayStatus.values()) {
-            Map<Coach, String> day =  days.get(dayStatus).getCoachMenu();
+            Map<Coach, String> day =  days.get(dayStatus.getDay()).getCoachMenu();
             if (isEat(menuName, day.get(coach))) {
                 return true;
             }

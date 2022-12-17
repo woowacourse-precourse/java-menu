@@ -30,7 +30,6 @@ public class Result {
         division.add(PrintMsg.DIVISION.getMsg());
         division.addAll(DayStatus.getDays());
         categori.add(PrintMsg.CATEGORI.getMsg());
-        categori.addAll(Categori.getCategoriNames());
     }
 
     public void initCoach(Coachs coachs) {
@@ -43,6 +42,7 @@ public class Result {
         for (DayStatus dayStatus : DayStatus.values()) {
             addFoodEachDay(daysRecommand.getDays().get(dayStatus.getDay()));
         }
+        addCategori(daysRecommand.getCategoriList());
         mapToString(coachs);
     }
 
@@ -52,6 +52,9 @@ public class Result {
             coachMap.get(coach.getName()).add(coachMenu.get(coach));
         }
     }
+    public void addCategori(List<String> categoriList) {
+        categori.addAll(categoriList);
+    }
 
     public void mapToString(Coachs coachs) {
         for (Coach coach : coachs.getCoachs()) {
@@ -60,6 +63,7 @@ public class Result {
     }
     public String getCoachMenu(Coach coach) {
         StringJoiner stringJoiner = getFormat();
+        stringJoiner.add(coach.getName());
         List<String> coachMenu = coachMap.get(coach.getName());
         for (String menu : coachMenu) {
             stringJoiner.add(menu);
