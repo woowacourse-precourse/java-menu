@@ -16,16 +16,16 @@
 InputView : 입력 담당<br>
 OutputView : 출력 담당<br>
 Controller : 요청 수행<br>
-Model(Service) : Recommend, <br>
-DTO : <br>
-VO : Coach , Menu<br>
+Model(Service) : Recommend, Menu <br>
+DTO : CoachWeekMenu <br>
+VO : Coach<br>
 Enum : Week , FoodCategory <br>
 
 
 ### Domain 구현 목록
 1. Recommand
     - [자료구조] 
-      - Map<FoodCategory,Integer> : 이번주 카테고리 선택 수 
+      - Map<FoodCategory,Integer> : 이번주 카테고리 선택 점 
       - Map<Coach,List<Menu>> : 코치들이 이번주에 이미 먹은 메뉴들
     - [기능]
       - 추천할 카테고리 무작위 정함
@@ -39,12 +39,20 @@ Enum : Week , FoodCategory <br>
    - 카테고리
    - 메뉴들 리스트
 
+4. CoachWeekMenu DTO
+   - 코치 이름
+   - 코치가 이번주 먹은 메뉴 리스트
+
 ### InputView
-- [기능]
+- [기능] 
+   - 추천 시작 메시지
+   - 코치 이름 입력 기능
+   - 코치 별 못먹는 메뉴 입력 기능
 - [예외 처리]
 
 ### OutputView
 - [기능]
+  - 메뉴 추천 결과 출력 기능
 - [예외 처리]
 
 ### Controller
