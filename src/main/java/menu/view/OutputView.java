@@ -34,4 +34,8 @@ public class OutputView {
     public static void printPromptForMenuCannotToEatInput(String coachName) {
         System.out.printf(PROMPT_FOR_MENU_INPUT_FORMAT, coachName);
     }
+
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println("[ERROR] " + errorMessage);
+    }
 }

@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import menu.model.Category;
@@ -54,13 +56,24 @@ public class MenuRecommendSystem {
      */
     private void addMenuCannotToEat(Coach coach) {
         OutputView.printPromptForMenuCannotToEatInput(coach.getName());
-        List<String> menuCannotEat = InputView.readMenuCoachCannotEat();
+        List<String> menuCannotEat = read(this::getMenuCannotEat, InputView::readMenuCoachCannotEat);
         for (String menu : menuCannotEat) {
             coach.addMenuCannotEat(menu);
         }
         if (coach.getSizeOfMenuCannotToEat() > 2) {
             throw new IllegalArgumentException(INVALID_MENU_SIZE);
         }
+    }
+
+    private List<String> getMenuCannotEat(List<String> menuInput) {
+        for(String menu: menuInput) {
+            validateMenu(menu);
+        }
+        return menuInput;
+    }
+
+    private void validateMenu(String menu) {
+        Category.existsHaving(menu);
     }
 
     private List<Coach> createCoachesByNames() {
@@ -115,5 +128,15 @@ public class MenuRecommendSystem {
      */
     private void end() {
         OutputView.printEndMessage();
+    }
+
+    private <T, R> R read(Function<T, R> object, Supplier<T> input) {
+        while(true) {
+            try {
+                return object.apply(input.get());
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }

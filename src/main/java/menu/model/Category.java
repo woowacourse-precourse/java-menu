@@ -20,21 +20,27 @@ public enum Category {
 
     private static final Map<Integer, Category> numberToCategory = new HashMap<>();
 
+    private static final Map<String, Category> menuToCategory = new HashMap<>();
+
     static {
         for (Category category : Category.values()) {
             numberToCategory.put(category.number, category);
+        }
+        for (Category category: Category.values()) {
+            for(String menu: category.menu) {
+                menuToCategory.put(menu, category);
+            }
         }
     }
 
     public String getName() {
         return name;
-
     }
 
     Category(int number, String name, String menuJoinWithDelimiter) {
         this.number = number;
         this.name = name;
-        this.menu = Arrays.asList(menuJoinWithDelimiter.split(","));
+        this.menu = Arrays.asList(menuJoinWithDelimiter.split(", "));
     }
 
     public static Category getCategoryByNumber(int number) {
@@ -42,6 +48,12 @@ public enum Category {
             throw new IllegalArgumentException(INVALID_NUMBER);
         }
         return numberToCategory.get(number);
+    }
+
+    public static void existsHaving(String menu) {
+        if (!menuToCategory.containsKey(menu)) {
+            throw new IllegalArgumentException("메뉴에 해당하는 카테고리가 없습니다.");
+        }
     }
 
     public String getRandomMenu() {
