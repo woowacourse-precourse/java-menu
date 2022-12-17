@@ -2,7 +2,6 @@ package menu.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import menu.utils.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

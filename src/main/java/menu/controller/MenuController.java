@@ -1,11 +1,11 @@
 package menu.controller;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import camp.nextstep.edu.missionutils.Console;
 import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.Week;

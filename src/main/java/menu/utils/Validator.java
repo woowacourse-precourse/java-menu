@@ -2,7 +2,6 @@ package menu.utils;
 
 import java.util.HashSet;
 import java.util.List;
-import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 
 public class Validator {
 

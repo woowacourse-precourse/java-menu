@@ -1,7 +1,6 @@
 package menu.view;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.Week;

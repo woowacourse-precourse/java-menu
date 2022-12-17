@@ -1,10 +1,10 @@
 package menu.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import camp.nextstep.edu.missionutils.Randoms;
 import menu.view.OutputView;
 
 public enum Category {
