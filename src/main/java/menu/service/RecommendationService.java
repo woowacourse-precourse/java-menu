@@ -78,4 +78,12 @@ public class RecommendationService {
     private boolean canBeRecommended(Coach coach, String food) {
         return coach.isEdible(food) && !coach.isRecommended(food);
     }
+
+    public List<List<String>> findAllRecommendation() {
+        List<List<String>> recommendations = new ArrayList<>();
+        List<String> coaches = coachRepository.findAllCoach();
+        coaches.stream().map(coachRepository::findCoachByName)
+                .forEach(coach -> recommendations.add(coach.findRecommendations()));
+        return recommendations;
+    }
 }
