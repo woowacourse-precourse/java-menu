@@ -1,4 +1,4 @@
-package menu.domain;
+package menu.domain.menucategory;
 
 public class MenuCategory {
     private final int selectedCount;
