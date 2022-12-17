@@ -20,4 +20,5 @@ public class Coach {
     public String getName() {
         return name;
     }
+
 }

@@ -1,6 +1,7 @@
 package menu;
 
 import menu.controller.CoachController;
+import menu.model.domain.Coach;
 import menu.model.service.CoachService;
 import menu.view.OutputView;
 
@@ -12,6 +13,7 @@ public class Application {
         OutputView.printStart();
         List<String> coachesName = coachController.getCoachesName();
 
-        System.out.println(coachController.getCoachHateMenus(coachesName));
+        List<Coach> coaches = coachController.getCoachHateMenus(coachesName);
+        coachController.showRecommendMenu(coaches);
     }
 }

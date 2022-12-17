@@ -46,4 +46,8 @@ public class CoachService {
     private Coach applyHateMenus(String coachName, List<String> hateMenus) {
         return new Coach(coachName, hateMenus);
     }
+
+    public void printRecommendMenu(List<Coach> coaches) {
+        OutputView.printRecommendMenu(coaches);
+    }
 }

@@ -25,4 +25,8 @@ public class CoachController {
     public List<Coach> getCoachHateMenus(List<String> coachesName) {
         return coachService.getHateMenus(coachesName);
     }
+
+    public void showRecommendMenu(List<Coach> coaches) {
+        coachService.printRecommendMenu(coaches);
+    }
 }
