@@ -19,6 +19,7 @@ public class MainController {
     public MainController(){
         categories = new ArrayList<>();
         recommender = new Recommender();
+        coaches = new ArrayList<>();
     }
 
     public void execute(){
@@ -53,7 +54,7 @@ public class MainController {
 
 
     private void setCategories(){
-        for(int i = 0; i < Day.size(); i++){
+        for(int i = 0; i < 5; i++){
             setCategoryOfDay();
         }
     }
@@ -78,14 +79,27 @@ public class MainController {
     }
 
     private void setMenusOfWeek(Coach coach){
-        for(int i = 0; i < categories.size(); i++){
+        for(int i = 0; i < 5; i++){
             setMenuOfDay(Day.get(i), categories.get(i), coach);
         }
     }
 
     private void setMenuOfDay(Day day, Category category, Coach coach){
         String recommendedMenu = recommender.recommendMenuOfCategory(category);
-        if(isDuplicatedMenu(coach, recommendedMenu) || isBanMenu(coach, recommendedMenu)){
+        /*
+        while(true){
+            if(!isDuplicatedMenu(coach, recommendedMenu) || !isBanMenu(coach, recommendedMenu)){
+                break;
+            }
+            recommendedMenu = recommender.recommendMenuOfCategory(category);
+        }
+        */
+
+        if(isDuplicatedMenu(coach, recommendedMenu)){
+            setMenuOfDay(day, category, coach);
+            return;
+        }
+        if(isBanMenu(coach, recommendedMenu)){
             setMenuOfDay(day, category, coach);
             return;
         }
