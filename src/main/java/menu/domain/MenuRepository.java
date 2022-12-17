@@ -25,4 +25,11 @@ public class MenuRepository {
     private static void initMenu(String category, List<String> menus) {
         menus.forEach((menu) -> menuByCategories.get(category).add(menu));
     }
+
+    public static boolean containsMenu(String menu) {
+        return menuByCategories
+                .keySet()
+                .stream()
+                .anyMatch((category) -> menuByCategories.get(category).contains(menu));
+    }
 }
