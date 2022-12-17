@@ -97,6 +97,4 @@ public class MenuUseCaseImpl implements MenuUseCase {
     private String getOneMenu(List<String> oneCategoryMenus) {
         return picker.shuffle(oneCategoryMenus).get(0);
     }
-
-
 }
