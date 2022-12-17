@@ -10,7 +10,8 @@ import java.util.List;
 
 public class MenuService {
 
-    public static final int MONDAY_TO_FRIDAY_COUNT = 5;
+    public static final int MONDAY = 0;
+    public static final int FRIDAY = 5;
 
     public List<Category> recommend(List<Coach> coaches) {
         List<Category> categories = new ArrayList<>();
@@ -20,13 +21,13 @@ public class MenuService {
     }
 
     private void setRecommendMenu(List<Coach> coaches, List<Category> categories) {
-        int trial = 0;
-        while (trial < MONDAY_TO_FRIDAY_COUNT) {
+        int day = MONDAY;
+        while (day < FRIDAY) {
             Category category = getCategory();
             category.addCount();
             categories.add(category);
             addMenu(coaches, category);
-            trial++;
+            day++;
         }
     }
 
