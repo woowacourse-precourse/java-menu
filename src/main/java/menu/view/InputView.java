@@ -24,7 +24,7 @@ public class InputView {
     }
 
     private static void validateNames(String names) {
-        String format = "([가-힣0-9a-zA-Z]{2,4},){1,4}([가-힣0-9a-zA-Z]{2,4})";
+        String format = "([가-힣0-9a-zA-Z]{2,4},){1,3}([가-힣0-9a-zA-Z]{2,4})";
         if (!Pattern.matches(format, names)) {
             throw new IllegalArgumentException("[ERROR] 이름은 최소 2자에서 4자까지며 코치는 최소 2명에서 최대 5명입니다.");
         }
