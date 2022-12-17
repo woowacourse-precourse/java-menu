@@ -14,8 +14,7 @@ public class MenuSelectorController {
 
     private void start(){
         OutputView.printServiceStart();
-        List<String> coachNames= InputController.getCoachNames();
-        Coaches coaches = new Coaches(coachNames);
+        Coaches coaches = InputController.getCoaches();
         for (Coach coach : coaches.getCoaches()){
             List<String> prohibitedMenus = InputController.getProhibitedMenus(coach.getName());
             coach.addProhibitedMenus(prohibitedMenus);
