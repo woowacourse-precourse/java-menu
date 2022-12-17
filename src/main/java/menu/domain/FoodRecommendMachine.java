@@ -3,6 +3,7 @@ package menu.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +11,7 @@ public class FoodRecommendMachine {
     public static final int MAX_CATEGORY_NUM = 2;
 
     private FoodPeerCoaches coaches;
-    private Map<DayRecommend, FoodCategory> foodRecommends;
+    private Map<DayRecommend, FoodCategory> foodRecommends = new HashMap<>();
 
     public FoodRecommendMachine(FoodPeerCoaches foodPeerCoaches) {
         this.coaches = foodPeerCoaches;
@@ -18,12 +19,17 @@ public class FoodRecommendMachine {
 
     public void makeRecommend() {
         makeRecommendOf("월요일");
+        makeRecommendOf("화요일");
+        makeRecommendOf("수요일");
+        makeRecommendOf("목요일");
+        makeRecommendOf("금요일");
     }
 
     private void makeRecommendOf(String dayName) {
         DayRecommend dayRecommend = new DayRecommend(dayName);
         FoodCategory foodCategory = selectCategory();
         makeTodayRecommend(dayRecommend, foodCategory);
+        this.foodRecommends.put(dayRecommend, foodCategory);
     }
 
     private FoodCategory selectCategory() {
@@ -44,7 +50,7 @@ public class FoodRecommendMachine {
     private void makeTodayRecommend(DayRecommend dayRecommend, FoodCategory foodCategory) {
         List<Coach> coachesList = coaches.getCoaches();
         for (Coach coach : coachesList) {
-            makeTodayMenuOf(coach, foodCategory);
+            dayRecommend.enrollCouchMenu(coach, makeTodayMenuOf(coach, foodCategory));
         }
     }
 
