@@ -10,6 +10,8 @@ public class RecommendMenu {
 	LinkedHashMap<String, ArrayList<String>> notEatingMenuForEachCoach;
 	ArrayList<String> categoryForWeek = new ArrayList<>();
 	ArrayList<String[]> menu = new ArrayList<>();
+	LinkedHashMap<String, ArrayList<String>> result = new LinkedHashMap<>();
+	ArrayList<String> recommendedMenu;
 	
 	enum categories {
 		JAPANESE("일식", 1), KOREAN("한식", 2), CHINESE("중식", 3), ASIAN("아시안", 4), WESTERN("양식", 5);
@@ -89,21 +91,25 @@ public class RecommendMenu {
 		return category;
 	}
 	
-	public void pickRandomFood() {
+	public void pickRandomFood() {		
 		for(int person = 0; person < coachName.size(); person++) {
-			
+			pickRandomFoodForEachCategoryForPerson(person);
+			result.put(coachName.get(person), recommendedMenu);
 		}
 	}
 	
-	public void pickRandomFoodForEachCategoryForPerson() {
+	public void pickRandomFoodForEachCategoryForPerson(int person) {
+		recommendedMenu = new ArrayList<>();
 		String category = "";
 		int indexOfCategory = 0;
 		int randFoodIndex = 0;
+		String food = "";
 		for(int i = 0; i < categoryForWeek.size(); i++) {
 			category = categoryForWeek.get(i);
 			indexOfCategory = findCategoryIndex(category);
 			randFoodIndex = Randoms.pickNumberInRange(0, menu.get(indexOfCategory).length - 1);
-			
+			food = checkIfNotEatingFood(person, indexOfCategory, randFoodIndex);
+			recommendedMenu.add(food);
 		}
 	}
 	
@@ -117,10 +123,24 @@ public class RecommendMenu {
 		return categoryindex;
 	}
 	
-	public void checkIfNotEatingFood(int person, int indexOfCategory, int randFoodIndex) {
+	public String checkIfNotEatingFood(int person, int indexOfCategory, int randFoodIndex) {
 		String food = "";
-		food = menu.get(indexOfCategory)[randFoodIndex];
-		
+		int newrandFoodIndex = randFoodIndex;
+		ArrayList<String> notEatingMenu = notEatingMenuForEachCoach.get(person);
+		while(true) {
+			food = menu.get(indexOfCategory)[newrandFoodIndex];
+			if(!notEatingMenu.contains(food) && !checkIfDuplicatedFood(food)) {
+				return food;
+			}
+			newrandFoodIndex = Randoms.pickNumberInRange(0, menu.get(indexOfCategory).length - 1);
+		}
+	}
+	
+	public boolean checkIfDuplicatedFood(String food) {
+		if(recommendedMenu.contains(food)) {
+			return true;
+		}
+		return false;
 	}
 	
 }
