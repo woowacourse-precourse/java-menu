@@ -1,89 +1,31 @@
-package menu;
+package menu.utills;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import menu.domain.Menu;
 import menu.domain.MenuRepository;
-import menu.service.Service;
-import menu.utills.Converter;
-import menu.utills.Validator;
-import menu.utills.constants.CoachQuantity;
-import menu.view.InputVIew;
-import menu.view.OutputView;
+import menu.utills.constants.Category;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class Controller {
-    private final Service service = new Service();
-
-    public void run() {
-        setMenus();
-        OutputView.printStartMessage();
-        setCoach();
-        recommend();
-        printResult();
+public class Recommender {
+    public static Category getRandomCategory() {
+        int randomNumber = generateRandomNumber();
+        return Category.getCategoryByValue(randomNumber);
     }
 
-    private void setMenus() {
-        service.setMenus();
+    public static Menu getRandomMenu(Category category) {
+        List<String> menuNames = MenuRepository.getMenuNamesByCategory(category);
+        String menuName = Recommender.getRandomMenuName(menuNames);
+        return MenuRepository.getMenuByName(menuName);
     }
 
-    private void setCoach() {
-        List<String> coachNames = getCoachNames();
-        List<List<String>> hateMenus = getHateMenu(coachNames);
-        service.setCoach(coachNames, hateMenus);
+    public static String getRandomMenuName(List<String> menuNames) {
+        return Randoms.shuffle(menuNames).get(0);
     }
 
-    private void recommend() {
-        service.recommend();
-    }
-
-    private void printResult() {
-        OutputView.printFinalMessage();
-        OutputView.printCategoryResult(service.getCategoryString());
-        OutputView.printRecommendResult(service.getRecommendedResult());
-    }
-
-    private List<String> getCoachNames() {
-        try {
-            String coachNameInput = InputVIew.getCoachNameInput();
-            List<String> coachNames = Converter.toListByDelimiter(coachNameInput);
-            Validator.isInSize(coachNames, CoachQuantity.MIN.getQuantity(), CoachQuantity.MAX.getQuantity());
-            Validator.containDuplicate(coachNames);
-            Validator.checkLength(coachNames);
-            return coachNames;
-        } catch (IllegalArgumentException exception) {
-            OutputView.printErrorMessage(exception.getMessage());
-            return getCoachNames();
-        }
-    }
-
-    private List<List<String>> getHateMenu(List<String> coaches) {
-        List<List<String>> hateMenuList = new ArrayList<>();
-        for (String coach : coaches) {
-            hateMenuList.add(getHateMenuByCoach(coach));
-        }
-        return hateMenuList;
-    }
-
-    private List<String> getHateMenuByCoach(String coach) {
-        try {
-            String hatMenuInput = InputVIew.getHateMenu(coach);
-            if (hatMenuInput.isBlank()) {
-                return null;
-            }
-            List<String> hateMenus = Converter.toListByDelimiter(hatMenuInput);
-            Validator.containDuplicate(hateMenus);
-            Validator.isInSize(hateMenus, 0, 2);
-            checkExistedMenuName(hateMenus);
-            return hateMenus;
-        } catch (IllegalArgumentException exception) {
-            OutputView.printErrorMessage(exception.getMessage());
-            return getHateMenuByCoach(coach);
-        }
-    }
-
-    private void checkExistedMenuName(List<String> hateMenus) {
-        for (String menuName : hateMenus) {
-            MenuRepository.getMenuByName(menuName);
-        }
+    private static int generateRandomNumber() {
+        return Randoms.pickNumberInRange(1, 5);
     }
 }
