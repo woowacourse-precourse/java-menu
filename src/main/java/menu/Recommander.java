@@ -13,9 +13,7 @@ import java.util.List;
 public class Recommander {
     private CategoryGenerator categoryGenerator;
     private HashMap<String, List<String>> database;
-    private List<String> category;
     private CategoryAndFood categoryAndFood;
-    private int[] categoryCount;
     private List<Coach> coachList;
     private List<String> recommandatedCategory;
 
@@ -23,8 +21,6 @@ public class Recommander {
         this.categoryGenerator = new CategoryGenerator();
         this.categoryAndFood = new CategoryAndFood();
         this.database = categoryAndFood.getDataBase();
-        this.category = categoryAndFood.getCategoryList();
-        this.categoryCount = new int[6];
         this.coachList = new ArrayList<>();
         this.recommandatedCategory = new ArrayList<>();
     }
@@ -46,39 +42,50 @@ public class Recommander {
     }
 
     private void getCoaches() {
-        List<String> coachName = InputView.getCoachList();
-        for (String name :
-                coachName) {
-            Coach coach = new Coach(name, this.database);
-            coachList.add(coach);
+        try {
+            List<String> coachName = InputView.getCoachList();
+            for (String name :
+                    coachName) {
+                Coach coach = new Coach(name, this.database);
+                coachList.add(coach);
+            }
+        } catch (IllegalArgumentException error) {
+            System.out.println(error.getMessage());
+            getCoaches();
         }
     }
 
-    private void getAllergy(){
-        for (Coach coach:
+    private void getAllergy() {
+
+        for (Coach coach :
                 coachList) {
             OutputView.getAllergic(coach.name);
-            coach.setAllergic(InputView.getAllergy());
+            try {
+                coach.setAllergic(InputView.getAllergy());
+            } catch (IllegalArgumentException error) {
+                System.out.println(error.getMessage());
+                getCoaches();
+            }
         }
     }
 
-    private void printCoaches(){
-        for (Coach coach:
-             coachList) {
+    private void printCoaches() {
+        for (Coach coach :
+                coachList) {
             coach.out();
         }
     }
 
-    private void setCategory(String category){
-        for (Coach coach:
-             coachList) {
+    private void setCategory(String category) {
+        for (Coach coach :
+                coachList) {
             coach.setCategory(category);
         }
     }
 
-    private void recommand(String category){
-        for (Coach coach:
-             coachList) {
+    private void recommand(String category) {
+        for (Coach coach :
+                coachList) {
             coach.recommandMenu(category);
         }
     }
