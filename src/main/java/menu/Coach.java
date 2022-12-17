@@ -10,6 +10,11 @@ public class Coach {
     private List<String> hateFood = new ArrayList<>();
     private List<String> weekMenu = new ArrayList<>();
 
+    public Coach(String name, List<String> hateFood) {
+        this.name = name;
+        this.hateFood = hateFood;
+    }
+
     public void selectMenu(List<String> menus) {
         String menu = Randoms.shuffle(menus).get(0);
         if (!weekMenu.contains(menu) && !hateFood.contains(menu)) {

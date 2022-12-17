@@ -48,15 +48,12 @@ public class Run {
     private List<Coach> makeCoaches(List<String> coachesName) {
         for (int i = 0; i < coachesName.size(); i++) {
             String name = coachesName.get(i);
-            Coach coach = new Coach();
-            coach.setName(name);
             List<String> hateFood = getHateFood(name);
-            coach.setHateFood(hateFood);
+            Coach coach = new Coach(name, hateFood);
             coaches.add(coach);
         }
         return coaches;
     }
-
 
     private void chooseMenu() {
         List<String> categories = new ArrayList<>(List.of("", "일식", "한식", "중식", "아시안", "양식"));
