@@ -42,8 +42,6 @@ public class MenuController {
                     .map(Menu::new)
                     .forEach(MenuRepository::addMenu);
         }
-
-
     }
 
     private void addBlacklist(Coach coach) {
