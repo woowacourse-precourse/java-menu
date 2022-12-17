@@ -19,20 +19,11 @@ public class RecommendService {
 
     public void recommend(DayWeek dayWeek, List<Coach> coaches) {
         Category findCategory = categoryService.getRecommendCategory();
-        boolean isSave = categoryService.isSaveCategoryInfo(findCategory);
-        while (!isSave) {
-            findCategory = categoryService.getRecommendCategory();
-            isSave = categoryService.isSaveCategoryInfo(findCategory);
-        }
-
+        findCategory = checkCategoryAlreadySave(findCategory);
         for (Coach coach : coaches) {
             recommendResultService.saveCategoryResult(dayWeek, findCategory);
             String recommendMenu = menuService.getRecommendMenu(findCategory);
-            boolean isAlreadyRecommend = menuService.isAlreadyRecommend(coach, recommendMenu);
-            while (isAlreadyRecommend) {
-                recommendMenu = menuService.getRecommendMenu(findCategory);
-                isAlreadyRecommend = menuService.isAlreadyRecommend(coach, recommendMenu);
-            }
+            recommendMenu = checkMenuAlreadyRecommend(findCategory, coach, recommendMenu);
             boolean isNotEatFood = coach.isNotEatFood(recommendMenu);
             while (isNotEatFood) {
                 recommendMenu = menuService.getRecommendMenu(findCategory);
@@ -40,6 +31,24 @@ public class RecommendService {
             }
             recommendResultService.createAndSaveResult(coach, dayWeek, recommendMenu);
         }
+    }
+
+    private String checkMenuAlreadyRecommend(Category findCategory, Coach coach, String recommendMenu) {
+        boolean isAlreadyRecommend = menuService.isAlreadyRecommend(coach, recommendMenu);
+        while (isAlreadyRecommend) {
+            recommendMenu = menuService.getRecommendMenu(findCategory);
+            isAlreadyRecommend = menuService.isAlreadyRecommend(coach, recommendMenu);
+        }
+        return recommendMenu;
+    }
+
+    private Category checkCategoryAlreadySave(Category findCategory) {
+        boolean isSave = categoryService.isSaveCategoryInfo(findCategory);
+        while (!isSave) {
+            findCategory = categoryService.getRecommendCategory();
+            isSave = categoryService.isSaveCategoryInfo(findCategory);
+        }
+        return findCategory;
     }
 
     public String getRecommendResult(List<Coach> coaches) {
