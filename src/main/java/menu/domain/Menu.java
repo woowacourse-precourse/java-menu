@@ -11,6 +11,10 @@ public class Menu {
         return this.menuName == otherMenu.menuName;
     }
 
+    public String getMenuName() {
+        return menuName;
+    }
+
     public boolean isMenuName(String menuName){
         return this.menuName.equals(menuName);
     }

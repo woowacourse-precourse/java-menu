@@ -8,6 +8,10 @@ public class DayRecommend {
     private final String dayName;
     private Map<Coach, Menu> recommendData;
 
+    public Map<Coach, Menu> getRecommendData() {
+        return recommendData;
+    }
+
     public DayRecommend(String dayName) {
         this.dayName = dayName;
     }
@@ -24,6 +28,11 @@ public class DayRecommend {
         return false;
     }
 
+    public boolean is(String dayName) {
+        return this.dayName.equals(dayName);
+    }
+
+
     private void checkCouchFlavor(Coach coach, Menu menu) {
         if (!coach.canEat(menu)) {
             throw new IllegalArgumentException(COUCH_FLAVOR_ERROR_MESSAGE);
@@ -35,7 +44,7 @@ public class DayRecommend {
                 .anyMatch(anyCoach -> anyCoach.isSame(coach));
     }
 
-    private Menu getMenuOf(Coach coach) {
+    public Menu getMenuOf(Coach coach) {
         Coach target = recommendData.keySet().stream().filter(ch -> ch.isSame(coach)).findAny().get();
         return recommendData.get(target);
     }
