@@ -25,6 +25,7 @@ public class CoachRepository {
     private static void validateDuplicateName(String coachName) {
         for (Coach coach : coaches) {
             if (coach.getName().equals(coachName)) {
+                coaches.clear();
                 throw new IllegalArgumentException(DUPLICATE_COACH_NAME);
             }
         }

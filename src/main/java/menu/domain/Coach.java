@@ -45,6 +45,7 @@ public class Coach {
     private void validateDuplicateFood(String foodName) {
         for (String food : doNotEatFoods) {
             if (food.equals(foodName)) {
+                doNotEatFoods.clear();
                 throw new IllegalArgumentException(DUPLICATE_FOOD_NAME);
             }
         }
@@ -52,5 +53,9 @@ public class Coach {
 
     public String getName() {
         return name;
+    }
+
+    public List<String> getDoNotEatFoods() {
+        return doNotEatFoods;
     }
 }
