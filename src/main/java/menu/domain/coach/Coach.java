@@ -22,33 +22,37 @@ public class Coach {
 		this.name = name;
 	}
 
-	public void validate(String name){
+	public void validate(String name) {
 		int nameLength = name.length();
-		if(nameLength < MIN_NAME_LENGTH || nameLength > MAX_NAME_LENGTH ){
+		if (nameLength < MIN_NAME_LENGTH || nameLength > MAX_NAME_LENGTH) {
 			throw new IllegalArgumentException(ERROR_CODE + POSSIBLE_COACH_NAME_LENGTH);
 		}
 	}
-	public void addNotAllowedFood(String foods){
+
+	public void addNotAllowedFood(String foods) {
 		String[] food = foods.split(DETERMINE);
-		for(String foodName : food){
+		for (String foodName : food) {
 			eatNotPossibleFood.add(foodName);
 		}
 	}
-	public void addFood(String foodName){
+
+	public void addFood(String foodName) {
 		recommandMenus.add(foodName);
 	}
 
 	public String getName() {
 		return name;
 	}
-	public boolean hasMenu(String food){
-		return isAlreadyEat(food) && isNotPossibleFood(food);
+
+	public boolean hasMenu(String food) {
+		return isAlreadyEat(food) || isNotPossibleFood(food);
 	}
-	public boolean isAlreadyEat(String food){
+
+	public boolean isAlreadyEat(String food) {
 		return recommandMenus.contains(food);
 	}
 
-	public boolean isNotPossibleFood(String food){
+	public boolean isNotPossibleFood(String food) {
 		return eatNotPossibleFood.contains(food);
 	}
 
