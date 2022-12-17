@@ -21,6 +21,7 @@ public class OutputView {
                     "\n메뉴 추천 결과입니다." +
                     "\n[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]";
     private static final String CATEGORY = "[ 카테고리 | %s | %s | %s | %s | %s ]";
+    private static final String MENU = "[ %s | %s | %s | %s | %s | %s ]";
     private static String category1;
     private static String category2;
     private static String category3;
@@ -55,6 +56,17 @@ public class OutputView {
                 category4,
                 category5
         );
+
+        for (Coach coach : coaches) {
+            System.out.printf((MENU) + "%n",
+                    coach.getName(),
+                    Menu.getRandomMenu(category1),
+                    Menu.getRandomMenu(category2),
+                    Menu.getRandomMenu(category3),
+                    Menu.getRandomMenu(category4),
+                    Menu.getRandomMenu(category5)
+            );
+        }
     }
 
     private static void savingCategory(List<String> categories) {

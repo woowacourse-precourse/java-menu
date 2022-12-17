@@ -42,6 +42,7 @@ public enum Menu {
         return menu;
     }
 
+    // 카테고리를 랜덤으로 뽑는 메서드(중복되는 카테고리는 주일에 2번 이하로)
     public static String getRandomCategoryWeek(List<String> categories) {
         while (categories.size() != 5) {
             String category = getRandomCategory();
@@ -73,5 +74,20 @@ public enum Menu {
             }
         }
         return cnt == 2;
+    }
+
+    // 카테고리에 있는 메뉴 랜덤으로 뽑는 메서드
+    public static String getRandomMenu(String category) {
+        for (Menu menu : Menu.values()) {
+            if (menu.getMenuCategory().equals(category)) {
+                return getMenu(menu);
+            }
+        }
+        return null;
+    }
+
+    private static String getMenu(Menu menu) {
+        List<String> menus = Arrays.asList(menu.getMenu().split(", "));
+        return menus.get(Randoms.pickNumberInRange(0, menus.size()));
     }
 }
