@@ -45,6 +45,11 @@ public class Menu {
         return category;
     }
 
+    private String pickMenu(Category category) {
+        List<String> menus = category.getMenus();
+        return Randoms.shuffle(menus).get(0);
+    }
+
     public List<String> getCoachNames() {
         return coachNames;
     }
