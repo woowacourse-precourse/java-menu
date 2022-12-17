@@ -52,9 +52,21 @@ public class MenuService {
         final List<Menu> menus, final List<Coach> coaches) {
         coaches.forEach(coach -> {
             List<Menu> previousRecommendMenus = recommendMenus.getOrDefault(coach, new ArrayList<>());
-            previousRecommendMenus.add(findRecommendEatableMenu(menus, coach));
+            Menu recommendEatableMenu = findUniqueRecommendEatableMenu(menus, coach, previousRecommendMenus);
+
+            previousRecommendMenus.add(recommendEatableMenu);
             recommendMenus.put(coach, previousRecommendMenus);
         });
+    }
+
+    private Menu findUniqueRecommendEatableMenu(final List<Menu> menus, final Coach coach,
+        final List<Menu> previousRecommendMenus) {
+        Menu recommendEatableMenu = findRecommendEatableMenu(menus, coach);
+
+        while (previousRecommendMenus.contains(recommendEatableMenu)) {
+            recommendEatableMenu = findRecommendEatableMenu(menus, coach);
+        }
+        return recommendEatableMenu;
     }
 
     private Menu findRecommendEatableMenu(final List<Menu> menus, Coach coach) {
