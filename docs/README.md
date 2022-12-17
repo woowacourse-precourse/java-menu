@@ -26,9 +26,10 @@
 3. chooseCategory() - 요일의 카테고리를 선택해 저장하는 메서드
 4. chooseMenus() - 멤버 별로 요일의 추천 음식을 선택해 저장하는 메서드
 5. manageMealsDayOfTheWeek() - 3, 4를 이용해 요일의 음식 선택과정을 처리하는 메서드
-6. validateMenuDuplication() - private. 해당 메뉴가 중복되었는지 확인하는 메서드
-7. validateCategoryDuplication() - private. 해당 카테고리가 2회 이상 나왔는지 확인하는 메서드
-8. validatePickyEating() - private. 해당 음식이 못먹는 음식인지 확인하는 메서드 (인자로 음식 이름, 멤버 객체를 받아야하나?)
+6. makeRecommends() - 5를 이용해 추천 결과를 완성시키는 메서드 - public
+7. validateMenuDuplication() - 해당 메뉴가 중복되었는지 확인하는 메서드
+8. validateCategoryDuplication() - 해당 카테고리가 2회 이상 나왔는지 확인하는 메서드
+9. validatePickyEating() - 해당 음식이 못먹는 음식인지 확인하는 메서드 (인자로 음식 이름, 멤버 객체를 받아야하나?)
 
 ## MenuRandomGenerator 클래스 
  - 랜덤한 숫자를 생성한다. (카테고리, 메뉴 각각에 대해서) 

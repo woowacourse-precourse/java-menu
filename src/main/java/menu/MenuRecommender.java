@@ -20,7 +20,13 @@ public class MenuRecommender {
         return categories;
     }
 
-    public void manageMealsDayOfTheWeek() {
+    public void makeRecommends() {
+        for (int i = 0; i < 5; i++) {
+            manageMealsDayOfTheWeek();
+        }
+    }
+
+    private void manageMealsDayOfTheWeek() {
         String category = chooseCategory();
         for (Member memeber : members) {
             chooseMenu(category, memeber);
