@@ -18,4 +18,14 @@ public class ValidatorTest {
         List<String> coaches_2 = List.of("tom","bellee");
         assertThatThrownBy(() -> Validator.validateCoachName(coaches_2)).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("코치 리스트의 길이를 확인하는 함수 테스트")
+    void checkCoachesListLengthTest() {
+        List<String> coaches_1 = List.of();
+        assertThatThrownBy(() -> Validator.validateCoachesLength(coaches_1)).isInstanceOf(IllegalArgumentException.class);
+
+        List<String> coaches_2 = List.of("woo","wa","tech","cou","se","test");
+        assertThatThrownBy(() -> Validator.validateCoachesLength(coaches_2)).isInstanceOf(IllegalArgumentException.class);
+    }
 }
