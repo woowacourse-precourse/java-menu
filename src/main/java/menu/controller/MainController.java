@@ -25,5 +25,6 @@ public class MainController {
         outputView.resultMessage();
         List<String> categorys = Menu.selectCategory();
         outputView.categoryMessage(categorys);
+        outputView.endMessage();
     }
 }
