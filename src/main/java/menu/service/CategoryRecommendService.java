@@ -9,7 +9,7 @@ public class CategoryRecommendService {
     /**
      * 카테고리별 몇번 추천되었는지 횟수를 제공한다.
      */
-    private static final Map<String, Integer> recommendCount = new HashMap<>();
+    private static final Map<String, Integer> recommendCountByCategory = new HashMap<>();
     public static final int MAXIMUM_COUNT_LIMIT = 2;
 
     public static String recommendCategory() {
@@ -32,14 +32,14 @@ public class CategoryRecommendService {
      * @return 최대 횟수 이상 추천여부
      */
     private static boolean isMaximumLimit(String category) {
-        if (!recommendCount.containsKey(category)) {
-            recommendCount.put(category, 0);
+        if (!recommendCountByCategory.containsKey(category)) {
+            recommendCountByCategory.put(category, 0);
         }
 
-        if (recommendCount.get(category) >= MAXIMUM_COUNT_LIMIT) {
+        if (recommendCountByCategory.get(category) >= MAXIMUM_COUNT_LIMIT) {
             return true;
         }
-        recommendCount.put(category, recommendCount.get(category) + 1);
+        recommendCountByCategory.put(category, recommendCountByCategory.get(category) + 1);
         return false;
     }
 }
