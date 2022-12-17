@@ -8,6 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import menu.domain.constant.Category;
 import menu.domain.constant.Day;
 
@@ -21,9 +22,7 @@ public class WeeklyCategory {
 
     private void initDayCategories() {
         Arrays.stream(Day.values())
-                .forEach(day -> {
-                    addRandomCategoryOfDay(day);
-                });
+                .forEach(this::addRandomCategoryOfDay);
     }
 
     private void addRandomCategoryOfDay(Day day) {
@@ -35,8 +34,8 @@ public class WeeklyCategory {
     }
 
     private boolean canAddCategory(Category category) {
-        List<Category> existCategories = Arrays.asList(dayCategories.keySet()).stream()
-                .map(key -> dayCategories.get(key))
+        List<Category> existCategories = Stream.of(dayCategories.keySet())
+                .map(dayCategories::get)
                 .collect(Collectors.toList());
         int countOfCategory = Collections.frequency(existCategories, category);
         if (countOfCategory >= MAXIMUM_CATEGORY_FREQUENCY) {
