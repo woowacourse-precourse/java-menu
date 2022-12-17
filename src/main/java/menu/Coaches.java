@@ -8,22 +8,22 @@ public class Coaches {
 
     private static final List<Coach> coaches = new ArrayList<>();
 
-    public List<Coach> getCoaches() {
-        return Collections.unmodifiableList(this.coaches);
+    public static List<Coach> getCoaches() {
+        return Collections.unmodifiableList(coaches);
     }
 
-    public void addCoach(Coach coach) {
+    public static void addCoach(Coach coach) {
         coaches.add(coach);
     }
 
-    public void listToCoaches(List<String> coaches) {
-        validCoaches(coaches);
-        for (String name : coaches) {
+    public static void listToCoaches(List<String> inputs) {
+        validCoaches(inputs);
+        for (String name : inputs) {
             addCoach(new Coach(name));
         }
     }
 
-    private void validCoaches(List<String> coaches) {
+    private static void validCoaches(List<String> coaches) {
         if (coaches.size() < 2 || coaches.size() > 5) {
             throw new IllegalArgumentException("코치 맴버는 2명 ~ 5명을 입력해야 합니다.");
         }

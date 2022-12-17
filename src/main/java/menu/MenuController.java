@@ -14,5 +14,6 @@ public class MenuController {
     }
 
     public void run() {
+        inputView.inputCoaches();
     }
 }
