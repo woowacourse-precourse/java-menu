@@ -1,6 +1,7 @@
 package menu.di;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -19,5 +20,11 @@ public class ValidateMenuCommandTest {
     void ValidateMenuCommand_객체는_생성시_잘못된_값이_들어오면_IEA_예외(String input) {
         assertThatThrownBy(() -> new ValidateMenuCommand(input))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", "김밥,삼겹살"})
+    void ValidateMenuCommand_객체는_생성시_적절한_값이_들어오면_잘_생성된다(String input) {
+        assertDoesNotThrow(() -> new ValidateMenuCommand(input));
     }
 }
