@@ -2,10 +2,10 @@ package menu.view;
 
 public class ConsoleOutputView {
     public void print(String text) {
-        // TODO 구현 필요
+        System.out.print(text);
     }
 
     public void println(String text) {
-        // TODO 구현 필요
+        System.out.println(text);
     }
 }

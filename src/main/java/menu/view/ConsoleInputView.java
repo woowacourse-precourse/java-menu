@@ -1,18 +1,21 @@
 package menu.view;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ConsoleInputView {
     public String readString() {
-        // TODO 구현 필요
-
-        return "";
+        return Console.readLine();
     }
 
     public List<String> readStringList() {
-        // TODO 구현 필요
+        String[] stringList = Console.readLine().split(",");
 
-        return new ArrayList<>();
+        List<String> output = new ArrayList<>();
+        Collections.addAll(output, stringList);
+        return output;
     }
 }
