@@ -38,6 +38,10 @@ public enum Category {
         return categoryNumber;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
     public List<String> getMenus() {
         return Collections.unmodifiableList(menus);
     }
