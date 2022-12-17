@@ -16,18 +16,23 @@ public class MenuSuggestController {
     private OutputManager outputManager = new OutputManager();
 
     public void run() {
-        outputManager.printStart();
-        List<Coach> coachList = inputManager.getCoachListInput();
-        for(Coach coach : coachList) {
-            setCoachHatingMenu(coach);
+        try {
+
+            outputManager.printStart();
+            List<Coach> coachList = inputManager.getCoachListInput();
+            for (Coach coach : coachList) {
+                setCoachHatingMenu(coach);
+            }
+
+            RandomCategoryGenerator randomCategoryGenerator = new RandomCategoryGenerator(2);
+            List<Category> categoryList = randomCategoryGenerator.pickCategories(5);
+            WeeklyMenuTable weeklyMenuTable = MenuTableGenerator.makeWeeklyMenuTable(categoryList, coachList);
+
+            outputManager.printWeeklyMenuTable(categoryList, coachList, weeklyMenuTable);
+            outputManager.printEnd();
+        } catch (Exception e) {
+            outputManager.printError(e.getMessage());
         }
-
-        RandomCategoryGenerator randomCategoryGenerator = new RandomCategoryGenerator(2);
-        List<Category> categoryList = randomCategoryGenerator.pickCategories(5);
-        WeeklyMenuTable weeklyMenuTable = MenuTableGenerator.makeWeeklyMenuTable(categoryList, coachList);
-
-        outputManager.printWeeklyMenuTable(categoryList, coachList, weeklyMenuTable);
-        outputManager.printEnd();
     }
 
     private void setCoachHatingMenu(Coach coach) {
