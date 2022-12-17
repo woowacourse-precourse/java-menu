@@ -7,6 +7,11 @@ import menu.util.PrintMsg;
 import java.util.List;
 
 public class InputException {
+    public static void onlyNullException(String userInput) {
+        if (userInput == null) {
+            throw new IllegalArgumentException(ExceptionMsg.NULL.getMsg());
+        }
+    }
     public static void nullException(String userInput) {
         if (isNull(userInput)) {
             throw new IllegalArgumentException(ExceptionMsg.NULL.getMsg());

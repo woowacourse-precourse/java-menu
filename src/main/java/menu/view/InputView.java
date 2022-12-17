@@ -38,6 +38,7 @@ public class InputView {
         return checkAndGetFoods(userInput);
     }
     public List<String> checkAndGetFoods(String userInput) {
+        InputException.onlyNullException(userInput);
         InputException.notEndFormatException(userInput);
         List<String> foods = List.of(userInput.split(PrintMsg.COMMA.getMsg()));
         InputException.notFoodsSizeException(foods.size());

@@ -46,10 +46,6 @@ public class InputExceptionTest {
         assertThatThrownBy(() -> {
             InputException.notFoodsSizeException(size);
         }).isInstanceOf(IllegalArgumentException.class);
-
-        String s = "";
-        List<String> sList = List.of(s.split(PrintMsg.COMMA.getMsg()));
-        System.out.println(sList);
     }
 
 
