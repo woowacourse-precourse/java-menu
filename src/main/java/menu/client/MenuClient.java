@@ -26,4 +26,22 @@ public class MenuClient {
     private void printResult(ValidateNameCommand validateNameCommand, ValidateMenuCommand validateMenuCommand) {
 
     }
+
+    private void handleError(Runnable something) {
+        try {
+            something.run();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            handleError(something);
+        }
+    }
+
+    private <T> T handleError(Supplier<T> something) {
+        try {
+            return something.get();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            handleError(something);
+        }
+    }
 }
