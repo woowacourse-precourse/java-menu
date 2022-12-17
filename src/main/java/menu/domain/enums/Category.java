@@ -46,23 +46,37 @@ import static menu.domain.enums.Menu.TTEOKBOKKI;
 import static menu.domain.enums.Menu.UDON;
 import static menu.domain.enums.Menu.VIETNAMESE_SPRING_ROLLS;
 
+import java.util.Arrays;
 import java.util.List;
 
 public enum Category {
-    JAPANESE("일식", List.of(GYUDON, UDON, MISOSORU, SUSHI, KATSU_DONG, ONIGIRI, HIGHRICE, RAMEN, OKONOMIYAKI)),
-    KOREAN("한식", List.of(GIMBAP, KIMCHI_STEW, SSAMBAP, DOENJANG_STEW, BIBIMBAP, KALGUKSU, BULGOGI, TTEOKBOKKI,
+    JAPANESE(1, "일식", List.of(GYUDON, UDON, MISOSORU, SUSHI, KATSU_DONG, ONIGIRI, HIGHRICE, RAMEN, OKONOMIYAKI)),
+    KOREAN(2, "한식", List.of(GIMBAP, KIMCHI_STEW, SSAMBAP, DOENJANG_STEW, BIBIMBAP, KALGUKSU, BULGOGI, TTEOKBOKKI,
             STIRFRIED_PORK)),
-    CHINESE("중식", List.of(KKANPUNGGI, STIR_FRIED_NOODLES, DONGPAYUK, JAJANGMYEON, JJAMPPONG, MAPA_TOFU, TANGSUYUK,
+    CHINESE(3, "중식", List.of(KKANPUNGGI, STIR_FRIED_NOODLES, DONGPAYUK, JAJANGMYEON, JJAMPPONG, MAPA_TOFU, TANGSUYUK,
             TOMATO_EGG_STIR_FRIED, RED_PEPPER_JAPCHAE)),
-    ASIAN("아시안", List.of(PADTHAI, KAOPOD, NASIGORENG, PINEAPPLE_FRIED_RICE, RICE_NOODLES, TOMYUMKUNG, BANMI,
+    ASIAN(4, "아시안", List.of(PADTHAI, KAOPOD, NASIGORENG, PINEAPPLE_FRIED_RICE, RICE_NOODLES, TOMYUMKUNG, BANMI,
             VIETNAMESE_SPRING_ROLLS, BUNCHA)),
-    WESTERN("양식", List.of(LASAGNA, GRATIN, NYOKI, KISHU, FRENCH_TOAST, BAGUETTE, SPAGHETTI, PIZZA, PANINI));
+    WESTERN(5, "양식", List.of(LASAGNA, GRATIN, NYOKI, KISHU, FRENCH_TOAST, BAGUETTE, SPAGHETTI, PIZZA, PANINI));
 
-    private String name;
-    private List<Menu> menus;
+    private final int number;
+    private final String name;
+    private final List<Menu> menus;
 
-    Category(final String name, final List<Menu> menus) {
+    Category(final int number, final String name, final List<Menu> menus) {
+        this.number = number;
         this.name = name;
         this.menus = menus;
+    }
+
+    public static Category get(final int day) {
+        return Arrays.stream(values())
+                .filter(category -> category.number == day)
+                .findFirst()
+                .get();
+    }
+
+    public boolean contains(final int day) {
+        return number == day;
     }
 }
