@@ -1,5 +1,6 @@
 package menu.model;
 
+import java.util.Arrays;
 import java.util.List;
 
 public enum Menu {
@@ -15,5 +16,13 @@ public enum Menu {
   Menu(Category category, List<String> menus) {
     this.category = category;
     this.menus = menus;
+  }
+
+  public static List<String> getMenus(Category category) {
+    return Arrays.stream(Menu.values())
+      .filter(it -> it.category.equals(category))
+      .map(it -> it.menus)
+      .findFirst()
+      .orElseThrow(IllegalArgumentException::new);
   }
 }
