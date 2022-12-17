@@ -6,6 +6,7 @@ import menu.model.Category;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class InputValidator {
 
@@ -22,6 +23,9 @@ public class InputValidator {
         if (isWrongCoachCount(coachNames)) {
             throw new IllegalArgumentException(ErrorConstants.ERROR_PREFIX + "코치는 최소 2명에서 최대 5명이어야합니다.");
         }
+        if (isDuplicateCoachName(coachNames)) {
+            throw new IllegalArgumentException(ErrorConstants.ERROR_PREFIX + "코치 이름은 중복되지 않게 입력해주세요.");
+        }
     }
 
     private boolean isWrongCoachNameLength(List<String> coachNames) {
@@ -35,6 +39,15 @@ public class InputValidator {
     private boolean isWrongCoachCount(List<String> coachNames) {
         int coachCount = coachNames.size();
         return coachCount < MIN_COACH_COUNT || coachCount > MAX_COACH_COUNT;
+    }
+
+    private boolean isDuplicateCoachName(List<String> coachNames) {
+        int beforeSize = coachNames.size();
+        List<String> distinctCoachNames = coachNames.stream()
+                .distinct()
+                .collect(Collectors.toList());
+        int afterSize = distinctCoachNames.size();
+        return beforeSize != afterSize;
     }
 
     public void validateReadCannotEatFoods(List<String> cannotEatFoods) {
