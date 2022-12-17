@@ -19,7 +19,6 @@ public class MenuSelectController {
             coachRepo.setCoachList(inputDriver.scanCoachName());
         }
         catch(IllegalArgumentException e){
-            outputDriver.printErrorForScanName();
             System.out.println();
             scanCoachName();
         }
