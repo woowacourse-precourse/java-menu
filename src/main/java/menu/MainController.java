@@ -32,6 +32,7 @@ public class MainController {
 
     public void run() {
         readCoachInfo();
+        suggestMenu();
     }
 
     public void readCoachInfo() {
