@@ -4,10 +4,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import menu.domain.Coach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class HardToEatRepositoryTest {
+
+    @AfterEach
+    void after() {
+        HardToEatRepository.clear();
+    }
 
     @DisplayName("못 먹는 음식을 저장하고 확인한다.")
     @Test

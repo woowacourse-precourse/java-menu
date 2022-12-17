@@ -5,10 +5,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import menu.domain.Category;
 import menu.repository.MenuRepository;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class MenuConfigTest {
+
+    @AfterEach
+    void after() {
+        MenuRepository.clear();
+    }
 
     @DisplayName("설정을 완료하면 메뉴 저장소에 메뉴가 저장된다.")
     @Test
