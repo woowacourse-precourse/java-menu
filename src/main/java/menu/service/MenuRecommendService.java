@@ -8,7 +8,7 @@ import menu.util.RandomCategoryValueGenerator;
 import menu.util.RandomMenuValueGenerator;
 
 public class MenuRecommendService {
-    private static final int WEEK = 7;
+    private static final int WEEK = 5;
     private SelectCategory selectCategory = new SelectCategory();
 
 
