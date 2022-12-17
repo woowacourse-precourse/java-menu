@@ -2,7 +2,7 @@ package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import menu.domain.Coach;
-import menu.domain.FoodCategory;
+import menu.domain.MenuBoard;
 import menu.domain.FoodPeerCoaches;
 import menu.domain.Menu;
 
@@ -54,7 +54,7 @@ public class InputView {
     private List<Menu> makeStringListToMenu(List<String> menuData) {
         List<Menu> result = new ArrayList<>();
         for (String menu : menuData) {
-            result.add(FoodCategory.getMenuOf(menu));
+            result.add(MenuBoard.getMenuOf(menu));
         }
         return result;
     }

@@ -13,13 +13,13 @@ public class FoodRecommendMachine {
     public static final int MENU_DONT_RECOMMENDED = 0;
 
     private FoodPeerCoaches coaches;
-    private Map<DayRecommend, FoodCategory> foodRecommends = new HashMap<>();
+    private Map<DayRecommend, MenuBoard> foodRecommends = new HashMap<>();
 
     public FoodRecommendMachine(FoodPeerCoaches foodPeerCoaches) {
         this.coaches = foodPeerCoaches;
     }
 
-    public Map<DayRecommend, FoodCategory> getFoodRecommends() {
+    public Map<DayRecommend, MenuBoard> getFoodRecommends() {
         return foodRecommends;
     }
 
@@ -33,46 +33,46 @@ public class FoodRecommendMachine {
 
     private void makeRecommendOf(String dayName) {
         DayRecommend dayRecommend = new DayRecommend(dayName);
-        FoodCategory foodCategory = selectCategory();
-        makeTodayRecommend(dayRecommend, foodCategory);
-        this.foodRecommends.put(dayRecommend, foodCategory);
+        MenuBoard menuBoard = selectCategory();
+        makeTodayRecommend(dayRecommend, menuBoard);
+        this.foodRecommends.put(dayRecommend, menuBoard);
     }
 
-    private FoodCategory selectCategory() {
-        FoodCategory randomCategory = FoodCategory.of(Randoms.pickNumberInRange(1, 5));
+    private MenuBoard selectCategory() {
+        MenuBoard randomCategory = MenuBoard.of(Randoms.pickNumberInRange(1, 5));
         while (!checkCategoryValid(randomCategory)) {
-            randomCategory = FoodCategory.of(Randoms.pickNumberInRange(1, 5));
+            randomCategory = MenuBoard.of(Randoms.pickNumberInRange(1, 5));
         }
         return randomCategory;
     }
 
-    private boolean checkCategoryValid(FoodCategory foodCategory) {
-        if (Collections.frequency(foodRecommends.values(), foodCategory) > MAX_CATEGORY_NUM) {
+    private boolean checkCategoryValid(MenuBoard menuBoard) {
+        if (Collections.frequency(foodRecommends.values(), menuBoard) > MAX_CATEGORY_NUM) {
             return false;
         }
         return true;
     }
 
-    private void makeTodayRecommend(DayRecommend dayRecommend, FoodCategory foodCategory) {
+    private void makeTodayRecommend(DayRecommend dayRecommend, MenuBoard menuBoard) {
         List<Coach> coachesList = coaches.getCoaches();
         for (Coach coach : coachesList) {
-            dayRecommend.enrollCouchMenu(coach, makeTodayMenuOf(coach, foodCategory));
+            dayRecommend.enrollCouchMenu(coach, makeTodayMenuOf(coach, menuBoard));
         }
     }
 
-    private Menu makeTodayMenuOf(Coach coach, FoodCategory foodCategory) {
-        Menu randomMenu = getRandomMenuOf(foodCategory);
+    private Menu makeTodayMenuOf(Coach coach, MenuBoard menuBoard) {
+        Menu randomMenu = getRandomMenuOf(menuBoard);
         while (!coach.canEat(randomMenu)) {
-            randomMenu = getRandomMenuOf(foodCategory);
+            randomMenu = getRandomMenuOf(menuBoard);
         }
         while (!checkMenuDuplication(coach, randomMenu)) {
-            randomMenu = getRandomMenuOf(foodCategory);
+            randomMenu = getRandomMenuOf(menuBoard);
         }
         return randomMenu;
     }
 
-    private Menu getRandomMenuOf(FoodCategory category) {
-        return FoodCategory.getMenuOf(Randoms.shuffle(makeMenuListToString(category.getMenus())).get(0));
+    private Menu getRandomMenuOf(MenuBoard category) {
+        return MenuBoard.getMenuOf(Randoms.shuffle(makeMenuListToString(category.getMenus())).get(0));
     }
 
     private boolean checkMenuDuplication(Coach coach, Menu menu) {

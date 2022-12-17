@@ -2,7 +2,7 @@ package menu.view;
 
 import menu.domain.Coach;
 import menu.domain.DayRecommend;
-import menu.domain.FoodCategory;
+import menu.domain.MenuBoard;
 
 import java.util.Map;
 import java.util.Set;
@@ -17,7 +17,7 @@ public class OutputView {
         System.out.println("점심 메뉴 추천을 시작합니다.");
     }
 
-    public void printResultMessage(Map<DayRecommend, FoodCategory> result) {
+    public void printResultMessage(Map<DayRecommend, MenuBoard> result) {
         printResultIntroducingMessage();
         printDays();
         printCategories(result);
@@ -33,7 +33,7 @@ public class OutputView {
         System.out.println("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
     }
 
-    private void printCategories(Map<DayRecommend, FoodCategory> result) {
+    private void printCategories(Map<DayRecommend, MenuBoard> result) {
         StringJoiner joiner = new StringJoiner(" | ", "[ ", " ]");
         joiner.add("카테고리");
         joiner.add(getCategoryOf(result, "월요일"));
@@ -44,26 +44,26 @@ public class OutputView {
         System.out.println(joiner.toString());
     }
 
-    private String getCategoryOf(Map<DayRecommend, FoodCategory> result, String day) {
+    private String getCategoryOf(Map<DayRecommend, MenuBoard> result, String day) {
         DayRecommend target = getDayRecommendOfDayOf(result, day);
         return result.get(target).name();
     }
 
-    private DayRecommend getDayRecommendOfDayOf(Map<DayRecommend, FoodCategory> result, String day) {
+    private DayRecommend getDayRecommendOfDayOf(Map<DayRecommend, MenuBoard> result, String day) {
         return result.keySet().stream()
                 .filter(dayRecommend -> dayRecommend.is(day))
                 .findAny()
                 .get();
     }
 
-    private void printMemberRecommend(Map<DayRecommend, FoodCategory> result) {
+    private void printMemberRecommend(Map<DayRecommend, MenuBoard> result) {
         Set<Coach> coaches = result.keySet().stream().findAny().get().getRecommendData().keySet();
         for (Coach coach : coaches) {
             printCoachDiet(result, coach);
         }
     }
 
-    private void printCoachDiet(Map<DayRecommend, FoodCategory> result, Coach coach) {
+    private void printCoachDiet(Map<DayRecommend, MenuBoard> result, Coach coach) {
         StringJoiner joiner = new StringJoiner(" | ", "[ ", " ]");
         joiner.add(coach.getName());
         joiner.add(getMenuOf(result, coach, "월요일"));
@@ -74,7 +74,7 @@ public class OutputView {
         System.out.println(joiner.toString());
     }
 
-    private String getMenuOf(Map<DayRecommend, FoodCategory> result, Coach coach, String day) {
+    private String getMenuOf(Map<DayRecommend, MenuBoard> result, Coach coach, String day) {
         DayRecommend dayRecommendOfDayOf = getDayRecommendOfDayOf(result, day);
         return dayRecommendOfDayOf.getMenuOf(coach).getMenuName();
     }
