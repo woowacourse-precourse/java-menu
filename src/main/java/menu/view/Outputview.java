@@ -12,6 +12,7 @@ public class Outputview {
     private static final String RESULT_MESSAGE = "\n메뉴 추천 결과입니다.";
     private static final String FINAL_MESSAGE = "추천을 완료했습니다.";
     private static final String DAYS_START = "구분";
+    private static final String CATEGORY_START = "카테고리";
     private static final String EACH_LINE_OPEN = "[ ";
     private static final String EACH_LINE_CLOSE = " ]";
 
@@ -28,7 +29,7 @@ public class Outputview {
     }
 
     private void printCategory(List<Category> categories) {
-        StringBuilder categoryMessage = new StringBuilder(EACH_LINE_OPEN + "카테고리" + BAR);
+        StringBuilder categoryMessage = new StringBuilder(EACH_LINE_OPEN + CATEGORY_START + BAR);
         for (Category category : categories) {
             categoryMessage.append(category.getName() + BAR);
         }
