@@ -40,11 +40,22 @@ public class MenuRecommendApplication {
     }
 
     private void makeAllCoachesDiet(WeeklyRecommendCategory weeklyCategory) {
-        for (Coach coach : allCoach) {
-            coach.makeMeals(weeklyCategory);
-            System.out.println(coach.getMeals());
+        for (int categoryIdx : weeklyCategory.getCategoryIdxs()) {
+            makeMeals(categoryIdx);
         }
     }
+
+    public void makeMeals(int weeklyCategoryIdx) {
+        List<String> menus = Category.getWantCategoryMenu(weeklyCategoryIdx);
+        for (Coach coach :allCoach) {
+            String menu = Randoms.shuffle(menus).get(0);
+            while (coach.getMeals().contains(menu) || coach.getHates().contains(menu)) {
+                menu = Randoms.shuffle(menus).get(0);
+            }
+            coach.addMeals(menu);
+        }
+    }
+
 
     private WeeklyRecommendCategory makeWeeklyCategory(int allDaySize) {
         List<Integer> weeklyCategory = new ArrayList<>();
