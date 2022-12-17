@@ -7,8 +7,11 @@ import java.util.List;
 
 public class Random {
 
+    public static final int START = 1;
+    public static final int END = 5;
+
     public static Category pickRandomCategory() {
-        return Category.of(Randoms.pickNumberInRange(1, 5));
+        return Category.of(Randoms.pickNumberInRange(START, END));
     }
 
     public static String pickRandomFood(List<String> menus) {
