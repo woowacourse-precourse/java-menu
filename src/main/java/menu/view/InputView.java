@@ -12,7 +12,7 @@ import menu.domain.exception.InputException;
 public class InputView {
     private final static String INPUT_COACH_NAME = "코치의 이름을 입력해 주세요. (, 로 구분)";
     private final static String INPUT_COACH_CAN_NOT_EAT_MENUS = "(이)가 못 먹는 메뉴를 입력해 주세요.";
-    private final static int CAN_NOT_EAT_MENUS_COUNT_LIMIT = 3;
+    private final static int CAN_NOT_EAT_MENUS_COUNT_LIMIT = 2;
 
     public List<String> getCoachName() {
         System.out.println(INPUT_COACH_NAME);
