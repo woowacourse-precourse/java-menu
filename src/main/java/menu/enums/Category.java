@@ -8,7 +8,7 @@ public enum Category {
     CATEGORY_KOREA(2, "한식"),
     CATEGORY_CHINA(3, "중식"),
     CATEGORY_ASIA(4, "아시안"),
-    CATEGORY_WESTERN(5, "일식");
+    CATEGORY_WESTERN(5, "양식");
 
     Category(int number, String name) {
         this.number = number;
