@@ -10,4 +10,8 @@ public class CoachRepository {
 	public void setCoachs(String inputCoach,List<String> inputNotEatFoods) {
 		coachsInformation.put(inputCoach, inputNotEatFoods);
 	}
+
+	public int getCoachsSize() {
+		return coachsInformation.size();
+	}
 }
