@@ -27,6 +27,4 @@ public class MenuController {
                 .map(Coach::new)
                 .collect(Collectors.toList());
     }
-
-
 }

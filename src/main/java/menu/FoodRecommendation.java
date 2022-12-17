@@ -1,6 +1,8 @@
 package menu;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import menu.constants.CoachRules;
+import menu.view.ErrorMessages;
 
 import java.util.*;
 
@@ -9,9 +11,19 @@ public class FoodRecommendation {
     List<Coach> coaches;
 
     public FoodRecommendation(List<Coach> coaches) {
+        validate(coaches);
         this.coaches = coaches;
         for (Week week : Week.values()) {
             categoryByWeek.put(week, getRandomCategory());
+        }
+    }
+
+    private void validate(List<Coach> coaches) {
+        if (coaches.size() < CoachRules.MIN_NUMBER_OF_COACHES.getValue()) {
+            throw new IllegalArgumentException(ErrorMessages.COACH_NUMBER_MIN.getMessage());
+        }
+        if (coaches.size() > CoachRules.MAX_NUMBER_OF_COACHES.getValue()) {
+            throw new IllegalArgumentException(ErrorMessages.COACH_NUMBER_MAX.getMessage());
         }
     }
 

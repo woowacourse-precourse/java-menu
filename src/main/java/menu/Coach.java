@@ -1,5 +1,6 @@
 package menu;
 
+import menu.constants.CoachRules;
 import menu.view.ErrorMessages;
 
 import java.util.ArrayList;
@@ -9,8 +10,6 @@ public class Coach {
     private final String name;
     private final List<String> foods = new ArrayList<>();
     private final List<String> inedibleFoods = new ArrayList<>();
-    private static final int NAME_MIN_LENGTH = 2;
-    private static final int NAME_MAX_LENGTH = 4;
 
     public Coach(String name) {
         validate(name);
@@ -18,8 +17,8 @@ public class Coach {
     }
 
     private void validate(String name) {
-        if (name.length() < NAME_MIN_LENGTH || name.length() > NAME_MAX_LENGTH) {
-            throw new IllegalArgumentException(ErrorMessages.NAME.getMessage());
+        if (name.length() < CoachRules.MIN_NAME_LENGTH.getValue() || name.length() > CoachRules.MAX_NAME_LENGTH.getValue()) {
+            throw new IllegalArgumentException(ErrorMessages.COACH_NAME.getMessage());
         }
     }
 
