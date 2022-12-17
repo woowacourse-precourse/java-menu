@@ -36,7 +36,13 @@ public class MenuController {
     }
 
     private void registerInedibleFoods() {
+        List<String> coachNames = menuService.getCoachNames();
+        coachNames.forEach(coachName -> registerInedibleFoodsEachCoach(coachName));
+    }
 
+    private void registerInedibleFoodsEachCoach(String coachName) {
+        List<String> inedibleFoods = inputView.readInedibleFoodsOfCoach(coachName);
+        menuService.registerInedibleFoodsToCoach(coachName, inedibleFoods);
     }
 
     private void announceMenuRecommendResult() {
