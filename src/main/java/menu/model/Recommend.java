@@ -26,10 +26,7 @@ public class Recommend {
             if (coach.isFineCategory(pickedCategory)) {
                 categoryStatus = Status.OK;
             }
-
-            if (categoryStatus == Status.OK) {
-                break;
-            }
+            coach.countCategory(pickedCategory);
         }
         return pickedCategory;
     }
@@ -39,13 +36,12 @@ public class Recommend {
         String menu = null;
         while (menuStatus == Status.NOT_OK) {
             menu = randomGenerator.pickRandomMenu(menus);
-            if(coach.isFineEatMenu(menu)){
+            if(coach.isFineEatMenu(Menu.from(menu))){
+                coach.addRecommendMenu(Menu.from(menu));
                 menuStatus = Status.OK;
             }
-            if(menuStatus==Status.OK){
-                break;
-            }
         }
+        System.out.println(menu);
         return menu;
     }
 

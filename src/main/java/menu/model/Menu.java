@@ -16,7 +16,7 @@ public enum Menu {
     JAPAN_SIX("오니기리"),
     JAPAN_SEVEN("하이라이스"),
     JAPAN_EIGHT("라멘"),
-    JAPAN_NINE("오꼬노모야끼"),
+    JAPAN_NINE("오코노미야끼"),
 
     KOREA_ONE("김밥"),
     KOREA_TWO("김치찌개"),
@@ -35,9 +35,8 @@ public enum Menu {
     CHINA_FIVE("짬뽕"),
     CHINA_SIX("마파두부"),
     CHINA_SEVEN("탕수육"),
-    CHINA_EIGHT("토마토"),
-    CHINA_NINE("달걀볶음"),
-    CHINA_TEN("고추잡채"),
+    CHINA_EIGHT("토마토 달걀볶음"),
+    CHINA_NINE("고추잡채"),
 
     ASIA_ONE("팟타이"),
     ASIA_TWO("카오 팟"),
@@ -65,6 +64,10 @@ public enum Menu {
 
     Menu(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public static List<Menu> makeMenus(String menus){

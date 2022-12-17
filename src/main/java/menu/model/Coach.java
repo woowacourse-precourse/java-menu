@@ -10,17 +10,22 @@ public class Coach {
     private String name;
     private List<Menu> nonMenus;
 
-    private Map<Category, Integer> eatCategory;
-    private List<Menu> eatMenu;
+    private Map<Category, Integer> recommendCategory;
+    private List<Menu> recommendMenu;
 
     public Coach(String name) {
         validateNameSize(name);
         this.name = name;
-        eatCategory = new HashMap<>();
+        recommendCategory = new HashMap<>();
+        recommendMenu = new ArrayList<>();
     }
 
     public String getName() {
         return name;
+    }
+
+    public List<Menu> getRecommendMenu() {
+        return recommendMenu;
     }
 
     public void setNonMenus(List<Menu> nonMenus) {
@@ -28,31 +33,47 @@ public class Coach {
     }
 
 
+
+    /**
+     * 추천 메뉴 추가
+     */
+    public void addRecommendMenu(Menu menu){
+        recommendMenu.add(menu);
+    }
+
     /**
      * 월화수목금 추천 됐는지 확인 기능
      */
     public boolean isStop() {
-        return eatMenu.size() != DAYS;
+        return recommendMenu.size() != DAYS;
     }
 
     /**
      * 메뉴 제한 확인 메서드
      */
-    public boolean isFineEatMenu(String menu) {
-        return eatMenu.contains(menu);
+    public boolean isFineEatMenu(Menu menu) {
+        return !recommendMenu.contains(menu);
     }
 
     /**
      * 카테고리 제한 확인 메서드
      */
     public void countCategory(Category category) {
-        int count = eatCategory.get(category);
-        eatCategory.put(category, count + 1);
+        if(!recommendCategory.containsKey(category)){
+            recommendCategory.put(category, 1);
+        }
+        if(recommendCategory.containsKey(category)){
+            int count = recommendCategory.get(category);
+            recommendCategory.put(category, count + 1);
+        }
     }
 
     public boolean isFineCategory(Category category) {
-        int count = eatCategory.get(category);
-        return count > 2;
+        if(recommendCategory.size()!=0) {
+            int count = recommendCategory.get(category);
+            return count > 2;
+        }
+        return true;
     }
 
 
@@ -83,5 +104,15 @@ public class Coach {
     @Override
     public int hashCode() {
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Coach{" +
+                "name='" + name + '\'' +
+                ", nonMenus=" + nonMenus +
+                ", recommendCategory=" + recommendCategory +
+                ", recommendMenu=" + recommendMenu +
+                '}';
     }
 }

@@ -41,5 +41,27 @@ public class CoachGroup {
         return names.size() >= 2 && names.size() <= 5;
     }
 
+    public List<List<String>> makeInfos(){
+        for (Coach coach : coaches) {
+            List<Menu> recommendMenu = coach.getRecommendMenu();
+        }
+        return coaches.stream()
+                .map(c -> c.getRecommendMenu().stream().map(menu -> menu.getName()).collect(Collectors.toList()))
+                .collect(Collectors.toList());
+    }
 
+    public List<String> getNames(){
+        return coaches.stream()
+                .map(c -> c.getName())
+                .collect(Collectors.toList());
+    }
+
+    public List<List<String>> makeResult(){
+        List<List<String>> infos = makeInfos();
+        List<String> names = getNames();
+        for (int i = 0; i < infos.size(); i++) {
+            infos.get(i).add(0,names.get(i));
+        }
+        return infos;
+    }
 }

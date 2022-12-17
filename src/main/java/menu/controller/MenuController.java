@@ -1,8 +1,6 @@
 package menu.controller;
 
-import menu.model.Coach;
-import menu.model.CoachGroup;
-import menu.model.Menu;
+import menu.model.*;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -30,7 +28,14 @@ public class MenuController {
             coach.setNonMenus(menus);
         }
 
+        for (Coach coach : coaches) {
+            Recommend recommend = new Recommend(coach);
+            Category recommendCategory = recommend.recommendCategory();
+            String menu = recommend.recommendMenu(recommendCategory);
+            coach.addRecommendMenu(Menu.from(menu));
+        }
 
+        outputView.printResult( coachGroup.makeResult());
     }
 
     public <T, R> R input(Function<T, R> function, Supplier<T> supplier) {
