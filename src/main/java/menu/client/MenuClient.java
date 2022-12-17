@@ -55,4 +55,13 @@ public class MenuClient {
             return handleError(something);
         }
     }
+
+    private <T, R> R handleError(Function<T, R> something, T argument) {
+        try {
+            return something.apply(argument);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return handleError(something, argument);
+        }
+    }
 }
