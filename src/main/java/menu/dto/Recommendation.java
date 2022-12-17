@@ -1,5 +1,6 @@
 package menu.dto;
 
+import java.util.Collections;
 import java.util.Map;
 import menu.domain.Category;
 import menu.domain.Coach;
@@ -16,5 +17,13 @@ public class Recommendation {
     ) {
         this.recommendation = recommendation;
         this.categories = categories;
+    }
+
+    public Map<Coach, Map<Day, String>> getRecommendation() {
+        return Collections.unmodifiableMap(recommendation);
+    }
+
+    public Map<Day, Category> getCategories() {
+        return Collections.unmodifiableMap(categories);
     }
 }
