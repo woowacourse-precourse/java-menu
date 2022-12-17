@@ -1,6 +1,7 @@
 package menu;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -85,7 +86,7 @@ public class MenuRecommendSystem {
     }
 
     private Set<String> getTotalMenuCoachCannotToEat() {
-        Set<String> result = Set.of();
+        Set<String> result = new HashSet<>();
         for (Coach coach: coaches) {
             result.addAll(coach.getMenuCannotToEat());
         }
@@ -99,13 +100,13 @@ public class MenuRecommendSystem {
         List<String> recommendationResult = coaches.stream().map(
                 this::recommendationToString
         ).collect(Collectors.toList());
-        OutputView.printRecommendationResult(recommendationResult);
+        OutputView.printRecommendationResult(recommendation.toString(), recommendationResult);
     }
 
     private String recommendationToString(Coach coach) {
         String result = Stream.of(List.of(coach.getName()), coach.getRecommendationForWeek()).flatMap(
                 Collection::stream).collect(
-                Collectors.joining(" |"));
+                Collectors.joining(" | "));
         return String.format("[ %s ]", result);
     }
 

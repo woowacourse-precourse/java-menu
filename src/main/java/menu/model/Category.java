@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public enum Category {
     JAPANESE(1, "일식", "규동, 우동, 미소시루, 스시, 가츠동, 오니기리, 하이라이스, 라멘, 오코노미야끼"),
@@ -25,6 +24,11 @@ public enum Category {
         for (Category category : Category.values()) {
             numberToCategory.put(category.number, category);
         }
+    }
+
+    public String getName() {
+        return name;
+
     }
 
     Category(int number, String name, String menuJoinWithDelimiter) {
