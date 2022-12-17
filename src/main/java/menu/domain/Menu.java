@@ -14,7 +14,7 @@ public class Menu {
     private final List<Coach> coaches = new ArrayList<>();
     private final List<String> previousCategories = new ArrayList<>();
 
-    public void addCoaches(String coachNames) {
+    public void addCoachNames(String coachNames) {
         List<String> splittedCoaches = List.of(coachNames.split(MenuConstants.DELIMITER));
 
         Validator.validateNumberOfCoaches(splittedCoaches.size());
