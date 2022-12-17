@@ -21,4 +21,8 @@ public class Coach {
     public void updateCannotEatFoods(List<String> cannotEatFoods) {
         this.cannotEatFoods = cannotEatFoods;
     }
+
+    public void updateRecommendCategory(Category recommendedCategory) {
+        alreadyEatenCategories.add(recommendedCategory);
+    }
 }
