@@ -28,5 +28,6 @@ public class OutputView {
         recommendedMenus.forEach(recommendedMenu -> {
             System.out.println(ResultFormat.getRecommendedMenuMessage(recommendedMenu));
         });
+        System.out.println("\n추천을 완료했습니다.");
     }
 }

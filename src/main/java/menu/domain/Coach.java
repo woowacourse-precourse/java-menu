@@ -20,6 +20,7 @@ public class Coach {
 
     public void addRecommendedMenu(Menu menu) {
         if (unAcceptable(menu)) {
+            System.out.println("추가안됨");
             return;
         }
         recommended.addMenu(menu);
@@ -32,12 +33,11 @@ public class Coach {
     public String getRecommendedMenuNames() {
         List<String> messages = new ArrayList<>();
         messages.add(this.name);
-        System.out.println(recommended);
         messages.add(recommended.toString());
         return String.join(" | ", messages);
     }
 
-    private boolean unAcceptable(Menu menu) {
+    public boolean unAcceptable(Menu menu) {
         return hateMenus.contains(menu)
                 || recommended.contains(menu)
                 || recommended.duplicatedCategory(menu);
