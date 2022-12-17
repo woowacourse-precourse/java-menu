@@ -1,6 +1,7 @@
 package menu.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Coach {
@@ -46,6 +47,6 @@ public class Coach {
     }
 
     public List<Menu> getRecommendMenu() {
-        return recommendMenu;
+        return Collections.unmodifiableList(recommendMenu);
     }
 }
