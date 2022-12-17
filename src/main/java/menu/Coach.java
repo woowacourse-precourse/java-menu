@@ -3,7 +3,7 @@ package menu;
 import java.util.*;
 
 public class Coach {
-    private final Set<String> ateMenus;
+    private final List<String> ateMenus;
     private final HashSet<String> hateMenus;
     private final String name;
 
@@ -11,11 +11,15 @@ public class Coach {
         this.name = name;
         this.hateMenus = new HashSet<>();
         this.hateMenus.addAll(Arrays.asList(hateMenus));
-        this.ateMenus = new HashSet<>();
+        this.ateMenus = new ArrayList<>();
     }
 
     public String getName() {
         return this.name;
+    }
+
+    public List<String> getAteMenus() {
+        return this.ateMenus;
     }
 
     public boolean checkIsHateMenu(String menu) {
