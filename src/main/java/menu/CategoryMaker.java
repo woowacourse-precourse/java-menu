@@ -8,7 +8,7 @@ import menu.domain.exception.CategoryException;
 public class CategoryMaker {
     private final CategoryRandomNumberGenerator categoryRandomNumberGenerator;
     private final int CATEGORY_COUNT = 5;
-    private final long CATEGORY_DUPLICATE_LIMIT = 2L;
+    private final long CATEGORY_DUPLICATE_LIMIT = 1L;
 
     public CategoryMaker(CategoryRandomNumberGenerator categoryRandomNumberGenerator) {
         this.categoryRandomNumberGenerator = categoryRandomNumberGenerator;
