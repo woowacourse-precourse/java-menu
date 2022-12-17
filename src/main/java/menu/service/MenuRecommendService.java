@@ -27,14 +27,18 @@ public class MenuRecommendService {
     public static void recommendFood(Coach coach, Category category) {
         while (true) {
             String randomFoodOfCategory = getRandomFoodByCategory(category);
-            Food recommendedFood = FoodRepository.findFoodByFoodName(randomFoodOfCategory);
             if (checkNotEatFood(coach, randomFoodOfCategory)) {
-                NotEatFoods notEatFoods = NotEatFoodRepository.findByCoach(coach);
-                notEatFoods.addNotEatFood(recommendedFood);
-                coach.addRecommendFood(recommendedFood);
+                addRecommendFood(coach, randomFoodOfCategory);
                 return;
             }
         }
+    }
+
+    public static void addRecommendFood(Coach coach, String randomFoodOfCategory) {
+        NotEatFoods notEatFoods = NotEatFoodRepository.findByCoach(coach);
+        Food recommendedFood = FoodRepository.findFoodByFoodName(randomFoodOfCategory);
+        notEatFoods.addNotEatFood(recommendedFood);
+        coach.addRecommendFood(recommendedFood);
     }
 
     public static String getRandomFoodByCategory(Category category) {
