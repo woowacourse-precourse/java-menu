@@ -2,6 +2,8 @@ package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import menu.service.MenuRecommendService;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.stream.Stream;
 
 public class InputView {
@@ -30,6 +32,9 @@ public class InputView {
         }
         if (Stream.of(coachNames).anyMatch((coachName) -> coachName.length() < 2 || coachName.length() > 4)) {
             throw new IllegalArgumentException(InputErrorCode.INVALID_COACH_NAME.toString());
+        }
+        if (coachNames.length != new HashSet<>(Arrays.asList(coachNames)).size()) {
+            throw new IllegalArgumentException(InputErrorCode.DUPLICATED_COACH_NAME.toString());
         }
         return coachNames;
     }
