@@ -33,5 +33,20 @@ public class MainController {
 
     private void setCategoryOfDay(Day day){
         Category recommendedCategory = recommender.recommendCategory();
+        if(checkDuplicationCount(recommendedCategory) >= 2){
+            setCategoryOfDay(day);
+            return;
+        }
+        categories.add(recommendedCategory);
+    }
+
+    private int checkDuplicationCount(Category recommendedCategory){
+        int count = 0;
+        for(Category category : categories){
+            if(category.equals(recommendedCategory)){
+                count++;
+            }
+        }
+        return count;
     }
 }

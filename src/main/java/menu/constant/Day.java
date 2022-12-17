@@ -1,7 +1,5 @@
 package menu.constant;
 
-import java.util.List;
-
 public enum Day {
     MONDAY("월요일", 0),
     TUESDAY("화요일", 1),
