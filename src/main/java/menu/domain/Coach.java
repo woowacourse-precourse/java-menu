@@ -13,20 +13,32 @@ public class Coach {
 
     private final int INEDIBLE_MENU_LIMIT = 2;
     private final String INEDIBLE_MENU_SIZE_INVALID =
-            String.format("[ERROR] 코치가 못 먹는 음식은 %d개를 넘어서면 안됩니다.", INEDIBLE_MENU_LIMIT);
+            String.format("[ERROR] 코치가 못 먹는 메뉴는 %d개를 넘어서면 안됩니다.", INEDIBLE_MENU_LIMIT);
+    private final String INEDIBLE_MENU_NOT_DISTINCT = "[ERROR] 못 먹는 메뉴의 이름은 중복되어선 안됩니다.";
 
     public Coach(CoachName name) {
         this.name = name;
     }
 
     public void addInedibleMenus(List<String> inedibleMenus) {
-        validateCannotEatMenus(inedibleMenus);
+        validateInedibleMenuSize(inedibleMenus);
+        validateInedibleMenuIsDistinct(inedibleMenus);
         this.inedibleMenus.addAll(inedibleMenus);
     }
 
-    private void validateCannotEatMenus(List<String> menus) {
+    private void validateInedibleMenuSize(List<String> menus) {
         if (menus.size() > INEDIBLE_MENU_LIMIT) {
             throw new IllegalArgumentException(INEDIBLE_MENU_SIZE_INVALID);
+        }
+    }
+
+    private void validateInedibleMenuIsDistinct(List<String> inedibleMenus) {
+        int distinctCount = (int) inedibleMenus.stream()
+                .distinct()
+                .count();
+
+        if (distinctCount != inedibleMenus.size()) {
+            throw new IllegalArgumentException(INEDIBLE_MENU_NOT_DISTINCT);
         }
     }
 
