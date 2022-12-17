@@ -3,6 +3,7 @@ package menu.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FoodRepository {
 
@@ -23,5 +24,12 @@ public class FoodRepository {
                 .filter(food -> food.hasSameName(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_FOOD_NAME_MESSAGE));
+    }
+
+    public static List<String> getAllFoodsByCategory(Category category) {
+        return foods.stream()
+                .filter(food -> food.hasSameCategory(category))
+                .map(Food::getName)
+                .collect(Collectors.toList());
     }
 }

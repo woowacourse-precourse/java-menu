@@ -1,6 +1,7 @@
 package menu.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Coach {
@@ -16,5 +17,13 @@ public class Coach {
         for (String name : foods) {
             cannotEatFoods.add(FoodRepository.getByName(name));
         }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Food> getCannotEatFoods() {
+        return Collections.unmodifiableList(cannotEatFoods);
     }
 }
