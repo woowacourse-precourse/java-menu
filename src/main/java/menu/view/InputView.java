@@ -59,7 +59,7 @@ public class InputView {
         for (String coachName : coachNames) {
             if (coachName.length() < 2) {
                 throw new IllegalArgumentException(
-                        InputException.OUT_OF_COACH_NAME_COUNT_MINIMUM.getExceptionMessage());
+                        InputException.OUT_OF_COACH_NAME_LENGTH_MINIMUM.getExceptionMessage());
             }
             if (coachName.length() > 4) {
                 throw new IllegalArgumentException(
