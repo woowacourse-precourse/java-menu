@@ -7,6 +7,8 @@ import menu.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static menu.view.validation.NameValidation.nameValidation;
+
 public class LunchMenuController {
     private final InputView inputView;
     private final OutputView outputView;
@@ -24,7 +26,7 @@ public class LunchMenuController {
     }
 
     public void start() {
-        String inputNames = inputView.readNames();
+        String inputNames = inputNames();
         int countPeople = countNames(inputNames);
 
         for(int i=0;i<countPeople;i++){
@@ -65,5 +67,13 @@ public class LunchMenuController {
         for(String value : values){
             names.add(value);
         }
+    }
+
+    private String inputNames() {
+        String input;
+        do {
+            input = inputView.readNames();
+        } while (!nameValidation(input));
+        return input;
     }
 }
