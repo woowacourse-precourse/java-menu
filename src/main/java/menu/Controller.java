@@ -18,16 +18,20 @@ public class Controller {
     public void start() {
         List<Integer> dailyCategory = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            while (true) {
-                int recommendCategory = RandomNumGenerator.makeCategoryNum();
-                if (dailyCategory.stream().filter(num -> num == recommendCategory).count() < 2) {
-                    dailyCategory.add(recommendCategory);
-                    recommendMenu(coach, recommendCategory);
-                    break;
-                }
-            }
+            recommendDaily(dailyCategory, coach);
         }
         printResult(dailyCategory, coach);
+    }
+
+    private void recommendDaily(List<Integer> dailyCategory, List<Coach> coach){
+        while (true){
+            int recommendCategory = RandomNumGenerator.makeCategoryNum();
+            if (dailyCategory.stream().filter(num -> num == recommendCategory).count() < 2) {
+                dailyCategory.add(recommendCategory);
+                recommendMenu(coach, recommendCategory);
+                break;
+            }
+        }
     }
 
     private void recommendMenu(List<Coach> coach, int num){
