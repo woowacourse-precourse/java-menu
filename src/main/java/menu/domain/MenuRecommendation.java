@@ -2,6 +2,7 @@ package menu.domain;
 
 import menu.util.StandardRandomGenerator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,6 +37,30 @@ public class MenuRecommendation {
     }
 
     public void getResult(StandardRandomGenerator generator) {
+        List<String> menus = Arrays.stream(Category.values()).map(Category::getTitle)
+                .collect(Collectors.toList());
 
+        List<String> shuffledCategory = getShuffledCategory(generator, menus);
+
+    }
+
+    private List<String> getShuffledCategory(StandardRandomGenerator generator, List<String> menus) {
+        List<String> shuffledCategory = Arrays.stream(Day.values())
+                .map(m -> generator.generate(menus))
+                .collect(Collectors.toList());
+
+        List<String> result = new ArrayList<>();
+        for (Day value : Day.values()) {
+            String generated = generator.generate(menus);
+            while (!result.isEmpty() && !validateCount(result, generated)) {
+                generated = generator.generate(menus);
+            }
+            result.add(generated);
+        }
+        return shuffledCategory;
+    }
+
+    private boolean validateCount(List<String> result, String generated) {
+        return result.stream().filter(m -> m.equals(generated)).count() <= 2;
     }
 }

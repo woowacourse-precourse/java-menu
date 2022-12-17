@@ -7,9 +7,13 @@ public enum Category {
     ASIAN("아시안"),
     AMERICAN("양식");
 
-    private final String name;
+    private final String title;
 
     Category(String title) {
-        this.name = title;
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
     }
 }
