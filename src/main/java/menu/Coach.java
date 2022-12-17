@@ -1,14 +1,15 @@
 package menu;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Coach {
-    private List<String> ateMenus;
-    private final List<String> hateMenus;
+    private final Set<String> ateMenus;
+    private final HashSet<String> hateMenus;
 
-    Coach(List<String> hateMenus) {
-        this.hateMenus = hateMenus;
+    Coach(String[] hateMenus) {
+        this.hateMenus = new HashSet<>();
+        this.hateMenus.addAll(Arrays.asList(hateMenus));
+        this.ateMenus = new HashSet<>();
     }
 
     public boolean checkIsHateMenu(String menu) {

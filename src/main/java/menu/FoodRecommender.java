@@ -6,7 +6,6 @@ import java.util.*;
 public class FoodRecommender {
     private int dayCount;
     private Map<String, Integer> categoryCount;
-    private Set<String> menuCheck;
 
     FoodRecommender() {
         dayCount = 0;
@@ -14,14 +13,13 @@ public class FoodRecommender {
         for (String categoryI : FoodPool.category) {
             categoryCount.put(categoryI, 0);
         }
-        menuCheck = new HashSet<>();
     }
 
     public void pickMenu(Coach coach, String category) {
         String newMenu;
         while (true) {
             newMenu = Randoms.shuffle(Arrays.asList(FoodPool.foods.get(category))).get(0);
-            if (!coach.checkIsAteMenu(newMenu) || !coach.checkIsHateMenu(newMenu)) break;
+            if (!coach.checkIsAteMenu(newMenu) && !coach.checkIsHateMenu(newMenu)) break;
         }
         coach.addAteMenus(newMenu);
     }
