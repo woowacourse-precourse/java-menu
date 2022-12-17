@@ -24,14 +24,17 @@ public class OutputView {
     public void printResult(List<String> previousCategories, List<Coach> coaches) {
         System.out.println(ViewConstants.RESULT);
         System.out.println(ViewConstants.DAYS);
-
-        previousCategories.add(0, ViewConstants.CATEGORY);
-        System.out.println(previousCategories.stream()
-                .collect(Collectors.joining(ViewConstants.DELIMITER, ViewConstants.FRONT, ViewConstants.BACK)));
+        printCategories(previousCategories);
 
         coaches.forEach(this::printCoachMenus);
         System.out.println();
         System.out.println(ViewConstants.COMPLETION);
+    }
+
+    private void printCategories(List<String> previousCategories) {
+        previousCategories.add(0, ViewConstants.CATEGORY);
+        System.out.println(previousCategories.stream()
+                .collect(Collectors.joining(ViewConstants.DELIMITER, ViewConstants.FRONT, ViewConstants.BACK)));
     }
 
     private void printCoachMenus(Coach coach) {
