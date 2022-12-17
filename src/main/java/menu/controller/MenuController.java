@@ -13,7 +13,7 @@ public class MenuController {
     private final Group group = new Group();
 
     public void run() {
-        System.out.println("점심 메뉴 추천을 시작합니다");
+        System.out.println("점심 메뉴 추천을 시작합니다.");
         List<String> coaches = inputView.readNames();
 
         for (String coach : coaches) {
