@@ -11,6 +11,10 @@ public class Coach {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void enrollHateFood(List<Menu> menus){
         for(Menu menu : menus){
             if(hateMenu.contains(menu)){
