@@ -14,14 +14,6 @@ public class Coach {
         this.recommendedFood = new ArrayList<>();
     }
 
-    public String getName(){
-        return name;
-    }
-
-    public List<String> getRecommendedFood(){
-        return recommendedFood;
-    }
-
     public boolean isValidMenu(Menu menu){
         if (dislikeFood != null && dislikeFood.stream().anyMatch(foodName -> foodName.equals(menu.getMenuName()))){
             return false;
