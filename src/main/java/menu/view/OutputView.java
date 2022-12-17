@@ -1,11 +1,13 @@
 package menu.view;
 
 import static menu.configure.MenuConfigure.DAYS;
-import static menu.repository.CategoryRepository.findAllCategoryNames;
 import static menu.repository.CoachRepository.coaches;
 import static menu.repository.RecommendationResultRepository.result;
 import static menu.view.OutputMessage.CATEGORY;
+import static menu.view.OutputMessage.CLOSE;
+import static menu.view.OutputMessage.DIVIDER;
 import static menu.view.OutputMessage.ERROR_PREFIX;
+import static menu.view.OutputMessage.OPEN;
 import static menu.view.OutputMessage.RECOMMEND_RESULT_MESSAGE;
 import static menu.view.OutputMessage.RECOMMEND_SUCCESS_MESSAGE;
 import static menu.view.OutputMessage.START_MESSAGE;
@@ -61,6 +63,6 @@ public class OutputView {
   }
 
   private String convertToResultForm(List<String> input) {
-    return "[ " + String.join(" | ", input) + " ]";
+    return OPEN.getMessage() + String.join(DIVIDER.getMessage(), input) + CLOSE.getMessage();
   }
 }
