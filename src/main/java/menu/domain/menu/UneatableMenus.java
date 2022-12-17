@@ -13,4 +13,8 @@ public class UneatableMenus {
     public void addAll(List<Menu> uneatableMenus) {
         menus.addAll(uneatableMenus);
     }
+    
+    public boolean contains(Menu menu) {
+        return menus.contains(menu);
+    }
 }

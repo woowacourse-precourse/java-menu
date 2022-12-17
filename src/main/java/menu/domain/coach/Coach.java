@@ -17,15 +17,19 @@ public class Coach {
         this.uneatableMenus = new UneatableMenus();
     }
     
+    public void addUneatableMenu(List<Menu> uneatableMenus) {
+        this.uneatableMenus.addAll(uneatableMenus);
+    }
+    
+    public boolean isUneatableMenu(Menu menu) {
+        return this.uneatableMenus.contains(menu);
+    }
+    
     public boolean isExistSameCategoryOverTwo(Menu menu) {
         return menus.isExistSameCategoryOverTwo(menu);
     }
     
     public boolean isExistSameMenu(Menu menu) {
         return menus.isExistSameMenu(menu);
-    }
-    
-    public void addUneatableMenu(List<Menu> uneatableMenus) {
-        this.uneatableMenus.addAll(uneatableMenus);
     }
 }
