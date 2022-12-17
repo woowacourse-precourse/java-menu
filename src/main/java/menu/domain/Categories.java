@@ -8,14 +8,14 @@ import java.util.List;
 
 public class Categories {
     private final List<Category> categories = Category.getCategories();
-    HashMap<Category,Integer> categoryNum = new HashMap<>();
+    HashMap<Category, Integer> categoryNum = new HashMap<>();
     private final List<Week> weeks = Week.getWeeks();
 
 
     Categories() {
-        for (Category category:
+        for (Category category :
                 categories) {
-            categoryNum.put(category,0);
+            categoryNum.put(category, 0);
         }
     }
 
@@ -32,7 +32,7 @@ public class Categories {
                 continue;
             }
             recommendedCategories.add(category);
-            categoryNum.put(category,categoryNum.get(category)+1);
+            categoryNum.put(category, categoryNum.get(category) + 1);
         }
         return recommendedCategories;
     }

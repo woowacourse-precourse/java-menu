@@ -11,6 +11,7 @@ public enum Week {
     FRIDAY("금요일");
 
     private String name;
+
     Week(String name) {
         this.name = name;
     }
