@@ -14,6 +14,8 @@ public class Service {
 
     public Service() {
         this.output.printStart();
+        this.coachs = getCoachsUntilValid();
+        setCoachsInedible();
     }
 
     private Coachs getCoachsUntilValid() {
