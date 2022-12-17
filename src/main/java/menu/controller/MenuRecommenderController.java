@@ -44,14 +44,28 @@ public class MenuRecommenderController {
 
     private void postBannedMenusOfCoach() {
         for (Coach coach : coaches) {
+            postBannedMenu(coach);
+        }
+    }
+
+    private void postBannedMenu(Coach coach) {
+        try {
             List<String> bannedMenus = InputView.inputBannedMenus(coach.getName(), menuRecommender);
             coach.postBannedMenus(bannedMenus);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            postBannedMenu(coach);
         }
     }
 
     private List<Coach> initCoaches() {
-        OutputView.printGuideOfAppStart();
-        return InputView.inputCoaches();
+        try {
+            OutputView.printGuideOfAppStart();
+            return InputView.inputCoaches();
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
+        return initCoaches();
     }
 
     private MenuRecommender initMenus() {

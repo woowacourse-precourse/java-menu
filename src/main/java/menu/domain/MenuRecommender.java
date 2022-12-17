@@ -23,7 +23,6 @@ public class MenuRecommender {
                 Validator.validateCategories(category, categories);
                 categories.add(category);
             } catch (CannotRecommendCategoryException exception) {
-                System.out.println(exception.getMessage());
             }
         }
         return categories;
@@ -38,7 +37,6 @@ public class MenuRecommender {
             Validator.validateRecommendMenus(recommendMenus);
             return recommendMenus;
         } catch (CannotRecommendMenuException exception) {
-            System.out.println(exception.getMessage());
         }
         return recommendMenus(coach, categories);
     }
