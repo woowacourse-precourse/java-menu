@@ -1,5 +1,7 @@
 package menu.model;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -16,8 +18,8 @@ public class Menu {
         menu.put(Category.WESTON_FOOD, makeWesternFood());
     }
 
-    private List<String> makeCategory() {
-        return Arrays.asList("일식", "한식", "중식", "아시안", "양식");
+    public String recommendMenu(String category) {
+        return Randoms.shuffle(menu.get(category)).get(0);
     }
 
     private List<String> makeKoreanFood() {
