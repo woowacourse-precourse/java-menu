@@ -22,9 +22,6 @@ public class InputView {
     }
 
     public List<String> checkComma(String input) {
-        if (input.isBlank()) {
-            throw new IllegalArgumentException("잘못된 입력입니다.");
-        }
         return List.of(input.split(","));
     }
 }
