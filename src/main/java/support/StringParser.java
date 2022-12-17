@@ -5,6 +5,7 @@ import domain.Coaches;
 import domain.HateMenus;
 import domain.Menu;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public final class StringParser {
         return new Coaches(coachesName);
     }
 
-    public static HateMenus parseStringToMenusByRest(String input) {
+    public static HateMenus parseStringToMenusByRest(String input) throws IOException {
         List<Menu> menusName = new ArrayList<>();
         String[] menus = input.split(",");
         for (String menu : menus) {
