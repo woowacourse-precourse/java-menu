@@ -10,7 +10,7 @@ import java.util.List;
 public class MenuService {
 
     private final static int DAYS = 5;
-    private final static int MAX_DUPLICATED_CATEGORY = 2;
+    private final static int CATEGORY_DUPLICATE_MAX_VALUE = 2;
     private final static int CATEGORY_INDEX_MIN = 1;
     private final static int CATEGORY_INDEX_MAX = 5;
     private final static String JAPANESE = "일식";
@@ -32,7 +32,7 @@ public class MenuService {
 
     private MenuService() {
         for (int i = 1; i <= DAYS; i++) {
-            categoryPool[i] = MAX_DUPLICATED_CATEGORY;
+            categoryPool[i] = CATEGORY_DUPLICATE_MAX_VALUE;
         }
     }
 
@@ -69,26 +69,21 @@ public class MenuService {
     }
 
     public Menu recommendMenu(Coach coach, String category) {
-        List<String> impossibleMenus = coach.getImpossibleMenus();
-        List<String> recommendMenuList = new ArrayList<>();
-        List<String> alreadyRecommended = new ArrayList<>();
+        List<Menu> impossibleMenus = coach.getImpossibleMenus();
         String menus = Category.valueOf(category).getMenus();
         List<String> menuList = Parser.parse(menus);
 
         String selectedMenu = Randoms.shuffle(menuList).get(0);
         do {
-            if (canRecommend(selectedMenu, impossibleMenus, alreadyRecommended)) {
+            if (canRecommend(selectedMenu, impossibleMenus, coach.getMenuList())) {
                 break;
             }
             selectedMenu = Randoms.shuffle(menuList).get(0);
         } while (true);
-        alreadyRecommended.add(selectedMenu);
-        recommendMenuList.add(selectedMenu);
         return new Menu(selectedMenu);
-
     }
 
-    private boolean canRecommend(String selectedMenu, List<String> impossibleMenus, List<String> alreadyRecommended) {
+    private boolean canRecommend(String selectedMenu, List<Menu> impossibleMenus, List<Menu> alreadyRecommended) {
         if (impossibleMenus.contains(selectedMenu) || alreadyRecommended.contains(selectedMenu))
             return false;
         return true;

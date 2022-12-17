@@ -1,6 +1,7 @@
 package menu.controller;
 
 import menu.model.Coach;
+import menu.model.Menu;
 import menu.model.MenuResult;
 import menu.model.RecommendResult;
 import menu.service.MenuService;
@@ -62,14 +63,17 @@ public class MenuController {
         do {
             outputView.printReadImpossibleMenus(coachName);
             try {
-                List<String> impossibleMenuList = inputView.readImpossibleMenus();
+                List<String> impossibleMenuStrList = inputView.readImpossibleMenus();
+                List<Menu> impossibleMenuList = new ArrayList<>();
+                for (String impossibleMenu : impossibleMenuStrList) {
+                    impossibleMenuList.add(new Menu(impossibleMenu));
+                }
                 coachList.add(new Coach(coachName, impossibleMenuList));
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }
         } while (true);
-
     }
 
     public void recommend() {

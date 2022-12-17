@@ -5,10 +5,10 @@ import java.util.List;
 
 public class Coach {
     public String coachName;
-    public List<String> impossibleMenus;
+    public List<Menu> impossibleMenus;
     public List<Menu> menuList;
 
-    public Coach(String coachName, List<String> impossibleMenus) {
+    public Coach(String coachName, List<Menu> impossibleMenus) {
         this.coachName = coachName;
         this.impossibleMenus = impossibleMenus;
         menuList = new ArrayList<>();
@@ -18,7 +18,7 @@ public class Coach {
         return coachName;
     }
 
-    public List<String> getImpossibleMenus() {
+    public List<Menu> getImpossibleMenus() {
         return impossibleMenus;
     }
 

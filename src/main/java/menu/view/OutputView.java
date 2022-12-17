@@ -19,7 +19,6 @@ public class OutputView {
     public static final String SPACE = " ";
     public static final String CATEGORY_MESSAGE = "카테고리";
     public static final String DELIMITER = "|";
-    ;
 
     private void printlnMessage(String message) {
         System.out.println(message);
