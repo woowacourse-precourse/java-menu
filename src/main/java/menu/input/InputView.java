@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 import menu.domain.Coach;
-import menu.message.ErrorMessage;
 import menu.output.ErrorMessageOutput;
 import menu.output.InputGuideView;
 import menu.validator.InputValidator;
@@ -12,16 +11,16 @@ import menu.validator.InputValidator;
 public class InputView {
 
     public static List<Coach> readCoachNames() {
-        String inputNames;
         while (true) {
             InputGuideView.printStartMessage();
-            inputNames = Console.readLine();
-            if (InputValidator.isValidNameInput(inputNames)) {
-                break;
+            String inputNames = Console.readLine();
+            try {
+                InputValidator.validateNameInput(inputNames);
+                return generateCoaches(inputNames.split(","));
+            } catch (IllegalArgumentException illegalArgumentException) {
+                ErrorMessageOutput.printErrorMessage(illegalArgumentException.getMessage());
             }
-            ErrorMessageOutput.printErrorMessage(ErrorMessage.coachNameInputError);
         }
-        return generateCoaches(inputNames.split(","));
     }
 
     private static List<Coach> generateCoaches(String[] inputNames) {
@@ -42,11 +41,13 @@ public class InputView {
         while (true) {
             InputGuideView.printInputInedibleFoodsMessage(coach.getName());
             String inedibleFoods = Console.readLine();
-            if (InputValidator.isValidInedibleFoodsInput(inedibleFoods)) {
+            try {
+                InputValidator.validateInedibleFoodsInput(inedibleFoods);
                 coach.SetInedibleFoods(inedibleFoods);
                 break;
+            } catch (IllegalArgumentException illegalArgumentException) {
+                ErrorMessageOutput.printErrorMessage(illegalArgumentException.getMessage());
             }
-            ErrorMessageOutput.printErrorMessage(ErrorMessage.inedibleFoodInputError);
         }
     }
 }

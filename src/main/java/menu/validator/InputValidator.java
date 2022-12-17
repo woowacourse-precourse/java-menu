@@ -1,6 +1,7 @@
 package menu.validator;
 
 import menu.domain.FoodRepository;
+import menu.message.ErrorMessage;
 
 public class InputValidator {
     private static final int minNameLength = 2;
@@ -9,11 +10,10 @@ public class InputValidator {
     private static final int maxCoachCount = 5;
     private static final int maxInedibleFoodCount = 2;
 
-    public static boolean isValidNameInput(String namesInput) {
+    public static void validateNameInput(String namesInput) {
         if (isContainingSpace(namesInput) || !isValidLengthNames(namesInput) || !isValidCoachCount(namesInput)) {
-            return false;
+            throw new IllegalArgumentException(ErrorMessage.coachNameInputError.getMessage());
         }
-        return true;
     }
 
     private static boolean isContainingSpace(String namesInput) {
@@ -38,11 +38,10 @@ public class InputValidator {
         return true;
     }
 
-    public static boolean isValidInedibleFoodsInput(String inedibleFoodsInput) {
+    public static void validateInedibleFoodsInput(String inedibleFoodsInput) {
         if (!isValidInedibleFoodsAmount(inedibleFoodsInput) || !isAllExisting(inedibleFoodsInput)) {
-            return false;
+            throw new IllegalArgumentException(ErrorMessage.inedibleFoodInputError.getMessage());
         }
-        return true;
     }
 
     private static boolean isValidInedibleFoodsAmount(String inedibleFoodsInput) {

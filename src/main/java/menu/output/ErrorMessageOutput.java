@@ -1,11 +1,9 @@
 package menu.output;
 
-import menu.message.ErrorMessage;
-
 public class ErrorMessageOutput {
-    public static void printErrorMessage(ErrorMessage errorMessage) {
+    public static void printErrorMessage(String errorMessage) {
         System.out.println();
-        System.out.println(errorMessage.getMessage());
+        System.out.println(errorMessage);
         System.out.println();
     }
 }
