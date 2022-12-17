@@ -8,6 +8,13 @@ import java.util.List;
 import java.util.Map;
 
 public class Menu {
+    private final static int SIZE = 5;
+    private final static String KOR = "한식";
+    private final static String JPN = "일식";
+    private final static String CHI = "중식";
+    private final static String ASI = "아시안";
+    private final static String WST = "양식";
+    private final static String NOT_EXISTS_ERROR = "[ERROR] 존재하지 않는 카테고리입니다.";
     private final static List<String> korMenus = Arrays.asList("김밥", "김치찌개", "쌈밥", "된장찌개", "비빔밥", "칼국수", "불고기", "떡볶이",
             "제육볶음");
     private final static List<String> jpnMenus = Arrays.asList("규동", "우동", "미소시루", "스시", "가츠동", "오니기리", "하이라이스", "라멘",
@@ -19,22 +26,22 @@ public class Menu {
     private final static List<String> wstMenus = Arrays.asList("라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자",
             "파니니");
 
-    public Map<String, List<String>> recommend(List<String> categories, List<String> names,
-                                               Map<String, List<String>> hates) {
-        Map<String, List<String>> recommends = initRecommends(names);
+    public Map<String, List<String>> generateMenus(List<String> categories, List<String> names,
+                                                   Map<String, List<String>> hates) {
+        Map<String, List<String>> menus = initRecommends(names);
         int idx = 0;
-        while (idx < 5) {
+        while (idx < SIZE) {
             String category = categories.get(idx++);
             for (String name : names) {
-                String menu = getMenu(category, recommends.get(name), hates.get(name));
-                recommends.get(name).add(menu);
+                String menu = getMenu(category, menus.get(name), hates.get(name));
+                menus.get(name).add(menu);
             }
         }
-        return recommends;
+        return menus;
     }
 
     private Map<String, List<String>> initRecommends(List<String> names) {
-        Map<String, List<String>> recommends = new HashMap<String, List<String>>();
+        Map<String, List<String>> recommends = new HashMap<>();
         for (String name : names) {
             recommends.put(name, new ArrayList<>());
         }
@@ -52,21 +59,18 @@ public class Menu {
 
     private String selectMenu(String category) {
         switch (category) {
-            case "한식":
+            case KOR:
                 return Randoms.shuffle(korMenus).get(0);
-            case "일식":
+            case JPN:
                 return Randoms.shuffle(jpnMenus).get(0);
-            case "중식":
+            case CHI:
                 return Randoms.shuffle(chiMenus).get(0);
-            case "아시안":
+            case ASI:
                 return Randoms.shuffle(asiMenus).get(0);
-            case "양식":
+            case WST:
                 return Randoms.shuffle(wstMenus).get(0);
             default:
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(NOT_EXISTS_ERROR);
         }
     }
 }
-
-//[ 구구 | 김치찌개 | 제육볶음 | 스파게티 | 라자냐 | 규동 ]
-//[ 제임스 | 가츠동 | 짜장면 | 짬뽕 | 카오 팟 | 파인애플 볶음밥 ]

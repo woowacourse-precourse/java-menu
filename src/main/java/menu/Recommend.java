@@ -9,12 +9,13 @@ public class Recommend {
     private static final Coach coach = new Coach();
     private static final Menu menu = new Menu();
 
+
     public void start() {
         System.out.println("점심 메뉴 추천을 시작합니다.\n");
         List<String> categories = category.choose();
         List<String> names = getNames();
         Map<String, List<String>> hates = getHates(names);
-        Map<String, List<String>> menus = menu.recommend(categories, names, hates);
+        Map<String, List<String>> menus = menu.generateMenus(categories, names, hates);
         printResult(categories, names, menus);
     }
 
