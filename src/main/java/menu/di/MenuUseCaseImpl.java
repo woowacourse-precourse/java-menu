@@ -10,12 +10,10 @@ import menu.domain.Picker;
 public class MenuUseCaseImpl implements MenuUseCase {
 
     private static final String MENU_NOT_FOUND_MESSAGE = "없는 메뉴입니다";
-    private final List<String> categories;
     private final Map<Category, List<String>> menus;
     private final Picker picker;
 
-    public MenuUseCaseImpl(List<String> categories, Map<String, List<String>> menus, Picker picker) {
-        this.categories = categories;
+    public MenuUseCaseImpl(Map<String, List<String>> menus, Picker picker) {
         this.menus = toMenus(menus);
         this.picker = picker;
     }
@@ -49,7 +47,8 @@ public class MenuUseCaseImpl implements MenuUseCase {
     }
 
     @Override
-    public RecommendResultDto recommend(List<String> names, List<List<String>> menus) {
+    public RecommendResultDto recommend(List<String> names, List<List<String>> notEatMenus) {
+
         return null;
     }
 

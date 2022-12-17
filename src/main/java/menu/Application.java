@@ -17,14 +17,9 @@ public class Application {
     }
 
     private static MenuUseCase getMenuUseCase() {
-        List<String> category = loadCategory();
         Map<String, List<String>> menus = loadMenus();
         Picker picker = new RandomPicker();
-        return new MenuUseCaseImpl(category, menus, picker);
-    }
-
-    private static List<String> loadCategory() {
-        return List.of("일식", "한식", "중식", "아시안", "양식");
+        return new MenuUseCaseImpl(menus, picker);
     }
 
     private static Map<String, List<String>> loadMenus() {
