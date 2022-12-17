@@ -16,8 +16,8 @@ public class OutputView {
         System.out.print(name);
     }
 
-    public static void printCantEatingMessage() {
-        System.out.println(REQUEST_CANT_EATING_MENU_MESSAGE);
+    public static void printRequestCantEatingMessage(String coachName) {
+        System.out.println(coachName + REQUEST_CANT_EATING_MENU_MESSAGE);
     }
 
     public static void printResultMessage() {
@@ -30,7 +30,7 @@ public class OutputView {
     }
 
     public static void printErrorMessage(String message) {
-        System.out.println(ERROR_MESSAGE + message);
+        System.out.println(message);
     }
 
     public static void printNewLine() {
