@@ -1,16 +1,15 @@
 package menu.model;
 
 import menu.enums.MenuOption;
-import menu.utils.RandomGenerator;
 
 public class ChoiceMachine {
 
-    RandomGenerator randomGenerator = new RandomGenerator();
+    RandomMenuGenerator randomMenuGenerator = new RandomMenuGenerator();
 
     public void choiceCategory() {
         String category;
         do {
-            category = randomGenerator.randomCategoryChoice();
+            category = randomMenuGenerator.randomCategoryChoice();
         } while (!CoachRepository.canAddCategory(category));
 
         CoachRepository.addCategory(MenuOption.fromCategory(category));

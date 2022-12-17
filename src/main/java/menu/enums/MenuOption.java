@@ -1,7 +1,9 @@
 package menu.enums;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum MenuOption {
@@ -38,5 +40,12 @@ public enum MenuOption {
                 .filter(option -> Objects.equals(option.category, category))
                 .findFirst()
                 .get();
+    }
+
+    public static List<String> getAllMenus() {
+        return Stream.of(values())
+                .map(option -> option.menus)
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
     }
 }
