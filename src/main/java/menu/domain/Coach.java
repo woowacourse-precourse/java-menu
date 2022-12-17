@@ -12,5 +12,7 @@ public class Coach {
         this.notEatFoods = notEatFoods;
     }
 
-
+    public boolean canNotEat(Menu menu) {
+        return notEatFoods.contains(menu);
+    }
 }
