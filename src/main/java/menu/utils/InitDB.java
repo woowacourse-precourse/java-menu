@@ -2,15 +2,16 @@ package menu.utils;
 
 import java.util.Arrays;
 import java.util.List;
-import menu.repository.MenuByCategoryRepository;
+import menu.domain.Category;
+import menu.domain.Menu;
+import menu.repository.MenuRepository;
 
 public class InitDB {
     private InitDB() {
     }
 
     public static void init() {
-        List<String> category = Arrays.asList("일식", "한식", "중식", "아시안", "양식");
-
+        Category[] categories = Category.values();
         List<List<String>> menu = Arrays.asList(
                 Arrays.asList("규동", "우동", "미소시루", "스시", "가츠동", "오니기리", "하이라이스", "라멘", "오코노미야끼"),
                 Arrays.asList("김밥", "김치찌개", "쌈밥", "된장찌개", "비빔밥", "칼국수", "불고기", "떡볶이", "제육볶음"),
@@ -19,8 +20,11 @@ public class InitDB {
                 Arrays.asList("라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니")
         );
 
-        for (int index = 0; index < category.size(); index++) {
-            MenuByCategoryRepository.addMenuToMenu(category.get(index), menu.get(index));
+        for (int index = 0; index < categories.length; index++) {
+            Category category = categories[index];
+            for (String menuName : menu.get(index)) {
+                MenuRepository.addMenu(new Menu(category, menuName));
+            }
         }
     }
 }

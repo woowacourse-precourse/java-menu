@@ -2,6 +2,7 @@ package menu.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import menu.repository.MenuRepository;
 
 public class MenuDecideService {
     public Coaches makeCoaches(String names) {
@@ -16,11 +17,11 @@ public class MenuDecideService {
         return new Coach(name);
     }
 
-    public CantEatMenus makeCantEatMenu(String cantEatMenuNames) {
-        List<String> cantEatMenu = new ArrayList<>();
-        for (String cantEatMenuName : cantEatMenuNames.split(",")) {
-            cantEatMenu.add(cantEatMenuName);
+    public CantEatMenus makeCantEatMenu(String menuNames) {
+        List<Menu> menus = new ArrayList<>();
+        for (String menuName : menuNames.split(",")) {
+            menus.add(MenuRepository.findMenu(menuName));
         }
-        return new CantEatMenus(cantEatMenu);
+        return new CantEatMenus(menus);
     }
 }

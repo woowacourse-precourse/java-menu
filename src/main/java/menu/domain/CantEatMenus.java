@@ -3,9 +3,9 @@ package menu.domain;
 import java.util.List;
 
 public class CantEatMenus {
-    private final List<String> menus;
+    private final List<Menu> menus;
 
-    public CantEatMenus(List<String> menus) {
+    public CantEatMenus(List<Menu> menus) {
         this.menus = menus;
     }
 }
