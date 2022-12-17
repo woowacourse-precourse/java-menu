@@ -16,6 +16,7 @@ public class Controller {
     private static OutputView OUTPUT_VIEW = new OutputView();
 
     public void run() {
+        OUTPUT_VIEW.printServiceStart();
         List<Coach> coaches = readCoaches();
         Recommender recommender = new Recommender(coaches);
         recommender.recommend();

@@ -10,6 +10,10 @@ import menu.domain.Coach;
 public class OutputView {
     private static final String SEPARATOR = " | ";
 
+    public void printServiceStart() {
+        System.out.println("점심 메뉴 추천을 시작합니다.");
+    }
+
     public void printMenus(List<Category> categories, List<Coach> coaches) {
         System.out.println("메뉴 추천 결과입니다.");
         printElements("구분", List.of("월요일", "화요일", "수요일", "목요일", "금요일"));
