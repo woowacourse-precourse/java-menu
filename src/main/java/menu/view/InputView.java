@@ -27,6 +27,7 @@ public class InputView {
         for (Coach coach : coaches.getCoaches()) {
             System.out.println("\n" +coach.getName() + GET_NOT_EATABLE_MENU);
             String[] input = Console.readLine().split(",");
+            validNotEatableSize(input);
             System.out.println();
             coach.addNotEatableMenus(input);
         }
@@ -66,6 +67,12 @@ public class InputView {
 
         if (originalLength != distinctLength) {
             throw new IllegalArgumentException(ErrorMessage.COACH_NAME_IS_NOT_DUPLICATE);
+        }
+    }
+
+    public void validNotEatableSize(String[] input) {
+        if (input.length > 2) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_EATABLE_MENU_SIZE_IS_LESS_THAN_TWO);
         }
     }
 }

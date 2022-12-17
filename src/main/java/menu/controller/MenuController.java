@@ -29,7 +29,12 @@ public class MenuController {
     }
 
     public void getNotEatableName(Coaches coaches) {
-        inputView.getNotEatableMenu(coaches);
+        try {
+            inputView.getNotEatableMenu(coaches);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            getNotEatableName(coaches);
+        }
     }
 
     private <T> T repeat(Supplier<T> inputReader) {
