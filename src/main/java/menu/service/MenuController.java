@@ -1,4 +1,4 @@
-package menu;
+package menu.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -7,12 +7,15 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import menu.DummyData;
 import menu.domain.Category;
 import menu.domain.Couch;
 import menu.domain.DataRow;
 import menu.domain.DataRows;
 import menu.domain.Day;
 import menu.domain.Menu;
+import menu.view.InputView;
+import menu.view.OutputView;
 
 public class MenuController {
 

@@ -1,4 +1,4 @@
-package menu;
+package menu.format;
 
 public enum MessageFormat {
     START_COMMENT("점심 메뉴 추천을 시작합니다."),

@@ -1,7 +1,8 @@
-package menu;
+package menu.view;
 
 import java.util.ArrayList;
 import java.util.List;
+import menu.format.MessageFormat;
 import menu.domain.DataRows;
 
 public class OutputView {

@@ -1,8 +1,9 @@
-package menu;
+package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Collections;
 import java.util.List;
+import menu.format.MessageFormat;
 
 public class InputView {
 
