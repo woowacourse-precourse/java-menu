@@ -1,12 +1,14 @@
 package menu.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Coachs {
 
     private static final String RANGE_ERROR_MSG = "최소 2명 최대 5명 입력";
+    private static final String CANT_FOUND_ERROR_MSG = "없는 코치 입니다";
     private static final Integer MIN_SIZE_COACHS = 2;
     private static final Integer MAX_SIZE_COACHS = 5;
     private final List<Coach> coachs;
@@ -29,5 +31,9 @@ public class Coachs {
         int coachsSize = coachs.size();
         if(coachsSize<MIN_SIZE_COACHS || coachsSize>MAX_SIZE_COACHS)
             throw new IllegalArgumentException(RANGE_ERROR_MSG);
+    }
+
+    public List<Coach> getCoachs() {
+        return Collections.unmodifiableList(coachs);
     }
 }
