@@ -10,6 +10,10 @@ public class MenuCategory {
         this.selectedCount = SelectedCount.generate();
     }
 
+    public static MenuCategory from(String name) {
+        return new MenuCategory(name);
+    }
+
     public void select() {
         selectedCount.add();
     }

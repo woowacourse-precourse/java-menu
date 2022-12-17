@@ -1,23 +1,31 @@
 package menu.repository;
 
-import menu.domain.Category;
+import menu.domain.CATEGORY;
 import menu.domain.MENU;
 import menu.domain.menucategory.MenuCategory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class MenuRepository {
-    private final static List<MenuCategory> categories = List.of(new MenuCategory("일식"), new MenuCategory("한식"), new MenuCategory("중식"), new MenuCategory("아시안"), new MenuCategory("양식"));
+    private final static List<MenuCategory> categories = new ArrayList<>();
     private final static HashMap<MenuCategory, List<String>> menus = new HashMap<>();
 
     static {
-        menus.put(categories.get(Category.JAPANESE.order()), MENU.JAPANESE.value());
-        menus.put(categories.get(Category.KOREAN.order()), MENU.KOREAN.value());
-        menus.put(categories.get(Category.CHINESE.order()), MENU.CHINESE.value());
-        menus.put(categories.get(Category.ASIAN.order()), MENU.ASIAN.value());
-        menus.put(categories.get(Category.WESTERN.order()), MENU.WESTERN.value());
+        initCategories();
+        menus.put(categories.get(CATEGORY.JAPANESE.order()), MENU.JAPANESE.value());
+        menus.put(categories.get(CATEGORY.KOREAN.order()), MENU.KOREAN.value());
+        menus.put(categories.get(CATEGORY.CHINESE.order()), MENU.CHINESE.value());
+        menus.put(categories.get(CATEGORY.ASIAN.order()), MENU.ASIAN.value());
+        menus.put(categories.get(CATEGORY.WESTERN.order()), MENU.WESTERN.value());
+    }
+
+    private static void initCategories() {
+        for (CATEGORY category : CATEGORY.values()) {
+            categories.add(MenuCategory.from(category.getName()));
+        }
     }
 
     private static boolean containsMenu(String menu, MenuCategory menuCategory) {
