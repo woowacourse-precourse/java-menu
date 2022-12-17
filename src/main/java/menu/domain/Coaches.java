@@ -6,6 +6,7 @@ import java.util.List;
 public class Coaches {
 
     private static final String ERROR_MAX_SIZE = "[ERROR] 5명이상의 코치는 입력할 수 없습니다.";
+    private static final String ERROR_DUPLICATE_NAME = "[ERROR] 중복된 코치 이름은 입력할 수 없습니다.";
 
     private final List<Coach> coaches = new ArrayList<>();
 
@@ -14,7 +15,16 @@ public class Coaches {
 
     public void addCoach(Coach coach) {
         validateCount(coaches.size());
+        validateDuplicate(coach);
         coaches.add(coach);
+    }
+
+    private void validateDuplicate(Coach inputCoach) {
+        for (Coach coach : coaches) {
+            if (coach.getName().equals(inputCoach.getName())) {
+                throw new IllegalArgumentException(ERROR_DUPLICATE_NAME);
+            }
+        }
     }
 
     private void validateCount(int size) {

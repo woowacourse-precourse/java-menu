@@ -18,12 +18,11 @@ public class MenuService {
     private RecommendMenu recommendMenu;
 
     public void init() {
-        coaches = new Coaches();
         categories = Categories.createCategoryList();
-        recommendCategory = new RecommendCategory();
     }
 
     public void createCoaches(CoachInputDTO coachInputDTO) {
+        coaches = new Coaches();
         List<String> coachNames = coachInputDTO.getCoachNames();
         for (String coachName : coachNames) {
             coaches.addCoach(Coach.createCoach(coachName));
@@ -40,6 +39,7 @@ public class MenuService {
     }
 
     public RecommendResultDTO recommend() {
+        recommendCategory = new RecommendCategory();
         recommendMenu = RecommendMenu.createRecommendMenu(coaches);
         RecommendResultDTO recommendResultDTO = new RecommendResultDTO(coaches);
         for (int weekdays = 0; weekdays < WEEK_DAY; weekdays++) {
