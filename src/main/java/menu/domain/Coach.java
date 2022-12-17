@@ -11,4 +11,8 @@ public class Coach {
     public Coach(Map<String, List<String>> coaches) {
         this.coaches = coaches;
     }
+
+    public Map<String, List<String>> getCoaches() {
+        return coaches;
+    }
 }

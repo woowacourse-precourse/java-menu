@@ -12,11 +12,13 @@ public class Menu {
     private Map<Integer, Category> categoryNames;
     private Map<Category,List<String>> categoryValues;
     private List<Category> weekCategories;
+    private Map<String, List<String>> recommendedMenus;
 
     public Menu() {
         categoryNames = new HashMap<>();
         categoryValues = new TreeMap<>();
         weekCategories = new ArrayList<>();
+        recommendedMenus = new TreeMap<>();
         init();
     }
 
@@ -24,6 +26,10 @@ public class Menu {
         addCategoryNames();
         addCategoryValues();
         makeWeekCategoryNames();
+    }
+
+    public Map<String, List<String>> getRecommendedMenus() {
+        return recommendedMenus;
     }
 
     private void addCategoryNames() {
@@ -68,6 +74,43 @@ public class Menu {
             return Arrays.asList(MENU_ASIA.split(","));
         }
         return Arrays.asList(MENU_WESTERN.split(","));
+    }
+
+    public void recommendCoach(Coach coach) {
+        Map<String, List<String>> coaches = coach.getCoaches();
+        for (String coachName : coaches.keySet()) {
+            initRecommendedMenu(coachName);
+            recommendMenu(coachName);
+        }
+    }
+
+    private void initRecommendedMenu(String coachName) {
+        recommendedMenus.put(coachName, new ArrayList<>());
+    }
+
+    private void recommendMenu(String coachName) {
+        for (Category weekCategory : weekCategories) {
+            List<String> todayMenus = categoryValues.get(weekCategory);
+            String menu = shuffleMenu(coachName, todayMenus);
+            recommendedMenus.get(coachName).add(menu);
+        }
+    }
+
+    private String shuffleMenu(String coachName, List<String> todayMenus) {
+        while (true) {
+            String menu = Randoms.shuffle(todayMenus).get(0);
+            if (checkMenuDuplicate(coachName, menu)) {
+                continue;
+            }
+            return menu;
+        }
+    }
+
+    private boolean checkMenuDuplicate(String coachName, String menu) {
+        if (recommendedMenus.get(coachName).contains(menu)) {
+            return true;
+        }
+        return false;
     }
 
 

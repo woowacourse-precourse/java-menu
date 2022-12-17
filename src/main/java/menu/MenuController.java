@@ -22,10 +22,11 @@ public class MenuController {
         outputView.printStart();
         List<String> coachNames = repeat(inputView::readCoachNames);
         List<String> disLikeFoods = new ArrayList<>();
-        writeDisLikeFoods(coachNames, disLikeFoods);
+        coach = writeDisLikeFoods(coachNames, disLikeFoods);
+        menu.recommendCoach(coach);
     }
 
-    private void writeDisLikeFoods(List<String> coachNames, List<String> disLikeFoods) {
+    private Coach writeDisLikeFoods(List<String> coachNames, List<String> disLikeFoods) {
         for (String coachName : coachNames) {
             try {
                 disLikeFoods = inputView.readDislikeFoods(coachName);
@@ -36,6 +37,7 @@ public class MenuController {
             coaches.put(coachName, disLikeFoods);
         }
         coach = new Coach(coaches);
+        return coach;
     }
 
     private <T> T repeat(Supplier<T> inputReader) {
