@@ -20,6 +20,7 @@ public class MenuRepository {
     }
 
     public static List<Menu> getMenusByCategory(Category category) {
+
         return menuMap.values().stream().filter((menu) -> menu.getCategory().equals(category))
                 .collect(Collectors.toUnmodifiableList());
     }

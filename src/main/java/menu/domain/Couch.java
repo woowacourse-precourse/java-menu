@@ -1,15 +1,19 @@
 package menu.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Couch {
 
     private final String name;
     private final Set<Menu> alreadyRecommended;
+    private Map<Category, Integer> count = new HashMap<>();
 
     public Couch(String name, List<Menu> disableMenu) {
         this.name = name;
@@ -29,6 +33,7 @@ public class Couch {
     }
 
     public void addDisableMenu(Menu menu) {
+        count.put(menu.getCategory(), count.getOrDefault(menu, 0) + 1);
         alreadyRecommended.add(menu);
     }
 
@@ -36,6 +41,8 @@ public class Couch {
         List<Menu> copied = new ArrayList<>(menus);
 
         copied.removeAll(alreadyRecommended);
-        return copied;
+
+        return copied.stream().filter((menu) -> count.getOrDefault(menu.getCategory(), 0) < 2)
+                .collect(Collectors.toList());
     }
 }
