@@ -21,4 +21,8 @@ public class HateMenu {
             ExceptionMessage.NOT_EXIST_MENU.throwException();
         }
     }
+
+    public boolean isHateMenu(String menu) {
+        return hateMenus.contains(menu);
+    }
 }
