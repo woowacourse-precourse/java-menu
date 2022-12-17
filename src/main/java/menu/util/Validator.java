@@ -3,6 +3,7 @@ package menu.util;
 import static menu.message.ErrorMessage.INCORRECT_INPUT_FORMAT;
 import static menu.message.ErrorMessage.LESS_THAN_MINIMUM_NUMBER_OF_COACH;
 import static menu.message.ErrorMessage.OVER_MAXIMUM_NUMBER_OF_COACH;
+import static menu.message.ErrorMessage.OVER_MAXIMUM_NUMBER_OF_DISLIKE_FOOD;
 
 public class Validator {
     private static final String NAME_OR_COMMA = "^[가-힣,]*$";
@@ -13,11 +14,24 @@ public class Validator {
         }
 
         String[] coaches = input.split(",");
+
         if (isLessThanMinimumNumberOfCoach(coaches)) {
             throw new IllegalArgumentException(LESS_THAN_MINIMUM_NUMBER_OF_COACH);
         }
         if (isOverMaximumNumberOfCoach(coaches)) {
             throw new IllegalArgumentException(OVER_MAXIMUM_NUMBER_OF_COACH);
+        }
+    }
+
+    public static void validateDislikeFoodsInput(String input) {
+        if (!containsOnlyCommaOrName(input)) {
+            throw new IllegalArgumentException(INCORRECT_INPUT_FORMAT);
+        }
+
+        String[] foods = input.split(",");
+
+        if (isOverMaximumNumberOfDislikeFood(foods)) {
+            throw new IllegalArgumentException(OVER_MAXIMUM_NUMBER_OF_DISLIKE_FOOD);
         }
     }
 
@@ -31,5 +45,9 @@ public class Validator {
 
     private static boolean isOverMaximumNumberOfCoach(String[] coaches) {
         return coaches.length > 5;
+    }
+
+    private static boolean isOverMaximumNumberOfDislikeFood(String[] foods) {
+        return foods.length > 2;
     }
 }
