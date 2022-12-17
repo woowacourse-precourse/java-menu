@@ -76,10 +76,18 @@ public enum Menu {
                 .collect(Collectors.toList());
     }
 
-    private static Menu getMenu(final String inputMenu) {
+    public static Menu getMenu(final String inputMenu) {
         return Arrays.stream(values())
-                .filter(menu -> menu.name == inputMenu)
+                .filter(menu -> menu.name.equals(inputMenu))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.INVALID_MENU));
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean containsName(final String menuName) {
+        return name.equals(menuName);
     }
 }

@@ -9,4 +9,9 @@ public class ExcludeMenu {
     public ExcludeMenu(final List<Menu> menus) {
         this.menus = menus;
     }
+
+    public boolean containsMenuName(final String menuName) {
+        return menus.stream()
+                .anyMatch(menu -> menu.containsName(menuName));
+    }
 }

@@ -47,6 +47,7 @@ import static menu.domain.enums.Menu.UDON;
 import static menu.domain.enums.Menu.VIETNAMESE_SPRING_ROLLS;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public enum Category {
@@ -78,5 +79,9 @@ public enum Category {
 
     public boolean contains(final int day) {
         return number == day;
+    }
+
+    public List<Menu> getMenuList() {
+        return Collections.unmodifiableList(menus);
     }
 }
