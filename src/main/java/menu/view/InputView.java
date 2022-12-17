@@ -2,6 +2,7 @@ package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.Menu;
@@ -23,6 +24,9 @@ public class InputView {
     public static CoachDto readCantEatMenu(CoachNameDto coachNameDto) {
         OutputView.printReadCantEatMenus(coachNameDto);
         String menus = Console.readLine();
+        if (menus.length() == 0) {
+            return new CoachDto(coachNameDto.getName(), Collections.emptyList());
+        }
         List<Menu> cantEatMenus = Arrays.stream(menus.split(DELIMITER))
                 .map(Menu::from)
                 .collect(Collectors.toList());
