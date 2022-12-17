@@ -42,7 +42,7 @@ public class MenuRecommend {
         }
         List<Food> categoryFood = getSpecificCategoryFood(foods, category);
         for(int i=0;i<coaches.size();i++){
-            addNewDayFood(day, coaches.get(i), categoryFood);
+            addFoodPerDayToCoach(day, coaches.get(i), categoryFood);
         }
         return category;
     }
@@ -55,7 +55,7 @@ public class MenuRecommend {
         return categoryFood;
     }
 
-    public void addNewDayFood(Day day, Coach coach, List<Food> categoryFood) {
+    public void addFoodPerDayToCoach(Day day, Coach coach, List<Food> categoryFood) {
         List<String> foodNames = categoryFood.stream()
                 .map(f->f.getName())
                 .collect(Collectors.toList());
