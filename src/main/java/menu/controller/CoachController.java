@@ -1,7 +1,6 @@
 package menu.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.Coach;
@@ -57,7 +56,7 @@ public class CoachController {
         return coaches;
     }
 
-    private void validateName(String name) {
+    private void validateName(String name) { // TODO Coach 도메인으로 로직 옮기기
         SizeValidator coachNameSizeValidator = new CoachNameSizeValidator();
         coachNameSizeValidator.validate(name.length());
     }

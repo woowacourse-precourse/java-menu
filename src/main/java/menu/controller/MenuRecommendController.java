@@ -14,6 +14,8 @@ import menu.repository.MenuRepository;
 import menu.view.OutputView;
 
 public class MenuRecommendController {
+    private static final int START_DAY = 0;
+    private static final int END_DAY = 5;
 
     private final List<Category> existCategories = new ArrayList<>();
 
@@ -23,7 +25,7 @@ public class MenuRecommendController {
     }
 
     private void addWeekMenuOfCoaches(List<Coach> coaches) {
-        for (int day = 0; day < 5; day++) {
+        for (int day = START_DAY; day < END_DAY; day++) {
             addDayMenuOfCoaches(coaches);
         }
     }
