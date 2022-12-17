@@ -20,4 +20,8 @@ public class Coach {
     public String getName() {
         return name;
     }
+
+    public boolean isNameOf(String name) {
+        return this.name.equals(name);
+    }
 }
