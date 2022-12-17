@@ -1,6 +1,7 @@
 package menu.domain;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static menu.constant.SystemConstant.ERROR_PREFIX;
 
@@ -25,9 +26,5 @@ public enum Category {
                 .filter(category -> category.command == command)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_PREFIX + "존재하지 않는 카테고리입니다."));
-    }
-
-    public boolean isSameCategory(Category category) {
-        return categoryName.equals(category.categoryName);
     }
 }

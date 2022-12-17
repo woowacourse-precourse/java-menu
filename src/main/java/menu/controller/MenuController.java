@@ -19,6 +19,7 @@ public class MenuController {
         addCoaches();
         addCoachesDislikeMenus();
         recommend();
+        getResult();
     }
 
     private void initMenus() {
@@ -59,5 +60,9 @@ public class MenuController {
     private void recommend() {
         RecommendMaker recommendMaker = new RecommendMaker(new RandomCategoryGenerator());
         recommendMaker.recommend();
+    }
+
+    private void getResult() {
+        OutputView.printResult(CoachRepository.getCoachesRecommendMenus());
     }
 }

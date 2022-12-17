@@ -1,7 +1,10 @@
 package menu.domain;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import static menu.constant.SystemConstant.*;
 
@@ -24,6 +27,18 @@ public class CoachRepository {
 
     public static List<Coach> getCoaches() {
         return coaches;
+    }
+
+    public static Map<String, List<String>> getCoachesRecommendMenus() {
+        Map<String, List<String>> coachesRecommendMenus = new LinkedHashMap<>();
+        coaches.forEach(coach -> {
+            coachesRecommendMenus.put(
+                    coach.getCoachName(),
+                    coach.getRecommendMenus().stream()
+                            .map(Menu::getMenuName)
+                            .collect(Collectors.toUnmodifiableList()));
+        });
+        return coachesRecommendMenus;
     }
 
     private static void validateCoachCount(List<String> coachNames) {

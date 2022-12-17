@@ -5,6 +5,8 @@ public class SystemConstant {
     // system message
     public static final String ERROR_PREFIX = "[ERROR] ";
     public static final String PARTITION = " | ";
+    public static final String OPEN_BRACKET = "[ ";
+    public static final String CLOSE_BRACKET = " ]";
 
     // input
     public static final String INPUT_SPLIT_OPTION = ",";
