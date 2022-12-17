@@ -25,14 +25,14 @@ public class Coach {
             category = Category.from(Randoms.pickNumberInRange(1, 5));
         }
         recommendedCategories.add(category);
-        String foodName = pickFoodName(category);
+        String foodName = pickFoodNameFrom(category);
         while (isRecommended(foodName)) {
-            foodName = pickFoodName(category);
+            foodName = pickFoodNameFrom(category);
         }
         recommendedFoods.add(Food.from(foodName));
     }
 
-    private String pickFoodName(Category category) {
+    private String pickFoodNameFrom(Category category) {
         return Randoms.shuffle(Food.foodNamesFromCategory(category)).get(0);
     }
 
@@ -48,5 +48,9 @@ public class Coach {
                 .filter(element -> element.equals(Food.from(foodName)))
                 .count();
         return count != 0;
+    }
+
+    public List<Food> getRecommendedFoods() {
+        return recommendedFoods;
     }
 }

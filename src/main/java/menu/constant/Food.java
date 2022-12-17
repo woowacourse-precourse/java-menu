@@ -43,7 +43,7 @@ public enum Food {
     }
 
     private boolean isEqualConsideringSpaceTo(String foodNameWithSpace) {
-        String foodNameWithoutSpace = foodNameWithSpace.replaceAll("_", " ");
+        String foodNameWithoutSpace = foodNameWithSpace.replaceAll(" ", "_");
         return name().equals(foodNameWithoutSpace);
     }
 }
