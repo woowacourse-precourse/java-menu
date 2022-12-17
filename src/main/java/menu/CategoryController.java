@@ -25,6 +25,16 @@ public class CategoryController {
         }
     }
 
+    public List<Category> makeRecommendMenu() {
+        List<Category> categories = new ArrayList<>();
+
+        for (int i = 0; i < 5; i++) {
+            categories.add(pickDayCategory());
+        }
+
+        return categories;
+    }
+
     public Category pickDayCategory() {
         Category category = pickCategory();
         List<Coach> coaches = CoachRepository.findAllCoach();

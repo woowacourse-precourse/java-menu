@@ -38,4 +38,11 @@ public class CategoryControllerTest {
         List<Category> categories = List.of(Category.JAPANESE, Category.KOREAN, Category.CHINESE, Category.ASIAN, Category.WESTERN);
         assertThat(categories).contains(category);
     }
+
+    @Test
+    @DisplayName("5일간의 카테고리 고르기 성공")
+    void test3() {
+        List<Category> categories = categoryController.makeRecommendMenu();
+        assertThat(categories).hasSize(5);
+    }
 }
