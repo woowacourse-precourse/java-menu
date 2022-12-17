@@ -27,10 +27,14 @@ public class MenuRecommender {
     public List<Category> recommendCategories() {
         List<Category> categories = new ArrayList<>();
         while (categories.size() < 5) {
-            int randomIdx = Randoms.pickNumberInRange(1, 5);
-            Category category = Category.get(randomIdx);
-            Validator.validateCategories(category, categories);
-            categories.add(category);
+            try {
+                int randomIdx = Randoms.pickNumberInRange(1, 5);
+                Category category = Category.get(randomIdx);
+                Validator.validateCategories(category, categories);
+                categories.add(category);
+            } catch (CannotRecommendCategoryException exception) {
+                System.out.println(exception.getMessage());
+            }
         }
         return categories;
     }
