@@ -65,4 +65,8 @@ public class Coach {
         if(input_inedibles_List.size()>MAX_SIZE_INEDIBLES)
             throw new IllegalArgumentException(INEDIBLES_RANGE_ERROR_MSG);
     }
+
+    public List<String> getInedibles() {
+        return Collections.unmodifiableList(inedibles);
+    }
 }

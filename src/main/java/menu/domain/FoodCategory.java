@@ -1,6 +1,7 @@
 package menu.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,6 +12,7 @@ public enum FoodCategory {
     ASIAN("4","팟타이, 카오 팟, 나시고렝, 파인애플 볶음밥, 쌀국수, 똠얌꿍, 반미, 월남쌈, 분짜"),
     WESTERN("5","라자냐, 그라탱, 뇨끼, 끼슈, 프렌치 토스트, 바게트, 스파게티, 피자, 파니니");
 
+    private static final String NO_EXIST_CODE_ERROR_MSG = "없는 코드 입니다";
     private final String code;
     private final List<String> menus;
 
@@ -28,12 +30,20 @@ public enum FoodCategory {
                     .findFirst();
 
             return true;
-        }catch (NullPointerException e){
+        }catch (NullPointerException e) {
             return false;
         }
+    }
 
+    public static FoodCategory getFoodCategoryByCode(String code){
+        return Arrays.stream(FoodCategory.values())
+                .filter(foodCategory -> foodCategory.code.equals(code))
+                .findFirst()
+                .orElseThrow(()->new IllegalArgumentException(NO_EXIST_CODE_ERROR_MSG));
+    }
 
-
+    public List<String> getMenus() {
+        return Collections.unmodifiableList(menus);
     }
 
     //TODO : getList<String>
