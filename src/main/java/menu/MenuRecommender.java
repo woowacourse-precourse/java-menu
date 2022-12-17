@@ -39,5 +39,10 @@ public class MenuRecommender {
         }
         return true;
     }
-
+    private boolean validatePickyEating(String menu, Member member) {
+        if (member.getPickyEatings().contains(menu)) {
+            return false;
+        }
+        return true;
+    }
 }
