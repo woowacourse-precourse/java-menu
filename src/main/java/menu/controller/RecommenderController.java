@@ -14,7 +14,7 @@ public class RecommenderController {
     private final OutputView outputView;
 
     private List<Category> recommendedCategories = new ArrayList<>();
-    private List<Coach> coaches;
+    private List<Coach> coaches = new ArrayList<>();
 
     public RecommenderController() {
         this.inputView = new InputView();

@@ -8,12 +8,14 @@ public class InputView {
     public String getCoachesName() {
         System.out.println(getCoachesNameMessage);
         String userInput = Console.readLine();
+        System.out.println();
         return userInput;
     }
 
     public String getDislikeMenus(String coachName) {
         System.out.println(coachName + getDislikeMenusMessage);
         String userInput = Console.readLine();
+        System.out.println();
         return userInput;
     }
 }
