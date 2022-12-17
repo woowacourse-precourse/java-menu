@@ -1,6 +1,7 @@
 package menu;
 
 import camp.nextstep.edu.missionutils.Console;
+import menu.service.MenuRecommendService;
 
 public class Application {
     public static void main(String[] args) {
@@ -12,6 +13,12 @@ public class Application {
             System.out.printf("%s(이)가 못 먹는 메뉴를 입력해 주세요.\n", coachName);
             String bannedMenus = Console.readLine().strip();
             System.out.println();
+            if (bannedMenus.length() == 0) {
+                continue;
+            }
+            for (String bannedMenu : bannedMenus.split(",")) {
+                MenuRecommendService.addBannedMenu(coachName, bannedMenu);
+            }
         }
     }
 }
