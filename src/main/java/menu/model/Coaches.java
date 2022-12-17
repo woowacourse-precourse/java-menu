@@ -1,14 +1,13 @@
 package menu.model;
 
+import menu.utils.Serializer;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class Coaches {
-    private static final String SPACE = " ";
-    private static final String NONE = "";
-    private static final String COMMA = ",";
+public class Coaches extends Serializer {
     private static final String REGEX_KOREAN = "^[ㄱ-ㅎ가-힣,]*$";
 
     private final List<Coach> coaches;
@@ -17,10 +16,14 @@ public class Coaches {
         this.coaches = coaches;
     }
 
+    public List<Coach> getCoaches() {
+        return coaches;
+    }
+
     public static Coaches create(final String input) {
         validateKorean(input);
 
-        final String[] coachesName = input.trim().replaceAll(SPACE, NONE).split(COMMA);
+        final String[] coachesName = serialize(input);
         validateCoachName(coachesName);
 
         return createCoaches(coachesName);

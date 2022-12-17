@@ -14,6 +14,10 @@ public class Coach {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void addCannotEatFood(final List<String> foods) {
         cannotEatFoods.addAll(foods);
     }
