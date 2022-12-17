@@ -1,6 +1,7 @@
-package menu.logic;
+package menu;
 
 import menu.domain.Recommend;
+import menu.logic.Controller;
 
 public class Application {
     public static void main(String[] args) {
