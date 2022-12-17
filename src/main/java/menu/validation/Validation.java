@@ -31,11 +31,9 @@ public class Validation {
     }
 
     // 각 코치가 먹지 못하는 음식의 수 검증하는 기능
-    public static void validateCoachCanNotEatFoodLength(List<String> foods) {
-        for (String food : foods) {
-            if(food.split(SPLIT).length > COACH_CAN_NOT_FOOD_MAX_LENGTH) {
+    public static void validateCoachCanNotEatFoodLength(String food) {
+        if(food.split(SPLIT).length > COACH_CAN_NOT_FOOD_MAX_LENGTH) {
                 throw new IllegalArgumentException(ERROR_COACH_CAN_NOT_FOOD_LENGTH);
-            }
         }
     }
 }

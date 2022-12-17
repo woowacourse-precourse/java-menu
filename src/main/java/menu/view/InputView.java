@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import menu.domain.Coach;
 import menu.validation.Validation;
 
 public class InputView {
@@ -21,14 +22,11 @@ public class InputView {
         return names;
     }
 
-    public static List<String> inputCanNotEatFood(List<String> names) {
-        List<String> canNotEatFood = new ArrayList<>();
-        for (String name : names) {
-            OutputView.printPhrase(name + CAN_NOT_EAT_FOOD_INPUT);
-            String food = Console.readLine();
-            canNotEatFood.add(food);
-            System.out.println();
-        }
+    public static String inputCanNotEatFood(Coach coach) {
+        OutputView.printPhrase(coach.getName() + CAN_NOT_EAT_FOOD_INPUT);
+        String canNotEatFood = Console.readLine();
+        System.out.println();
+
         Validation.validateCoachCanNotEatFoodLength(canNotEatFood);
         return canNotEatFood;
     }
