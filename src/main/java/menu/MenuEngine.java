@@ -10,6 +10,10 @@ import java.util.Map;
 
 public class MenuEngine {
 
+    private static void printGameStart() {
+        System.out.println("점심 메뉴 추천을 시작합니다.");
+    }
+
     public void start() {
         printGameStart();
 
@@ -24,9 +28,5 @@ public class MenuEngine {
         Map<String, List<String>> menu = menuMaker.addMenu(category, coachNames, exceptedFoods);
 
         ConsoleUtil.outputGameResult(category, menu);
-    }
-
-    private static void printGameStart() {
-        System.out.println("점심 메뉴 추천을 시작합니다.");
     }
 }
