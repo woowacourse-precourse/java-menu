@@ -3,6 +3,7 @@ package menu.controller;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.function.Supplier;
+import menu.domain.Coach;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -47,6 +48,7 @@ public class MainController {
 
     private ApplicationStatus receiveCoachData() {
         outputView.printStart();
+        Coach coach = new Coach("포비");
         return ApplicationStatus.APPLICATION_EXIT;
     }
 
