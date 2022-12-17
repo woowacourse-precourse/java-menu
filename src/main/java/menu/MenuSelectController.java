@@ -10,7 +10,7 @@ public class MenuSelectController {
         coachRepo.setCoachList(inputDriver.scanCoachName());
         setCoachCannotEatMenu();
         MenuSelectListMaker menuSelectListMaker = new MenuSelectListMaker(coachRepo);
-        menuSelectListMaker.menuListStringReturn();
+        outputDriver.printResult(menuSelectListMaker.menuListStringReturn());
     }
 
     private void setCoachCannotEatMenu() {
