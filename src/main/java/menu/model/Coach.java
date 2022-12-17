@@ -19,4 +19,8 @@ public class Coach {
     public void addAlreadyEatFood(final List<String> foods) {
         alreadyEatFoods.addAll(foods);
     }
+
+    public boolean cannotEatMenu(final String menu) {
+        return cannotEatFoods.contains(menu) || alreadyEatFoods.contains(menu);
+    }
 }

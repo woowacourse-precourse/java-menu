@@ -8,6 +8,7 @@ public class RecommendSystem implements RandomPicker {
 
     private static final int FIRST_CATEGORY_NUMBER = 1;
     private static final int LAST_CATEGORY_NUMBER = 5;
+    private static final String INITIAL_MENU = "";
 
     @Override
     public MenuCategory pickRandomCategory() {
@@ -25,14 +26,15 @@ public class RecommendSystem implements RandomPicker {
     }
 
     @Override
-    public String pickRandomMenu(final List<String> menus, final List<String> holdMenus) {
-        final String menu = Randoms.shuffle(menus).get(0);
+    public String pickRandomMenu(final List<String> menus, final Coach coach) {
+        String menu = INITIAL_MENU;
+        boolean cannotEat = false;
 
-        if (holdMenus.contains(menu)) {
-            return pickRandomMenu(menus, holdMenus);
-        }
+        do {
+            menu = Randoms.shuffle(menus).get(0);
+            cannotEat = coach.cannotEatMenu(menu);
+        } while (cannotEat);
 
-        holdMenus.add(menu);
         return menu;
     }
 }
