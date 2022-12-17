@@ -41,7 +41,7 @@ public class MenuController {
         outputView.printStartRecommend();
         outputView.printCategories(menuService.getRecommendedCategories());
         for (Coach coach : coachService.getAllCoaches()) {
-            outputView.printRecommendedMenus(coach.getName(), coach.getRecommendedFoods());
+            outputView.printRecommendedMenus(coach.getName(), coach.getRecommendedMenus());
         }
     }
 

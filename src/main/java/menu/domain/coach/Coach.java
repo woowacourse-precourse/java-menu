@@ -35,7 +35,7 @@ public class Coach {
         return isNotRecommended(menu) && likeMenu(menu);
     }
 
-    public List<String> getRecommendedFoods() {
+    public List<String> getRecommendedMenus() {
         return recommendedMenus.getAll();
     }
 }
