@@ -6,32 +6,32 @@ import java.util.List;
 public class Coach {
 
     private final String name;
-    private final List<String> canNotEatMenus;
-    private final List<String> recommendedMenu;
+    private final List<String> deniedMenus;
+    private final List<String> recommendedMenus;
 
-    public Coach(String name, List<String> canNotEatMenus) {
+    public Coach(String name, List<String> deniedMenus) {
         this.name = name;
-        this.canNotEatMenus = canNotEatMenus;
-        recommendedMenu = new ArrayList<>();
+        this.deniedMenus = deniedMenus;
+        recommendedMenus = new ArrayList<>();
     }
 
     public boolean canEat(String menu) {
-        if (recommendedMenu.contains(menu)) {
+        if (recommendedMenus.contains(menu)) {
             return false;
         }
 
-        if (canNotEatMenus.contains(menu)) {
+        if (deniedMenus.contains(menu)) {
             return false;
         }
 
-        recommendedMenu.add(menu);
+        recommendedMenus.add(menu);
         return true;
     }
 
     public List<String> getRecommendMenuFormat() {
         List<String> format = new ArrayList<>();
         format.add(name);
-        format.addAll(recommendedMenu);
+        format.addAll(recommendedMenus);
         return format;
     }
 
