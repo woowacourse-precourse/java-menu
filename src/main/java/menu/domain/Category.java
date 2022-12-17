@@ -12,6 +12,10 @@ public class Category {
         foods = new ArrayList<>();
     }
 
+    public void addFood(String food) {
+        foods.add(food);
+    }
+
     public String getName() {
         return name;
     }
