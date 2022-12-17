@@ -27,7 +27,7 @@ public class Person {
     public void addUnavailableMenus(String menus) {
         String[] split = validateUnavailableMenus(menus);
         List<Menu> result = Arrays.stream(split)
-                .map(Menu::new)
+                .map(Menu::map)
                 .collect(Collectors.toList());
         unavailable = new Menus(result);
     }

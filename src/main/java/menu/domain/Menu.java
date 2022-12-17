@@ -1,5 +1,7 @@
 package menu.domain;
 
+import java.util.Arrays;
+
 public enum Menu {
     JAPANESE1("규동"),
     JAPANESE2("우동"),
@@ -56,5 +58,12 @@ public enum Menu {
 
     Menu(String menuName) {
         this.menuName = menuName;
+    }
+
+    public static Menu map(String input) {
+        return Arrays.stream(values())
+                .filter(menu -> menu.menuName.equals(input))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 메뉴입니다."));
     }
 }
