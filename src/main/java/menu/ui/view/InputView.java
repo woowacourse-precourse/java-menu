@@ -17,6 +17,7 @@ public class InputView {
     public CoachesRequest requestCoachNames() {
         System.out.println(ViewMessage.COACH_NAME_INPUT_MESSAGE);
         String userInput = Console.readLine();
+        System.out.println();
         try {
             return CoachesRequest.from(userInput);
         } catch (IllegalArgumentException exception) {
@@ -30,6 +31,7 @@ public class InputView {
 
         System.out.println(String.format(format, coachName));
         String userInput = Console.readLine();
+        System.out.println();
         return MenuRequest.from(userInput);
     }
 }

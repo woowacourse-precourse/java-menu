@@ -29,7 +29,6 @@ public class OutputView {
     }
 
     private void suffixPage() {
-        lineBreak();
         System.out.println(ViewMessage.RESULT_SUFFIX_MESSAGE);
     }
 
