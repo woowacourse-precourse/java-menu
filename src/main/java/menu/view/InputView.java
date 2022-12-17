@@ -13,7 +13,7 @@ public class InputView {
     public List<String> readCoachesName() {
         System.out.println(INPUT_MSG_COACHES_NAME.get());
         List<String> coachesName = inputValidator.toStrList(Console.readLine());
-        // TODO: 검증하기
+        inputValidator.validateCoachesName(coachesName);
 
         return coachesName;
     }

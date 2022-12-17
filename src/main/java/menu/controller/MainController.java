@@ -24,9 +24,7 @@ public class MainController extends RepeatModule {
     }
 
     public void start() {
-        //TODO: 입력받아야 함
-        //List<String> coachesName = repeat(inputView::readCoachesName);
-        List<String> coachesName = List.of("종헌", "상현");
+        List<String> coachesName = repeat(inputView::readCoachesName);
 
         for (String coachName : coachesName) {
             //TODO: 입력받아야 함, 입력 과정 수정
