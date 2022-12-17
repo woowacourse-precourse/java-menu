@@ -38,10 +38,13 @@ public class SuggestProgram {
     }
 
     private void makeMenuSuggestResult(List<Coach> coaches){
-        // 카테고리 뽑는 기능
-        List<Categories> suggestedCategory = suggester.categorySuggest();
-        // 이후 카테고리를 뽑고 나서, 메뉴를 선정하는 기능 추가
 
-        // 이후 메뉴 추천 결과 입력 후 종료.
+        List<Categories> suggestedCategory = suggester.categorySuggest();
+
+        for (Coach coach : coaches) {
+            coach.updateSuggestedMenus(suggestedCategory);
+        }
+
+
     }
 }

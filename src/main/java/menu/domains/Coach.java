@@ -1,5 +1,6 @@
 package menu.domains;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import menu.views.ProgramOutput;
 import menu.views.UserInput;
 
@@ -21,5 +22,19 @@ public class Coach {
         output.printRequestNotHaveMenu(this.name);
         List<String> cannotHaveMenu = input.requestCannotEatMenu();
         cannotEatMenus.addAll(cannotHaveMenu);
+    }
+
+    public void updateSuggestedMenus(List<Categories> categories){
+        for(int menuIndex = 0; menuIndex < 5;){
+            List<String> menuList = Categories.getMenuList(categories.get(menuIndex));
+            String suggestedMenu = Randoms.shuffle(menuList).get(0);
+            if(isValidMenu(suggestedMenu)){
+                suggestedMenus.add(suggestedMenu);
+                menuIndex++;
+            }
+        }
+    }
+    private boolean isValidMenu(String suggestedMenu){
+        return !(this.suggestedMenus.contains(suggestedMenu) || this.cannotEatMenus.contains(suggestedMenu));
     }
 }
