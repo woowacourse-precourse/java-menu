@@ -14,7 +14,10 @@ public class Constants {
     public static final String STICK = "|";
     public static final String THREE_SPACES = "   ";
 
-    public static final String ERROR_MESSAGE = "[ERROR] ";
-    public static final String COACH_INVALID_RANGE_ERROR_MESSAGE = " 코치는 최소 2명 이상 입력해야 합니다.";
+    public static final String ERROR_MESSAGE = "[ERROR]";
+    public static final String COACH_INVALID_RANGE_ERROR_MESSAGE_OVER_TWO = " 코치는 최소 2명 이상 입력해야 합니다.";
+    public static final String COACH_INVALID_RANGE_ERROR_MESSAGE_UNDER_FIVE = " 코치는 최대 5명 이하 입력해야 합니다.";
+
+    public static final String COACH_NAME_INVALID_RANGE_ERROR_MESSAGE = " 코치의 이름은 최소 2글자, 최대 4글자입니다.";
 
 }
