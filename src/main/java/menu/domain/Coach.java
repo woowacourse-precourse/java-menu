@@ -16,6 +16,10 @@ public class Coach {
         inedibleFoods.add(foodName);
     }
 
+    public boolean isEdible(String foodName) {
+        return inedibleFoods.stream().noneMatch(foodName::equals);
+    }
+
     public String getName() {
         return name;
     }
