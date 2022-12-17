@@ -3,9 +3,12 @@ package menu.controller.subcontroller;
 import java.util.List;
 import java.util.stream.Collectors;
 import menu.domain.Category;
-import menu.domain.repository.CategoryRepository;
 import menu.domain.Menu;
+import menu.domain.repository.CategoryRepository;
 import menu.domain.repository.MenuRepository;
+import menu.domain.status.ApplicationStatus;
+import menu.view.InputView;
+import menu.view.OutputView;
 
 public class InitializingController implements Controllable {
 
@@ -20,11 +23,19 @@ public class InitializingController implements Controllable {
             "쌀국수", "똠얌꿍", "반미", "월남쌈", "분짜");
     public static final List<String> WESTERN_MENUS = List.of("라자냐", "그라탱", "뇨끼", "끼슈", " 프렌치 토스트",
             "바게트", "스파게티", "피자", "파니니");
+    private final InputView inputView;
+    private final OutputView outputView;
+
+    public InitializingController(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+    }
 
     @Override
-    public void process() {
+    public ApplicationStatus process() {
         initializeCategories();
         initializeMenus();
+        return ApplicationStatus.RECEIVE_COACH_DATA;
     }
 
     private static void initializeCategories() {

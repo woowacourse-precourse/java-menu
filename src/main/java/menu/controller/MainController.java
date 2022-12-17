@@ -1,18 +1,18 @@
 package menu.controller;
 
 import java.util.EnumMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
+import menu.controller.subcontroller.CoachDataController;
 import menu.controller.subcontroller.InitializingController;
-import menu.domain.status.ApplicationStatus;
+import menu.controller.subcontroller.MenuRecommendationController;
 import menu.domain.Category;
-import menu.domain.repository.CategoryRepository;
 import menu.domain.Coach;
-import menu.domain.repository.CoachRepository;
 import menu.domain.Day;
 import menu.domain.Menu;
-import menu.domain.repository.MenuRepository;
+import menu.domain.repository.CategoryRepository;
+import menu.domain.repository.CoachRepository;
+import menu.domain.status.ApplicationStatus;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -50,51 +50,17 @@ public class MainController {
     }
 
     private ApplicationStatus initializeMenus() {
-        new InitializingController().process();
-        return ApplicationStatus.RECEIVE_COACH_DATA;
+        return new InitializingController(inputView, outputView).process();
     }
 
     private ApplicationStatus receiveCoachData() {
-        outputView.printStart();
-        inputView.readCoachNames().forEach(CoachRepository::add);
-        System.out.println(MenuRepository.menus());
-        for (Coach coach : CoachRepository.coaches()) {
-            List<Menu> menuNotToEat = inputView.readMenuNotToEat(coach.getName());
-            coach.addMenuNotToEat(menuNotToEat);
-        }
-        return ApplicationStatus.GIVE_RECOMMENDATION;
+        return new CoachDataController(inputView, outputView).process();
+
     }
 
     private ApplicationStatus giveRecommendation() {
-        for (Day day : Day.values()) {
-            Category category = pickAvailableCategory();
-            for (Coach coach : CoachRepository.coaches()) {
-                Menu menu = pickAvailableMenu(coach, category);
-                coach.addMenuAlreadyEaten(day, menu);
-            }
-            CategoryRepository.addCategoryCount(category);
-        }
-        outputView.printRecommendedMenus(CategoryRepository.getCategoriesAlreadyEaten(), CoachRepository.coaches());
-        outputView.printFinishRecommendation();
-        return ApplicationStatus.APPLICATION_EXIT;
+        return new MenuRecommendationController(inputView, outputView).process();
+
     }
-
-    private Category pickAvailableCategory() {
-        Category category = CategoryRepository.pickRandomCategory();
-        if (!CategoryRepository.isAvailableCategory(category)) {
-            return pickAvailableCategory();
-        }
-        return category;
-    }
-
-    private Menu pickAvailableMenu(Coach coach, Category category) {
-        Menu menu = category.pickRandomMenu();
-        if (!coach.isAvailableMenu(menu)) {
-            return pickAvailableMenu(coach, category);
-        }
-        return menu;
-    }
-
-
 
 }
