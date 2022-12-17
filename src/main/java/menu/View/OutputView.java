@@ -1,6 +1,6 @@
 package menu.View;
 
-import menu.Coach;
+import menu.Model.Coach;
 
 import java.util.List;
 

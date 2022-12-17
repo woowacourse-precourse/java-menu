@@ -1,4 +1,4 @@
-package menu;
+package menu.View;
 
 import java.util.List;
 

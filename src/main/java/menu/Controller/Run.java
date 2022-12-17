@@ -1,4 +1,4 @@
-package menu;
+package menu.Controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import menu.Model.Coach;
 import menu.View.InputView;
 import menu.View.OutputView;
 
