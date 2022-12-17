@@ -2,7 +2,6 @@ package menu;
 
 import menu.domain.Category;
 import menu.domain.Coach;
-import menu.domain.Coaches;
 import menu.domain.Menu;
 import menu.view.InputView;
 import menu.view.OutputView;
@@ -17,7 +16,7 @@ public class MenuRecommendProgram {
     private final OutputView outputView;
     private final CategoryRandomRecommender categoryRandomRecommender;
     private final MenuRandomRecommender menuRandomRecommender;
-    private Coaches coaches;
+    private List<Coach> coaches;
     private List<Category> categories;
 
     public MenuRecommendProgram() {
@@ -25,7 +24,7 @@ public class MenuRecommendProgram {
         this.outputView = new OutputView();
         this.categoryRandomRecommender = new CategoryRandomRecommender();
         this.menuRandomRecommender = new MenuRandomRecommender();
-        this.coaches = new Coaches();
+        this.coaches = new ArrayList<>();
         this.categories = new ArrayList<>();
     }
 
@@ -33,21 +32,18 @@ public class MenuRecommendProgram {
         outputView.printStartMessage();
         outputView.printInputCoachName();
         makeCoach(inputView.readCoachName());
-        checkHateMenu(this.coaches.getCoaches());
+        checkHateMenu(this.coaches);
         for (int i = 0; i < 5; i++) {
             categories.add(categoryRandomRecommender.recommend(categories));
-            recommendMenuEachCoach(i, coaches.getCoaches());
+            recommendMenuEachCoach(i, this.coaches);
         }
         printResult();
     }
 
     private void makeCoach(String[] coachNames) {
-        List<Coach> coaches = new ArrayList<>();
         for (String coach : coachNames) {
-            coaches.add(new Coach(coach));
+            this.coaches.add(new Coach(coach));
         }
-
-        this.coaches.setCoaches(coaches);
     }
 
     private void checkHateMenu(List<Coach> coaches) {
@@ -73,7 +69,7 @@ public class MenuRecommendProgram {
         outputView.printResultStartMessage();
         outputView.printDivision();
         outputView.printCategories(categories);
-        for (Coach coach: this.coaches.getCoaches()) {
+        for (Coach coach: this.coaches) {
             outputView.printRecommendedMenu(coach);
         }
         outputView.printCompleteMessage();
