@@ -3,8 +3,8 @@
 ### 카테고리 및 메뉴 초기화 `INITIALIZE_MENUS`
 
 - [x] 카테고리 등록 `Category` `CategoryRepository`
-- [ ] 메뉴 등록 `Menu` `MenuRepository`
-- [ ] 카테고리 안에 메뉴 등록
+- [x] 메뉴 등록 `Menu` `MenuRepository`
+- [x] 카테고리 안에 메뉴 등록
 
 ### 메뉴 추천 초기 설정  `RECEIVE_COACH_DATA`
 
