@@ -2,6 +2,7 @@ package menu.controller;
 
 import menu.model.CoachName;
 import menu.model.Menu;
+import menu.model.RecommendMachine;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -14,17 +15,32 @@ public class RecommendingController {
 
     public void play() {
         outputView.printStartMessage();
-        List<String> coachNames = inputCoachName();
-        CoachName coachName = new CoachName(coachNames);
+        CoachName name = coachName();
         Menu menu = new Menu();
-        checkFood(menu, coachName.getCoachNames());
+        checkDislikeFood(menu, name.getCoachNames());
+        RecommendMachine recommendMachine = new RecommendMachine();
+        recommend(recommendMachine);
     }
 
-    private void checkFood(Menu menu, List<String> coachNames) {
+    private void checkDislikeFood(Menu menu, List<String> coachNames) {
         for (String name : coachNames) {
             List<String> dislikeFood = inputDislikeFoodBy(name);
             menu.dislike(name, dislikeFood);
         }
+    }
+
+    private CoachName coachName() {
+        try {
+            return new CoachName(inputCoachName());
+        } catch (IllegalArgumentException e) {
+            outputView.printExceptionMessage(e);
+            return coachName();
+        }
+    }
+
+    private void recommend(RecommendMachine recommendMachine) {
+        List<String> recommendingCategory = recommendMachine.recommendCategory();
+        System.out.println(recommendingCategory.toString());
     }
 
     private List<String> inputCoachName() {

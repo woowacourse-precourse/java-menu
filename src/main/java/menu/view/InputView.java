@@ -8,7 +8,7 @@ import java.util.List;
 public class InputView {
     private static final String NAME_SEPARATOR = ",";
     private static final String INPUT_COACH_NAME = "코치의 이름을 입력해 주세요. (%s 로 구분)\n";
-    private static final String INPUT_DISLIKE_MENU = "%s(이)가 못 먹는 메뉴를 입력해 주세요.";
+    private static final String INPUT_DISLIKE_MENU = "%s(이)가 못 먹는 메뉴를 입력해 주세요.\n";
 
     public List<String> readCoachNames() {
         System.out.printf(INPUT_COACH_NAME, NAME_SEPARATOR);
