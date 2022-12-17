@@ -15,7 +15,7 @@ public enum CategoryType {
         this.number = number;
     }
 
-    private String getCategory() {
+    public String getCategory() {
         return this.category;
     }
 
