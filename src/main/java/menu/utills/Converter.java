@@ -5,6 +5,6 @@ import java.util.List;
 
 public class Converter {
     public static List<String> toListByDelimiter(String input) {
-        return Arrays.asList(input.split(","));
+        return Arrays.asList(input.split(", "));
     }
 }
