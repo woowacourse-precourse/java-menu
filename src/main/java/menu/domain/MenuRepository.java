@@ -1,12 +1,12 @@
 package menu.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 public class MenuRepository {
-
-    private final static List<Menu> menus = new ArrayList<>();
+    private final static Map<Category, List<String>> menusByCategory = new HashMap<>();
 
     private MenuRepository(){}
 
@@ -17,20 +17,17 @@ public class MenuRepository {
     }
 
 
-    public Menu save(Menu menu){
-        menus.add(menu);
-        return menu;
-    }
-
-    public List<Menu> findAll(){
-        return new ArrayList<>(menus);
+    public void save(Category category, String menu){
+        if(!menusByCategory.containsKey(category)){
+            menusByCategory.put(category, new ArrayList<>());
+        }
+        menusByCategory.get(category)
+                .add(menu);
     }
 
     // 매번 stream 말고 다른 방법은?
-    public List<Menu> findAllByCategory(Category category){
-        return menus.stream()
-                .filter(e -> e.getCategory() == category)
-                .collect(Collectors.toList());
+    public List<String> findAllByCategory(Category category){
+        return menusByCategory.get(category);
     }
 
 }

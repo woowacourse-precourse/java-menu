@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class Coach {
     private final String name;
-    private List<Menu> ateMenus; // 네이밍 이상
+    private List<String> ateMenus; // 네이밍 이상
     private List<String> hateMenuNames;
 
     public Coach(String name) {
@@ -22,23 +22,20 @@ public class Coach {
         return name;
     }
 
-    public void updateAteMenus(Menu ateMenu) {
+    public void updateAteMenus(String ateMenu) {
         this.ateMenus.add(ateMenu);
     }
 
     public void setHateMenuNames(List<String> hateMenuNames) {
-        // 검증 로직 필요
         this.hateMenuNames = hateMenuNames;
     }
 
-    public boolean canEat(Menu menu) {
-        return !ateMenus.contains(menu) && !hateMenuNames.contains(menu.getName());
+    public boolean canEat(String menu) {
+        return !ateMenus.contains(menu) && !hateMenuNames.contains(menu);
     }
 
     public List<String> getAteMenuNames() {
-        return ateMenus.stream().
-                map(Menu::getName)
-                .collect(Collectors.toList());
+        return ateMenus;
     }
 
 }

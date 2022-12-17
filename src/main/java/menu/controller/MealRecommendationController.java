@@ -33,7 +33,6 @@ public class MealRecommendationController {
         List<Category> thisWeekCategories = getThisWeekCategories();
         recommendation(thisWeekCategories);
         printResult(thisWeekCategories);
-
     }
 
     private void getAndSaveCoaches() {
@@ -43,7 +42,6 @@ public class MealRecommendationController {
     }
 
     private List<Coach> getCoaches(){
-        List<Coach> coahes;
         while(true){
             try{
                 List<String> coachNames = inputView.getCoachNames();
@@ -68,8 +66,6 @@ public class MealRecommendationController {
             coachRepository.save(coach);
         }
     }
-
-
 
     private void getAndSaveEachCoachHateMenu() {
         List<Coach> coaches = coachRepository.findAll();
@@ -117,16 +113,16 @@ public class MealRecommendationController {
     }
 
     private void recommendMenuOfOneCategory(Category category){ // 네이밍 이상
-        List<Menu> allMenusByCategory = menuRepository.findAllByCategory(category);
+        List<String> allMenusByCategory = menuRepository.findAllByCategory(category);
         List<Coach> coaches = coachRepository.findAll();
         for (Coach coach : coaches) {
-            Menu menu = recommendMenuForCoach(allMenusByCategory, coach);
+            String menu = recommendMenuForCoach(allMenusByCategory, coach);
             coach.updateAteMenus(menu);
         }
     }
 
-    private Menu recommendMenuForCoach(List<Menu> menus, Coach coach){
-        Menu menu;
+    private String recommendMenuForCoach(List<String> menus, Coach coach){
+        String menu;
         do{
             menu = Randoms.shuffle(menus).get(0);
         } while(!coach.canEat(menu));
