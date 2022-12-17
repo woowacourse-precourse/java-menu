@@ -1,11 +1,11 @@
 package menu.domain;
 
-import menu.dto.RecommendationResultDto;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Coaches {
+    public static final int NUMBER_LOWER_BOUNDS = 2;
+    public static final int NUMBER_UPPER_BOUNDS = 5;
     private final List<Coach> coaches;
 
     public Coaches(List<Coach> coaches) {
@@ -14,7 +14,7 @@ public class Coaches {
     }
 
     private void validate(List<Coach> coaches) {
-        if (coaches.size() < 2 || coaches.size() > 5) {
+        if (coaches.size() < NUMBER_LOWER_BOUNDS || coaches.size() > NUMBER_UPPER_BOUNDS) {
             throw new IllegalArgumentException("코치 명수 오류");
         }
     }

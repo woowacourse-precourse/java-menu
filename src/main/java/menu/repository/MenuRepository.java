@@ -13,8 +13,9 @@ import java.util.stream.Collectors;
 
 public class MenuRepository {
     private static final String FILE_PATH = "src/main/resources/Menus.md";
-    private static final Map<Category, Menus> menus = new EnumMap<>(Category.class);
     private static final String CATEGORY_MENUS_DELIMITER = ": ";
+    private static final String MENUS_DELIMITER = ", ";
+    private static final Map<Category, Menus> menus = new EnumMap<>(Category.class);
 
     static {
         load();
@@ -31,14 +32,14 @@ public class MenuRepository {
 
     private static void load(BufferedReader reader) {
         reader.lines()
-                .map(menuByCategory -> menuByCategory.split(CATEGORY_MENUS_DELIMITER))
+                .map(categoryAndMenus -> categoryAndMenus.split(CATEGORY_MENUS_DELIMITER))
                 .forEach(menuByCategory -> saveMenus(menuByCategory[0], menuByCategory[1]));
     }
 
     private static Menus saveMenus(String category, String menus) {
         return MenuRepository.menus.put(
                 Category.fromName(category),
-                Menus.from(category, menus)
+                Menus.from(category, menus.split(MENUS_DELIMITER))
         );
     }
 

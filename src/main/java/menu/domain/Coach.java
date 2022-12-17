@@ -5,6 +5,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class Coach {
+    private static final String WHITE_SPACE = " ";
+    public static final int NAME_LENGTH_LOWER_BOUNDS = 2;
+    public static final int NAME_LENGTH_UPPER_BOUNDS = 4;
+    public static final int NO_EAT_NUMBER_UPPER_BOUNDS = 2;
     private final String name;
     private final Menus noEat;
     private final Menus eaten;
@@ -17,10 +21,10 @@ public class Coach {
     }
 
     private void validate(String name) {
-        if (name.contains(" ")) {
+        if (name.contains(WHITE_SPACE)) {
             throw new IllegalArgumentException("이름 형식 에러");
         }
-        if (name.length() < 2 || name.length() > 4) {
+        if (name.length() < NAME_LENGTH_LOWER_BOUNDS || name.length() > NAME_LENGTH_UPPER_BOUNDS) {
             throw new IllegalArgumentException("이름 길이 에러");
         }
     }

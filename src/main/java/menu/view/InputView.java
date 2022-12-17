@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputView {
+    static final String INPUT_DELIMITER = ",";
     private static InputView instance;
 
     public static InputView getInstance() {

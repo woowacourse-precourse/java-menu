@@ -15,8 +15,8 @@ public class Menus {
         this.menus = menus;
     }
 
-    public static Menus from(String category, String menus) {
-        return Arrays.stream(menus.split(", "))
+    public static Menus from(String category, String[] menus) {
+        return Arrays.stream(menus)
                 .map(name -> new Menu(Category.fromName(category), name))
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Menus::new));
     }
