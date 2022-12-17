@@ -1,6 +1,7 @@
 package menu.view;
 
 import menu.enums.MyValue;
+import menu.enums.RuntimeMessage;
 
 import java.util.List;
 import java.util.Map;
@@ -8,20 +9,20 @@ import java.util.stream.Collectors;
 
 public class OutputView {
     public void printStartMessage() {
-        System.out.println("점심 메뉴 추천을 시작합니다.");
+        System.out.println(RuntimeMessage.PROGRAM_START_MESSAGE.getMessage());
     }
 
     public void printInputCoachNameMessage() {
-        System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
+        System.out.println(RuntimeMessage.COACH_NAME_INPUT_MESSAGE.getMessage());
     }
 
     public void printFinalResult(Map<String, List<String>> foodRecommendedByCoaches,
                                  List<String> pickedCategories) {
-        System.out.println("메뉴 추천 결과입니다.");
-        System.out.println("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
+        System.out.println(RuntimeMessage.MENU_RECOMMENDATION_RESULT_MESSAGE.getMessage());
+        System.out.println(RuntimeMessage.DAY_OF_WEEK_LIST_MESSAGE.getMessage());
         makeCategoryPhrase(pickedCategories);
         printRecommendationResult(foodRecommendedByCoaches);
-        System.out.println("추천을 완료했습니다.");
+        System.out.println(RuntimeMessage.PROGRAM_END_MESSAGE.getMessage());
     }
 
     public void makeCategoryPhrase(List<String> pickedCategories) {
