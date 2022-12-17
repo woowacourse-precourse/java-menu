@@ -5,9 +5,10 @@ public class Menu {
     private final String name;
     private final Category category;
 
-    public Menu(ValidMenus valid) {
+    public Menu(Service service, ValidMenus valid) {
         this.name = valid.getName();
-        this.category = new Category(ValidCategories.finaCategoryByName(valid.getName()));
+        this.category = service.findCategoryByName(ValidCategories.finaCategoryByName(valid.getName()).getKorean());
+        category.addMenu(this);
     }
 
     public String getName() {

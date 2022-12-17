@@ -3,6 +3,7 @@ package menu;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import menu.validator.ErrorMessages;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -10,15 +11,37 @@ public class Service {
 
     private static final List<Coach> group = new ArrayList();
     private static final List<Menu> menus = new ArrayList();
+    private static final List<Category> categories = new ArrayList<>();
     private static final List<Day> daysResult = new ArrayList<>();
 
     public void start() {
         OutputView.start();
+        initAll();
+    }
+
+    public void initAll() {
+        initCategories();
+        initMenus();
+    }
+
+    public void initCategories() {
+        for (ValidCategories category : ValidCategories.values()) {
+            categories.add(new Category(category));
+        }
+    }
+
+    public Category findCategoryByName(String categoryName) {
+        for (Category category : categories) {
+            if (category.getName().equals(categoryName)) {
+                return category;
+            }
+        }
+        throw new IllegalArgumentException(ErrorMessages.ERROR.toString() + "없는 카테고리 입니다.");
     }
 
     public void initMenus() {
         for (ValidMenus menu : ValidMenus.values()) {
-            menus.add(new Menu(menu));
+            menus.add(new Menu(this, menu));
         }
     }
 
@@ -72,7 +95,7 @@ public class Service {
                 return menu;
             }
         }
-        addMenu(new Menu(ValidMenus.findMenuByName(name)));
+        addMenu(new Menu(this, ValidMenus.findMenuByName(name)));
         return null;
     }
 
