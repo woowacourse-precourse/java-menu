@@ -1,11 +1,13 @@
 package menu.controller;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import menu.model.Category;
 import menu.model.Coach;
 import menu.utls.Validator;
 import menu.view.InputView;
 import menu.view.OutputView;
-
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
@@ -26,7 +28,28 @@ public class MenuController {
         outputView.outputStartNotice();
         List<Coach> coaches = getCoaches();
         addAllegeMenu(coaches);
-        System.out.println();
+        List<Category> categories = getCategories();
+    }
+
+    private List<Category> getCategories() {
+        List<Category> categories = new ArrayList<>();
+        HashMap<String, Integer> categoryCheck = new HashMap<>();
+        addCategory(categories, categoryCheck);
+        return categories;
+    }
+
+    private void addCategory(List<Category> categories, HashMap<String, Integer> categoryCheck) {
+        //TODO 숫자 상수 분리
+        int day = 0;
+        while (day < 5) {
+            Category category = Category.getCategoryByRandomNumber(Randoms.pickNumberInRange(1, 5));
+            String categoryName = category.getName();
+            if (!categoryCheck.containsKey(categoryName) || categoryCheck.get(categoryName) < 2) {
+                categoryCheck.put(categoryName, categoryCheck.getOrDefault(categoryName, 0) + 1);
+                categories.add(category);
+                day++;
+            }
+        }
     }
 
     private void addAllegeMenu(List<Coach> coaches) {
