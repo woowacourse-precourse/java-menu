@@ -1,6 +1,7 @@
 package menu.controller;
 
 import menu.domain.category.Category;
+import menu.domain.day.Day;
 import menu.domain.history.RecommendHistory;
 import menu.domain.recommender.CategoryRecommender;
 import menu.domain.recommender.MenuRecommender;
@@ -27,9 +28,11 @@ public class MainController {
         List<String> coachNames = inputController.readValidCoachNames();
         Map<String, List<String>> hateMenusByCoach = inputController.readValidHateMenusByCoach(coachNames);
         RecommendHistory recommendHistory = new RecommendHistory();
-        CategoryRecommender categoryRecommender = new CategoryRecommender(recommendHistory);
-        Category category = categoryRecommender.recommend();
-        MenuRecommender menuRecommender = new MenuRecommender(hateMenusByCoach, recommendHistory);
-        System.out.println(menuRecommender.recommendByCoach(category));
+        for (int i = 0; i < Day.sizeOfValues(); i++) {
+            CategoryRecommender categoryRecommender = new CategoryRecommender(recommendHistory);
+            Category category = categoryRecommender.recommend();
+            MenuRecommender menuRecommender = new MenuRecommender(hateMenusByCoach, recommendHistory);
+            System.out.println(menuRecommender.recommendByCoach(category));
+        }
     }
 }
