@@ -29,11 +29,10 @@ public class MenuController {
             chosenCategoryList.add(chosenCategoryType);
             for (int j = 0; j < coachLists.size(); j++) {
                 List<String> menus = categoryMap.getFoodList(chosenCategoryType);
-                String menu = menuChoices.chooseRandomMenu(menus);
+                String menu = menuChoices.chooseRandomMenuUntilDoesntExists(menuChoices.getCoachMenus(coachLists.get(j)), menus);
                 menuChoices.updateChosenMenu(coachLists.get(j), menu);
             }
         }
-        System.out.println(menuChoices.getChosenMenuMap());
         outputView.printResultInit();
         outputView.printCategory(chosenCategoryList);
         for (int i = 0; i < coachLists.size(); i++) {

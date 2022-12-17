@@ -40,12 +40,24 @@ public class MenuChoicer {
         return categoryType;
     }
 
-    public String chooseRandomMenu(List<String> menus) {
-        String menu = Randoms.shuffle(menus).get(0);
+    public String chooseRandomMenuUntilDoesntExists(List<String> userMenus, List<String> menus) {
+        String menu = null;
+        while (true) {
+            menu = Randoms.shuffle(menus).get(0);
+            if ((userMenus.contains(menu))){
+                return chooseRandomMenuUntilDoesntExists(userMenus, menus);
+            }
+            break;
+        }
         return menu;
     }
 
     public void updateChosenMenu(String coachName, String menu) {
         this.chosenMenuMap.get(coachName).add(menu);
     }
+
+    public List<String> getCoachMenus(String name) {
+        return this.chosenMenuMap.get(name);
+    }
+
 }
