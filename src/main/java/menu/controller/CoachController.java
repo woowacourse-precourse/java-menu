@@ -61,7 +61,7 @@ public class CoachController {
 
     public String recommendCategory(){
         String randomCategory = CATEGORIES[Randoms.pickNumberInRange(1,5)-1];
-        if(categoryList.size()==5) return randomCategory;
+        if(categoryList.size()==6) return randomCategory;
         if(categoryCnt.get(randomCategory)<=2){
             categoryCnt.put(randomCategory,categoryCnt.get(randomCategory)+1);
             categoryList.add(randomCategory);
