@@ -44,7 +44,7 @@ public class MenuController {
     private void setRecommendFoods(Coach coach, String name, Menu value, String category) {
         if (value.getCategory().equals(category)) {
             List<String> menus = value.getMenus();
-            System.out.println(menus);
+
             while (true) {
                 String menu = Randoms.shuffle(menus).get(0);
 

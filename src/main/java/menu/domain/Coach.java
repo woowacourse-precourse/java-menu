@@ -33,10 +33,10 @@ public class Coach {
     }
 
     public void setCanNotEat(String name, String input) {
-        List<String> foods = new ArrayList<>();
-
         String[] words = input.split(",");
-        foods.addAll(Arrays.asList(words));
+        List<String> canNotEatFoods = Arrays.asList(words);
+        validateCanNotEatFood(canNotEatFoods);
+        List<String> foods = new ArrayList<>(canNotEatFoods);
 
         coaches.put(name, foods);
     }
@@ -73,6 +73,12 @@ public class Coach {
     private void validateName(String name) {
         if (name.length() < 2 || name.length() > 4) {
             throw new IllegalArgumentException("[ERROR] 2~4자리의 이름만 입력이 가능합니다.");
+        }
+    }
+
+    private void validateCanNotEatFood(List<String> canNotEatFoods) {
+        if (canNotEatFoods.size() > 2) {
+            throw new IllegalArgumentException("[ERROR] 각 코치가 먹지 못하는 메뉴는 최소 0개에서 최대 2개입니다.");
         }
     }
 }

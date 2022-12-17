@@ -22,10 +22,17 @@ public class InputHandler {
     }
 
     public void readCoachCanNotEat(Coach coach) {
-        for (int i = 0; i < coach.getNames().size(); i++) {
-            String coachName = coach.getNames().get(i);
-            String input = inputView.readCanNotEat(coachName);
-            coach.setCanNotEat(coachName, input);
+        try {
+            for (int i = 0; i < coach.getNames().size(); i++) {
+                String coachName = coach.getNames().get(i);
+                String input = inputView.readCanNotEat(coachName);
+
+                coach.setCanNotEat(coachName, input);
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            readCoachCanNotEat(coach);
         }
+
     }
 }
