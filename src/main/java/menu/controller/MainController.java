@@ -22,18 +22,18 @@ public class MainController {
     public MainController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.gameGuide = new EnumMap<>(ApplicationStatus.class); // 밑에 status 있음
+        this.gameGuide = new EnumMap<>(ApplicationStatus.class);
         initializeGameGuide();
     }
 
     private void initializeGameGuide() {
         gameGuide.put(ApplicationStatus.INITIALIZE_MENUS, this::initializeMenus);
         gameGuide.put(ApplicationStatus.RECEIVE_COACH_DATA, this::receiveCoachData);
-        gameGuide.put(ApplicationStatus.START_RECOMMENDATION, this::startRecommendation);
+        gameGuide.put(ApplicationStatus.GIVE_RECOMMENDATION, this::giveRecommendation);
     }
 
     public void play() {
-        ApplicationStatus applicationStatus = process(ApplicationStatus.INITIALIZE_MENUS); // 초기 status
+        ApplicationStatus applicationStatus = process(ApplicationStatus.INITIALIZE_MENUS);
         while (applicationStatus.playable()) {
             applicationStatus = process(applicationStatus);
         }
@@ -60,10 +60,10 @@ public class MainController {
             List<Menu> menuNotToEat = inputView.readMenuNotToEat(coach.getName());
             coach.addMenuNotToEat(menuNotToEat);
         }
-        return ApplicationStatus.START_RECOMMENDATION;
+        return ApplicationStatus.GIVE_RECOMMENDATION;
     }
 
-    private ApplicationStatus startRecommendation() {
+    private ApplicationStatus giveRecommendation() {
         for (Day day : Day.values()) {
             Category category = pickAvailableCategory();
             for (Coach coach : CoachRepository.coaches()) {
@@ -96,7 +96,7 @@ public class MainController {
     private enum ApplicationStatus {
         INITIALIZE_MENUS,
         RECEIVE_COACH_DATA,
-        START_RECOMMENDATION,
+        GIVE_RECOMMENDATION,
         APPLICATION_EXIT;
 
         public boolean playable() {
