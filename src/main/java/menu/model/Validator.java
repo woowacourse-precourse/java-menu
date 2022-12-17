@@ -50,6 +50,10 @@ public class Validator {
     public static List<String> isValidDislikeMenus(String userInput) {
         List<String> dislikeMenus = new ArrayList<>(Arrays.asList(userInput.split(",")));
         isValidMenuSize(dislikeMenus);
+        for (int index = 0; index < dislikeMenus.size(); index++) {
+            String realDislikeMenu = dislikeMenus.get(index).strip();
+            dislikeMenus.set(index, realDislikeMenu);
+        }
         return dislikeMenus;
     }
 
