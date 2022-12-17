@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecommendService {
-    private static final int MAX_RECOMMEND_SIZE = 5;
     private static final int FIRST = 1;
 
     private final MenuRepository menuRepository;

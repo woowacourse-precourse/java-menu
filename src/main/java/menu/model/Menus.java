@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 
 public class Menus extends Serializer {
     private static final String REGEX_KOREAN = "^[ㄱ-ㅎ가-힣, ]*$";
+    private static final String ENTER_KOREAN_MENU = "메뉴 이름은 한글만 입력할 수 있습니다.";
+    private static final String NOT_RIGHT_NUMBER_OF_MENU = "못 먹는 음식은 0 ~ 2개만 가능합니다.";
 
     private List<String> menus = new ArrayList<>();
 
@@ -38,13 +40,13 @@ public class Menus extends Serializer {
 
     private static void validateKorean(final String input) {
         if (!Pattern.matches(REGEX_KOREAN, input)) {
-            throw new IllegalArgumentException("메뉴 이름은 한글만 입력할 수 있습니다.");
+            throw new IllegalArgumentException(ENTER_KOREAN_MENU);
         }
     }
 
     private static void validateMenuSize(final String[] menu) {
         if (menu.length > 2) {
-            throw new IllegalArgumentException("못 먹는 음식은 0 ~ 2개만 가능합니다.");
+            throw new IllegalArgumentException(NOT_RIGHT_NUMBER_OF_MENU);
         }
     }
 
