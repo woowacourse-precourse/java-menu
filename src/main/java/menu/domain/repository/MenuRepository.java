@@ -17,12 +17,23 @@ public class MenuRepository {
 
     public static Menu getMenuByMenuName(String menuName) {
         return menuRepository.stream()
-                .filter(menu -> menu.name().equals(menuName))
+                .filter(menu -> menu.getName().equals(menuName))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(ExceptionType.IS_NOT_IN_MENU.toString()));
     }
 
     public static boolean isExistMenu(Menu menu) {
         return menuRepository.contains(menu);
+    }
+
+    public static boolean isExistMenuByName(String menuName) {
+        Menu findMenu = menuRepository.stream()
+                .filter(menu -> menu.getName().equals(menuName))
+                .findFirst()
+                .orElseGet(null);
+        if(findMenu != null) {
+            return true;
+        }
+        return false;
     }
 }
