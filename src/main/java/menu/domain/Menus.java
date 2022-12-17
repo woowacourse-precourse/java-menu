@@ -28,7 +28,4 @@ public final class Menus implements Iterable<Menu>{
         return menus.iterator();
     }
 
-    public boolean isEmpty() {
-        return false;
-    }
 }
