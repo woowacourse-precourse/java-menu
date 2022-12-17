@@ -6,15 +6,18 @@ import java.util.Iterator;
 import java.util.List;
 
 public class People implements Iterable<Person> {
+    public static final int MIN = 2;
+    public static final int MAX = 5;
+
     private final List<Person> people;
 
     public People(List<Person> people) {
-        this.people = validatePeopleSize(people);
+        this.people = validate(people);
     }
 
-    private List<Person> validatePeopleSize(List<Person> people) {
-        if (people.size() < 2 || people.size() > 5) {
-            throw new IllegalArgumentException("코치는 최소 2명, 최대 5명까지 식사를 함께 합니다.");
+    private List<Person> validate(List<Person> people) {
+        if (people.size() < MIN || people.size() > MAX) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_COACH_COUNT);
         }
         return people;
     }
@@ -37,5 +40,9 @@ public class People implements Iterable<Person> {
     @Override
     public Iterator<Person> iterator() {
         return people.iterator();
+    }
+
+    private static final class ErrorMessage {
+        private static final String INVALID_COACH_COUNT = String.format("코치는 최소 %d명, 최대 %d명까지 식사를 함께 합니다.", MIN, MAX);
     }
 }
