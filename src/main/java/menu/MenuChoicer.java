@@ -2,6 +2,7 @@ package menu;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,14 +23,21 @@ public class MenuChoicer {
         return this.chosenMenuMap;
     }
 
-    public CategoryType chooseRandomCategory() {
-        int number = Randoms.pickNumberInRange(1, 5);
-        for (CategoryType categoryType : CategoryType.values()) {
-            if (categoryType.getNumber() == number) {
-                return categoryType;
+    public CategoryType chooseRandomCategory(List<CategoryType> chosenCategoryList) {
+        CategoryType categoryType = null;
+        while (true) {
+            int number = Randoms.pickNumberInRange(1, 5);
+            for (CategoryType type : CategoryType.values()) {
+                if (type.getNumber() == number) {
+                    categoryType = type;
+                }
             }
+            if (Collections.frequency(chosenCategoryList, categoryType) > 1) {
+                return chooseRandomCategory(chosenCategoryList);
+            }
+            break;
         }
-        return null;
+        return categoryType;
     }
 
     public String chooseRandomMenu(List<String> menus) {

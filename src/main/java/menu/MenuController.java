@@ -25,7 +25,7 @@ public class MenuController {
         MenuChoicer menuChoices = new MenuChoicer(coachLists, coachHates);
         List<CategoryType> chosenCategoryList = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            CategoryType chosenCategoryType = menuChoices.chooseRandomCategory();
+            CategoryType chosenCategoryType = menuChoices.chooseRandomCategory(chosenCategoryList);
             chosenCategoryList.add(chosenCategoryType);
             for (int j = 0; j < coachLists.size(); j++) {
                 List<String> menus = categoryMap.getFoodList(chosenCategoryType);
