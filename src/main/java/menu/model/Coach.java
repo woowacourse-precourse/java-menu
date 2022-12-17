@@ -8,7 +8,6 @@ import java.util.List;
 public class Coach {
     private String name;
     private String[] banFoods;
-    //private MenusOfWeek menusOfWeek;
     List<Menu> menusOfWeek;
 
     public Coach(String name){
