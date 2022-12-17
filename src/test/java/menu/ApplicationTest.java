@@ -21,6 +21,60 @@ public class ApplicationTest extends NsTest {
 
     private static final Duration RANDOM_TEST_TIMEOUT = Duration.ofSeconds(10L);
 
+    private static void assertRandomTest(
+        final Executable executable,
+        final Mocking... mockings
+    ) {
+        assertTimeoutPreemptively(RANDOM_TEST_TIMEOUT, () -> {
+            try (final MockedStatic<Randoms> mock = mockStatic(Randoms.class)) {
+                Arrays.stream(mockings).forEach(mocking -> mocking.stub(mock));
+                executable.execute();
+            }
+        });
+    }
+
+    @Override
+    protected void runMain() {
+        Application.main(new String[]{});
+    }
+
+    public static class Mocking<T> {
+
+        /**
+         * stubbing lambda verification 예시) () -> Randoms.pickNumberInList(anyList())
+         */
+        private final MockedStatic.Verification verification;
+
+        // 반환할 첫 번째 값
+        private final T value;
+
+        /**
+         * 첫 번째 값을 반환하고 나서 다음에 반환할 값들. 예를 들면, verification을 처음 실행하면 value를 반환하고 두 번째 실행하면 values[0]을
+         * 반환한다.
+         */
+        private final T[] values;
+
+        private Mocking(final MockedStatic.Verification verification,
+            final T value,
+            final T... values) {
+            this.verification = verification;
+            this.value = value;
+            this.values = values;
+        }
+
+        public static Mocking ofRandomNumberInRange(final Integer value, final Integer... values) {
+            return new Mocking(() -> Randoms.pickNumberInRange(anyInt(), anyInt()), value, values);
+        }
+
+        public static <T> Mocking ofShuffle(final List<T> value, final List<T>... values) {
+            return new Mocking(() -> Randoms.shuffle(anyList()), value, values);
+        }
+
+        public <S> void stub(final MockedStatic<S> mock) {
+            mock.when(verification).thenReturn(value, Arrays.stream(values).toArray());
+        }
+    }
+
     @DisplayName("전체 기능 테스트")
     @Nested
     class AllFeatureTest {
@@ -49,81 +103,37 @@ public class ApplicationTest extends NsTest {
                     Mocking.ofRandomNumberInRange(2, 5, 1, 3, 4),   // 숫자는 카테고리 번호를 나타낸다.
                     Mocking.ofShuffle(
                         // 월요일
-                        List.of("김치찌개", "김밥", "쌈밥", "된장찌개", "비빔밥", "칼국수", "불고기", "떡볶이", "제육볶음"),    // 구구
-                        List.of("제육볶음", "김밥", "김치찌개", "쌈밥", "된장찌개", "비빔밥", "칼국수", "불고기", "떡볶이"),    // 제임스
+                        List.of("김치찌개", "김밥", "쌈밥", "된장찌개", "비빔밥", "칼국수", "불고기", "떡볶이", "제육볶음"),
+                        // 구구
+                        List.of("제육볶음", "김밥", "김치찌개", "쌈밥", "된장찌개", "비빔밥", "칼국수", "불고기", "떡볶이"),
+                        // 제임스
 
                         // 화요일
-                        List.of("스파게티", "라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "피자", "파니니"),   // 구구
-                        List.of("라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니"),   // 제임스
+                        List.of("스파게티", "라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "피자", "파니니"),
+                        // 구구
+                        List.of("라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니"),
+                        // 제임스
 
                         // 수요일
-                        List.of("규동", "우동", "미소시루", "스시", "가츠동", "오니기리", "하이라이스", "라멘", "오코노미야끼"),  // 구구
-                        List.of("가츠동", "규동", "우동", "미소시루", "스시", "오니기리", "하이라이스", "라멘", "오코노미야끼"),  // 제임스
+                        List.of("규동", "우동", "미소시루", "스시", "가츠동", "오니기리", "하이라이스", "라멘", "오코노미야끼"),
+                        // 구구
+                        List.of("가츠동", "규동", "우동", "미소시루", "스시", "오니기리", "하이라이스", "라멘", "오코노미야끼"),
+                        // 제임스
 
                         // 목요일
-                        List.of("짜장면", "깐풍기", "볶음면", "동파육", "짬뽕", "마파두부", "탕수육", "토마토 달걀볶음", "고추잡채"),   // 구구
-                        List.of("짬뽕", "깐풍기", "볶음면", "동파육", "짜장면", "마파두부", "탕수육", "토마토 달걀볶음", "고추잡채"),   // 제임스
+                        List.of("짜장면", "깐풍기", "볶음면", "동파육", "짬뽕", "마파두부", "탕수육", "토마토 달걀볶음",
+                            "고추잡채"),   // 구구
+                        List.of("짬뽕", "깐풍기", "볶음면", "동파육", "짜장면", "마파두부", "탕수육", "토마토 달걀볶음",
+                            "고추잡채"),   // 제임스
 
                         // 금요일
-                        List.of("카오 팟", "팟타이", "나시고렝", "파인애플 볶음밥", "쌀국수", "똠얌꿍", "반미", "월남쌈", "분짜"),    // 구구
-                        List.of("파인애플 볶음밥", "팟타이", "카오 팟", "나시고렝", "쌀국수", "똠얌꿍", "반미", "월남쌈", "분짜")     // 제임스
+                        List.of("카오 팟", "팟타이", "나시고렝", "파인애플 볶음밥", "쌀국수", "똠얌꿍", "반미", "월남쌈", "분짜"),
+                        // 구구
+                        List.of("파인애플 볶음밥", "팟타이", "카오 팟", "나시고렝", "쌀국수", "똠얌꿍", "반미", "월남쌈", "분짜")
+                        // 제임스
                     )
                 );
             });
-        }
-    }
-
-    @Override
-    protected void runMain() {
-        Application.main(new String[]{});
-    }
-
-    private static void assertRandomTest(
-        final Executable executable,
-        final Mocking... mockings
-    ) {
-        assertTimeoutPreemptively(RANDOM_TEST_TIMEOUT, () -> {
-            try (final MockedStatic<Randoms> mock = mockStatic(Randoms.class)) {
-                Arrays.stream(mockings).forEach(mocking -> mocking.stub(mock));
-                executable.execute();
-            }
-        });
-    }
-
-    public static class Mocking<T> {
-
-        /**
-         * stubbing lambda verification 예시) () -> Randoms.pickNumberInList(anyList())
-         */
-        private final MockedStatic.Verification verification;
-
-        // 반환할 첫 번째 값
-        private final T value;
-
-        /**
-         * 첫 번째 값을 반환하고 나서 다음에 반환할 값들. 예를 들면, verification을 처음 실행하면 value를 반환하고 두 번째 실행하면 values[0]을
-         * 반환한다.
-         */
-        private final T[] values;
-
-        private Mocking(final MockedStatic.Verification verification,
-                        final T value,
-                        final T... values) {
-            this.verification = verification;
-            this.value = value;
-            this.values = values;
-        }
-
-        public static Mocking ofRandomNumberInRange(final Integer value, final Integer... values) {
-            return new Mocking(() -> Randoms.pickNumberInRange(anyInt(), anyInt()), value, values);
-        }
-
-        public static <T> Mocking ofShuffle(final List<T> value, final List<T>... values) {
-            return new Mocking(() -> Randoms.shuffle(anyList()), value, values);
-        }
-
-        public <S> void stub(final MockedStatic<S> mock) {
-            mock.when(verification).thenReturn(value, Arrays.stream(values).toArray());
         }
     }
 }

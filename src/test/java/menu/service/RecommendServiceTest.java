@@ -3,7 +3,6 @@ package menu.service;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import menu.domain.Coach;
 import menu.domain.FoodCategory;
@@ -28,7 +27,7 @@ class RecommendServiceTest {
         Assertions.assertThatThrownBy(() -> recommendService.recommendCategory(1))
             .isInstanceOf(IllegalStateException.class);
     }
-    
+
     @Test
     @DisplayName("랜덤 값 받아서 추천 확인 테스트")
     void recommendRandomTest() {
@@ -67,7 +66,8 @@ class RecommendServiceTest {
         Coach coach = new Coach("철수", List.of());
         MenuInitiator.init();
         RecommendService recommendService = new RecommendService();
-        Set<String> koreanFoods = Set.of("김치찌개", "김밥", "쌈밥", "된장찌개", "비빔밥", "칼국수", "불고기", "떡볶이", "제육볶음");
+        Set<String> koreanFoods = Set.of("김치찌개", "김밥", "쌈밥", "된장찌개", "비빔밥", "칼국수", "불고기", "떡볶이",
+            "제육볶음");
 
         //when
         Set<String> recommendMenus = new HashSet<>();
