@@ -1,6 +1,7 @@
 package menu.controller;
 
 import menu.domain.Coach;
+import menu.domain.MenuList;
 import menu.service.MenuService;
 import menu.view.InputView;
 
@@ -34,7 +35,9 @@ public class MenuController {
         if(2 < hateMenus.size()){
             throw new IllegalArgumentException("싫어하는 메뉴의 수는 2개를 넘을 수 없습니다.");
         }
-        //메뉴가 존재하지 않을떄 예외사항 추가 필요.
+        if(!MenuList.find(hateMenu)){
+            throw new IllegalArgumentException("존재하지 않는 메뉴입니다.");
+        }
         return hateMenus;
     }
 
