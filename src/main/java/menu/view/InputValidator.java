@@ -29,8 +29,7 @@ public class InputValidator {
     }
 
     private static void validateNames(List<String> names) {
-        boolean result = names.stream()
-                .anyMatch(InputValidator::validateName);
+        boolean result = names.stream().anyMatch(InputValidator::validateName);
         if (result) {
             throw new IllegalArgumentException(INVALID_NAME_SIZE_MESSAGE);
         }
