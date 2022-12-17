@@ -30,8 +30,9 @@ public class RecommendationController {
             Coach coach = new Coach(coachName, dislikeMenus);
             coaches.add(coach);
         }
-        runRecommendation(coaches);
         printResult();
+        runRecommendation(coaches);
+
     }
 
     private void runRecommendation(List<Coach> coaches) {
@@ -45,7 +46,6 @@ public class RecommendationController {
             addRecommendResult(coaches,recommendedResult);
         }
         printResults(coaches);
-
     }
     private void printResults(List<Coach> coaches){
         for(Coach coach : coaches){
