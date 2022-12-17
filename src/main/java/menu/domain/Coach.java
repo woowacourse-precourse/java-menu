@@ -1,0 +1,32 @@
+package menu.domain;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+
+public class Coach {
+    private String name;
+    private HashSet<String> hates;
+    private List<String> meals = new ArrayList<>();
+
+    public Coach(String name, HashSet<String> hates) {
+        this.name = name;
+        this.hates = hates;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public HashSet<String> getHates() {
+        return hates;
+    }
+
+    public List<String> getMeals() {
+        return meals;
+    }
+
+    public void setMeals(List<String> weeklyCategory) {
+        this.meals = meals;
+    }
+}

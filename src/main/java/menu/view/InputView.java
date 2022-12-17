@@ -28,7 +28,7 @@ public class InputView {
     public List<String> scanHatesFood(String name) {
         try {
             System.out.println();
-            System.out.printf("%s(이)가 못 먹는 메뉴를 입력해 주세요.\n",name);
+            System.out.printf("%s(이)가 못 먹는 메뉴를 입력해 주세요.\n", name);
             List<String> hates = Arrays.asList(Console.readLine().split(","));
             return validateHatesFood(hates);
         } catch (Exception e) {
@@ -39,6 +39,7 @@ public class InputView {
     }
 
     private List<String> validateHatesFood(List<String> hates) {
+        //TODO 없는 경우 예외 처리 해야한다.
         if (2 < hates.size()) {
             throw new IllegalArgumentException("[ERROR] 싫어 하는 음식을 너무 많이 입력 하셨습니다.");
         }
