@@ -4,9 +4,7 @@ import static java.text.MessageFormat.format;
 
 import menu.domain.Category;
 import menu.domain.Coach;
-import menu.domain.Coaches;
 import menu.domain.Day;
-import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

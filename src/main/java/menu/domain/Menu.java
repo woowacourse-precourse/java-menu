@@ -2,7 +2,6 @@ package menu.domain;
 
 import static camp.nextstep.edu.missionutils.Randoms.shuffle;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,10 +19,6 @@ public enum Menu {
     Menu(Category category, List<String> menus) {
         this.category = category;
         this.menus = menus;
-    }
-
-    public Category getCategory() {
-        return category;
     }
 
     public List<String> getMenus() {

@@ -18,7 +18,7 @@ public class MainController {
         mainService.generateCoaches(coachNames);
 
         for (String coachName : coachNames) {
-            exceptionHandler.process(this::setCantEatMenus, coachName);
+            exceptionHandler.process(this::setHateMenus, coachName);
         }
 
         mainService.recommend();
@@ -26,7 +26,7 @@ public class MainController {
         outputView.printEnd();
     }
 
-    private void setCantEatMenus(String coachName) {
+    private void setHateMenus(String coachName) {
         outputView.printCoachCantEat(coachName);
         List<String> cantEatMenus = exceptionHandler.repeat(inputView::readCantEatMenu);
         mainService.setCantEatMenus(cantEatMenus, coachName);

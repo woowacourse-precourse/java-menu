@@ -40,11 +40,11 @@ public class Coach {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Coach coach = (Coach) o;
-        return Objects.equals(name, coach.name);
+        return Objects.equals(name, coach.name) && Objects.equals(hateMenus, coach.hateMenus) && Objects.equals(recommendedMenus, coach.recommendedMenus);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(name, hateMenus, recommendedMenus);
     }
 }
