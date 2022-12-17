@@ -7,7 +7,7 @@ public abstract class Validator {
 
     private static final Pattern NUMBER_REGEX = Pattern.compile("^[0-9]*$");
 
-    abstract void validate(String input) throws IllegalArgumentException;
+    protected abstract void validate(String input) throws IllegalArgumentException;
 
     void validateNumeric(String input) {
         if (!NUMBER_REGEX.matcher(input).matches()) {
