@@ -6,6 +6,7 @@ import java.util.List;
 public class Coach {
     private final String coachName;
     private final List<Menu> cannotEatMenus = new ArrayList<>();
+    private List<Menu> recommendMenus;
 
     public Coach(String coachName, List<String> cannotEatMenus) {
         this.coachName = coachName;
@@ -21,5 +22,13 @@ public class Coach {
             }
         }
         return false;
+    }
+
+    public void setRecommendMenus(List<Menu> menus) {
+        this.recommendMenus = menus;
+    }
+
+    public List<Menu> getRecommendMenus() {
+        return recommendMenus;
     }
 }
