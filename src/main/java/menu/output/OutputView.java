@@ -7,5 +7,17 @@ public class OutputView {
     private static final String resultStartMessage = "메뉴 추천 결과입니다.\n";
     private static final String endMessage = "추천을 완료했습니다.";
 
+    public void printStart() {
+        System.out.println(startMessage);
+    }
+
+    public void printCoachMessage() {
+        System.out.println(inputCoachMessage);
+    }
+
+    public void printMenuMessage(String coachName) {
+        String message = coachName + inputMenuMessage;
+        System.out.println(message);
+    }
 
 }
