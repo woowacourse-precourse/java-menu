@@ -45,7 +45,7 @@ public class MenuRepository {
     public static Menus findMenus(List<String> menuNames) {
         return menuNames.stream()
                 .map(menuName -> findMenu(menuName))
-                .collect(Collectors.collectingAndThen(Collectors.toList(), Menus::new));
+                .collect(Collectors.collectingAndThen(Collectors.toUnmodifiableList(), Menus::new));
     }
 
     private static Menu findMenu(String name) {
