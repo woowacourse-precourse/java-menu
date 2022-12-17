@@ -17,4 +17,14 @@ public class InputView {
         }
         return list;
     }
+
+    public static List<String> inputNoEat() {
+        String input = Console.readLine();
+        String[] foods = input.split(",");
+        List<String> list = new ArrayList<>();
+        for (String food : foods) {
+            list.add(food);
+        }
+        return list;
+    }
 }

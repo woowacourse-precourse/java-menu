@@ -30,6 +30,9 @@ public class MenuController {
     private void askNoEat(List<Coach> coaches) {
         for (Coach coach : coaches) {
             OutputView.askNoEat(coach.getName());
+            List<String> noEatFood = InputView.inputNoEat();
+            coach.setNoEatFood(noEatFood);
+            System.out.println(noEatFood);
         }
 
     }

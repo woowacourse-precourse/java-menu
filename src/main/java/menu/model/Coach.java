@@ -10,11 +10,13 @@ public class Coach {
 
     public Coach(String name) {
         this.name = name;
-        this.noEatFood = new ArrayList<>();
-        this.ateFood = new ArrayList<>();
     }
 
     public String getName() {
         return this.name;
+    }
+
+    public void setNoEatFood(List<String> noEatFood) {
+        this.noEatFood = noEatFood;
     }
 }
