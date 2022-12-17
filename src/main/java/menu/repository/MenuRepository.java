@@ -22,18 +22,15 @@ public class MenuRepository {
         categoryMenus.put(Category.getCategoryFromNumber(4), Arrays.asList(asia));
         categoryMenus.put(Category.getCategoryFromNumber(5), Arrays.asList(western));
 
-
         List<String[]> tmp = Arrays.asList(japan, korea, china, asia, western);
         int categoryIdx = 1;
-
         for (String[] menuList : tmp) {
             for (String menuName : menuList) {
-                menus.add(new Menu(Category.getCategoryFromNumber(categoryIdx), menuName));
+                menus.add(new Menu(menuName));
             }
             ++categoryIdx;
         }
     }
-
 
     public static Menu getMenuByName(String menuName) {
         return menus.stream().filter(menu -> menu.isSameMenu(menuName))

@@ -38,7 +38,7 @@ public class MenuRecommendService {
             menuName = shuffle(MenuRepository.getMenusByCategory(category)).get(0);
         }
         List<Menu> toAdd = coachMenu.getOrDefault(coach, new ArrayList<>());
-        toAdd.add(new Menu(category, menuName));
+        toAdd.add(new Menu(menuName));
         coachMenu.put(coach, toAdd);
     }
 

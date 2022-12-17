@@ -5,7 +5,7 @@ import menu.enums.Category;
 public class Menu {
     private final String menu;
 
-    public Menu(Category category, String menu) {
+    public Menu(String menu) {
         this.menu = menu;
     }
 
