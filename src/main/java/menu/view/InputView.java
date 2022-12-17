@@ -37,7 +37,11 @@ public class InputView {
     public List<Menu> readMenuNotToEat(String name) {
         try {
             System.out.printf(Message.INPUT_MENU_NOT_TO_EAT.message, name);
-            List<Menu> menus = Util.splitByComma(Console.readLine())
+            String input = Util.removeSpace(Console.readLine());
+            if (input.isBlank()) {
+                return List.of();
+            }
+            List<Menu> menus = Util.splitByComma(input)
                     .stream().map(MenuRepository::findByName)
                     .collect(Collectors.toList());
             validateMenuNotToEatSize(menus);
@@ -49,8 +53,11 @@ public class InputView {
     }
 
     private static void validateCoachNumber(List<String> coaches) {
-        if (coaches.size() <= Range.MIN_NAME_LENGTH.value || coaches.size() >= Range.MAX_NAME_LENGTH.value) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_COACH_NUMBER.getMessage());
+        if (coaches.size() <= Range.MIN_NAME_LENGTH.value) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_SMALL_COACH_NUMBER.getMessage());
+        }
+        if (coaches.size() >= Range.MAX_NAME_LENGTH.value) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_BIG_COACH_NUMBER.getMessage());
         }
     }
 
