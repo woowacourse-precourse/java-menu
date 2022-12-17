@@ -3,6 +3,7 @@ package menu.controller;
 import menu.domain.category.Category;
 import menu.domain.history.RecommendHistory;
 import menu.domain.recommender.CategoryRecommender;
+import menu.domain.recommender.MenuRecommender;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -28,6 +29,10 @@ public class MainController {
         RecommendHistory recommendHistory = new RecommendHistory();
         CategoryRecommender categoryRecommender = new CategoryRecommender(recommendHistory);
         Category category = categoryRecommender.recommend();
-        System.out.println(category);
+        MenuRecommender menuRecommender = new MenuRecommender(hateMenusByCoach);
+        for (int i = 0; i < hateMenusByCoach.size(); i++) {
+            String menu = menuRecommender.recommend(category);
+            System.out.println(menu);
+        }
     }
 }
