@@ -56,4 +56,8 @@ public enum Category {
     public String getName() {
         return name;
     }
+
+    public String getRandomMenu() {
+        return Randoms.shuffle(menus).get(0);
+    }
 }
