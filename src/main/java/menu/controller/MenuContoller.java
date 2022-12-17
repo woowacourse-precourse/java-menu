@@ -1,6 +1,7 @@
 package menu.controller;
 
 import java.util.ArrayList;
+import java.util.stream.IntStream;
 import menu.model.Crew;
 import menu.view.OutputView;
 
@@ -9,6 +10,7 @@ public class MenuContoller {
     private  ArrayList<ArrayList<String>> crews;
     private InputController inputController;
     private OutputView outputView;
+    private int crewsnumber;
     public MenuContoller(){
         inputController = new InputController();
         outputView = new OutputView();
@@ -19,12 +21,22 @@ public class MenuContoller {
         crew = inputController.getCrewsName();
         crew.setCrews();
         crews=crew.getCrews();
+        crewsnumber = crews.size();
+    }
+
+    public void startRecommand(){
+        setNotEat();
 
     }
-    public void startRecommand(){
-        getNotEat();
+    public void setNotEat(){
+        IntStream.range(0,crewsnumber).forEach(i -> {
+            inputController.setDislike(crew,i);
+        }
+        );
+        crews = crew.getCrews();
+//        System.out.println(crews);
     }
-    public void getNotEat(){
+    public void getMenuRecommand(){
 
     }
     public void endRecommand(){

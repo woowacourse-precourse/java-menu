@@ -2,6 +2,7 @@ package menu.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Crew {
     ArrayList<ArrayList<String>> crews;
@@ -14,20 +15,21 @@ public class Crew {
     }
 
     public void setCrews(){
-        System.out.println(names.get(0));
         for(int i = 0 ; i <names.size();i++)
         {
             crews.add(new ArrayList<>(List.of(names.get(i))));
         }
-        System.out.println(crews);
     }
     public ArrayList<ArrayList<String>> getCrews(){
         return crews;
     }
-    public String getNamesToString(){
-        return String.valueOf(names);
+    public String getNamesToString(int index){
+        return String.valueOf(names.get(index));
     }
-
-
+    public void setCrewsDislike(int number,List<String> menu){
+        IntStream.range(0,menu.size()).forEach(i->{
+            crews.get(number).add(menu.get(i));
+        });
+    }
 
 }

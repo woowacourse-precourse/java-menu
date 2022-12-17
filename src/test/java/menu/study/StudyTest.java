@@ -23,6 +23,12 @@ public class StudyTest {
         ArrayList<String> an = new ArrayList<>(List.of(answer));
         System.out.println(an.size());
 
+        String text = "[cc한국]";
+        text = text.replaceAll("\\]", "");
+        text = text.replaceAll("\\[", "");
+
+        System.out.println(text);
+
     }
 
 

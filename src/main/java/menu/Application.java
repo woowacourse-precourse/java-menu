@@ -7,7 +7,7 @@ public class Application {
         MenuContoller menuContoller = new MenuContoller();
         try{
             menuContoller.initRecommand();
-//            menuContoller.startRecommand();
+            menuContoller.startRecommand();
 //            menuContoller.endRecommand();
         }catch (IllegalArgumentException e){
 

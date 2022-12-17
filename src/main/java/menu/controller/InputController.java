@@ -18,9 +18,20 @@ public class InputController {
             return new Crew(names);
         }catch (IllegalArgumentException e)
         {
-            throw new IllegalArgumentException("[ERROR] Wrong input Number Format");
+            throw new IllegalArgumentException("[ERROR] Wrong input");
         }
 
+    }
+
+    public void setDislike(Crew crew,int number){
+        try {
+            String inputMenu = inputView.getNotEat(crew.getNamesToString(number));
+            List<String> menus = Arrays.asList(inputMenu.split(","));
+            crew.setCrewsDislike(number,menus);
+        }catch (IllegalArgumentException e)
+        {
+            throw new IllegalArgumentException("[ERROR] Wrong input");
+        }
     }
 
 }
