@@ -1,0 +1,10 @@
+- refactor: 자바 코딩 컨벤션에 맞게 일부 수정
+- feat: 랜덤 추천한 메뉴를 출력하는 기능 구현
+- feat: 각 코치가 요일 별 먹을 메뉴를 추천하는 기능 및 반복, 먹지 못하는 음식 시 다시 추천 기능 구현
+- refactor: 랜덤 카테고리 생성 기능 Categories 객체가 메세지를 던지게끔 변경
+- feat(MenuRecommendService): 카테고리 무작위 생성 기능 및 카테고리가 같은 것이 3번 이상 있을 때 다시 추천하는 기능 구현
+- feat: 코치 등록 및 못먹는 메뉴 등록
+- feat(Category): 카테고리와 음식 데이터 상수로 초기화
+- feat(InputView): 코치의 이름 입력 받는 기능 및 글자 수 ,코치 수 예외 처리 기능 구현
+- docs(docs/README.md): 기능 구현 목록 정리
+- feat: setup precourse menu project
