@@ -8,6 +8,7 @@ public class ControllerHolder {
 
     static {
         controllers.put(ControllerName.SETUP, new SetupController());
+        controllers.put(ControllerName.COACH_INFO, new CoachInfoController());
     }
 
     public static Controller get(ControllerName controllerName) {

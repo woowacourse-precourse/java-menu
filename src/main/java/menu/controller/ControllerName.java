@@ -1,5 +1,5 @@
 package menu.controller;
 
 public enum ControllerName {
-    SETUP
+    COACH_INFO, SETUP
 }
