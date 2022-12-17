@@ -9,6 +9,7 @@ import menu.utils.Weekend;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RecommendService {
 
@@ -40,8 +41,13 @@ public class RecommendService {
     }
 
     public Food getFood(Category category, Coach coach) {
-        List<String> foods = Food.getFoodByCategoryAndCouch(category, coach);
-        String foodName = Randoms.shuffle(foods).get(0);
+        List<Food> foods = Food.getFoodsByCategory(category);
+        List<String> refined = foods.stream()
+                .filter(value -> !coach.isDeny(value))
+                .map(Food::getAlias)
+                .collect(Collectors.toList());
+
+        String foodName = Randoms.shuffle(refined).get(0);
         return Food.from(foodName);
     }
 }

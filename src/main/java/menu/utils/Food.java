@@ -1,7 +1,5 @@
 package menu.utils;
 
-import menu.domain.Coach;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -79,15 +77,17 @@ public enum Food {
         throw new IllegalArgumentException(ErrorMessage.FOOD_NOT_EXIST.getMessage());
     }
 
-    public static List<String> getFoodByCategoryAndCouch(Category category, Coach coach) {
+    public static List<Food> getFoodsByCategory(Category category) {
         return Arrays.stream(values())
-                .filter(value -> value.category == category)
-                .filter(value -> !coach.isDeny(value))
-                .map(value -> value.alias)
+                .filter(value -> value.getCategory() == category)
                 .collect(Collectors.toList());
     }
 
     public String getAlias() {
         return alias;
+    }
+
+    public Category getCategory() {
+        return category;
     }
 }
