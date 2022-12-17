@@ -9,6 +9,7 @@ public class Controller {
     public void run(){
         messageView.serviceStartMessage();
         coachNotEatMenu(coachName());
+
         recommendMenu();
     }
     public List<String> coachName(){
@@ -25,6 +26,8 @@ public class Controller {
         }
     }
     public void recommendMenu(){
-
+        AddCategory addCategory = new AddCategory();
+        List<Menu> menu = new ArrayList<>();
+        menu = addCategory.add(menu);
     }
 }
