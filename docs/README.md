@@ -80,4 +80,4 @@ List<String> menu에다가 다 넣어놓기.
 
 ## CategoryConstants (constant)
 
-- [ ] 카테고리와 메뉴에 대한 상수를 관리한다.
+- [x] 카테고리와 메뉴에 대한 상수를 관리한다.
