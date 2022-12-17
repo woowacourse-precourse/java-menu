@@ -35,4 +35,8 @@ public class Member {
     public void setRecommendedMeal(List<String> recommendedMeal) {
         this.recommendedMeal = recommendedMeal;
     }
+
+    public void addRecommendedMeal(String meal) {
+        this.recommendedMeal.add(meal);
+    }
 }
