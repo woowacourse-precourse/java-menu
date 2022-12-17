@@ -1,6 +1,7 @@
 package menu.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static menu.view.OutputView.printErrorMessage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +25,7 @@ public class InputView {
         validateCoachNames(coachNames);
         return coachNames.stream().map(Coach::new).collect(Collectors.toList());
       } catch (IllegalArgumentException e) {
-        //printErrorMessage(e.getMessage());
+        printErrorMessage(e.getMessage());
       }
     }
   }
@@ -43,7 +44,7 @@ public class InputView {
         validateMenus(menus);
         return menus;
       } catch (IllegalArgumentException e) {
-        //printErrorMessage(e.getMessage());현
+        printErrorMessage(e.getMessage());
       }
     }
   }
