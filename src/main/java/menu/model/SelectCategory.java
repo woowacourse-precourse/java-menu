@@ -20,7 +20,11 @@ public class SelectCategory {
         return Collections.frequency(selectCategories, category) >= MAXIMUM_CATEGORY_FREQUENCY;
     }
 
-    public List<String> getSelectCategories() {
+    public List<Category> getSelectCategories() {
+        return Collections.unmodifiableList(selectCategories);
+    }
+
+    public List<String> getSelectCategoryForPrint() {
         List<String> categories = new ArrayList<>();
         categories.add(CATEGORY_TITLE);
 
@@ -28,6 +32,6 @@ public class SelectCategory {
             categories.add(category.getCategory());
         }
 
-        return categories;
+        return Collections.unmodifiableList(categories);
     }
 }

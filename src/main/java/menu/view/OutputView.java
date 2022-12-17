@@ -42,7 +42,7 @@ public class OutputView {
     }
 
     private void printCategory(SelectCategory selectCategory) {
-        System.out.println(setFormat(selectCategory.getSelectCategories()));
+        System.out.println(setFormat(selectCategory.getSelectCategoryForPrint()));
     }
 
     private void printCoachesRecommendMenu(Coaches coaches) {
