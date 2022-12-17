@@ -27,10 +27,17 @@ public class RecommendMachine {
             if (menu.isDislike(coach, recommendingFood)) {
                 continue;
             }
+            if (isDuplicate(result, recommendingFood)) {
+                continue;
+            }
             result.add(recommendingFood);
             index++;
         }
         return result;
+    }
+
+    private boolean isDuplicate(List<String> Foods, String recommend) {
+        return Foods.contains(recommend);
     }
 
     private boolean canRecommend(List<String> category, String recommend) {
