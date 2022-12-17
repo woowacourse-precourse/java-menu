@@ -9,11 +9,16 @@ import menu.view.OutputView;
 
 public class Service {
 
-    private static final List<Menu> menus = new ArrayList();
+    private final List<Menu> menus = new ArrayList();
 
-    private static final List<Category> categories = new ArrayList<>();
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    private final List<Category> categories = new ArrayList<>();
     private final List<Coach> group = new ArrayList();
     private final List<Day> daysResult = new ArrayList<>();
+
     public void start() {
         OutputView.start();
         initAll();
@@ -143,10 +148,19 @@ public class Service {
         }
     }
 
+    public Menu findMenuByName(String name) {
+        for (Menu menu : menus) {
+            if(menu.getName().equals(name)){
+                return menu;
+            }
+        }
+        return null;
+    }
+
     public void fixRecommend(Coach coach, Category category) {
         while (true) {
-            int randomMenuNumber = Randoms.pickNumberInRange(0, category.getMenus().size() - 1);
-            Menu recommendMenu = category.getMenus().get(randomMenuNumber);
+            List<String> shuffle = Randoms.shuffle(category.getMenuNames());
+            Menu recommendMenu = findMenuByName(shuffle.get(0));
             if (!coach.isHate(recommendMenu) || coach.getRecommended().contains(recommendMenu)) {
                 coach.addRecommend(recommendMenu);
                 break;
