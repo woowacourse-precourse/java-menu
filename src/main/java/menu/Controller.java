@@ -5,6 +5,7 @@ import menu.service.Service;
 import menu.utills.Converter;
 import menu.utills.Validator;
 import menu.utills.constants.CoachQuantity;
+import menu.utills.constants.HateMenuQuantity;
 import menu.view.InputVIew;
 import menu.view.OutputView;
 
@@ -72,7 +73,7 @@ public class Controller {
             }
             List<String> hateMenus = Converter.toListByDelimiter(hatMenuInput);
             Validator.containDuplicate(hateMenus);
-            Validator.isInSize(hateMenus, 0, 2);
+            Validator.isInSize(hateMenus, HateMenuQuantity.MIN.getQuantity(), HateMenuQuantity.MAX.getQuantity());
             checkExistedMenuName(hateMenus);
             return hateMenus;
         } catch (IllegalArgumentException exception) {
