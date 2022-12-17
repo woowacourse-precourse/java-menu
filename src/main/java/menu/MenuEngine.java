@@ -1,5 +1,6 @@
 package menu;
 
+import menu.model.Category;
 import menu.view.InputView;
 
 import java.util.List;
@@ -15,6 +16,9 @@ public class MenuEngine {
         List<String> coachNames = inputView.readCoachName();
 
         Map<String, List<String>> exceptedFoods = inputView.readExceptedFood(coachNames);
+
+        Category category = new Category();
+        category.addCategoryCandidate();
 
 
     }
