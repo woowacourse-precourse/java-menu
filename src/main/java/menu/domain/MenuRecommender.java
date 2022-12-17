@@ -47,8 +47,9 @@ public class MenuRecommender {
         }
 
         // 각 코치에게 이미 추천한 메뉴인지 확인
-
-
+        if (coach.isRecommended(menu)) {
+            return false;
+        }
         return true;
     }
 

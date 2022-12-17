@@ -23,7 +23,10 @@ public class Coach {
         return true;
     }
 
-    public boolean hasMenu(String menu) {
-        return true;
+    public boolean isRecommended(String menu) {
+        if (recommendedMenu.contains(menu)) {
+            return true;
+        }
+        return false;
     }
 }
