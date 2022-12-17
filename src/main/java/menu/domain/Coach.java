@@ -13,6 +13,16 @@ public class Coach {
     }
 
     private void validate(String name) {
-        if (name.length() < )
+        if (name.contains(" ")) {
+            throw new IllegalArgumentException("이름 형식 에러");
+        }
+        if (name.length() < 2 || name.length() > 4) {
+            throw new IllegalArgumentException("이름 길이 에러");
+        }
+    }
+
+    public void receiveRecommendation(Menus allMenus, Category category, RecommendationMachine recommendationMachine) {
+        Menus notAllowed = noEat.combine(eaten);
+        eaten.add(recommendationMachine.menu(allMenus, category, notAllowed));
     }
 }
