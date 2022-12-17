@@ -1,6 +1,7 @@
 package menu.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import menu.utils.Validation;
@@ -18,8 +19,20 @@ public class Coach {
     }
 
     public void setCantEatMenus(List<String> cantEatMenus) {
+        if (isBlank(cantEatMenus)) {
+            this.cantEatMenus = Collections.emptyList();
+            return;
+        }
+
         Validation.isMenus(cantEatMenus);
         this.cantEatMenus = cantEatMenus;
+    }
+
+    private boolean isBlank(List<String> target) {
+        if (target.size() == 1 && target.get(0).equals("")) {
+            return true;
+        }
+        return false;
     }
 
     public void addMenu(Menu menu) {
