@@ -61,15 +61,15 @@ public class OutputView {
 
     private static void printResult(MenuRecommendationResult menuRecommendationResult) {
         List<String> coachNames = CoachRepository.getCoachNames();
-        StringJoiner sj = new StringJoiner(" | ", "[ ", " ]");
         Map<String, Map<Day, String>> result = menuRecommendationResult.getRecommendationResult();
+
         for (int i = 0; i < coachNames.size(); i++) {
+            StringJoiner sj = new StringJoiner(" | ", "[ ", " ]");
             sj.add(coachNames.get(i));
             for (Day day : Day.values()) {
                 sj.add(result.get(coachNames.get(i)).get(day));
             }
             System.out.println(sj.toString());
-            sj = new StringJoiner(" | ", "[ ", " ]");
         }
     }
 
