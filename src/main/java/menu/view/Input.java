@@ -4,9 +4,9 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class Input {
 
-    public String[] inputCoachNames() {
+    public List<String> inputCoachNames() {
         System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
-        return validateCoachNumber(Console.readLine().split(","));
+        return validateCoachNumber(inputSplitLineToList());
     }
 
     public List<String> inputMenus(String name) {
