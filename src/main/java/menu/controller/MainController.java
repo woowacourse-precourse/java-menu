@@ -24,9 +24,10 @@ public class MainController {
         inputView.readCoachName().stream()
                 .forEach(e -> coachs.add(new Coach(e, inputView.readCantEats(e))));
         result();
+        outputView.endMessage();
     }
 
-    public void result(){
+    public void result() {
         outputView.resultMessage();
         List<String> categorys = Menu.selectCategory();
         outputView.LineMessage("카테고리", categorys);
@@ -39,7 +40,5 @@ public class MainController {
         coachs.stream().forEach(e -> {
             outputView.LineMessage(e.getName(), e.getMenu());
         });
-
-        outputView.endMessage();
     }
 }
