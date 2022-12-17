@@ -40,17 +40,24 @@ public class MenuService {
         return count == 2;
     }
 
-    public void getMenus(Coach coach) {
-        for (int i = 0; i < pickedCategories.size(); i++) {
-            Category category = pickedCategories.get(i);
-            String menu = Randoms.shuffle(category.getMenus()).get(0);
-
-            if (hasMenu(coach.getMyMenu(), menu) || hasMenu(coach.getNoMenu(), menu)) {
-                i--;
-                continue;
+    public void getMenus(List<Coach> coaches) {
+        int idx = 0;
+        while (idx < pickedCategories.size()) {
+            for (Coach coach : coaches) {
+                findMyMenu(coach, idx);
             }
-            coach.getMyMenu().add(menu);
+            idx++;
         }
+    }
+
+    private void findMyMenu(Coach coach, int idx) {
+        Category category = pickedCategories.get(idx);
+        String menu = Randoms.shuffle(category.getMenus()).get(0);
+
+        if (hasMenu(coach.getMyMenu(), menu) || hasMenu(coach.getNoMenu(), menu)) {
+            findMyMenu(coach, idx);
+        }
+        coach.getMyMenu().add(menu);
     }
 
     private boolean hasMenu(List<String> coachMenu, String menu) {

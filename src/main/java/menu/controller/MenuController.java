@@ -25,6 +25,7 @@ public class MenuController {
         for (String name : coachNames) {
             initCoaches(name);
         }
+        menuService.getMenus(coaches);
 
         List<String> categoryNames = menuService.getCategoryNames();
         outputView.printMenuResult(categoryNames, coaches);
@@ -33,16 +34,11 @@ public class MenuController {
     private void initCoaches(String name) {
         Coach coach = new Coach(name);
         setCoachNoMenu(coach);
-        setCoachMyMenu(coach);
         coaches.add(coach);
     }
 
     private void setCoachNoMenu(Coach coach) {
         List<String> noMenu = inputView.getNoMenu(coach);
         coach.setNoMenu(noMenu);
-    }
-
-    private void setCoachMyMenu(Coach coach) {
-        menuService.getMenus(coach);
     }
 }
