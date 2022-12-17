@@ -1,5 +1,7 @@
 package menu.util;
 
+import menu.type.CategoryList;
+
 import java.util.List;
 
 public class Validator {
@@ -43,7 +45,7 @@ public class Validator {
     }
 
     public static void checkExistMenu(String menu) {
-        List<String> totalMenus = TotalMenuInfo.getTotalMenus();
+        List<String> totalMenus = CategoryList.getAllMenus();
         if (!totalMenus.contains(menu)) {
             throw new IllegalArgumentException(NOT_EXIST_MENUS);
         }

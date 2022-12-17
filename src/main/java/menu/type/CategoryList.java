@@ -1,5 +1,6 @@
 package menu.type;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -39,5 +40,13 @@ public enum CategoryList {
             }
         }
         throw new IllegalArgumentException("해당하는 카테고리가 없습니다.");
+    }
+
+    public static List<String> getAllMenus() {
+        List<String> menus = new ArrayList<>();
+        for (CategoryList category : CategoryList.values()) {
+            menus.addAll(category.getMenus());
+        }
+        return menus;
     }
 }
