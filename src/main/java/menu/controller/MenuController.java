@@ -2,6 +2,7 @@ package menu.controller;
 
 import menu.domain.Coach;
 import menu.domain.CoachName;
+import menu.domain.WeeklyMenus;
 import menu.service.CoachService;
 import menu.service.MenuService;
 import menu.service.RecommendService;
@@ -26,6 +27,8 @@ public class MenuController {
         coaches.stream().forEach(coach -> readConNotEatMenus(coach));
         coachService.saveCoaches(coaches);
         recommendService.createWeeklyRecommendMenu();
+        WeeklyMenus weeklyMenus = recommendService.getWeeklyMenus();
+        OutputView.printWeeklyMenus(weeklyMenus);
     }
 
     private List<Coach> readCoachNames() {
@@ -49,7 +52,7 @@ public class MenuController {
     }
 
     private void checkMenu(List<String> menus) {
-        if (menus.stream().allMatch(menu -> menuService.isExistsMenu(menu))) {
+        if (menus.stream().noneMatch(menu -> menuService.isExistsMenu(menu))) {
             throw new IllegalArgumentException("존재하지 않는 메뉴입니다.");
         }
     }

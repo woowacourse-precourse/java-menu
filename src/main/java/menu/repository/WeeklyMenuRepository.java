@@ -26,4 +26,8 @@ public class WeeklyMenuRepository {
         return weeklyMenus.keySet().stream()
                 .anyMatch(day -> weeklyMenus.get(day).isDuplicatedCoachMenu(coachMenu));
     }
+
+    public WeeklyMenu findByDay(Day day) {
+        return weeklyMenus.get(day);
+    }
 }

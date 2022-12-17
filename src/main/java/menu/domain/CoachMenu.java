@@ -15,6 +15,14 @@ public class CoachMenu {
         return new CoachMenu(coach, menu);
     }
 
+    public Coach getCoach() {
+        return coach;
+    }
+
+    public String getMenu() {
+        return menu;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(coach, menu);

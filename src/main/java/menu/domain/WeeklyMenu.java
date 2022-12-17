@@ -23,4 +23,12 @@ public class WeeklyMenu {
     public boolean isDuplicatedCoachMenu(CoachMenu coachMenu) {
         return this.coachesMenu.contains(coachMenu);
     }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public List<CoachMenu> getCoachesMenu() {
+        return coachesMenu;
+    }
 }

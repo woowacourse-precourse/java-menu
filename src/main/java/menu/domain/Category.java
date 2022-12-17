@@ -26,4 +26,8 @@ public enum Category {
                 .findAny()
                 .get();
     }
+
+    public String getName() {
+        return name;
+    }
 }
