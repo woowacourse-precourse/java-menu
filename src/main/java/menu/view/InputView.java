@@ -10,8 +10,14 @@ import static menu.ConstantBox.MIN_COACH_LENGTH;
 import static menu.ConstantBox.MIN_COACH_NUM;
 import static menu.ConstantBox.SEPARATOR_FOR_INPUT;
 import static menu.ConstantBox.START_MESSAGE;
+import static menu.domain.MenuGiver.ASIAN_MENU;
+import static menu.domain.MenuGiver.CHINA_MENU;
+import static menu.domain.MenuGiver.EUROPE_MENU;
+import static menu.domain.MenuGiver.JAPAN_MENU;
+import static menu.domain.MenuGiver.KOREAN_MENU;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -40,6 +46,9 @@ public class InputView {
         String input = Console.readLine();
         List<String> forbiddenFood = validateSeparatorForForbiddenFood(input);
         validateNumberOfForbiddenMenu(forbiddenFood);
+        for(String menu : forbiddenFood) {
+            validateMenu(menu);
+        }
         return forbiddenFood;
     }
 
@@ -108,6 +117,17 @@ public class InputView {
         }
         if (input.size() < MIN_COACH_NUM) {
             throw new IllegalArgumentException("[ERROR] 입력한 코치의 수가 너무 적습니다. (최소 " + MIN_COACH_NUM + "개.)");
+        }
+    }
+
+    private void validateMenu(String menu) {
+        List<String> allMenu = new ArrayList<>(JAPAN_MENU);
+        allMenu.addAll(KOREAN_MENU);
+        allMenu.addAll(CHINA_MENU);
+        allMenu.addAll(ASIAN_MENU);
+        allMenu.addAll(EUROPE_MENU);
+        if (!allMenu.contains(menu)) {
+            throw new IllegalArgumentException("[ERROR] 메뉴 리스트에 없는 메뉴입니다.");
         }
     }
 }
