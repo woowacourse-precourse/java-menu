@@ -39,11 +39,11 @@ public class Menu {
     private void validateCoachNameLength(int coachNameLength) {
         Validator.validateLowerBound(coachNameLength,
                 MenuConstants.MINIMUM_COACH_NAME_LENGTH,
-                ExceptionConstants.TOO_SHORT_NAME);
+                ExceptionConstants.TOO_SHORT_NAME_LENGTH);
 
         Validator.validateUpperBound(coachNameLength,
                 MenuConstants.MAXIMUM_COACH_NAME_LENGTH,
-                ExceptionConstants.TOO_LONG_NAME);
+                ExceptionConstants.TOO_LONG_NAME_LENGTH);
     }
 
     public void addCoach(String name, String inedibleMenu) {
