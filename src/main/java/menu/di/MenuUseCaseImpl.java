@@ -5,16 +5,19 @@ import java.util.List;
 import java.util.Map;
 import menu.domain.Category;
 import menu.domain.CoachName;
+import menu.domain.Picker;
 
 public class MenuUseCaseImpl implements MenuUseCase {
 
     private static final String MENU_NOT_FOUND_MESSAGE = "없는 메뉴입니다";
     private final List<String> categories;
     private final Map<Category, List<String>> menus;
+    private final Picker picker;
 
-    public MenuUseCaseImpl(List<String> categories, Map<String, List<String>> menus) {
+    public MenuUseCaseImpl(List<String> categories, Map<String, List<String>> menus, Picker picker) {
         this.categories = categories;
         this.menus = toMenus(menus);
+        this.picker = picker;
     }
 
     private Map<Category, List<String>> toMenus(Map<String, List<String>> input) {

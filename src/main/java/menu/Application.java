@@ -6,6 +6,8 @@ import java.util.Map;
 import menu.client.MenuClient;
 import menu.di.MenuUseCase;
 import menu.di.MenuUseCaseImpl;
+import menu.domain.Picker;
+import menu.domain.RandomPicker;
 
 public class Application {
 
@@ -17,7 +19,8 @@ public class Application {
     private static MenuUseCase getMenuUseCase() {
         List<String> category = loadCategory();
         Map<String, List<String>> menus = loadMenus();
-        return new MenuUseCaseImpl(category, menus);
+        Picker picker = new RandomPicker();
+        return new MenuUseCaseImpl(category, menus, picker);
     }
 
     private static List<String> loadCategory() {
