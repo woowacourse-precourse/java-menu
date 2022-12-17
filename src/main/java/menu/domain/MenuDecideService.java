@@ -1,5 +1,6 @@
 package menu.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import menu.repository.MenuRepository;
@@ -17,11 +18,16 @@ public class MenuDecideService {
         return new Coach(name);
     }
 
-    public CantEatMenus makeCantEatMenu(String menuNames) {
+    public void makeCantEatMenu(Coach coach, String menuNames) {
         List<Menu> menus = new ArrayList<>();
         for (String menuName : menuNames.split(",")) {
             menus.add(MenuRepository.findMenu(menuName));
         }
-        return new CantEatMenus(menus);
+        coach.setMenus(new CantEatMenus(menus));
+    }
+
+    private Category decideCategory() {
+        int number = Randoms.pickNumberInRange(1, 5);
+        return Category.findByNumber(number);
     }
 }

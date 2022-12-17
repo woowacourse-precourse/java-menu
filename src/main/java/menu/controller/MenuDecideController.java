@@ -1,6 +1,5 @@
 package menu.controller;
 
-import menu.domain.CantEatMenus;
 import menu.domain.Coach;
 import menu.domain.Coaches;
 import menu.domain.MenuDecideService;
@@ -18,16 +17,16 @@ public class MenuDecideController {
 
         for (Coach coach : makeCoaches().getCoaches()) {
             output.askCantEatMenu(coach);
-            makeCatEatMenus();
+            makeCatEatMenus(coach);
         }
     }
 
-    private CantEatMenus makeCatEatMenus() {
+    private void makeCatEatMenus(Coach coach) {
         try {
-            return service.makeCantEatMenu(input.readCoachNames());
+            service.makeCantEatMenu(coach, input.readCoachNames());
         } catch (IllegalArgumentException e) {
             output.printError(e.getMessage());
-            return makeCatEatMenus();
+            makeCatEatMenus(coach);
         }
     }
 

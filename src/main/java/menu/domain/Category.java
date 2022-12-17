@@ -14,4 +14,13 @@ public enum Category {
         this.name = name;
         this.number = number;
     }
+
+    public static Category findByNumber(int number) {
+        for (Category category : values()) {
+            if (category.number == number) {
+                return category;
+            }
+        }
+        throw new IllegalArgumentException("[ERROR] 해당 카테고리를 찾을 수 없슶니다.");
+    }
 }
