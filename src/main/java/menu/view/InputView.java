@@ -14,8 +14,8 @@ public class InputView {
         return InputValidation.validateCoachesName(Console.readLine());
     }
 
-    public String readCoachHateMenu(String name) {
+    public List<String> readCoachHateMenu(String name) {
         System.out.printf(INPUT_HATE_MENU_FORMAT, name);
-        return Console.readLine();
+        return InputValidation.validateHateMenus(Console.readLine());
     }
 }
