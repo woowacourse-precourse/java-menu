@@ -73,8 +73,8 @@ public class MenuController {
         List<String> days = Day.getDayValueList();
         for (String day : days) {
             selectCategory();
-        }
             selectMenu();
+        }
     }
 
     private void selectCategory() {
@@ -92,13 +92,9 @@ public class MenuController {
 
     private void selectMenu() {
         for (Coach coach : coaches) {
-            for (String recommandCategory : recomandedCategory) {
-                boolean flag = true;
-
-                    checkToCoach(coach, recommandCategory);
-
-            }
+            checkToCoach(coach, recomandedCategory.get(recomandedCategory.size() - 1));
         }
+
     }
 
     private void checkToCoach(Coach coach, String recommandCategory) {
