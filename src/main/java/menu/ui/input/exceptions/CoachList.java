@@ -12,16 +12,24 @@ public class CoachList extends Repetitor {
     private static final int MAX_COACH_NUMBER = 5;
     @Override
     protected String checkInputException(String input) throws IllegalArgumentException {
-        checkLength(input);
         Shared shared = new Shared();
         shared.sharedExceptionChecking(input);
         checkCoachNumber(input);
+        checkAllCoach(input);
 
         return input;
     }
 
-    private void checkLength(String input) throws IllegalArgumentException {
-        int length = input.length();
+    private void checkAllCoach(String input) throws IllegalArgumentException {
+        String[] coaches = input.split(COMMA);
+
+        for (String coach : coaches) {
+            checkLength(coach);
+        }
+    }
+
+    private void checkLength(String coach) throws IllegalArgumentException {
+        int length = coach.length();
         if (!(length >= MIN_LENGTH_RANGE && length <= MAX_LENGTH_RANGE)) {
             throw new IllegalArgumentException(NAME_LENGTH_ERROR_MESSAGE);
         }
