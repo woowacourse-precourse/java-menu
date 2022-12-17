@@ -5,7 +5,7 @@ import java.util.List;
 public class View {
 
 	public static void showMenuRecommendGuideMessage() {
-		System.out.println("점심 메뉴 추천을 시작합니다.");
+		System.out.println("점심 메뉴 추천을 시작합니다.\n");
 	}
 
 	public static void showCoachNameGuideMessage() {
@@ -13,7 +13,7 @@ public class View {
 	}
 
 	public static void showHateFoodGuideMessage(String coachName) {
-		System.out.println(coachName + "가 못 먹는 메뉴를 입력해 주세요.");
+		System.out.println("\n"+coachName + "(이)가 못 먹는 메뉴를 입력해 주세요.");
 	}
 
 	public static void showRecommendResult(List<List<String>> menuList) {
