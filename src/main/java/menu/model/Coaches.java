@@ -1,6 +1,7 @@
 package menu.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Coaches {
@@ -8,5 +9,9 @@ public class Coaches {
 
     public void addCoach(Coach coach) {
         coaches.add(coach);
+    }
+
+    public List<Coach> getCoaches() {
+        return Collections.unmodifiableList(coaches);
     }
 }
