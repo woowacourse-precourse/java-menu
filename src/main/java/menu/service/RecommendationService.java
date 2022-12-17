@@ -7,6 +7,7 @@ import menu.model.Menu;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +25,7 @@ public class RecommendationService {
     StringBuilder builder = new StringBuilder();
     List<String> categoriesInKorean = categoryResult.stream().map(Category::getCategoryInKorean).collect(Collectors.toList());
     builder.append("[ 카테고리 | ").append(String.join(" | ", categoriesInKorean)).append(" ]\n");
+    Collections.reverse(coaches);
     String[][] printResult = new String[coaches.size()][dayOfWeekNum];
     for (int i = 0; i < coaches.size(); i++) {
       for (int j = 0; j < dayOfWeekNum; j++) {
