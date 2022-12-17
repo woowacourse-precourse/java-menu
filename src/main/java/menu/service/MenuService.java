@@ -36,7 +36,7 @@ public class MenuService {
         menuRecommendApp.initializeCoach(coachNameWithComma);
     }
 
-    private boolean isValidCoachName(String[] coachNames){
+    public boolean isValidCoachName(String[] coachNames){
         for (int i = 0; i < coachNames.length; i++) {
             if(!inputValidation.isValidCoachName(coachNames[i])) {
                 outputView.printInValidCoachNameLengthErrorMessage();
@@ -46,7 +46,7 @@ public class MenuService {
         return true;
     }
 
-    private boolean isValidCoachCount(int coachCount){
+    public boolean isValidCoachCount(int coachCount){
         if(!inputValidation.isValidCoachNumber(coachCount)){
             outputView.printInValidCoachCountErrorMessage();
             return false;
