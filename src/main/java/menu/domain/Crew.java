@@ -15,4 +15,12 @@ public class Crew {
     public String getName() {
         return name;
     }
+
+    public void addFood(String name) {
+        this.foods.add(name);
+    }
+
+    public boolean isAlreadyBeenFood(String foodName) {
+        return foods.contains(foodName);
+    }
 }
