@@ -31,6 +31,8 @@ public class Coach {
         return canNotEatFoods;
     }
 
-
+    public String getName() {
+        return getName();
+    }
 
 }
