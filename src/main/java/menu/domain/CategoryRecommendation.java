@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryRecommendation {
+    private static final int INITIAL_INT_VALUE = 0;
+    private static final int MAX_CATEGORY_RECOMMEND_COUNT = 2;
+    private static final int MIN_CATEGORY_RANGE_NUMBER = 1;
+    private static final int MAX_CATEGORY_RANGE_NUMBER = 5;
+
     private static List<FoodCategory> recommendations = new ArrayList<>();
 
     public static void recommendCategories() {
@@ -20,7 +25,7 @@ public class CategoryRecommendation {
     }
 
     private static FoodCategory pickCategory() {
-        int number = Randoms.pickNumberInRange(1, 5);
+        int number = Randoms.pickNumberInRange(MIN_CATEGORY_RANGE_NUMBER, MAX_CATEGORY_RANGE_NUMBER);
         for (FoodCategory foodCategory : FoodCategory.values()) {
             if (foodCategory.getNumber() == number) {
                 return foodCategory;
@@ -30,13 +35,13 @@ public class CategoryRecommendation {
     }
 
     private static boolean isContainingLessThanTwo(FoodCategory pickedCategory) {
-        int count = 0;
+        int count = INITIAL_INT_VALUE;
         for (FoodCategory foodCategory : recommendations) {
             if (foodCategory == pickedCategory) {
-                count = count + 1;
+                count++;
             }
         }
-        if (count <= 1) {
+        if (count <= MAX_CATEGORY_RECOMMEND_COUNT) {
             return true;
         }
         return false;
