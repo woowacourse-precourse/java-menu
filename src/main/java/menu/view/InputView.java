@@ -3,6 +3,7 @@ package menu.view;
 import camp.nextstep.edu.missionutils.Console;
 import menu.util.Validate;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,16 +22,21 @@ public class InputView {
         String name = Console.readLine();
         String[] splitNames = name.split(",");
         List<String> names = Arrays.asList(splitNames);
-        Validate.nameLength(names,2,4);
-        Validate.coachLength(names,2,5);
+        Validate.nameLength(names, 2, 4);
+        Validate.coachLength(names, 2, 5);
         return names;
     }
 
     public static List<String> readCantEats(String name) {
         System.out.println(String.format(Message.CANT_EAT_INPUT_MESSAGE.message, name));
         String menu = Console.readLine();
-        String[] menus = menu.split(",");
-        return Arrays.asList(menus);
+        if (menu.length() > 0) {
+            String[] splitMenus = menu.split(",");
+            List<String> menus = Arrays.asList(splitMenus);
+            Validate.cantEatLength(menus, 0, 2);
+            return menus;
+        }
+        return new ArrayList<>();
     }
 
     private enum Message {
