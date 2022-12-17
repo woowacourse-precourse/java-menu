@@ -35,4 +35,8 @@ public class OutputView {
         }
         System.out.println(message.substring(0, message.length() - 2) + "]");
     }
+
+    public void printEnd(){
+        System.out.println("추천을 완료했습니다. ");
+    }
 }
