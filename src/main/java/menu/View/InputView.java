@@ -8,7 +8,8 @@ import java.util.List;
 
 public class InputView {
     public List<String> getCoachesName() {
-        System.out.println("코치의 이름을 입력해 주세요. (, 로 구분");
+        System.out.println("점심 메뉴 추천을 시작합니다.\n");
+        System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
         String coachesNameStr = Console.readLine();
         String[] coachesNameArr = coachesNameStr.split(",");
         List<String> coachesName = new ArrayList<>();
@@ -20,7 +21,7 @@ public class InputView {
     }
 
     public List<String> getHateFood(String coachName) {
-        System.out.println(coachName + "(이)가 못 먹는 메뉴를 입력해 주세요.");
+        System.out.println("\n" + coachName + "(이)가 못 먹는 메뉴를 입력해 주세요.");
         String hateFoodStr = Console.readLine();
         String[] hateFoodArr = hateFoodStr.split(",");
         List<String> hateFood = new ArrayList<>();
