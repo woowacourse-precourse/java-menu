@@ -22,7 +22,7 @@ public class MenuControllerImpl implements MenuController {
         this.categoryService = new CategoryServiceImpl();
         printStart();
         this.coachService = new CoachServiceImpl(initCoachList());
-        this.recommendMenuService = new RecommendMenuService();
+        this.recommendMenuService = new RecommendMenuServiceImpl();
     }
 
     public void run() {
