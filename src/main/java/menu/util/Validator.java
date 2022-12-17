@@ -1,7 +1,9 @@
 package menu.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Validator {
 
@@ -16,6 +18,7 @@ public class Validator {
         coaches.stream()
                 .forEach(coachName -> validateCoachName(coachName));
         validateCoachNumber(coaches);
+        validateDuplicateCoachName(coaches);
     }
 
     private static void validateCoachName(String name) {
@@ -24,6 +27,13 @@ public class Validator {
         }
         if (!(name.length() >= MINIMUM_LENGTH && name.length() <= MAXIMUN_LENGTH)) {
             throw new IllegalArgumentException("[ERROR] 코치의 이름은 최소 2글자, 최대 4글자이여야 합니다.");
+        }
+    }
+
+    private static void validateDuplicateCoachName(List<String> coachNames) {
+        Set<String> distinct = new HashSet<>(coachNames);
+        if (coachNames.size() != distinct.size()) {
+            throw new IllegalArgumentException("[ERROR] 코치의 이름은 중복될 수 없습니다.");
         }
     }
 
