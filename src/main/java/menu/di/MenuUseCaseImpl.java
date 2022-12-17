@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import menu.domain.Category;
-import menu.domain.CategoryPicker;
 import menu.domain.Coach;
 import menu.domain.CoachName;
 import menu.domain.Picker;
+import menu.domain.Recommender;
 
 public class MenuUseCaseImpl implements MenuUseCase {
 
@@ -19,9 +19,7 @@ public class MenuUseCaseImpl implements MenuUseCase {
     private static final int MAXIMUM_COACH_COUNT = 5;
     private static final int COACH_CANNOT_EAT_COUNT_START = 0;
     private static final int COACH_CANNOT_EAT_COUNT_END = 2;
-    private static final int MAX_SAME_CATEGORY = 2;
     private static final String COACH_CANNOT_EAT_ERROR_MESSAGE = "먹지 못하는 음식으로 등록할 수 있는 범위를 벗어났습니다";
-    private static final int PICK_DATE_SIZE = 5;
     private final Map<Category, List<String>> menus;
     private final Picker picker;
 
@@ -67,9 +65,7 @@ public class MenuUseCaseImpl implements MenuUseCase {
     public RecommendResultDto recommend(List<String> names, List<List<String>> notEatMenus) {
         List<Coach> coaches = new CoachMapper(names, notEatMenus).toCoach();
         List<Category> categories = new ArrayList<>();
-        for (int i = 0; i < PICK_DATE_SIZE; i++) {
-            recommendOneDay(coaches, categories);
-        }
+        new Recommender(categories, menus, picker).recommendTimes(coaches);
         List<String> categoriesDto = categories.stream()
                 .map(Category::toDto)
                 .collect(Collectors.toList());
@@ -77,43 +73,5 @@ public class MenuUseCaseImpl implements MenuUseCase {
                 .map(Coach::toDto)
                 .collect(Collectors.toList());
         return new RecommendResultDto(categoriesDto, coachesDto);
-    }
-
-    private void recommendOneDay(List<Coach> coaches, List<Category> categories) {
-        Category picked = pickCategory(categories);
-        List<String> oneCategoryMenus = menus.get(picked);
-        for (Coach coach : coaches) {
-            recommendOneDayOneCoach(coach, oneCategoryMenus);
-        }
-    }
-
-    private Category pickCategory(List<Category> alreadyPicked) {
-        while (true) {
-            Category newCategory = new CategoryPicker(picker).pickCategory();
-            if (canPickCategory(alreadyPicked, newCategory)) {
-                alreadyPicked.add(newCategory);
-                return newCategory;
-            }
-        }
-    }
-
-    private boolean canPickCategory(List<Category> picked, Category newCategory) {
-        return picked.stream()
-                .filter(it -> it == newCategory)
-                .count() < MAX_SAME_CATEGORY;
-    }
-
-    private void recommendOneDayOneCoach(Coach coach, List<String> oneCategoryMenus) {
-        while (true) {
-            String menu = getOneMenu(oneCategoryMenus);
-            if (coach.canEat(menu)) {
-                coach.eat(menu);
-                break;
-            }
-        }
-    }
-
-    private String getOneMenu(List<String> oneCategoryMenus) {
-        return picker.shuffle(oneCategoryMenus).get(0);
     }
 }
