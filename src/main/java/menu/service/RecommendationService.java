@@ -49,4 +49,10 @@ public class RecommendationService {
     private boolean isAddableCategory(List<String> recommendedCategories, String categoryName) {
         return recommendedCategories.stream().filter(categoryName::equals).count() <= MAX_CATEGORIES;
     }
+
+    public List<String> findRecommendedCategories() {
+        return Arrays.stream(Day.values()).map(day -> categoryByDay.get(day))
+                .map(Category::getName)
+                .collect(Collectors.toUnmodifiableList());
+    }
 }
