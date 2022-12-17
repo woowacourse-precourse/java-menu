@@ -12,12 +12,13 @@ public class Categorys {
 
 	List<Category> categories = new ArrayList<>();
 
-	public void insertCategory(Category category){
+	public void insertCategory(Category category) {
 		categories.add(category);
 	}
-	public boolean canAddCategory(Category category){
-		int count = Collections.frequency(categories,category);
-		if(count >= POSSIBLE_CATEGORY_COUNT){
+
+	public boolean canAddCategory(Category category) {
+		int count = Collections.frequency(categories, category);
+		if (count >= POSSIBLE_CATEGORY_COUNT) {
 			return false;
 		}
 		return true;

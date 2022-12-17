@@ -13,7 +13,7 @@ public class InputView {
 		return Console.readLine();
 	}
 
-	public String insertCoachsName(){
+	public String insertCoachsName() {
 		System.out.println(INSERT_COACHS_NAME);
 		return Console.readLine();
 	}

@@ -14,7 +14,6 @@ public class Coachs {
 	private static final int MAX_PERSON_COUNT = 5;
 
 
-
 	private List<Coach> coaches = new ArrayList<>();
 
 	public void insertCoach(String coachNames) {
@@ -29,8 +28,8 @@ public class Coachs {
 		isPossibleCoachCount(names.length);
 	}
 
-	public void isPossibleCoachCount(int size){
-		if(size < MIN_PERSON_COUNT || size > MAX_PERSON_COUNT){
+	public void isPossibleCoachCount(int size) {
+		if (size < MIN_PERSON_COUNT || size > MAX_PERSON_COUNT) {
 			throw new IllegalArgumentException(ERROR_CODE + POSSIBLE_COACH_COUNT_PRINT);
 		}
 	}

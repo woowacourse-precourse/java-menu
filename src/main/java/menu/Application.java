@@ -1,11 +1,6 @@
 package menu;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
-import java.util.List;
 import menu.cotroller.MenuController;
-import menu.domain.food.ChinaFood;
-import menu.domain.food.JapanFood;
 import menu.domain.game.MenuGame;
 import menu.view.InputView;
 import menu.view.OutputView;

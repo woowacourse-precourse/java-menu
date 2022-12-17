@@ -37,7 +37,6 @@ public class MenuController {
 				return menuGame.insertCoaches(names);
 			} catch (IllegalArgumentException e) {
 				outputView.errorPrint(e.getMessage());
-				insertCoachesName();
 			}
 		}
 	}
@@ -48,11 +47,12 @@ public class MenuController {
 			menuGame.insertNotPossibleMenu(coach, foods);
 		}
 	}
-	public void menuRecommand(){
+
+	public void menuRecommand() {
 		menuGame.menuRecommand();
 	}
 
-	public void endGame(MenuGame menuGame){
+	public void endGame(MenuGame menuGame) {
 		outputView.printResult(menuGame);
 	}
 
