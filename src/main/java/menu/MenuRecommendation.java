@@ -12,7 +12,6 @@ public class MenuRecommendation {
     List<String> randomMenus = new ArrayList<>();
 
     public List<Category> getRandomCategories() {
-        clearCategories();
         Category[] categories = Category.values();
 
         while (randomCategories.size() < RECOMMEND_SIZE) {
@@ -41,26 +40,18 @@ public class MenuRecommendation {
     }
 
     private boolean hasMenu(String randomMenu) {
-        return randomMenu.contains(randomMenu);
-    }
-
-    private boolean isUnwantedMenu(String randomMenu, List<String> unwantedMenus) {
-        return unwantedMenus.contains(randomMenu);
-    }
-
-    private void clearCategories() {
-        randomCategories.clear();
+        return randomMenus.contains(randomMenu);
     }
 
     private void clearMenus() {
-        randomCategories.clear();
+        randomMenus.clear();
     }
 
     private boolean isValidCategory(Category category) {
         long numberOfCategory = randomCategories.stream()
                 .filter(s -> s.equals(category))
                 .count();
-        if (numberOfCategory > 2)
+        if (numberOfCategory >= 2)
             return false;
 
         return true;
