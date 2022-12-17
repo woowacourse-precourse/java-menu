@@ -65,8 +65,21 @@ public enum Menu {
         this.name = name;
     }
 
+    public static List<Menu> makeMenus(String menus){
+        List<String> parsedMenu = parseMenu(menus);
+        validateMenu(parsedMenu);
+        return parsedMenu.stream().map(m -> from(m)).collect(Collectors.toList());
+    }
+
+    public static List<String> parseMenu(String menus){
+        String[] split = menus.split(",");
+        return Arrays.stream(split).distinct().collect(Collectors.toList());
+    }
+
     public static void validateMenu(List<String> parsedMenu){
         validateFormat(parsedMenu);
+        validateSize(parsedMenu);
+
     }
 
     private static void validateFormat(List<String> parsedMenu) {
@@ -79,17 +92,17 @@ public enum Menu {
         return parsedMenu.stream().anyMatch(menu -> menu.isBlank());
     }
 
-
-    public static List<String> parseMenu(String menus){
-        String[] split = menus.split(",");
-        return Arrays.stream(split).distinct().collect(Collectors.toList());
+    private static void validateSize(List<String> menus){
+        if(isCorrectSize(menus)){
+            return;
+        }
+        throw new IllegalArgumentException("[ERROR] : 못먹는 메뉴는 0~2개만 가능합니다.");
     }
 
-    public static List<Menu> makeMenus(String menus){
-        List<String> parsedMenu = parseMenu(menus);
-        validateMenu(parsedMenu);
-        return parsedMenu.stream().map(m -> from(m)).collect(Collectors.toList());
+    private static boolean isCorrectSize(List<String> menus) {
+        return menus.size() >= 0 && menus.size() <= 2;
     }
+
 
     public static Menu from(String name){
         return Arrays.stream(Menu.values())
