@@ -7,7 +7,7 @@ import menu.domain.Menus;
 
 public class MenuRepository {
 
-    private final Map<Category, Menus> repository = new EnumMap<>(Category.class);
+    private static final Map<Category, Menus> repository = new EnumMap<>(Category.class);
 
     public MenuRepository() {
     }
