@@ -6,6 +6,7 @@ import menu.view.InputView;
 import menu.view.OutputView;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class MenuController {
@@ -63,6 +64,8 @@ public class MenuController {
     }
 
     private void getResult() {
-        OutputView.printResult(CoachRepository.getCoachesRecommendMenus());
+        List<String> categories = CoachRepository.getRecommendCategoriesName();
+        Map<String, List<String>> recommendMenus = CoachRepository.getCoachesRecommendMenus();
+        OutputView.printResult(categories, recommendMenus);
     }
 }

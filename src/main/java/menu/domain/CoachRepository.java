@@ -11,6 +11,7 @@ import static menu.constant.SystemConstant.*;
 public class CoachRepository {
 
     private static final List<Coach> coaches = new ArrayList<>();
+    private static final List<Category> categories = new ArrayList<>();
 
     public static void addCoaches(List<String> coachNames) {
         validateCoachCount(coachNames);
@@ -23,6 +24,26 @@ public class CoachRepository {
 
     public static void addDislikeMenus(Coach coach, List<Menu> menus) {
         menus.forEach(coach::addDislikeMenu);
+    }
+
+    public static void addCategory(Category category) {
+        categories.add(category);
+    }
+
+    public static boolean checkTooManySameCategory(Category category) {
+        List<Category> distinctCategories =  categories.stream()
+                .distinct()
+                .collect(Collectors.toUnmodifiableList());
+        if (distinctCategories.size() == MAX_CATEGORY_COUNT) {
+            return !distinctCategories.contains(category);
+        }
+        return true;
+    }
+
+    public static List<String> getRecommendCategoriesName() {
+        return categories.stream()
+                .map(Category::getCategoryName)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public static List<Coach> getCoaches() {

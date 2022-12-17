@@ -11,7 +11,7 @@ public class Coach {
 
     private final String coachName;
     private final List<Menu> dislikeMenus = new ArrayList<>();
-    private final Map<Category, List<Menu>> recommendMenus = new HashMap<>();
+    private final List<Menu> recommendMenus = new ArrayList<>();
 
     public Coach(String coachName) {
         validateNameLength(coachName);
@@ -26,26 +26,8 @@ public class Coach {
         return coachName;
     }
 
-    public void addRecommendMenu(Category category, Menu menu) {
-        if (!recommendMenus.containsKey(category)) {
-            recommendMenus.put(category, new ArrayList<>());
-        }
-        recommendMenus.get(category).add(menu);
-    }
-
-//    public List<Menu> getRecommendMenus() {
-//        return recommendMenus;
-//    }
-
-    public boolean isRecommendFinish() {
-        return getRecommendMenus().size() == DAY_COUNT;
-    }
-
-    public boolean checkTooManySameCategory(Category category) {
-        if (recommendMenus.keySet().size() >= MAX_CATEGORY_COUNT) {
-            return recommendMenus.containsKey(category);
-        }
-        return true;
+    public void addRecommendMenu(Menu menu) {
+        recommendMenus.add(menu);
     }
 
     public boolean checkValidMenu(Menu menu) {
@@ -59,14 +41,11 @@ public class Coach {
     }
 
     public List<Menu> getRecommendMenus() {
-        List<Menu> recommends = new ArrayList<>();
-        recommendMenus.keySet()
-                .forEach(category -> recommends.addAll(recommendMenus.get(category)));
-        return recommends;
+        return recommendMenus;
     }
 
     private boolean checkOverlappedMenu(Menu menu) {
-        return getRecommendMenus().stream()
+        return recommendMenus.stream()
                 .anyMatch(recommendMenu -> recommendMenu.equals(menu));
     }
 

@@ -14,26 +14,23 @@ public class RecommendMaker {
     }
 
     public void recommend() {
-        CoachRepository.getCoaches()
-                .forEach(this::recommendEachCoach);
-    }
-
-    private void recommendEachCoach(Coach coach) {
-        while (!isRecommendFinished(coach)) {
-            Category category = recommendCategory(coach);
-            recommendMenu(category, coach);
+        for (int i = 0; i < 5; i++) {
+            Category category = recommendCategory();
+            CoachRepository.getCoaches()
+                    .forEach(coach -> recommendMenu(category, coach));
         }
     }
 
-    private boolean isRecommendFinished(Coach coach) {
-        return coach.isRecommendFinish();
+    private void recommendEachCoach(Coach coach, Category category) {
+        recommendMenu(category, coach);
     }
 
-    private Category recommendCategory(Coach coach) {
+    private Category recommendCategory() {
         Category category;
         do {
             category = categoryGenerator.generate();
-        } while (!coach.checkTooManySameCategory(category));
+        } while (!CoachRepository.checkTooManySameCategory(category));
+        CoachRepository.addCategory(category);
         return category;
     }
 
@@ -44,6 +41,6 @@ public class RecommendMaker {
             String menuName = Randoms.shuffle(menuNames).get(0);
             menu = MenuRepository.findByName(menuName);
         } while (!coach.checkValidMenu(menu));
-        coach.addRecommendMenu(category, menu);
+        coach.addRecommendMenu(menu);
     }
 }
