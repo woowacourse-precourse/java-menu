@@ -24,4 +24,8 @@ public class Coach {
     public void addFood(String food) {
         eatMenu.add(food);
     }
+
+    public List<String> getEatMenu() {
+        return this.eatMenu;
+    }
 }

@@ -19,7 +19,7 @@ public class MenuController {
         List<Coach> coaches = askCoach();
         askNoEat(coaches);
         int[] suggestedCategory = menuSuggester.run();
-        OutputView.showResult(suggestedCategory);
+        OutputView.showResult(suggestedCategory, coaches);
     }
 
     private List<Coach> askCoach() {
