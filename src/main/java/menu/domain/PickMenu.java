@@ -33,9 +33,9 @@ public class PickMenu {
         return makeMenu;
     }
 
-    private boolean validDuplicate() {
-        for (int i = 0 ; i < menus.size(); i++) {
-            if (Collections.frequency(menus, menus.get(i)) > 1)
+    private boolean validDuplicate(List<Menu> makeMenu) {
+        for (int i = 0 ; i < makeMenu.size(); i++) {
+            if (Collections.frequency(makeMenu, makeMenu.get(i)) > 1)
                 return true;
         }
         return false;
