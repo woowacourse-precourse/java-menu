@@ -27,7 +27,7 @@ public class InputView {
     }
 
     private static void validateCoachNumber(List<String> coaches) {
-        if (coaches.size() <= 1 || coaches.size() >= 6) {
+        if (coaches.size() <= Range.MIN_RANGE.value || coaches.size() >= Range.MAX_RANGE.value) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_COACH_NUMBER.getMessage());
         }
     }
@@ -40,6 +40,16 @@ public class InputView {
 
         Message(String message) {
             this.message = message;
+        }
+    }
+
+    private enum Range {
+        MIN_RANGE(1), MAX_RANGE(6);
+
+        private final int value;
+
+        Range(int value) {
+            this.value = value;
         }
     }
 }
