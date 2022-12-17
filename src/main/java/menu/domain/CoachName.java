@@ -2,12 +2,12 @@ package menu.domain;
 
 import java.util.regex.Pattern;
 
-public class CrewName {
+public class CoachName {
 
     private static final Pattern NAME_RULE = Pattern.compile("^[가-힣]{2,4}$");
     private final String name;
 
-    public CrewName(String name) {
+    public CoachName(String name) {
         validateName(name);
         this.name = name;
     }

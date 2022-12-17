@@ -2,7 +2,7 @@ package menu.di;
 
 import java.util.List;
 import java.util.Map;
-import menu.domain.CrewName;
+import menu.domain.CoachName;
 
 public class MenuUseCaseImpl implements MenuUseCase {
 
@@ -18,7 +18,7 @@ public class MenuUseCaseImpl implements MenuUseCase {
     @Override
     public void validateNames(ValidateNameCommand validateNameCommand) {
         List<String> names = validateNameCommand.getNames();
-        names.forEach(CrewName::new);
+        names.forEach(CoachName::new);
     }
 
     @Override
