@@ -3,6 +3,9 @@ package menu.model;
 import menu.enums.MenuOption;
 import menu.module.NotModule;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ChoiceMachine extends NotModule {
 
     RandomMenuGenerator randomMenuGenerator = new RandomMenuGenerator();
@@ -16,11 +19,10 @@ public class ChoiceMachine extends NotModule {
         CoachRepository.addCategory(MenuOption.fromCategory(category));
     }
 
-    public void choiceMenu(Coach coach, int day) {
-        String menu;
-        do {
-            menu = randomMenuGenerator.randomMenuChoice();
-        } while (not(coach.canAddMenu(menu) && CoachRepository.canAddMenuInThisCategory(menu, day)));
+    public void choiceMenu(Coach coach, MenuOption category) {
+        List<String> addableMenus = category.getAddableMenus(coach.getChoicedMenus(), coach.getHateFoods());
+        String menu = randomMenuGenerator.randomMenuChoice(addableMenus);
+        System.out.println(addableMenus + " " + menu);
 
         coach.addMenu(menu);
     }

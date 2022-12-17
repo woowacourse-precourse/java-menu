@@ -37,7 +37,7 @@ public class Coach extends NotModule {
         }
     }
 
-    public boolean canAddMenu(String menu) {
+    private boolean canAddMenu(String menu) {
         return not(choicedMenus.stream()
                 .anyMatch(choicedMenu -> Objects.equals(choicedMenu, menu))
                 ||

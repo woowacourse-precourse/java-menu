@@ -31,6 +31,13 @@ public enum MenuOption {
         return this.menus.contains(menu);
     }
 
+    public List<String> getAddableMenus(List<String> choicedMenus, List<String> hateFoods) {
+        return menus.stream()
+                .filter(menu -> !choicedMenus.contains(menu))
+                .filter(menu -> !hateFoods.contains(menu))
+                .collect(Collectors.toList());
+    }
+
     public static boolean isExistFood(String menu) {
         return getAllMenus().contains(menu);
     }

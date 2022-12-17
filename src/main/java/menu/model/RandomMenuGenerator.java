@@ -11,9 +11,7 @@ public class RandomMenuGenerator {
         return MenuOption.getCategoryFromNumber(Randoms.pickNumberInRange(1, 5));
     }
 
-    public String randomMenuChoice() {
-        List<String> menus = MenuOption.getAllMenus();
-
-        return Randoms.shuffle(menus).get(0);
+    public String randomMenuChoice(List<String> addableMenus) {
+        return Randoms.shuffle(addableMenus).get(0);
     }
 }

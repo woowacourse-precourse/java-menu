@@ -37,8 +37,4 @@ public class CoachRepository {
 
         return categoryCount < MAX_DUPLICATION_ALLOWED_IN_CATEGORY;
     }
-
-    public static boolean canAddMenuInThisCategory(String menu, int day) {
-        return categories.get(day).isContainsInCategroy(menu);
-    }
 }

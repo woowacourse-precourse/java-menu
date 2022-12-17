@@ -43,7 +43,7 @@ public class MainController {
     public void choiceMenu() {
         for (Coach coach : CoachRepository.coaches()) {
             for (int day = ZERO; day < DAY_COUNT; day++) {
-                choiceMachine.choiceMenu(coach, day);
+                choiceMachine.choiceMenu(coach, CoachRepository.categories().get(day));
             }
         }
 
