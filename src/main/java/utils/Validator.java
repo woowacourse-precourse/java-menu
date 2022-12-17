@@ -61,6 +61,10 @@ public class Validator {
     }
 
     public static boolean isValidFoodName(String hateFoods) {
+        if (hateFoods.length() == 0 ) {
+            return true;
+        }
+
         try {
             checkValidFoodNames(hateFoods);
         } catch (IllegalArgumentException exception) {
