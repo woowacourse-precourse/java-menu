@@ -27,4 +27,11 @@ public class Coaches {
         Coach coachToAddInedibleFoods = getCoachByName(coachName);
         coachToAddInedibleFoods.registerInedibleFoods(inedibleFoods);
     }
+
+    private Coach getCoachByName(String coachName) {
+        return coaches.stream()
+                .filter(coach -> coach.isNameOf(coachName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 코치의 이름입니다."));
+    }
 }
