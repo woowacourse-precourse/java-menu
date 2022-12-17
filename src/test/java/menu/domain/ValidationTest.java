@@ -27,8 +27,16 @@ class ValidationTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("코치 이름은 최소 2글자, 최대 4글자여야 한다.")
     @Test
     void validateNameSize() {
+        String[] coaches = {"토미","제임스","포코","포비","크롱뽀로로","미성"};
+        assertThatThrownBy(() -> validation.validateNameSize(coaches))
+                .isInstanceOf(IllegalArgumentException.class);
+        coaches[0] = "토";
+        coaches[4] = "크롱";
+        assertThatThrownBy(() -> validation.validateNameSize(coaches))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
