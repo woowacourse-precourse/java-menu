@@ -63,14 +63,15 @@ public class FoodRecommendMachine {
         while (!coach.canEat(randomMenu)) {
             randomMenu = getRandomMenuOf(foodCategory);
         }
-        while (checkMenuDuplication(coach, randomMenu)) {
+        while (!checkMenuDuplication(coach, randomMenu)) {
             randomMenu = getRandomMenuOf(foodCategory);
         }
         return randomMenu;
     }
 
     private Menu getRandomMenuOf(FoodCategory category) {
-        return Randoms.shuffle(category.getMenus()).get(0);
+        Menu menu = Randoms.shuffle(category.getMenus()).get(0);
+        return menu;
     }
 
     private boolean checkMenuDuplication(Coach coach, Menu menu) {
