@@ -2,6 +2,8 @@ package menu.model;
 
 import menu.constants.ExceptionMessage;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Coach {
@@ -21,9 +23,11 @@ public class Coach {
         return name;
     }
     public List<String> getSelectMenu() {
-        List<String> selectMenuResult = selectMenu.getSelectMenu();
-        selectMenuResult.add(0, name);
-        return selectMenuResult;
+        List<String> temp = Collections.singletonList(name);
+        List<String> selectMenuResult = new ArrayList<>();
+        selectMenuResult.addAll(temp);
+        selectMenuResult.addAll(selectMenu.getSelectMenu());
+        return Collections.unmodifiableList(selectMenuResult);
     }
 
     public void addHateMenus(HateMenu hateMenu) {
