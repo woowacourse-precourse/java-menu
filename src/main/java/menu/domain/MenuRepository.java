@@ -23,6 +23,9 @@ public class MenuRepository {
     }
 
     public static void makeRandomMenuByCategory(Category category) {
+        menus.stream().filter(menu -> menu.getCategory().equals(category))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException());
     }
 
     private List<String> findMenuByCategory() {

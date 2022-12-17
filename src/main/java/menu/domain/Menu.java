@@ -17,4 +17,8 @@ public class Menu {
     public String makeRandomMenu() {
         return Randoms.shuffle(menuList).get(0);
     }
+
+    public Category getCategory() {
+        return category;
+    }
 }
