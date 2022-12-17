@@ -1,4 +1,4 @@
-package menu.uitli;
+package menu.util;
 
 /**
  * @Author : jeeseob
