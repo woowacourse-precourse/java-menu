@@ -8,7 +8,8 @@ import menu.dto.input.ReadUnavailableMenuDto;
 import menu.dto.output.PrintCriticalExceptionDto;
 import menu.dto.output.PrintExceptionDto;
 import menu.dto.output.PrintRecommendationsDto;
-import menu.util.StandardRandomGenerator;
+import menu.util.CategoryRandomGenerator;
+import menu.util.MenuRandomGenerator;
 import menu.view.IOViewResolver;
 
 import java.util.EnumMap;
@@ -22,16 +23,17 @@ public class Controller {
     private MenuRecommendation menuRecommendation;
 
 
-    public Controller(IOViewResolver ioViewResolver, StandardRandomGenerator generator) {
+    public Controller(IOViewResolver ioViewResolver,
+                      CategoryRandomGenerator categoryRandomGenerator, MenuRandomGenerator menuRandomGenerator) {
         this.ioViewResolver = ioViewResolver;
         this.statusMap = new EnumMap<>(Status.class);
-        initStatusMap(generator);
+        initStatusMap(categoryRandomGenerator, menuRandomGenerator);
     }
 
-    private void initStatusMap(StandardRandomGenerator generator) {
+    private void initStatusMap(CategoryRandomGenerator categoryRandomGenerator, MenuRandomGenerator menuRandomGenerator) {
         statusMap.put(Status.READ_NAMES, this::readNames);
         statusMap.put(Status.READ_UNAVAILABLE_MENU, this::readUnavailableMenu);
-        statusMap.put(Status.PRINT_RESULT, () -> printResult(generator));
+        statusMap.put(Status.PRINT_RESULT, () -> printResult(categoryRandomGenerator, menuRandomGenerator));
     }
 
     public Status run(Status status) {
@@ -58,8 +60,8 @@ public class Controller {
         return Status.PRINT_RESULT;
     }
 
-    private Status printResult(StandardRandomGenerator generator) {
-        People result = menuRecommendation.getRecommendations(generator);
+    private Status printResult(CategoryRandomGenerator categoryRandomGenerator, MenuRandomGenerator menuRandomGenerator) {
+        People result = menuRecommendation.getRecommendations(categoryRandomGenerator, menuRandomGenerator);
         List<String> shuffledCategory = menuRecommendation.getShuffledCategories();
 
         ioViewResolver.outputViewResolve(new PrintRecommendationsDto(result, shuffledCategory));

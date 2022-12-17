@@ -1,6 +1,6 @@
 package menu.domain;
 
-import menu.util.StandardRandomGenerator;
+import menu.util.MenuRandomGenerator;
 
 import java.util.Iterator;
 import java.util.List;
@@ -25,10 +25,10 @@ public class People implements Iterable<Person> {
         }
     }
 
-    public void setShuffledCategories(List<String> shuffledCategory, StandardRandomGenerator generator) {
+    public void setShuffledCategories(List<String> shuffledCategory, MenuRandomGenerator menuRandomGenerator) {
         for (String category : shuffledCategory) {
             for (Person person : people) {
-                person.recommendMenu(category, generator);
+                person.recommendMenu(category, menuRandomGenerator);
             }
         }
     }

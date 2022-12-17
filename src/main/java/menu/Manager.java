@@ -2,7 +2,8 @@ package menu;
 
 import menu.controller.Controller;
 import menu.domain.Status;
-import menu.util.StandardRandomGenerator;
+import menu.util.CategoryRandomGenerator;
+import menu.util.MenuRandomGenerator;
 import menu.view.IOViewResolver;
 import menu.view.InputView;
 import menu.view.OutputView;
@@ -16,7 +17,7 @@ public class Manager {
 
     public static void run() {
         IOViewResolver ioViewResolver = new IOViewResolver(InputView.getInstance(), OutputView.getInstance());
-        Controller controller = new Controller(ioViewResolver, new StandardRandomGenerator());
+        Controller controller = new Controller(ioViewResolver, new CategoryRandomGenerator(), new MenuRandomGenerator());
         Status status = INITIAL_STATUS;
 
         while (status != Status.EXIT) {

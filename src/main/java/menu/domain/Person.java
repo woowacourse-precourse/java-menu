@@ -3,7 +3,7 @@ package menu.domain;
 import menu.domain.menu.Category;
 import menu.domain.menu.Menu;
 import menu.domain.menu.Menus;
-import menu.util.StandardRandomGenerator;
+import menu.util.MenuRandomGenerator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -56,15 +56,15 @@ public class Person {
     }
 
 
-    public void recommendMenu(String menu, StandardRandomGenerator generator) {
-        Category category = Category.map(menu);
+    public void recommendMenu(String inputCategory, MenuRandomGenerator menuRandomGenerator) {
+        Category category = Category.map(inputCategory);
         List<String> menus = Arrays.stream(Menu.values())
                 .filter(m -> m.toString().startsWith(category.toString()))
                 .map(m -> m.getMenuName())
                 .collect(Collectors.toList());
 
         while (true) {
-            String generate = generator.generate(menus);
+            String generate = menuRandomGenerator.generate(menus);
             if (recommended.contains(generate) || unavailable.contains(generate)) {
                 continue;
             }

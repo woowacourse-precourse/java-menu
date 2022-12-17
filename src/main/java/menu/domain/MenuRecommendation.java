@@ -1,7 +1,8 @@
 package menu.domain;
 
 import menu.domain.menu.Category;
-import menu.util.StandardRandomGenerator;
+import menu.util.CategoryRandomGenerator;
+import menu.util.MenuRandomGenerator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,13 +39,9 @@ public class MenuRecommendation {
         people.addUnavailableMeneus(inputs);
     }
 
-    public People getRecommendations(StandardRandomGenerator generator) {
-        List<String> categories = Arrays.stream(Category.values())
-                .map(Category::getTitle)
-                .collect(Collectors.toList());
-
-        shuffledCategories = calculateShuffledCategories(generator, categories);
-        people.setShuffledCategories(shuffledCategories, generator);
+    public People getRecommendations(CategoryRandomGenerator categoryRandomGenerator, MenuRandomGenerator menuRandomGenerator) {
+        shuffledCategories = calculateShuffledCategories(categoryRandomGenerator);
+        people.setShuffledCategories(shuffledCategories, menuRandomGenerator);
 
         return people;
     }
@@ -53,13 +50,13 @@ public class MenuRecommendation {
         return shuffledCategories;
     }
 
-    private List<String> calculateShuffledCategories(StandardRandomGenerator generator, List<String> categories) {
+    private List<String> calculateShuffledCategories(CategoryRandomGenerator generator) {
 
         List<String> result = new ArrayList<>();
         for (Day value : Day.values()) {
-            String generated = generator.generate(categories);
+            String generated = generator.generate(null);
             while (!result.isEmpty() && !validateCount(result, generated)) {
-                generated = generator.generate(categories);
+                generated = generator.generate(null);
             }
             result.add(generated);
         }
@@ -67,6 +64,8 @@ public class MenuRecommendation {
     }
 
     private boolean validateCount(List<String> result, String generated) {
-        return result.stream().filter(m -> m.equals(generated)).count() <= 2;
+        return result.stream()
+                .filter(m -> m.equals(generated))
+                .count() <= 2;
     }
 }
