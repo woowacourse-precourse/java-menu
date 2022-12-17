@@ -10,6 +10,6 @@ public enum DislikeFoodCondition {
     }
 
     public static boolean isWrongDislikeFoodCount(int size) {
-        return size >= MIN_COUNT.value && size <= MAX_COUNT.value;
+        return !(size >= MIN_COUNT.value && size <= MAX_COUNT.value);
     }
 }

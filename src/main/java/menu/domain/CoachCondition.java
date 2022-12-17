@@ -13,10 +13,10 @@ public enum CoachCondition {
     }
 
     public static boolean isWrongCoachName(String name) {
-        return name.length() >= NAME_MIN.value && name.length() <= NAME_MAX.value;
+        return !(name.length() >= NAME_MIN.value && name.length() <= NAME_MAX.value);
     }
 
     public static boolean isWrongCoachCount(int size) {
-        return size >= COUNT_MIN.value && size <= COUNT_MAX.value;
+        return !(size >= COUNT_MIN.value && size <= COUNT_MAX.value);
     }
 }
