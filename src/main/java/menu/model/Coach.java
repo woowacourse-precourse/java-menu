@@ -16,24 +16,24 @@ public class Coach {
         unwantedMenus.addAll(menus);
     }
 
-    public void addRecommendedMenus(String menus) {
-        this.menus.add(menus);
+    public void addRecommendedMenu(String menu) {
+        this.menus.add(menu);
     }
 
-    public boolean availableMenu(String menu){
+    public boolean availableMenu(String menu) {
         return !hasMenu(menu) && !isUnwantedMenu(menu);
-    }
-
-    public boolean hasMenu(String menu){
-        return menus.contains(menu);
-    }
-
-    public boolean isUnwantedMenu(String menu) {
-        return unwantedMenus.contains(menu);
     }
 
     public String getName() {
         return this.name;
+    }
+
+    private boolean hasMenu(String menu) {
+        return menus.contains(menu);
+    }
+
+    private boolean isUnwantedMenu(String menu) {
+        return unwantedMenus.contains(menu);
     }
 
     @Override

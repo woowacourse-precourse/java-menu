@@ -41,7 +41,7 @@ public class MenuRecommendationController {
             Category category = categories.get(i);
             for (int j = 0; j < coaches.size(); j++) {
                 Coach coach = coaches.get(j);
-                coach.addRecommendedMenus(recommendation.getRandomMenu(coach, category));
+                coach.addRecommendedMenu(recommendation.getRandomMenu(coach, category));
             }
         }
     }
