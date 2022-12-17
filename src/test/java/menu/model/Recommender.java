@@ -11,5 +11,11 @@ public class Recommender {
         return Category.get(randomNumber);
     }
 
+    public String recommendMenuOfCategory(Category category){
+        int max = category.getMenus().size() - 1;
+        int randomNumber = Randoms.pickNumberInRange(0, max);
+        String menu = category.getMenus().get(randomNumber);
+        return menu;
+    }
 
 }
