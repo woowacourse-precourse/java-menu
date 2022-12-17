@@ -21,11 +21,16 @@ public class OutputView extends DefaultMessage {
     public static void printResult(final List<RecommendResult> recommendMenus) {
         addNewLine();
         printMessage(RESULT_MESSAGE);
+        printDayOfWeek();
         printRecommendCategory(recommendMenus);
         printRecommendResultMessage(recommendMenus);
 
         addNewLine();
         printMessage(END_MESSAGE);
+    }
+
+    private static void printDayOfWeek() {
+        printMessage("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
     }
 
     private static void printRecommendCategory(final List<RecommendResult> recommendMenus) {
@@ -34,7 +39,7 @@ public class OutputView extends DefaultMessage {
     }
 
     private static String getTypeView(final RecommendResult result) {
-        return OPEN_BRACKET + "구분" + DELIMITER + String.join(DELIMITER, result.getMenuCategoryNames()) + CLOSE_BRACKET;
+        return OPEN_BRACKET + "카테고리" + DELIMITER + String.join(DELIMITER, result.getMenuCategoryNames()) + CLOSE_BRACKET;
     }
 
     private static void printRecommendResultMessage(final List<RecommendResult> recommendMenus) {
