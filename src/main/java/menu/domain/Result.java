@@ -36,4 +36,8 @@ public class Result {
         menus.add(menuName);
         this.selectedMenu.put(coachName, menus);
     }
+
+    public List<String> getSelectedCategory() {
+        return selectedCategory;
+    }
 }

@@ -53,7 +53,8 @@ public class ResultService {
         return false;
     }
 
-    public void printResult() {
+    public void printResult(Result result) {
         OutputView.printResultMessage();
+        OutputView.printCategoryResult(result);
     }
 }

@@ -24,10 +24,10 @@ public class MenuController {
     public void start() {
         coach = coachService.initializeCoach();
         ban = banService.initializeBan(coach);
+        result = resultService.initializeResult(coach);
     }
 
     public void select() {
-        result = resultService.initializeResult(coach);
         String category = resultService.pickCategory(result);
         for (String coachName : coach.getCoachNames()) {
             resultService.pickMenu(category, result, coachName, ban);
@@ -35,6 +35,6 @@ public class MenuController {
     }
 
     public void finish() {
-        resultService.printResult();
+        resultService.printResult(result);
     }
 }
