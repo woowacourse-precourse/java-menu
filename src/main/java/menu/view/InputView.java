@@ -29,12 +29,18 @@ public class InputView {
 			try {
 				String input = Console.readLine();
 				String[] menus = input.replace(" ", "").split(",");
-				// isMenuLengthValidate();
+				isMenuLengthValidate(menus);
 				return Stream.of(menus)
 					.collect(Collectors.toList());
 			} catch (IllegalArgumentException e) {
 				System.out.println(e.getMessage());
 			}
+		}
+	}
+
+	private void isMenuLengthValidate(String[] menus) {
+		if (menus.length > 2) {
+			throw new IllegalArgumentException(WRONG_MENUS_MSG);
 		}
 	}
 
