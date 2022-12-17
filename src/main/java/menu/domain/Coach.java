@@ -12,13 +12,12 @@ public class Coach {
     private List<Food> cantEatList;
     private HashMap<String,Food> foodList;
     private HashMap<String,Integer> categoryCnt;
-    public Coach(String name,String cantEat){
+    public Coach(String name){
         this.name = name;
         makeCategoryCnt();
         makeFoodList();
-        makeCantEatList(cantEat);
     }
-    private void makeCantEatList(String cantEat){
+    public void makeCantEatList(String cantEat){
         for(String food:cantEat.split(",")){
             this.cantEatList.add(getFoodsList().get(food));
         }
@@ -35,4 +34,6 @@ public class Coach {
             categoryCnt.put(category,0);
         }
     }
+    public HashMap<String,Integer> getCategoryCnt(){return this.categoryCnt;}
+    public void addCategoryCnt(String category){this.categoryCnt.put(category,categoryCnt.get(category) + 1);}
 }
