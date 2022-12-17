@@ -30,8 +30,7 @@ public class MenuRecommendationController implements Controllable {
             }
             CategoryRepository.addCategoryCount(category);
         }
-        outputView.printRecommendedMenus(CategoryRepository.getCategoriesAlreadyEaten(), CoachRepository.coaches());
-        outputView.printFinishRecommendation();
+        outputView.printResult(CategoryRepository.getCategoriesAlreadyEaten(), CoachRepository.coaches());
         return ApplicationStatus.APPLICATION_EXIT;
     }
 

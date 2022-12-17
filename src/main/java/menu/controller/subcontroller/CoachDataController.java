@@ -24,7 +24,6 @@ public class CoachDataController implements Controllable {
     public ApplicationStatus process() {
         outputView.printStart();
         inputView.readCoachNames().forEach(CoachRepository::add);
-        System.out.println(MenuRepository.menus());
         for (Coach coach : CoachRepository.coaches()) {
             List<Menu> menuNotToEat = inputView.readMenuNotToEat(coach.getName());
             coach.addMenuNotToEat(menuNotToEat);
