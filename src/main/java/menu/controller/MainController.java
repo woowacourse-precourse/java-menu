@@ -114,7 +114,11 @@ public class MainController {
     }
 
     private void displayRecommendationResult(){
-
+        OutputView.printDays();
+        OutputView.printCategories(categories);
+        for(Coach coach : coaches){
+            OutputView.printRecommendedMenus(coach);
+        }
     }
 
     private void displayFinishMessage(){

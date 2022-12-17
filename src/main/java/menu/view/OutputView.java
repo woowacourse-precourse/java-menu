@@ -1,6 +1,12 @@
 package menu.view;
 
+import menu.constant.Category;
 import menu.constant.Message;
+import menu.model.Coach;
+import menu.model.Menu;
+import menu.model.MenusOfWeek;
+
+import java.util.List;
 
 public class OutputView {
 
@@ -23,6 +29,33 @@ public class OutputView {
         String output = coachName + Message.GET_BAN_FOODS_MESSAGE;
         System.out.println(output);
     }
+
+    public static void printDays(){
+        System.out.println();
+        System.out.println("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
+    }
+
+    public static void printCategories(List<Category> categories){
+        String output = "[ 카테고리";
+        for(Category category : categories){
+            output += " | ";
+            output += category.getName();
+        }
+        output += " ]";
+        System.out.println(output);
+    }
+
+    public static void printRecommendedMenus(Coach coach){
+        String output = "[ " + coach.getName();
+        List<Menu> menus = coach.getMenusOfWeek().getMenus();
+        for(Menu menu : menus){
+            output += " | ";
+            output += menu.getMenuName();
+        }
+        output += " ]";
+        System.out.println(output);
+    }
+
 
 
 }
