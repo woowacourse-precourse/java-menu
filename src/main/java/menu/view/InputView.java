@@ -17,15 +17,8 @@ public class InputView {
     public List<String> readCantEatMenu() {
         String input = Console.readLine();
         String[] cantEatMenus = input.split(",");
-        validateCantEatMenusSize(cantEatMenus);
         return Arrays.stream(cantEatMenus)
                 .map(String::trim)
                 .collect(Collectors.toList());
-    }
-
-    private void validateCantEatMenusSize(String[] cantEatMenus) {
-        if (2 < cantEatMenus.length) {
-            throw new IllegalArgumentException("못 먹는 메뉴는 최대 2개까지 입력해 주세요.");
-        }
     }
 }

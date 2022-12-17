@@ -3,7 +3,6 @@ package menu.service;
 import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.Coaches;
-import menu.domain.Menu;
 import menu.domain.Recommender;
 import menu.util.ExceptionHandler;
 import java.util.List;
@@ -25,17 +24,7 @@ public class MainService {
         this.coaches = new Coaches(coaches);
     }
 
-    public void setCantEatMenus(List<String> hateMenus, String coachName) {
-        for (String hateMenu : hateMenus) {
-            if (hateMenu.trim().isEmpty()) {
-                continue;
-            }
-
-            if (!Menu.isExist(hateMenu)) {
-                throw new IllegalArgumentException("존재하지 않는 메뉴를 입력했습니다. 다시 입력해 주세요.");
-            }
-        }
-
+    public void setHateMenus(List<String> hateMenus, String coachName) {
         Coach coach = coaches.findByName(coachName);
         coach.setHateMenus(hateMenus);
     }

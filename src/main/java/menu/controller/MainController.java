@@ -32,8 +32,8 @@ public class MainController {
     }
 
     private void setHateMenus(String coachName) {
-        outputView.printCoachCantEat(coachName);
+        outputView.printHateMenu(coachName);
         List<String> cantEatMenus = exceptionHandler.repeat(inputView::readCantEatMenu);
-        mainService.setCantEatMenus(cantEatMenus, coachName);
+        mainService.setHateMenus(cantEatMenus, coachName);
     }
 }

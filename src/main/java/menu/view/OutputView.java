@@ -22,7 +22,7 @@ public class OutputView {
         System.out.println(ERROR_PREFIX + message);
     }
 
-    public void printCoachCantEat(String name) {
+    public void printHateMenu(String name) {
         System.out.println(name + "(이)가 못 먹는 메뉴를 입력해 주세요.");
     }
 
