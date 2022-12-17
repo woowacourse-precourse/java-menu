@@ -1,9 +1,12 @@
 package menu.domain;
 
+import java.util.List;
+
 public class Coach {
 
     private final String name;
     private Menus canNotEatMenus ;
+    private List<String> ateMenus;
 
     public Coach(String name) {
         if(!isValidName(name)){
@@ -28,7 +31,19 @@ public class Coach {
         return canNotEatMenus.size() <= 2;
     }
 
+    public boolean isRecommendPossible(String menu) {
+        return !canNotEatMenus.contains(menu) && !ateMenus.contains(menu);
+    }
+
+    public void addMenu(String menu) {
+        ateMenus.add(menu);
+    }
+
     public String getName() {
         return name;
+    }
+
+    public List<String> getAteMenus() {
+        return ateMenus;
     }
 }

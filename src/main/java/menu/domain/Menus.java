@@ -21,4 +21,12 @@ public class Menus {
     public int size() {
         return menus.size();
     }
+
+    public boolean contains(String menu) {
+        return menus.contains(menu);
+    }
+
+    public List<String> getNames() {
+        return menus;
+    }
 }

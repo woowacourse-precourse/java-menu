@@ -5,7 +5,7 @@
 - [x] 각 코치는 최소 0개, 최대 2개의 못 먹는 메뉴가 있다. (, 로 구분해서 입력한다.)
     - 먹지 못하는 메뉴가 없으면 빈 값을 입력한다.
 - 추천을 못하는 경우는 발생하지 않으니 고려하지 않아도 된다.
-- 각 코치에게 한 주에 중복되지 않는 메뉴를 추천해야 한다.
+- [x] 각 코치에게 한 주에 중복되지 않는 메뉴를 추천해야 한다.
 ````
   예시)
   구구: 비빔밥, 김치찌개, 쌈밥, 규동, 우동 → 한식을 3회 먹으므로 불가능
@@ -24,12 +24,12 @@
 String category = categories.get(Randoms.pickNumberInRange(1, 5));
 ```
 - 임의로 카테고리의 순서 또는 데이터를 변경하면 안 된다.
-    - `Randoms.pickNumberInRange()`의 결과가 **1이면 일식, 2면 한식, 3이면 중식, 4면 아시안, 5면 양식**을 추천해야 한다.
-- 추천할 수 없는 카테고리인 경우 다시 `Randoms.pickNumberInRange()`를 통해 임의의 값을 생성해서 추천할 카테고리를 정해야 한다.
+    - [x] `Randoms.pickNumberInRange()`의 결과가 **1이면 일식, 2면 한식, 3이면 중식, 4면 아시안, 5면 양식**을 추천해야 한다.
+- [x] 추천할 수 없는 카테고리인 경우 다시 `Randoms.pickNumberInRange()`를 통해 임의의 값을 생성해서 추천할 카테고리를 정해야 한다.
 
 ### 메뉴
 - [x] 메뉴 리스트 생성
-- 추천할 메뉴는 정해진 카테고리에 있는 메뉴를 `Randoms.shuffle()`을 통해 임의의 순서로 섞은 후, 첫 번째 값을 사용해야 한다.
+- [x] 추천할 메뉴는 정해진 카테고리에 있는 메뉴를 `Randoms.shuffle()`을 통해 임의의 순서로 섞은 후, 첫 번째 값을 사용해야 한다.
     - 카테고리에 포함되는 메뉴 목록을 `List<String>` 형태로 준비한다.
 
 ```java
@@ -52,7 +52,7 @@ String menu = Randoms.shuffle(menus).get(0);
 ```
 
 ### 에러
-- 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, 
+- [x] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, 
 - "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
 - Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 

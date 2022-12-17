@@ -1,17 +1,20 @@
 package menu.controller;
 
-import menu.domain.Coach;
-import menu.domain.Coaches;
-import menu.domain.Menus;
+import menu.domain.*;
 import menu.view.InputView;
 import menu.view.OutputView;
 
 public class MenuController {
 
+    private final CategoryGenerator categoryGenerator = new RandomCategoryGenerator();
+
     public void run() {
         OutputView.printServiceStartMessage();
         Coaches coaches = initCoaches();
         addCanNotEatMenus(coaches);
+        RecommendService recommendService = new RecommendService(coaches);
+        recommendService.recommend(categoryGenerator);
+
     }
 
     private static Coaches initCoaches() {
