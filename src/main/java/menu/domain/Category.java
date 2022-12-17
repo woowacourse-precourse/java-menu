@@ -7,7 +7,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class Category {
     private static List<Integer> categoryCnt;
-    private static List<Integer> dayCategory = new ArrayList<>();
     public Category(){
         this.categoryCnt = new ArrayList<>();
     };
@@ -18,7 +17,6 @@ public class Category {
             if (frequencyCnt(value))
                 continue;
             categoryCnt.add(value);
-            dayCategory.add(value);
             return value;
         }
     }
@@ -35,6 +33,6 @@ public class Category {
     }
 
     public static List<Integer> getCategory() {
-        return dayCategory;
+        return categoryCnt;
     }
 }
