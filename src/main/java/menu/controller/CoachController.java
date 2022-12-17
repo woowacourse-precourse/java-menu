@@ -38,21 +38,30 @@ public class CoachController {
     public void makeCantEat(String coach,String cantEat){
         this.coaches.get(coach).makeCantEatList(cantEat);
     }
-    public void recommendFood(String coach){
-        String category = recommendCategory(coach);
+    public void makeFoodList(){
+        for(String category:categoryList){
+            makeAllCoach(category);
+        }
+    }
+    private void makeAllCoach(String category){
+        for(String coach:coachList){
+            recommendFood(category,coach);
+        }
+    }
+    private void recommendFood(String category,String coach){
         String food =  Randoms.shuffle(Foods.getFoodsList().get(category)).get(0);
         if(!coaches.get(coach).getFoodList().contains(food)){
             coaches.get(coach).addFoodList(food);
             return;
         }
-        if(coaches.get(coach).getFoodList().contains(food)){
+        if(!coaches.get(coach).getCantEatList().contains(food)){
             coaches.get(coach).addFoodList(food);
             return;
         }
-        recommendFood(coach);
+        recommendFood(category,coach);
     }
 
-    private String recommendCategory(String coach){
+    public String recommendCategory(String coach){
         String randomCategory = CATEGORIES[Randoms.pickNumberInRange(1,5)-1];
         if(categoryList.size()==5) return randomCategory;
         if(categoryCnt.get(randomCategory)<=2){

@@ -19,6 +19,7 @@ public class MainController {
         for(String week: WEEK){
             recommendMenu();
         }
+        coachController.makeFoodList();
         printResult();
         endRecommendView();
     }
@@ -40,7 +41,7 @@ public class MainController {
     }
     private void recommendMenu(){
         for(String coach:coachController.getCoachList()){
-            coachController.recommendFood(coach);
+            coachController.recommendCategory(coach);
         }
     }
 }
