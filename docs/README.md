@@ -65,3 +65,15 @@ List<String> menu에다가 다 넣어놓기.
 ## StringParser (util)
 
 - [x] 입력으로 들어오는 String 을 적절히 split 하여 리스트로 반환한다.
+
+## InputViewConstants (constant)
+
+- [ ] InputView 에서 사용되는 상수를 관리한다.
+
+## OutputViewConstants (constant)
+
+- [ ] OutputView 에서 사용되는 상수를 관리한다.
+
+## ExceptionConstants (constant)
+
+- [ ] 예외 처리 시에 사용되는 상수를 관리한다.
