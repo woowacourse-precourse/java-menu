@@ -1,5 +1,6 @@
 package menu.controller;
 
+import menu.util.InputValidator;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -9,7 +10,7 @@ public class MenuController {
 
     public void run() {
         try {
-            inputView.inputCoach();
+            InputValidator.validateCoach(inputView.inputCoach());
         } catch (IllegalArgumentException exception) {
             outputView.printMessage(exception.getMessage());
         }
