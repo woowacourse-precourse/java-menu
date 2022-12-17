@@ -3,7 +3,6 @@ package menu;
 import camp.nextstep.edu.missionutils.Console;
 import menu.service.CategoryRecommendService;
 import menu.service.MenuRecommendService;
-
 import java.util.*;
 import java.util.stream.Stream;
 
@@ -59,6 +58,7 @@ public class Application {
         }
         return coachNames;
     }
+
     private static String[] inputBannedMenu(String coachName) {
         while (true) {
             System.out.printf("%s(이)가 못 먹는 메뉴를 입력해 주세요.\n", coachName);
