@@ -28,4 +28,8 @@ public class Coach {
     public List<String> getEatMenu() {
         return this.eatMenu;
     }
+
+    public List<String> getNoEatFood() {
+        return this.noEatFood;
+    }
 }

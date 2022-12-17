@@ -2,8 +2,6 @@ package menu.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class MenuSuggester {
@@ -33,15 +31,32 @@ public class MenuSuggester {
         suggestedCategory[day] = category;
 
         for (Coach coach : coaches) {
-            String menu = pickMenu(category);
+            String menu = pickMenu(coach, category);
             coach.addFood(menu);
         }
 
     }
 
-    private String pickMenu(int category) {
+    private String pickMenu(Coach coach, int category) {
         List<String> menus = categories.get(category);
-        String menu = Randoms.shuffle(menus).get(0);
+        boolean possible;
+        String menu;
+        do {
+            menu = Randoms.shuffle(menus).get(0);
+            possible = possibleMenu(coach, category, menu);
+        } while (!possible);
         return menu;
+    }
+
+    private boolean possibleMenu(Coach coach, int category, String menu) {
+        return uniqueMenu(coach, category, menu);
+    }
+
+    private boolean uniqueMenu(Coach coach, int category, String menu) {
+        List<String> eatMenu = coach.getEatMenu();
+        if (eatMenu.contains(menu)) {
+            return false;
+        }
+        return true;
     }
 }
