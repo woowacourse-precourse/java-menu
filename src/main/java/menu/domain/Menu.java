@@ -9,6 +9,7 @@ import java.util.List;
 public class Menu {
     private final List<String> coachNames;
     private final List<Coach> coaches = new ArrayList<>();
+    private final List<String> categories = new ArrayList<>();
 
     public Menu(String coachNames) {
         List<String> splittedCoaches = List.of(coachNames.split(MenuConstants.DELIMITER));
