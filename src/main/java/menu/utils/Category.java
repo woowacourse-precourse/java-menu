@@ -15,6 +15,9 @@ public enum Category {
     private static final String SUFFIX = " ]";
     private static final String INIT = "카테고리";
 
+    public static final int MIN = 1;
+    public static final int MAX = 5;
+
     private final String message;
     private final int code;
 

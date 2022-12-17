@@ -11,13 +11,11 @@ import java.util.List;
 public class RecommendService {
 
     List<Category> categories = new ArrayList<>();
+    private static final int MAX_CATEGORY_STORAGE = 2;
 
     public Category getCategory() {
-        int i = Randoms.pickNumberInRange(1, 5);
-        Category category = Category.from(i);
-        if (isOutOfRange(category)) {
-            return getCategory();
-        }
+        int categoryCode = Randoms.pickNumberInRange(Category.MIN, Category.MAX);
+        Category category = Category.from(categoryCode);
         categories.add(category);
         return category;
     }
@@ -26,7 +24,7 @@ public class RecommendService {
         long count = categories.stream()
                 .filter(stored -> stored == from)
                 .count();
-        return count > 2;
+        return count > MAX_CATEGORY_STORAGE;
     }
 
     public Food getFood(Category category, Couch couch) {
