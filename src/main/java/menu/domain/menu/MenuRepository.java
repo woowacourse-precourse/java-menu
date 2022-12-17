@@ -19,6 +19,17 @@ public class MenuRepository {
                 .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.INVALID_MENU));
     }
 
+    public List<Menu> findAllByMenuNames(List<String> menuNames) {
+        List<Menu> results = new ArrayList<>();
+        for (String menuName : menuNames) {
+            if (menuName.isBlank()) {
+                continue;
+            }
+            results.add(findByMenuName(menuName));
+        }
+        return results;
+    }
+
     public Menu findRandomNameByCategory(MenuCategory menuCategory) {
         List<String> namesByCategory = menus.stream().filter(menu -> menu.matchCategory(menuCategory))
                 .map(Menu::getName)

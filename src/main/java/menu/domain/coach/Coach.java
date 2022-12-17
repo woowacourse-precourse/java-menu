@@ -29,8 +29,8 @@ public class Coach {
         return name;
     }
 
-    public void addAvoidMenu(Menu menu) {
-        this.avoidMenu.add(menu);
+    public void addAllAvoidMenu(List<Menu> menus) {
+        this.avoidMenu.addAll(menus);
     }
 
     public boolean isAvoidMenu(Menu menu) {

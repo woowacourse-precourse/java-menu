@@ -3,6 +3,7 @@ package menu;
 import java.util.List;
 import menu.domain.coach.Coach;
 import menu.domain.coach.Coaches;
+import menu.domain.menu.Menu;
 import menu.domain.menu.MenuService;
 import menu.domain.results.RecommendResult;
 import menu.ui.dto.CoachesRequest;
@@ -53,8 +54,8 @@ public class MenuRecommendController {
     private void requestAvoidMenu(Coach coach) {
         try {
             MenuRequest coachAvoidMenu = inputView.getCoachAvoidMenu(coach.getName());
-            List<String> menuNames = coachAvoidMenu.getMenus();
-            menuService.addCoachAvoidMenu(coach, menuNames);
+            List<Menu> allMenusByMenuNames = menuService.getAllMenusByMenuNames(coachAvoidMenu.getMenus());
+            coach.addAllAvoidMenu(allMenusByMenuNames);
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
             requestAvoidMenu(coach);

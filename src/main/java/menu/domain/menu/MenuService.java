@@ -14,16 +14,10 @@ public class MenuService {
     public MenuService(MenuRepository menuRepository) {
         this.menuRepository = menuRepository;
     }
-
-    public void addCoachAvoidMenu(Coach coach, List<String> menuNames) {
-        if (isNotAvoidMenu(menuNames)) {
-            return;
-        }
-        for (String menuName : menuNames) {
-            Menu menu = menuRepository.findByMenuName(menuName);
-            coach.addAvoidMenu(menu);
-        }
+    public List<Menu> getAllMenusByMenuNames(List<String> menuNames) {
+        return menuRepository.findAllByMenuNames(menuNames);
     }
+
 
     private boolean isNotAvoidMenu(List<String> menuNames) {
         return menuNames.get(0).isBlank();
