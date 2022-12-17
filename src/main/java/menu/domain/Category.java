@@ -17,6 +17,10 @@ public enum Category {
         this.category = category;
     }
 
+    public String getCategoryName() {
+        return categoryName;
+    }
+
     public String pickMenu() {
         return Randoms.shuffle(this.category.menus).get(0);
     }

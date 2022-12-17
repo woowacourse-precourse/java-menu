@@ -8,6 +8,7 @@ import menu.exception.InputException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.stream.Collectors;
 
 public class MenuService {
     private final List<Coach> coaches = new ArrayList<>();
@@ -21,7 +22,13 @@ public class MenuService {
         return coaches;
     }
 
-    public void getCoachesName(String input) {
+    public List<String> getCoachesName() {
+        return coaches.stream()
+                .map(Coach::getName)
+                .collect(Collectors.toList());
+    }
+
+    public void setCoachesName(String input) {
         validateCountOfCoaches(input);
 
         StringTokenizer st = new StringTokenizer(input, ",");
@@ -29,27 +36,28 @@ public class MenuService {
             coaches.add(new Coach(st.nextToken()));
     }
 
-    public void getAvoidance(List<String> inputs) {
+    public void setAvoidance(List<String> inputs) {
         for (int i = 0; i < inputs.size(); i++)
             coaches.get(i).addAvoidance(inputs.get(i));
     }
 
     public void setCategories() {
         while (categories.size() < 5) {
-            Category newCategory = Category.values()[Randoms.pickNumberInRange(0, 4)];
+            Category newCategory = Category.values()[Randoms.pickNumberInRange(1, 5) - 1];
             addNewCategory(newCategory);
         }
     }
 
     public void setMenus() {
         for (int i = 0; i < 5; i++) {
-            addMenu(categories.get(i).pickMenu());
+            addMenu(categories.get(i));
         }
     }
 
-    private void addMenu(String menu) {
-        for (Coach coach : coaches){
-            while(!coach.addRecommended(menu)){}
+    private void addMenu(Category category) {
+        for (Coach coach : coaches) {
+            while (!coach.addRecommended(category.pickMenu())) {
+            }
         }
     }
 

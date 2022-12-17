@@ -1,16 +1,12 @@
 package menu.service;
 
-import menu.domain.Coach;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class MenuServiceTest {
 
@@ -21,7 +17,7 @@ class MenuServiceTest {
         MenuService menuService = new MenuService();
 
         //when
-        menuService.getCoachesName(input);
+        menuService.setCoachesName(input);
 
         //then
     }
@@ -35,7 +31,7 @@ class MenuServiceTest {
         //when
 
         //then
-        assertThatThrownBy(() -> menuService.getCoachesName(input))
+        assertThatThrownBy(() -> menuService.setCoachesName(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -43,14 +39,14 @@ class MenuServiceTest {
     void 기피_음식_입력받기() throws Exception{
         //given
         MenuService menuService = new MenuService();
-        menuService.getCoachesName("하나,두울");
+        menuService.setCoachesName("하나,두울");
 
         ArrayList<String> inputs = new ArrayList<>();
         inputs.add("음식1,음식2");
         inputs.add("");
 
         //when
-        menuService.getAvoidance(inputs);
+        menuService.setAvoidance(inputs);
 
         //then
     }
@@ -59,7 +55,7 @@ class MenuServiceTest {
     void 잘못된_기피_음식() throws Exception{
         //given
         MenuService menuService = new MenuService();
-        menuService.getCoachesName("하나,두울");
+        menuService.setCoachesName("하나,두울");
 
         ArrayList<String> inputs = new ArrayList<>();
         inputs.add("음식1,음식2,음식3");
@@ -68,7 +64,7 @@ class MenuServiceTest {
         //when
 
         //then
-        assertThatThrownBy(() -> menuService.getAvoidance(inputs))
+        assertThatThrownBy(() -> menuService.setAvoidance(inputs))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -88,7 +84,7 @@ class MenuServiceTest {
     void 메뉴_정하기_테스트() throws Exception{
         //given
         MenuService menuService = new MenuService();
-        menuService.getCoachesName("하나,두울");
+        menuService.setCoachesName("하나,두울");
         menuService.setCategories();
 
         //when

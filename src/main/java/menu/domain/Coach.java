@@ -14,6 +14,10 @@ public class Coach {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public List<String> getRecommended() {
         return recommended;
     }
@@ -22,6 +26,7 @@ public class Coach {
      * 도메인 로직
      */
     public void addAvoidance(String input) {
+        avoidList.clear();
         validateCountOfAvoidance(input);
 
         StringTokenizer st = new StringTokenizer(input, ",");
