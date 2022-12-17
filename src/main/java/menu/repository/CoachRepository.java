@@ -3,6 +3,7 @@ package menu.repository;
 import menu.domain.Coach;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -16,10 +17,12 @@ public class CoachRepository {
     }
 
     public void removeCoach(String name) {
-        coaches.stream()
-                .filter(coach -> coach.getName().equals(name))
-                .collect(Collectors.toList())
-                .forEach(li -> coaches.remove(li));
+        for (Iterator<Coach> iterator = coaches.iterator(); iterator.hasNext();) {
+            Coach coach = iterator.next();
+            if (coach.getName().equals(name)) {
+                iterator.remove();
+            }
+        }
     }
 
     public List<Coach> findAll() {

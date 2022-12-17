@@ -21,8 +21,7 @@ public class MenuController extends Controller{
     public void run() {
         start();
         generateCoachList();
-        repeat(this::inputHateMenus);
-
+        inputHateMenus();
     }
 
     public void start() {
@@ -37,7 +36,8 @@ public class MenuController extends Controller{
     public List<Coach> inputHateMenus() {
         List<Coach> coaches = coachService.findAll();
         coaches.forEach(coach -> {
-            List<Menu> hateMenus = inputView.readHateMenus(coach.getName());
+            outputView.printCoachNamesInputMessage(coach.getName());
+            List<Menu> hateMenus = repeat(inputView::readHateMenus);
             coachService.inputHateMenus(coach, hateMenus);
         });
 

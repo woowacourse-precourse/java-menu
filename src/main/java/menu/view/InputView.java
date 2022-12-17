@@ -27,8 +27,7 @@ public class InputView {
         return coachNames;
     }
 
-    public List<Menu> readHateMenus(String name) {
-        outputView.printCoachNamesInputMessage(name);
+    public List<Menu> readHateMenus() {
         String inputHateMenusNames = Console.readLine();
 
         List<String> menuNames = separator.separateNames(inputHateMenusNames);
