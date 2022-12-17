@@ -17,7 +17,7 @@ public class RecommendService {
     public void createWeeklyRecommendMenu() {
         Arrays.stream(Day.values())
                 .forEach(day -> {
-                    WeeklyMenu weeklyMenu = recommendMenu(day);
+                    WeeklyMenu weeklyMenu = recommendMenu();
                     weeklyMenuRepository.saveWeeklyMenu(day, weeklyMenu);
                 });
     }
@@ -32,7 +32,7 @@ public class RecommendService {
         return weeklyMenus;
     }
 
-    private WeeklyMenu recommendMenu(Day day) {
+    private WeeklyMenu recommendMenu() {
         Category category = getValidCategory();
         List<Coach> coaches = coachRepository.getCoaches();
         Menus menus = menuRepository.findByCategory(category);
