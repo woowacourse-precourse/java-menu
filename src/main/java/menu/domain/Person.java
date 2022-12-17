@@ -44,22 +44,9 @@ public class Person {
         return split;
     }
 
-    public String getName() {
-        return name.getName();
-    }
-
-    public Menus getRecommended() {
-        return recommended;
-    }
-
 
     public void recommendMenu(String inputCategory, MenuRandomGenerator menuRandomGenerator) {
-        Category category = Category.map(inputCategory);
-        List<String> menus = Arrays.stream(Menu.values())
-                .filter(m -> m.toString().startsWith(category.toString()))
-                .map(Menu::getMenuName)
-                .collect(Collectors.toList());
-
+        List<String> menus = getMenusByCategory(inputCategory);
         while (true) {
             String generate = menuRandomGenerator.generate(menus);
             if (recommended.contains(generate) || unavailable.contains(generate)) {
@@ -68,6 +55,22 @@ public class Person {
             recommended.addMenu(Menu.map(generate));
             break;
         }
+    }
+
+    private List<String> getMenusByCategory(String inputCategory) {
+        Category category = Category.map(inputCategory);
+        return Arrays.stream(Menu.values())
+                .filter(m -> m.toString().startsWith(category.toString()))
+                .map(Menu::getMenuName)
+                .collect(Collectors.toList());
+    }
+
+    public String getName() {
+        return name.getName();
+    }
+
+    public Menus getRecommended() {
+        return recommended;
     }
 
     private static final class ErrorMessage {

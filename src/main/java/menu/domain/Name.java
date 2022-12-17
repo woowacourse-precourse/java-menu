@@ -12,7 +12,7 @@ public class Name {
 
     private String validate(String name) {
         if (name.length() < MIN_COUNT || name.length() > MAX_COUNT) {
-            throw new IllegalArgumentException("코치의 이름은 최소 2글자, 최대 4글자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_FORMAT);
         }
         return name;
     }
@@ -20,4 +20,9 @@ public class Name {
     public String getName() {
         return name;
     }
+
+    private static final class ErrorMessage {
+        private static final String INVALID_INPUT_FORMAT = String.format("코치의 이름은 최소 %d글자, 최대 %d글자여야 합니다.", MIN_COUNT, MAX_COUNT);
+    }
+
 }
