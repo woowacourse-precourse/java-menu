@@ -30,5 +30,12 @@ public enum Category {
                 .get();
     }
 
+    public static List<String> getMenus(Category category){
+        return Arrays.stream(Category.values())
+                .filter(c -> c.equals(category))
+                .map(c -> c.menus)
+                .findFirst()
+                .get();
+    }
 
 }

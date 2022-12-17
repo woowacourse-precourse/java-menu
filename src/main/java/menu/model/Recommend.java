@@ -1,5 +1,7 @@
 package menu.model;
 
+import java.util.List;
+
 public class Recommend {
 
     private final RandomGenerator randomGenerator;
@@ -30,6 +32,7 @@ public class Recommend {
     }
 
     public String recommendMenu(Category category){
+        List<String> menus = Category.getMenus(category);
 
     }
 
