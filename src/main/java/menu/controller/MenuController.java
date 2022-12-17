@@ -59,9 +59,17 @@ public class MenuController {
     }
 
     public void readImpossibleMenus(String coachName) {
-        outputView.printReadImpossibleMenus(coachName);
-        List<String> impossibleMenuList = inputView.readImpossibleMenus();
-        coachList.add(new Coach(coachName, impossibleMenuList));
+        do {
+            outputView.printReadImpossibleMenus(coachName);
+            try {
+                List<String> impossibleMenuList = inputView.readImpossibleMenus();
+                coachList.add(new Coach(coachName, impossibleMenuList));
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
+        } while (true);
+
     }
 
     public void recommend() {
