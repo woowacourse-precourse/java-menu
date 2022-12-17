@@ -8,4 +8,7 @@ public class OutputView {
     public void printEmptyMsg() {
         System.out.println();
     }
+
+    public void printService() {
+    }
 }

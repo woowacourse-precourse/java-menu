@@ -6,6 +6,7 @@ import menu.util.DayStatus;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -13,10 +14,9 @@ public class DaysRecommandTest {
     @Test
     public void initDays_test() {
         DaysRecommand daysRecommand = DaysRecommand.of();
-
-        List<String> days = DayStatus.getDays();
-        for (Day day : daysRecommand.getDays()) {
-            assertThat(days).contains(day.getDay());
+        Map<String, Day> days = daysRecommand.getDays();
+        for (DayStatus dayStatus : DayStatus.values()) {
+            assertThat(days.keySet()).contains(days.get(dayStatus.getDay()).getDay());
         }
     }
 
@@ -26,11 +26,14 @@ public class DaysRecommandTest {
         List<String> userList = List.of("뽀삐", "가가");
         daysRecommand.initCoachNames(Coachs.of(userList));
 
-        for (Day day : daysRecommand.getDays()) {
-            for (Coach coach : day.getCoachMenu().keySet()) {
+
+        Map<String, Day> days = daysRecommand.getDays();
+
+        for (DayStatus dayStatus : DayStatus.values()) {
+            Day day = days.get(dayStatus.getDay());
+            for (Coach coach :  days.get(dayStatus.getDay()).getCoachMenu().keySet()) {
                 assertThat(userList).contains(coach.getName());
             }
-
         }
     }
 

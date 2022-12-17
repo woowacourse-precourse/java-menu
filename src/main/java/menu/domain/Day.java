@@ -3,6 +3,8 @@ package menu.domain;
 import menu.domain.coach.Coach;
 import menu.domain.coach.Coachs;
 import menu.domain.menu.Food;
+import menu.domain.menu.Menu;
+import menu.util.MenuStatus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,7 +34,15 @@ public class Day {
 
     public void initCoachs(Coachs coachs) {
         for (Coach coach : coachs.getCoachs()) {
-            coachMenu.put(coach, null);
+            coachMenu.put(coach, MenuStatus.NOT_EAT.getMenu());
         }
+    }
+
+    public String getCoachsMenu(Menu menu, String categoriName) {
+        return menu.getRandomMenuName(categoriName);
+    }
+
+    public void setCoachsMenu(Coach coach, String menuName) {
+        coachMenu.put(coach, menuName);
     }
 }

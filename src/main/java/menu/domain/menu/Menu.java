@@ -15,8 +15,13 @@ public class Menu {
         menus = new HashMap<>();
     }
 
-    public static String getRandomCategoriName() {
+    public String getRandomCategoriName() {
         return Categori.getCategoriNameWithCode(getRandomNumber());
+    }
+
+    public String getRandomMenuName(String categoriName) {
+        List<String> menuList = menus.get(categoriName);
+        return Randoms.shuffle(menuList).get(0);
     }
 
     public static int getRandomNumber() {

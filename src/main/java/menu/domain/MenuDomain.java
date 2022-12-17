@@ -5,6 +5,7 @@ import menu.domain.coach.Coachs;
 import menu.domain.menu.Menu;
 import menu.domain.menu.MenuException;
 import menu.util.Categori;
+import menu.util.DayStatus;
 
 import java.util.List;
 
@@ -52,22 +53,20 @@ public class MenuDomain {
      * 메뉴 추천을 위한 동작 함수
      */
     public void doRecommand() {
-        for (Day day : daysRecommand.getDays()) {
-            eachDay();
+        for (DayStatus dayStatus : DayStatus.values()) {
+            eachDay(dayStatus.getDay());
         }
-        // 5일 동안 같은 카테고리가 3회 이상 중복시 다시
-        // 각 사람은 같은 메뉴 안된다.
     }
 
     /**
      * 각 요일
      */
-    public void eachDay() {
+    public void eachDay(String dayName) {
         daysRecommand.setDayCategori(getCategoriName());
-
-        // 각 코치가 먹을 메뉴 추천
+        for (Coach coach : coachs.getCoachs()) {
+            daysRecommand.setDayMenu(coach, menu, dayName);
+        }
     }
-
     /**
      * 카테고리가 2개 이하일 때까지 Random값 입력받는 함수
      * @return
@@ -76,9 +75,10 @@ public class MenuDomain {
         boolean canUesName = false;
         String name = null;
         while (!canUesName) {
-            name = Menu.getRandomCategoriName();
+            name = menu.getRandomCategoriName();
             canUesName = daysRecommand.isCategoriMax(name);
         }
         return name;
     }
+
 }
