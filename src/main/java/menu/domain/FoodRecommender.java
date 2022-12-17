@@ -1,17 +1,18 @@
 package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FoodRecommender {
     private final List<Coach> coaches;
-    private List<FoodCategory> foodCategories;
+    private Map<Day, FoodCategory> foodCategories;
 
     public FoodRecommender(List<Coach> coaches) {
         validateSize(coaches);
         this.coaches = coaches;
-        foodCategories = new ArrayList<>();
+        foodCategories = new HashMap<>();
     }
 
     private void validateSize(List<Coach> coaches) {
@@ -20,17 +21,18 @@ public class FoodRecommender {
         }
     }
 
-    private FoodCategory generateCategory() {
+    private FoodCategory generateCategory(Day day) {
         FoodCategory category = FoodCategory.of(Randoms.pickNumberInRange(1, 5));
         if (getCategorySelectCount(category) == 2) {
-            return generateCategory();
+            return generateCategory(day);
         }
-        foodCategories.add(category);
+        foodCategories.put(day, category);
         return category;
     }
 
     private long getCategorySelectCount(FoodCategory category) {
-        return foodCategories.stream()
+        return foodCategories.values()
+                .stream()
                 .filter(foodCategory -> foodCategory == category)
                 .count();
     }
