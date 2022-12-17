@@ -12,9 +12,9 @@
     - [x] 코치 이름 InputView#inputCoachName()
     - [x] 못먹는 음식(없으면 빈 값) InputView#inputCannotEatMenu()
 
-- [ ] 출력
-    - [ ] 메뉴 추천 결과
-    - [ ] 추천 완료 메시지
+- [x] 출력
+    - [x] 메뉴 추천 결과 OutputView#printResult()
+    - [x] 추천 완료 메시지 OutputView#printResult()
     - [x] 시작 메시지 OutputView#printStartMessage()
 
 - [ ] 예외
