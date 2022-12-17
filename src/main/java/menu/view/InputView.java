@@ -18,17 +18,21 @@ public class InputView {
 
 	public static List<Coach> readCoachNames() {
 		System.out.println(coachNameRequestMsg);
+		List<Coach> coaches;
 		while(true) {
 			try {
 				String names = Console.readLine();
 				validateCoaches(names);
-				return Arrays.asList(names.split(",")).stream()
+				coaches = Arrays.asList(names.split(",")).stream()
 					.map(name -> new Coach(name))
 					.collect(Collectors.toList());
+				System.out.println();
+				break;
 			} catch (IllegalArgumentException e) {
 				System.out.println();
 			}
 		}
+		return coaches;
 	}
 
 	private static void validateCoaches (String names) {
@@ -42,14 +46,18 @@ public class InputView {
 
 	public static List<Menu> readUnableMenus(Coach coach) {
 		System.out.println(coach.getName() + unableMenuRequestSuffix);
+		List<Menu> menus;
 		while(true) {
 			try {
 				String unableMenus = Console.readLine();
-				return menuStringToMenus(unableMenus);
-			} catch (IllegalArgumentException e) {
+				menus = menuStringToMenus(unableMenus);
 				System.out.println();
+				break;
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
 			}
 		}
+		return menus;
 	}
 
 	private static List<Menu> menuStringToMenus(String unableMenus) {
