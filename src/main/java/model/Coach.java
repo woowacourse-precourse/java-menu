@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Coach {
     
+    private static final String INEDIBLE_MENU_SIZE_EXCEPTION = "못 먹는 메뉴는 최대 2개 까지 입력해야 합니다.";
     private final String name;
     private List<String> inedibleMenus;
     
@@ -43,7 +44,7 @@ public class Coach {
     private void validLessThanSize(List<String> inedibleMenus) {
         int inedibleMenusSize = inedibleMenus.size();
         if (inedibleMenusSize > 2) {
-            throw new IllegalArgumentException("못 먹는 메뉴는 최대 2개 까지 입력해야 합니다.");
+            throw new IllegalArgumentException(INEDIBLE_MENU_SIZE_EXCEPTION);
         }
     }
     

@@ -11,6 +11,7 @@ public enum Category {
     WESTERN(5, "양식", List.of("라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니"));
     
     
+    private static final String WRONG_NUMBER_EXCEPTION = "잘못된 숫자가 입력되었습니다.";
     private final int number;
     private final String name;
     private final List<String> menus;
@@ -37,7 +38,7 @@ public enum Category {
         return Arrays.stream(values())
                 .filter(category -> isEquals(number, category))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("잘못된 숫자가 입력되었습니다."));
+                .orElseThrow(() -> new IllegalArgumentException(WRONG_NUMBER_EXCEPTION));
     }
     
     private static boolean isEquals(int number, Category menu) {

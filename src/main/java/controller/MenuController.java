@@ -17,6 +17,7 @@ import view.OutputView;
 
 public class MenuController {
     
+    private static final int MAX_CATEGORY_REDUPLICATION_COUNT = 2;
     private final InputView inputView;
     private final OutputView outputView;
     private final WeeklyMenuMaker weeklyMenuMaker;
@@ -71,7 +72,7 @@ public class MenuController {
     private Category getCategory(Map<Category, Integer> categoryCount) {
         Category category = weeklyMenuMaker.makeCategory();
         int count = categoryCount.getOrDefault(category, 0);
-        if (count == 2) {
+        if (count == MAX_CATEGORY_REDUPLICATION_COUNT) {
             return getCategory(categoryCount);
         }
         
