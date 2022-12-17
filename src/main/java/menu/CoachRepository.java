@@ -20,7 +20,6 @@ public class CoachRepository {
     }
 
     public void foodRecommendForDay(Category category, RecommendMachine recommendMachine) { // 모든 날의 음식을 추천
-        // 추천되면 이제 그냥 coach 돌면서 다 match 하면 됨, 카테고리 정해진 순간부터는 남의 것은 신경 안써도됨
         for (Coach coach : coaches.values()) {
             recommendMachine.recommend(category, coach); // 각각 recommend 해주면 됨 이때부터는
         }
