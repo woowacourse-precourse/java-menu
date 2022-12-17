@@ -19,11 +19,11 @@ public class Input {
     public static void validateCoach(String input) {
         String[] split = input.split(DELiMITER);
         if (split.length > 5 || split.length < 2) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.COACH_AMOUNT_RANGE.toString());
         }
         for (String coachName : split) {
             if (coachName.length() > 4 || coachName.length() < 2) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(ErrorMessage.COACH_AMOUNT_RANGE.toString());
             }
         }
     }
@@ -38,12 +38,12 @@ public class Input {
     public static void validateHate(String input) {
         String[] split = input.split(DELiMITER);
         if (split.length > 2) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.HATE_AMOUNT.toString());
         }
         for (String food : split) {
             boolean contain = Arrays.stream(Dish.values()).anyMatch(s -> s.menus.contains(food));
             if (!contain) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(ErrorMessage.INPUT_IN_LIST.toString());
             }
         }
     }
