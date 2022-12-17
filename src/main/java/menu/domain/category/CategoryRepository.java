@@ -5,7 +5,7 @@ import java.util.*;
 import static menu.util.Constants.CANNOT_FOUND_CATEGORY;
 
 public class CategoryRepository {
-    private static Map<Integer, Category> categories = new HashMap<>();
+    private static final Map<Integer, Category> categories = new HashMap<>();
 
     private static final CategoryRepository instance = new CategoryRepository();
 

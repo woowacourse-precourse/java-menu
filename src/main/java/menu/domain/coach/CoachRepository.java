@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class CoachRepository {
-    private static List<Coach> coaches = new ArrayList<>();
+    private static final List<Coach> coaches = new ArrayList<>();
 
     private static final CoachRepository instance = new CoachRepository();
 

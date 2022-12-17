@@ -3,7 +3,7 @@ package menu.domain.category;
 import static menu.util.Constants.INIT_RECOMMENDED_COUNT_VALUE;
 
 public class Category {
-    private String name;
+    private final String name;
     private int recommendedCount;
 
 

@@ -111,7 +111,6 @@ public class MealRecommendationController {
     }
 
     private void recommendation(List<Category> thisWeekCategories) {
-        List<Coach> coaches = coachRepository.findAll();
         for (Category category : thisWeekCategories) {
             recommendMenuOfOneCategory(category);
         }

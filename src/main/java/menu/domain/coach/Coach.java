@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Coach {
     private final String name;
-    private List<String> ateMenus; // 네이밍 이상
+    private final List<String> ateMenus; // 네이밍 이상
     private List<String> hateMenuNames;
 
     public Coach(String name) {

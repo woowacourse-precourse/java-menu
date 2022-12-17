@@ -21,6 +21,7 @@ public class Validator {
         }
     }
 
+    // MIN_NUMBER_OF_HATE_MENU 바뀔 수 있으니, 해당 로직 유지
     public static void validateHateMenusSize(List<String> hateMenus) {
         if (hateMenus.size() < MIN_NUMBER_OF_HATE_MENU || hateMenus.size() > MAX_NUMBER_OF_HATE_MENU) {
             throw new IllegalArgumentException(
