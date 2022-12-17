@@ -24,9 +24,9 @@ public class OutputView {
     }
 
     public void printCategory(Category[] categories, List<Integer> dailyCategory){
-        System.out.print("[ 카테고리 ");
+        System.out.print("[ 카테고리");
         for (int num : dailyCategory){
-            System.out.print("| " + categories[num - 1].getCategoryName());
+            System.out.print(" | " + categories[num - 1].getCategoryName());
         }
         System.out.print(" ]");
         System.out.println();
