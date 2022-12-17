@@ -1,5 +1,7 @@
-package menu;
+package menu.controller;
 
+import menu.Coach;
+import menu.FoodRecommendation;
 import menu.view.InputView;
 import menu.view.OutputView;
 
