@@ -56,14 +56,14 @@ public class MenuRecommender {
         boolean inavailableCategory = true;
         while (inavailableCategory) {
             category = pickupCategory();
-            inavailableCategory = validCategory(category);
+            inavailableCategory = !(validCategory(category));
         }
 
         return category;
     }
 
     private Category pickupCategory() {
-        return CATEGORIES.get(Randoms.pickNumberInRange(1, 5));
+        return CATEGORIES.get(Randoms.pickNumberInRange(0, CATEGORIES.size() - 1));
     }
 
     private boolean validCategory(Category category) {
