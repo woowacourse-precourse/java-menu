@@ -58,7 +58,7 @@ public class Coach {
         }
     }
     
-    public boolean isContains(String menu) {
+    boolean isContains(String menu) {
         return inedibleMenus.contains(menu);
     }
 }

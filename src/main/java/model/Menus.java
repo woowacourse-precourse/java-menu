@@ -7,19 +7,19 @@ public class Menus {
     
     private final List<String> menus;
     
-    public Menus() {
-        this.menus = new ArrayList<>();
+    Menus() {
+        menus = new ArrayList<>();
     }
     
-    public void addMenu(String menu) {
+    void addMenu(String menu) {
         menus.add(menu);
     }
     
-    public List<String> getMenus() {
+    List<String> getMenus() {
         return menus;
     }
     
-    public boolean isMenuReduplication(String menu) {
+    boolean isMenuReduplication(String menu) {
         return menus.contains(menu);
     }
     

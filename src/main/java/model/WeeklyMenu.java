@@ -11,9 +11,9 @@ public class WeeklyMenu {
     
     private final Map<DayOfTheWeek, Menus> weeklyMenu;
     
-    public WeeklyMenu() {
-        this.menusOfCoach = new HashMap<>();
-        this.weeklyMenu = new EnumMap<>(DayOfTheWeek.class);
+    WeeklyMenu() {
+        menusOfCoach = new HashMap<>();
+        weeklyMenu = new EnumMap<>(DayOfTheWeek.class);
     }
     
     public List<String> findMenusByCoach(DayOfTheWeek dayOfTheWeek) {
@@ -39,7 +39,7 @@ public class WeeklyMenu {
     
     private void putMenus(DayOfTheWeek dayOfTheWeek, Coach coach, String menu) {
         Menus menus = findMenusByCoach(menu, coach);
-        this.weeklyMenu.put(dayOfTheWeek, findMenusByDayOfTheWeek(dayOfTheWeek, menus));
+        weeklyMenu.put(dayOfTheWeek, findMenusByDayOfTheWeek(dayOfTheWeek, menus));
     }
     
     private Menus findMenusByCoach(String menu, Coach coach) {
@@ -49,7 +49,7 @@ public class WeeklyMenu {
     }
     
     private Menus findMenusByDayOfTheWeek(DayOfTheWeek dayOfTheWeek, Menus menus) {
-        return this.weeklyMenu.getOrDefault(dayOfTheWeek, menus);
+        return weeklyMenu.getOrDefault(dayOfTheWeek, menus);
     }
     
     private boolean isInedibleMenu(Coach coach, String menu) {
