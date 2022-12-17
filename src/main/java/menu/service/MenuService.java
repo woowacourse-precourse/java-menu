@@ -83,3 +83,14 @@ public class MenuService implements Menu {
             }
         }
     }
+
+    private String getOneMenu(final List<String> oneCategoryMenus) {
+        return picker.shuffle(oneCategoryMenus).get(0);
+    }
+
+    private Category getCategory() {
+        final int picked = picker.pickNumberInRange(1, 5);
+        return Category.findCategory(picked);
+    }
+
+}
