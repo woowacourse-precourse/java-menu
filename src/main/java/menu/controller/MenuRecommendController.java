@@ -1,6 +1,7 @@
 package menu.controller;
 
 import java.util.List;
+import menu.repository.FoodRepository;
 import menu.service.CoachService;
 import menu.service.MenuRecommendService;
 import menu.service.NotEatFoodService;
@@ -10,11 +11,16 @@ import menu.view.OutputView;
 public class MenuRecommendController {
 
     public void run() {
+        initData();
         OutputView.printRun();
         List<String> coachNames = keepReadCoach();
         addCoach(coachNames);
         addNotEatFoods(coachNames);
         OutputView.printResult(MenuRecommendService.run(), CoachService.findAllCoaches());
+    }
+
+    private void initData() {
+        FoodRepository.init();
     }
 
     public void addCoach(List<String> coachNames) {
