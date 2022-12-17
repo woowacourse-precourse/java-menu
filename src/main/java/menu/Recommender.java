@@ -12,8 +12,8 @@ import static menu.Constant.Menu.*;
 
 public class Recommender {
 
-    List<Coach> coaches;
-    List<Menu> categories;
+    private List<Coach> coaches;
+    private List<Menu> categories;
 
     Recommender(List<Coach> coaches){
         this.coaches = coaches;

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Coach {
-    String name;
-    List<String> hates;
-    List<String> recommended;
+    private String name;
+    private List<String> hates;
+    private List<String> recommended;
 
     Coach(String name, List<String> hates){
         this.name = name;
