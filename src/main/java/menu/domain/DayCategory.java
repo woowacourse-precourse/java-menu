@@ -22,8 +22,6 @@ public class DayCategory {
             categories.add(i);
         }
 
-
-        // 날짜들
         List<String> saveDayCategory = new ArrayList<>();
         for (int i = 1; i <= 5; i++) {
             String category = String.valueOf(categories.get(Randoms.pickNumberInRange(1, 5)));
@@ -31,7 +29,6 @@ public class DayCategory {
         }
 
 
-        // 음식들
         HashMap<String, List<String>> countryMenu = new HashMap<>();
         countryMenu.put("1", japaneseFood);
         countryMenu.put("2", koreanFood);

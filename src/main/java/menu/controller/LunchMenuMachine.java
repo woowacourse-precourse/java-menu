@@ -1,10 +1,12 @@
 package menu.controller;
 
+import menu.constants.CategoryAndMenuDefinition;
+import menu.domain.DayCategory;
 import menu.domain.MenuMaker;
-import menu.domain.MenuRecommendation;
 import menu.view.InputView;
 import menu.view.OutputView;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class LunchMenuMachine {
@@ -21,21 +23,19 @@ public class LunchMenuMachine {
     }
 
     public void run() {
-        System.out.println("점심 메뉴 추천을 시작합니다.");
-        System.out.println();
-        System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
+        outputView.printStartMessage();
 
-        // 코치 입력
         String coachName = inputView.coachNameInput();
         List<String> coachNames = menuMaker.nameDivision(coachName);
 
-        // 메뉴 입력
-        String menu = inputView.menuInput();
-        List<String> menus = menuMaker.menuDivision(menu);
+        HashMap<String, String> coachMenus = menuMaker.menuDivision(coachNames);
 
-        // 코치와 메뉴를 돌리기
-        MenuRecommendation menuRecommendation = new MenuRecommendation;
+        CategoryAndMenuDefinition categoryAndMenuDefinition = new CategoryAndMenuDefinition();
+        categoryAndMenuDefinition.Category();
 
+
+        DayCategory dayCategory = new DayCategory();
+        List<String> randomCategoryFood = dayCategory.randomCategory();
 
     }
 }
