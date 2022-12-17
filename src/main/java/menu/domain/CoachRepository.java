@@ -1,6 +1,7 @@
 package menu.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CoachRepository {
@@ -37,4 +38,9 @@ public class CoachRepository {
             coaches.add(new Coach(inputCoach.trim()));
         }
     }
+
+    public List<Coach> coaches() {
+        return Collections.unmodifiableList(coaches);
+    }
+
 }

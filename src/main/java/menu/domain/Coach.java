@@ -15,4 +15,8 @@ public class Coach {
         if (userInputCoach.length() < minCoachNameLength || userInputCoach.length() > maxCoachNameLength)
             throw new IllegalArgumentException(coachNameLengthErrorMsg);
     }
+
+    public String name(){
+        return name;
+    }
 }
