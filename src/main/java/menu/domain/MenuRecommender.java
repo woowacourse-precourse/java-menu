@@ -61,11 +61,11 @@ public class MenuRecommender {
         Menu selectedCategory;
         do {
             selectedCategory = Menu.findByCode(Randoms.pickNumberInRange(Menu.MIN_CODE, Menu.MAX_CODE));
-        } while (!checkPreviousCategory(selectedCategory));
+        } while (!isAvailableCategory(selectedCategory));
         weekCategoryLog.put(day, selectedCategory);
     }
 
-    private boolean checkPreviousCategory(Menu menu) {
+    private boolean isAvailableCategory(Menu menu) {
         int prevCount = (int) weekCategoryLog.values().stream()
                 .filter(prevCategory -> prevCategory.equals(menu))
                 .count();
