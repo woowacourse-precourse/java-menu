@@ -31,7 +31,7 @@ public class MenuMaker {
         return recommendMenuMap;
     }
 
-    private Map<String, List<String>> initialMap(List<String> coachNames) {
+    private Map<String, List<String>> initialMap(final List<String> coachNames) {
         Map<String, List<String>> recommendMenuMap = new HashMap<>();
 
         for (String coachName : coachNames) {
@@ -59,11 +59,13 @@ public class MenuMaker {
         }
     }
 
-    private boolean containsExceptedFood(String menu, List<String> exceptedFood) {
+    private boolean containsExceptedFood(final String menu, final List<String> exceptedFood) {
         return exceptedFood != null && exceptedFood.contains(menu);
     }
 
-    private boolean isDuplicatedMenu(String menu, Map<String, List<String>> menus, String coachName) {
+    private boolean isDuplicatedMenu(final String menu,
+                                     final Map<String, List<String>> menus,
+                                     final String coachName) {
         return menus.get(coachName).contains(menu);
     }
 
