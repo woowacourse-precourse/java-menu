@@ -1,7 +1,11 @@
 package menu.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MenuRecommender {
 
@@ -9,11 +13,14 @@ public class MenuRecommender {
 
     private static final int MIN_COACH_NUMBER = 2;
     private static final int MAX_COACH_NUMBER = 5;
+    private static final int MAX_DUPLICATE_CATEGORY_COUNT = 2;
 
     private List<Coach> coaches;
+    private Map<Day, Menu> weekCategoryLog;
 
     public MenuRecommender() {
         coaches = new ArrayList<>();
+        weekCategoryLog = new HashMap<>();
     }
 
     public void addCoaches(List<String> coachNames) {
@@ -42,6 +49,30 @@ public class MenuRecommender {
 
     private void initCoaches() {
         coaches = new ArrayList<>();
+    }
+
+    public void selectRecommendedMenus() {
+        for (Day day : Day.values()) {
+            selectCategory(day);
+        }
+    }
+
+    private void selectCategory(Day day) {
+        Menu selectedCategory;
+        do {
+            selectedCategory = Menu.findByCode(Randoms.pickNumberInRange(Menu.MIN_CODE, Menu.MAX_CODE));
+        } while (!checkPreviousCategory(selectedCategory));
+        weekCategoryLog.put(day, selectedCategory);
+    }
+
+    private boolean checkPreviousCategory(Menu menu) {
+        int prevCount = (int) weekCategoryLog.values().stream()
+                .filter(prevCategory -> prevCategory.equals(menu))
+                .count();
+        if (prevCount < MAX_COACH_NUMBER) {
+            return true;
+        }
+        return false;
     }
 
     public List<Coach> getCoaches() {
