@@ -44,4 +44,8 @@ public class MenuRepository {
 	public static List<Menu> menusByCategory(Category category) {
 		return Collections.unmodifiableList(menus.get(category));
 	}
+
+	public static void clear() {
+		menus.clear();
+	}
 }
