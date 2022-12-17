@@ -34,7 +34,7 @@ public enum Day {
                 .count() < 2;
     }
 
-    public static List<List<String>> getCategories() {
+    public static List<List<String>> getCategoriesResult() {
         return List.of(getDays(), getCategoryByDay());
     }
 
