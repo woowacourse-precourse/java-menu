@@ -2,7 +2,6 @@ package menu;
 
 public class Application {
     static Coach[] initiate() {
-        System.out.println("점심 메뉴 추천을 시작합니다.");
         String[] coachesInput = UserInterface.getCoachList();
         Coach[] coaches = new Coach[coachesInput.length];
         for (int i = 0; i < coachesInput.length; i++) {
@@ -19,6 +18,7 @@ public class Application {
         UserInterface.notifyTotalResult(categories, coaches);
     }
     public static void main(String[] args) {
+        System.out.println("점심 메뉴 추천을 시작합니다.");
         Coach[] coaches = initiate();
         String[] categories = startRecommend(coaches);
         terminate(categories, coaches);

@@ -9,7 +9,7 @@ public class InputException {
     public static void coachNameCheck(String[] coachList) throws IllegalArgumentException {
         for (String coach : coachList) {
             if (coach.length() > 4 || coach.length() < 2) {
-                throw new IllegalArgumentException("코치 이름이 최소 2글자, 최대 4글자로 입력하였는지 확인하세요.");
+                throw new IllegalArgumentException("코치 이름을 최소 2글자, 최대 4글자로 입력하였는지 확인하세요.");
             }
         }
     }
