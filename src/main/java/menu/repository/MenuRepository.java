@@ -11,10 +11,6 @@ public class MenuRepository {
         menus.add(menu);
     }
 
-    public static void addAll(List<Menu> newMenus) {
-        menus.addAll(newMenus);
-    }
-
     public static Menu findByName(String name) {
         return menus.stream().filter(menu -> menu.getName().equals(name)).findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 입력한 이름을 가지는 메뉴가 없습니다."));
