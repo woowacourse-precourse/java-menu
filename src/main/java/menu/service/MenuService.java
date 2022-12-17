@@ -25,3 +25,29 @@ public class MenuService implements Menu {
         input.forEach((key, value) -> categoryAndMenu.put(Category.findCategory(key), value));
         return categoryAndMenu;
     }
+
+    @Override
+    public void validateCoachNames(final CoachNameDto coachNameDto) {
+        final List<String> names = coachNameDto.getNames();
+        if (names.size() >= LIMIT_COACH_COUNT && names.size() <= MAX_COACH_COUNT) {
+            names.forEach(CoachName::new);
+        } else {
+            throw new IllegalArgumentException(NUMBER_OVER__MSG);
+        }
+    }
+
+    @Override
+    public void validateMenus(final MenuDto menuDto) {
+        menuDto.getMenus()
+                .forEach(this::validateMenu);
+    }
+
+    private void validateMenu(final String menu) {
+        if (!menu.isEmpty()) {
+            final boolean menuIsValid = menus.values().stream().anyMatch(it -> it.contains(menu));
+            if (!menuIsValid) {
+                throw new IllegalArgumentException(MENU_NOT_FOUND_MSG);
+            }
+        }
+    }
+
