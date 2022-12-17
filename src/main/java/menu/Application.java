@@ -3,7 +3,6 @@ package menu;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import javax.xml.transform.Result;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,7 +20,6 @@ public class Application {
             Arrays.asList("라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니")));
     public static List<String> ResultOfCategory = new ArrayList<>();
     public static List<String> ResultOfMenu = new ArrayList<>();
-
     public static List<List<String>> ResultPrinting = new ArrayList<>();
 
     public static int coachNumber = 0;
