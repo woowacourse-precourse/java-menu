@@ -1,6 +1,9 @@
 package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import menu.util.Parser;
+
+import java.util.List;
 
 public class InputView {
 
@@ -8,10 +11,13 @@ public class InputView {
     public final static int COACH_NAME_MAX = 4;
     public final static String ILLEGAL_COACH_NAME_ERROR_MESSAGE = "잘못된 코치 이름입니다.";
 
-    public String readCoachName() {
-        String coachName = Console.readLine();
-        validateCoachName(coachName);
-        return coachName;
+    public List<String> readCoachNames() {
+        String coachNames = Console.readLine();
+        List<String> coachNameList = Parser.parse(coachNames);
+        for (String coachName : coachNameList) {
+            validateCoachName(coachName);
+        }
+        return coachNameList;
     }
 
     public String readImpossibleMenu() {
