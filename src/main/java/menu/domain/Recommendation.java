@@ -14,8 +14,19 @@ public class Recommendation {
     }
 
     public void run() {
-        Category category = categoryMaker.generate();
-        categoryCount.canEat(category);
+        Category category = selectCategory();
+    }
+
+    private Category selectCategory() {
+        Category category = null;
+
+        boolean finish = false;
+        while (!finish) {
+            category = categoryMaker.generate();
+            finish = categoryCount.canEat(category);
+        }
+
+        return category;
     }
 
 }
