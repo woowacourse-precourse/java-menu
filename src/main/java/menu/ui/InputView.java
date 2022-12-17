@@ -7,12 +7,19 @@ import java.util.List;
 public class InputView {
     public List<String> readCoachNames() {
         System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
-        List<String> coachNames = Arrays.asList(
-                Console.readLine().split(",")
-        );
+        String coachNamesRaw = Console.readLine();
+        checkEndIsComma(coachNamesRaw);
+        List<String> coachNames = Arrays.asList(coachNamesRaw.split(","));
         addEmptyLine();
         checkSpace(coachNames);
+        System.out.println(coachNames);
         return coachNames;
+    }
+
+    private void checkEndIsComma(String coachNamesRaw) {
+        if (coachNamesRaw.startsWith(",") || coachNamesRaw.endsWith(",")) {
+            throw new IllegalArgumentException("[ERROR] 시작과 끝에 있는 \",\"는 지워주세요");
+        }
     }
 
     public List<String> readInedibleMenusOfCoach(String coachName) {
