@@ -6,6 +6,7 @@ import menu.controller.dto.ExcludeMenuDto;
 import menu.domain.Categories;
 import menu.domain.Coach;
 import menu.domain.CoachExcludeMenu;
+import menu.domain.CoachRecommendMenu;
 import menu.domain.Coaches;
 import menu.domain.ExcludeMenu;
 import menu.repository.CategoriesRepository;
@@ -29,15 +30,18 @@ public class MenuService {
         return CoachesRepository.findByName(coachName);
     }
 
-    public void recommendMenu() {
-        generateRecommendMenu(CategoriesRepository.generateCategories());
+    public List<CoachRecommendMenu> recommendMenu() {
+        return generateRecommendMenu(CategoriesRepository.generateCategories());
 
     }
 
-    private void generateRecommendMenu(final Categories categories) {
-        CoachRecommendMenuRepository.generateMenusByCategories(
+    private List<CoachRecommendMenu> generateRecommendMenu(final Categories categories) {
+        return CoachRecommendMenuRepository.generateMenusByCategories(
                 categories,
                 ExcludeMenuRepository.findAll());
     }
 
+    public Categories findCategories() {
+        return CategoriesRepository.find();
+    }
 }

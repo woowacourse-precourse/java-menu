@@ -84,4 +84,13 @@ public enum Category {
     public List<Menu> getMenuList() {
         return Collections.unmodifiableList(menus);
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

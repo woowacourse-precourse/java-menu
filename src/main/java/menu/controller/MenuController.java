@@ -2,6 +2,8 @@ package menu.controller;
 
 import static menu.util.InputValidator.validateCoach;
 
+import java.util.List;
+import menu.domain.CoachRecommendMenu;
 import menu.domain.Coaches;
 import menu.service.MenuService;
 import menu.view.InputView;
@@ -16,10 +18,19 @@ public class MenuController {
         try {
             Coaches coaches = requestInputCoach();
             requestInputExcludeMenu(coaches, 1);
+            responseMenuRecommend(createMenuRecommend());
         } catch (IllegalArgumentException exception) {
             outputView.printMessage(exception.getMessage());
             run();
         }
+    }
+
+    private void responseMenuRecommend(final List<CoachRecommendMenu> startMenuRecommend) {
+        outputView.printMenuRecommend(startMenuRecommend, menuService.findCategories());
+    }
+
+    private List<CoachRecommendMenu> createMenuRecommend() {
+        return menuService.recommendMenu();
     }
 
     private void requestInputExcludeMenu(final Coaches coaches, final int count) {
