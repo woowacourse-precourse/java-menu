@@ -3,6 +3,7 @@ package menu.controller;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
+import java.util.function.Supplier;
 import menu.controller.exception.NotFoundCoachControllerLogicException;
 import menu.controller.status.CoachControllerStatus;
 import menu.service.coach.CoachService;
@@ -25,7 +26,7 @@ public class CoachController {
         ADD_COACHES(CoachControllerStatus.INPUT_COACHES_NAME,
                 CoachController::addCoaches),
         ADD_COACH_NOT_EAT_MENUS(CoachControllerStatus.INPUT_COACHES_NOT_EAT_MENUS_NAME,
-                CoachController::addCoachesNotEatMenus);
+                CoachController::addCoachesInedibleMenus);
 
         private final CoachControllerStatus status;
         private final Function<CoachController, CoachControllerStatus> handler;
@@ -61,13 +62,20 @@ public class CoachController {
         return CoachControllerStatus.INPUT_COACHES_NOT_EAT_MENUS_NAME;
     }
 
-    private CoachControllerStatus addCoachesNotEatMenus() {
+    private CoachControllerStatus addCoachesInedibleMenus() {
         List<String> coachesName = coachService.findCoachesNameAll();
 
-        coachesName.forEach(coachName -> {
-            String notEatMenusName = inputView.readCoachesNotEatMenusName(coachName);
-            coachService.addInedibleMenuByCoachName(coachName, notEatMenusName);
-        });
+        coachesName.forEach(this::repeatInedibleMenusLogic);
         return CoachControllerStatus.EXIT;
+    }
+
+    private void repeatInedibleMenusLogic(String coachName) {
+        try {
+            String inedibleMenusName = inputView.readCoachesNotEatMenusName(coachName);
+            coachService.addInedibleMenuByCoachName(coachName, inedibleMenusName);
+        } catch (IllegalArgumentException e) {
+            outputView.printExceptionMessage(e.getMessage());
+            repeatInedibleMenusLogic(coachName);
+        }
     }
 }
