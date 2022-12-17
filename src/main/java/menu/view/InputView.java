@@ -21,7 +21,7 @@ public class InputView {
     }
 
     public static CoachDto readCantEatMenu(CoachNameDto coachNameDto) {
-        //안내 문구 출력 -> 코치 이름 출력
+        OutputView.printReadCantEatMenus(coachNameDto);
         String menus = Console.readLine();
         List<Menu> cantEatMenus = Arrays.stream(menus.split(DELIMITER))
                 .map(Menu::from)
