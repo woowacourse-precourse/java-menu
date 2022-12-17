@@ -2,6 +2,7 @@ package menu;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.Collections;
 import java.util.List;
 
 public class InputDriver {
@@ -15,9 +16,19 @@ public class InputDriver {
 
     private String checkIfValidStringForNameList(String readLine) {
         checkIfSplitValid(readLine);
+        checkIfNoSameName(readLine);
         checkIfNameLengthValid(readLine);
         checkIfCoachNumberValid(readLine);
         return readLine;
+    }
+
+    private void checkIfNoSameName(String readLine) {
+        for (String name : List.of(readLine.split(","))) {
+            if (Collections.frequency(List.of(readLine.split(",")), name) > 1) {
+                outputDriver.printErrorForSameName();
+                throw new IllegalArgumentException();
+            }
+        }
     }
 
     private void checkIfSplitValid(String readLine) {
