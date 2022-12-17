@@ -10,4 +10,8 @@ public class Menu {
     public boolean isSame(Menu otherMenu) {
         return this.menuName == otherMenu.menuName;
     }
+
+    public boolean isMenuName(String menuName){
+        return this.menuName.equals(menuName);
+    }
 }

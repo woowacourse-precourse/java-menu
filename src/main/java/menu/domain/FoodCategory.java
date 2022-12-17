@@ -32,6 +32,25 @@ public enum FoodCategory {
                 });
     }
 
+    public static Menu getMenuOf(String menuName) {
+        FoodCategory targetCategory = Arrays.stream(FoodCategory.values())
+                .filter(foodCategory -> foodCategory.containMenu(menuName))
+                .findFirst()
+                .orElseThrow(() -> {
+                    throw new IllegalArgumentException("[ERROR] 등록 되지 않은 주문 메뉴 입니다.");
+                });
+        return targetCategory.getMenu(menuName);
+    }
+
+    public Menu getMenu(String menuName){
+        for(Menu menu : menus){
+            if(menu.isMenuName(menuName)){
+                return menu;
+            }
+        }
+        throw new IllegalArgumentException("[ERROR] 존재하지 않는 메뉴 입니다.");
+    }
+
     private List<Menu> getMenuListData(String menuData) {
         List<String> list = Arrays.asList(menuData.split(","));
         List<Menu> result = new ArrayList<>();
@@ -47,6 +66,15 @@ public enum FoodCategory {
             result.add(data.trim());
         }
         return result;
+    }
+
+    private boolean containMenu(String menuName){
+        for(Menu menu : menus){
+            if(menu.isMenuName(menuName)){
+                return true;
+            }
+        }
+        return false;
     }
 
 }
