@@ -1,7 +1,7 @@
 package menu.view;
 
-import menu.domain.Category;
 import menu.domain.Couch;
+import menu.utils.Category;
 import menu.utils.OutputMessage;
 
 import java.util.List;

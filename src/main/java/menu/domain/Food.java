@@ -1,6 +1,7 @@
 package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import menu.utils.Category;
 
 import java.util.Arrays;
 import java.util.List;
