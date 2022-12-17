@@ -10,7 +10,6 @@ import menu.repository.MenuRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RecommendService {
     private static final int MAX_RECOMMEND_SIZE = 5;
@@ -24,29 +23,32 @@ public class RecommendService {
     public List<RecommendResult> findRecommendMenus(final Coaches coaches) {
         RecommendSystem recommendSystem = new RecommendSystem();
         final List<MenuCategory> categories = recommendSystem.pickRandomCategory();
-
-        return coaches.getCoaches().stream()
-                .map(coach -> new RecommendResult(coach, findRecommendMenus(categories, coach)))
-                .collect(Collectors.toList());
-    }
-
-    public List<Menu> findRecommendMenus(final List<MenuCategory> categories, final Coach coach) {
-        RecommendSystem recommendSystem = new RecommendSystem();
-
-
-        final List<Menu> recommendMenus = new ArrayList<>();
+        List<RecommendResult> results = new ArrayList<>();
+        int count = 0;
         for (MenuCategory category : categories) {
-            final List<String> menus = menuRepository.getMenus(category);
-            boolean canNotRecommend = false;
-            String menuName = "";
-            do {
-                menuName = recommendSystem.pickRandomMenu(menus, coach);
-                canNotRecommend = coach.validateMenu(menuName);
-            } while (canNotRecommend);
+            count++;
+            for (int j = 0; j < coaches.getCoaches().size(); j++) {
+                final Coach coach = coaches.getCoaches().get(j);
+                final List<String> menus = menuRepository.getMenus(category);
+                boolean canNotRecommend = false;
+                String menuName = "";
+                do {
+                    menuName = recommendSystem.pickRandomMenu(menus, coach);
+                    canNotRecommend = coach.validateMenu(menuName);
+                } while (canNotRecommend);
 
-            recommendMenus.add(new Menu(category, menuName));
+                if (count == 1) {
+                    final Menu menu = new Menu(category, menuName);
+                    List<Menu> recommendMenus = new ArrayList<>();
+                    recommendMenus.add(menu);
+                    RecommendResult result = new RecommendResult(coach, recommendMenus);
+                    results.add(result);
+                } else {
+                    results.get(j).addMenu(new Menu(category, menuName));
+                }
+            }
         }
 
-        return recommendMenus;
+        return results;
     }
 }

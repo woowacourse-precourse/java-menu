@@ -39,18 +39,14 @@ public class RecommendSystem implements RandomPicker {
         return category;
     }
 
-    private static MenuCategory pickCategory() {
-        final int categoryNumber = Randoms.pickNumberInRange(FIRST_CATEGORY_NUMBER, LAST_CATEGORY_NUMBER);
-        return MenuCategory.pickCategory(categoryNumber);
-    }
-
     @Override
     public String pickRandomMenu(final List<String> menus, final Coach coach) {
         String menu = INITIAL_MENU;
         boolean cannotEat = false;
 
         do {
-            menu = Randoms.shuffle(menus).get(0);
+            final List<String> shuffle = Randoms.shuffle(menus);
+            menu = shuffle.get(0);
             cannotEat = coach.cannotEatMenu(menu);
         } while (cannotEat);
 

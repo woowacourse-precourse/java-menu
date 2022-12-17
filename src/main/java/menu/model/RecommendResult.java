@@ -27,4 +27,8 @@ public class RecommendResult {
                 .map(Menu::getCategoryName)
                 .collect(Collectors.toList());
     }
+
+    public void addMenu(final Menu menu) {
+        this.menus.add(menu);
+    }
 }
