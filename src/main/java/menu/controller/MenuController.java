@@ -26,7 +26,7 @@ public class MenuController {
 
         List<Coach> coaches = coachGroup.getCoaches();
         for (Coach coach : coaches) {
-
+            List<Menu> menus = input(Menu::makeMenus, () -> inputView.inputMenu(coach.getName()));
         }
     }
 

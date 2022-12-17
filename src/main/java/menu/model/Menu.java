@@ -57,7 +57,9 @@ public enum Menu {
     WESTERN_SIX("바게트"),
     WESTERN_SEVEN("스파게티"),
     WESTERN_EIGHT("피자"),
-    WESTERN_NINE("파니니");
+    WESTERN_NINE("파니니"),
+
+    EMPTY(" ");
 
     private String name;
 
