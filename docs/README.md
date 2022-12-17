@@ -24,18 +24,25 @@
 - [x] Menu: 메뉴를 표현할 클래스 추가
 - [x] Menus: 메뉴 일급 컬렉션 추가
 - [x] MenuRepository: 메뉴들을 저장할 저장소 추가
+- [x] CoachRepository: 코치님들을 저장할 저장소 추가
 - [x] Coach: 코치님을 표현하는 클래스 추가
 
-### Utils
+### etc
 
 - [x] Retry: 반복을 위한 Retry Util 추가
+- [x] MenuService: 메뉴 추천 기능 로직이 존재하는 클래스
+- [x] CoachService: 코치님들을 저장하고 검색하는 클래스
 
 ### dto
 
 - [x] MenuDto: 메뉴 출력 내용을 전달하는 클래스
 - [x] MenusDto: 메뉴 출력 내용들을 전달하는 클래스
+- [x] InvalidMenusDto: 못먹는 메뉴들을 전달하는 클래스
+- [x] CoachNameDto: 코치님들의 이름을 전달하는 클래스
 
 ### View
 
 - [x] InputView: 입력을 담당하는 클래스
 - [x] OutputView: 출력을 담당하는 클래스 추가
+
+

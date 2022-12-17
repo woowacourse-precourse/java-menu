@@ -42,7 +42,7 @@ public class MenuController {
             InvalidMenusDto invalidMenusDto = inputView.readMenuNames(coach.getName());
             coach.addInvalidMenus(invalidMenusDto.getMenus());
         }
-        MenusDto result = menuService.findMenu(coaches);
+        MenusDto result = menuService.recommendMenus(coaches);
         outputView.printMenuMessage(result);
     }
 }
