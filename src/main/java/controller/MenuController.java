@@ -41,10 +41,7 @@ public class MenuController {
         try {
             List<String> coachNames = inputView.readCoachNames();
             
-            List<Coach> coaches = new ArrayList<>();
-            for (String coachName : coachNames) {
-                coaches.add(new Coach(coachName));
-            }
+            List<Coach> coaches = getCoaches(coachNames);
             return new Coaches(coaches);
         } catch (IllegalArgumentException e) {
             outputView.printError(e);
@@ -52,19 +49,36 @@ public class MenuController {
         }
     }
     
+    private List<Coach> getCoaches(List<String> coachNames) {
+        List<Coach> coaches = new ArrayList<>();
+        for (String coachName : coachNames) {
+            coaches.add(new Coach(coachName));
+        }
+        return coaches;
+    }
+    
     private WeeklyMenus makeMenuRecommendation(Coaches coaches) {
         Map<Category, Integer> categoryCount = new EnumMap<>(Category.class);
+        return getWeeklyMenus(coaches, categoryCount);
+    }
+    
+    private WeeklyMenus getWeeklyMenus(Coaches coaches, Map<Category, Integer> categoryCount) {
         WeeklyMenus weeklyMenus = new WeeklyMenus();
         
         for (DayOfTheWeek dayOfTheWeek : DayOfTheWeek.values()) {
             Category category = getCategory(categoryCount);
             
-            for (Coach coach : coaches.getCoaches()) {
-                putWeeklyMenus(weeklyMenus, dayOfTheWeek, category, coach);
-            }
+            putWeeklyMenus(coaches, weeklyMenus, dayOfTheWeek, category);
             weeklyMenus.addCategory(category);
         }
         return weeklyMenus;
+    }
+    
+    private void putWeeklyMenus(Coaches coaches, WeeklyMenus weeklyMenus, DayOfTheWeek dayOfTheWeek,
+            Category category) {
+        for (Coach coach : coaches.getCoaches()) {
+            putWeeklyMenus(weeklyMenus, dayOfTheWeek, category, coach);
+        }
     }
     
     private void putWeeklyMenus(WeeklyMenus weeklyMenus, DayOfTheWeek dayOfTheWeek, Category category, Coach coach) {
