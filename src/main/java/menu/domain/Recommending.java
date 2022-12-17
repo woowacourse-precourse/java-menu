@@ -34,4 +34,12 @@ public class Recommending {
     public int hashCode() {
         return Objects.hash(coach, category, menu);
     }
+
+    public boolean isCoach(Coach coach) {
+        return this.coach.equals(coach);
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
 }

@@ -18,6 +18,10 @@ public enum Category {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public static Category findByCommand(int command) {
         return Arrays.stream(Category.values())
                 .filter(category -> category.command.equals(String.valueOf(command)))
