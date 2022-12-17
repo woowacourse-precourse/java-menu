@@ -14,7 +14,7 @@ public class MenuController {
         foodRecommendation = new FoodRecommendation(coaches);
         for(Coach coach : coaches) {
             OutputView.inputInedibleFood(coach);
-            coach.addFoods(InputView.readInedibleFoods());
+            coach.addInedibleFoods(InputView.readInedibleFoods());
         }
 
         foodRecommendation.recommend();

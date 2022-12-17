@@ -27,7 +27,7 @@ public class Coach {
         return name;
     }
 
-    public void addFood(String food) {
+    public void addInedibleFood(String food) {
         inedibleFoods.add(food);
     }
 
@@ -35,9 +35,9 @@ public class Coach {
         foods.add(food);
     }
 
-    public void addFoods(List<String> foods) {
-        for (String food : foods) {
-            addFood(food);
+    public void addInedibleFoods(List<String> inedibleFoods) {
+        for (String food : inedibleFoods) {
+            addInedibleFood(food);
         }
     }
 
