@@ -3,14 +3,14 @@ package menu;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Stack;
 import menu.ui.InputView;
 import menu.ui.OutputView;
 
 public class MenuGame {
 
     private List<Coach> coaches;
-    private Queue<String> menusForEachDay;
-
+    private Stack<String> menusForEachDay;
 
     public void start() {
         OutputView.printMenuGameStart();
@@ -21,6 +21,14 @@ public class MenuGame {
         createCoaches();
         enterCoachesAllergicMenus();
         createMenuCategory();
+        selectCoachesMenus();
+
+    }
+
+    private void selectCoachesMenus() {
+        for(Coach coach : coaches)
+            coach.selectMenus(menusForEachDay);
+
 
     }
 

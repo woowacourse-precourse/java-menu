@@ -1,13 +1,20 @@
 package menu;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
+import java.util.Stack;
 import menu.ui.InputView;
 
 public class Coach {
 
     private final String name;
+    private Menus menus = new Menus();
     private List<String> allergicMenus = new ArrayList<>();
+    private Stack<String> menuNameForEachDay = new Stack<>();
+    private List<String> menusInventory = new ArrayList<>();
 
     public Coach(String name) {
         this.name = name;
@@ -31,5 +38,19 @@ public class Coach {
         if(allergicMenusOrigin.size() > 2)
             return false;
         return true;
+    }
+
+
+    public void selectMenus(Stack<String> menusForEachDay) {
+        int dayCount = 0;
+        while(dayCount < 5){
+            List<String> menusByCategory = menus.getCategoryMenus(menusForEachDay.get(dayCount));
+            String menuName = Randoms.shuffle(menusByCategory).get(0);
+            if(!menusInventory.contains(menuName)){
+                menusInventory.add(menuName);
+                menuNameForEachDay.add(menuName);
+                dayCount++;
+            }
+        }
     }
 }

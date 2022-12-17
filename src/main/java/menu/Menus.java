@@ -39,4 +39,18 @@ public class Menus {
     private List<String> createJapaneseMenus() {
         return new ArrayList<>(Arrays.asList("규동", "우동", "미소시루", "스시", "가츠동", "오니기리", "하이라이스", "라멘", "오코노미야끼"));
     }
+
+    public List<String> getCategoryMenus(String categoryName){
+        if(categoryName.equals("일식"))
+            return japaneseMenus;
+        if(categoryName.equals("한식"))
+            return koreanMenus;
+        if(categoryName.equals("중식"))
+            return chineseMenus;
+        if(categoryName.equals("아시안"))
+            return asianMenus;
+        if(categoryName.equals("양식"))
+            return westernMenus;
+        throw new IllegalArgumentException("[ERROR] 카테고리 이름이 잘못되었습니다.");
+    }
 }

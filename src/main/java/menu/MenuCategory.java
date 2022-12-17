@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class MenuCategory {
     private static final Integer JAPANESE_MENU_CATEGORY_NUMBER = 1;
@@ -28,19 +29,19 @@ public class MenuCategory {
     }
 
 
-    public Queue<String> createMenuForEachDay() {
+    public Stack<String> createMenuForEachDay() {
         HashMap<Integer, Integer> categoryNumberAndCount = initCategoryNumberAndCount();
-        Queue<String> queue = new LinkedList<>();
+        Stack<String> menuCategory = new Stack<>();
         int dayCount = 0;
         while(dayCount < 5){
             int categoryNumber = Randoms.pickNumberInRange(MENU_MIN_SIZE, MENU_MAX_SIZE);
             if(categoryNumberAndCount.get(categoryNumber) < 2){
                 categoryNumberAndCount.put(categoryNumber, categoryNumberAndCount.get(categoryNumber) + 1);
-                queue.add(categoryNumberAndCategory.get(categoryNumber));
+                menuCategory.add(categoryNumberAndCategory.get(categoryNumber));
                 dayCount++;
             }
         }
-        return queue;
+        return menuCategory;
     }
 
     private HashMap<Integer, Integer> initCategoryNumberAndCount() {
