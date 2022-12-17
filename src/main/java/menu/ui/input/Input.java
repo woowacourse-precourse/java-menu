@@ -22,9 +22,10 @@ public class Input {
 
     public List<List<String>> receiveUnavailableMenu(List<String> coaches) {
         List<List<String>> result = new ArrayList<>();
-        Repetitor input = new Menus();
+
 
         for (String coach : coaches) {
+            Repetitor input = new Menus();
             String unavailableMenus = input.getResult(coach + MENU_INPUT_NOTIFICATION);
             result.add(Arrays.asList(unavailableMenus.split(COMMA)));
         }
