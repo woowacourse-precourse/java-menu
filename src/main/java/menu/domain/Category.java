@@ -1,6 +1,5 @@
 package menu.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import menu.domain.categories.*;
 import menu.exception.InputException;
 
@@ -32,7 +31,7 @@ public enum Category {
     }
 
     public String pickMenu() {
-        return Randoms.shuffle(this.category.menus).get(0);
+        return this.category.pickMenu();
     }
 
     public static void isValidMenu(String menu) {
