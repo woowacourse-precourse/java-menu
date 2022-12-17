@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class ValidationTest {
 
@@ -39,7 +38,11 @@ class ValidationTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("못먹는 메뉴는 최대 2가지 이다.")
     @Test
     void validateNumberOfHateMenu() {
+        String[] hateMenu = {"우동","규동","스파게티"};
+        assertThatThrownBy(() -> validation.validateNumberOfHateMenu(hateMenu))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
