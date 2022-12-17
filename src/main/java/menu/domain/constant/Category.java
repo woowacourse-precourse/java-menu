@@ -42,15 +42,18 @@ public enum Category {
     }
 
     public static Category getRandomCategory() {
+        int randomNumber = Randoms.pickNumberInRange(START_NUMBER_OF_CATEGORY, COUNT_OF_CATEGORIES);
         return Arrays.stream(Category.values())
-                .filter(category -> category.isNumberOf(
-                        Randoms.pickNumberInRange(START_NUMBER_OF_CATEGORY, COUNT_OF_CATEGORIES)))
+                .filter(category -> category.isNumberOf(randomNumber))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 번호의 카테고리입니다."));
     }
 
     private boolean isNumberOf(int number) {
-        System.out.println(number);
         return this.number == number;
+    }
+
+    public String getName() {
+        return name;
     }
 }

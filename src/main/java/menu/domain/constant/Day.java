@@ -12,4 +12,8 @@ public enum Day {
     Day(String dayInKorean) {
         this.dayInKorean = dayInKorean;
     }
+
+    public String getDayInKorean() {
+        return dayInKorean;
+    }
 }

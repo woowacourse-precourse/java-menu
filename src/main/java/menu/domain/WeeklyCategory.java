@@ -2,13 +2,12 @@ package menu.domain;
 
 import static menu.domain.constant.MenuRule.MAXIMUM_CATEGORY_FREQUENCY;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import menu.domain.constant.Category;
 import menu.domain.constant.Day;
 
@@ -26,18 +25,19 @@ public class WeeklyCategory {
     }
 
     private void addRandomCategoryOfDay(Day day) {
+        System.out.println(day.getDayInKorean());
         Category category;
         do {
             category = Category.getRandomCategory();
-        } while (canAddCategory(category));
+            System.out.println(category.getName());
+        } while (!canAddCategory(category));
         dayCategories.put(day, category);
     }
 
     private boolean canAddCategory(Category category) {
-        List<Category> existCategories = Stream.of(dayCategories.keySet())
-                .map(dayCategories::get)
-                .collect(Collectors.toList());
+        List<Category> existCategories = new ArrayList<>(dayCategories.values());
         int countOfCategory = Collections.frequency(existCategories, category);
+        System.out.println(countOfCategory);
         if (countOfCategory >= MAXIMUM_CATEGORY_FREQUENCY) {
             return false;
         }
