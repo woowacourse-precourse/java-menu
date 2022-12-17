@@ -1,7 +1,6 @@
 package menu.utills;
 
 import menu.utills.constants.CoachNameRule;
-import menu.utills.constants.CoachQuantity;
 import menu.utills.constants.ErrorMessage;
 
 import java.util.HashSet;
@@ -24,9 +23,9 @@ public class Validator {
 
     public static void checkLength(List<String> inputs) {
         for (String input : inputs) {
-            if (CoachNameRule.MIN. > input
-                    || input > END_NUMBER) {
-                throw new IllegalArgumentException(String.format(ErrorMessage.OUT_OF_RANGE.getMessage(), START_NUMBER, END_NUMBER));
+            if (CoachNameRule.MIN.getLength() > input.length()
+                    || input.length() > CoachNameRule.MAX.getLength()) {
+                throw new IllegalArgumentException(String.format(ErrorMessage.LENGTH_ERROR.getMessage(), CoachNameRule.MIN.getLength(), CoachNameRule.MAX.getLength()));
             }
         }
     }
