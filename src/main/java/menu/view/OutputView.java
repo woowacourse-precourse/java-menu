@@ -22,11 +22,26 @@ public class OutputView {
     }
 
     public void printResult(CouchGroup couchGroup, List<Category> categories) {
-
         System.out.println(OutputMessage.RECOMMEND_RESULT.getMessage());
-        System.out.println(Weekend.toMessage());
-        System.out.println(Category.toMessage(categories));
-        System.out.println(couchGroup.toMessage());
+        printWeekend();
+        printCategories(categories);
+        printCouchGroup(couchGroup);
+        printComplete();
+    }
+
+    private void printComplete() {
         System.out.println(OutputMessage.RECOMMEND_COMPLETE.getMessage());
+    }
+
+    private void printCouchGroup(CouchGroup couchGroup) {
+        System.out.println(couchGroup.toMessage());
+    }
+
+    private void printCategories(List<Category> categories) {
+        System.out.println(Category.toMessage(categories));
+    }
+
+    private void printWeekend() {
+        System.out.println(Weekend.toMessage());
     }
 }
