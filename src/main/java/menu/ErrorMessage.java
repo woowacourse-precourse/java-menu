@@ -1,6 +1,6 @@
 package menu;
 
-public class ErrorMessage {
+public interface ErrorMessage {
     String PREFIX = "[ERROR] ";
     String INVALID_COACH_MIN ="코치는 최소 2명과 식사를 합니다.";
     String INVALID_COACH_NAX = "코치는 최대 5명과 식사를 합니다.";
