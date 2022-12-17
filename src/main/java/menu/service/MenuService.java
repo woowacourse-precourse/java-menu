@@ -13,6 +13,10 @@ public class MenuService {
     private final List<Coach> coaches = new ArrayList<>();
     private final List<Category> categories = new ArrayList<>();
 
+    public List<Category> getCategories() {
+        return categories;
+    }
+
     public void getCoachesName(String input) {
         validateCountOfCoaches(input);
 

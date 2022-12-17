@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.awt.*;
 import java.util.ArrayList;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MenuServiceTest {
@@ -33,7 +34,7 @@ class MenuServiceTest {
         //when
 
         //then
-        Assertions.assertThatThrownBy(() -> menuService.getCoachesName(input))
+        assertThatThrownBy(() -> menuService.getCoachesName(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -66,7 +67,19 @@ class MenuServiceTest {
         //when
 
         //then
-        Assertions.assertThatThrownBy(() -> menuService.getAvoidance(inputs))
+        assertThatThrownBy(() -> menuService.getAvoidance(inputs))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 카테고리_정하기_테스트() throws Exception{
+        //given
+        MenuService menuService = new MenuService();
+
+        //when
+        menuService.setCategories();
+
+        //then
+        assertThat(menuService.getCategories().stream().distinct().count()).isGreaterThan(3);
     }
 }
