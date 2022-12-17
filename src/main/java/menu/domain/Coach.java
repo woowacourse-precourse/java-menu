@@ -15,4 +15,8 @@ public class Coach {
     public boolean canNotEat(Menu menu) {
         return notEatFoods.contains(menu);
     }
+
+    public String getName() {
+        return name;
+    }
 }
