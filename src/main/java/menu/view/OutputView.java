@@ -9,5 +9,5 @@ public class OutputView {
         System.out.println(START_MESSAGE);
     }
 
-    
+
 }
