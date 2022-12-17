@@ -1,5 +1,6 @@
 package controller;
 
+import constant.Category;
 import menu.Coach;
 import menu.MenuRecommender;
 import repository.CoachRepository;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 
 public class MenuController {
     private static final int MINIMUM_COACHES = 2;
+    private static final int MAXIMUM_MENU_SIZE = 2;
     private final OutputView outputView;
     private final InputView inputView;
 
@@ -44,12 +46,15 @@ public class MenuController {
     }
 
     private void validateFoodNames(List<String> foodNames) {
-        // TODO : 정확한 메뉴 이름인지 검사 추가
+        for (String name : foodNames) {
+            if (!Category.hasMenu(name)) {
+                throw new IllegalArgumentException("잘못된 메뉴입니다.");
+            }
+        }
     }
 
     private void validateFoodSize(List<String> splitFoodNames) {
-        // TODO : 하드코딩 상수화
-        if (splitFoodNames.size() > 2) {
+        if (splitFoodNames.size() > MAXIMUM_MENU_SIZE) {
             throw new IllegalArgumentException("메뉴는 최대 두 개 이상 입력할 수 없습니다.");
         }
     }

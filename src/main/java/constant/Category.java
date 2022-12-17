@@ -28,6 +28,11 @@ public enum Category {
                 .orElseThrow(() -> new IllegalArgumentException("올바른 카테고리 숫자가 아니다."));
     }
 
+    public static boolean hasMenu(String foodName) {
+        return Arrays.stream(Category.values())
+                .anyMatch(category -> category.foods.contains(foodName));
+    }
+
     public String getName() {
         return this.name;
     }
