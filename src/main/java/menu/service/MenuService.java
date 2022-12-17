@@ -1,5 +1,6 @@
 package menu.service;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import menu.domain.Category;
 import menu.domain.Coach;
 import menu.exception.InputException;
@@ -10,6 +11,7 @@ import java.util.StringTokenizer;
 
 public class MenuService {
     private final List<Coach> coaches = new ArrayList<>();
+    private final List<Category> categories = new ArrayList<>();
 
     public void getCoachesName(String input) {
         validateCountOfCoaches(input);
@@ -24,6 +26,23 @@ public class MenuService {
             coaches.get(i).addAvoidance(inputs.get(i));
     }
 
+    public void setCategories() {
+        while (categories.size() < 5) {
+            Category newCategory = Category.values()[Randoms.pickNumberInRange(0, 4)];
+            addNewCategory(newCategory);
+        }
+    }
+
+
+    private void addNewCategory(Category newCategory) {
+        int count=0;
+        for(Category category:categories)
+            if(category.equals(newCategory))
+                count++;
+
+        if(count<2)
+            categories.add(newCategory);
+    }
 
     private void validateCountOfCoaches(String input) {
         StringTokenizer st = new StringTokenizer(input, ",");
