@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Coach {
 
-    private String name;
+    private final String name;
 
     private List<String> hateMenus;
 
@@ -18,10 +18,6 @@ public class Coach {
 
     public String getName() {
         return name;
-    }
-
-    public List<String> getHateMenus() {
-        return Collections.unmodifiableList(hateMenus);
     }
 
     public List<String> getCompleteMenus() {
