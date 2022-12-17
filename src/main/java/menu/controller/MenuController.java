@@ -1,7 +1,7 @@
 package menu.controller;
 
 import menu.domain.Coaches;
-import menu.domain.PickMenu;
+import menu.domain.PickCategory;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -20,7 +20,7 @@ public class MenuController {
     public void run() {
         outputView.startMessage();
         Coaches coaches = getCoachesName();
-        PickMenu pickMenu = new PickMenu();
+        PickCategory pickCategory = new PickCategory();
         getNotEatableName(coaches);
     }
 

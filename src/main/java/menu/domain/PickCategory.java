@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class PickMenu {
+public class PickCategory {
     private final List<Category> categories;
     private static final int MIN_CATEGORY_NUMBER = 1;
     private static final int MAX_CATEGORY_NUMBER = 5;
 
-    public PickMenu() {
+    public PickCategory() {
         this.categories = getRandomCategory();
     }
 
