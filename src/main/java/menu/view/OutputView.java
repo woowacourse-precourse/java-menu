@@ -8,6 +8,7 @@ public class OutputView {
 
     private static final String SERVICE_START_MESSAGE = "점심 메뉴 추천을 시작합니다.";
     private static final String SERVICE_RESULT_MESSAGE = "메뉴 추천 결과입니다.";
+    private static final String SERVICE_FINISH_MESSAGE = "추천을 완료했습니다.";
     public void printServiceStartMessage() {
         System.out.println(SERVICE_START_MESSAGE);
     }
@@ -21,5 +22,12 @@ public class OutputView {
             List<String> menus = coach.requestFormat();
             System.out.println(Format.toString(menus));
         }
+        System.out.println();
+        System.out.println(SERVICE_FINISH_MESSAGE);
+    }
+
+    public void printErrorMessage(String message) {
+        String errorMessage = "[ERROR] " + message;
+        System.out.println(errorMessage);
     }
 }

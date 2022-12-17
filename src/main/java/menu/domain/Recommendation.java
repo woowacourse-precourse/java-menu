@@ -50,4 +50,16 @@ public class Recommendation {
         }
     }
 
+    public List<String> requestCategoryFormat() {
+        List<String> format = new ArrayList<>();
+        format.add("카테고리");
+        format.addAll(categories);
+
+        return format;
+    }
+
+    public List<Coach> getCoaches() {
+        return coaches;
+    }
+
 }
