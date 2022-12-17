@@ -5,6 +5,7 @@ import menu.repository.constant.SizeLimit;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CoachRepository {
     private static class InstanceHolder {
@@ -28,5 +29,10 @@ public class CoachRepository {
 
     public boolean isValidCoach(String coachName) {
         return coaches.stream().anyMatch(coach -> coachName.equals(coach.getName()));
+    }
+
+    public List<String> findAllCoach() {
+        return coaches.stream().map(Coach::getName)
+                .collect(Collectors.toUnmodifiableList());
     }
 }
