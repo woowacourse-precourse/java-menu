@@ -1,5 +1,9 @@
 package model;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public enum DayOfTheWeek {
     MONDAY("월요일"),
     TUESDAY("화요일"),
@@ -15,5 +19,11 @@ public enum DayOfTheWeek {
     
     private String getName() {
         return name;
+    }
+    
+    public static List<String> getNames() {
+        return Arrays.stream(values())
+                .map(DayOfTheWeek::getName)
+                .collect(Collectors.toList());
     }
 }

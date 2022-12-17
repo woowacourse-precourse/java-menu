@@ -11,6 +11,10 @@ public class Coaches {
         this.coaches = coaches;
     }
     
+    public List<Coach> getCoaches() {
+        return coaches;
+    }
+    
     private void validSize(List<Coach> coaches) {
         validLessThanSize(coaches);
         validGreaterThanSize(coaches);
