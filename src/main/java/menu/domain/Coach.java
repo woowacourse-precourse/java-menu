@@ -20,6 +20,8 @@ public class Coach {
         return inedibleFoods.stream().noneMatch(foodName::equals);
     }
 
+    // TODO: 코치 이름 2글자에서 4글자 검증 기능 구현하기
+
     public String getName() {
         return name;
     }
