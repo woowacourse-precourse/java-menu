@@ -31,7 +31,7 @@ public class MenuMapper {
     }
 
     private static boolean ifNoMenu(String[] menus) {
-        return menus[ZERO] != null;
+        return (menus[ZERO] == null) || menus[ZERO].equals("");
     }
 
     private static void validateSize(String[] split) {
