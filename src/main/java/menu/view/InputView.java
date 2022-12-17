@@ -31,6 +31,7 @@ public class InputView {
     }
 
     public void checkValidCoaches(String[] input) {
+        validCoachesNameSize(input);
         for (String name : input) {
             validCoachNameSize(name);
         }
@@ -39,6 +40,12 @@ public class InputView {
     public void validCoachNameSize(String name) {
         if (name.length() < 2 || name.length() > 5) {
             throw new IllegalArgumentException(ErrorMessage.COACH_NAME_SIZE_IS_BETWEEN_TWO_AND_FOUR);
+        }
+    }
+
+    public void validCoachesNameSize(String[] names) {
+        if (names.length < 2 || names.length > 5) {
+            throw new IllegalArgumentException(ErrorMessage.COACH_IS_LEAST_TWO_AND_MAX_FIVE);
         }
     }
 }
