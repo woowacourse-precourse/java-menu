@@ -2,7 +2,6 @@ package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import menu.service.MenuRecommendService;
-
 import java.util.stream.Stream;
 
 public class InputView {

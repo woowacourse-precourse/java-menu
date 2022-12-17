@@ -2,7 +2,6 @@ package menu.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import menu.domain.MenuRepository;
-
 import java.util.*;
 
 public class MenuRecommendService {

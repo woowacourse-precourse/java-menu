@@ -1,13 +1,10 @@
 package menu;
 
-import camp.nextstep.edu.missionutils.Console;
 import menu.service.CategoryRecommendService;
 import menu.service.MenuRecommendService;
 import menu.view.InputView;
 import menu.view.OutputView;
-
 import java.util.*;
-import java.util.stream.Stream;
 
 public class Application {
     public static final List<String> TOTAL_DAY = Arrays.asList("월요일", "화요일", "수요일", "목요일", "금요일");
