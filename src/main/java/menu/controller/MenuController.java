@@ -4,10 +4,7 @@ import menu.domain.Menu;
 import menu.view.InputView;
 import menu.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -17,7 +14,7 @@ public class MenuController {
     private List<String> allCategory;
     private List<String> coachName;
     private Map<String, List<String>> coachDislikeFood;
-    private Map<String, List<String>> foodRecommendedByCoaches = new HashMap<>();
+    private Map<String, List<String>> foodRecommendedByCoaches = new LinkedHashMap<>();
     private List<String> pickedCategories = new ArrayList<>();
 
     private Menu menu;
