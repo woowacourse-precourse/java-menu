@@ -31,7 +31,6 @@ public class InputView {
             System.out.println("\n" +coach.getName() + GET_NOT_EATABLE_MENU);
             String[] input = Console.readLine().split(",");
             checkValidNotEatable(input);
-            System.out.println();
             coach.addNotEatableMenus(input);
         }
     }

@@ -39,7 +39,7 @@ public class OutputView {
 
     public void printCategory(PickCategory pickCategory) {
         System.out.print(START_OF_MENU_DELIMITER);
-        System.out.print(" 구분 ");
+        System.out.print(" 카테고리 ");
         for (Category category : pickCategory.getCategories()) {
             System.out.print(CENTER_OF_MENU_DELIMITER);
             System.out.print(" " + category.getCategory() + " ");

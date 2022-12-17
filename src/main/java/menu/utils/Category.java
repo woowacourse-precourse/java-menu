@@ -3,8 +3,8 @@ package menu.utils;
 import java.util.Arrays;
 
 public enum Category {
-    KOREA("한식", 1),
-    JAPAN("일식",2),
+    JAPAN("일식",1),
+    KOREA("한식", 2),
     CHINA("중식",3),
     ASIA("아시안",4),
     WESTERN("양식",5);
