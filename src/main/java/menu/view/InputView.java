@@ -2,6 +2,7 @@ package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import menu.utils.Validator;
 
 public class InputView {
     public static List<String> readCoachNames() {
@@ -10,6 +11,11 @@ public class InputView {
     }
 
     private static List<String> parseCoachNames(String names) {
-        return List.of(names.split(","));
+        List<String> parsedNames = List.of(names.split(","));
+
+        for (String name : parsedNames) {
+            Validator.checkNameLength(name);
+        }
+        return parsedNames;
     }
 }

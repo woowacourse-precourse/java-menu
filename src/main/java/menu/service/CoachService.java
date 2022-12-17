@@ -12,7 +12,13 @@ public class CoachService {
     }
 
     private List<String> getCoachNames() {
-        OutputView.messageNamesInput();
-        return InputView.readCoachNames();
+        while (true) {
+            try {
+                OutputView.messageNamesInput();
+                return InputView.readCoachNames();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
