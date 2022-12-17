@@ -48,4 +48,4 @@ List<String> menu에다가 다 넣어놓기.
 
 ## MenuController (controller)
 
-- [ ] 카테고리에 대한 정보들을 초기 설정한다.
+- [x] 카테고리에 대한 정보들을 초기 설정한다.
