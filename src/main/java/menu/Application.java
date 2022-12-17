@@ -14,5 +14,6 @@ public class Application {
 
     private static void run() {
         List<Coach> coaches = InputView.readCoachNames();
+        InputView.readInedibleFoodsOfCoaches(coaches);
     }
 }

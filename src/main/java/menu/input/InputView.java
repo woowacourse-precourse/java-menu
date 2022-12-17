@@ -31,4 +31,22 @@ public class InputView {
         }
         return coaches;
     }
+
+    public static void readInedibleFoodsOfCoaches(List<Coach> coaches) {
+        for (Coach coach : coaches) {
+            readInedibleFood(coach);
+        }
+    }
+
+    private static void readInedibleFood(Coach coach) {
+        while (true) {
+            InputGuideView.printInputInedibleFoodsMessage(coach.getName());
+            String inedibleFoods = Console.readLine();
+            if (InputValidator.isValidInedibleFoodsInput(inedibleFoods)) {
+                coach.SetInedibleFoods(inedibleFoods);
+                break;
+            }
+            ErrorMessageOutput.printErrorMessage(ErrorMessage.inedibleFoodInputError);
+        }
+    }
 }

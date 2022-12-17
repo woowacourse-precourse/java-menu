@@ -14,4 +14,14 @@ public class Coach {
     public boolean addInedibleFood(Food food) {
         return inedibleFoods.add(food);
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void SetInedibleFoods(String inedibleFoodInputs) {
+        for (String inedibleFoodInput : inedibleFoodInputs.split(",")) {
+            inedibleFoods.add(FoodRepository.getFoodByName(inedibleFoodInput));
+        }
+    }
 }

@@ -12,4 +12,22 @@ public class FoodRepository {
     public static void addFood(Food food) {
         foods.add(food);
     }
+
+    public static boolean isExistingFood(String name) {
+        for (Food food : foods) {
+            if (food.getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static Food getFoodByName(String name) {
+        for (Food food : foods) {
+            if (food.getName().equals(name)) {
+                return food;
+            }
+        }
+        return null;
+    }
 }
