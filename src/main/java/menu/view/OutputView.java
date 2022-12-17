@@ -7,6 +7,6 @@ public class OutputView {
     }
 
     public static void askCoach() {
-        System.out.println(Message.INPUT_COACH.getMessage());
+        System.out.println(Message.ASK_COACH.getMessage());
     }
 }

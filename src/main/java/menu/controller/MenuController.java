@@ -1,7 +1,11 @@
 package menu.controller;
 
+import menu.model.Coach;
 import menu.model.MenuSuggester;
+import menu.view.InputView;
 import menu.view.OutputView;
+
+import java.util.List;
 
 public class MenuController {
     private final MenuSuggester menuSuggester;
@@ -17,5 +21,6 @@ public class MenuController {
 
     private void askCoach() {
         OutputView.askCoach();
+        List<Coach> coaches = InputView.inputCoach();
     }
 }
