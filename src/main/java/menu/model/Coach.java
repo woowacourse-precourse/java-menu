@@ -10,4 +10,8 @@ public class Coach {
         this.name = name;
         this.allergy = allergy;
     }
+
+    public String getName() {
+        return name;
+    }
 }

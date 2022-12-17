@@ -10,4 +10,11 @@ public class InputView {
         System.out.println();
         return input;
     }
+
+    public String inputAllegeMenu(String name) {
+        System.out.println(name + NoticeMessage.INPUT_ALLEGE_MENU);
+        String input = Console.readLine();
+        System.out.println();
+        return input;
+    }
 }

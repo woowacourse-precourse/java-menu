@@ -24,7 +24,10 @@ public class MenuController {
     public void run() {
         outputView.outputStartNotice();
         List<Coach> coaches = getCoaches();
-
+        for (int index = 0; index < coaches.size(); index++) {
+            //못 먹는 메뉴 입력
+            inputView.inputAllegeMenu(coaches.get(index).getName())
+        }
     }
 
     private List<Coach> getCoaches() {
