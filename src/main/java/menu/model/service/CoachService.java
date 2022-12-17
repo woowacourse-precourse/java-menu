@@ -20,12 +20,16 @@ public class CoachService {
     public List<String> getCoaches() {
         String coaches = InputView.getCoaches();
         List<String> coachesName = Separator.separateCoachInfo(coaches);
+        validateInput(coachesName);
+        return coachesName;
+    }
+
+    private void validateInput(List<String> coachesName) {
         for (String coachName : coachesName) {
             InputVerifier.coachNameIsOnlyKorean(coachName);
             InputVerifier.coachNameIsMin2Max4(coachName);
             InputVerifier.coachesCountMin2Max5(coachesName.size());
         }
-        return coachesName;
     }
 
     public List<Coach> getHateMenus(List<String> coachesName) {
