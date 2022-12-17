@@ -12,6 +12,9 @@ import menu.view.InputView;
 import menu.view.OutputView;
 
 public class MenuController {
+    private static final int MONDAY = 1;
+    private static final int FRIDAY = 5;
+
     private InputView inputView;
     private OutputView outputView;
     private CategoryHistory categoryHistory;
@@ -33,7 +36,7 @@ public class MenuController {
         readCoachNames();
         readDislikeFoods();
 
-        for (int day = 1; day <= Constant.NUMBER_OF_DAY; day++) {
+        for (int day = MONDAY; day <= FRIDAY; day++) {
             recommendMenu();
         }
 
