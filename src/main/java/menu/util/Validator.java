@@ -7,7 +7,7 @@ import static menu.message.ErrorMessage.OVER_MAXIMUM_NUMBER_OF_COACH;
 public class Validator {
     private static final String NAME_OR_COMMA = "^[가-힣,]*$";
 
-    public void validateCoachNamesInput(String input) {
+    public static void validateCoachNamesInput(String input) {
         if (!containsOnlyCommaOrName(input)) {
             throw new IllegalArgumentException(INCORRECT_INPUT_FORMAT);
         }
@@ -21,15 +21,15 @@ public class Validator {
         }
     }
 
-    private boolean containsOnlyCommaOrName(String input) {
+    private static boolean containsOnlyCommaOrName(String input) {
         return input.matches(NAME_OR_COMMA);
     }
 
-    private boolean isLessThanMinimumNumberOfCoach(String[] coaches) {
+    private static boolean isLessThanMinimumNumberOfCoach(String[] coaches) {
         return coaches.length < 2;
     }
 
-    private boolean isOverMaximumNumberOfCoach(String[] coaches) {
+    private static boolean isOverMaximumNumberOfCoach(String[] coaches) {
         return coaches.length > 5;
     }
 }
