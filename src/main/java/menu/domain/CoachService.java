@@ -5,11 +5,11 @@ import java.util.List;
 
 public class CoachService {
 
-    public void registercoaches(String input) {
+    public void registerCoaches(String input) {
         String[] coaches = input.split(",");
         for (String coach :
                 coaches) {
-            CoachRepository.addcoach(new Coach(coach));
+            CoachRepository.addCoach(new Coach(coach));
         }
     }
 
@@ -18,7 +18,7 @@ public class CoachService {
         coach.setCannotEatFoods(Arrays.asList(foods));
     }
 
-    public List<Coach> getcoaches() {
+    public List<Coach> getCoaches() {
         return CoachRepository.coaches();
     }
 

@@ -19,10 +19,6 @@ public class Categories {
         }
     }
 
-    public List<Category> getCategories() {
-        return categories;
-    }
-
     public List<Category> getRecommendCategory() {
         List<Category> recommendedCategories = new ArrayList<>();
         for (int i = 0; i < weeks.size(); i++) {

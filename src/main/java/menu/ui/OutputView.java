@@ -19,7 +19,7 @@ public class OutputView {
         System.out.println(WEEK_SECTION);
         System.out.println(makeCategorySection(recommendedCategories));
         for (Coach coach : coaches) {
-            System.out.println(makecoachSection(coach));
+            System.out.println(makeCoachSection(coach));
         }
         System.out.println("\n" + "추천을 완료했습니다.\n");
     }
@@ -34,7 +34,7 @@ public class OutputView {
         return output.toString();
     }
 
-    private String makecoachSection(Coach coach) {
+    private String makeCoachSection(Coach coach) {
         StringBuilder output = new StringBuilder(START + coach.getName() + SECTION);
         for (String food :
                 coach.getRecommendedFoods()) {

@@ -18,20 +18,20 @@ public class MenuController {
 
     public void doRecommendMenu() {
         System.out.println(START);
-        registercoaches();
+        registerCoaches();
         registerCannotEat();
         recommendMenu();
-        outputView.resultOfRecommend(menuRecommendService.getRecommendedCategories(), coachService.getcoaches());
+        outputView.resultOfRecommend(menuRecommendService.getRecommendedCategories(), coachService.getCoaches());
     }
 
     private void recommendMenu() {
         menuRecommendService.recommendMenu();
     }
 
-    private void registercoaches() {
+    private void registerCoaches() {
         while (true) {
             try {
-                coachService.registercoaches(inputView.inputcoachNames());
+                coachService.registerCoaches(inputView.inputcoachNames());
                 break;
             } catch (IllegalArgumentException ex) {
                 System.out.println(ex.getMessage());
@@ -40,7 +40,7 @@ public class MenuController {
     }
 
     private void registerCannotEat() {
-        List<Coach> coaches = coachService.getcoaches();
+        List<Coach> coaches = coachService.getCoaches();
         for (int i = 0; i < coaches.size(); i++) {
             try {
                 coaches.get(i).setCannotEatFoods(Arrays.asList(inputView.inputCannotEat(coaches.get(i).getName()).split(",")));

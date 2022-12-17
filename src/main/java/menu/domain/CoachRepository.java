@@ -9,11 +9,11 @@ public class CoachRepository {
         return Collections.unmodifiableList(COACHES);
     }
 
-    public static void addcoach(Coach coach) {
+    public static void addCoach(Coach coach) {
         COACHES.add(coach);
     }
 
-    public static Coach getcoachByName(String name) {
+    public static Coach getCoachByName(String name) {
         Optional<Coach> first = coaches().stream().filter(coach -> coach.getName().equals(name)).findFirst();
         return first.orElse(null);
     }
