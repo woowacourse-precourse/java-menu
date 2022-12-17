@@ -29,6 +29,8 @@ public class RecommenderController {
         registerCoaches();
         registerDislikeMenu();
         makeRecommendedCategories();
+        recommendMenuToCoach();
+        
     }
 
     private void registerCoaches() {
@@ -86,6 +88,12 @@ public class RecommenderController {
         }
         while (!Validator.isValidCategory(recommendedCategory, recommendedCategories));
         recommendedCategories.add(recommendedCategory);
+    }
+
+    private void recommendMenuToCoach() {
+        for (Coach coach : coaches) {
+            recommendValidMenu(coach);
+        }
     }
 
     private void recommendValidMenu(Coach coach) {
