@@ -11,6 +11,7 @@ public class InputView {
                 Console.readLine().split(",")
         );
         addEmptyLine();
+        checkSpace(coachNames);
         return coachNames;
     }
 
@@ -21,10 +22,19 @@ public class InputView {
                 Console.readLine().split(",")
         );
         addEmptyLine();
+        checkSpace(inedibleFoods);
         return inedibleFoods;
     }
 
     private void addEmptyLine() {
         System.out.println();
+    }
+
+    private void checkSpace(List<String> checkTargets) {
+        for (String checkTarget : checkTargets) {
+            if (checkTarget.contains(" ")) {
+                throw new IllegalArgumentException("[ERROR] 입력에 공백을 제거해주세요");
+            }
+        }
     }
 }
