@@ -10,15 +10,18 @@ public class InputView {
     private static final String COACH_NUMBER_ERROR_MESSAGE = "코치는 최소 2명, 최대 5명 입력해야 합니다.";
     private static final String MENU_NUMBER_ERROR_MESSAGE = "못 먹는 메뉴 개수는 최소 0, 최대 2여야 합니다.";
     private static final String MENU_NAME_ERROR_MESSAGE = "존재하지 않는 메뉴입니다.";
+    private static final String INPUT_FORMAT_ERROR_MESSAGE = "입력 형식이 올바르지 않습니다.";
 
     public List<String> readCoachNames() {
-        List<String> coachNameInput = Arrays.asList(Console.readLine().split(","));
-        validateCoachNumber(coachNameInput);
-        for (String name : coachNameInput) {
+        String coachNameInput = Console.readLine();
+        validateInputFormat(coachNameInput);
+        List<String> coaches = Arrays.asList(coachNameInput.split(","));
+        validateCoachNumber(coaches);
+        for (String name : coaches) {
             validateCoachNameLength(name);
         }
 
-        return coachNameInput;
+        return coaches;
     }
 
     public List<String> readPickyEatings() {
@@ -38,6 +41,17 @@ public class InputView {
         }
     }
 
+    private void validateInputFormat(String input) {
+        // , 구분자가 문자열들 사이에 존재하지 않을 때
+        if (input.charAt(0) == ',' || input.charAt(input.length() - 1) == ',') {
+            throw new IllegalArgumentException(INPUT_FORMAT_ERROR_MESSAGE);
+        }
+
+        //, 구분자가 연속되어 존재할 때
+        if (input.contains(",,")) {
+            throw new IllegalArgumentException(INPUT_FORMAT_ERROR_MESSAGE);
+        }
+    }
     private void validateCoachNumber(List<String> coaches) {
         if (coaches.size() < 2 || coaches.size() > 5) {
             throw new IllegalArgumentException(COACH_NUMBER_ERROR_MESSAGE);

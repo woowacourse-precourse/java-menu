@@ -46,6 +46,7 @@
  - 메뉴 수가 0~2인지
  - 정해진 메뉴에 존재하는 이름인지
 
+3. validateInputformat() - 입력 형식이 올바른지 검증
 ## OutputView 클래스
  - 출력을 관리
 1. printStartMessage() - 시작 안내 메세지 출력
