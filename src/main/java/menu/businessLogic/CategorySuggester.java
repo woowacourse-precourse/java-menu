@@ -1,4 +1,4 @@
-package menu;
+package menu.businessLogic;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import menu.domains.Categories;

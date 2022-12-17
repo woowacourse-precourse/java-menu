@@ -1,4 +1,4 @@
-package menu;
+package menu.businessLogic;
 
 import menu.domains.Categories;
 import menu.domains.Coach;
