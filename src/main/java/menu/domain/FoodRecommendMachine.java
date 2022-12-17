@@ -17,6 +17,10 @@ public class FoodRecommendMachine {
         this.coaches = foodPeerCoaches;
     }
 
+    public Map<DayRecommend, FoodCategory> getFoodRecommends() {
+        return foodRecommends;
+    }
+
     public void makeRecommend() {
         makeRecommendOf("월요일");
         makeRecommendOf("화요일");
