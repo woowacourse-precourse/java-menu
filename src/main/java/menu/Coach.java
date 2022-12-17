@@ -12,7 +12,7 @@ public class Coach {
 
     public void selectMenu(List<String> menus) {
         String menu = Randoms.shuffle(menus).get(0);
-        if (!weekMenu.contains(menu)) {
+        if (!weekMenu.contains(menu) && !hateFood.contains(menu)) {
             weekMenu.add(menu);
         } else {
             selectMenu(menus);
