@@ -5,9 +5,9 @@ import java.util.List;
 
 public class CategoryRecommand {
 
-    HashMap<String, Integer> categoryCount;
+    List<String> categoryPerDay;
 
-    public CategoryRecommand(HashMap<String, Integer> categoryCount){
-        this.categoryCount = categoryCount;
+    public CategoryRecommand(List<String> categoryPerDay){
+        this.categoryPerDay = categoryPerDay;
     }
 }
