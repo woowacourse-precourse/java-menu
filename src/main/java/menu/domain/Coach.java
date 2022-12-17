@@ -23,6 +23,10 @@ public class Coach {
         recommendCategory.add(category);
     }
 
+    public void addMenu(Menu menu) {
+        recommendMenu.add(menu);
+    }
+
     public boolean canNotEat(Menu menu) {
         return banFoods.contains(menu);
     }
