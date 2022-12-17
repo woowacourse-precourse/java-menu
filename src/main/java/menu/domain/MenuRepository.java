@@ -4,6 +4,7 @@ import menu.utills.constants.Category;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MenuRepository {
     private final static List<Menu> menus = new ArrayList<>();
@@ -79,5 +80,12 @@ public class MenuRepository {
                 .filter(menu -> menu.isEqualName(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 메뉴입니다."));
+    }
+
+    public static List<String> getMenuNamesByCategory(Category category) {
+        return menus.stream()
+                .filter(menu -> menu.isEqualCategory(category))
+                .map(Menu::getName)
+                .collect(Collectors.toList());
     }
 }
