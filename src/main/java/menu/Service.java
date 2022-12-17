@@ -62,6 +62,14 @@ public class Service {
 		return count;
 	}
 
+	public void selectMenu() {
+		for (String category : byDayOfTheWeekSelectCategoryRepository) {
+			List<String> categoryMenu = totelMenu.getCategoryMenu(category);
+			for (int index = 0; index < coachRepository.getCoachsSize(); index++) {
+				notEatFoodsRemove(coach.getCoachsName(index), categoryMenu);
+			}
+		}
+	}
 
 	public void notEatFoodsRemove(String coachName, List<String> categoryMenu) {
 		for (int index = 0; index <  coachRepository.getCoachsSize(); index++) {
