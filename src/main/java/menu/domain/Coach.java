@@ -49,6 +49,7 @@ public class Coach {
         }
 
     }
+
     public void setProhibitionMenus(String menus) {
         String[] inputProhibitionMenus = menus.split(InputView.INPUT_SEPARATOR);
 

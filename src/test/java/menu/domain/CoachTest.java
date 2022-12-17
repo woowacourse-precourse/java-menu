@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class CoachTest {
-    
+
     @Test
     @DisplayName("이름 길이 테스트")
     void 예외_테스트1() {

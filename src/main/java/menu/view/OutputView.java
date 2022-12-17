@@ -15,6 +15,7 @@ public class OutputView {
     public static final String COACH_LINE_START = "[ ";
     public static final String CATEGORY_LINE_START = "[ 카테고리 | ";
     public static final String LINE_END = " ]";
+
     public void startProgram() {
         System.out.println(START);
     }
@@ -23,7 +24,7 @@ public class OutputView {
         System.out.println(RECOMMEND_RESULT);
         System.out.println(Week.getWeekFormat());
         System.out.println(Category.getFormat(weeks));
-        for(Coach coach : coaches) {
+        for (Coach coach : coaches) {
             System.out.println(coach.getFormat());
         }
         System.out.println(FINISH);
