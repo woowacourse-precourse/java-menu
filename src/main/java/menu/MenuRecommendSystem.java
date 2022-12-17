@@ -18,6 +18,8 @@ public class MenuRecommendSystem {
     public static final String LESS_THAN_MIN_VALUE = "코치는 최소 2명 이상 입력해야 합니다.";
     public static final String INVALID_MENU_SIZE = "코치는 최소 0개, 최대 2개의 못 먹는 메뉴를 가집니다.";
     public static final int LAST_DAY = 5;
+    public static final int MAX_SIZE_OF_MENU_INPUT = 2;
+    public static final int MIN_VALUE_OF_COACH_SIZE = 2;
     private List<Coach> coaches;
     private Recommendation recommendation;
 
@@ -60,7 +62,7 @@ public class MenuRecommendSystem {
         for (String menu : menuCannotEat) {
             coach.addMenuCannotEat(menu);
         }
-        if (coach.getSizeOfMenuCannotToEat() > 2) {
+        if (coach.getSizeOfMenuCannotToEat() > MAX_SIZE_OF_MENU_INPUT) {
             throw new IllegalArgumentException(INVALID_MENU_SIZE);
         }
     }
@@ -90,7 +92,7 @@ public class MenuRecommendSystem {
     }
 
     private List<Coach> createCoachesByNames(List<String> coachNameList) {
-        if (coachNameList.size() < 2) {
+        if (coachNameList.size() < MIN_VALUE_OF_COACH_SIZE) {
             throw new IllegalArgumentException(LESS_THAN_MIN_VALUE);
         }
         return coachNameList.stream().map(Coach::new).collect(Collectors.toList());
