@@ -1,19 +1,18 @@
 package menu.input;
 
-import java.util.Scanner;
+import camp.nextstep.edu.missionutils.Console;
 import menu.message.ErrorMessage;
 import menu.output.ErrorMessageOutput;
 import menu.output.InputGuideView;
 import menu.validator.InputValidator;
 
 public class InputView {
-    static final Scanner scanner = new Scanner(System.in);
 
     public static String[] readCoachNames() {
         String inputNames;
         while (true) {
             InputGuideView.printStartMessage();
-            inputNames = scanner.nextLine();
+            inputNames = Console.readLine();
             if (InputValidator.isValidNameInput(inputNames)) {
                 break;
             }
