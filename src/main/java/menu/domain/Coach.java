@@ -3,6 +3,7 @@ package menu.domain;
 public class Coach {
   private String name;
   private String[] excludedMenu;
+  private String[] menuList;
 
   public Coach(String name){
     this.name=name;
@@ -10,6 +11,10 @@ public class Coach {
 
   public void setExcludedMenu(String[] excludedMenu) {
     this.excludedMenu = excludedMenu;
+  }
+
+  public void setMenuList(String[] menuList) {
+    this.menuList = menuList;
   }
 
   public String getName(){

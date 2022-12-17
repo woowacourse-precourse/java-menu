@@ -1,4 +1,4 @@
-package menu.tool;
+package menu.repository;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -6,8 +6,14 @@ import java.util.Collections;
 import java.util.List;
 import menu.domain.Category;
 
-public class CategoryMaker {
-  public List<Category> categoryMaker(){
+public class ServiceRepository {
+  static List<Category> categoryList=new ArrayList<>();
+
+  public void ServiceRepository(){
+    categoryList=makeCategoryList();
+  }
+
+  public List<Category> makeCategoryList(){
     List<Category> categoryList=new ArrayList<>();
     List<Integer> categoryIDList=new ArrayList<>();
     while(categoryList.size()<5){
@@ -18,7 +24,6 @@ public class CategoryMaker {
       }
     }
     return categoryList;
-
   }
 
 }

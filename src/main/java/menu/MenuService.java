@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import menu.domain.Category;
 import menu.domain.Coach;
+import menu.domain.MenuRepository;
 import menu.tool.CategoryMaker;
 import menu.ui.InputView;
 import menu.ui.OutputView;
@@ -14,6 +15,7 @@ public class MenuService {
   final InputView input = new InputView();
   final OutputView output = new OutputView();
   final CategoryMaker categoryMaker = new CategoryMaker();
+  final MenuRepository menuRepository=new MenuRepository();
 
   public void startService() {
     output.printServiceStart();
