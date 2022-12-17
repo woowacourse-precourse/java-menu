@@ -62,6 +62,9 @@ public class CoachGroup {
         for (int i = 0; i < infos.size(); i++) {
             infos.get(i).add(0,names.get(i));
         }
+        for (int i = 0; i < infos.size(); i++) {
+            infos.get(i).remove(infos.size() - 1);
+        }
         return infos;
     }
 }

@@ -34,14 +34,17 @@ public class Recommend {
     public String recommendMenu(Category category) {
         List<String> menus = Category.getMenus(category);
         String menu = null;
-        while (menuStatus == Status.NOT_OK) {
-            menu = randomGenerator.pickRandomMenu(menus);
-            if(coach.isFineEatMenu(Menu.from(menu))){
-                coach.addRecommendMenu(Menu.from(menu));
-                menuStatus = Status.OK;
+        for (int i = 0; i < 5; i++) {
+            menuStatus=Status.NOT_OK;
+            while (menuStatus == Status.NOT_OK) {
+                menu = randomGenerator.pickRandomMenu(menus);
+                if(coach.isFineEatMenu(Menu.from(menu))){
+                    coach.addRecommendMenu(Menu.from(menu));
+                    menuStatus = Status.OK;
+                }
             }
         }
-        System.out.println(menu);
+//        System.out.println(menu);
         return menu;
     }
 
