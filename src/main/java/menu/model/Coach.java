@@ -8,6 +8,7 @@ public class Coach {
 
     private List<Menu> menus;
 
-
-
+    public Coach(String name) {
+        this.name = name;
+    }
 }
