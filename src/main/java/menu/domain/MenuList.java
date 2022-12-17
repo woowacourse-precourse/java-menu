@@ -43,10 +43,15 @@ public enum MenuList {
     public static boolean find(String menu){
         List<List<String>> collect = Arrays.stream(values()).map(MenuList::getMenus).collect(Collectors.toList());
         for(List<String> menus : collect){
-            for(String name : menus){
-                if(Objects.equals(name, menu)){
-                    return true;
-                }
+            if (exist(menu, menus)) return true;
+        }
+        return false;
+    }
+
+    private static boolean exist(String menu, List<String> menus) {
+        for(String name : menus){
+            if(Objects.equals(name, menu)){
+                return true;
             }
         }
         return false;
