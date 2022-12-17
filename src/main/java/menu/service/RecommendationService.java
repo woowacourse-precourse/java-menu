@@ -2,7 +2,9 @@ package menu.service;
 
 import menu.constant.Day;
 import menu.domain.Category;
+import menu.domain.Coach;
 import menu.repository.CategoryRepository;
+import menu.repository.CoachRepository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,6 +20,7 @@ public class RecommendationService {
 
     private final CategoryService categoryService = CategoryService.getInstance();
     private final CategoryRepository categoryRepository = CategoryRepository.getInstance();
+    private final CoachRepository coachRepository = CoachRepository.getInstance();
     private final int MAX_CATEGORIES = 2;
     private final int TOTAL_CATEGORIES = 5;
 
@@ -54,5 +57,25 @@ public class RecommendationService {
         return Arrays.stream(Day.values()).map(day -> categoryByDay.get(day))
                 .map(Category::getName)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    public void recommend(String coachName) {
+        Coach coach = coachRepository.findCoachByName(coachName);
+        for (Day day : Day.values()) {
+            String recommendedFood = recommendByDay(coach, categoryByDay.get(day).getName());
+            coach.addRecommendation(day, recommendedFood);
+        }
+    }
+
+    private String recommendByDay(Coach coach, String category) {
+        String recommendedFood;
+        do {
+            recommendedFood = categoryService.pickRandomFoodInCategory(category);
+        } while(canBeRecommended(coach, recommendedFood));
+        return recommendedFood;
+    }
+
+    private boolean canBeRecommended(Coach coach, String food) {
+        return coach.isEdible(food) && !coach.isRecommended(food);
     }
 }
