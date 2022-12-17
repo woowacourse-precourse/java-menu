@@ -16,6 +16,10 @@ public class Category {
         foods.add(food);
     }
 
+    public boolean hasFood(String foodName) {
+        return foods.stream().anyMatch(foodName::equals);
+    }
+
     public String getName() {
         return name;
     }
