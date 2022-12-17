@@ -1,7 +1,9 @@
 package menu.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 /*
 일식: 규동, 우동, 미소시루, 스시, 가츠동, 오니기리, 하이라이스, 라멘, 오코노미야끼
@@ -17,6 +19,7 @@ public enum Category {
     ASIAN(4, new ArrayList<>(), "아시안"),
     WESTERN(5, new ArrayList<>(), "양식");
 
+    private static final int PICK_MENU_INDEX = 0;
     private final int number;
     private final List<Menu> menus;
     private final String name;
@@ -35,8 +38,12 @@ public enum Category {
         return number;
     }
 
-    public List<Menu> getMenus() {
-        return menus;
+    public Menu getRandomMenu(){
+        return getRandomMenus().get(PICK_MENU_INDEX);
+    }
+
+    private List<Menu> getRandomMenus() {
+        return Randoms.shuffle(menus);
     }
 
     public String getName() {
@@ -47,6 +54,12 @@ public enum Category {
         return Arrays.stream(Category.values())
                 .filter(category -> category.getName().equals(name)).findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 입력한 이름으로 카테고리를 찾을 수 없습니다."));
+    }
+
+    public static Category findByNumber(int number){
+        return Arrays.stream(Category.values())
+                .filter(category -> category.getNumber() == number).findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 생성한 번호로 카테고리를 찾을 수 없습니다."));
     }
 }
 

@@ -29,6 +29,14 @@ public class Coach {
         return name;
     }
 
+    public boolean isEatable(Menu menu){
+        return !noEatableMenus.contains(menu);
+    }
+
+    public boolean isContainForRecommend(Menu menu){
+        return recommendMenus.contains(menu);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
