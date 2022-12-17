@@ -15,7 +15,11 @@ public class MenuRecommendController {
         this.menuRecommendService = menuRecommendService;
     }
 
-    public void run() {
-
+    public void init() {
+        inputView.onBoardingPage();
     }
+    public void run() {
+    }
+
+
 }

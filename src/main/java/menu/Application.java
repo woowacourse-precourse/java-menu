@@ -15,6 +15,8 @@ public class Application {
                 InputView.getInstance(), ResultView.getInstance(), menuRecommendService
         );
 
+
+        menuRecommendController.init();
         menuRecommendController.run();
     }
 }
