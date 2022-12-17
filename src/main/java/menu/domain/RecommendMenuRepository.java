@@ -9,7 +9,7 @@ public class RecommendMenuRepository {
     private final List<Coach> coaches;
     private final Map<Coach, List<String>> dislikeMenus;
     private final Map<Coach, List<String>> recommendMenus;
-    List<Category> categories = new ArrayList<>();
+    private final List<Category> categories = new ArrayList<>();
 
     public RecommendMenuRepository(CoachRepository coachRepository, DislikeMenuRepository dislikeMenus) {
         this.coaches = coachRepository.coaches();
@@ -29,8 +29,11 @@ public class RecommendMenuRepository {
     private boolean validateCategoryRange(Category randomCategory) {
         int count = 0;
         for (Category category : categories){
+            System.out.println("검사하는 항목"+category);
             if(category == randomCategory) count++;
         }
+        System.out.println("카운트" + count);
+        System.out.println(count<2);
         return count<2;
     }
 
