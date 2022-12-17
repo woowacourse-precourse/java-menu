@@ -38,22 +38,38 @@ public class MealRecommendationController {
 
     private void getAndSaveCoaches() {
         outputView.printNameInputGuide();
-        while (true) {
-            try {
+        List<Coach> coaches = getCoaches();
+        saveCoaches(coaches);
+    }
+
+    private List<Coach> getCoaches(){
+        List<Coach> coahes;
+        while(true){
+            try{
                 List<String> coachNames = inputView.getCoachNames();
-                saveCoaches(coachNames);
-            } catch (IllegalArgumentException e) {
+                return changeNameToCoach(coachNames);
+            } catch(IllegalArgumentException e){
                 outputView.printError(e.getMessage());
             }
         }
     }
 
-    private void saveCoaches(List<String> names) {
+    private List<Coach> changeNameToCoach(List<String> names){
+        List<Coach> coaches = new ArrayList<>();
         for (String name : names) {
             Coach coach = new Coach(name);
+            coaches.add(coach);
+        }
+        return coaches;
+    }
+
+    private void saveCoaches(List<Coach> coaches) {
+        for (Coach coach : coaches) {
             coachRepository.save(coach);
         }
     }
+
+
 
     private void getAndSaveEachCoachHateMenu() {
         List<Coach> coaches = coachRepository.findAll();
