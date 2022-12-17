@@ -37,19 +37,18 @@ public class Coach {
 
     public void setRecommendMenus(Week week) {
         String recommendMenu = Category.recommendRandomMenu(week.getCategory());
-        while (prohibitionMenus.contains(recommendMenu)) {
+        while (isEatable()) {
             recommendMenu = Category.recommendRandomMenu(week.getCategory());
         }
-        System.out.println(week.getCategory() + " " + recommendMenu);
         recommendMenus.add(recommendMenu);
     }
 
     public boolean isEatable() {
-        int prohibitmenuCount = (int) recommendMenus.stream()
+        int prohibitMenuCount = (int) recommendMenus.stream()
                 .filter(menu -> prohibitionMenus.contains(menu))
                 .count();
         int duplicatedCount = new HashSet<String>(recommendMenus).size();
-        return prohibitmenuCount == 0 && duplicatedCount == 5;
+        return prohibitMenuCount == 0 && duplicatedCount == 5;
     }
 
     public void setProhibitionMenus(String menus) {

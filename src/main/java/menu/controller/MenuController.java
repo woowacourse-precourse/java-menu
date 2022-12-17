@@ -10,6 +10,7 @@ import menu.domain.Category;
 import menu.domain.Coach;
 import menu.domain.Week;
 import menu.utils.RandomCategory;
+import menu.utils.Validator;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -20,6 +21,32 @@ public class MenuController {
     public MenuController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
+    }
+
+    public void init() {
+        outputView.startProgram();
+        List<Coach> coaches = getCoaches();
+        List<Week> weeks = Week.getWeeks();
+        List<Category> categories = getCategories();
+        setCategoryForEachWeek(weeks, categories);
+        getUnEatableMenuOfCoaches(coaches, inputView);
+        setRecommendMenus(weeks, coaches);
+        outputView.programResult(coaches, weeks);
+    }
+    private List<Coach> getCoaches() {
+        while (true) {
+            try {
+                inputView.coachNames();
+                String inputCoachNames = Console.readLine();
+                String[] coachNames = inputCoachNames.split(",");
+                Validator.checkCoachesCount(coachNames);
+                return Arrays.stream(inputCoachNames.split(","))
+                        .map(Coach::new)
+                        .collect(Collectors.toList());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
+        }
     }
 
     public List<Category> getCategories() {
@@ -33,22 +60,14 @@ public class MenuController {
         return categories;
     }
 
-    public void init() {
-        outputView.startProgram();
-        List<Coach> coaches = getCoaches();
-        List<Week> weeks = Week.getWeeks();
-        List<Category> categories = getCategories();
 
-        while (categories.size() < 5) {
-            Category category = RandomCategory.getRandomCategory();
-            if (Collections.frequency(categories, category) < 2) {
-                categories.add(category);
-            }
-        }
+
+    private void setCategoryForEachWeek(List<Week> weeks, List<Category> categories) {
         for (int i = 0; i < 5; i++) {
             weeks.get(i).setCategory(categories.get(i));
         }
-
+    }
+    private void getUnEatableMenuOfCoaches(List<Coach> coaches, InputView inputView) {
         for (Coach coach : coaches) {
             inputView.cantEat(coach);
             while (true) {
@@ -60,31 +79,17 @@ public class MenuController {
                 }
             }
         }
+    }
 
-        for(Week week : weeks) {
-            for(Coach coach : coaches) {
+    private void setRecommendMenus(List<Week> weeks, List<Coach> coaches) {
+        for (Week week : weeks) {
+            for (Coach coach : coaches) {
                 coach.setRecommendMenus(week);
             }
         }
-        outputView.programResult(coaches, weeks);
     }
 
-    private List<Coach> getCoaches() {
-        while (true) {
-            try {
-                inputView.coachNames();
-                String inputCoachNames = Console.readLine();
-                String[] coachNames = inputCoachNames.split(",");
-                if (!(2 <= coachNames.length && coachNames.length <= 5)) {
-                    throw new IllegalArgumentException("코치는 2명에서 5명까지 입력이 가능합니다.");
-                }
-                List<Coach> coaches = Arrays.stream(inputCoachNames.split(","))
-                        .map(Coach::new)
-                        .collect(Collectors.toList());
-                return coaches;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e);
-            }
-        }
-    }
+
+
+
 }
