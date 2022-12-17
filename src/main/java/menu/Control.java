@@ -1,8 +1,6 @@
 package menu;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Control {
     private final InputView inputView;
@@ -10,8 +8,8 @@ public class Control {
     private final Menu menu;
     private Recommendation recommendation;
     private final List<String> categorySchedule;
-    private List<String> coachNames;
-    private Map<String, List<String>> coachInedible;
+    private List<String> coachNames = new ArrayList<>();
+    private Map<String, List<String>> coachInedible = new HashMap<>();
 
     public Control() {
         Category category = new Category();
@@ -59,6 +57,7 @@ public class Control {
         totalRecommendation(coachNames, categorySchedule);
         Map<String, List<String>> recommendation = this.recommendation.get();
         outputView.printCategory(categorySchedule);
+        outputView.printClassification();
         for (String s : coachNames) {
             outputView.coachMenu(s, recommendation.get(s));
         }
