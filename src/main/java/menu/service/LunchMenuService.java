@@ -44,9 +44,14 @@ public class LunchMenuService {
         return category.getCategory();
     }
 
-    public boolean checkDuplicate(List<String> recommendedMenus,String recommendMenu){
+    public boolean checkDuplicate(List<String> cannotEatMenus,List<String> recommendedMenus,String recommendMenu){
         for(String recommendedMenu : recommendedMenus){
             if(recommendedMenu.equals(recommendMenu)){
+                return false;
+            }
+        }
+        for(String cannotEatMenu : cannotEatMenus){
+            if(cannotEatMenu.equals(recommendMenu)){
                 return false;
             }
         }

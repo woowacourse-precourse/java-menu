@@ -1,7 +1,11 @@
 package menu;
 
+import menu.controller.LunchMenuController;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+
+        LunchMenuController lunchMenuController = new LunchMenuController();
+        lunchMenuController.start();
     }
 }
