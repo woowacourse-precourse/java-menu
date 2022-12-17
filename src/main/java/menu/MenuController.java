@@ -5,13 +5,14 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import menu.type.CategoryType;
+import menu.util.InputExceptionHandler;
 import menu.view.InputView;
 import menu.view.OutputView;
 
 
 public class MenuController {
 
-    InputView inputView = new InputView();
+    InputExceptionHandler inputView = new InputExceptionHandler();
     OutputView outputView = new OutputView();
     CategoryMap categoryMap = new CategoryMap(new HashMap<>());
 
