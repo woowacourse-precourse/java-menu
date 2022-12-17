@@ -19,7 +19,7 @@ public class Coach {
     }
 
     public static Coach ofName(String name) {
-        return new Coach(name, new ArrayList<Food>());
+        return new Coach(name, new ArrayList<>());
     }
 
     public String name() {
