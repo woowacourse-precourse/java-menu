@@ -52,6 +52,10 @@ public class MenuRecommend {
         return this.food.equals(food);
     }
 
+    public boolean hasSameCategoryRecommend(CategoryRecommend categoryRecommend) {
+        return this.categoryRecommend.equals(categoryRecommend);
+    }
+
     public String getCoachName() {
         return coach.getName();
     }
