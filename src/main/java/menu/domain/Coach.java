@@ -12,7 +12,8 @@ public class Coach {
     private List<String> notFood;
 
     public Map<String, List<String>> makeCoachInfo(String coach, List<String> hateFoods){
-        return null;
+        coaches.put(coach,hateFoods);
+        return coaches;
     }
 
 }
