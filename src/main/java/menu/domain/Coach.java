@@ -2,6 +2,7 @@ package menu.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import menu.utils.validator.CoachValidator;
 
 public class Coach {
 
@@ -11,6 +12,7 @@ public class Coach {
 
     public Coach(String name) {
         this.name = name;
+        new CoachValidator(name);
     }
 
     public void addProhibitedMenus(List<String> prohibitedMenus){
