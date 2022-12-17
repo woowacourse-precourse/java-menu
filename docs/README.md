@@ -56,4 +56,4 @@ List<String> menu에다가 다 넣어놓기.
 
 ## StringParser (util)
 
-- [ ] 입력으로 들어오는 String 을 적절히 split 하여 리스트로 반환한다.
+- [x] 입력으로 들어오는 String 을 적절히 split 하여 리스트로 반환한다.
