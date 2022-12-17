@@ -8,15 +8,6 @@ public class Group {
     private final List<String> categoryHistory = new ArrayList<>();
     private final List<Coach> coaches = new ArrayList<>();
 
-    public void makeCategory() {
-        validateCoachSize();
-        String category;
-        do {
-            category = Category.getRandomCategory();
-        } while (Collections.frequency(categoryHistory, category) < 2);
-        categoryHistory.add(category);
-    }
-
     public void addCoach(String name, List<String> cannotEatMenus) {
         coaches.add(new Coach(name, cannotEatMenus));
     }
@@ -25,5 +16,21 @@ public class Group {
         if (coaches.size() < 2 || coaches.size() > 5) {
             throw new IllegalArgumentException("[ERROR] 코치 수는 2명에서 5명 사이여야 합니다.");
         }
+    }
+
+    public void makeMenus() {
+        for (int i = 0; i < 5; i++) {
+            makeCategory();
+            coaches.forEach(coach -> coach.addMenu(categoryHistory.get(categoryHistory.size() - 1)));
+        }
+    }
+
+    private void makeCategory() {
+        validateCoachSize();
+        String category;
+        do {
+            category = Category.getRandomCategory();
+        } while (Collections.frequency(categoryHistory, category) < 2);
+        categoryHistory.add(category);
     }
 }
