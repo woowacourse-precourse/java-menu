@@ -56,7 +56,7 @@ public class CoachService {
                 }
             }
             for (String cannotEat : cannotEats) {
-                coach.addCannotEat(cannotEat);
+                coach.addMenusCannotEats(cannotEat);
             }
         }
     }
