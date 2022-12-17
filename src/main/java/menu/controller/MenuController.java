@@ -39,9 +39,9 @@ public class MenuController {
             try {
                 inputView.coachNames();
                 String inputCoachNames = Console.readLine();
-                String[] coachNames = inputCoachNames.split(",");
+                String[] coachNames = inputCoachNames.split(InputView.INPUT_SEPARATOR);
                 Validator.checkCoachesCount(coachNames);
-                return Arrays.stream(inputCoachNames.split(","))
+                return Arrays.stream(coachNames)
                         .map(Coach::new)
                         .collect(Collectors.toList());
             } catch (IllegalArgumentException e) {
@@ -69,7 +69,7 @@ public class MenuController {
 
     private void getUnEatableMenuOfCoaches(List<Coach> coaches, InputView inputView) {
         for (Coach coach : coaches) {
-            inputView.cantEat(coach);
+            inputView.unEatableMenu(coach);
             while (true) {
                 try {
                     coach.setProhibitionMenus(Console.readLine());

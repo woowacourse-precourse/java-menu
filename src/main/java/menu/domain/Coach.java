@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
+import menu.view.InputView;
 import menu.view.OutputView;
 
 public class Coach {
@@ -27,7 +28,7 @@ public class Coach {
 
     public String getFormat() {
         return OutputView.COACH_LINE_START + name + OutputView.RESULT_SEPERATOR + recommendMenus.stream()
-                .collect(Collectors.joining(" | "))
+                .collect(Collectors.joining(OutputView.RESULT_SEPERATOR))
                 + OutputView.LINE_END;
     }
 
@@ -49,8 +50,7 @@ public class Coach {
 
     }
     public void setProhibitionMenus(String menus) {
-        //TODO Category 메뉴에 없는 메뉴일시 올바르게 입력받기
-        String[] inputProhibitionMenus = menus.split(",");
+        String[] inputProhibitionMenus = menus.split(InputView.INPUT_SEPARATOR);
 
         validateUnEatableMenus(inputProhibitionMenus);
 

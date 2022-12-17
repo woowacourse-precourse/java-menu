@@ -17,6 +17,7 @@ public enum Category {
 
 
 
+    private static final String INVALID_MENU = "[ERROR] 존재하지 않는 메뉴입니다.";
     private final String category;
     private final int index;
     private final List<String> menu;
@@ -33,7 +34,7 @@ public enum Category {
                 .collect(Collectors.toList());
         for(List<String> menus : allMenus) {
             if(menus.contains(menus)) {
-                throw new IllegalArgumentException("존재하지 않는 메뉴입니다.");
+                throw new IllegalArgumentException(INVALID_MENU);
             }
         }
     }
