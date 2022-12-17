@@ -31,7 +31,7 @@ public class MenuRecommendProgram {
         do {
             category = menuRecommend.selectCategory();
             isSelect = validateCategory(category);
-        } while (isSelect);
+        } while (!isSelect);
         Integer countOfSelect = countOfCategorySelected.get(category);
         countOfCategorySelected.put(category, countOfSelect);
         selectedCategory.add(category);
@@ -48,9 +48,13 @@ public class MenuRecommendProgram {
         boolean isSelect;
         do {
             menu = menuRecommend.selectMenu(menus);
-            isSelect = validateMenu(menu);
-        } while (isSelect);
+            isSelect = validateMenu(coach, menu);
+        } while (!isSelect);
         return menu;
     }
 
+    private boolean validateMenu(Coach coach, String menu) {
+        boolean isEat = coach.isEat(menu);
+        return isEat;
+    }
 }
