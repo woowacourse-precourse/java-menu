@@ -10,17 +10,27 @@ public class Coach {
 
     public List<String> getNames() {
         String line = Console.readLine();
-        List<String> names = parseName(line);
+        List<String> names = parseComma(line);
         checkNames(names);
         return names;
     }
 
-    private List<String> parseName(String line) {
-        List<String> names = new ArrayList<>();
-        for (String name : line.split(",")) {
-            names.add(name);
+    public List<String> getHates(String name) {
+        System.out.println(name + "(이)가 못 먹는 메뉴를 입력해 주세요.");
+        String line = Console.readLine();
+        List<String> hates = parseComma(line);
+        return hates;
+    }
+
+    private List<String> parseComma(String line) {
+        List<String> result = new ArrayList<>();
+        if (line.equals("")) {
+            return result;
         }
-        return names;
+        for (String item : line.split(",")) {
+            result.add(item);
+        }
+        return result;
     }
 
     private void checkNames(List<String> names) {
