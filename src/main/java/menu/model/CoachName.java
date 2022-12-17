@@ -14,6 +14,10 @@ public class CoachName {
         this.coachNames = coachNames;
     }
 
+    public List<String> getCoachNames() {
+        return coachNames;
+    }
+
     private void validate(List<String> coachNames) {
         for (String coachName : coachNames) {
             if (!isValidCoachNameLength(coachName)) {
