@@ -15,7 +15,10 @@ public class Service {
 	List<String> byDayOfTheWeekSelectCategoryRepository = new ArrayList<>();
 	Map<String, Integer> countCotegory = new HashMap<>();
 
-
+	public void programSetting() {
+		menuMapping();
+		setCountCotegory();
+	}
 
 	public void menuMapping() {
 		category.settingCategorys();
