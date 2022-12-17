@@ -1,15 +1,31 @@
 package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import menu.domain.NotEatableFood;
 
-import static menu.view.OutputView.*;
+import java.util.List;
+
+import static menu.domain.NotEatableFood.createNotEatableFood;
+import static menu.view.OutputView.printGetCoachNameMessage;
 
 public class InputView {
+    private static final String NOT_EATABLE_FOOD_SUB_MESSAGE = "(이)가 못 먹는 메뉴를 입력해 주세요.";
 
-    public static String getCoachName() {
+    public static List<String> getCoachName() {
         printGetCoachNameMessage();
         String names = Console.readLine();
-        return names;
+        List<String> coachNames = List.of(names.split(","));
+        return coachNames;
+    }
+
+    public static NotEatableFood getNotEatableFood(String name) {
+        printGetNotEatableFoodMessage(name);
+        String notEatableFoodsInput = Console.readLine();
+        return createNotEatableFood(notEatableFoodsInput);
+    }
+
+    private static void printGetNotEatableFoodMessage(String name) {
+        System.out.println(name + NOT_EATABLE_FOOD_SUB_MESSAGE);
     }
 
 }
