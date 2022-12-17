@@ -15,15 +15,5 @@ public class Application {
         CoachRepository coachRepository = new CoachRepository();
         MainController mainController = new MainController();
         mainController.run();
-
-
-//        String s = menuRecommender.selectMenu(coach, Category.JAPANESE);
-//        System.out.println(s);
-
-
-////        System.out.println(Category.ASIAN.getMenus());
-//
-//
-//        System.out.println(menuRecommender.validateMenu("빵", coach));
     }
 }
