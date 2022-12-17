@@ -5,22 +5,17 @@ import java.util.List;
 
 public class WeeklyMenuMaker {
     
-    private final WeeklyMenuMakerGenerator weeklyMenuMakerGenerator;
+    private final WeeklyRandomMenuMakerGenerator weeklyRandomMenuMakerGenerator;
     
-    public WeeklyMenuMaker(WeeklyMenuMakerGenerator weeklyMenuMakerGenerator) {
-        this.weeklyMenuMakerGenerator = weeklyMenuMakerGenerator;
+    public WeeklyMenuMaker(WeeklyRandomMenuMakerGenerator weeklyRandomMenuMakerGenerator) {
+        this.weeklyRandomMenuMakerGenerator = weeklyRandomMenuMakerGenerator;
     }
     
-    public String makeMenuRecommendation() {
-        Category category = getCategory();
-        return getMenu(category.getMenus());
+    public Category makeCategory() {
+        return Category.findByNumber(weeklyRandomMenuMakerGenerator.generate());
     }
     
-    private Category getCategory() {
-        return Category.findByNumber(weeklyMenuMakerGenerator.generate());
-    }
-    
-    private String getMenu(List<String> menus) {
+    public String makeMenuRecommendation(List<String> menus) {
         return Randoms.shuffle(menus).get(0);
     }
 }
