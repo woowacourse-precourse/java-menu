@@ -1,5 +1,6 @@
 package menu.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +18,7 @@ public class EatingTeam {
     private static final int MAXIMUM_CATEGORY_NUMBER = 2;
 
     private final List<Coach> members;
+    private final List<Category> categories = new ArrayList<>(DAY_NUMBER);
     private final Map<Coach, FoodRepository> recommendedMenuToCoach
             = new HashMap<Coach, FoodRepository>();
 
@@ -34,37 +36,49 @@ public class EatingTeam {
         return recommendedMenuToCoach;
     }
 
+    public List<Category> getCategories() {
+        return categories;
+    }
+
     public void isRecommendedMenu() {
         for (int i = 0; i < DAY_NUMBER; i++) {
-            recommendedMenuToCoach.keySet().forEach(this::isRecommendedMenu);
+            Category category = isRecommendedCategory();
+            categories.add(category);
+            recommendedMenuToCoach.keySet().forEach(coach -> isRecommendedMenu(coach, category));
         }
     }
 
     // 각 코치마다 메뉴 추천
-    private void isRecommendedMenu(Coach coach) {
-        Category category;
-        do {
-            category = Recommender.recommendCategory();
-        } while (isNotExceedCategoryNumber(coach, category));
-
+    private void isRecommendedMenu(Coach coach, Category category) {
         String menu;
         do {
             menu = Recommender.recommendMenu(category);
-        } while (isMenuCanEat(coach, menu) && isNotDuplicated(coach, menu));
+        } while (!(isMenuCanEat(coach, menu) && isNotDuplicated(coach, menu)));
         recommendedMenuToCoach.get(coach).add(new Food(menu));
     }
 
+    private Category isRecommendedCategory() {
+        Category category;
+        do {
+            category = Recommender.recommendCategory();
+        } while (isNotExceedCategoryNumber(category));
+        return category;
+    }
+
     private boolean isMenuCanEat(Coach coach, String menu) {
-        return coach.canEat(menu);
+        boolean b = coach.canEat(menu);
+        return b;
     }
 
     private boolean isNotDuplicated(Coach coach, String menu) {
-        return !recommendedMenuToCoach.get(coach).contains(menu);
+        boolean b = !recommendedMenuToCoach.get(coach).contains(menu);
+        return b;
     }
 
-    private boolean isNotExceedCategoryNumber(Coach coach, Category category) {
-        return recommendedMenuToCoach.get(coach).foods().stream()
-                .filter(food -> Category.from(food).equals(category))
-                .count() >= MAXIMUM_CATEGORY_NUMBER;
+    private boolean isNotExceedCategoryNumber(Category otherCategory) {
+        return categories.stream()
+                .filter(category -> category.equals(otherCategory))
+                .count()
+                >= MAXIMUM_CATEGORY_NUMBER;
     }
 }

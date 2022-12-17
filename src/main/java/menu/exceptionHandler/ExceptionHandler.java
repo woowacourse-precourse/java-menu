@@ -1,4 +1,4 @@
-package menu.ExceptionHandler;
+package menu.exceptionHandler;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;

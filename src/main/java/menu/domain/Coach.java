@@ -1,5 +1,6 @@
 package menu.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Coach {
@@ -8,7 +9,7 @@ public class Coach {
     private static final int MINIMUM_NAME_LENGTH = 2;
     private static final int MAXIMUM_FOOD_SIZE = 2;
     private final String name;
-    private final FoodRepository foodsCanNotEat = new FoodRepository(List.of());
+    private final FoodRepository foodsCanNotEat = new FoodRepository(new ArrayList<>());
 
     public Coach(final String name) {
         validate(name);
@@ -25,7 +26,8 @@ public class Coach {
     }
 
     public boolean canEat(String menu) {
-        return !foodsCanNotEat.contains(menu);
+        boolean b = !foodsCanNotEat.contains(menu);
+        return b;
     }
 
     public String getName() {

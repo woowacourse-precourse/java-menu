@@ -21,6 +21,9 @@ public class FoodCanNotEatDTO {
 
     public void setFoodsCanNotEat(final String nameInput) {
         foodsCanNotEat.clear();
+        if (nameInput.equals("")) {
+            return;
+        }
         List<String> names = List.of(nameInput.split(","));
         for (String name : names) {
             Food food = new Food(name);
