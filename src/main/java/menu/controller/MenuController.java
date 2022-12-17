@@ -9,7 +9,13 @@ public class MenuController {
     private final OutputView outputView = new OutputView();
     private final Menu menu = new Menu();
 
+    public void run() {
+        init();
+        outputView.printResult(menu.getPreviousCategories(), menu.getCoaches());
+    }
+
     private void init() {
+        outputView.printStartingRecommendation();
         initCoaches();
         menu.getCoachNames().forEach(this::initCoach);
     }
