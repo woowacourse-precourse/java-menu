@@ -21,7 +21,6 @@ public class MenuController {
         inputCoaches();
         inputCoachesHateFood();
 
-
         Menus.init();
 
         RecommendMenu rm = new RecommendMenu();
@@ -57,7 +56,6 @@ public class MenuController {
             return inputFromView();
         }
     }
-
 
 
     private void arrToList(String[][] arr) {

@@ -10,10 +10,6 @@ public class OutputView {
         System.out.println("[ERROR]" + input);
     }
 
-    public void printList(List<String> inputs) {
-        inputs.stream().forEachOrdered(System.out::println);
-    }
-
     public void printRecommendMenu(List<String> inputs) {
         System.out.println(inputs.stream().collect(Collectors.joining(" | ", "[ ", " ]")));
     }

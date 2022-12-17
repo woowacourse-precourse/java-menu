@@ -6,7 +6,7 @@ import java.util.List;
 public class Coach {
 
     private final String name;
-    private List<String> hateFood  = new ArrayList<>();
+    private List<String> hateFood = new ArrayList<>();
 
     public Coach(String name) {
         validName(name);
