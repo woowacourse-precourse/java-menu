@@ -19,6 +19,8 @@ public class OutputView {
     public void printResult(List<String> previousCategories, List<Coach> coaches) {
         System.out.println(ViewConstants.RESULT);
         System.out.println(ViewConstants.DAYS);
+
+        previousCategories.add(0, ViewConstants.CATEGORY);
         System.out.println(previousCategories.stream()
                 .collect(Collectors.joining(ViewConstants.DELIMITER, ViewConstants.FRONT, ViewConstants.BACK)));
 
