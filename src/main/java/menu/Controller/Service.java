@@ -16,21 +16,32 @@ public class Service {
         this.output.printStart();
     }
 
-    public void generateCoachs() {
-        try {
-            this.coachs = this.input.readCoachNames();
-        } catch (Exception e) {
-            this.output.printError(e.getMessage());
+    private Coachs getCoachsUntilValid() {
+        while (true) {
+            try {
+                return this.input.readCoachNames();
+            } catch (Exception e) {
+                this.output.printError(e.getMessage());
+            }
         }
     }
 
-    public void setInedible() {
-        try {
-            for (Coach coach : this.coachs.getCoachs()) {
+    private void setInedibleUntilValid(Coach coach) {
+        boolean isValid = false;
+        while (!isValid) {
+            try {
                 coach.setInedible(this.input.readInedibles(coach));
+                isValid = true;
+            } catch (Exception e) {
+                this.output.printError(e.getMessage());
+                isValid = false;
             }
-        } catch (Exception e) {
-            this.output.printError(e.getMessage());
+        }
+    }
+
+    private void setCoachsInedible() {
+        for (Coach coach : this.coachs.getCoachs()) {
+            setInedibleUntilValid(coach);
         }
     }
 
@@ -39,7 +50,7 @@ public class Service {
     }
 
     public void endService() {
-        this.output.printResult(this.coachs);
+        this.output.printResult(this.coachs, recommend.getPickCategories());
         this.output.printEnd();
     }
 
