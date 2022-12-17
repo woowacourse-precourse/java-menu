@@ -9,18 +9,28 @@ public class Coach {
     private static final int COACH_NAME_MINIMUM_SIZE = 2;
     private static final int COACH_NAME_MAXIMUM_SIZE = 4;
     private static final String NAME_LENGTH_ERROR = "코치 이름은 2~4글자 이내여야 합니다.";
+    private static final String NAME_ALPHABETIC_ERROR = "코치 이름은 문자로만 이루어져야 합니다.";
     private final String name;
     private final List<String> selectedMenus = new ArrayList<>();
     private final List<String> inedibleMenus = new ArrayList<>();
 
     public Coach(String name) {
-        validateCoachName(name.trim());
+        validateCoachNameSize(name.trim());
+        validateCoachNameAlphabetic(name.trim());
         this.name = name.trim();
     }
 
-    private void validateCoachName(String name) {
+    private void validateCoachNameSize(String name) {
         if (name.length() < COACH_NAME_MINIMUM_SIZE || name.length() > COACH_NAME_MAXIMUM_SIZE) {
             throw new IllegalArgumentException(NAME_LENGTH_ERROR);
+        }
+    }
+
+    private void validateCoachNameAlphabetic(String name){
+        for(Character character : name.toCharArray()){
+            if(!Character.isAlphabetic(character)){
+                throw new IllegalArgumentException(NAME_ALPHABETIC_ERROR);
+            }
         }
     }
 
