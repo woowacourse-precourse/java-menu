@@ -33,9 +33,9 @@ public class MenuSelectListMaker {
     private String coachEatingMenuString() {
         String returningString="";
         for (Coach coach : coachRepo.coachList){
-            returningString += "[ " + coach.name;
+            returningString += "[ " + coach.name + " ";
             returningString += coachMenuString(coach);
-            returningString += " ]\n";
+            returningString += "]\n";
         }
         return returningString;
     }
@@ -43,7 +43,7 @@ public class MenuSelectListMaker {
     private String coachMenuString(Coach coach) {
         String returningString ="";
         for (String menu : coach.eatingMenuList){
-            returningString += " | " + menu;
+            returningString += "| " + menu+ " ";
         }
         return returningString;
     }
@@ -68,13 +68,13 @@ public class MenuSelectListMaker {
     private void setCoachMenu(String category) {
         MenuTable menuTable = new MenuTable();
         for (Coach coach : coachRepo.coachList){
-            String selectedMenu = Randoms.shuffle(menuTable.menuMap.get(category)).get(0);
-            addAvailableMenu(coach, selectedMenu);
+            addAvailableMenu(menuTable,category, coach);
         }
     }
 
-    private void addAvailableMenu(Coach coach, String selectedMenu) {
+    private void addAvailableMenu(MenuTable menuTable ,String category, Coach coach) {
         while (true){
+            String selectedMenu = Randoms.shuffle(menuTable.menuMap.get(category)).get(0);
             if (coach.cannotEatMenuList.contains(selectedMenu) == false && coach.eatingMenuList.contains(selectedMenu) == false){
                 coach.eatingMenuList.add(selectedMenu);
                 break;
