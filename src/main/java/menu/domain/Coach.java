@@ -3,11 +3,11 @@ package menu.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Couch {
+public class Coach {
     private final String name;
     private List<Menu> hateMenu = new ArrayList<>();
 
-    public Couch(String name){
+    public Coach(String name){
         this.name = name;
     }
 
