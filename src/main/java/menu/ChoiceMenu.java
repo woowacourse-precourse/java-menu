@@ -37,7 +37,7 @@ public class ChoiceMenu {
     }
 
     public void getResult() {
-
+        output.printResult();
     }
 
     public String[] getCoachNames() {
