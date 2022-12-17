@@ -32,6 +32,11 @@ public class Validator {
     }
 
     private static void validateName(String name) {
-
+        if (name.length() < NAME_MIN) {
+            throw new IllegalArgumentException(ErrorMessage.NAME_MIN.getMessage());
+        }
+        if (name.length() > NAME_MAX) {
+            throw new IllegalArgumentException(ErrorMessage.NAME_MAX.getMessage());
+        }
     }
 }
