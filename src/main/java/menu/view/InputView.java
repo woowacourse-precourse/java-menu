@@ -17,12 +17,20 @@ public class InputView {
         return coachList;
     }
 
-    public Map<String, List<String>> getHateList(String name){
+    public Map<String, List<String>> getHateList(String name) {
         Map<String, List<String>> hateMap = new HashMap<>();
         outputView.askCoachHate(name);
         String hateString = Console.readLine();
-        List<String> hateList = Arrays.asList(hateString.split(","));
-        hateMap.put(name, hateList);
+        if (hateString == null) {
+            hateMap.put(name, new ArrayList<>());
+            return hateMap;
+        }
+        if (!(hateString.contains(","))) {
+            hateMap.put(name, List.of(hateString));
+            return hateMap;
+        }
+        List<String> hateFoodList = Arrays.asList(hateString.split(","));
+        hateMap.put(name, hateFoodList);
         return hateMap;
     }
 
