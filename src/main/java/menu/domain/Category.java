@@ -17,6 +17,8 @@ public enum Category {
     private int count;
     private final List<String> menus;
 
+    public static final int CATEGORY_MAX_COUNT = 2;
+
     Category(String type, int index, List<String> menus) {
         this.type = type;
         this.index = index;
@@ -45,5 +47,15 @@ public enum Category {
 
     public void addCount() {
         this.count++;
+    }
+
+    public boolean canChoose() {
+        return this.count < CATEGORY_MAX_COUNT;
+    }
+
+    public static List<String> getTypes(List<Category> categories) {
+        return categories.stream()
+                .map(category -> category.getType())
+                .collect(Collectors.toList());
     }
 }
