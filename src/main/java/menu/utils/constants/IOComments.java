@@ -10,8 +10,7 @@ public enum IOComments {
     RESULT_START_BRACKET("[ "),
     RESULT_END_BRACKET(" ]"),
     RESULT_DELIMITER(" | "),
-    LAST_COMMENT("")
-    ;
+    LAST_COMMENT("");
 
     private final String comments;
 
