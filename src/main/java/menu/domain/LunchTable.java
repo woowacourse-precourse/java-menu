@@ -3,6 +3,7 @@ package menu.domain;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import menu.utils.constants.NumberConstants;
 
 public class LunchTable {
     private static final int CATEGORY_SELECT_LIMIT = 2;
@@ -43,7 +44,7 @@ public class LunchTable {
     }
 
     public void matchingLunch(){
-        for(int i = 0; i<5; i++){
+        for(int i = 0; i< NumberConstants.DAYS_COUNT.getValue(); i++){
             matchCoachRandomFood(categories.get(i));
         }
     }
