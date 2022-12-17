@@ -10,7 +10,8 @@ import java.util.Map;
 public class MenuRepository {
     private final static Map<Category, List<String>> menusByCategory = new HashMap<>();
 
-    private MenuRepository(){}
+    private MenuRepository() {
+    }
 
     private static final MenuRepository instance = new MenuRepository();
 
@@ -19,8 +20,8 @@ public class MenuRepository {
     }
 
 
-    public void save(Category category, String menu){
-        if(!menusByCategory.containsKey(category)){
+    public void save(Category category, String menu) {
+        if (!menusByCategory.containsKey(category)) {
             menusByCategory.put(category, new ArrayList<>());
         }
         menusByCategory.get(category)
@@ -28,7 +29,7 @@ public class MenuRepository {
     }
 
     // 매번 stream 말고 다른 방법은?
-    public List<String> findAllByCategory(Category category){
+    public List<String> findAllByCategory(Category category) {
         return menusByCategory.get(category);
     }
 

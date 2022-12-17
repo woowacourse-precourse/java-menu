@@ -4,7 +4,6 @@ import menu.util.Validator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Coach {
     private final String name;

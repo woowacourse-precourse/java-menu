@@ -2,27 +2,29 @@ package menu.util;
 
 import java.util.List;
 
+import static menu.util.Constants.*;
+
 public class Validator {
 
     public static void validateCoachNamesSize(List<String> names) {
-        if(names.size() < 2 || names.size () > 5){
+        if (names.size() < MIN_NUMBER_OF_COACH || names.size() > MAX_NUMBER_OF_COACH) {
             throw new IllegalArgumentException(
-                    String.format("코치는 최소 %d명, 최대 %d명을 입력해야합니다.",2,5));
+                    String.format(NUMBER_OF_COACH_ERROR, MIN_NUMBER_OF_COACH, MAX_NUMBER_OF_COACH));
         }
     }
 
-    public static void validateCoachNameLength(String name){
-        if (name.length() < 2 || name.length() > 4){
+    public static void validateCoachNameLength(String name) {
+        if (name.length() < MIN_LENGTH_OF_NAME || name.length() > MAX_LENGTH_OF_NAME) {
             throw new IllegalArgumentException(
-                    String.format("코치의 이름은 최소 %d글자, 최대 %d글자이다.", 2,4)
+                    String.format(LENGTH_OF_NAME_ERROR, MIN_LENGTH_OF_NAME, MAX_LENGTH_OF_NAME)
             );
         }
     }
 
-    public static void validateHateMenusSize(List<String> hateMenus){
-        if(hateMenus.size() < 0 || hateMenus.size() > 2){
+    public static void validateHateMenusSize(List<String> hateMenus) {
+        if (hateMenus.size() < MIN_NUMBER_OF_HATE_MENU || hateMenus.size() > MAX_NUMBER_OF_HATE_MENU) {
             throw new IllegalArgumentException(
-                    String.format("각 코치는 최소 %d개, 최대 %d개의 못 먹는 메뉴를 가질 수 있습니다.", 0, 2)
+                    String.format(NUMBER_OF_HATE_MENU_ERROR, MIN_NUMBER_OF_HATE_MENU, MAX_NUMBER_OF_HATE_MENU)
             );
         }
     }
