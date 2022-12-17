@@ -1,10 +1,8 @@
-package menu;
+package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import menu.constants.CoachRules;
 import menu.constants.Week;
-import menu.domain.Category;
-import menu.domain.Coach;
 import menu.view.ErrorMessages;
 
 import java.util.Collections;
