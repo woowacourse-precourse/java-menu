@@ -13,7 +13,7 @@ public class Coach {
 
     private final int INEDIBLE_MENU_LIMIT = 2;
     private final String INEDIBLE_MENU_SIZE_INVALID =
-            String.format("[ERROR] 코치가 못 먹는 음식은 %d개 이상이면 안됩니다.", INEDIBLE_MENU_LIMIT);
+            String.format("[ERROR] 코치가 못 먹는 음식은 %d개를 넘어서면 안됩니다.", INEDIBLE_MENU_LIMIT);
 
     public Coach(CoachName name) {
         this.name = name;
