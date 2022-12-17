@@ -31,6 +31,7 @@ public class RecommendController {
         List<String> coachNames = inputview.readCoachNames();
         coaches.addAll(coachNames.stream().map(Coach::new).collect(Collectors.toList()));
     }
+
     private void addCannotEats() {
         for (Coach coach : coaches) {
             coach.addCannotEats(inputview.readCantEats(coach.getName(), menuRepository));

@@ -14,7 +14,7 @@ public enum Category {
 
     Category(int number, String name) {
         this.number = number;
-        this.name= name;
+        this.name = name;
     }
 
     public int getNumber() {
