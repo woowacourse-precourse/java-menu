@@ -20,51 +20,51 @@ public class Food {
         return foods;
     }
 
-    public Map<Category,List<String>> changeFood(Category category, String foodName){
-        for(String name: foods.get(category)){
-            if(name.equals(foodName)){
-                foods.get(category).remove(foodName);
-            }
-        }
-        return foods;
-    }
-    public boolean findFoodByName(List<String> eachFoods, String findFood){
-        for(String food: eachFoods){
-            if(food.equals(findFood)){
-                return true;
-            }
-        }
-        return false;
-    }
-    public void findFoodByCategory(String notFood){
-        boolean checkFood = false;
-        Set<Category> categories = foods.keySet();
-        for(Category category: categories){
-            checkFood = findFoodByName(foods.get(category),notFood);
-            if(checkFood){
-                System.out.println("delete");
-                //deleteFood(category,foods.get(category), notFood);
-            }
-        }
-        System.out.println(foods.toString());
-
-    }
-    public void splitNotFood(List<String> notFoods){
-        for(String notFood: notFoods){
-            findFoodByCategory(notFood);
-        }
-    }
-
-    public void deleteFood(Category category, List<String> existingFoods, String foodName){
-        List<String> newFoods = new ArrayList<>();
-        newFoods = foods.get(category);
-        newFoods.remove(foodName);
-        System.out.println(newFoods);
-    }
+//    public Map<Category,List<String>> changeFood(Category category, String foodName){
 //        for(String name: foods.get(category)){
 //            if(name.equals(foodName)){
 //                foods.get(category).remove(foodName);
 //            }
+//        }
+//        return foods;
+//    }
+//    public boolean findFoodByName(List<String> eachFoods, String findFood){
+//        for(String food: eachFoods){
+//            if(food.equals(findFood)){
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+//    public void findFoodByCategory(String notFood){
+//        boolean checkFood = false;
+//        Set<Category> categories = foods.keySet();
+//        for(Category category: categories){
+//            checkFood = findFoodByName(foods.get(category),notFood);
+//            if(checkFood){
+//                System.out.println("delete");
+//                //deleteFood(category,foods.get(category), notFood);
+//            }
+//        }
+//        System.out.println(foods.toString());
+//
+//    }
+//    public void splitNotFood(List<String> notFoods){
+//        for(String notFood: notFoods){
+//            findFoodByCategory(notFood);
+//        }
+//    }
+//
+//    public void deleteFood(Category category, List<String> existingFoods, String foodName){
+//        List<String> newFoods = new ArrayList<>();
+//        newFoods = foods.get(category);
+//        newFoods.remove(foodName);
+//        System.out.println(newFoods);
+//    }
+////        for(String name: foods.get(category)){
+////            if(name.equals(foodName)){
+////                foods.get(category).remove(foodName);
+////            }
 
 
 }

@@ -23,7 +23,6 @@ public class MenuController {
     public void start(){
         outputView.printStart();
         foods = food.initFoods();
-        System.out.println(foods);
         run();
 
 
@@ -33,12 +32,8 @@ public class MenuController {
         List<String> coaches = createCoach();
         coachNotFoods = createNotFoods(coaches);
         List<String> allCategory = randomFood.allCategory();
-        System.out.println(allCategory.toString());
         recommendFoods = createRandomFoods(allCategory,coaches,coachNotFoods);
-        outputView.printEnd();
-        outputView.printDays();
-        outputView.printCategory(allCategory);
-        outputView.printRecommendFoods(recommendFoods);
+        outputView.printEnd(allCategory,recommendFoods);
 
     }
 
@@ -49,9 +44,6 @@ public class MenuController {
         List<String> notFoods = new ArrayList<>();
         for(String coachName: coaches){
             notFoods = inputView.inputNotFood(coachName);
-            //food.splitNotFood(notFoods);
-
-            // 코치별 싫은 음식
             coachNotFoods = coach.makeCoachInfo(coachName,notFoods);
         }
         return coachNotFoods;
@@ -59,7 +51,6 @@ public class MenuController {
     public Map<String,List<String>> createRandomFoods(List<String> allCategory, List<String> coaches, Map<String,List<String>> notFoods){
         for(String coach: coaches){
             recommendFoods = randomFood.pickFoods(coach,foods,allCategory,notFoods);
-            System.out.println(coach+"추천:" + recommendFoods.get(coach));
         }
         return recommendFoods;
     }

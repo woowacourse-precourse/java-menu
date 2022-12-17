@@ -39,33 +39,28 @@ public class RandomFood {
 
     public Map<String,List<String>> pickFoods(String coachNames, Map<Category, List<String>> foods, List<String> categories, Map<String,List<String>> notFoods) {
         List<String> pickMenus = new ArrayList<>();
-        List<String> menus = new ArrayList<>();
         for(String category: categories){
-            menus = foods.get(findCategory(category));
+            List<String> menus = foods.get(findCategory(category));
             String menu = Randoms.shuffle(menus).get(0);
             if(!notFoods.get(coachNames).contains(menu)){
                 pickMenus.add(menu);
             }
-//            for (String notFood : notFoods.get(coachNames)) {
-////                String menu = Randoms.shuffle(menus).get(0);
-//                pickMenus = makeRandomFood(notFood, menu);
-//            }
+
             randomFoods.put(coachNames,pickMenus);
-            System.out.println(randomFoods.get(coachNames).toString());
         }
         return randomFoods;
     }
 
-    public List<String> makeRandomFood(String notFood, String menu) {
-        List<String> pickMenus = new ArrayList<>();
-        int count = 0;
-        while(count<5){
-            if (Collections.frequency(pickMenus, menu) < 2 && !menu.equals(notFood)) {
-                count++;
-                pickMenus.add(menu);
-                System.out.println("PICK"+pickMenus.toString());
-            }
-        }
-        return pickMenus;
-    }
+//    public List<String> makeRandomFood(String notFood, String menu) {
+//        List<String> pickMenus = new ArrayList<>();
+//        int count = 0;
+//        while(count<5){
+//            if (Collections.frequency(pickMenus, menu) < 2 && !menu.equals(notFood)) {
+//                count++;
+//                pickMenus.add(menu);
+//                System.out.println("PICK"+pickMenus.toString());
+//            }
+//        }
+//        return pickMenus;
+//    }
 }
