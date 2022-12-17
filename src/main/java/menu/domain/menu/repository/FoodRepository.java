@@ -7,4 +7,6 @@ import menu.domain.menu.type.Category;
 public interface FoodRepository {
 
     List<Food> findByCategory(Category category);
+
+    Food findByName(String name);
 }

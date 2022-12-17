@@ -3,12 +3,16 @@ package menu.domain.menu.repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import menu.domain.menu.type.Category;
 import menu.domain.menu.model.Food;
+import menu.domain.menu.type.Category;
 
 public class FoodRepositoryImpl implements FoodRepository {
 
+    private static FoodRepositoryImpl instance;
     private static final List<Food> foods = new ArrayList<>();
+
+    private FoodRepositoryImpl() {
+    }
 
     static {
         foods.add(new Food("규동", Category.JAPANESE));
@@ -62,9 +66,21 @@ public class FoodRepositoryImpl implements FoodRepository {
         foods.add(new Food("파니니", Category.WESTERN));
     }
 
+    public static synchronized FoodRepositoryImpl getInstance() {
+        if (instance == null) {
+            instance = new FoodRepositoryImpl();
+        }
+        return instance;
+    }
+
     @Override
     public List<Food> findByCategory(Category category) {
         return foods.stream().filter(food -> food.getCategory().equals(category))
             .collect(Collectors.toList());
+    }
+
+    @Override
+    public Food findByName(String name) {
+        return foods.stream().filter(food -> food.getName().equals(name)).findFirst().orElse(null);
     }
 }
