@@ -1,15 +1,19 @@
 package menu.domain;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Coach {
     private final String name;
     private List<String> blacklist;
+    private Map<Day, String> menus;
 
     public Coach(String name) {
         validateName(name);
         this.name = name;
+        menus = new HashMap<>();
     }
 
     private void validateName(String name) {
@@ -31,5 +35,13 @@ public class Coach {
 
     public String getName() {
         return name;
+    }
+
+    public void putDayByMenu(Day day, String menu) {
+        menus.put(day, menu);
+    }
+
+    public boolean isBlacklist(String menu) {
+        return blacklist.contains(menu);
     }
 }
