@@ -50,7 +50,9 @@ public class Validator {
     }
 
     public static void validateBannedMenus(List<String> bannedMenus, MenuRecommender menuRecommender) {
-        validateExistedMenus(bannedMenus, menuRecommender);
+        if (bannedMenus.size() != 0) {
+            validateExistedMenus(bannedMenus, menuRecommender);
+        }
         validateMenuOverTwo(bannedMenus.size());
     }
 

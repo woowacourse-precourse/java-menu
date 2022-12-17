@@ -1,5 +1,6 @@
 package menu.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +16,9 @@ public class Converter {
     }
 
     public static List<String> stringToBannedMenus(String menus) {
+        if (menus.trim().length() == 0) {
+            return new ArrayList<>();
+        }
         String[] splitMenus = menus.split(",");
         return Arrays.stream(splitMenus)
             .collect(Collectors.toList());
