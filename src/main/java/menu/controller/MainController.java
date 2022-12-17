@@ -20,6 +20,8 @@ public class MainController {
         for (String coachName : coachNames) {
             process(this::setCantEatMenus, coachName);
         }
+
+        mainService.recommend();
     }
 
     private void setCantEatMenus(String coachName) {

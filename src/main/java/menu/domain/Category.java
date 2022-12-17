@@ -12,4 +12,9 @@ public enum Category {
     Category(String name) {
         this.name = name;
     }
+
+    public static Category of(int index) {
+        Category[] categories = Category.values();
+        return categories[index];
+    }
 }
