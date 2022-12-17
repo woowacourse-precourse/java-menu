@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.StringTokenizer;
 import java.util.stream.Collectors;
 
 public class InputView {
@@ -29,7 +28,7 @@ public class InputView {
         return coachNames;
     }
 
-    private List<String> convertNameStringToList(String names) {
+    private List<String> convertNameStringToList(final String names) {
         return Arrays.stream(names.split(","))
                      .collect(Collectors.toList());
     }
@@ -51,25 +50,25 @@ public class InputView {
         System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
     }
 
-    public Map<String, List<String>> readExceptedFood(List<String> names) {
+    public Map<String, List<String>> readExceptedFood(final List<String> names) {
         Map<String, List<String>> exceptedFoods = new HashMap<>();
 
         for (String name : names) {
             printInputExceptedFood(name);
             String exceptedFood = Console.readLine();
 
-            StringTokenizer st = new StringTokenizer(exceptedFood, ",");
+            List<String> exceptedFoodsCandidate = convertNameStringToList(exceptedFood);
 
-            while (st.hasMoreTokens()) {
+            for (String candidate : exceptedFoodsCandidate) {
                 exceptedFoods.computeIfAbsent(name, k -> new ArrayList<>());
-                exceptedFoods.get(name).add(st.nextToken());
+                exceptedFoods.get(name).add(candidate);
             }
         }
 
         return exceptedFoods;
     }
 
-    private void printInputExceptedFood(String name) {
+    private void printInputExceptedFood(final String name) {
         System.out.println(name + "(이)가 못 먹는 메뉴를 입력해 주세요.");
     }
 }
