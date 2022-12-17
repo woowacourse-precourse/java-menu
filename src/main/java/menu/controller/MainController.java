@@ -40,8 +40,7 @@ public class MainController {
         }
     }
     private void recommendMenu(){
-        for(String coach:coachController.getCoachList()){
-            coachController.recommendCategory(coach);
-        }
+        coachController.recommendCategory();
+        if(coachController.checkCnt()) recommendMenu();
     }
 }

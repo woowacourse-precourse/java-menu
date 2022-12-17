@@ -61,7 +61,7 @@ public class CoachController {
         recommendFood(category,coach);
     }
 
-    public String recommendCategory(String coach){
+    public String recommendCategory(){
         String randomCategory = CATEGORIES[Randoms.pickNumberInRange(1,5)-1];
         if(categoryList.size()==5) return randomCategory;
         if(categoryCnt.get(randomCategory)<=2){
@@ -69,7 +69,13 @@ public class CoachController {
             categoryList.add(randomCategory);
             return randomCategory;
         }
-        return recommendCategory(coach);
+        return recommendCategory();
+    }
+    public Boolean checkCnt(){
+        for(int cnt:categoryCnt.values()){
+            if(cnt>2) return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
     }
     public HashMap<String, Coach> getCoaches(){return this.coaches;}
     public List<String> getCategoryList(){return this.categoryList;}
