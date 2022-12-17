@@ -1,0 +1,1 @@
+package menu.repository;import java.util.ArrayList;import java.util.List;import menu.domain.Coach;public class CoachRepository {    private final List<Coach> coaches = new ArrayList<>();    public void addCoach(Coach coach) {        coaches.add(coach);    }}
