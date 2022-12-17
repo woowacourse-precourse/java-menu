@@ -4,13 +4,14 @@ import java.util.List;
 
 public class OutputView {
     private final String START_MENTION = "점심 메뉴 추천을 시작합니다.";
-    private final String COACH_NAME_REQUEST_MENTION = "코치의 이름을 입력해주세요. (, 로 구분)";
+    private final String COACH_NAME_REQUEST_MENTION = "코치의 이름을 입력해 주세요. (, 로 구분)";
     private final String RESULT_MENTION = "메뉴 추천 결과입니다.";
     private final String END_MENTION = "추천을 완료했습니다.";
     private final String WEEK = "구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일";
+    private final String SEPARATOR = " | ";
 
     public void printStart() {
-        System.out.println(START_MENTION);
+        System.out.println(START_MENTION + "\n");
     }
 
     public void printCoachNameRequest() {
@@ -22,11 +23,11 @@ public class OutputView {
     }
 
     public void printEnd() {
-        System.out.println(END_MENTION);
+        System.out.println(END_MENTION + "\n");
     }
 
     public void printError(IllegalArgumentException exception) {
-        System.out.print(exception.getMessage());
+        System.out.println(exception.getMessage());
     }
 
     public void printWeek() {
@@ -35,9 +36,9 @@ public class OutputView {
         System.out.println(" ]");
     }
 
-    public void printCategory(List<String> categories) {
-        System.out.print("[ 카테고리 ");
-        System.out.print(String.join(" | ", categories));
+    public void printCategory(RecommendRepository recommendRepository) {
+        System.out.print("[ 카테고리" + SEPARATOR);
+        System.out.print(String.join(SEPARATOR, recommendRepository.getCategories()));
         System.out.println(" ]");
     }
 
@@ -45,9 +46,11 @@ public class OutputView {
         List<Coach> coaches = coachRepository.getCoaches();
 
         for (Coach coach : coaches) {
-            System.out.print("[ " + coach.getName() + " | ");
-            System.out.print(String.join(" | ", coach.getRecommendedFoods()));
+            System.out.print("[ " + coach.getName() + SEPARATOR);
+            System.out.print(String.join(SEPARATOR, coach.getRecommendedFoods()));
             System.out.println(" ]");
         }
+
+        System.out.println();
     }
 }
