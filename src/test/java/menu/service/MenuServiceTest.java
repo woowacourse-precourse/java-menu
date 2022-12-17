@@ -6,7 +6,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class MenuServiceTest {
 
@@ -77,7 +78,7 @@ class MenuServiceTest {
         menuService.setCategories();
 
         //then
-        assertThat(menuService.getCategories().stream().distinct().count()).isGreaterThan(3);
+        assertThat(menuService.getCategories().stream().distinct().count()).isGreaterThan(2);
     }
 
     @Test
