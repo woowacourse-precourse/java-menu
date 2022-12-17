@@ -4,6 +4,7 @@ import static menu.repository.CategoryRepository.addAllCategory;
 import static menu.repository.CategoryRepository.categories;
 import static menu.repository.MenuRepository.addAllMenus;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,6 +15,8 @@ import menu.domain.Menu;
 public class MenuConfigure {
 
   private static final List<String> defaultCategoryNames = List.of("일식", "한식", "중식", "아시안", "양식");
+  public static final List<String> DAYS = List.of("월요일", "화요일", "수요일", "목요일", "금요일");
+
   private static final String JAPANESE = "규동, 우동, 미소시루, 스시, 가츠동, 오니기리, 하이라이스, 라멘, 오코노미야끼";
   private static final String KOREAN = "김밥, 김치찌개, 쌈밥, 된장찌개, 비빔밥, 칼국수, 불고기, 떡볶이, 제육볶음";
   private static final String ASIAN = "팟타이, 카오 팟, 나시고렝, 파인애플 볶음밥, 쌀국수, 똠얌꿍, 반미, 월남쌈, 분짜";
