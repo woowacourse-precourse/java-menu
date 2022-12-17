@@ -19,10 +19,19 @@ public enum FoodCategory {
         this.menus = getMenuListData(menuData);
     }
 
+    public static FoodCategory of(int categoryNumber) {
+        return Arrays.stream(FoodCategory.values())
+                .filter(foodCategory -> foodCategory.categoryNum == categoryNumber)
+                .findAny()
+                .orElseThrow(() -> {
+                    throw new IllegalArgumentException("[ERROR] 해당 번호는 카테고리에 등록되지 않은 번호입니다.");
+                });
+    }
+
     private List<Menu> getMenuListData(String menuData) {
         List<String> list = Arrays.asList(menuData.split(","));
         List<Menu> result = new ArrayList<>();
-        for(String data : deleteTrim(list)){
+        for (String data : deleteTrim(list)) {
             result.add(new Menu(data));
         }
         return result;
@@ -30,7 +39,7 @@ public enum FoodCategory {
 
     private List<String> deleteTrim(List<String> datas) {
         List<String> result = new ArrayList<>();
-        for(String data : datas){
+        for (String data : datas) {
             result.add(data.trim());
         }
         return result;
