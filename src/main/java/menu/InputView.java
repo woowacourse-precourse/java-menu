@@ -1,6 +1,7 @@
 package menu;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -15,8 +16,8 @@ public class InputView {
 
 	public List<String> readNotEatFood() {
 		List<String> splitFoods = new ArrayList<>();
-		String inputFoods = Console.readLine();
-		splitFoods.addAll(List.of(inputFoods.split(",")));
+		String inputNotEatFoods = Console.readLine();
+		splitFoods.addAll(Arrays.asList(inputNotEatFoods.split(",")));
 		return splitFoods;
 	}
 }
