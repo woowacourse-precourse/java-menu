@@ -28,4 +28,12 @@ class InputValidatorTest {
                 .hasMessage("코치는 2명 이상 5명 이하입니다.");
     }
 
+    @Test
+    void validateCanNotEatMenusLengthTest() {
+        List<String> canNotEatMenus = List.of("뇨끼", "월날쌈", "마파두부");
+        assertThatThrownBy(() -> inputValidator.validateCanNotEatMenusLength(canNotEatMenus))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("못 먹는 메뉴는 2개까지만 가능합니다.");
+    }
+
 }
