@@ -23,8 +23,18 @@ public class InputValidator {
         if (!isValidLength(inputCoach)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_COACH_NAME_LENGTH);
         }
+        if (isDuplicate(inputCoach)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_COACH_NAME);
+        }
         return Arrays.stream(inputCoach.split(","))
                 .collect(Collectors.toList());
+    }
+
+    private static boolean isDuplicate(final String inputCoach) {
+        int count  = (int) Arrays.stream(inputCoach.split(",")).count();
+        return count != (int) Arrays.stream(inputCoach.split(","))
+                .distinct()
+                .count();
     }
 
     private static boolean isValidCoachCount(final String inputCoach) {
