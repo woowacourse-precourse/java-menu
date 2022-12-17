@@ -1,11 +1,10 @@
 package menu;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
-
-    private Scanner scanner = new Scanner(System.in);
 
     public List<String> getCouchNames() {
         System.out.println(MessageFormat.COUCH_NAME_REQUEST_COMMENT.getMessage());
@@ -18,6 +17,6 @@ public class InputView {
     }
 
     public String getString() {
-        return scanner.next();
+        return Console.readLine();
     }
 }
