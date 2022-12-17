@@ -1,6 +1,7 @@
 package menu.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Coach {
@@ -21,20 +22,28 @@ public class Coach {
         }
     }
 
-    public void addSelectedMenus(List<String> menus){
-        selectedMenus.addAll(menus);
+    public boolean addSelectedMenu(String menu){
+        if(isInedibleMenu(menu) || isSelectedMenu(menu)){
+            return false;
+        }
+        selectedMenus.add(menu);
+        return true;
     }
 
     public void addInedibleMenus(List<String> menus){
         inedibleMenus.addAll(menus);
     }
 
-    public boolean isSelectedMenu(String menu){
+    private boolean isSelectedMenu(String menu){
         return selectedMenus.contains(menu);
     }
 
-    public boolean isInedibleMenu(String menu){
+    private boolean isInedibleMenu(String menu){
         return inedibleMenus.contains(menu);
+    }
+
+    public List<String> getSelectedMenu(){
+        return Collections.unmodifiableList(selectedMenus);
     }
 
     public String getName(){
