@@ -23,16 +23,20 @@ public class Menu {
         while(rmdMenu.size() < 5) {
             List<String> menus = menuList.get(category.get(rmdMenu.size())-1);
             String menu = Randoms.shuffle(menus).get(0);
-            if (isInEdibleMenu(inEdibleMenu, menu))
+            if (isInEdibleMenu(inEdibleMenu, menu, rmdMenu))
                 continue;
             rmdMenu.add(menu);
         }
         return rmdMenu.toArray(new String[rmdMenu.size()]);
     }
 
-    public static boolean isInEdibleMenu(List<String> inEdibleMenu, String menu) {
+    public static boolean isInEdibleMenu(List<String> inEdibleMenu, String menu, List<String> rmdMenu) {
         for (int i = 0; i < inEdibleMenu.size(); i++) {
             if (inEdibleMenu.get(i).equals(menu))
+                return true;
+        }
+        for (int i = 0; i < rmdMenu.size(); i++) {
+            if (rmdMenu.get(i).equals(menu))
                 return true;
         }
         return false;
