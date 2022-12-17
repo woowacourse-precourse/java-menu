@@ -1,15 +1,15 @@
 package menu.domain.menu.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Coach {
 
     private final String name;
-    private final List<Food> forbiddenFood;
+    private final List<Food> forbiddenFood = new ArrayList<>();
 
-    public Coach(String name, List<Food> forbiddenFood) {
+    public Coach(String name) {
         this.name = name;
-        this.forbiddenFood = forbiddenFood;
     }
 
     public String getName() {
