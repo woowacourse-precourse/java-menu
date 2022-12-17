@@ -14,4 +14,14 @@ public class Menus {
         return menus.stream()
                 .anyMatch(oldMenu -> oldMenu.equals(menu));
     }
+    
+    public boolean isExistSameCategoryOverTwo(Menu menu) {
+        return calculateCountOfSameCategory(menu) >= 2;
+    }
+    
+    private int calculateCountOfSameCategory(Menu menu) {
+        return (int) menus.stream()
+                .filter(oldMenu -> oldMenu.isSameCategory(menu))
+                .count();
+    }
 }

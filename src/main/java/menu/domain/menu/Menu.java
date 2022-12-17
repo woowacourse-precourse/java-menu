@@ -13,6 +13,10 @@ public class Menu {
         this.category = category;
     }
     
+    public boolean isSameCategory(Menu menu) {
+        return this.category == menu.category;
+    }
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

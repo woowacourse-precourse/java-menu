@@ -15,6 +15,10 @@ public class Coach {
         this.uneatableMenus = new UneatableMenus();
     }
     
+    public boolean isExistSameCategoryOverTwo(Menu menu) {
+        return menus.isExistSameCategoryOverTwo(menu);
+    }
+    
     public boolean isExistSameMenu(Menu menu) {
         return menus.isExistSameMenu(menu);
     }
