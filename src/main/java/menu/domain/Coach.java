@@ -2,13 +2,12 @@ package menu.domain;
 
 import menu.exception.InputException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Coach {
     private final String name;
-    private final List<String> avoidList = new ArrayList<>();
+    private final Set<String> avoidList = new HashSet<>();
+    private final List<String> recommended = new ArrayList<>();
 
     public Coach(String name) {
         validateNickname(name);
@@ -24,6 +23,14 @@ public class Coach {
         StringTokenizer st = new StringTokenizer(input, ",");
         while (st.hasMoreTokens())
             avoidList.add(st.nextToken());
+    }
+
+    public boolean addRecommended(String menu) {
+        if(avoidList.contains(menu) || recommended.contains(menu))
+            return false;
+
+        recommended.add(menu);
+        return true;
     }
 
     private void validateCountOfAvoidance(String input) {

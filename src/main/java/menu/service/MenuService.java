@@ -37,20 +37,31 @@ public class MenuService {
         }
     }
 
+    public void setMenus() {
+        for (int i = 0; i < 5; i++) {
+            addMenu(categories.get(i).pickMenu());
+        }
+    }
+
+    private void addMenu(String menu) {
+        for (Coach coach : coaches){
+            while(!coach.addRecommended(menu)){}
+        }
+    }
 
     private void addNewCategory(Category newCategory) {
-        int count=0;
-        for(Category category:categories)
-            if(category.equals(newCategory))
+        int count = 0;
+        for (Category category : categories)
+            if (category.equals(newCategory))
                 count++;
 
-        if(count<2)
+        if (count < 2)
             categories.add(newCategory);
     }
 
     private void validateCountOfCoaches(String input) {
         StringTokenizer st = new StringTokenizer(input, ",");
-        if(st.countTokens()<2 || 5<st.countTokens())
+        if (st.countTokens() < 2 || 5 < st.countTokens())
             throw new IllegalArgumentException(InputException.INVALID_COUNT_OF_COACHES.getMessage());
     }
 }
