@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 @DisplayName("NullValidator 클래스")
 @DisplayNameGeneration(ReplaceUnderscores.class)
-public class NullValidatorTest {
+class NullValidatorTest {
 
     @Test
     void throwIfNull_메서드는_null_이_들어오면_IEA_예외를_발생시킨다() {

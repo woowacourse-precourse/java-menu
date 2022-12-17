@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("Category 클래스")
 @DisplayNameGeneration(ReplaceUnderscores.class)
-public class CategoryTest {
+class CategoryTest {
 
     @Test
     void from_메서드는_카테고리에_해당하는_숫자를_받으면_잘_생성된다() {

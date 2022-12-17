@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("ValidateMenuCommand 클래스")
 @DisplayNameGeneration(ReplaceUnderscores.class)
-public class ValidateMenuCommandTest {
+class ValidateMenuCommandTest {
 
     @ParameterizedTest
     @NullSource

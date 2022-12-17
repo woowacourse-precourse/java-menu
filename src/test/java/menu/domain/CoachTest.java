@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 @DisplayName("Coach 클래스")
 @DisplayNameGeneration(ReplaceUnderscores.class)
-public class CoachTest {
+class CoachTest {
 
     private Coach coach;
 
