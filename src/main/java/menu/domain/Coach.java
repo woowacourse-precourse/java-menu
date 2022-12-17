@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Coach {
     private final String name;
-    private List<String> blackList;
+    private List<String> blacklist;
 
     public Coach(String name) {
         validateName(name);
@@ -18,8 +18,15 @@ public class Coach {
         }
     }
 
-    public void setBlackList(List<String> blackList) {
-        this.blackList = blackList;
+    public void setBlacklist(List<String> blacklist) {
+        validateBlacklist(blacklist);
+        this.blacklist = blacklist;
+    }
+
+    private void validateBlacklist(List<String> blacklist) {
+        if (blacklist.size() > 2){
+            throw new IllegalArgumentException("못 먹는 메뉴는 2가지까지만 가능합니다");
+        }
     }
 
     public String getName() {

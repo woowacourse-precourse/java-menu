@@ -21,7 +21,7 @@ public class MenuController {
         FoodRecommender recommender = new FoodRecommender(coaches);
 
         for (Coach coach : coaches) {
-            coach.setBlackList(inputView.readBlackList(coach));
+            coach.setBlacklist(inputView.readBlackList(coach));
         }
     }
 }
