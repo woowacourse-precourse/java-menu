@@ -16,6 +16,6 @@ public class CategoryTest {
         assertThat(category.size()).isEqualTo(5);
 
         for (int i = 1; i <=5; i++)
-            assertThat(Collections.frequency(category,i)).isLessThan(2);
+            assertThat(Collections.frequency(category,i)).isLessThanOrEqualTo(2);
     }
 }
