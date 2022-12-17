@@ -37,4 +37,11 @@ public class Coaches {
             }
         }
     }
+
+    public static Coach getCoach(String name) {
+        return coaches.stream()
+                .filter(it -> it.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 입력한 코치가 없습니다."));
+    }
 }

@@ -17,14 +17,16 @@ public class MenuController {
     }
 
     public void run() {
+        outputView.printStartMessage();
         inputView.inputCoaches();
         inputView.inputCoachesHateFoods();
 
         Menus.init();
 
         RecommendMenu rm = new RecommendMenu();
+        outputView.printResult(rm.getCategory());
         arrToList(rm.getResult());
-
+        outputView.printEndMessage();
     }
 
     private void arrToList(String[][] arr) {
@@ -33,7 +35,7 @@ public class MenuController {
             for (int i = 0; i < 6; i++) {
                 result.add(arr[j][i]);
             }
-            outputView.printResult(result);
+            outputView.printRecommendMenu(result);
         }
     }
 }

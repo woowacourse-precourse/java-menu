@@ -21,6 +21,10 @@ public class RecommendMenu {
         }
     }
 
+    public List<String> getCategory() {
+        return categoryOrder;
+    }
+
     private String validAdd() {
         String category = Category.from(String.valueOf(Randoms.pickNumberInRange(1, 5))).name();
         if (countContains(category) >= 2) {
