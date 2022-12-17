@@ -29,9 +29,12 @@ public class InputView {
 
     public List<String> coachCantEatInput(){
         List<String> notEatFood = new ArrayList<>();
-        String[] name = Console.readLine().split(",");
-        for(int i=0; i<name.length;i++){
-            notEatFood.add(name[i]);
+        String[] menu = Console.readLine().split(",");
+        if(menu.length<0 || menu.length>2)
+            throw new IllegalArgumentException("[ERROR] 최소0개 최대 2개 입력");
+
+        for(int i=0; i<menu.length;i++){
+            notEatFood.add(menu[i]);
         }
         return notEatFood;
     }
