@@ -5,11 +5,14 @@ import java.util.Arrays;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
+import menu.handler.check.CheckHandler;
 import menu.model.Coach;
 
 public class InputView {
 
 	private static final InputView instance = new InputView();
+
+	private final CheckHandler checkHandler = CheckHandler.getInstance();
 
 	private InputView() {
 	}
@@ -18,28 +21,41 @@ public class InputView {
 		return instance;
 	}
 
-	// 코치 이름 입력후 코치 객체 반환
 	public List<Coach> readCoachNames() {
 		Message.printMessage(Message.INPUT_COACH_NAMES);
-		String[] coaches = Console.readLine().split(",");
+		String[] coaches = setCoaches();
+		validationCoachesArray(coaches);
+		return arrayToList(coaches);
+	}
 
-		//TODO : COACH 예외 검사 (코치의 이름은 2~4)
-		//TODO : COACH 예외 검사 (코지는 2 ~ 5명 사이)
+	public void readNotEatFood(Coach coach) {
+		Message.printNotEatFoodMessage(coach.getName());
+		String[] notEatFood = Console.readLine().split(",");
+		checkHandler.isNotEatFoodNumbers(notEatFood);
+		if (notEatFood.length != 0) {
+			coach.setNotEatFoodList(new ArrayList<>(Arrays.asList(notEatFood)));
+			return;
+		}
+		coach.setNotEatFoodList(new ArrayList<>());
+	}
 
-		//TODO : Stream 리팩터링
+	private void validationCoachesArray(String[] coaches) {
+		checkHandler.isCoachesName(coaches);
+		checkHandler.isCoachesNumbers(coaches);
+	}
+
+	private String[] setCoaches() {
+		String input = Console.readLine();
+		checkHandler.isCollect(input);
+		return input.split(",");
+	}
+
+	private static List<Coach> arrayToList(String[] coaches) {
 		List<Coach> coachList = new ArrayList<>();
 		for (int i = 0; i < coaches.length; i++) {
 			coachList.add(new Coach(coaches[i]));
 		}
 		return coachList;
-	}
-
-	// 코치 이름을 받아서 못먹는 메뉴 입력
-	public void readNotEatFood(Coach coach) {
-		Message.printNotEatFoodMessage(coach.getName());
-		String[] notEatFood = Console.readLine().split(",");
-		//TODO : 음식 갯수 예외 검사(0~2개 사이)
-		coach.setNotEatFoodList(new ArrayList<>(Arrays.asList(notEatFood)));
 	}
 
 }
