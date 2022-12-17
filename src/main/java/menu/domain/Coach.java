@@ -12,6 +12,10 @@ public class Coach {
         inedibleFoods = new ArrayList<>();
     }
 
+    public void addInedibleFood(String foodName) {
+        inedibleFoods.add(foodName);
+    }
+
     public String getName() {
         return name;
     }
