@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class CategoryForDay {
+public class RecommendCategory {
 
     private static final int MAXIMUM_SIZE_OF_CATEGORY = 5;
     private static final int MAXIMUM_FREQUENCY_OF_CATEGORY = 2;
 
     private final List<String> categories;
 
-    public CategoryForDay() {
+    public RecommendCategory() {
         this.categories = new ArrayList<>();
     }
 
@@ -19,7 +19,7 @@ public class CategoryForDay {
         return categories;
     }
 
-    public void setCategories() {
+    public void recommend() {
         while (categories.size() != MAXIMUM_SIZE_OF_CATEGORY) {
             String category = Menu.recommendCategory();
             checkCategoryFrequency(category);

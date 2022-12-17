@@ -3,25 +3,25 @@ package menu.service;
 
 import java.util.List;
 
-import menu.domain.CategoryForDay;
+import menu.domain.RecommendCategory;
 
 public class MenuService {
 
-    private final CategoryForDay categoryForDay;
+    private final RecommendCategory recommendCategory;
 
-    public MenuService(CategoryForDay categoryForDay) {
-        this.categoryForDay = categoryForDay;
+    public MenuService(RecommendCategory recommendCategory) {
+        this.recommendCategory = recommendCategory;
     }
 
     public void selectCategoryForEachDay() {
-        categoryForDay.setCategories();
+        recommendCategory.recommend();
     }
 
     public String getRecommendCategoryWord() {
-        return categoryForDay.toString();
+        return recommendCategory.toString();
     }
 
     public List<String> getRecommendCategory() {
-        return categoryForDay.getCategories();
+        return recommendCategory.getCategories();
     }
 }

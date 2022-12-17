@@ -3,7 +3,7 @@ package menu.controller;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import menu.domain.CategoryForDay;
+import menu.domain.RecommendCategory;
 import menu.domain.Coach;
 import menu.domain.Menu;
 import menu.service.MenuService;
@@ -13,7 +13,7 @@ public class MenuController {
     private final MenuService menuService;
 
     public MenuController() {
-        this.menuService = new MenuService(new CategoryForDay());
+        this.menuService = new MenuService(new RecommendCategory());
     }
 
     public void recommendCategory() {
