@@ -1,3 +1,5 @@
+- refactor: CategoryController, OutputView
+- docs(CHANGELOG): add CHANGELOG.MD
 - refactor(CategoryService): add comment
 - docs(README): fix lists of functional requirements
 - refactor: fix code structure, add Javadoc
