@@ -19,9 +19,10 @@ public class People implements Iterable<Person> {
         return people;
     }
 
-    public void addUnavailableMeneus(List<String> inputs) {
-        for (int index = 0; index < inputs.size(); index++) {
-            people.get(index).addUnavailableMenus(inputs.get(index));
+    public void addUnavailableMenus(List<String> menus) {
+        int index = 0;
+        for (Person person : people) {
+            person.addUnavailableMenus(menus.get(index++));
         }
     }
 

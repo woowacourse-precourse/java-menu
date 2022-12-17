@@ -11,23 +11,16 @@ import java.util.stream.Collectors;
 
 public class Person {
 
-    private final String name;
+    public static final String DELIMITER = ",";
+    public static final String REGEX = ".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*";
+    public static final int UNAVAILABLE_MENU_COUNT_LIMIT = 2;
+
+    private final Name name;
+    private final Menus recommended = new Menus();
     private Menus unavailable;
-    private Menus recommended = new Menus();
 
     public Person(String name) {
-        this.name = validateName(name);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    private String validateName(String name) {
-        if (name.length() < 2 || name.length() > 4) {
-            throw new IllegalArgumentException("코치의 이름은 최소 2글자, 최대 4글자여야 합니다.");
-        }
-        return name;
+        this.name = new Name(name);
     }
 
     public void addUnavailableMenus(String menus) {
@@ -39,16 +32,20 @@ public class Person {
     }
 
     private String[] validateUnavailableMenus(String input) {
-        String[] split = input.split(",");
+        String[] split = input.split(DELIMITER);
         for (String s : split) {
-            if (!s.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")) {
+            if (!s.matches(REGEX)) {
                 throw new IllegalArgumentException("올바른 입력이 아닙니다. 쉽표로 구분하여 입력해주세요");
             }
         }
-        if (split.length > 2) {
+        if (split.length > UNAVAILABLE_MENU_COUNT_LIMIT) {
             throw new IllegalArgumentException("최대 2개의 못 먹는 메뉴만 입력할 수 있습니다.");
         }
         return split;
+    }
+
+    public String getName() {
+        return name.getName();
     }
 
     public Menus getRecommended() {
@@ -60,7 +57,7 @@ public class Person {
         Category category = Category.map(inputCategory);
         List<String> menus = Arrays.stream(Menu.values())
                 .filter(m -> m.toString().startsWith(category.toString()))
-                .map(m -> m.getMenuName())
+                .map(Menu::getMenuName)
                 .collect(Collectors.toList());
 
         while (true) {

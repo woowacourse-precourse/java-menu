@@ -35,8 +35,9 @@ public class MenuRecommendation {
     }
 
     public void addUnavailableMenus(List<String> inputs) {
-        people.addUnavailableMeneus(inputs);
+        people.addUnavailableMenus(inputs);
     }
+
     public static People getPeople() {
         return people;
     }
