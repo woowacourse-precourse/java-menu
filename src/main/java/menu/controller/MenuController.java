@@ -4,11 +4,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import menu.domain.Category;
+import menu.domain.Coach;
+import menu.domain.Coaches;
+import menu.util.StringParser;
+import menu.view.InputView;
+import menu.view.OutputView;
 
 public class MenuController {
 
     public void run() {
-
+        OutputView.printStartMessage();
+        List<String> coachNames = StringParser.getSplitList(InputView.getCoachNames());
+        Coaches coaches = new Coaches();
+        coachNames.stream().forEach(name -> coaches.add(new Coach(name)));
+        coaches.getCoaches().stream().forEach(coach -> {
+            List<String> cantEatMenu = StringParser.getSplitList(InputView.getCantEatMenu(coach.getName()));
+            coach.setCantEatMenu(cantEatMenu);
+        });
+        OutputView.printEndMessage();
     }
 
     private void init() {
