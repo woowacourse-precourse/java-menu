@@ -10,4 +10,9 @@ public class Validator {
             if (coaches.get(i).length() <2 || coaches.get(i).length() > 4)
                 throw new IllegalArgumentException("코치의 이름은 최소 2글자, 최대 4글자 입니다.");
     }
+
+    public static void validateCoachesLength(List<String> coaches) {
+        if (coaches.size() < 2 || coaches.size() > 5)
+            throw new IllegalArgumentException("코치는 최소 2명 이상, 5명 이하로 입력해야 합니다.");
+    }
 }
