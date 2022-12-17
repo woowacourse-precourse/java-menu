@@ -16,12 +16,12 @@ public enum Menu {
 
     private final int code;
     private final String category;
-    private final List<String> namse;
+    private final List<String> names;
 
     Menu(int code, String category, List<String> names) {
         this.code = code;
         this.category = category;
-        this.namse = names;
+        this.names = names;
     }
 
     public static Menu getCodeToMenu(int code) {
@@ -29,6 +29,14 @@ public enum Menu {
                 .filter(e -> e.code == code)
                 .findAny()
                 .orElseGet(() -> getCodeToMenu(Randoms.pickNumberInRange(1, 5)));
+    }
+
+    public static String getCategoryToName(String category) {
+        List<String> names = Arrays.stream(Menu.values())
+                .filter(e -> e.category == category)
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 카테고리가 존재하지 않습니다.")).names;
+        return Randoms.shuffle(names).get(0);
     }
 
     public static List<String> selectCategory() {
@@ -42,6 +50,22 @@ public enum Menu {
             }
         }
         return categorys;
+    }
+
+    public static List<String> selectMenu(List<String> categorys, List<String> cantEats) {
+        List<String> menus = new ArrayList<>();
+
+        categorys.stream().forEach(e -> {
+            while (true) {
+                String name = getCategoryToName(e);
+                if (!menus.contains(name) && !cantEats.contains(name)) {
+                    menus.add(name);
+                    break;
+                }
+            }
+        });
+
+        return menus;
     }
 
 }
