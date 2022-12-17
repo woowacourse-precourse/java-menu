@@ -15,7 +15,7 @@ public class Menu {
         return menuName;
     }
 
-    public boolean isMenuName(String menuName){
+    public boolean isMenuName(String menuName) {
         return this.menuName.equals(menuName);
     }
 }

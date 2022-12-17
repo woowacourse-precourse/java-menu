@@ -25,7 +25,7 @@ public class OutputView {
         printCompleteMessage();
     }
 
-    public void printResultIntroducingMessage(){
+    public void printResultIntroducingMessage() {
         System.out.println("메뉴 추천 결과입니다.");
     }
 
@@ -79,7 +79,7 @@ public class OutputView {
         return dayRecommendOfDayOf.getMenuOf(coach).getMenuName();
     }
 
-    private void printCompleteMessage(){
+    private void printCompleteMessage() {
         System.out.println("추천을 완료했습니다.");
     }
 }

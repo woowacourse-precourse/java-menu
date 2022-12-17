@@ -45,9 +45,9 @@ public enum FoodCategory {
         return targetCategory.getMenu(menuName);
     }
 
-    public Menu getMenu(String menuName){
-        for(Menu menu : menus){
-            if(menu.isMenuName(menuName)){
+    public Menu getMenu(String menuName) {
+        for (Menu menu : menus) {
+            if (menu.isMenuName(menuName)) {
                 return menu;
             }
         }
@@ -71,9 +71,9 @@ public enum FoodCategory {
         return result;
     }
 
-    private boolean containMenu(String menuName){
-        for(Menu menu : menus){
-            if(menu.isMenuName(menuName)){
+    private boolean containMenu(String menuName) {
+        for (Menu menu : menus) {
+            if (menu.isMenuName(menuName)) {
                 return true;
             }
         }

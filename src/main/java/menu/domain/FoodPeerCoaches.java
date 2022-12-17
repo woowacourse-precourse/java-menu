@@ -34,7 +34,7 @@ public class FoodPeerCoaches {
 
     private void checkCouchDuplication(List<Coach> coachData) {
         long uniqueCoachNameNumber = coachData.stream().map(ch -> ch.getName()).distinct().count();
-        if(coachData.size() != uniqueCoachNameNumber){
+        if (coachData.size() != uniqueCoachNameNumber) {
             throw new IllegalArgumentException(UNIQUE_COACH_NAME_ERROR_MESSAGE);
         }
     }
