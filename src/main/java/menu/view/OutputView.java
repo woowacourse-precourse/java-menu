@@ -33,8 +33,9 @@ public class OutputView {
         StringBuilder result = new StringBuilder(RESULT_CATEGORY);
         for (Category category : categories) {
             result.append(category.getCategoryName())
-                    .append(" |");
+                    .append(" | ");
         }
+        result.setLength(result.length()-2);
         result.append(" ]");
         System.out.println(result);
     }

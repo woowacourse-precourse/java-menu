@@ -16,4 +16,5 @@ public class CategoryRepository {
     public static Category makeRandomCategory(int pickNumberInRange) {
         return menuCategories.get(pickNumberInRange);
     }
+
 }

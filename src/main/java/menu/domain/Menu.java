@@ -1,5 +1,7 @@
 package menu.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.List;
 
 public class Menu {
@@ -12,11 +14,7 @@ public class Menu {
         this.menuList = menuList;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public List<String> getMenuList() {
-        return menuList;
+    public String makeRandomMenu() {
+        return Randoms.shuffle(menuList).get(0);
     }
 }

@@ -21,4 +21,11 @@ public class MenuRepository {
         menus.add(menu);
         return menu;
     }
+
+    public static void makeRandomMenuByCategory(Category category) {
+    }
+
+    private List<String> findMenuByCategory() {
+        return null;
+    }
 }

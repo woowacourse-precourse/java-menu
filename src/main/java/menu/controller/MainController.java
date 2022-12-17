@@ -8,6 +8,7 @@ import menu.service.MenuService;
 import menu.view.InputView;
 import menu.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -27,10 +28,26 @@ public class MainController extends AbstractController {
     @Override
     void doProcess() {
         outputView.printFeatures();
+        saveCoach();
         NoEatMenu noEatMenu = askAboutFoodCoachNoEat();
         List<Category> categories = menuService.recommendCategory();
-        outputView.printRandomCategory(categories);
+        printResult(categories);
+        menuService.recommendMenu(categories, noEatMenu);
+
+    }
+
+    private void printResult(List<Category> categories) {
         outputView.printResult();
+        outputView.printRandomCategory(categories);
+
+    }
+
+    private void saveCoach() {
+        String[] coachNames = inputView.readCoachNames();
+        for (String coachName : coachNames) {
+            Coach coach = new Coach(coachName);
+            CoachRepository.saveCoach(coach);
+        }
     }
 
     private NoEatMenu askAboutFoodCoachNoEat() {

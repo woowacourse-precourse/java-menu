@@ -15,4 +15,8 @@ public class CoachRepository {
     public static List<Coach> findAllCouch() {
         return coachList;
     }
+
+    public static int countCoach() {
+        return coachList.size();
+    }
 }
