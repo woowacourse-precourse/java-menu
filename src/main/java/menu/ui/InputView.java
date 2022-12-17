@@ -12,4 +12,8 @@ public class InputView {
         );
         return coachNames;
     }
+
+    private void addEmptyLine() {
+        System.out.println();
+    }
 }
