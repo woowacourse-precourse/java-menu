@@ -8,12 +8,12 @@ public enum Category {
     CHINESE(3, "중식", Menu.CHINESE_MENU),
     ASIAN(4, "아시안", Menu.ASIAN_MENU),
     WESTERN(5, "양식", Menu.WESTERN_MENU);
-    
+
     private final int categoryId;
     private final String categoryName;
     private final Menu categoryMenu;
-    
-    Category (int categoryId, String categoryName, Menu categoryMenu) {
+
+    Category(int categoryId, String categoryName, Menu categoryMenu) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
         this.categoryMenu = categoryMenu;
@@ -23,7 +23,7 @@ public enum Category {
         return Arrays.stream(Category.values())
                 .filter(category -> category.categoryId == categoryId)
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 올바른 생성값이 아닙니다."));
+                .orElseThrow(() -> new IllegalArgumentException("올바른 생성값이 아닙니다."));
     }
 
     public Menu getCategoryMenu() {

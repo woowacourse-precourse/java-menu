@@ -29,8 +29,10 @@ public class InputView {
     }
 
     private String validateMenuFormat(String input) {
-        if (!Pattern.matches(INPUT_PATTERN, input)) {
-            throw new IllegalArgumentException("메뉴는 한글과 콤마 형식이여야 합니다. (ex. 우동,스시)");
+        if (!input.isEmpty()) {
+            if (!Pattern.matches(INPUT_PATTERN, input)) {
+                throw new IllegalArgumentException("메뉴는 한글과 콤마 형식이여야 합니다. (ex. 우동,스시)");
+            }
         }
         return input;
     }

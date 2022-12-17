@@ -13,10 +13,6 @@ public class Coach {
         this.notEat = new ArrayList<>(notEat);
     }
 
-    public void printCoach() { // TODO
-        System.out.println(name + alreadyRecommended);
-    }
-
     public List<String> getAlreadyRecommended() {
         return alreadyRecommended;
     }

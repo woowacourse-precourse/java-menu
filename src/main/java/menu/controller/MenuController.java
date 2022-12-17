@@ -16,20 +16,16 @@ public class MenuController {
     OutputView outputView = new OutputView();
 
     List<Coach> coaches = new ArrayList<>();
-    List<Category> categories = new ArrayList<>();
     Recommender recommender = new Recommender();
-    
+
     private static final int recommendDays = 5;
 
     public void run() {
-        init();
+        outputView.printServiceStart();
+        outputView.printInputCoachName();
+        input();
         outputView.printServiceResult();
-        for (int day = 0; day < recommendDays; day ++) {
-            Category category = recommender.recommendCategory();
-            for (Coach coach : coaches) {
-                recommendMenu(category, coach);
-            }
-        }
+        recommend();
         outputView.printRecommendMenuResult(recommender.getCategoryCheckList());
         for (Coach coach : coaches) {
             outputView.printRecommendMenuResultByCoach(coach.getName(), coach.getAlreadyRecommended());
@@ -37,21 +33,32 @@ public class MenuController {
         outputView.printServiceEnd();
     }
 
-    public void init() {
-        outputView.printServiceStart();
-        outputView.printInputCoachName();
+    private void input() {
         while (true) {
             try {
                 List<String> inputCoachName = inputView.readCoachName();
                 validateCoachCount(inputCoachName);
                 validateCoachNameLength(inputCoachName);
-                for (String coachName : inputCoachName) {
-                    outputView.printInputCoachNotEat(coachName);
-                    coaches.add(new Coach(coachName ,inputView.readCoachNotEat()));
-                }
-                return ;
+                inputCoachNotEat(inputCoachName);
+                return;
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private void inputCoachNotEat(List<String> inputCoachName) {
+        for (String coachName : inputCoachName) {
+            outputView.printInputCoachNotEat(coachName);
+            coaches.add(new Coach(coachName, inputView.readCoachNotEat()));
+        }
+    }
+
+    private void recommend() {
+        for (int day = 0; day < recommendDays; day++) {
+            Category category = recommender.recommendCategory();
+            for (Coach coach : coaches) {
+                recommendMenu(category, coach);
             }
         }
     }
@@ -72,7 +79,7 @@ public class MenuController {
             throw new IllegalArgumentException("코치는 최대 5명까지 입력할 수 있습니다.");
         }
     }
-    
+
     private void validateCoachNameLength(List<String> inputCoachName) {
         for (String coachName : inputCoachName) {
             if (coachName.length() < 2) {

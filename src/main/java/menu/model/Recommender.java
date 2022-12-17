@@ -9,15 +9,18 @@ public class Recommender {
 
     Category category;
     List<Category> categoryCheckList = new ArrayList<>();
-    
+
+    public static final int RANDOM_RANGE_START = 1;
+    public static final int RANDOM_RANGE_END = 5;
+
     public Category recommendCategory() {
         do {
-            category = Category.of(Randoms.pickNumberInRange(1, 5));
+            category = Category.of(Randoms.pickNumberInRange(RANDOM_RANGE_START, RANDOM_RANGE_END));
         } while (isTwiceDuplicated(category));
         categoryCheckList.add(category);
         return category;
     }
-    
+
     private boolean isTwiceDuplicated(Category category) {
         return categoryCheckList.stream().filter(checkedCategory -> checkedCategory == category).count() >= 2;
     }

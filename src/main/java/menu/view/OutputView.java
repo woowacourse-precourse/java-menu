@@ -14,10 +14,11 @@ public class OutputView {
         SERVICE_END("\n추천을 완료했습니다.");
     
         private final String message;
+
         ServiceControlMessage(String message) {
             this.message = message;
         }
-    
+
         private String getMessage() {
             return message;
         }
@@ -35,11 +36,11 @@ public class OutputView {
     public void printInputCoachName() {
         System.out.println(ServiceControlMessage.INPUT_COACH_NAME.getMessage());
     }
-    
+
     public void printInputCoachNotEat(String coach) {
         System.out.printf(ServiceControlMessage.INPUT_COACH_NOT_EAT.getMessage(), coach);
     }
-    
+
     public void printServiceResult() {
         System.out.println(ServiceControlMessage.SERVICE_RESULT.getMessage());
     }
@@ -50,7 +51,8 @@ public class OutputView {
 
     public void printRecommendMenuResult(List<Category> categoryCheckList) {
         System.out.println("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
-        List<String> categories = categoryCheckList.stream().map(category -> category.getCategoryName()).collect(Collectors.toList());;
+        List<String> categories = categoryCheckList.stream().map(category -> category.getCategoryName()).collect(Collectors.toList());
+        ;
         System.out.println(FRONT_BRACKET + CATEGORY + String.join(PATH_DELIMITER, categories) + BACK_BRACKET);
     }
 
@@ -58,7 +60,7 @@ public class OutputView {
     public void printRecommendMenuResultByCoach(String name, List<String> foods) {
         System.out.println(FRONT_BRACKET + name + PATH_DELIMITER + String.join(PATH_DELIMITER, foods) + BACK_BRACKET);
     }
-    
+
     public static void printErrorMessage(String errorMessage) {
         System.out.println("[ERROR] " + errorMessage);
     }
