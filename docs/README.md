@@ -14,7 +14,7 @@
 - [x] 주어진 음식들을 카테고리별로 등록한다.
   - [x] 음식 카테고리 등록
   - [x] 카테고리별 음식 등록
-- [ ] 코치의 이름을 ,로 구분지어서 입력 받는다.
+- [x] 코치의 이름을 ,로 구분지어서 입력 받는다.
   - [ ] 코치의 수가 2명 미만, 5명 초과할 경우 IllegalArgumentException 발생
   - [ ] 각 코치의 이름이 2글자 미만, 4글자 초과할 경우 IllegalArgumentException 발생
   - [ ] 중복되는 코치의 이름이 있다면 IllegalArgumentException 발생
