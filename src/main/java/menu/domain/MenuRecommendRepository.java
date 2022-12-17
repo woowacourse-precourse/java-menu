@@ -7,7 +7,7 @@ import java.util.List;
 public class MenuRecommendRepository {
     private static final int MAX_RECOMMEND_CATEGORY_NUMBER = 2;
 
-    private static final List<String> recommendedCategories = new ArrayList<>();
+    private static final List<String> recommendedCategories = new ArrayList<>(List.of());
 
     public static List<String> recommendedCategories() {
         return Collections.unmodifiableList(recommendedCategories);

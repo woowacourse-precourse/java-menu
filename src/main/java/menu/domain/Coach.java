@@ -16,6 +16,7 @@ public class Coach {
     public Coach(String name) {
         validate(name);
         this.name = name;
+        this.menus.add(name);
     }
 
     private void validate(String name) {
@@ -43,5 +44,9 @@ public class Coach {
 
     public String getName() {
         return name;
+    }
+
+    public List<String> menus() {
+        return Collections.unmodifiableList(menus);
     }
 }

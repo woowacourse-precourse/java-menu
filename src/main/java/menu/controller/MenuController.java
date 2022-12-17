@@ -1,11 +1,11 @@
 package menu.controller;
 
-import menu.domain.Coach;
-import menu.domain.CoachRepository;
-import menu.domain.Food;
-import menu.domain.MenuRecommendRepository;
+import menu.domain.*;
 import menu.view.InputView;
 import menu.view.OutputView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MenuController {
 
@@ -22,6 +22,7 @@ public class MenuController {
         readCoaches();
         readPickyAboutFood();
         recommend();
+        print();
     }
 
     private void readCoaches() {
@@ -53,8 +54,21 @@ public class MenuController {
         for (int day = 0; day < 5; day++) {
             MenuRecommendRepository.selectCategory();
             CoachRepository.selectMenu(MenuRecommendRepository.recommendedCategories().get(day));
-            
+
         }
+    }
+
+    private void print() {
+        outputView.guideShowResult();
+        outputView.showResult(Day.getDays());
+        List<String> form = new ArrayList<>();
+        form.add("카테고리");
+        form.addAll(MenuRecommendRepository.recommendedCategories());
+        outputView.showResult(form);
+        for (Coach coach : CoachRepository.coaches()) {
+            outputView.showResult(coach.menus());
+        }
+        outputView.guideComplete();
     }
 
 }
