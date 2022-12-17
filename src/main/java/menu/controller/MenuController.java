@@ -54,7 +54,6 @@ public class MenuController {
     }
 
     private List<String> hateMenuValidation(String hateMenu) {
-        String[] s = hateMenu.split(",");
         List<String> hateMenus = Arrays.stream(hateMenu.split(",")).collect(Collectors.toList());
         if(2 < hateMenus.size()){
             throw new IllegalArgumentException("싫어하는 메뉴의 수는 2개를 넘을 수 없습니다.");
