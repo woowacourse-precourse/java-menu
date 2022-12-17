@@ -11,7 +11,7 @@ public enum CategoryRegister {
     KOREAN_FOOD("한식", "김밥, 김치찌개, 쌈밥, 된장찌개, 비빔밥, 칼국수, 불고기, 떡볶이, 제육볶음"),
     CHINESE_FOOD("중식", "깐풍기, 볶음면, 동파육, 짜장면, 짬뽕, 마파두부, 탕수육, 토마토 달걀볶음, 고추잡채"),
     ASIAN_FOOD("아시안", "팟타이, 카오 팟, 나시고렝, 파인애플 볶음밥, 쌀국수, 똠얌꿍, 반미, 월남쌈, 분짜"),
-    WESTERN_FOOD("양식", "라자냐, 그라탱, 뇨끼, 끼슈, 프렌치 토스트, 바게트, 스파게티, 피자, 파니니"),
+    WESTERN_FOOD("양식", "라자냐, 그라탱, 뇨끼, 끼슈, 프렌치 토스트, 바게트, 스파게티, 피자, 파니니");
 
     private String category;
     private static String menus;
@@ -20,13 +20,15 @@ public enum CategoryRegister {
     CategoryRegister(String category, String menu) {
     }
 
-    public static Map<String, List<String>>MenuListSave() {
+    public static void MenuListSave() {
         categoryRegister.put(CategoryRegister.JAPANESE_FOOD.category, Arrays.asList(CategoryRegister.JAPANESE_FOOD.menus.split(",")));
         categoryRegister.put(CategoryRegister.KOREAN_FOOD.category, Arrays.asList(CategoryRegister.KOREAN_FOOD.menus.split(",")));
         categoryRegister.put(CategoryRegister.CHINESE_FOOD.category, Arrays.asList(CategoryRegister.CHINESE_FOOD.menus.split(",")));
         categoryRegister.put(CategoryRegister.ASIAN_FOOD.category, Arrays.asList(CategoryRegister.ASIAN_FOOD.menus.split(",")));
         categoryRegister.put(CategoryRegister.WESTERN_FOOD.category, Arrays.asList(CategoryRegister.WESTERN_FOOD.menus.split(",")));
+    }
 
-        return categoryRegister;
+    public static List<String> getMenus(String category){
+        return categoryRegister.get(category);
     }
 }
