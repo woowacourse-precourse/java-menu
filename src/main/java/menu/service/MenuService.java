@@ -9,6 +9,10 @@ import java.util.List;
 public class MenuService {
     private final List<Category> pickedCategories = new ArrayList<>();
 
+    public MenuService() {
+        pickCategories();
+    }
+
     private void pickCategories() {
         while(pickedCategories.size() < 5) {
             int order = Randoms.pickNumberInRange(1, 5);
