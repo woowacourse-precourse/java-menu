@@ -20,7 +20,7 @@ public class InitMenu {
                                 "칼국수", "불고기", "떡볶이", "제육볶음")));
         categories.add(new CategoryMenu(Category.CHINA,
                 Arrays.asList("깐풍기", "볶음면", "동파육", "짜장면", "짬뽕",
-                        "마파두부", "탕수육", "토마토", "달걀볶음", "고추잡채")));
+                        "마파두부", "탕수육", "토마토 달걀볶음", "고추잡채")));
         categories.add(new CategoryMenu(Category.ASIAN,
                 Arrays.asList("팟타이", "카오 팟", "나시고렝", "파인애플 볶음밥", "쌀국수",
                         "똠얌꿍", "반미", "월남쌈", "분짜")));
