@@ -18,6 +18,9 @@ public class InputView {
 
     public List<String> readCoachNames() {
         String coachNames = Console.readLine();
-        return Arrays.stream(coachNames.split(SPLIT_DELIMITER))
-                .collect(Collectors.toList());}
+        List<String> collectedCoachNames = Arrays.stream(coachNames.split(SPLIT_DELIMITER))
+                .collect(Collectors.toList());
+        inputValidator.validateReadCoachNames(collectedCoachNames);
+        return collectedCoachNames;
+    }
 }
