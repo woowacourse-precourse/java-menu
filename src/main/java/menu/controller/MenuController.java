@@ -18,7 +18,7 @@ public class MenuController {
         OutputView.start();
         List<Coach> coaches = askCoach();
         askNoEat(coaches);
-        menuSuggester.suggest();
+        menuSuggester.run();
     }
 
     private List<Coach> askCoach() {

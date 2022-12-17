@@ -9,27 +9,33 @@ import java.util.List;
 public class MenuSuggester {
     private List<Coach> coaches;
     private List<List<String>> categories;
-    private HashMap<Integer, Integer> suggestedCategory;
+    private int[] suggestedCategory;
+    private final String[] days = {"월요일", "화요일", "수요일", "목요일", "금요일"};
 
     public MenuSuggester() {
         MenuGenerator menuGenerator = new MenuGenerator();
         categories = menuGenerator.generate();
-        suggestedCategory = new HashMap<>();
+        suggestedCategory = new int[5];
     }
 
     public void setCoaches(List<Coach> coaches) {
         this.coaches = coaches;
     }
 
-    public void suggest() {
+    public void run() {
+        for (int i = 0; i < days.length; i++) {
+            suggest(i);
+        }
+    }
+
+    private void suggest(int day) {
         int category = Randoms.pickNumberInRange(1, 5);
-        suggestedCategory.put(category, suggestedCategory.getOrDefault(category, 0) + 1);
+        suggestedCategory[day] = category;
 
         for (Coach coach : coaches) {
             String menu = pickMenu(category);
-            System.out.println(menu);
+            coach.addFood(menu);
         }
-
     }
 
     private String pickMenu(int category) {
