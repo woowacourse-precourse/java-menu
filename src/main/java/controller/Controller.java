@@ -11,7 +11,7 @@ public class Controller {
 
     public void control() {
         init();
-
+        recommend();
     }
 
     private void init() {
@@ -20,5 +20,9 @@ public class Controller {
         while (service.isOnInitializing()) {
             service.saveInedibleMenu(service.getCoachName(), inputView.readInedibleMenu(service.getCoachName()));
         }
+    }
+
+    private void recommend() {
+        outputView.printRecommendation(service.chooseMenus(service.chooseCategories()));
     }
 }
