@@ -1,7 +1,7 @@
 package menu.domain;
 
 public enum CategoryEnum {
-    MONDAY(1,"월요일"), TUESDAY(2,"화요일"), WEDNESDAY(3,"수요일"), THURSDAY(4,"목요일"), FRIDAY(5,"금요일");
+    JAPANESE(1,"일식"), KOREAN(2,"한식"), CHINESE(3,"중식"), ASIAN(4,"아시안"), WESTERN(5,"양식");
 
     final private Integer value;
     final private String msg;
