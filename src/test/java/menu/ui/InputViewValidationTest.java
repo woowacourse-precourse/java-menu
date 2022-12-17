@@ -1,5 +1,6 @@
 package menu.ui;
 
+import menu.domain.Category;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -24,20 +25,24 @@ class InputViewValidationTest {
 
     @Test
     void couchNameOverInRange() {
-        assertThatThrownBy(() -> inputViewValidation.couchNumValidate("정우입니다"))
+        assertThatThrownBy(() -> inputViewValidation.couchNameValidate("정우입니다"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
     @Test
     void couchNameLowInRange() {
-        assertThatThrownBy(() -> inputViewValidation.couchNumValidate("정"))
+        assertThatThrownBy(() -> inputViewValidation.couchNameValidate("정"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void couchCannotEatNumValidate() {
+    void couchCannotEatOverInRange() {
+        assertThatThrownBy(() -> inputViewValidation.couchCannotEatFoodValidate("떡볶이,짜장면,치킨"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void couchCannotEatFoodValidate() {
+        assertThatThrownBy(() -> inputViewValidation.couchCannotEatFoodValidate("밀키트"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
