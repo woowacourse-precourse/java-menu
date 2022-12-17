@@ -20,6 +20,14 @@ public class MenuRecommender {
         return categories;
     }
 
+    public void chooseCategory() {
+        String category = MenuRandomGenerator.selectRandomCategory();
+        while (!validateCategoryDuplication(category)) {
+            category = MenuRandomGenerator.selectRandomCategory();
+        }
+        categories.add(category);
+    }
+
     private boolean validateMenuDuplication(String menu, Member member) {
         if (member.getRecommendedMeal().contains(menu)) {
             return false;
