@@ -6,6 +6,7 @@ import java.util.List;
 public class Coach {
 
     public static final int CATEGORY_MAX_COUNT = 2;
+    public static final int RECOMMEND_MENU_SIZE = 5;
 
     private final String name;
     private final List<Menu> banFoods;
@@ -30,5 +31,9 @@ public class Coach {
 
     public boolean hasSameMenu(Menu menu) {
         return recommendMenu.contains(menu);
+    }
+
+    public boolean canReceiveMenu() {
+        return recommendMenu.size() < RECOMMEND_MENU_SIZE;
     }
 }
