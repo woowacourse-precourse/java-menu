@@ -19,7 +19,7 @@ public class InputView {
         } catch (NoSuchElementException exception) {  // 입력이 없을 경우 ("")
             throw new IllegalArgumentException();
         }
-        String[] coachesName = coachesName_input.split(", ");
+        String[] coachesName = coachesName_input.split(",");
         if (!checkCoachesName_number(coachesName) || !checkCoachesName_value(coachesName))
             throw new IllegalStateException();
         return coachesName;
@@ -47,7 +47,7 @@ public class InputView {
      */
     public static String[] setCoachesCannotEats() {
         String coachCannotEats_input = Console.readLine();
-        String[] coachCannotEats = coachCannotEats_input.split(", ");
+        String[] coachCannotEats = coachCannotEats_input.split(",");
         if (!checkCoachCannotEats_number(coachCannotEats) || !checkCoachCannotEats_value(coachCannotEats)) {
             throw new IllegalStateException();
         }
