@@ -9,11 +9,12 @@ public class Coach {
     private List<String> menuCannotEat = new ArrayList<>();
 
     public Coach(String name) {
+        validateName(name);
         this.name = name;
     }
 
     public void validateName(String name) {
-        if (name.length() < 2 || name.length() > 5) {
+        if (name.length() < 2 || name.length() > 4) {
             throw new IllegalArgumentException(INVALID_NAME);
         }
     }
