@@ -1,5 +1,7 @@
 package menu.domain.coach;
 
+import menu.validator.domain.InputCoachNamesValidator;
+
 import java.util.Objects;
 
 public class CoachName {

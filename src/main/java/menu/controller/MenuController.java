@@ -1,5 +1,7 @@
 package menu.controller;
 
+import menu.domain.factory.CoachCreator;
+import menu.validator.domain.InputCoachNamesValidator;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -15,6 +17,6 @@ public class MenuController {
     public void run() {
         outputView.printApplicationStartGuide();
         String coachNames = inputView.inputCoachNames(outputView);
-        System.out.println(coachNames);
+        System.out.println(CoachCreator.from(coachNames));
     }
 }
