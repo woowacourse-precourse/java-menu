@@ -1,8 +1,9 @@
 package menu.model;
 
 import menu.enums.MenuOption;
+import menu.module.NotModule;
 
-public class ChoiceMachine {
+public class ChoiceMachine extends NotModule {
 
     RandomMenuGenerator randomMenuGenerator = new RandomMenuGenerator();
 
@@ -10,8 +11,17 @@ public class ChoiceMachine {
         String category;
         do {
             category = randomMenuGenerator.randomCategoryChoice();
-        } while (!CoachRepository.canAddCategory(category));
+        } while (not(CoachRepository.canAddCategory(category)));
 
         CoachRepository.addCategory(MenuOption.fromCategory(category));
+    }
+
+    public void choiceMenu(Coach coach) {
+        String menu;
+        do {
+            menu = randomMenuGenerator.randomMenuChoice();
+        } while (not(coach.canAddMenu(menu)));
+
+        coach.addMenu(menu);
     }
 }
