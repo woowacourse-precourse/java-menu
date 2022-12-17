@@ -9,12 +9,25 @@ import menu.constant.Category;
 
 public class Recommender {
 
+    private static final int COACH_SIZE_MINIMUM = 2;
+    private static final int COACH_SIZE_MAXIMUM = 5;
+
     private final List<Coach> coaches;
     private final List<Category> recommendedCategories;
 
     public Recommender(List<Coach> coaches) {
+        validateCoachesSize(coaches);
         this.coaches = coaches;
         this.recommendedCategories = new ArrayList<>();
+    }
+
+    private void validateCoachesSize(List<Coach> coaches) {
+        if (coaches.size() < COACH_SIZE_MINIMUM) {
+            throw new IllegalArgumentException("코치가 너무 적습니다");
+        }
+        if (coaches.size() > COACH_SIZE_MAXIMUM) {
+            throw new IllegalArgumentException("코치가 너무 많습니다");
+        }
     }
 
     public void recommend() {
