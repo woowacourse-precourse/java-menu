@@ -1,9 +1,6 @@
 package menu.service;
 
-import menu.model.Category;
-import menu.model.DayOfTheWeek;
-import menu.model.MenuRecommendMachine;
-import menu.model.RandomCategoryGenerator;
+import menu.model.*;
 import menu.model.coach.Coach;
 import menu.model.coach.CoachRepository;
 
@@ -13,10 +10,12 @@ public class MenuRecommendService {
 
     private final CoachRepository coachRepository;
     private final MenuRecommendMachine menuRecommendMachine;
+    private final ThisWeekRecommendedCategory thisWeekRecommendedCategory;
 
     public MenuRecommendService() {
         this.coachRepository = new CoachRepository();
         this.menuRecommendMachine = new MenuRecommendMachine();
+        this.thisWeekRecommendedCategory = new ThisWeekRecommendedCategory();
     }
 
     public void generateCoachByCoachName(List<String> coachNames) {
@@ -37,4 +36,20 @@ public class MenuRecommendService {
         return DayOfTheWeek.getDaysOfTheWeek();
     }
 
+    public void recommendMenu(List<String> coachNames) {
+        Category recommendedCategory = RandomCategoryGenerator.generate();
+        thisWeekRecommendedCategory.updateRecommendCategory(recommendedCategory);
+
+        for (String coachName : coachNames) {
+            Coach findCoach = coachRepository.findByCoachName(coachName);
+            String recommendMenu = menuRecommendMachine.recommend(recommendedCategory);
+            while (!findCoach.validateRecommendMenu(recommendMenu)) {
+                retry(recommendedCategory);
+            }
+        }
+    }
+
+    private void retry(Category recommendedCategory) {
+        menuRecommendMachine.recommend(recommendedCategory);
+    }
 }

@@ -20,4 +20,16 @@ public class Coach {
     public void updateCannotEatFoods(List<String> cannotEatFoods) {
         this.cannotEatFoods = cannotEatFoods;
     }
+
+    public boolean validateRecommendMenu(String recommendMenu) {
+        boolean canRecommendMenuEat = true;
+       if (isCannotEatFood(recommendMenu)) {
+           canRecommendMenuEat = false;
+       }
+       return canRecommendMenuEat;
+    }
+
+    private boolean isCannotEatFood(String recommendMenu) {
+        return cannotEatFoods.contains(recommendMenu);
+    }
 }
