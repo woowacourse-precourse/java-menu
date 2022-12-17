@@ -26,15 +26,36 @@ public class MenuSuggester {
         return suggestedCategory;
     }
 
-    private void suggest(int day) {
-        int category = Randoms.pickNumberInRange(1, 5);
-        suggestedCategory[day] = category;
-
+    private void suggest(int idx) {
+        int category = pickCategory(idx);
         for (Coach coach : coaches) {
             String menu = pickMenu(coach, category);
             coach.addFood(menu);
         }
+    }
 
+    private int pickCategory(int idx) {
+        boolean possible;
+        int category;
+        do {
+            category = Randoms.pickNumberInRange(1, 5);
+            possible = possibleCategory(category);
+        } while (!possible);
+        suggestedCategory[idx] = category;
+        return category;
+    }
+
+    private boolean possibleCategory(int category) {
+        int count = 0;
+        for (int i = 0; i < suggestedCategory.length; i++) {
+            if (suggestedCategory[i] == category) {
+                count++;
+            }
+        }
+        if (count > 2) {
+            return false;
+        }
+        return true;
     }
 
     private String pickMenu(Coach coach, int category) {
