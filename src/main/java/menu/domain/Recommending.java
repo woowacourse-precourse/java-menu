@@ -13,6 +13,18 @@ public class Recommending {
         this.menu = menu;
     }
 
+    public boolean isCoach(Coach coach) {
+        return this.coach.equals(coach);
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public Coach getCoach() {
+        return coach;
+    }
+
     @Override
     public String toString() {
         return "Recommending{" +
@@ -33,13 +45,5 @@ public class Recommending {
     @Override
     public int hashCode() {
         return Objects.hash(coach, category, menu);
-    }
-
-    public boolean isCoach(Coach coach) {
-        return this.coach.equals(coach);
-    }
-
-    public Menu getMenu() {
-        return menu;
     }
 }

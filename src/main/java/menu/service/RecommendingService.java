@@ -3,6 +3,7 @@ package menu.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import menu.domain.*;
 import menu.system.exception.CategoryDuplicatedException;
+import menu.system.exception.MenuAlreadyRecommendedException;
 import menu.vo.Day;
 
 import java.util.*;
@@ -35,8 +36,13 @@ public class RecommendingService {
     }
 
     private static void recommendMenusToCoach(Day day, Category category, Coach coach) {
-        Menu menu = MenuRepository.findRandomOneByCategoryAndCoach(category, coach);
-        RecommendingRepository.save(day, new Recommending(coach, category, menu));
+        while (true) {
+            try {
+                Menu menu = MenuRepository.findRandomOneByCategoryAndCoach(category, coach);
+                RecommendingRepository.save(day, new Recommending(coach, category, menu));
+                return;
+            } catch (MenuAlreadyRecommendedException e) {}
+        }
     }
 
     public static List<Category> getRecommendedCategories() {
