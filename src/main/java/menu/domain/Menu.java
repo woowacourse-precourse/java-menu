@@ -1,5 +1,9 @@
 package menu.domain;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public enum Menu {
     KYUDONG("규동", Category.JAPANESE),
     UDON("우동", Category.JAPANESE),
@@ -64,5 +68,11 @@ public enum Menu {
 
     public Category getCategory() {
         return category;
+    }
+
+    public static List<Menu> getMenusByCategory(Category category) {
+        return Arrays.stream(values())
+                .filter(menu -> menu.category.equals(category))
+                .collect(Collectors.toList());
     }
 }
