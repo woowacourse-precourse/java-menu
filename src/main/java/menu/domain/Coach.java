@@ -73,4 +73,10 @@ public class Coach {
     public void clearInedibles() {
         inedibles.clear();
     }
+
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

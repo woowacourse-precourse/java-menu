@@ -5,13 +5,14 @@ import menu.util.MenuChoicer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class WeekDiet {
-    private static final List<Week> weeks = Arrays.stream(Week.values()).collect(Collectors.toList());
+    private final List<Week> weeks = Arrays.stream(Week.values()).collect(Collectors.toList());
     private List<FoodCategory> weekFoodCategories;
     private Map<Coach,List<String>> weekDietByCoachs;
 
@@ -62,9 +63,16 @@ public class WeekDiet {
         return createdMenus;
 
     }
-    @Override
-    public String toString() {
-        //TODO: 구
-        return "";
+
+    public List<Week> getWeeks() {
+        return Collections.unmodifiableList(weeks);
+    }
+
+    public List<FoodCategory> getWeekFoodCategories() {
+        return Collections.unmodifiableList(weekFoodCategories);
+    }
+
+    public Map<Coach, List<String>> getWeekDietByCoachs() {
+        return Collections.unmodifiableMap(weekDietByCoachs);
     }
 }
