@@ -34,7 +34,22 @@ public class MenuRecommender {
 
     private String selectMenu(Coach coach, Category category) {
         String menu = randomMenuGenerator.create(category);
+        if(!validateMenu(menu, coach)) {
+            return selectMenu(coach, category);
+        }
         return "";
+    }
+
+    public boolean validateMenu(String menu, Coach coach) {
+        // 각 코치가 못 먹는 메뉴인지 확인
+        if (!coach.canEat(menu)) {
+            return false;
+        }
+
+        // 각 코치에게 이미 추천한 메뉴인지 확인
+
+
+        return true;
     }
 
     public Category selectCategory() {

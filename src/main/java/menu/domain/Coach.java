@@ -16,6 +16,13 @@ public class Coach {
         recommendedMenu.add(menu);
     }
 
+    public boolean canEat(String menu) {
+        if (noEatMenu.contains(menu)) {
+            return false;
+        }
+        return true;
+    }
+
     public boolean hasMenu(String menu) {
         return true;
     }
