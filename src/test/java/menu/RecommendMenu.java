@@ -9,12 +9,12 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class RecommendMenu {
 	
-	ArrayList<String> coachName;
-	LinkedHashMap<String, ArrayList<String>> notEatingMenuForEachCoach;
-	ArrayList<String> categoryForWeek = new ArrayList<>();
-	ArrayList<String[]> menu = new ArrayList<>();
-	LinkedHashMap<String, ArrayList<String>> result = new LinkedHashMap<>();
-	ArrayList<String> recommendedMenu;
+	private ArrayList<String> coachName;
+	private LinkedHashMap<String, ArrayList<String>> notEatingMenuForEachCoach;
+	private ArrayList<String> categoryForWeek = new ArrayList<>();
+	private ArrayList<String[]> menu = new ArrayList<>();
+	private LinkedHashMap<String, ArrayList<String>> result = new LinkedHashMap<>();
+	private ArrayList<String> recommendedMenu;
 	
 	enum categories {
 		JAPANESE("일식", 1), KOREAN("한식", 2), CHINESE("중식", 3), ASIAN("아시안", 4), WESTERN("양식", 5);
@@ -43,12 +43,6 @@ public class RecommendMenu {
 		menu.add(new String[] { "깐풍기", "볶음면", "동파육", "짜장면", "짬뽕", "마파두부", "탕수육", "토마토 달걀볶음", "고추잡채"});
 		menu.add(new String[] { "팟타이", "카오 팟", "나시고렝", "파인애플 볶음밥", "쌀국수", "똠얌꿍", "반미", "월남쌈", "분짜"});
 		menu.add(new String[] { "라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니"});
-	}
-	
-	
-	public void printRecommendInstruction() {
-		System.out.println("메뉴 추천 결과입니다.");
-		System.out.println("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
 	}
 	
 	public void pickCategoryForAWeek() {
@@ -144,4 +138,11 @@ public class RecommendMenu {
 		return false;
 	}
 	
+	public ArrayList<String> getCategoryForWeek(){
+		return categoryForWeek;
+	}
+	
+	public LinkedHashMap<String, ArrayList<String>> getResult(){
+		return result;
+	}
 }
