@@ -13,4 +13,8 @@ public class Coach {
         this.foodNotEat = new ArrayList<>();
         this.foodEaten = new ArrayList<>();
     }
+
+     public void addfoodEaten(String food) {
+         foodEaten.add(food);
+     }
 }
