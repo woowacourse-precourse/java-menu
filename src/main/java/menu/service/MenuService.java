@@ -14,19 +14,26 @@ public class MenuService {
 
     public void recommendMenus(List<Category> categories, List<Coach> coaches) {
         coaches.forEach(coach -> {
-            List<Menu> recommendMenus = generateRecommendMenuList(categories);
-            coachService.inputRecommendedMenus(coach, recommendMenus);
+            List<String> recommendedMenuNames = generateRecommendMenuList(categories);
+            coachService.inputRecommendedMenus(coach, getMenusByNames(recommendedMenuNames));
         });
     }
 
-    public List<Menu> generateRecommendMenuList(List<Category> categories) {
-        List<Menu> recommendMenus = new ArrayList<>();
+    public List<String> generateRecommendMenuList(List<Category> categories) {
+        List<String> recommendMenus = new ArrayList<>();
         categories.forEach(category -> {
-            List<Menu> menus = Menu.getAllMenuOfCategory(category);
-            Menu recommendMenu = Randoms.shuffle(menus).get(0);
+            String recommendMenu = Randoms.shuffle(Menu.getAllMenuNamesOfCategory(category)).get(0);
             recommendMenus.add(recommendMenu);
         });
 
         return recommendMenus;
+    }
+
+    private List<Menu> getMenusByNames(List<String> recommendedMenuNames) {
+        List<Menu> recommendedMenus = new ArrayList<>();
+        recommendedMenuNames.forEach(name ->
+                recommendedMenus.add(Menu.findMenuByName(name)));
+
+        return recommendedMenus;
     }
 }
