@@ -21,10 +21,10 @@ public class Coachs {
 
     private void validateCoachs(List<String> names) {
         if (names.size() < MIN_NUM_COACH) {
-            throw new IllegalArgumentException(COACHS_UNDER_RANGE);
+            throw new IllegalStateException(COACHS_UNDER_RANGE);
         }
         if (names.size() > MAX_NUM_COACH) {
-            throw new IllegalArgumentException(COACHS_OVER_RANGE);
+            throw new IllegalStateException(COACHS_OVER_RANGE);
         }
     }
 
