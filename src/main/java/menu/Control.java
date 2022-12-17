@@ -33,7 +33,7 @@ public class Control {
     public void getInedible(List<String> coachNames) {
         for(String s : coachNames) {
             String inedible = inputView.coachInedibleMenu(s);
-            coachInedible.put(s, Arrays.asList(inedible));
+            this.coachInedible.put(s, Arrays.asList(inedible));
         }
         this.recommendation = new Recommendation(coachInedible);
     }
