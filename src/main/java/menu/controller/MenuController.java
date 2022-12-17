@@ -19,6 +19,10 @@ public class MenuController {
         this.menu = menu;
     }
 
+    private void printStartMessage() {
+        OutputView.printStartMessage();
+    }
+
     private List<String> getNames() {
         final CoachNameDto coachNameDto = InputView.getNames();
         menu.validateCoachNames(coachNameDto);
@@ -35,5 +39,10 @@ public class MenuController {
         final MenuDto menuDto = InputView.getMenus(name);
         menu.validateMenus(menuDto);
         return menuDto.getMenus();
+    }
+
+    private void printResult(final List<String> names, final List<List<String>> menus) {
+        final RecommendResultDto resultDto = menu.recommend(names, menus);
+        OutputView.printResult(resultDto);
     }
 }
