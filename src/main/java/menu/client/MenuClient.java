@@ -1,5 +1,6 @@
 package menu.client;
 
+import java.util.function.Supplier;
 import menu.di.ValidateMenuCommand;
 import menu.di.ValidateNameCommand;
 
@@ -13,10 +14,11 @@ public class MenuClient {
     }
 
     private void printStartMessage() {
+        OutputView.printStartMessage();
     }
 
     private ValidateNameCommand askNames() {
-        return null;
+        return InputView.askNames();
     }
 
     private ValidateMenuCommand askMenus() {
@@ -41,7 +43,7 @@ public class MenuClient {
             return something.get();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            handleError(something);
+            return handleError(something);
         }
     }
 }
