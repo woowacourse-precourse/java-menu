@@ -9,6 +9,7 @@ public class Group {
     private final List<Coach> coaches = new ArrayList<>();
 
     public void makeCategory() {
+        validateCoachSize();
         String category;
         do {
             category = Category.getRandomCategory();
@@ -18,5 +19,11 @@ public class Group {
 
     public void addCoach(String name, List<String> cannotEatMenus) {
         coaches.add(new Coach(name, cannotEatMenus));
+    }
+
+    private void validateCoachSize() {
+        if (coaches.size() < 2 || coaches.size() > 5) {
+            throw new IllegalArgumentException("[ERROR] 코치 수는 2명에서 5명 사이여야 합니다.");
+        }
     }
 }
