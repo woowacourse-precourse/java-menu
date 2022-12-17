@@ -21,4 +21,7 @@ public class Coach {
         return name;
     }
 
+    public List<String> getHateMenus() {
+        return hateMenus;
+    }
 }

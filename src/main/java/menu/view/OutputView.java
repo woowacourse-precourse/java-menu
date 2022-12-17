@@ -60,11 +60,11 @@ public class OutputView {
         for (Coach coach : coaches) {
             System.out.printf((MENU) + "%n",
                     coach.getName(),
-                    Menu.getRandomMenu(category1),
-                    Menu.getRandomMenu(category2),
-                    Menu.getRandomMenu(category3),
-                    Menu.getRandomMenu(category4),
-                    Menu.getRandomMenu(category5)
+                    Menu.getRandomMenu(category1, coach.getHateMenus()),
+                    Menu.getRandomMenu(category2, coach.getHateMenus()),
+                    Menu.getRandomMenu(category3, coach.getHateMenus()),
+                    Menu.getRandomMenu(category4, coach.getHateMenus()),
+                    Menu.getRandomMenu(category5, coach.getHateMenus())
             );
         }
     }

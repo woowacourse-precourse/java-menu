@@ -77,17 +77,31 @@ public enum Menu {
     }
 
     // 카테고리에 있는 메뉴 랜덤으로 뽑는 메서드
-    public static String getRandomMenu(String category) {
+    public static String getRandomMenu(String category, List<String> hateMenus) {
         for (Menu menu : Menu.values()) {
             if (menu.getMenuCategory().equals(category)) {
-                return getMenu(menu);
+                return getMenu(menu, hateMenus);
             }
         }
         return null;
     }
 
-    private static String getMenu(Menu menu) {
-        List<String> menus = Arrays.asList(menu.getMenu().split(", "));
-        return menus.get(Randoms.pickNumberInRange(0, menus.size()));
+    private static String getMenu(Menu menu, List<String> hateMenus) {
+        while (true) {
+            List<String> menus = Arrays.asList(menu.getMenu().split(", "));
+            String randomMenu = menus.get(Randoms.pickNumberInRange(0, menus.size() - 1));
+            if (getCoachFavoriteFood(randomMenu, hateMenus) != null) {
+                return randomMenu;
+            }
+        }
+    }
+
+    private static String getCoachFavoriteFood(String randomMenu, List<String> hateMenus) {
+        for (String menu : hateMenus) {
+            if (!randomMenu.equals(menu)) {
+                return menu;
+            }
+        }
+        return null;
     }
 }
