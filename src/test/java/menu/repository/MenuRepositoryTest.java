@@ -25,4 +25,15 @@ class MenuRepositoryTest {
 			.count())
 			.isEqualTo(1);
 	}
+	@Test
+	void repoGetMenuListByCategoryTest() {
+		MenuRepository menuRepository = new MenuRepository();
+
+		List<Menu> menuList = MenuRepository.menusByCategory(Category.WESTERN);
+
+		Assertions.assertThat(menuList.stream()
+			.filter(menu -> menu.getName().equals("끼슈"))
+			.count())
+			.isEqualTo(1);
+	}
 }

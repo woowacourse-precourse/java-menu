@@ -40,4 +40,8 @@ public class MenuRepository {
 	public static Map<Category, List<Menu>> menus() {
 		return Collections.unmodifiableMap(menus);
 	}
+
+	public static List<Menu> menusByCategory(Category category) {
+		return Collections.unmodifiableList(menus.get(category));
+	}
 }
