@@ -9,8 +9,10 @@ public class MenuRecommendation {
     private static final int RECOMMEND_SIZE = 5;
 
     List<Category> randomCategories = new ArrayList<>();
+    List<String> randomMenus = new ArrayList<>();
 
     public List<Category> getRandomCategories() {
+        clearCategories();
         Category[] categories = Category.values();
 
         while (randomCategories.size() < RECOMMEND_SIZE) {
@@ -21,6 +23,37 @@ public class MenuRecommendation {
                 randomCategories.add(category);
         }
         return randomCategories;
+    }
+
+    public List<String> getRandomMenus(Coach coach) {
+        clearMenus();
+
+        while (randomMenus.size() < RECOMMEND_SIZE) {
+            Category category = randomCategories.get(randomMenus.size());
+
+            List<String> menus = category.getMenu().getMenus();
+            int index = Randoms.pickNumberInRange(0, menus.size() - 1);
+            String randomMenu = menus.get(index);
+            if (!hasMenu(randomMenu) && !coach.isUnwantedMenu(randomMenu))
+                randomMenus.add(randomMenu);
+        }
+        return randomMenus;
+    }
+
+    private boolean hasMenu(String randomMenu) {
+        return randomMenu.contains(randomMenu);
+    }
+
+    private boolean isUnwantedMenu(String randomMenu, List<String> unwantedMenus) {
+        return unwantedMenus.contains(randomMenu);
+    }
+
+    private void clearCategories() {
+        randomCategories.clear();
+    }
+
+    private void clearMenus() {
+        randomCategories.clear();
     }
 
     private boolean isValidCategory(Category category) {
