@@ -242,7 +242,7 @@ String menu=Randoms.shuffle(menus).get(0);
             * class: **CategoryService** - 카테고리 & 메뉴 추천 진행
         * package: `Coach`
             * class: **Coach** - 각 코치의 상태
-            * class: **CoachService** - 코치들의 상태 고나리
+            * class: **CoachService** - 코치들의 상태 관리
     * package: `view`
         * class: **InputView** - 입력받기, 입력에 대한 예외 처리
         * class: **OutputView** - 화면 출력 담당
