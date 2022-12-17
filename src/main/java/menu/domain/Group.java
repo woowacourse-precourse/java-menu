@@ -28,11 +28,12 @@ public class Group {
 
     private void makeCategory() {
 //        validateCoachSize();
-        String category;
+        Category category = new Category();
+        String categoryName;
         do {
-            category = Category.getRandomCategory();
-        } while (Collections.frequency(categoryHistory, category) >= 2);
-        categoryHistory.add(category);
+            categoryName = category.getRandomCategory();
+        } while (Collections.frequency(categoryHistory, categoryName) >= 2);
+        categoryHistory.add(categoryName);
     }
 
     public List<Coach> getCoaches() {

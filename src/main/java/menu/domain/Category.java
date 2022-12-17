@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Category {
-    private static List<String> categoires = List.of("", "일식", "한식", "중식", "아시안", "양식");
+    private List<String> categoires = List.of("", "일식", "한식", "중식", "아시안", "양식");
     private List<String> japan = List.of(
             "규동", "우동", "미소시루", "스시", "가츠동", "오니기리", "하이라이스", "라멘", "오코노미야끼"
     );
@@ -33,7 +33,7 @@ public class Category {
         categoryAll.put("양식", europian);
     }
 
-    public static String getRandomCategory() {
+    public String getRandomCategory() {
         return categoires.get(Randoms.pickNumberInRange(1, 5));
     }
 
