@@ -1,6 +1,9 @@
 package menu.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import menu.dto.CoachDto;
+import menu.dto.CoachNamesDto;
 
 public class Group {
     private static final int MIN_SIZE = 2;
@@ -19,5 +22,20 @@ public class Group {
         }
     }
 
+    public CoachNamesDto toCoachNamesDto() {
+        List<String> names = group.stream()
+                .map(Coach::getName)
+                .collect(Collectors.toList());
+        return new CoachNamesDto(names);
+    }
+
+    public void addCoachCantEatMenus(CoachDto coachDto) {
+        String name = coachDto.getName();
+        Coach coach = group.stream()
+                .filter(c -> c.isSameName(name))
+                .findFirst()
+                .get();
+        coach.addCantEatMenus(coachDto.getCantEatMenus());
+    }
 
 }

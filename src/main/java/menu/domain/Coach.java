@@ -29,4 +29,13 @@ public class Coach {
         }
         cantEatMenus.addAll(menus);
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isSameName(String name) {
+        return this.name.equals(name);
+    }
+
 }
