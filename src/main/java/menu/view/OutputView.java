@@ -31,4 +31,8 @@ public class OutputView {
         List<String> menuResult = result.checkSelectedMenu(coachName);
         System.out.println("[ " + coachName + " | " + String.join(" | ", menuResult) + " ]");
     }
+
+    public static void printCompleteMessage() {
+        System.out.println("\n추천을 완료했습니다.");
+    }
 }

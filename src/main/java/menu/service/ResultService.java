@@ -59,5 +59,6 @@ public class ResultService {
         for (String coachName : coach.getCoachNames()) {
             OutputView.printMenuResult(result, coachName);
         }
+        OutputView.printCompleteMessage();
     }
 }
