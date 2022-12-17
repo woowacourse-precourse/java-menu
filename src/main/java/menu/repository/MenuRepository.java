@@ -51,4 +51,8 @@ public class MenuRepository {
         }
         throw new IllegalArgumentException("존재하지 않는 카테고리입니다.");
     }
+
+    public static List<String> getMenusOf(MenuCategory category) {
+        return menus.get(category);
+    }
 }

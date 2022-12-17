@@ -11,4 +11,8 @@ public class RecommendCategoryRepository {
     public static void addCategory(MenuCategory category) {
         menuCategories.add(category);
     }
+
+    public static List<MenuCategory> getMenuCategories() {
+        return menuCategories;
+    }
 }

@@ -31,6 +31,7 @@ public class MenuController {
             repeat(this::addDoNotRecommendMenus, coach);
         }
         menuService.selectCategories();
+        coachService.recommendMenus();
     }
 
     private <T> T repeat(Supplier<T> function) {
@@ -42,14 +43,14 @@ public class MenuController {
         }
     }
 
-    private <T, R> R repeat(Function<T, R> function, T argument) {
-        try {
-            return function.apply(argument);
-        } catch (IllegalArgumentException exception) {
-            outputView.printError(exception.getMessage());
-            return repeat(function, argument);
-        }
-    }
+//    private <T, R> R repeat(Function<T, R> function, T argument) {
+//        try {
+//            return function.apply(argument);
+//        } catch (IllegalArgumentException exception) {
+//            outputView.printError(exception.getMessage());
+//            return repeat(function, argument);
+//        }
+//    }
 
     private <T> void repeat(Consumer<T> function, T argument) {
         try {

@@ -23,4 +23,16 @@ public class Coach {
     public void recommendFood(String name) {
         recommendedFoods.add(name);
     }
+
+    private boolean isNotRecommended(String menu) {
+        return !recommendedFoods.contains(menu);
+    }
+
+    private boolean likeMenu(String menu) {
+        return !doNotRecommendFoods.contains(menu);
+    }
+
+    public boolean canRecommend(String menu) {
+        return isNotRecommended(menu) && likeMenu(menu);
+    }
 }

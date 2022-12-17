@@ -1,7 +1,12 @@
 package menu.service;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import menu.domain.Category;
 import menu.domain.coach.Coach;
+import menu.domain.menucategory.MenuCategory;
 import menu.repository.CoachRepository;
+import menu.repository.MenuRepository;
+import menu.repository.RecommendCategoryRepository;
 
 import java.util.List;
 
@@ -18,5 +23,22 @@ public class CoachService {
 
     public void addDoNotRecommendFoods(Coach coach, List<String> foods) {
         foods.forEach(coach::addDoNotRecommendFood);
+    }
+
+    private void recommendMenuTo(Coach coach, MenuCategory menuCategory) {
+        List<String> menus = MenuRepository.getMenusOf(menuCategory);
+        String menu = Randoms.shuffle(menus).get(0);
+        if (!coach.canRecommend(menu)) {
+            recommendMenuTo(coach, menuCategory);
+        }
+
+        coach.recommendFood(menu);
+    }
+
+    public void recommendMenus() {
+        for (MenuCategory category : RecommendCategoryRepository.getMenuCategories()) {
+            CoachRepository.getAllCoaches()
+                    .forEach(coach -> recommendMenuTo(coach, category));
+        }
     }
 }
