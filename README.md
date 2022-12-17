@@ -237,11 +237,12 @@ String menu=Randoms.shuffle(menus).get(0);
     * class: **Application** - ProgramController 호출
     * class: **ProgramController** - 프로그램 진행자
     * package: `category`
-        * class: **Category** - 카테고리 관리
-        * class: CategoryService - 카테고리 & 메뉴 추천 관리
+        * class: **Category** - 카테고리 & 메뉴 목록 관리
+        * class: **CategoryController** - CategoryService의 로직 호출, OutputView 호출
+        * class: **CategoryService** - 카테고리 & 메뉴 추천 관리 (로직 구현)
     * package: `coach`
-        * class: **Coach** - 각 코치의 상태
-        * class: **CoachService** - 코치들의 상태 관리
+        * class: **Coach** - 각 코치의 상태 관리
+        * class: **CoachController** - 코치들 목록을 가짐, InputView, OutputView 호출
     * package: `view`
         * class: **InputView** - 입력받기, 입력에 대한 예외 처리
         * class: **OutputView** - 화면 출력 담당
