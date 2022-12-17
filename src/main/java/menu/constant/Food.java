@@ -28,9 +28,10 @@ public enum Food {
         this.category = category;
     }
 
-    public static List<Food> valuesFromCategory(Category category) {
+    public static List<String> foodNamesFromCategory(Category category) {
         return Arrays.stream(values())
                 .filter(food -> food.category.equals(category))
+                .map(Enum::name)
                 .collect(Collectors.toList());
     }
 }
