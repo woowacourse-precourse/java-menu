@@ -10,13 +10,7 @@ import menu.util.constants.ExceptionMessage;
 
 public class FoodRepository {
 
-
-    private static final FoodRepository INSTANCE = new FoodRepository();
     private static final List<Food> foodRepository = new ArrayList();
-
-    public static FoodRepository getInstance() {
-        return INSTANCE;
-    }
 
     public static void addFood(Food food) {
         foodRepository.add(food);

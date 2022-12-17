@@ -12,10 +12,6 @@ public class Foods {
         this.foods = new ArrayList<>();
     }
 
-    public List<Food> getFoods() {
-        return Collections.unmodifiableList(foods);
-    }
-
     public void addFood(Food food) {
         foods.add(food);
     }

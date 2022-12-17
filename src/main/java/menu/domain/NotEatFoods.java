@@ -16,10 +16,6 @@ public class NotEatFoods {
         return this.coach;
     }
 
-    public Foods getFoods() {
-        return this.foods;
-    }
-
     public void addNotEatFood(Food notEatFood) {
         foods.addFood(notEatFood);
     }
