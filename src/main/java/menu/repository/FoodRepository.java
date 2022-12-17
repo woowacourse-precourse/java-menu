@@ -31,6 +31,16 @@ public class FoodRepository {
                 .collect(Collectors.toList());
     }
 
+    public static Food findFoodByFoodName(String foodName) {
+        if (!isExistByFoodName(foodName)) {
+            throw new IllegalArgumentException("[ERROR] 일치하는 음식이 없습니다.");
+        }
+        return foodRepository.stream()
+                .filter(food -> foodName.equals(food.getFoodName()))
+                .findFirst()
+                .get();
+    }
+
     public static boolean isExistByFoodName(String foodName) {
         return foodRepository.stream()
                 .anyMatch(food -> foodName.equals(food.getFoodName()));

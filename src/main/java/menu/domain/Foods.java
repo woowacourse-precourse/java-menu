@@ -20,4 +20,8 @@ public class Foods {
         foods.add(food);
     }
 
+    public boolean canEat(Food food) {
+        return !foods.contains(food);
+    }
+
 }

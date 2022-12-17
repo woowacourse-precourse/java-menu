@@ -29,4 +29,8 @@ public class NotEatFoods {
                 .forEach(notEatFood -> addNotEatFood(notEatFood));
     }
 
+    public boolean canEat(Food food) {
+        return foods.canEat(food);
+    }
+
 }
