@@ -1,11 +1,14 @@
 package menu.controller;
 
 import menu.domain.Coach;
+import menu.domain.Day;
+import menu.domain.Menu;
 import menu.domain.MenuRecommender;
 import menu.util.RepeatValidator;
 import menu.view.InputView;
 import menu.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MenuRecommendController {
@@ -27,7 +30,7 @@ public class MenuRecommendController {
         addCoaches();
         addUneatableFoodToCoaches();
         menuRecommender.selectRecommendedMenus();
-        System.out.println("dd");
+        printResult();
     }
 
     private void addCoaches() {
@@ -53,5 +56,27 @@ public class MenuRecommendController {
             return inputView.readUneatableFoodOf(coach.getName(),
                     coach.getMinUneatableFoodCount(), coach.getMaxUneatableFoodCount());
         });
+    }
+
+    private void printResult() {
+        outputView.printResultInfoMessage();
+
+        outputView.printDaysTable(List.of(Day.values()));
+
+        List<Menu> weekMenuCategory = new ArrayList<>();
+        for (Day day : Day.values()) {
+            weekMenuCategory.add(menuRecommender.getCategoryAt(day));
+        }
+        outputView.printCategoryTable(weekMenuCategory);
+
+        for (Coach coach : menuRecommender.getCoaches()) {
+            List<String> eatingFoods = new ArrayList<>();
+            for (Day day : Day.values()) {
+                eatingFoods.add(coach.getFoodAt(day));
+            }
+            outputView.printFoodTable(coach.getName(), eatingFoods);
+        }
+
+        outputView.printResultInfoEndMessage();
     }
 }

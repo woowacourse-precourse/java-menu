@@ -62,6 +62,10 @@ public class Coach {
         return name;
     }
 
+    public String getFoodAt(Day day) {
+        return eatingFoodLog.get(day);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

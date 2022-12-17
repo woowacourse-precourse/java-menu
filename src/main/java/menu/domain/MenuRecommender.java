@@ -91,6 +91,9 @@ public class MenuRecommender {
         return coach.isEatable(menu) && !coach.isEatBefore(menu);
     }
 
+    public Menu getCategoryAt(Day day) {
+        return weekCategoryLog.get(day);
+    }
 
     public List<Coach> getCoaches() {
         return coaches;

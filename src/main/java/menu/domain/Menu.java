@@ -35,4 +35,8 @@ public enum Menu {
     public List<String> getFoods() {
         return foods;
     }
+
+    public String getCategory() {
+        return category;
+    }
 }
