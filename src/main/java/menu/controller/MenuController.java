@@ -24,6 +24,7 @@ public class MenuController {
         List<Coach> coaches = getCoaches();
         List<List<String>> cantEatMenus = getCantEatMenus(coaches);
         shuffleRandomMenu(coaches, cantEatMenus);
+        OutputView.finish();
     }
 
     private List<List<String>> shuffleRandomMenu(List<Coach> coaches, List<List<String>> cantEatMenus) {

@@ -21,4 +21,8 @@ public class OutputView {
     public static void cantEatMenu(Coach coach) {
         System.out.println(NEW_LINE + coach.print() + "(이)가 못 먹는 메뉴를 입력해 주세요.");
     }
+
+    public static void finish() {
+        System.out.println(NEW_LINE + "추천을 완료했습니다.");
+    }
 }
