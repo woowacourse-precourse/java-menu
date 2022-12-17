@@ -7,6 +7,7 @@ import menu.model.Menu;
 import menu.model.Recommender;
 import menu.view.InputView;
 import menu.view.OutputView;
+import org.junit.jupiter.params.ParameterizedTest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,17 +40,27 @@ public class MainController {
     }
 
     private void setCoachNames(){
-        OutputView.printGetCoachNamesMessage();
-        String[] coachNames = InputView.readCoachNames();
-        for(String coachName : coachNames){
-            coaches.add(new Coach(coachName));
+        try{
+            OutputView.printGetCoachNamesMessage();
+            String[] coachNames = InputView.readCoachNames();
+            for(String coachName : coachNames){
+                coaches.add(new Coach(coachName));
+            }
+        }catch(IllegalArgumentException e){
+            OutputView.printErrorMessage(e.getMessage());
+            setCoachNames();
         }
     }
 
     private void setBanFoods(Coach coach){
-        OutputView.printGetBanFoodsMessage(coach.getName());
-        String[] banFoods = InputView.readBanFoods();
-        coach.setBanFoods(banFoods);
+        try{
+            OutputView.printGetBanFoodsMessage(coach.getName());
+            String[] banFoods = InputView.readBanFoods();
+            coach.setBanFoods(banFoods);
+        }catch(IllegalArgumentException e){
+            OutputView.printErrorMessage(e.getMessage());
+            setBanFoods(coach);
+        }
     }
 
 

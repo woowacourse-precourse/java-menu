@@ -1,6 +1,7 @@
 package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import menu.validator.InputValidator;
 
 public class InputView {
     public static final String SPLIT_REGEX = "\\s*,\\s*";
@@ -8,12 +9,20 @@ public class InputView {
     public static String[] readCoachNames(){
         String input = Console.readLine();
         String[] coachNames = parse(input);
+        InputValidator.validateCoachNamesNumber(coachNames);
+        for(String coachName : coachNames){
+            InputValidator.validateCoachNameLength(coachName);
+        }
         return coachNames;
     }
 
     public static String[] readBanFoods(){
         String input = Console.readLine();
         String[] banFoods = parse(input);
+        InputValidator.validateBanFoodsNumber(banFoods);
+        for(String banFood : banFoods){
+            InputValidator.validateExistFood(banFood);
+        }
         return banFoods;
     }
 
