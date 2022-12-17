@@ -2,7 +2,6 @@ package menu.View;
 
 import java.util.List;
 
-import menu.Model.Category;
 import menu.Model.Coach;
 import menu.Model.Coachs;
 
