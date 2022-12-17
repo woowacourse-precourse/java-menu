@@ -1,6 +1,6 @@
 package menu.model;
 
-public enum FoodCategory {
+public enum MenuCategory {
     JAPAN("일식", 1),
     KOREA("한식", 2),
     CHINA("중식", 3),
@@ -10,7 +10,7 @@ public enum FoodCategory {
     private final String category;
     private final int number;
 
-    FoodCategory(final String category, final int number) {
+    MenuCategory(final String category, final int number) {
         this.category = category;
         this.number = number;
     }

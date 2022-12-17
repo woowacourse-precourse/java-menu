@@ -1,6 +1,6 @@
 package menu.repository;
 
-import menu.model.FoodCategory;
+import menu.model.MenuCategory;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -8,14 +8,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static menu.model.FoodCategory.ASIAN;
-import static menu.model.FoodCategory.CHINA;
-import static menu.model.FoodCategory.JAPAN;
-import static menu.model.FoodCategory.KOREA;
-import static menu.model.FoodCategory.WESTERN;
+import static menu.model.MenuCategory.ASIAN;
+import static menu.model.MenuCategory.CHINA;
+import static menu.model.MenuCategory.JAPAN;
+import static menu.model.MenuCategory.KOREA;
+import static menu.model.MenuCategory.WESTERN;
 
 public class MenuRepository {
-    private static final Map<FoodCategory, List<String>> menus = new HashMap<>();
+    private static final Map<MenuCategory, List<String>> menus = new HashMap<>();
 
     private static final String JAPANESE_FOOD = "규동, 우동, 미소시루, 스시, 가츠동, 오니기리, 하이라이스, 라멘, 오코노미야끼";
     private static final String KOREAN_FOOD = "김밥, 김치찌개, 쌈밥, 된장찌개, 비빔밥, 칼국수, 불고기, 떡볶이, 제육볶음";
@@ -34,7 +34,7 @@ public class MenuRepository {
         initializeMenu(WESTERN, WESTERN_FOOD);
     }
 
-    private static void initializeMenu(final FoodCategory category, final String menuStrings) {
+    private static void initializeMenu(final MenuCategory category, final String menuStrings) {
         final String[] splitFood = splitFoodByComma(menuStrings);
         final List<String> foodToList = Arrays.stream(splitFood)
                 .collect(Collectors.toList());
