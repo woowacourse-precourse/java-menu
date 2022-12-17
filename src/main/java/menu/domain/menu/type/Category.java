@@ -18,10 +18,6 @@ public enum Category {
         this.name = name;
     }
 
-    public int getNumber() {
-        return number;
-    }
-
     public String getName() {
         return name;
     }
