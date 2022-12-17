@@ -60,4 +60,10 @@ public class MenuService {
     public String getCoachName() {
         return coach.getName();
     }
+
+    public List<String> getMenus() {
+        return menuHistory.getMenus().stream()
+                .map(Menu::getName)
+                .collect(Collectors.toUnmodifiableList());
+    }
 }
