@@ -41,4 +41,8 @@ public class MenuRepository {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 없는 메뉴입니다."));
     }
+
+    public List<Menu> getMenusByCategory(Category category) {
+        return menus.stream().filter(v -> v.getCategory() == category).collect(Collectors.toList());
+    }
 }
