@@ -8,6 +8,12 @@ import menu.Service;
 
 public class OutputView {
 
+    private static final String DIVIDE = " | ";
+    private static final String START = "[ ";
+    private static final String END = " ]";
+    private static final String DAY = "구분";
+    private static final String CATEGORY = "카테고리";
+
     public static void print(PrintMessages printMessage) {
         System.out.println(printMessage.getMessage());
     }
@@ -25,33 +31,33 @@ public class OutputView {
     }
 
     public static void showDays() {
-        System.out.println("메뉴 추천 결과입니다.");
-        String result = "[ 구분";
+        print(PrintMessages.RESULT);
+        String result = START + DAY;
         for (DaysName day : DaysName.values()) {
-            result += " | " + day.getKorean();
+            result += DIVIDE + day.getKorean();
         }
-        result += " ]";
+        result += END;
         System.out.println(result);
     }
 
     public static void showCategories(Service service) {
-        String result = "[ 카테고리";
+        String result = START + CATEGORY;
         for (Day day : service.getDaysResult()) {
-            result += " | " + day.getCategory().getName();
+            result += DIVIDE + day.getCategory().getName();
         }
-        result += " ]";
+        result += END;
         System.out.println(result);
     }
 
     public static void showRecommended(Service service) {
         for (Coach coach : service.getGroup()) {
-            String result = "[ " + coach.getName();
+            String result = START + coach.getName();
             for (Menu menu : coach.getRecommended()) {
-                result += " | " + menu.getName();
+                result += DIVIDE + menu.getName();
             }
-            result += " ]";
+            result += END;
             System.out.println(result);
         }
-        System.out.println("\n추천을 완료했습니다.");
+        print(PrintMessages.FINISH);
     }
 }

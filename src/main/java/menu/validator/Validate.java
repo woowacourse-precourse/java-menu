@@ -4,6 +4,8 @@ import menu.ValidMenus;
 
 public class Validate {
 
+    private static final String DIVIDE = ",";
+
     public static void coachName(String coachName) {
         int nameLength = coachName.length();
         if (!(2 <= nameLength && nameLength <= 4)) {
@@ -11,12 +13,7 @@ public class Validate {
         }
     }
 
-    public static ValidMenus menu(String menuName) {
-        for (ValidMenus validMenu : ValidMenus.values()) {
-            if (validMenu.getName().equals(menuName)) {
-                return validMenu;
-            }
-        }
-        throw new IllegalArgumentException(ErrorMessages.ERROR.toString() + ErrorMessages.INVALID_MENU);
+    public static void menu(String menuName) {
+        ValidMenus.findMenuByName(menuName);
     }
 }

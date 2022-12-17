@@ -150,7 +150,7 @@ public class Service {
 
     public Menu findMenuByName(String name) {
         for (Menu menu : menus) {
-            if(menu.getName().equals(name)){
+            if (menu.getName().equals(name)) {
                 return menu;
             }
         }

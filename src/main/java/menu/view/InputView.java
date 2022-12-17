@@ -10,6 +10,7 @@ import menu.validator.Validate;
 public class InputView {
 
     private static final String DIVIDE = ",";
+    private static final String NULL = "";
 
     public static void insertCoach(Service service) {
         String input = Console.readLine();
@@ -21,11 +22,10 @@ public class InputView {
 
     public static void insertHateMenuBy(Service service, Coach coach) {
         String input = Console.readLine();
-        if (input.equals("")) {
+        if (input.equals(NULL)) {
             return;
         }
         Arrays.stream(input.split(DIVIDE)).forEach(hateMenuInput -> {
-            Validate.menu(hateMenuInput);
             Menu menu = service.getMenuByName(hateMenuInput);
             service.addHateMenuBy(coach, menu);
         });
