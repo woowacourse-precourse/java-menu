@@ -55,7 +55,7 @@ public class OutputView {
         List<DayOfTheWeek> dayOfTheWeeks = recommendResults.stream().map(RecommendResult::getDayOfTheWeek).collect(Collectors.toList());
         StringBuilder stringBuilder = new StringBuilder(DIVISION_START + DIVISION_SPACE + DIVISION + DIVISION_SPACE + DIVISION_LINE);
         for (DayOfTheWeek dayOfTheWeek : dayOfTheWeeks) {
-            stringBuilder.append(DIVISION_SPACE + dayOfTheWeek.getDayOfTheWeek() + DIVISION_SPACE + DIVISION_LINE);
+            stringBuilder.append(DIVISION_SPACE).append(dayOfTheWeek.getDayOfTheWeek()).append(DIVISION_SPACE).append(DIVISION_LINE);
         }
         stringBuilder.deleteCharAt(stringBuilder.length() - 1);
         stringBuilder.append(DIVISION_END);
@@ -66,7 +66,7 @@ public class OutputView {
         List<MenuCategory> menuCategories = recommendResults.stream().map(RecommendResult::getMenuCategory).collect(Collectors.toList());
         StringBuilder stringBuilder = new StringBuilder(DIVISION_START + DIVISION_SPACE + CATEGORY + DIVISION_SPACE + DIVISION_LINE);
         for (MenuCategory menuCategory : menuCategories) {
-            stringBuilder.append(DIVISION_SPACE + menuCategory.getMenuCategory() + DIVISION_SPACE + DIVISION_LINE);
+            stringBuilder.append(DIVISION_SPACE).append(menuCategory.getMenuCategory()).append(DIVISION_SPACE).append(DIVISION_LINE);
         }
         stringBuilder.deleteCharAt(stringBuilder.length() - 1);
         stringBuilder.append(DIVISION_END);
@@ -75,16 +75,16 @@ public class OutputView {
 
     private static void printCoachAndMenu(List<RecommendResult> recommendResults, List<Coach> coaches) {
         List<Map<Coach, Menu>> coachAndMenus = recommendResults.stream().map(RecommendResult::getCoachAndMenu).collect(Collectors.toList());
-        for (Coach cocoach : coaches) {
-            List<Menu> menus = coachAndMenus.stream().map(coachAndMenu -> coachAndMenu.get(cocoach)).collect(Collectors.toList());
-            System.out.println(getMessageByCoach(cocoach, menus));
+        for (Coach coach : coaches) {
+            List<Menu> menus = coachAndMenus.stream().map(coachAndMenu -> coachAndMenu.get(coach)).collect(Collectors.toList());
+            System.out.println(getMessageByCoach(coach, menus));
         }
     }
 
     private static String getMessageByCoach(Coach coach, List<Menu> menus) {
         StringBuilder stringBuilder = new StringBuilder(DIVISION_START + DIVISION_SPACE + coach.getName() + DIVISION_SPACE + DIVISION_LINE);
         for (Menu menu : menus) {
-            stringBuilder.append(DIVISION_SPACE + menu.getName() + DIVISION_SPACE + DIVISION_LINE);
+            stringBuilder.append(DIVISION_SPACE).append(menu.getName()).append(DIVISION_SPACE).append(DIVISION_LINE);
         }
         stringBuilder.deleteCharAt(stringBuilder.length() - 1);
         stringBuilder.append(DIVISION_END);
