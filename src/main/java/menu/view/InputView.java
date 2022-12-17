@@ -18,9 +18,12 @@ public class InputView {
     public static String[] readBanFoods(){
         String input = Console.readLine();
         String[] banFoods = parse(input);
-        InputValidator.validateBanFoodsNumber(banFoods);
-        InputValidator.validateDuplicatedBanFoodNames(banFoods);
-        InputValidator.validateAllFoodIsExist(banFoods);
+        if(banFoods[0] == "" || banFoods[0] == null){
+            System.out.println(banFoods.length);
+            InputValidator.validateBanFoodsNumber(banFoods);
+            InputValidator.validateDuplicatedBanFoodNames(banFoods);
+            InputValidator.validateAllFoodIsExist(banFoods);
+        }
         return banFoods;
     }
 
