@@ -24,7 +24,7 @@ public class CoachRepository {
     public static Coach findByName(String coachName) {
         return coachs.stream()
                 .filter(coach -> coach.getName().equals(coachName))
-                .findFirst().get();
+                .findFirst().orElseThrow(IllegalArgumentException::new);
     }
 
     public static void pickMenus(List<String> categoryList) {

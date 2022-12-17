@@ -9,7 +9,7 @@ import java.util.List;
 
 public class WeeklyCategories {
 
-    private List<String> categories = new ArrayList<>();
+    private final List<String> categories = new ArrayList<>();
 
     public void pickCategories() {
         for (int i=0; i<5; i++) {

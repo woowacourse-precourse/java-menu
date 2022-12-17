@@ -2,6 +2,7 @@ package menu.util;
 
 import menu.type.CategoryList;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Validator {
@@ -13,6 +14,8 @@ public class Validator {
     private static final String HATING_FOOD_LENGTH_ERROR = "못 먹는 메뉴는 최대 2개 까지 가능합니다.";
 
     private static final String NOT_EXIST_MENUS = "메뉴판에 존재하지 않는 메뉴입니다.";
+
+    private static final String NAME_DUPLICATE_ERROR = "코치 이름중에 중복된 이름이 있습니다.";
 
     private static final String COMMA = ",";
 
@@ -29,6 +32,19 @@ public class Validator {
     public static void checkCoachNames(String input) {
         checkCoachNumber(input);
         checkCoachNameLength(input);
+        checkCoachNameDuplicate(input);
+    }
+
+    private static void checkCoachNameDuplicate(String input) {
+        HashMap<String, Integer> map = new HashMap<>();
+        for (String s : input.split(COMMA)) {
+            map.put(s, map.getOrDefault(s, 0) + 1);
+        }
+        for (int count : map.values()) {
+            if (count > 1) {
+                throw new IllegalArgumentException(NAME_DUPLICATE_ERROR);
+            }
+        }
     }
 
     private static void checkCoachNumber(String input) {
