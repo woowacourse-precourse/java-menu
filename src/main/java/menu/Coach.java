@@ -10,6 +10,9 @@ public class Coach {
     public Coach(String name) {
         this.name = name;
     }
+    public String getName() {
+        return name;
+    }
 
     public void addFood(String food) {
         inedibleFoods.add(food);
@@ -19,5 +22,9 @@ public class Coach {
         for (String food : foods) {
             addFood(food);
         }
+    }
+
+    public boolean containsInedible(String food) {
+        return inedibleFoods.contains(food);
     }
 }
