@@ -15,6 +15,7 @@ public class MenuController {
     public void start() {
         try {
             init();
+
         } catch (IllegalArgumentException error) {
             printErrorMessage(error.getMessage());
         }
