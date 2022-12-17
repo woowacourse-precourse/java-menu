@@ -1,6 +1,5 @@
 package menu;
 
-import static menu.configure.MenuConfigure.configure;
 import menu.controller.MenuRecommendationController;
 
 public class Application {

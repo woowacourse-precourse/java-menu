@@ -1,5 +1,6 @@
 package menu.controller;
 
+import static menu.configure.MenuConfigure.DAYS;
 import static menu.configure.MenuConfigure.configure;
 import static menu.repository.CoachCannotEatRepository.addCoachCannotEat;
 import static menu.repository.CoachRepository.addAllCoaches;
@@ -24,7 +25,7 @@ public class MenuRecommendationController {
     System.out.println("점심 메뉴 추천을 시작합니다.\n");
     saveCoaches();
     saveCoachCannotEat();
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < DAYS.size(); i++) {
       menuRecommendationService.recommend();
     }
     outputView.printResult();

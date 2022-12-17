@@ -4,6 +4,11 @@ import static menu.configure.MenuConfigure.DAYS;
 import static menu.repository.CategoryRepository.findAllCategoryNames;
 import static menu.repository.CoachRepository.coaches;
 import static menu.repository.RecommendationResultRepository.result;
+import static menu.view.OutputMessage.CATEGORY;
+import static menu.view.OutputMessage.ERROR_PREFIX;
+import static menu.view.OutputMessage.RECOMMEND_RESULT_MESSAGE;
+import static menu.view.OutputMessage.RECOMMEND_SUCCESS_MESSAGE;
+import static menu.view.OutputMessage.START_MESSAGE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,20 +17,19 @@ import menu.domain.Menu;
 
 public class OutputView {
 
-  private static final String ERROR_PREFIX = "[ERROR] ";
-  private static final String RECOMMEND_RESULT_MESSAGE = "\n메뉴 추천 결과입니다.";
-  private static final String RECOMMEND_SUCCESS_MESSAGE = "\n추천을 완료했습니다.";
-  public static final String CATEGORY = "카테고리";
   public static void printErrorMessage(String message) {
-    System.out.println(ERROR_PREFIX + message);
+    System.out.println(ERROR_PREFIX.getMessage() + message);
   }
 
+  public void printStart() {
+    System.out.println(START_MESSAGE.getMessage());
+  }
   public void printResult() {
-    System.out.println(RECOMMEND_RESULT_MESSAGE);
+    System.out.println(RECOMMEND_RESULT_MESSAGE.getMessage());
     printDays();
     printCategories();
     makeResultForm().forEach(System.out::println);
-    System.out.println(RECOMMEND_SUCCESS_MESSAGE);
+    System.out.println(RECOMMEND_SUCCESS_MESSAGE.getMessage());
   }
   public void printDays() {
     List<String> result = new ArrayList<>();
@@ -38,7 +42,7 @@ public class OutputView {
         .map(r -> r.getCategory().getName())
         .collect(Collectors.toList());
     List<String> result = new ArrayList<>();
-    result.add(CATEGORY);
+    result.add(CATEGORY.getMessage());
     result.addAll(allCategoryNames);
     System.out.println(convertToResultForm(result));
   }
