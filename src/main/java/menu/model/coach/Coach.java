@@ -14,4 +14,7 @@ public class Coach {
     public Coach(String name) {
         this.name = name;
     }
+    public boolean isEqualCoach(String coachName) {
+        return this.name.equals(coachName);
+    }
 }
