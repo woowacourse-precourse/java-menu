@@ -1,5 +1,6 @@
 package menu.view;
 
+import camp.nextstep.edu.missionutils.Console;
 import menu.validator.NameValidator;
 
 import java.util.ArrayList;
@@ -9,11 +10,9 @@ import java.util.Scanner;
 public class InputView {
 
     public static List<String> readNames() {
-        Scanner scanner = new Scanner(System.in);
         List<String> names = new ArrayList<>();
         NameValidator nameValidator = new NameValidator();
-        String inputNames = scanner.nextLine();
-        scanner.close();
+        String inputNames = Console.readLine();
 
         String[] splitNames = inputNames.split(",");
         for(int i=0; i< splitNames.length; i++) {
