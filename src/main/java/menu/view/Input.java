@@ -22,7 +22,7 @@ public class Input {
         while(true){
             try{
                 System.out.println(coachName + "(이)가 못 먹는 메뉴를 입력해 주세요.");
-                return ValidInputChecker.validateNoFoodsAndToList(Console.readLine());
+                return ValidInputChecker.validateInedibleFoodsAndToList(Console.readLine());
             } catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }

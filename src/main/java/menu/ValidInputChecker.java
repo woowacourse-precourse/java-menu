@@ -2,7 +2,6 @@ package menu;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class ValidInputChecker {
@@ -21,15 +20,18 @@ public class ValidInputChecker {
     }
 
     private static String validateFoodName(String food){
-        if(Objects.equals(food, "")) return "";
         if(!FoodInformation.isExist(food))
             throw new IllegalArgumentException("[ERROR] 못 먹는 메뉴가 존재하지 않는 값입니다.");
         return food;
     }
 
-    public static List<String> validateNoFoodsAndToList(String foods){
+    public static List<String> validateInedibleFoodsAndToList(String foods){
+        if("".equals(foods)) return null;
         List<String> ret = Arrays.stream(foods.split(",", -1))
                 .map(ValidInputChecker::validateFoodName)
+                .collect(Collectors.toList());
+        ret = ret.stream()
+                .distinct()
                 .collect(Collectors.toList());
         if(ret.size() > 2)
             throw new IllegalArgumentException("[ERROR] 못 먹는 메뉴는 최대 2개 입니다.");

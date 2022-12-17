@@ -1,9 +1,11 @@
 package menu;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ValidInputCheckerTest {
@@ -21,9 +23,15 @@ public class ValidInputCheckerTest {
     @DisplayName("못 먹는 음식 에러")
     @ValueSource(strings = {"동우,시스", "우동,스시,토마토 달걀볶음"})
     @ParameterizedTest
-    void isNotValidNoFoodsLen(String input){
-        assertThatThrownBy(() -> ValidInputChecker.validateNoFoodsAndToList(input))
+    void isNotValidInedibleFoodsLen(String input){
+        assertThatThrownBy(() -> ValidInputChecker.validateInedibleFoodsAndToList(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE);
+    }
+
+    @DisplayName("못 먹는 음식 유효")
+    @Test
+    void isValidInedibleFoods(){
+        assertThat(ValidInputChecker.validateInedibleFoodsAndToList("")).isEqualTo(null);
     }
 }
