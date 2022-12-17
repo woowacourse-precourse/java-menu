@@ -16,6 +16,7 @@ public class MenuController {
     public void startMenuRecommendService() {
         outputView.printServiceStartNotice();
         readCoachNames();
+        readDislikeFoods();
     }
 
     private void readCoachNames() {
@@ -25,6 +26,13 @@ public class MenuController {
         String[] coachNames = coachNameInput.split(",");
         for (String name : coachNames) {
             coaches.add(new Coach(name));
+        }
+    }
+
+    private void readDislikeFoods() {
+        for (Coach coach : coaches) {
+            outputView.printDislikeFoodInputNotice(coach.getName());
+            coach.addDislikeFood(inputView.readDislikeFoods());
         }
     }
 }
