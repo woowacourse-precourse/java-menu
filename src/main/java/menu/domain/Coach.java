@@ -19,5 +19,13 @@ public class Coach {
         return new Coach(name);
     }
 
-    
+    public String getName() {
+        return name;
+    }
+
+    public void addUnavailableMenu(List<String> menus) {
+        for (String menu : menus) {
+            unavailableMenu.addMenu(menu);
+        }
+    }
 }

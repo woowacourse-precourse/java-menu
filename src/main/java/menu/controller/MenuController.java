@@ -1,9 +1,12 @@
 package menu.controller;
 
 import menu.dto.CoachInputDTO;
+import menu.dto.UnavailableMenuDTO;
 import menu.service.MenuService;
 import menu.view.InputView;
 import menu.view.OutputView;
+
+import java.util.List;
 
 public class MenuController {
 
@@ -18,9 +21,15 @@ public class MenuController {
     }
 
     public void run() {
+        startService();
         inputCoachName();
-        inputUnavailableMenu();
+        inputUnavailableMenus();
         recommendMenus();
+    }
+
+    private void startService() {
+        outputView.printStartMessage();
+        menuService.init();
     }
 
     private void inputCoachName() {
@@ -29,11 +38,25 @@ public class MenuController {
             menuService.createCoaches(coachInputDTO);
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception);
+            inputCoachName();
         }
     }
 
-    private void inputUnavailableMenu() {
-        
+    private void inputUnavailableMenus() {
+        List<String> allCoachNames = menuService.findAllCoachNames();
+        for (String coachName : allCoachNames) {
+            inputUnavailableMenu(coachName);
+        }
+    }
+
+    private void inputUnavailableMenu(String coachName) {
+        try {
+            UnavailableMenuDTO unavailableMenuDTO = inputView.inputUnavailableMenu(coachName);
+            menuService.addUnavailableMenus(coachName, unavailableMenuDTO);
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception);
+            inputUnavailableMenu(coachName);
+        }
     }
 
     private void recommendMenus() {

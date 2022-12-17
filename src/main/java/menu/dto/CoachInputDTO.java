@@ -13,7 +13,7 @@ public class CoachInputDTO {
     }
 
     public List<String> getCoachNames() {
-        String[] names = coachNames.split("\\s,\\s");
+        String[] names = coachNames.split("\\s*,\\s*");
         return new ArrayList<>(Arrays.asList(names));
     }
 }
