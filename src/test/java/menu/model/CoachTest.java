@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class CoachTest {
     Coach coach;
@@ -65,5 +66,13 @@ class CoachTest {
     @ParameterizedTest
     void isNotHateMenuTest(String menu) {
         assertThat(coach.isHateMenu(menu)).isFalse();
+    }
+
+    @DisplayName("잘못된 코치 추가 예외 발생 테스트")
+    @ValueSource(strings = {"jamie", "a", ""})
+    @ParameterizedTest
+    void addCoachTest(String name) {
+        assertThatThrownBy(() -> new Coach(name))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
