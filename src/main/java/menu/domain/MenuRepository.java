@@ -36,4 +36,8 @@ public class MenuRepository {
     public static List<String> categoryList() {
         return List.copyOf(menuByCategories.keySet());
     }
+
+    public static List<String> findMenuListByCategory(String category) {
+        return new ArrayList<>(menuByCategories.get(category));
+    }
 }
