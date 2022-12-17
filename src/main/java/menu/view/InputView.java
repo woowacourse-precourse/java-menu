@@ -15,8 +15,8 @@ public class InputView {
     public List<String> getCoachName() throws IllegalArgumentException{
         System.out.println("점심 메뉴 추천을 시작합니다. \n\n코치의 이름을 입력해 주세요. (, 로 구분)");
         List<String> nameInput = splitInput(Console.readLine());
+        coachSizeValidation(nameInput);
         coachNameLengthValidation(nameInput);
-
         return trimEachInput(splitInput(Console.readLine()));
     }
 
@@ -59,6 +59,14 @@ public class InputView {
         if (coachNames.size() < 2 || coachNames.size() > 5) {
             throw new IllegalArgumentException(
                     ExceptionMessage.INVALID_COACH_SIZE.getMessage());
+        }
+    }
+
+    // 못먹는 메뉴는 2개를 넘을 수 없음 (Validation.3)
+    private void notEatFoodSizeValidation(List<String> notEatFoods) {
+        if (notEatFoods.size() > 2) {
+            throw new IllegalArgumentException(
+                    ExceptionMessage.INVALID_NOT_EAT_SIZE.getMessage());
         }
     }
 
