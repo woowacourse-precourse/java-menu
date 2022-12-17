@@ -46,7 +46,7 @@ public class InputView {
         List<String> hates;
         while(true){
             try{
-                hates = parseCoachName(readLine());
+                hates = parseHateMenus(readLine());
                 return hates;
             }catch(IllegalArgumentException e){
                 System.out.println(e.getMessage());
