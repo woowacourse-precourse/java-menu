@@ -9,8 +9,8 @@
   - [X] 최소 0개 최대 2개 (,로 구분)
 - [X] 카테고리와 메뉴 추가 recommendMenu#AddCategory()
   - [X] 일식,한식,중식,아시안,양식 추가 AddCategory#addJapan,addKorean,addChinese,addAsian,addAmerican
-- [X] 카테고리 추천
+- [X] 카테고리 추천 Recommend#recommendCategory
   - [X] 카테고리 메뉴 랜덤으로 가져오기 Random#RandomCategory , Random#RandomMenu
-  - [X] 한주에 같은 카테고리 최대 2회
-- [x] 메뉴 추천
-  - [x] 한주에 중복되지 않는 메뉴를 추천해야한다.
+  - [X] 한주에 같은 카테고리 최대 2회 Recommend#validateCategory
+- [x] 메뉴 추천 Recommend#recommendFood
+  - [x] 한주에 중복되지 않는 메뉴를 추천해야한다. Recommend#randomMenu
