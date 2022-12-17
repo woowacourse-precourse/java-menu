@@ -32,4 +32,29 @@ public class Couch {
     public List<String> getEatenMenus() {
         return eatenMenus;
     }
+
+    public boolean validateMenu(String selectedMenu) {
+        if (validateUneatableMenu(selectedMenu) && validateEatenMenu(selectedMenu)) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean validateUneatableMenu(String selectedMenu) {
+        if (uneatableMenus.contains(selectedMenu)) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateEatenMenu(String selectedMenu) {
+        if (eatenMenus.contains(selectedMenu)) {
+            return false;
+        }
+        return true;
+    }
+
+    public void addMenu(String selectedMenu) {
+        eatenMenus.add(selectedMenu);
+    }
 }

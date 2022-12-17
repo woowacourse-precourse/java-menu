@@ -27,19 +27,29 @@ public class Controller {
     private static void selectMenus() {
         while (CouchRepository.getSelectedCategories().size() < 5) {
             Category selectedCategory = CategoryRepository.pickRandomCategory();
-            CouchRepository.validateMenu(selectedCategory);
+            if (!CouchRepository.validateMenu(selectedCategory)) {
+                continue;
+            }
             CouchRepository.addCategory(selectedCategory);
             System.out.println(CouchRepository.getSelectedCategories());
-            //addMenus(selectedCategory);
+            addMenus(selectedCategory);
+            for (Couch couch : CouchRepository.getCouches()) {
+                System.out.println(couch.getName()+"못먹는메뉴"+couch.getUneatableMenus());
+                System.out.println(couch.getName()+"먹은메뉴"+couch.getEatenMenus());
+            }
         }
 
 
     }
     private static void addMenus(Category selectedCategory) {
         for (Couch couch : CouchRepository.getCouches()) {
-            String selectedMenu = CategoryRepository.pickMenu(selectedCategory);
-            //couch.validateMenu(selectedMenu);
-            //couch.addMenu(selectedMenu);
+            while (true) {
+                String selectedMenu = CategoryRepository.pickMenu(selectedCategory);
+                if (couch.validateMenu(selectedMenu)) {
+                    couch.addMenu(selectedMenu);
+                    break;
+                }
+            }
         }
     }
 }

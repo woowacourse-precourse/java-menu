@@ -14,7 +14,7 @@ public class InputView {
     }
 
     public static String[] readUneatableMenus(Couch couch) {
-        System.out.printf("%s(이)가 못 먹는 메뉴를 입력해 주세요.", couch.getName());
+        System.out.printf("%s(이)가 못 먹는 메뉴를 입력해 주세요.\n", couch.getName());
         String menus = Console.readLine();
         validateMenus(menus);
         if (menus.endsWith(",")) {

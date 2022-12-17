@@ -26,7 +26,13 @@ public class CouchRepository {
 
     }
 
-    public static void validateMenu(Category selectedCategory) {
-
+    public static boolean validateMenu(Category selectedCategory) {
+        int sameCategoryCount = (int) selectedCategories.stream()
+                .filter(category -> category.equals(selectedCategory))
+                .count();
+        if (sameCategoryCount >= 2) {
+            return false;
+        }
+        return true;
     }
 }
