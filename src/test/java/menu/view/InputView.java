@@ -10,7 +10,15 @@ public class InputView {
         String[] coachNames = parse(input);
         return coachNames;
     }
+
+    public static String[] readBanFoods(){
+        String input = Console.readLine();
+        String[] banFoods = parse(input);
+        return banFoods;
+    }
+
     private static String[] parse(String input){
         return input.split(SPLIT_REGEX);
     }
+
 }
