@@ -27,7 +27,7 @@ class CoachTest {
         coach.addAlreadyEatFood(List.of("김치찌개", "비빔밥"));
 
         //when
-        final boolean result = coach.isTooManySameCategory(menuRepository.getMenus(KOREA), KOREA);
+        final boolean result = coach.isTooManySameCategory(menuRepository.getMenus(KOREA));
 
         //then
         assertThat(result).isTrue();

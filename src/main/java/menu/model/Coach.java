@@ -30,7 +30,7 @@ public class Coach {
         return cannotEatFoods.contains(menu) || alreadyEatFoods.contains(menu);
     }
 
-    public boolean isTooManySameCategory(final List<String> categoryMenus, final MenuCategory category) {
+    public boolean isTooManySameCategory(final List<String> categoryMenus) {
         return getDuplicateCategoryCount(categoryMenus) >= MAX_RECOMMENDED_COUNT;
     }
 

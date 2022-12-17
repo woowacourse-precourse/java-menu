@@ -51,7 +51,7 @@ public class RecommendService {
         do {
             category = recommendSystem.pickRandomCategory();
             chosenMenus = menuRepository.getMenus(category);
-            isTwoManyCategory = coach.isTooManySameCategory(chosenMenus, category);
+            isTwoManyCategory = coach.isTooManySameCategory(chosenMenus);
         } while (isTwoManyCategory);
 
 
