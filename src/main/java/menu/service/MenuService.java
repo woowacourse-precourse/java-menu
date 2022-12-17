@@ -14,6 +14,15 @@ import menu.service.dto.MenuDto;
 import menu.service.dto.RecommendResultDto;
 
 public class MenuService implements Menu {
+
+    private static final String MENU_NOT_FOUND_MSG = "없는 메뉴입니다";
+
+    private static final String NUMBER_OVER__MSG = "사람 수가 범위를 벗어났습니다";
+    private static final int LIMIT_COACH_COUNT = 2;
+    private static final int MAX_COACH_COUNT = 5;
+    private final Map<Category, List<String>> menus;
+    private final Picker picker;
+
     public MenuService(final Map<String, List<String>> menus, final Picker picker) {
         this.menus = stringToMenuConverter(menus);
         this.picker = picker;
