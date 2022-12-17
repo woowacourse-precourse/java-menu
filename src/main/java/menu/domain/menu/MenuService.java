@@ -2,6 +2,8 @@ package menu.domain.menu;
 
 import java.util.List;
 import menu.domain.coach.Coach;
+import menu.domain.coach.Coaches;
+import menu.domain.results.RecommendCategories;
 
 public class MenuService {
     private final MenuRepository menuRepository;
@@ -15,5 +17,19 @@ public class MenuService {
             Menu menu = menuRepository.findByMenuName(menuName);
             coach.addAvoidMenu(menu);
         }
+    }
+
+    public void recommendMenus(Coaches coaches) {
+        getRandomCategories();
+    }
+
+    public RecommendCategories getRandomCategories() {
+        RecommendCategories recommendCategories = new RecommendCategories();
+        while (!recommendCategories.isFull()) {
+            MenuCategory menuCategory = MenuCategory.pickRandomMenuCategory();
+            recommendCategories.addRecommendCategory(menuCategory);
+        }
+
+        return recommendCategories;
     }
 }

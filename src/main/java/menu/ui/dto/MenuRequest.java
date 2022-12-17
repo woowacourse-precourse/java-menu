@@ -3,7 +3,6 @@ package menu.ui.dto;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import menu.domain.menu.Menus;
 
 public class MenuRequest {
     private final List<String> menus;
