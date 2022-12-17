@@ -2,7 +2,6 @@ package menu.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import menu.domain.Coach;
-import menu.domain.Food;
 import menu.domain.Foods;
 
 import java.util.ArrayList;
@@ -18,7 +17,6 @@ public class CoachController {
     HashMap<String,Coach> coaches;
     List<String> coachList;
     Foods foods;
-    Food food;
     public CoachController(){
         this.foods = new Foods();
         this.categoryList = new ArrayList<>();
