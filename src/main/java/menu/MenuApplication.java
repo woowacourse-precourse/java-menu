@@ -25,17 +25,22 @@ public class MenuApplication {
             coachHates.updateHateMap(coachLists.get(i), hateFoods);
         }
         MenuChoicer menuChoices = new MenuChoicer(coachLists, coachHates);
-        List<CategoryType> chosenCategoryList = new ArrayList<>();
+        List<CategoryType> chosenCategoryList = getRecommendedMenuList(coachLists, menuChoices);
+        showChoiceResult(coachLists, menuChoices, chosenCategoryList);
+    }
+
+    private List<CategoryType> getRecommendedMenuList(List<String> coachLists, MenuChoicer menuChoices) {
+        List<CategoryType> recommendedMenuList = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            CategoryType chosenCategoryType = menuChoices.chooseRandomCategory(chosenCategoryList);
-            chosenCategoryList.add(chosenCategoryType);
+            CategoryType chosenCategoryType = menuChoices.chooseRandomCategory(recommendedMenuList);
+            recommendedMenuList.add(chosenCategoryType);
             for (int j = 0; j < coachLists.size(); j++) {
                 List<String> menus = categoryMap.getFoodList(chosenCategoryType);
                 String menu = menuChoices.chooseRandomMenuUntilDoesntExists(menuChoices.getCoachMenus(coachLists.get(j)), menus);
                 menuChoices.updateChosenMenu(coachLists.get(j), menu);
             }
         }
-        showChoiceResult(coachLists, menuChoices, chosenCategoryList);
+        return recommendedMenuList;
     }
 
     private void showChoiceResult(List<String> coachLists, MenuChoicer menuChoices, List<CategoryType> chosenCategoryList) {
