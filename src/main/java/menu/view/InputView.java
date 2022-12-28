@@ -1,11 +1,9 @@
 package menu.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import menu.util.Message;
 
 public class InputView {
     private static final String COMMA = ",";
@@ -21,11 +19,11 @@ public class InputView {
         List<String> coachList = Arrays.asList(coachString.split(COMMA));
         for (int i = 0; i < coachList.size(); i++) {
             if (coachList.get(i).length() < MIN_NAME_LENGTH || coachList.get(i).length() > MAX_NAME_LENGTH) {
-                throw new IllegalArgumentException("[ERROR] 코치이름의 길이를 확인해주세요");
+                throw new IllegalArgumentException(Message.ERROR_COACH_NAME_LENGTH.getErrMessage());
             }
         }
         if (coachList.size() > 5 || coachList.size() < 2) {
-            throw new IllegalArgumentException("[ERROR] 코치는 두 명과 다섯명 사이로 입력해주세요");
+            throw new IllegalArgumentException(Message.ERROR_COACH_COUNT.getErrMessage());
         }
         return coachList;
     }
@@ -41,9 +39,8 @@ public class InputView {
         }
         List<String> hateFoodList = Arrays.asList(hateString.split(COMMA));
         if (hateFoodList.size() > MAX_MENU_LENGTH) {
-            throw new IllegalArgumentException("[ERROR] 못먹는 메뉴는 두 개까지만 입력가능합니다");
+            throw new IllegalArgumentException(Message.ERROR_MENU_COUNT.getErrMessage());
         }
-        System.out.println(hateFoodList);
         return hateFoodList;
     }
 
