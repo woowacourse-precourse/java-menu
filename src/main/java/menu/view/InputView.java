@@ -19,15 +19,19 @@ public class InputView {
         outputView.initMessage();
         String coachString = Console.readLine();
         List<String> coachList = Arrays.asList(coachString.split(COMMA));
+        validateCoachNameLength(coachList);
+        if (coachList.size() > MAX_COACH_COUNT || coachList.size() < MIN_COACH_COUNT) {
+            throw new IllegalArgumentException(Message.ERROR_COACH_COUNT.getErrMessage());
+        }
+        return coachList;
+    }
+
+    private static void validateCoachNameLength(List<String> coachList) {
         for (int i = 0; i < coachList.size(); i++) {
             if (coachList.get(i).length() < MIN_NAME_LENGTH || coachList.get(i).length() > MAX_NAME_LENGTH) {
                 throw new IllegalArgumentException(Message.ERROR_COACH_NAME_LENGTH.getErrMessage());
             }
         }
-        if (coachList.size() > MAX_COACH_COUNT || coachList.size() < MIN_COACH_COUNT) {
-            throw new IllegalArgumentException(Message.ERROR_COACH_COUNT.getErrMessage());
-        }
-        return coachList;
     }
 
     public List<String> getHateList(String name) {
