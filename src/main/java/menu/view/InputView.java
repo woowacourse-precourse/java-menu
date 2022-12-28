@@ -9,7 +9,7 @@ public class InputView {
     private static final String COMMA = ",";
     private static final int MAX_NAME_LENGTH = 4;
     private static final int MIN_NAME_LENGTH = 2;
-    private static final int MAX_MENU_LENGTH = 2;
+    private static final int MAX_MENU_COUNT = 2;
     private static final int MAX_COACH_COUNT = 5;
     private static final int MIN_COACH_COUNT = 2;
 
@@ -48,10 +48,14 @@ public class InputView {
             return List.of(hateString);
         }
         List<String> hateFoodList = Arrays.asList(hateString.split(COMMA));
-        if (hateFoodList.size() > MAX_MENU_LENGTH) {
+        validateMenuCounts(hateFoodList);
+        return hateFoodList;
+    }
+
+    private static void validateMenuCounts(List<String> hateFoodList) {
+        if (hateFoodList.size() > MAX_MENU_COUNT) {
             throw new IllegalArgumentException(Message.ERROR_MENU_COUNT.getErrMessage());
         }
-        return hateFoodList;
     }
 
 }
