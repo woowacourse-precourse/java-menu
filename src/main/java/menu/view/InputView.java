@@ -20,10 +20,14 @@ public class InputView {
         String coachString = Console.readLine();
         List<String> coachList = Arrays.asList(coachString.split(COMMA));
         validateCoachNameLength(coachList);
+        validateCoachCount(coachList);
+        return coachList;
+    }
+
+    private static void validateCoachCount(List<String> coachList) {
         if (coachList.size() > MAX_COACH_COUNT || coachList.size() < MIN_COACH_COUNT) {
             throw new IllegalArgumentException(Message.ERROR_COACH_COUNT.getErrMessage());
         }
-        return coachList;
     }
 
     private static void validateCoachNameLength(List<String> coachList) {
