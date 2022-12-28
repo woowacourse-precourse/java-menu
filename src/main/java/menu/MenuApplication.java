@@ -13,15 +13,15 @@ import menu.view.OutputView;
 
 public class MenuApplication {
 
-    InputExceptionHandler inputView = new InputExceptionHandler();
+    InputExceptionHandler inputExceptionHandler = new InputExceptionHandler();
     OutputView outputView = new OutputView();
     CategoryMap categoryMap = new CategoryMap(new HashMap<>());
 
     public void run() {
-        List<String> coachLists = inputView.getCoachList();
+        List<String> coachLists = inputExceptionHandler.getCoachList();
         CoachHates coachHates = new CoachHates();
         for (int i = 0; i < coachLists.size(); i++) {
-            List<String> hateFoods = inputView.getHateList(coachLists.get(i));
+            List<String> hateFoods = inputExceptionHandler.getHateList(coachLists.get(i));
             coachHates.updateHateMap(coachLists.get(i), hateFoods);
         }
         MenuChoicer menuChoices = new MenuChoicer(coachLists, coachHates);
@@ -31,8 +31,7 @@ public class MenuApplication {
             chosenCategoryList.add(chosenCategoryType);
             for (int j = 0; j < coachLists.size(); j++) {
                 List<String> menus = categoryMap.getFoodList(chosenCategoryType);
-                String menu = menuChoices.chooseRandomMenuUntilDoesntExists(
-                        menuChoices.getCoachMenus(coachLists.get(j)), menus);
+                String menu = menuChoices.chooseRandomMenuUntilDoesntExists(menuChoices.getCoachMenus(coachLists.get(j)), menus);
                 menuChoices.updateChosenMenu(coachLists.get(j), menu);
             }
         }
