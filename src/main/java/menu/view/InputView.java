@@ -10,6 +10,8 @@ public class InputView {
     private static final int MAX_NAME_LENGTH = 4;
     private static final int MIN_NAME_LENGTH = 2;
     private static final int MAX_MENU_LENGTH = 2;
+    private static final int MAX_COACH_COUNT = 5;
+    private static final int MIN_COACH_COUNT = 2;
 
     OutputView outputView = new OutputView();
 
@@ -22,7 +24,7 @@ public class InputView {
                 throw new IllegalArgumentException(Message.ERROR_COACH_NAME_LENGTH.getErrMessage());
             }
         }
-        if (coachList.size() > 5 || coachList.size() < 2) {
+        if (coachList.size() > MAX_COACH_COUNT || coachList.size() < MIN_COACH_COUNT) {
             throw new IllegalArgumentException(Message.ERROR_COACH_COUNT.getErrMessage());
         }
         return coachList;
