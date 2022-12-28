@@ -36,6 +36,10 @@ public class MenuApplication {
                 menuChoices.updateChosenMenu(coachLists.get(j), menu);
             }
         }
+        showChoiceResult(coachLists, menuChoices, chosenCategoryList);
+    }
+
+    private void showChoiceResult(List<String> coachLists, MenuChoicer menuChoices, List<CategoryType> chosenCategoryList) {
         outputView.printResultInit();
         outputView.printCategory(chosenCategoryList);
         for (int i = 0; i < coachLists.size(); i++) {
