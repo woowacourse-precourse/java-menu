@@ -3,12 +3,15 @@ package menu;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import menu.domain.CategoryMap;
+import menu.domain.CoachHates;
+import menu.domain.MenuChoicer;
 import menu.type.CategoryType;
 import menu.util.InputExceptionHandler;
 import menu.view.OutputView;
 
 
-public class MenuController {
+public class MenuApplication {
 
     InputExceptionHandler inputView = new InputExceptionHandler();
     OutputView outputView = new OutputView();

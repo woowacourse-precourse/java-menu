@@ -28,7 +28,9 @@ public class InputView {
     public List<String> getHateList(String name) {
         outputView.askCoachHate(name);
         String hateString = Console.readLine();
-        if (hateString == null) {
+        System.out.println(hateString);
+        if (hateString.equals("\n")) {
+            System.out.println("check success");
             return List.of();
         }
         if (!(hateString.contains(","))) {
@@ -38,6 +40,7 @@ public class InputView {
         if (hateFoodList.size() > 2) {
             throw new IllegalArgumentException("[ERROR] 못먹는 메뉴는 두 개까지만 입력가능합니다");
         }
+        System.out.println(hateFoodList);
         return hateFoodList;
     }
 

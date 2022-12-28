@@ -1,4 +1,4 @@
-package menu;
+package menu.domain;
 
 import java.util.HashMap;
 import java.util.List;
