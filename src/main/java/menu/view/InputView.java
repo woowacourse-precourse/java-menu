@@ -8,14 +8,19 @@ import java.util.List;
 import java.util.Map;
 
 public class InputView {
+    private static final String COMMA = ",";
+    private static final int MAX_NAME_LENGTH = 4;
+    private static final int MIN_NAME_LENGTH = 2;
+    private static final int MAX_MENU_LENGTH = 2;
+
     OutputView outputView = new OutputView();
 
     public List<String> getCoachList() {
         outputView.initMessage();
         String coachString = Console.readLine();
-        List<String> coachList = Arrays.asList(coachString.split(","));
+        List<String> coachList = Arrays.asList(coachString.split(COMMA));
         for (int i = 0; i < coachList.size(); i++) {
-            if (coachList.get(i).length() < 2 || coachList.get(i).length() > 4) {
+            if (coachList.get(i).length() < MIN_NAME_LENGTH || coachList.get(i).length() > MAX_NAME_LENGTH) {
                 throw new IllegalArgumentException("[ERROR] 코치이름의 길이를 확인해주세요");
             }
         }
@@ -28,16 +33,14 @@ public class InputView {
     public List<String> getHateList(String name) {
         outputView.askCoachHate(name);
         String hateString = Console.readLine();
-        System.out.println(hateString);
-        if (hateString.equals("\n")) {
-            System.out.println("check success");
+        if (hateString == null) {
             return List.of();
         }
-        if (!(hateString.contains(","))) {
+        if (!(hateString.contains(COMMA))) {
             return List.of(hateString);
         }
-        List<String> hateFoodList = Arrays.asList(hateString.split(","));
-        if (hateFoodList.size() > 2) {
+        List<String> hateFoodList = Arrays.asList(hateString.split(COMMA));
+        if (hateFoodList.size() > MAX_MENU_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 못먹는 메뉴는 두 개까지만 입력가능합니다");
         }
         System.out.println(hateFoodList);
