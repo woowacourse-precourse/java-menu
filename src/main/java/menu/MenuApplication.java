@@ -10,8 +10,8 @@ import menu.type.CategoryType;
 import menu.util.InputExceptionHandler;
 import menu.view.OutputView;
 
-
 public class MenuApplication {
+    private static final int DAYS = 5;
 
     InputExceptionHandler inputExceptionHandler = new InputExceptionHandler();
     OutputView outputView = new OutputView();
@@ -31,7 +31,7 @@ public class MenuApplication {
 
     private List<CategoryType> getRecommendedMenuList(List<String> coachLists, MenuChoicer menuChoices) {
         List<CategoryType> recommendedMenuList = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < DAYS; i++) {
             CategoryType chosenCategoryType = menuChoices.chooseRandomCategory(recommendedMenuList);
             recommendedMenuList.add(chosenCategoryType);
             for (int j = 0; j < coachLists.size(); j++) {
@@ -43,8 +43,7 @@ public class MenuApplication {
         return recommendedMenuList;
     }
 
-    private void showChoiceResult(List<String> coachLists, MenuChoicer menuChoices,
-                                  List<CategoryType> chosenCategoryList) {
+    private void showChoiceResult(List<String> coachLists, MenuChoicer menuChoices, List<CategoryType> chosenCategoryList) {
         outputView.printResultInit();
         outputView.printCategory(chosenCategoryList);
         for (int i = 0; i < coachLists.size(); i++) {
