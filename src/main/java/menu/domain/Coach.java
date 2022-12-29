@@ -16,7 +16,7 @@ public class Coach {
     }
 
     public void enrollHateFood(List<Menu> menus) {
-        for (Menu menu : menufd) {
+        for (Menu menu : menu) {
             if (hateMenu.contains(menu)) {
                 continue;
             }
