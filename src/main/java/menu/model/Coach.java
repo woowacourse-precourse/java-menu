@@ -23,10 +23,6 @@ public class Coach extends NotModule {
         return this.name;
     }
 
-    public List<String> getHateFoods() {
-        return this.hateFoods;
-    }
-
     public List<String> getChoicedMenus() {
         return this.choicedMenus;
     }
@@ -37,10 +33,10 @@ public class Coach extends NotModule {
         }
     }
 
-    private boolean canAddMenu(String menu) {
+    public boolean canAddMenu(String menu) {
         return not(choicedMenus.stream()
-                .anyMatch(choicedMenu -> Objects.equals(choicedMenu, menu))
-                ||
-                hateFoods.contains(menu));
+                .anyMatch(choicedMenu -> Objects.equals(choicedMenu, menu)))
+                &&
+                not(hateFoods.contains(menu));
     }
 }

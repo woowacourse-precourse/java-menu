@@ -1,5 +1,6 @@
 package menu.controller;
 
+import menu.enums.MenuOption;
 import menu.model.ChoiceMachine;
 import menu.model.Coach;
 import menu.model.CoachRepository;
@@ -34,20 +35,17 @@ public class MainController {
 
     public void choiceCategory() {
         for (int day = ZERO; day < DAY_COUNT; day++) {
-            choiceMachine.choiceCategory();
-        }
-
-        choiceMenu();
-    }
-
-    public void choiceMenu() {
-        for (Coach coach : CoachRepository.coaches()) {
-            for (int day = ZERO; day < DAY_COUNT; day++) {
-                choiceMachine.choiceMenu(coach, CoachRepository.categories().get(day));
-            }
+            MenuOption category = choiceMachine.choiceCategory();
+            choiceMenu(category);
         }
 
         end();
+    }
+
+    public void choiceMenu(MenuOption category) {
+        for (Coach coach : CoachRepository.coaches()) {
+            choiceMachine.choiceMenu(coach, category);
+        }
     }
 
     public void end() {
