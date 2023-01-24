@@ -6,9 +6,7 @@ import menu.model.service.CoachService;
 import menu.model.service.FoodService;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 public class OutputView {
 
@@ -54,7 +52,6 @@ public class OutputView {
      *
      * 추천을 완료했습니다.
      */
-
 
     public static void finishRecommend() {
         System.out.println("추천을 완료했습니다.");
